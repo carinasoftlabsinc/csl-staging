@@ -1,0 +1,32 @@
+/* Keyframe animation for infinite scrolling */
+@keyframes Scroll {
+    0% {
+      transform: translateX(0); /* Start the text just inside the viewport */
+    }
+    100% {
+      transform: translateX(-100%); /* Move the text out of the viewport on the left */
+    }
+  }
+  
+  
+  /* Apply the animation */
+  .animate-scrolling {
+    animation: Scroll 25s linear infinite; /* Adjust the speed with 15s */
+  }
+  
+
+// @keyframes scroll {
+//   from {
+//     transform: translateX(0);
+//   }
+//   to {
+//     transform: translateX(-50%);
+//   }
+// }
+
+// /* Apply animation */
+// .animate-scroll {
+//   display: flex;
+//   min-width: 200%; /* Ensures enough width for seamless looping */
+//   animation: scroll 15s linear infinite;
+// }

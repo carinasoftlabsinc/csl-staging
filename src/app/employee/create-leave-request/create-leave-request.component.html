@@ -1,0 +1,189 @@
+
+<section class="content" >
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb
+        [title]="'Leave Request'"
+        [items]="['Leave']"
+        [active_item]="'Leave Request'"
+      >
+      </app-breadcrumb>
+    </div>
+    <mat-spinner [diameter]="40" *ngIf="isLoading"></mat-spinner>
+    <div class="row clearfix" *ngIf="!isLoading">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2 *ngIf="this.mode === 'add'">Add Leave Request</h2>
+            <h2 *ngIf="this.mode === 'edit'">Edit Leave Request</h2>
+          </div>
+          <div class="body">
+            <form
+              class="m-4"
+              [formGroup]="form"
+              (ngSubmit)="onSave()"
+              #formDirective="ngForm"
+            >
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
+                    <mat-label>Apply Date</mat-label>
+                    <input
+                      matInput
+                      [matDatepicker]="picker1"
+                      formControlName="applyDate"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker1"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                    <mat-error
+                      *ngIf="form.get('applyDate')?.hasError('required')"
+                    >
+                      required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
+                    <mat-label>From Date</mat-label>
+                    <input
+                      matInput
+                      [matDatepicker]="picker2"
+                      formControlName="fromDate"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker2"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                    <mat-error
+                      *ngIf="form.get('fromDate')?.hasError('required')"
+                    >
+                      required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
+                    <mat-label>To Date</mat-label>
+                    <input
+                      matInput
+                      [matDatepicker]="picker3"
+                      formControlName="toDate"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker3"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                    <mat-error *ngIf="form.get('toDate')?.hasError('required')">
+                      required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
+                    <mat-label>Half Day</mat-label>
+                    <mat-select formControlName="halfDay" required>
+                      <mat-option [value]="'Yes'"> Yes </mat-option>
+                      <mat-option [value]="'No'"> No </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
+                    <mat-label>Leave Type</mat-label>
+                    <mat-select formControlName="leaveType" required>
+                      <mat-option [value]="'Personal'"> Personal </mat-option>
+                      <mat-option [value]="'Casual'"> Casual </mat-option>
+                      <mat-option [value]="'Medical'"> Medical </mat-option>
+                      <mat-option [value]="'Maternity'"> Maternity </mat-option>
+                    </mat-select>
+                    <mat-error
+                      *ngIf="form.get('leaveType')?.hasError('required')"
+                    >
+                      required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
+                    <mat-label>Reason</mat-label>
+                    <textarea matInput formControlName="reason"></textarea>
+                    <mat-error *ngIf="form.get('reason')?.hasError('required')">
+                      required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    class="btn-space"
+                    type="submit"
+                    matTooltip="Submit"
+                    *ngIf="mode === 'add'"
+                  >
+                    Submit
+                  </button>
+
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    class="btn-space"
+                    type="submit"
+                    matTooltip="Update"
+                    *ngIf="mode === 'edit'"
+                  >
+                    Update
+                  </button>
+
+                  <button
+                    type="button"
+                    mat-raised-button
+                    color="warn"
+                    (click)="back()"
+                    matTooltip="Back"
+                  >
+                    Back
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

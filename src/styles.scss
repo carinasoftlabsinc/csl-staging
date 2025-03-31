@@ -1,0 +1,260 @@
+/* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "animate.css/animate.min.css";
+
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
+@import "ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
+
+@import "https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/keen-slider.min.css";
+
+// ✅ Correct for Swiper v10.x
+// @import 'swiper/swiper-bundle.css';
+// @import "~@splidejs/splide/dist/css/splide.min.css";
+// @import "~keen-slider/keen-slider.min.css";
+
+
+.bg-gif-2 {
+  background-image: url("assets/image_processing20200220-31148-1kiujb5.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.ring-img {
+  background-image: url(assets/images/ring.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-gif {
+  background-image: url("assets/images/bg-deep.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  // opacity: 0.8;
+}
+
+.bg-gif::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  // opacity: 0.9;
+}
+
+.bg-gif p {
+  color: white;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.know-bg {
+  position: relative;
+  background-image: url("./assets/images/computer-logo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.know-bg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.know-bg p {
+  position: relative;
+  z-index: 1;
+}
+
+.know-bg-3 {
+  position: relative;
+  background-image: url("./assets/images/comp-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.know-bg-3::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.know-bg-3 p {
+  position: relative;
+  z-index: 1;
+}
+
+.know-bg-3 .slider-content {
+  z-index: 1;
+  position: relative;
+}
+
+.hover-bg-fade::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2); /* Light white with 20% opacity */
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0.9;
+  z-index: -1;
+  border-radius: 2px;
+}
+.hover-bg-fade:hover::before {
+  opacity: 1;
+}
+
+.slideshow {
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+}
+
+.slideshow::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
+
+// .card-container {
+//   transition: transform 0.5s ease-in-out;
+// }
+
+// .hover-card:scale-x-150:hover {
+//   transform: scaleX(1.5);
+// }
+
+.custom-btn {
+  width: 100px;
+  height: 38px;
+  background: url("./assets/images/btn-img.png") no-repeat center center;
+  background-size: contain;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+.custom-btn:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .custom-btn {
+    width: 100px;
+    height: 30px;
+    border: none;
+    background: url("./assets/images/btn-img.png") no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .custom-btn:hover {
+    transform: scale(1.1);
+  }
+}
+
+// custom scrollbar css
+
+::-webkit-scrollbar-track {
+  // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);
+  // border-radius: 10px;
+  background-color: #0b0c10;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #f21df5;
+  background-image: -webkit-linear-gradient(
+    90deg,
+    transparent,
+    rgba(32, 185, 250, 0.582) 50%,
+    transparent,
+    transparent
+  );
+}
+
+// custom scrollbar css ends
+
+
+// custom cursor css
+/* Hide default cursor */
+* {
+  cursor: none;
+}
+/* Custom Cursor */
+/* Cursor wrapper with two layers */
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+
+/* Inner small dot cursor */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+/* Outer glowing circle cursor */
+.cursor-outline {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease-out;
+  mix-blend-mode: difference;
+}
+
+/* Hover effects - Enlarge outer circle and change color */
+a:hover ~ .custom-cursor .cursor-outline,
+h1:hover ~ .custom-cursor .cursor-outline {
+  transform: scale(1.5);
+  border-color: cyan;
+}
+
+a:hover ~ .custom-cursor .cursor-dot,
+h1:hover ~ .custom-cursor .cursor-dot {
+  background-color: cyan;
+}
+
+button:hover ~ .custom-cursor .cursor-dot {
+  background-color: cyan;
+}
+
+button:hover ~ .custom-cursor .cursor-outline {
+  transform: scale(6);
+  border-color: cyan;
+}

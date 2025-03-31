@@ -1,0 +1,83 @@
+<nav #navbar class="navbar active">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="#" onClick="return false;" class="navbar-toggle collapsed"
+        (click)="isNavbarCollapsed = !isNavbarCollapsed" aria-expanded="false"></a>
+      <a href="#" onClick="return false;" class="bars" (click)="mobileMenuSidebarOpen($event,'overlay-open')"></a>
+      <a class="navbar-brand" routerLink={{homePage}}>
+        <img src="assets/images/pages/imgpsh_fullsize_anim.png" width="35" alt="" />
+        <span class="logo-name" style="font-size:18px;">CarinaSoftlabs</span>
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" [ngClass]="isNavbarCollapsed ? '' : 'show'">
+      <ul class="float-start collapse-menu-icon">
+        <li>
+          <button mat-button (click)="callSidemenuCollapse()" class="sidemenu-collapse nav-notification-icons">
+            <app-feather-icons [icon]="'menu'" [class]="'header-icon'"></app-feather-icons>
+          </button>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="nav-item" *ngIf="userRole === 'Employee' && !todayAttenDance?.checkInTime">
+          <button mat-button color="primary" (click)="checkIn()" matTooltip="Check-in">
+            <mat-icon style="font-size:21px">fingerprint</mat-icon>
+          </button>
+        </li>
+
+        <li class="nav-item"
+          *ngIf="userRole === 'Employee' && todayAttenDance?.checkInTime && !todayAttenDance?.checkOutTime">
+          <button mat-button>
+            <mat-icon style="color: green;">timer</mat-icon><span>{{ formatTime(totalHours, totalMinutes, totalSeconds)
+            }}</span>
+          </button>
+
+          <button mat-button color="warn" (click)="checkOut()" matTooltip="Check-out">
+            <mat-icon style="font-size:21px">fingerprint</mat-icon>
+          </button>
+        </li>
+
+        <li class="nav-item"
+          *ngIf="userRole === 'Employee' && todayAttenDance?.checkInTime && todayAttenDance?.checkOutTime">
+          <button mat-button>
+            <mat-icon style="color: green;">timer</mat-icon> <span> {{ todayAttenDance?.totalHours }} </span>
+          </button>
+
+        </li>
+
+        <li class="nav-item user_profile">
+
+          <button mat-button [matMenuTriggerFor]="profilemenu">
+            <mat-spinner [diameter]="20" *ngIf="isLoading"></mat-spinner>
+            <div class="chip dropdown-toggle" ngbDropdownToggle class=""
+              *ngIf="profileData !== undefined && !isLoading">
+              <span>{{profileData ? (profileData.name | titlecase) : "--"}}</span>
+              <ng-container *ngIf="profileData && profileData.profile_image; else defaultImage">
+                <img src="{{ imageBaseUrl + profileData.profile_image }}" class="user_img"
+                  width="32" height="32" alt="User" />
+              </ng-container>
+              <ng-template #defaultImage>
+                <img src="assets/images/user/admin.jpg" class="user_img" width="32" height="32" alt="User" />
+              </ng-template>
+
+            </div>
+          </button>
+          <mat-menu #profilemenu="matMenu" class="profile-menu">
+            <div class="noti-list">
+              <div class="menu ">
+                <div class="user_dw_menu">
+                  <button mat-menu-item routerLink='/profile'>
+                    <app-feather-icons [icon]="'user'" [class]="'user-menu-icons'"></app-feather-icons>Account
+                  </button>
+                  <button mat-menu-item (click)="logout()">
+                    <app-feather-icons [icon]="'log-out'" [class]="'user-menu-icons'"></app-feather-icons>Logout
+                  </button>
+                </div>
+              </div>
+            </div>
+          </mat-menu>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,31 @@
+.web-dev {
+    background: url('../../../assets/images/web-heroBG.png') no-repeat center center;
+}
+
+@media (max-width: 1280px) {
+    .scroll-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -ms-overflow-style: none; /* Internet Explorer 10+ */
+      scrollbar-width: none; /* Firefox */
+    }
+    .scroll-container::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+    .scroll-item {
+      scroll-snap-align: center;
+    }
+  }
+
+  .web-compbg {
+    background: url('../../../assets/images/webservicecompBG.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  @media (min-width: "1024px") {
+    .web-compbg {
+      background-size: 100% 100%;
+    }
+  }

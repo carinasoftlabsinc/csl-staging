@@ -1,0 +1,189 @@
+<!-- <div class="relative">
+  <div class="text-slider-wrapper">
+    <div class="text-slider">
+      <div class="text-slide !flex !justify-end !items-end md:!items-center">
+        <div
+          class="text-white flex flex-col gap-7 justify-center items-center md:items-start w-1/2"
+        >
+          <h4
+            class="font-mont text-4xl uppercase font-extrabold border-b border-[#34394B] pb-2.5 w-3/4"
+          >
+            Moba Game
+          </h4>
+          <p class="font-quickSand font-medium w-3/4">
+            Our employees are the heart of our compony, Here's what they say
+            about working in Carina
+          </p>
+
+          <div
+            class="2xl:!text-[18px] xl:text-[14px] rounded-xl !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] lg:!px-14 lg:!py-2 xl:!px-14 xl:!py-2.5 2xl:!px-16 2xl:!py-3 px-8 py-2.5 text-white inline-block bg-gradient-to-b from-[#34394B] to-[#191C29] font-quickSand"
+          >
+            More Info
+          </div>
+        </div>
+      </div>
+      <div class="text-slide !flex !justify-end !items-end md:!items-center">
+       
+        <div
+          class="text-white flex flex-col gap-7 justify-center items-center md:items-start w-1/2"
+        >
+          <h4
+            class="font-mont text-4xl uppercase font-extrabold border-b border-[#34394B] pb-2.5 w-3/4"
+          >
+            Doba Game
+          </h4>
+          <p class="font-quickSand font-medium w-3/4">
+            Our employees are the heart of our compony, Here's what they say
+            about working in Carina
+          </p>
+
+          <div
+            class="2xl:!text-[18px] xl:text-[14px] rounded-xl !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] lg:!px-14 lg:!py-2 xl:!px-14 xl:!py-2.5 2xl:!px-16 2xl:!py-3 px-8 py-2.5 text-white inline-block bg-gradient-to-b from-[#34394B] to-[#191C29] font-quickSand"
+          >
+            More Info
+          </div>
+        </div>
+      </div>
+      <div class="text-slide !flex !justify-end !items-end md:!items-center">
+        <div
+          class="text-white flex flex-col gap-7 justify-center items-center md:items-start w-1/2"
+        >
+          <h4
+            class="font-mont text-4xl 2xl:text-5xl uppercase font-extrabold border-b border-[#34394B] pb-2.5 w-3/4"
+          >
+            Joba Game
+          </h4>
+          <p class="font-quickSand font-medium w-3/4 2xl:text-lg">
+            Our employees are the heart of our compony, Here's what they say
+            about working in Carina
+          </p>
+
+          <div
+            class="2xl:!text-[18px] xl:text-[14px] rounded-xl !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] lg:!px-14 lg:!py-2 xl:!px-14 xl:!py-2.5 2xl:!px-16 2xl:!py-3 px-8 py-2.5 text-white inline-block bg-gradient-to-b from-[#34394B] to-[#191C29] font-quickSand"
+          >
+            More Info
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slider-control">
+    <div class="prev">
+      <button type="button">
+        <img class="size-5" src="../../../../assets/images/grad-left-arrow.svg" alt="">
+      </button>
+    </div>
+    <div class="next">
+      <button type="button">
+        <img class="size-5" src="../../../../assets/images/grad-right-arrow.svg" alt="">
+      </button>
+    </div>
+  </div>
+
+  <div class="blocks">
+    <div class="block-1"></div>
+    <div class="block-2"></div>
+    <div class="block-3"></div>
+  </div>
+
+
+  <div class="image-slider">
+    <div
+      class="image-slide"
+      id="one"
+      style="
+        background: url('../../../../assets/images/game-char1.png') no-repeat
+          50% 50%;
+        background-size: cover;
+      "
+    ></div>
+
+    <div
+      class="image-slide"
+      id="two"
+      style="
+        background: url('../../../../assets/images/game-char1.png') no-repeat
+          50% 50%;
+        background-size: cover;
+      "
+    ></div>
+
+    <div
+      class="image-slide"
+      id="three"
+      style="
+        background: url('../../../../assets/images/game-char1.png') no-repeat
+          50% 50%;
+        background-size: cover;
+      "
+    ></div>
+    
+  </div>
+</div> -->
+
+
+<div class="relative">
+  <div class="text-slider-wrapper">
+    <div class="text-slider">
+      <div
+        *ngFor="let slide of slides"
+        class="text-slide !flex !justify-end !items-end md:!items-center"
+      >
+        <div
+          class="text-white flex flex-col gap-7 justify-center items-center md:items-start w-1/2"
+        >
+          <h4
+            class="font-mont text-4xl 2xl:text-5xl uppercase font-extrabold border-b border-[#34394B] pb-2.5 w-3/4"
+          >
+            {{ slide.title }}
+          </h4>
+          <p class="font-quickSand font-medium w-3/4 2xl:text-lg">
+            {{ slide.description }}
+          </p>
+
+          <div
+            class="2xl:!text-[18px] xl:text-[14px] rounded-xl !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] lg:!px-14 lg:!py-2 xl:!px-14 xl:!py-2.5 2xl:!px-16 2xl:!py-3 px-8 py-2.5 text-white inline-block bg-gradient-to-b from-[#34394B] to-[#191C29] font-quickSand"
+          >
+            More Info
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slider-control">
+    <div class="prev">
+      <button type="button">
+        <img
+          class="size-5 2xl:size-8"
+          src="../../../../assets/images/grad-left-arrow.svg"
+          alt=""
+        />
+      </button>
+    </div>
+    <div class="next">
+      <button type="button">
+        <img
+          class="size-5 2xl:size-8"
+          src="../../../../assets/images/grad-right-arrow.svg"
+          alt=""
+        />
+      </button>
+    </div>
+  </div>
+
+  <div class="blocks">
+    <div class="block-1"></div>
+    <div class="block-2"></div>
+    <div class="block-3"></div>
+  </div>
+
+  <div class="image-slider">
+    <div
+      *ngFor="let slide of slides"
+      class="image-slide"
+      style="background: url('{{ slide.image }}') no-repeat 50% 50%; background-size: cover"
+    ></div>
+  </div>
+</div>

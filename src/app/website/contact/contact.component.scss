@@ -1,0 +1,291 @@
+.bg-contact {
+  // position: relative;
+  // background-image: linear-gradient(
+  //     rgba(0, 0, 0, 0.8) 65%,
+  //     rgba(0, 0, 0, 0.804) 35%
+  //   ),
+  //   url("../../../assets/images/contact-hero-bg.png");
+   background-image:
+    url("../../../assets/images/contact-hero-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+// .bg-contact::after {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background-color: rgba(0, 0, 0, 0.8);
+// }
+
+.bg-contact p {
+  position: relative;
+  z-index: 1;
+}
+
+// infinite scroll
+.marquee {
+  animation: marquee 10s linear infinite;
+  display: flex;
+  flex-wrap: nowrap;
+  width: fit-content;
+}
+
+.marquee-item {
+  width: 300px; /* Increase width */
+  height: 200px; /* Increase height */
+  margin: 0 20px; /* Add margin between items */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.marquee-item img {
+  width: 100%;
+  height: auto;
+}
+
+.hover\:pause-animation:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 640px) {
+  .marquee-item {
+    width: 180px;
+    // height: 180px;
+    margin: 0 15px;
+  }
+}
+
+@media (min-width: 640px) {
+  .marquee-item {
+    width: 180px;
+    height: 180px;
+    margin: 0 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .marquee-item {
+    width: 200px;
+    height: 200px;
+    margin: 0 20px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .marquee-item {
+    width: 250px;
+    height: 250px;
+    margin: 0 20px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .marquee-item {
+    width: 300px;
+    height: 300px;
+    margin: 0 30px;
+  }
+}
+
+// RANGE
+
+// input[type="range"] {
+//   /* removing default appearance */
+//   -webkit-appearance: none;
+//   appearance: none;
+//   /* creating a custom design */
+//   width: 100%;
+//   cursor: pointer;
+//   outline: none;
+//   /*  slider progress trick  */
+//   overflow: hidden;
+//   border-radius: 16px;
+// }
+
+// /* Track: webkit browsers */
+// input[type="range"]::-webkit-slider-runnable-track {
+//   height: 5px;
+//   background: #ccc;
+//   border-radius: 16px;
+// }
+
+// /* Track: Mozilla Firefox */
+// input[type="range"]::-moz-range-track {
+//   height: 15px;
+//   background: #ccc;
+//   border-radius: 16px;
+// }
+
+// /* Thumb: webkit */
+// input[type="range"]::-webkit-slider-thumb {
+//   /* removing default appearance */
+//   -webkit-appearance: none;
+//   appearance: none;
+//   /* creating a custom design */
+//   height: 12px;
+//   width: 12px;
+//   background: linear-gradient(red, green);
+//   border-radius: 50%;
+//   // border: 2px solid #f50;
+//   /*  slider progress trick  */
+//   box-shadow: -407px 0 0 400px #f50;
+// }
+
+// /* Thumb: Firefox */
+// input[type="range"]::-moz-range-thumb {
+//   height: 15px;
+//   width: 15px;
+//   background-color: #fff;
+//   border-radius: 50%;
+//   border: 1px solid #f50;
+//   /*  slider progress trick  */
+//   box-shadow: -407px 0 0 400px #f50;
+// }
+
+/* General styles for the range input */
+/* General styles for the range input */
+.styled-range {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  background: #b4b9cb;
+  outline: none;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.styled-range:hover {
+  opacity: 1;
+}
+
+/* Track styles */
+
+.styled-range {
+  border-radius: 20px;
+}
+
+.styled-range::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: #b4b9cb;
+  border-radius: 25px;
+  // border: 0.2px solid #010101;
+}
+
+.styled-range::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: #b4b9cb;
+  border-radius: 25px;
+  // border: 0.2px solid #010101;
+}
+
+.styled-range::-ms-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: #ddd;
+  border-radius: 25px;
+  // border: 0.2px solid #010101;
+  color: transparent;
+}
+
+/* Thumb styles */
+.styled-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(#f21df5, #20b9fa);
+  cursor: pointer;
+  border-radius: 50%;
+  margin-top: -6.7px; /* Center the thumb */
+}
+
+.styled-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(#f21df5, #20b9fa);
+  cursor: pointer;
+  border-radius: 50%;
+  margin-top: -6.7px; /* Center the thumb */
+}
+
+.styled-range::-ms-thumb {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(#f21df5, #20b9fa);
+  cursor: pointer;
+  border-radius: 50%;
+  margin-top: 0; /* Adjust for IE */
+}
+
+/* Focus styles */
+.styled-range:focus::-webkit-slider-runnable-track {
+  background: #b4b9cb;
+}
+
+.styled-range:focus::-moz-range-track {
+  background: #b4b9cb;
+}
+
+.styled-range:focus::-ms-track {
+  background: #b4b9cb;
+}
+
+
+// stepper form css
+
+/* Custom styles for the stepper header */
+.mat-step-header {
+  background-color: #ff0202 !important; /* Change background color */
+  color: black !important; /* Change text color */
+  font-family: 'QuickSand', sans-serif; /* Custom font */
+  border-radius: 8px; /* Round the edges */
+  padding: 10px; /* Add padding */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow */
+  margin-bottom: 15px; /* Add margin below */
+}
+
+/* Customize the step number icon */
+.mat-step-icon {
+  background-color: black !important; /* Change icon background color */
+  color: white !important; /* Change icon text color */
+  font-weight: bold;
+  border-radius: 50%;
+}
+
+/* When the step is selected */
+.mat-step-header.mat-active {
+  background-color: #333 !important; /* Background color for active step */
+  color: white !important; /* Text color for active step */
+}
+
+/* Hover state */
+.mat-step-header:hover {
+  background-color: #ccc !important; /* Background color on hover */
+}
+
+/* Optional: Remove the horizontal line below the step header */
+.mat-horizontal-stepper-header-container {
+  border-bottom: none !important;
+}
+

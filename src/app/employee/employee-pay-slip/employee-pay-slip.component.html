@@ -1,0 +1,245 @@
+<section class="content">
+    <div class="content-block">
+      <div class="block-header">
+        <!-- breadcrumb -->
+        <app-breadcrumb
+          [title]="'Payslip'"
+          [items]="['Payroll']"
+          [active_item]="'Payslip'"
+        >
+        </app-breadcrumb>
+      </div>
+      <div class="container">
+      <button mat-stroked-button color="primary" (click)="downloadPdf()" class="col-green" matTooltip="Download">
+          Download<mat-icon>download</mat-icon>
+        </button>
+      </div>
+      
+      <!-- <app-feather-icons (click)="downloadPdf()" [icon]="'download'" [class]="'col-green'" matTooltip="Download">
+      </app-feather-icons> -->
+     
+      <mat-spinner [diameter]="40" *ngIf="isLoading"></mat-spinner>
+      <div class="row clearfix" #pdfContent *ngIf="!isLoading">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="card">
+            <div class="header">
+              <h2>Payslip</h2>
+            </div>
+            <div class="body">
+              <div class="payslip">
+                <div class="invoice-wrapper">
+                  <h4 class="payslip-title">
+                    Payslip for the month of {{ paySlipData.salaryMonth }}
+                    {{ paySlipData.salaryYear }}
+                  </h4>
+                    <div class="payment-info">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <span>Payslip No.</span>
+                        <strong>{{ paySlipData._id }}</strong>
+                      </div>
+                      <div class="col-sm-6 text-end">
+                        <span>Created Date</span>
+                        <strong>{{
+                          paySlipData.date | date : "MMM dd, yyyy - h:mm a"
+                        }}</strong>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="payment-details">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <img
+                          src="../../../../assets/images/pages/imgpsh_fullsize_anim.png"
+                          width="35"
+                          class="mb-2"
+                        />
+                        <strong> CarinaSoftLabs </strong>
+                        <p>
+                          10/2, 2nd Floor, Shree Mahadeo House, <br />
+                          near Hotel Surya, Sriram Nagar, South Tukoganj, <br />
+                          Indore, Madhya Pradesh 452001 <br />
+                          India <br />
+                          <a href="#"> hr@carinasoftlabs.com </a>
+                        </p>
+                      </div>
+                      <div class="col-sm-6 text-end">
+                        <span>Payment To</span>
+                        <strong>{{
+                          paySlipData.employeeId.name | titlecase
+                        }}</strong>
+                        <p>
+                          joinDate:-
+                          {{
+                            paySlipData.employeeId.joinDate
+                              | date : "MMM dd, yyyy - h:mm a"
+                          }}
+                          <br />
+                          Mobile:- {{ paySlipData.employeeId.phone }}<br />
+                          India <br />
+                          <a href="#">
+                            Email:- {{ paySlipData.employeeId.email }}
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="line-items">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div>
+                          <p class="extra-notes">
+                            <strong>Earnings</strong>
+                          </p>
+                          <table class="table table-bordered">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <strong>Basic</strong>
+                                  <span class="float-end">{{
+                                    paySlipData.basicWage
+                                  }}</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <strong>HRA</strong>
+                                  <span class="float-end">{{
+                                    paySlipData.HRA
+                                  }}</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <strong>Conveyance Allowance</strong>
+                                  <span class="float-end">{{
+                                    paySlipData.conveyanceAllowance
+                                  }}</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <strong>Medical Allowance</strong>
+                                  <span class="float-end">{{
+                                    paySlipData.medicalAllowance
+                                  }}</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <strong>Other Allowance</strong>
+                                  <ul class="list-unstyled">
+                                    <li *ngFor="let allowance of paySlipData.otherAllowance">
+                                      <span>{{ allowance.fieldName }}:</span>
+                                      <span class="float-end">{{ allowance.value }}</span>
+                                    </li>
+                                  </ul>
+                                </td>
+                              </tr>
+                              <!-- <tr>
+                                <td>
+                                  <strong>Bonus</strong>
+                                  <span class="float-end">$75</span>
+                                </td>
+                              </tr> -->
+                              <tr>
+                                <td>
+                                  <strong>Total Earnings</strong>
+                                  <span class="float-end"
+                                    ><strong>{{
+                                      paySlipData.totalEarning
+                                    }}</strong></span
+                                  >
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div>
+                          <p class="extra-notes">
+                            <strong>Deductions</strong>
+                          </p>
+                          <table class="table table-bordered">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <strong>EPF</strong>
+                                  <span class="float-end">{{
+                                    paySlipData.EPF
+                                  }}</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <strong>ESI HealthInsurance</strong>
+                                  <span class="float-end">{{
+                                    paySlipData.ESI_HealthInsurance
+                                  }}</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <strong>Professional Tax</strong>
+                                  <span class="float-end">{{
+                                    paySlipData.professionalTax
+                                  }}</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <strong>Loan Recovery</strong>
+                                  <span class="float-end">{{
+                                    paySlipData.loanRecovery
+                                  }}</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <strong>Leave Deduction Amount</strong>
+                                  <span class="float-end">{{
+                                    paySlipData.leaveDeductionAmount
+                                  }}</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <strong>Total Deductions</strong>
+                                  <span class="float-end"
+                                    ><strong>{{
+                                      paySlipData.totalDeduction
+                                    }}</strong></span
+                                  >
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <div class="col-sm-12">
+                          <span class="fw-bold"
+                            >Net Pay : &nbsp; {{ paySlipData.netSalary }}</span
+                          ><br /><br />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                      <div class="d-flex flex-column mt-2">
+                        <span class="fw-bolder"
+                          >From To {{ paySlipData.createdBy | titlecase }}
+                        </span>
+                        <span class="mt-4">Authorised Signatory</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

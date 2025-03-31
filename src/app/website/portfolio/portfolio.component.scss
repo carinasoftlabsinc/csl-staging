@@ -1,0 +1,57 @@
+// /* Keyframe animation for infinite scrolling */
+// @keyframes Scroll {
+//   0% {
+//     transform: translateX(0); /* Start the text just inside the viewport */
+//   }
+//   100% {
+//     transform: translateX(
+//       -100%
+//     ); /* Move the text out of the viewport on the left */
+//   }
+// }
+
+// /* Apply the animation */
+// .animate-scrolling {
+//   animation: Scroll 25s linear infinite; /* Adjust the speed with 15s */
+// }
+
+/* Keyframe animation for infinite scrolling */
+@keyframes Scroll {
+  0% {
+    transform: translateX(0); /* Start the text just inside the viewport */
+  }
+  100% {
+    transform: translateX(-100%); /* Move the text out of the viewport on the left */
+  }
+}
+
+/* Apply the animation */
+.animate-scrolling {
+  display: inline-block;
+  animation: Scroll 25s linear infinite; /* Adjust the speed with 25s */
+  white-space: nowrap;
+}
+
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.star::after {
+    background-image: url("../../../assets/images/portfolio-Star.svg") ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 2.5rem;
+    width: 5rem;
+    position: absolute;
+    top: 30%;
+    content: "";
+}
+
+@media (min-width: 1800px) {
+  .dev-button {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}

@@ -1,0 +1,846 @@
+<main class="bg-[#0B0C10]">
+
+  <app-header></app-header>
+
+  <section
+    class="h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] flex justify-center items-center px-6 py-24"
+  >
+    <div class="text-center">
+      <h1
+        class="text-white text-4xl md:text-3xl lg:text-5xl lg:leading-[1.1] xl:text-5xl xl:leading-[1.1] 2xl:text-6xl font-myfont"
+      >
+        Your Vision
+        <app-toggle-switch></app-toggle-switch>
+
+        Our Mission <br />
+        Carina Softlabs <br />Where We
+        <button class="custom-btn"></button>
+        DESIGN <br />
+        Experience!
+      </h1>
+    </div>
+  </section>
+
+  <!-- about us -->
+
+  <section
+    class="relative px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
+  >
+    <div class="">
+      <h2
+        class="text-4xl xl:text-4xl 2xl:text-6xl font-medium text-[#000000] font-myfont mt-8"
+      >
+        About Us
+      </h2>
+      <div class="py-4">
+        <hr class="border-t-2 border-black" />
+      </div>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-14 text-black"
+      >
+        <div class="hidden md:block row-span-3 relative px-2 py-4">
+          <div
+            class="2xl:w-80 2xl:h-80 xl:w-48 xl:h-48 lg:w-40 lg:h-40 md:h-32 md:w-32 rounded-full absolute inset-0 bg-cover bg-no-repeat"
+            style="
+              background-image: url('../../assets/30b8174c6f1a07e0af9bcf41fec3a5f5.gif');
+            "
+          ></div>
+          <img
+            class="2xl:w-auto xl:w-56 lg:w-52 md:w-44 absolute 2xl:-top-[3px] 2xl:-left-8 xl:-left-1 xl:-top-2 lg:-left-6 lg:-top-2 md:-top-4 md:-left-5"
+            src="../../assets/images/csl-logo-2.png"
+            alt="logo"
+          />
+        </div>
+
+        <div class="col-span-3 sm:col-span-2 px-2 xl:py-4 py-2 md:mt-5">
+          <h3
+            class="text-[#34394B] text-2xl md:text-2xl xl:text-4xl !mb-4 sm:!my-5 md:!mb-5 lg:!mb-5 xl:!mb-12 text font-bold font-quickSand"
+          >
+            Do you have a revenue-generating idea?
+          </h3>
+
+          <p
+            class="text-[#34394B] font-medium font-quickSand text-lg 2xl:text-2xl"
+          >
+            With over a decade of digital expertise we're not just a team we're
+            a passionate family united by our commitment to excellence Offering
+            a variety of services, we bring your ideas to life. Join us, and
+            together, let's shape a future where your business thrives like
+            never before.
+          </p>
+        </div>
+
+        <div
+          class="row-span-2 col-span-3 md:col-span-2 flex items-center sm:justify-start"
+        >
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-x-20 sm:gap-x-10 gap-y-6 2xl:gap-x-10 2xl:gap-y-14"
+          >
+            <div *ngFor="let about of aboutus" class="flex items-center">
+              <img class="w-16 2xl:w-20 md:w-12" [src]="about.imgSrc" alt="" />
+              <div class="ml-2">
+                <div
+                  class="text-xl 2xl:text-lg md:text-sm font-[700] font-quickSand"
+                >
+                  {{ about.heading }}
+                </div>
+                <span
+                  class="2xl:text-[18px] text-base md:text-[13px] md:leading-3 font-[500] text-[#0B0C10] font-quickSand"
+                  >{{ about.desc }}</span
+                >
+              </div>
+            </div>
+
+            <div
+              class="flex items-center md:col-span-2 lg:col-span-3 mt-4 md:mt-0"
+            >
+              <button
+                type="button"
+                routerLink="/know-us"
+                class="pb-5 2xl:!text-[18px] xl:text-[14px] hidden rounded-full !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] 2xl:!px-8 2xl:!py-3 !p-2 !px-8 text-black sm:inline-block"
+              >
+                <span class="button-container">
+                  Explore Us
+                  <img
+                    src="../../assets/images/small-tilt-arrow.png"
+                    alt="Image"
+                    class="button-img"
+                  />
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- second section of about us -->
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 text-black mt-20"
+      >
+        <div class="hidden sm:block row-span-4">
+          <!-- <img class="h-56 w-56 " src="../../assets/Vector-35.png" alt="logo"> -->
+        </div>
+
+        <div class="col-span-2 md:text-3xl lg:text-3xl font-myfont">
+          <div class="mt-[-20px] 2xl:mb-20 mb-20">
+            <hr class="border border-black" />
+          </div>
+
+          <div>
+            <div
+              class="xl:text-4xl 2xl:text-6xl text-4xl font-medium text-[#000000] mb-3 font-myfont"
+            >
+              <h3>
+                Awards & <br />
+                Recognitions
+              </h3>
+            </div>
+          </div>
+
+          <div class="mt-3">
+            <p
+              class="font-quickSand font-medium xl:text-[18px] 2xl:text-2xl text-lg text-[#000000] mt-4 mb-8"
+            >
+              Our dedication and innovative ideas have been acknowledged through
+              numerous prestigious awards, showcasing our commitment to success.
+              These recognitions are driving us to improve to push boundaries
+              continuously.
+            </p>
+          </div>
+        </div>
+
+        <div class="row-span-3 md:col-span-2 xl:mt-5">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 md:gap-y-7 xl:gap-y-10 2xl:grid-cols-3 2xl:gap-y-14 gap-y-10 lg:mb-[78px] md:mb-[121px]"
+          >
+            <!-- Top Three Images -->
+
+            <div
+              *ngFor="let award of awards"
+              class="flex award-box p-3 border-x border-b border-[#B4B9CB]"
+              [ngClass]="award.customClass"
+            >
+              <img
+                class="object-top object-contain w-16"
+                [src]="award.imgSrc"
+                alt=""
+              />
+
+              <div class="ml-2 pl-2 border-l border-[#B4B9CB]">
+                <p
+                  class="text-xl font-medium md:text-[18px] md:leading-[22px] 2xl:text-2xl 2xl:leading-[30px] border-b border-[#B4B9CB]"
+                >
+                  {{ award.heading }}
+                </p>
+                <p
+                  class="text-[15px] sm:text-[20px] md:text-[15px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 2xl:leading-[20px] text-[#34394B] font-quickSand font-medium pt-1"
+                >
+                  {{ award.desc }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="hidden sm:hidden md:hidden lg:block xl:block row-span-4 absolute mt-20"
+        >
+          <img
+            class="2xl:w-80 w-56"
+            src="../../assets/trophy-new.svg"
+            alt="logo"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- our expertise -->
+
+  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#0B0C10]">
+    <div class="mx-auto">
+      <div class="flex justify-between items-center content-center mt-10 pb-2">
+        <h2
+          class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+        >
+          Our Expertise
+        </h2>
+
+        <a
+          href="https://calendly.com/mayank-pande12/30min"
+          target="_blank"
+          class="pb-5 2xl:!text-[18px] xl:text-[14px] hidden rounded-full !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] lg:!px-6 lg:!py-2 xl:!px-6 xl:!py-2.5 2xl:!px-8 2xl:!py-3 !p-3 text-white sm:inline-block"
+        >
+          <span class="button-container">
+            Schedule a Call
+            <img
+              src="../../assets/images/small-tilt-arrow.png"
+              alt="Image"
+              class="button-img"
+            />
+          </span>
+        </a>
+      </div>
+
+      <hr style="border: 1px solid #34394b" />
+
+      <!-- Our expertise cards -->
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-black xl:mt-5 py-3"
+      >
+        <div
+          #counterSection
+          class="hidden sm:flex row-span-3 pt-20 flex-col justify-between"
+        >
+          <div *ngFor="let card of projectNum" class="text-sparkle">
+            <div
+              class="inline-block hover:scale-125 transition-transform duration-500 ease-in-out"
+              [ngClass]="card.customClass"
+            >
+              <p
+                class="font-myfont xl:text-4xl 2xl:text-5xl text-3xl sm:text-3xl font-normal text-white cursor-pointer js-count-up after:content-['_+']"
+                [attr.data-value]="card.value"
+              ></p>
+              <p
+                class="font-myfont text-[#B4B9CB] text-[18px] leading-[18px] tracking-wider pb-10 small-text cursor-pointer"
+                [innerHTML]="card.heading"
+              ></p>
+              <hr class="w-44" style="border: 1px solid #34394b" />
+            </div>
+          </div>
+        </div>
+
+        <div class="col-span-2">
+          <p
+            class="font-quickSand font-medium xl:text-[18px] 2xl:text-2xl text-xl text-[#B4B9CB] mt-3"
+          >
+            Carina Softlabs Inc. A trailblazer in emerging technologies,
+            bringing over a decade of expertise. We are dedicated to delivering
+            cutting-edge IT solutions that not only drive success but also
+            foster sustained growth. Partner with us to experience innovation at
+            its finest.
+          </p>
+        </div>
+
+        <div
+          class="row-span-2 col-span-2 md:col-span-2 flex items-center justify-center lg:justify-start xl:justify-start 2xl:justify-start mt-4"
+        >
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:!gap-1 md:!gap-1 lg:!gap-1 xl:!gap-1 2xl:!gap-1 2xl:w-[-webkit-fill-available]"
+          >
+            <!-- hover gif cards -->
+            <div
+              *ngFor="let card of hoverGif"
+              class="hover-gif-container rounded-3xl bg-[#34394b3f] cursor-pointer"
+              [routerLink]="card.route"
+
+            >
+              <div
+                class="hover-gif p-6 md:p-7 xl:p-5 lg:!pr-40 xl:!pr-20 lg:!pl-10 2xl:!pb-10 bg-[#0B0C10] rounded-3xl flex items-center md:items-end lg:items-start"
+              >
+                <button
+                  class="absolute top-5 right-5 bg-transparent border-none p-2"
+                >
+                  <img
+                    src="../../assets/images/gd-arrow-btn.svg"
+                    alt="Image"
+                    class="w-10 h-10 cursor-pointer"
+                  />
+                </button>
+                <div
+                  class="absolute inset-0 bg-cover bg-center z-0 rounded-3xl"
+                  style="
+                    background-image: url('../../assets/BackGif.gif');
+                    opacity: 0.1;
+                  "
+                ></div>
+                <div class="relative z-10 lg:mt-14 xl:mt-16 2xl:mt-8">
+                  <div
+                    class="!mb-2 md:!mb-4 lg:!mb-4 xl:!mb-4 2xl:!mb-4 !mt-4 md:!mt-3 lg:!mt-3 xl:!mt-3 2xl:!mt-20 text-[22px] sm:text-2xl md:text-3xl lg:text-2xl 2xl:text-4xl xl:text-[28px] font-bold font-myfont tracking-wider text-white"
+                  >
+                    <h3 [innerHTML]="card.heading"></h3>
+                  </div>
+                  <p class="text-[#B4B9CB] !text-xs md:text-[20px]">
+                    {{ card.desc }} 
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:mt-12 xl:mt-28 mt-8 xl:mb-4">
+        <hr class="" style="border: 1px solid #34394b" />
+      </div>
+
+      <!-- infinite logo scroll section -->
+
+      <div
+        class="mt-5 flex flex-col md:flex-row justify-between 2xl:gap-[20rem] mx-auto items-center"
+      >
+        <h2
+          class="text-white font-myfont text-2xl md:text-3xl xl:text-4xl mb-4 md:mb-0"
+        >
+          Our Clients
+        </h2>
+
+        <div
+          class="scroll-parent-12 overflow-hidden w-[83vw] md:w-[65vw] 2xl:w-[60vw] cursor-pointer"
+        >
+          <div
+            class="relative overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-10px),transparent_100%)] lg:[mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]"
+          >
+            <div class="marquee flex hover:pause-animation">
+              <div *ngFor="let logo of clientLogo" class="marquee-item m-2">
+                <img [src]="logo.ImgSrc" [alt]="logo.alt" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 lg:mb-9">
+        <hr class="" style="border: 1px solid #34394b" />
+      </div>
+    </div>
+  </section>
+
+  <!-- why choose csl -->
+
+  <section
+    class="px-7 md:px-10 xl:px-10 2xl:!p-24 py-5 bg-white rounded-[40px] relative overflow-hidden"
+  >
+    <div class="">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 text-black mt-2 justify-between"
+      >
+        <!-- question mark svg -->
+
+        <div class="hidden sm:hidden md:hidden xl:block row-span-3 mt-16">
+          <svg
+            class="absolute top-6 -left-2"
+            width="1920"
+            height="612"
+            viewbox="-1 -1 128 128"
+          >
+            <defs>
+              <path
+                id="p"
+                d="M202.205 1.2051C200.017 1.49688 195.713 2.44518 192.722 3.32053C189.731 4.26883 185.792 5.72775 183.969 6.67604C182.145 7.62434 178.716 9.81272 176.309 11.6364L171.932 14.9919C-45.2276 15.0648 -89.7246 15.2837 -89.9435 15.7943C-90.1623 16.159 -89.7246 16.8155 -88.9952 17.1803C-88.2657 17.6179 -35.6717 17.9097 42.4534 17.9827L172.662 18.0556C179.446 12.7306 183.677 10.1045 186.522 8.79148C189.367 7.47845 193.743 5.80069 196.369 5.07123C199.506 4.26883 203.81 3.83115 209.135 3.83115C215.846 3.83115 217.961 4.12294 222.265 5.6548C225.11 6.67604 229.268 8.93737 231.602 10.6881C233.937 12.5117 235.833 14.1895 235.76 14.4813C235.76 14.846 232.259 15.0648 227.955 15.0648C223.578 15.0648 217.305 15.5754 213.876 16.159C210.448 16.7426 205.706 17.9827 203.299 18.7851C200.892 19.6604 197.099 21.3382 194.91 22.5783C192.722 23.8183 188.564 27.1009 185.719 29.9458C182.874 32.7907 179.373 37.2404 177.914 39.8665C176.455 42.4925 174.486 46.9422 173.537 49.7142C172.516 52.4861 171.349 58.1029 170.838 62.115C170.255 66.6376 170.036 72.838 170.328 78.5278C170.619 84.5094 171.349 89.9803 172.516 94.5759C173.537 98.3691 174.777 102.673 175.361 104.059C176.382 106.539 176.309 106.831 172.881 113.542C170.984 117.335 168.65 123.244 167.848 126.672C166.534 131.924 166.316 134.259 166.68 142.356C166.972 149.65 167.483 153.297 168.942 158.404C170.036 161.978 172.808 168.908 175.142 173.722C177.476 178.537 180.905 184.956 182.874 187.947C184.771 190.938 188.71 196.481 191.555 200.202C194.4 203.922 196.588 207.059 196.369 207.204C196.151 207.277 193.014 208.299 189.44 209.393C185.865 210.56 179.081 212.894 174.486 214.718C169.89 216.542 160.991 220.627 154.79 223.836C148.59 227.046 141.222 231.131 138.377 232.954C135.532 234.778 130.207 238.644 126.414 241.489C122.621 244.334 116.202 249.951 112.19 253.963C108.105 257.975 102.634 264.029 99.9348 267.458C97.3088 270.886 93.5885 276.138 91.619 279.129C89.7224 282.12 86.4398 288.174 84.3244 292.624C82.209 297.074 79.3641 304.223 77.9052 308.672C76.4462 313.122 74.3308 320.781 73.3096 325.815C71.4859 334.203 71.34 336.319 71.2671 352.44C71.2671 363.528 71.6318 372.354 72.2154 376.512C72.799 380.159 73.6743 385.265 74.2579 387.964C75.2062 392.487 75.425 392.925 77.1028 392.925C78.124 392.925 85.2727 391.758 93.005 390.372L95.0909 389.994L95.0944 389.994C103.382 388.493 118.189 385.813 129.624 383.807C141.723 381.613 161.99 377.978 175.445 375.565L176.674 375.345C190.096 372.938 201.33 370.676 201.621 370.458C201.913 370.166 201.694 368.123 201.111 365.935C200.527 363.746 199.652 359.151 199.214 355.722C198.704 351.2 198.704 347.844 199.287 343.322C199.798 339.893 200.746 335.443 201.476 333.474C202.205 331.431 204.393 328.076 206.363 325.888C208.843 323.116 211.323 321.292 214.971 319.614C217.815 318.301 221.9 316.842 224.089 316.332C226.277 315.821 230.362 315.529 233.207 315.748C237.292 315.967 238.97 316.478 241.596 318.228C244.076 319.833 245.535 321.657 247.432 325.377C249.62 329.681 249.985 331.14 249.985 335.298C249.985 339.528 249.62 340.914 246.921 346.312C245.243 349.668 240.356 357.035 236.052 362.652C231.821 368.269 225.037 377.825 221.025 383.807C217.013 389.861 211.98 398.396 209.791 402.773C207.676 407.149 205.05 413.423 204.029 416.632C203.007 419.842 201.622 425.386 200.965 429.033C200.163 433.921 199.944 438.443 200.236 446.905C200.527 455.731 201.038 459.816 202.497 465.506C203.518 469.518 205.925 477.761 207.895 483.743C210.74 492.569 211.688 494.757 212.855 494.903C213.585 494.976 220.077 493.153 227.226 490.891C234.374 488.557 240.283 486.733 240.356 486.879C240.429 486.952 238.459 489.286 235.906 491.985C233.353 494.684 231.456 497.311 231.675 497.821C231.894 498.259 231.821 498.551 231.383 498.332C230.946 498.113 229.633 499.353 228.466 501.104C227.226 502.781 226.277 504.386 226.277 504.751C226.277 505.043 225.329 506.793 224.162 508.763C222.995 510.66 221.171 514.672 220.223 517.662C219.201 520.653 217.961 525.103 217.451 527.51C216.867 530.063 216.43 535.753 216.502 541.37C216.502 548.519 216.867 552.385 218.034 557.053C218.91 560.482 220.733 565.88 222.046 569.089C223.432 572.299 225.985 577.186 227.809 580.031C229.633 582.876 232.915 587.107 235.104 589.441C237.292 591.848 241.158 595.35 243.784 597.319C246.41 599.289 251.444 602.353 255.091 604.176C258.738 605.927 264.574 608.188 268.221 609.21C271.868 610.231 277.704 611.325 281.351 611.617C284.999 611.909 291.053 611.909 294.846 611.617C298.64 611.325 304.256 610.45 307.247 609.647C310.238 608.845 315.49 607.021 318.919 605.562C322.347 604.103 327.38 601.331 330.225 599.508C333.07 597.611 337.593 593.964 340.365 591.338C343.064 588.712 347.003 584.481 348.972 581.855C350.942 579.229 354.151 573.831 356.121 569.819C358.091 565.807 360.425 559.606 361.373 555.959C362.613 550.78 362.978 547.351 362.905 539.546C362.905 531.376 362.54 528.458 361.008 522.404C359.914 518.392 357.434 511.827 355.465 507.815C353.495 503.803 349.921 498.04 347.513 495.049C345.179 492.058 341.386 488.046 339.271 486.223C337.082 484.399 333.873 481.919 332.049 480.679C330.225 479.439 326.505 477.323 323.66 475.937C320.815 474.551 316.438 472.655 313.812 471.779C311.186 470.977 306.81 469.81 303.965 469.226C301.12 468.716 299.369 468.059 299.953 467.84C300.536 467.621 307.977 465.214 316.366 462.588C324.754 459.962 331.976 457.555 332.268 457.263C332.632 456.971 331.611 452.959 330.152 448.364C327.818 441.434 327.38 438.954 327.307 433.775C327.307 428.377 327.599 426.991 329.496 422.833C330.736 420.207 332.705 416.778 333.873 415.173C335.113 413.569 339.198 408.462 343.064 403.867C346.857 399.271 351.963 392.852 354.443 389.642C356.85 386.433 360.79 380.889 363.197 377.241C365.604 373.594 369.324 367.321 371.367 363.163C373.409 359.078 375.889 353.534 376.911 350.835C377.932 348.063 379.318 343.905 379.901 341.498C380.558 339.091 381.506 334.495 382.09 331.286C382.673 328.076 383.111 321.146 383.111 315.967C383.184 310.788 382.819 303.858 382.382 300.648C381.871 297.439 380.631 291.238 379.464 286.788C378.37 282.339 376.181 275.628 374.722 271.835C373.263 268.041 370.564 261.914 368.814 258.34C366.99 254.765 364.072 249.659 362.321 247.033C360.571 244.407 357.069 239.811 354.443 236.821C351.89 233.83 347.149 229.234 344.012 226.608C340.875 223.982 335.623 220.116 332.414 218C329.204 215.885 323.295 212.602 319.283 210.633C315.271 208.663 309.363 206.256 306.153 205.162C302.943 204.141 297.4 202.609 293.752 201.734C290.105 200.931 283.759 199.764 279.528 199.18C275.297 198.67 266.398 198.159 259.686 198.159C252.903 198.159 244.076 198.524 239.991 198.962C235.833 199.326 232.405 199.618 232.332 199.472C232.259 199.326 231.675 196.627 231.019 193.418C230.362 190.208 228.684 184.154 227.298 179.923C225.912 175.692 223.141 168.981 221.171 164.969C219.274 160.957 215.335 154.246 212.563 150.015C209.354 145.127 204.102 138.781 198.047 132.508C192.868 127.11 187.105 120.326 185.355 117.554C183.531 114.782 181.561 111.208 180.832 109.676L179.592 106.977C183.093 102.746 185.938 99.5362 188.199 97.129C190.534 94.7218 194.983 90.418 198.193 87.5731C201.403 84.7282 209.281 78.3819 215.7 73.3486C222.119 68.3883 230.362 61.3855 234.009 57.7382C238.97 52.8508 241.231 49.8601 243.128 46.0669C245.097 41.9819 245.681 39.9394 245.9 35.4897C246.119 31.2588 245.827 28.8516 244.441 24.5478C243.492 21.557 242.763 18.858 242.69 18.4933C242.69 18.303 858.896 18.1127 1344.03 17.9628C1602.68 17.8829 1824.08 17.8146 1894.95 17.7638C2247.21 17.6179 2265.52 17.545 2265.67 16.3049C2265.88 15.1378 2247.79 15.0648 1894.08 15.0648L240.502 15.1378C237.146 11.8552 234.301 9.59388 232.113 7.91613C229.925 6.31131 226.788 4.41472 225.183 3.75821C223.578 3.02875 219.858 2.08045 217.013 1.49688C214.095 0.913314 210.448 0.548584 208.989 0.548584C207.457 0.62153 204.393 0.913314 202.205 1.2051ZM240.65 21.9947L238.68 17.6179C227.082 17.6179 221.465 17.8368 218.62 18.0556C215.775 18.3474 211.399 19.0768 208.773 19.8063C206.147 20.4628 201.478 22.4324 198.268 24.0372C194.767 25.9338 190.609 28.9245 187.618 31.8424C183.679 35.7085 182.074 37.9698 179.011 44.2432C176.676 49.0576 174.78 54.1638 173.977 58.1029C173.102 62.2608 172.664 67.2941 172.737 73.4216C172.737 79.0384 173.248 84.947 174.05 88.7402C174.707 92.1687 175.947 97.0561 176.822 99.6821L178.281 104.424C181.199 100.485 185.138 96.1807 189.004 92.3875C192.87 88.5214 200.092 82.1751 205.125 78.1631C208.105 75.8311 211.826 72.8601 215.153 70.2034C217.447 68.3724 219.553 66.6907 221.1 65.4705C224.894 62.4067 230.438 57.3005 233.501 54.0909C236.565 50.8813 239.848 46.5775 240.869 44.6079C242.474 41.4712 242.693 40.0123 242.693 33.666C242.693 27.2468 242.474 25.8608 240.65 21.9947ZM181.637 116.679C179.813 113.323 178.135 110.624 177.917 110.624C177.698 110.624 177.114 111.353 176.531 112.302C175.947 113.177 174.78 115.438 173.904 117.408C173.029 119.305 171.57 123.39 170.695 126.526C169.528 130.684 169.163 134.113 169.163 139.802C169.212 144.909 169.722 149.529 170.695 153.662C171.497 157.091 173.248 162.489 174.488 165.698C175.728 168.908 178.208 174.16 179.959 177.37C181.71 180.579 185.211 186.342 187.764 190.135C190.317 193.928 194.256 199.472 196.591 202.39C200.092 206.767 200.603 207.788 199.8 208.736C199.363 209.393 198.414 209.903 197.831 209.903C197.247 209.831 192.433 211.289 187.254 213.04C182.074 214.791 174.196 217.782 169.747 219.678C165.297 221.575 158.951 224.566 155.522 226.389C152.094 228.213 146.55 231.423 143.121 233.465C139.693 235.507 133.638 239.592 129.626 242.583C125.614 245.574 118.32 251.993 113.505 256.808C108.618 261.695 102.563 268.406 100.083 271.835C97.603 275.263 93.8828 280.807 91.9132 284.235C89.8707 287.664 87.0258 293.208 85.494 296.636C84.035 300.065 81.9196 305.463 80.8254 308.672C79.7312 311.882 78.1994 316.988 77.4699 319.979C76.6675 322.97 75.5733 328.805 74.9168 332.963C74.2603 337.34 73.8226 345.51 73.8226 353.023C73.7497 360.464 74.2603 369.144 74.9168 374.324C75.5733 379.138 76.3757 384.609 76.8134 386.579C77.1781 388.475 77.7617 390.007 78.1994 390.007C78.579 390.007 85.8177 388.745 95.1087 387.125C96.5301 386.877 97.9994 386.621 99.4996 386.36C102.75 385.776 106.339 385.134 109.985 384.48C119.106 382.847 128.583 381.149 134.003 380.159C141.589 378.773 159.169 375.637 173.029 373.229C181.083 371.788 188.3 370.47 192.961 369.619C196.321 369.005 198.353 368.634 198.414 368.634C198.487 368.561 198.05 365.716 197.393 362.288C196.518 357.692 196.299 353.68 196.518 346.969C196.81 339.893 197.32 336.756 198.633 333.109C199.8 329.827 201.478 327.128 204.104 324.356C206.292 321.948 209.867 319.249 212.858 317.645C215.63 316.186 219.86 314.508 222.268 313.851C224.675 313.195 228.468 312.684 230.656 312.684C232.845 312.684 236.419 313.195 238.535 313.778C240.869 314.435 243.495 315.967 245.319 317.645C246.996 319.104 249.331 322.459 250.571 325.085C252.467 329.097 252.832 330.629 252.832 335.298C252.832 340.185 252.54 341.425 249.841 346.969C248.018 350.616 243.422 357.619 238.535 364.111C233.939 370.166 227.593 378.992 224.31 383.807C221.1 388.621 217.088 395.04 215.411 398.031C213.66 401.022 211.107 406.274 209.721 409.702C208.262 413.131 206.365 418.675 205.417 422.103C204.469 425.532 203.302 431.732 202.864 435.963C202.499 440.194 202.353 446.102 202.572 449.093C202.864 452.084 203.521 457.044 204.104 460.035C204.688 463.026 206.949 471.415 209.21 478.636C209.843 480.658 210.448 482.582 210.99 484.308C212.385 488.749 213.368 491.88 213.368 491.985C213.441 492.131 217.453 490.964 222.268 489.505C227.082 488.046 234.96 485.566 239.775 484.034C244.589 482.503 248.747 481.408 249.112 481.554C249.404 481.773 249.622 482.357 249.622 482.867C249.549 483.305 247.726 485.056 245.464 486.66C243.276 488.265 239.775 491.402 237.732 493.59C235.763 495.779 232.188 500.52 229.781 504.167C227.447 507.815 225.55 510.951 225.55 511.316C225.55 511.608 224.967 513.067 224.164 514.599C223.435 516.058 222.049 520.07 221.1 523.498C219.642 528.75 219.423 531.376 219.423 540.64C219.423 548.81 219.715 552.749 220.663 556.324C221.392 558.95 222.632 562.816 223.435 564.931C224.164 566.974 225.842 570.767 227.082 573.32C228.322 575.8 231.021 579.958 232.991 582.584C235.033 585.21 238.024 588.566 239.702 590.098C241.307 591.63 244.37 594.183 246.34 595.715C248.382 597.246 252.103 599.654 254.729 601.04C257.355 602.426 262.242 604.468 265.67 605.562C269.099 606.584 275.153 607.97 279.165 608.626C283.834 609.283 288.43 609.501 291.931 609.283C294.922 608.991 299.371 608.48 301.779 608.042C304.186 607.605 308.636 606.438 311.626 605.416C314.617 604.395 319.213 602.499 321.839 601.186C324.465 599.872 328.623 597.246 331.176 595.423C333.656 593.599 337.887 589.879 340.586 587.18C343.212 584.408 347.151 579.594 349.267 576.384C351.382 573.174 354.081 568.287 355.248 565.442C356.415 562.597 357.947 558.074 358.604 555.23C359.333 552.385 360.063 547.497 360.281 544.288C360.573 541.078 360.281 535.315 359.771 531.522C359.26 527.729 357.874 521.674 356.707 518.027C355.54 514.38 353.06 508.69 351.163 505.262C348.61 500.739 345.838 497.165 340.44 491.767C335.626 486.879 331.249 483.232 327.675 481.117C324.684 479.366 320.234 477.104 317.827 476.156C315.42 475.208 310.97 473.822 307.979 473.02C304.988 472.29 299.59 471.415 296.016 471.123C292.515 470.831 289.451 470.248 289.232 469.883C289.013 469.518 289.159 468.935 289.451 468.643C289.816 468.351 298.715 465.36 309.146 462.078C319.65 458.722 328.477 455.731 328.842 455.44C329.206 455.148 328.331 451.428 326.945 447.051C324.976 440.923 324.392 438.078 324.392 433.775C324.392 430.565 324.903 426.772 325.632 424.656C326.362 422.687 328.258 418.894 329.936 416.268C331.614 413.642 336.136 407.733 340.002 403.137C343.869 398.542 349.048 392.122 351.455 388.913C353.935 385.703 358.093 379.795 360.792 375.783C363.491 371.771 367.43 364.841 369.618 360.464C371.734 356.087 374.433 349.303 375.673 345.51C376.913 341.717 378.445 335.589 379.174 332.015C379.977 327.711 380.414 321.948 380.414 315.237C380.414 308.891 379.977 302.545 379.247 298.46C378.591 294.885 377.059 288.393 375.819 284.017C374.652 279.713 372.317 273.002 370.64 269.136C369.035 265.196 366.555 259.871 365.169 257.245C363.71 254.619 361.011 250.243 359.187 247.398C357.291 244.626 353.497 239.884 350.652 236.893C347.808 233.976 343.285 229.672 340.44 227.338C337.595 225.076 333.073 221.648 330.228 219.897C327.383 218.073 322.495 215.301 319.286 213.697C316.076 212.092 310.97 209.831 307.979 208.809C304.988 207.715 299.882 206.183 296.673 205.381C293.463 204.505 288.211 203.411 285.001 202.828C281.792 202.244 274.716 201.515 269.318 201.15C263.92 200.785 255.02 200.785 249.622 201.077C244.224 201.442 238.316 201.879 236.492 202.171L233.21 202.682C233.647 225.222 233.866 227.265 235.033 228.796C235.763 229.818 236.711 232.079 237.222 233.903C237.732 235.726 237.878 238.425 237.659 239.957C237.44 241.416 236.565 243.896 235.836 245.428C235.033 246.887 233.501 249.002 232.334 250.097C231.24 251.191 229.052 252.577 227.52 253.16C226.061 253.817 223.143 254.328 221.173 254.328C219.131 254.328 216.286 253.817 214.754 253.16C213.295 252.577 211.107 251.191 210.013 250.097C208.846 249.002 207.241 246.814 206.365 245.209C205.271 243.167 204.834 240.978 204.834 237.915C204.906 234.997 205.417 232.517 206.365 230.62C207.168 229.015 209.137 226.608 210.669 225.295C212.201 223.982 214.973 222.523 216.724 222.012L219.933 221.137C219.35 216.031 218.256 212.457 217.161 209.831C216.14 207.204 215.192 204.578 215.119 203.995C214.973 203.192 216.651 202.536 221.903 201.515C225.696 200.785 228.906 200.129 229.052 200.056C229.198 200.056 228.687 197.211 228.03 193.782C227.374 190.354 225.842 184.591 224.675 181.017C223.508 177.443 220.444 170.148 217.891 164.969C215.265 159.79 210.961 152.422 208.262 148.629C205.49 144.836 199.144 137.395 194.111 132.216C187.181 124.994 184.117 121.201 181.637 116.679ZM230.511 207.861C230.292 203.265 230.219 203.265 228.103 203.338C226.863 203.411 224.164 203.703 222.122 204.068L218.256 204.724C220.371 209.539 221.319 212.675 221.83 214.791C222.268 216.833 222.632 219.751 222.632 221.137C222.632 222.742 222.268 223.836 221.538 224.055C220.955 224.274 219.787 224.42 218.985 224.42C218.183 224.42 216.213 225.076 214.608 225.879C212.931 226.754 210.888 228.651 209.721 230.474C208.116 232.954 207.751 234.413 207.678 237.988C207.678 241.635 208.043 242.948 209.721 245.428C210.888 247.252 212.931 249.148 214.827 250.024C216.578 250.899 219.277 251.556 221.173 251.556C222.997 251.556 225.258 251.191 226.28 250.826C227.301 250.461 229.198 249.221 230.511 248.054C231.824 246.887 233.428 244.626 234.085 243.021C234.814 241.124 235.033 238.863 234.741 236.456C234.523 234.267 233.574 231.641 232.407 229.891C230.583 227.192 230.438 226.535 230.583 219.678C230.656 215.666 230.656 210.341 230.511 207.861Z"
+              />
+              <animate
+                xlink:href="#a"
+                attributeName="stroke-dashoffset"
+                dur="3s"
+                to="619.55"
+                repeatCount="indefinite"
+              />
+            </defs>
+            <g fill="none" stroke-width="2" stroke="#B4B9CB">
+              <use xlink:href="#p" />
+              <use
+                id="a"
+                xlink:href="#p"
+                stroke="#5B11FA"
+                stroke-dasharray="20, 599.55"
+                stroke-dashoffset="0"
+              />
+            </g>
+          </svg>
+        </div>
+        <!-- Content on the right side -->
+
+        <div class="col-span-2 xl:col-span-2 flex flex-col justify-center">
+          <div class="2xl:text-6xl xl:text-5xl text-3xl font-myfont xl:mt-16">
+            <h2>
+              Why Choose <br />
+              Carina Softlabs Inc.?
+            </h2>
+          </div>
+
+          <div
+            class="flex items-center md:mt-8 lg:mt-10 xl:mt-16 2xl:mt-0 mt-6"
+          >
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-3 gap-4"
+            >
+              <div class="col-span-6">
+                <p
+                  class="font-quickSand font-medium xl:text-[18px] 2xl:text-2xl text-base md:text-lg text-[#000000] 2xl:py-20 text-justify"
+                >
+                  With over a decade of experience, we are the central India's
+                  biggest game development company. Our unique values and
+                  working model contribute to our clients' success. Our team
+                  works efficiently to fulfill the client’s requirement and
+                  their projects.
+                  <br />
+                  <br />
+                  We believe in the success of our clients' work. With a focus
+                  on their business goals, we deliver extraordinary outcomes
+                  that can rely on. At Carina Softlabs Inc., we provide a wide
+                  range of innovative solutions designed to meet your diverse
+                  needs and drive your brand's success.
+
+                  <br />
+                  <br />
+                  <span class="font-semibold"
+                    >Let us drive your project to unparalleled success and bring
+                    your boldest ideas to life.</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- how do we stand unique  -->
+
+  <section
+    class="min-h-[10vh] sm:min-h-0 w-full px-7 md:px-10 lg:px-10 2xl:pt-52 2xl:px-0 pt-28 pb-28"
+    style="
+      background: linear-gradient(
+          to right,
+          rgb(0 0 0 / 92%) 100%,
+          rgba(255, 0, 149, 0)
+        ),
+        url(../../assets/images/bg-deep.gif);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    "
+  >
+    <div data-aos="fade-up">
+      <div class="">
+        <div class="grid grid-rows-3 grid-flow-col gap-4 text-white">
+          <div class="row-span-3">
+            <!-- <p
+              class="text-white font-myfont text-3xl xl:text-4xl 2xl:text-6xl 2xl:ml-24 font-medium"
+            >
+              How Do We Stand <br />
+              Unique from Others ?
+            </p> -->
+            <h2
+              class="text-white font-myfont text-3xl xl:text-4xl 2xl:text-6xl 2xl:ml-24 font-medium"
+            >
+              How Do We Stand <br />
+              Unique from Others ?
+            </h2>
+          </div>
+        </div>
+
+        <div class="lg:hidden flex overflow-x-auto snap-x gap-4 scro my-10">
+          <div
+            class="snap-center flex flex-shrink-0 w-[82vw] sm:w-[89vw] 2xl:px-10 overflow-hidden relative cursor-pointer px-0.5 sm:px-3 py-9 gap-2"
+          >
+            <div class="text-str ml-1 mr-10">
+              <span class="font-mont text-fi text-black"> 1 </span>
+              <span class="font-mont text-outl"> 1 </span>
+            </div>
+            <span
+              class="text-base lg:text-2xl font-quickSand text-white text-wrap"
+            >
+              At Carina Softlabs Inc., we stand out through our exceptional team
+              of seasoned professionals with diverse skills, ensuring that our
+              solutions are tailored to meet each client's unique needs.
+            </span>
+          </div>
+          <div
+            class="snap-center flex flex-shrink-0 w-[82vw] sm:w-[89vw] 2xl:px-10 overflow-hidden relative cursor-pointer px-0.5 sm:px-3 py-9 gap-3"
+          >
+            <div class="text-str ml-1 mr-10">
+              <span class="font-mont text-fi text-black"> 2 </span>
+              <span class="font-mont text-outl"> 2 </span>
+            </div>
+            <span
+              class="text-base lg:text-2xl font-quickSand text-white text-wrap"
+            >
+              We develop personalized workplans based on a thorough
+              understanding and analysis of client requirements, allowing us to
+              deliver innovative and effective solutions.
+            </span>
+          </div>
+          <div
+            class="snap-center flex flex-shrink-0 w-[82vw] sm:w-[89vw] 2xl:px-10 overflow-hidden relative cursor-pointer px-0.5 sm:px-3 py-9 gap-3"
+          >
+            <div class="text-str ml-1 mr-10">
+              <span class="font-mont text-fi text-black"> 3 </span>
+              <span class="font-mont text-outl"> 3 </span>
+            </div>
+            <span
+              class="text-base lg:text-2xl font-quickSand text-white text-wrap"
+            >
+              Our commitment to strict adherence to project timelines ensures
+              that we deliver on time without compromising quality, enhancing
+              client trust and satisfaction.
+            </span>
+          </div>
+          <div
+            class="snap-center flex flex-shrink-0 w-[82vw] sm:w-[89vw] 2xl:px-10 overflow-hidden relative cursor-pointer px-0.5 sm:px-3 py-9 gap-3"
+          >
+            <div class="text-str ml-1 mr-10">
+              <span class="font-mont text-fi text-black"> 4 </span>
+              <span class="font-mont text-outl"> 4 </span>
+            </div>
+            <span
+              class="text-base lg:text-2xl font-quickSand text-white text-wrap"
+            >
+              We provide dedicated support with timely responses and solutions
+              to any issues, ensuring a seamless experience.
+            </span>
+          </div>
+          <div
+            class="snap-center flex flex-shrink-0 w-[82vw] sm:w-[89vw] 2xl:px-10 overflow-hidden relative cursor-pointer px-0.5 sm:px-3 py-9 gap-3"
+          >
+            <div class="text-str ml-1 mr-10">
+              <span class="font-mont text-fi text-black"> 5 </span>
+              <span class="font-mont text-outl"> 5 </span>
+            </div>
+            <span
+              class="text-base lg:text-2xl font-quickSand text-white text-wrap"
+            >
+              By leveraging the latest technologies and methodologies, we offer
+              cutting-edge solutions that set us apart from competitors.
+            </span>
+          </div>
+          <div
+            class="snap-center flex flex-shrink-0 w-[82vw] sm:w-[89vw] 2xl:px-10 overflow-hidden relative cursor-pointer px-0.5 sm:px-3 py-9 gap-3"
+          >
+            <div class="text-str ml-1 mr-10">
+              <span class="font-mont text-fi text-black"> 6 </span>
+              <span class="font-mont text-outl"> 6 </span>
+            </div>
+            <span
+              class="text-base lg:text-2xl font-quickSand text-white text-wrap"
+            >
+              Our proven track record of successful projects and satisfied
+              clients demonstrates our ability to consistently deliver results
+              and exceed expectations.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="hidden lg:block h-[600vh] lg:h-[330vw] xl:h-[262vw] 2xl:h-[230vw] hori-scroll"
+    >
+      <app-hori-scroll></app-hori-scroll>
+    </div>
+  </section>
+
+  <!-- Latest blog -->
+
+  <section
+    class="px-7 md:px-10 xl:px-10 pt-6 lg:pt-10 2xl:p-24 w-full bg-[#0B0C10]"
+  >
+    <div>
+      <div class="flex justify-between items-center content-center md:pb-2">
+        <h2
+          class="text-3xl 2xl:text-6xl xl:text-4xl font-medium text-white mb-4 font-myfont"
+        >
+          LATEST BLOGS
+        </h2>
+
+        <button
+          type="button"
+          routerLink="/blog"
+          class="pb-5 2xl:!text-[18px] xl:text-[14px] hidden rounded-full !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] 2xl:!py-3 !p-3 md:!px-8 md:!py-2 2xl:!px-12 text-white sm:inline-block"
+        >
+          <span class="button-container">
+            More Blogs
+            <img
+              src="../../assets/images/small-tilt-arrow.png"
+              alt="Image"
+              class="button-img"
+            />
+          </span>
+        </button>
+      </div>
+
+      <hr style="border: 1px solid #34394b" />
+
+      <div class="xl:pt-20 pt-4">
+        <p
+          class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-[34px] text-[#B4B9CB]"
+        >
+          Discover game trends, technology insights, digital marketing updates,
+          <br />
+          and our newly launched games by checking out our blogs.
+        </p>
+      </div>
+
+      <!-- latest blog animated cards -->
+
+      <div class="py-20">
+        <div class="scroll-container gap-4">
+          <!-- cards -->
+          <div
+            *ngFor="let card of blogCards"
+            class="scroll-item flex flex-col lg:hover:w-[600px] 2xl:hover:w-[670px] lg:hover:flex-row lg:hover:gap-x-7 transition-all duration-500 ease-in-out flex-shrink-0 w-64 2xl:h-[27rem] 2xl:w-[22rem] 2xl:px-10 2xl:py-16 2xl:rounded-[3rem] 2xl:hover:py-8 overflow-hidden rounded-badge relative cursor-pointer bg-[#34394b52] px-6 sm:w-72 py-9 gap-y-7 lat-blog-1"
+          >
+            <img
+              class="rounded-badge h-40 object-cover"
+              [src]="card.imgSrc"
+              alt=""
+            />
+            <div class="flex flex-col gap-y-7">
+              <p
+                [routerLink]="['/blog', formatHeading(card.titleLink)]"
+                class="text-[#B4B9CB] font-quickSand font-medium lat-bl-h"
+              >
+                {{ card.heading }}
+              </p>
+              <p class="hidden text-[#B4B9CB] text-xs 2xl:text-sm lat-bl-p">
+                {{ card.para }}
+              </p>
+              <button
+                type="button"
+                [routerLink]="['/blog', formatHeading(card.titleLink)]"
+                class="text-white text-sm w-1/2 rounded-3xl py-1 px-2 border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5]"
+              >
+                View More
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--  technology stack -->
+
+  <section
+    class="px-7 md:px-10 xl:px-14 2xl:p-24 py-10 bg-white rounded-[40px]"
+  >
+    <div>
+      <h2 class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont">
+        TECHNOLOGY STACK
+      </h2>
+    </div>
+
+    <hr class="mt-4" style="border: 1px solid #34394b" />
+
+    <!-- tech stack logos  -->
+    <div
+      class="flex flex-row-reverse mt-6 md:mt-10 lg:py-20 py-5 md:justify-center lg:justify-start"
+    >
+      <div
+        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-0 gap-y-8 sm:gap-y-20 2xl:gap-x-0 2xl:gap-20 items-center"
+      >
+        <div
+          *ngFor="let stack of techStack"
+          class="pr-2 mr-2 2xl:pr-6 2xl:mr-6 md:mr-2 border-r border-[#B4B9CB]"
+        >
+          <div class="py-4 px-6 2xl:!py-10 2xl:px-14 border-b border-[#B4B9CB]">
+            <img
+              class="transition-transform duration-500 transform hover:scale-110 cursor-pointer h-12 2xl:h-16 object-contain"
+              [src]="stack.imgSrc"
+              [width]="stack.w"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest project -->
+
+  <section class="px-7 md:px-10 xl:px-14 lg:py-20 2xl:p-24 py-10 bg-[#0B0C10]">
+    <app-slider></app-slider>
+  </section>
+
+  <!-- trusted by the best -->
+
+  <section
+    class="px-7 md:px-10 xl:px-14 lg:pb-36 lg:pt-24 2xl:p-24 py-10 bg-white rounded-[40px]"
+  >
+    <div class="pb-10 lg:pb-16 2xl:pb-44">
+      <div>
+        <h2
+          class="text-[#0B0C10] font-myfont text-3xl xl:text-4xl 2xl:text-6xl font-medium"
+        >
+          TRUSTED BY THE BEST
+        </h2>
+      </div>
+
+      <!-- bubble client testimonial -->
+      <div class="op-section op-eight-section section mt-10" id="section5">
+        <div class="section-eight py-10 md:py-20 2xl:py-36">
+          <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div class="md:col-span-1 relative">
+                <div class="container-pe-quote left1">
+                  <div
+                    class="pp-quote li-quote-7 active"
+                    (click)="changeActiveQuote(0)"
+                  >
+                    <img
+                      class="object-cover"
+                      src="../../assets/images/client-bub-1.png"
+                      alt=""
+                    />
+                  </div>
+                  <!-- <div class="pp-quote li-quote-1" (click)="changeActiveQuote(7)">
+                  <img
+                    src="http://nanaetben.fr/animation/assets/images/website/Ben-1.png"
+                    alt=""
+                  />
+                </div> -->
+                  <div
+                    class="pp-quote li-quote-2"
+                    (click)="changeActiveQuote(1)"
+                  >
+                    <img
+                      class="object-cover"
+                      src="../../assets/images/client-bub-2.png"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="pp-quote li-quote-3"
+                    (click)="changeActiveQuote(2)"
+                  >
+                    <img
+                      class="object-cover"
+                      src="../../assets/images/client-bub-3.png"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="md:col-span-2">
+                <div
+                  class="p-0.5 rounded-[4rem] bg-gradient-to-t from-[#20b9fa] to-[#F21DF5] 2xl:w-[38rem] mx-auto"
+                >
+                  <div
+                    class="sec-eight-text-area rounded-[4rem] md:py-7 2xl:py-12 relative"
+                  >
+                    <img
+                      class="absolute -top-9 w-20 left-0 right-0 mx-auto"
+                      src="../../../assets/images/double-quotes.svg"
+                      alt=""
+                    />
+
+                    <div class="container-quote">
+                      <div
+                        *ngFor="let client of clients"
+                        [ngClass]="client.feedbackClass"
+                        class="quote text-center"
+                      >
+                        <p class="text-black font-quickSand 2xl:text-lg">
+                          {{ client.feedback }}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="container-dp-name">
+                      <div
+                        *ngFor="let client of clients"
+                        class="box-dpname text-center"
+                        [ngClass]="client.customClass"
+                      >
+                        <img
+                          class="text-center mx-auto w-20 h-20 border-[#B4B9CB] object-cover !border-2 rounded-full"
+                          [src]="client.imgSrc"
+                          alt=""
+                        />
+                        <p class="text-black 2xl:text-lg mt-2">
+                          {{ client.name }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="md:col-span-1 relative">
+                <div class="container-pe-quote right1">
+                  <div
+                    class="pp-quote li-quote-4"
+                    (click)="changeActiveQuote(3)"
+                  >
+                    <img
+                      class="object-cover"
+                      src="../../assets/images/client-bub-4.png"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="pp-quote li-quote-5"
+                    (click)="changeActiveQuote(4)"
+                  >
+                    <img
+                      class="object-cover"
+                      src="../../assets/images/client-bub-5.png"
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    class="pp-quote li-quote-6"
+                    (click)="changeActiveQuote(5)"
+                  >
+                    <img
+                      class="object-cover"
+                      src="../../assets/images/client-bub-6.png"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <app-footer [cardText]="cardText" />
+</main>
+

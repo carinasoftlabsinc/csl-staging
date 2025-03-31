@@ -1,0 +1,117 @@
+<div class="addContainer">
+  <div class="contact-form">
+    <div class="modalHeader">
+      <div class="editRowModal">
+        <div class="modalHeader clearfix">
+          <!-- <img [src]='leaves.img' alt="avatar"> -->
+          <div class="modal-about">{{ data.employeeName | titlecase}}</div>
+        </div>
+      </div>
+      <button
+        mat-icon-button
+        (click)="dialogRef.close()"
+        class="modal-close-button"
+        aria-label="Close dialog"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div mat-dialog-content>
+      <form
+        class="register-form m-4"
+        [formGroup]="leavesForm"
+        (ngSubmit)="confirmAdd()"
+      >
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field
+              class="example-full-width mb-3"
+              appearance="outline"
+            >
+              <mat-label>Casual Leave</mat-label>
+              <input
+                matInput
+                formControlName="casualLeave"
+                required
+                type="number"
+              />
+              <mat-error
+                *ngIf="leavesForm.get('casualLeave')?.hasError('required')"
+              >
+                Casual Leave is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field
+              class="example-full-width mb-3"
+              appearance="outline"
+            >
+              <mat-label>Personal Leave</mat-label>
+              <input
+                matInput
+                formControlName="personalLeave"
+                required
+                type="number"
+              />
+              <mat-error
+                *ngIf="leavesForm.get('personalLeave')?.hasError('required')"
+              >
+                Personal Leave is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field
+              class="example-full-width mb-3"
+              appearance="outline"
+            >
+              <mat-label>Medical Leave</mat-label>
+              <input
+                matInput
+                formControlName="medicalLeave"
+                required
+                type="number"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+            <mat-form-field
+              class="example-full-width mb-3"
+              appearance="outline"
+            >
+              <mat-label>LWP Leave</mat-label>
+              <input matInput formControlName="LWP" required type="number" />
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- ... (other form fields) -->
+
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+            <div class="example-button-row" align="end">
+              <button
+                mat-raised-button
+                color="primary"
+                [disabled]="!leavesForm.valid"
+                type="submit"
+              >
+                Save
+              </button>
+              <button
+                mat-raised-button
+                color="warn"
+                (click)="onNoClick()"
+                tabindex="-1"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

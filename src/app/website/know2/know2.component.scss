@@ -1,0 +1,124 @@
+.know2-bg {
+  background: url("../../../assets/images/what\ you\ can\ expect\ Hero\ bg.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+// body {
+//   overflow-x: hidden;
+//   margin: 0;
+//   padding: 0;
+// }
+
+// header {
+//   position: fixed;
+//   z-index: 1000;
+//   margin-left: 10px;
+// }
+
+// h1 {
+//   font-size: 25px;
+// }
+
+// footer {
+//   height: 10vh;
+//   position: fixed;
+//   bottom: 0;
+// }
+
+// .scrollbar {
+//   position: relative;
+//   border-radius: 25px;
+//   color: white;
+//   background-color: #333;
+//   width: 150px;
+//   height: 10px;
+//   top: calc(5vh + 5px);
+//   left: 10px;
+//   text-align: center;
+//   cursor: pointer;
+// }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.container {
+  //background-color: #000;
+}
+
+.wrapperScr {
+  position: relative;
+  // height: 95vh;
+  //   width: calc( (800px * 8) + ((100vw - 20px) * 3) + (10px * 10) );
+  width: calc((800px * 2.1) + ((100vw - 20px) * 3) + (10px * 10));
+  //   padding: 0px 10px;
+}
+
+@media (min-width: 1536px) {
+  .wrapperScr {
+    position: relative;
+    // height: 55vh;
+    width: calc((800px * 3) + ((100vw - 20px) * 3) + (10px * 10));
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapperScr {
+    position: relative;
+    // height: 55vh;
+    width: calc((800px * 3.5) + ((100vw - 20px) * 3) + (10px * 10));
+  }
+}
+
+.thumbnail {
+  display: inline-block;
+  // float: left;
+  //   height: 80vh;
+  // height: 80%;
+  //   width: calc(800px - 20px);
+  // width: 50vw;
+  color: white;
+  padding: 10px;
+  //   font-weight: 800;
+  border-radius: 10px;
+  //   margin-right: 10px;
+  margin-right: 20vw;
+}
+
+// .thumbnail:nth-child(1) { background-color: red; }
+// .thumbnail:nth-child(2) { background-color: navy; }
+// .thumbnail:nth-child(3) { background-color: gray; }
+// .thumbnail:nth-child(4) { background-color: orange; }
+// .thumbnail:nth-child(5) { background-color: purple; }
+// .thumbnail:nth-child(6) { background-color: black; }
+// .thumbnail:nth-child(7) { background-color: green; }
+// .thumbnail:nth-child(8) { background-color: darkred; }
+// .thumbnail:nth-child(9) { background-color: teal; }
+// .thumbnail:nth-child(10) { background-color: steelblue; }
+// .thumbnail:nth-child(11) { background-color: salmon; }
+
+.thumbnail:last-child {
+  margin-right: 0px;
+}
+
+.full {
+  width: calc(100vw - 20px - 20px);
+}
+
+// .wrapperScr::before {
+//     position: absolute;
+//      top: 50%;
+//   left: 0;
+//   transform: translate(-50%, -50%);
+//   content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="10" width="600"><line x1="0" y1="5" x2="100%" y2="5" style="stroke:rgba(180, 185, 203, 1);stroke-width:1" /></svg>');
+//   //   content: url(../../../assets/images/kn-line.svg);
+//   //   height: 20px;
+//   // display: block;
+//   // margin-top: 10px; /* Adjust the margin to space it from the text */
+// }
+
+.text-strokeee {
+  -webkit-text-stroke: 2px rgb(255, 255, 255);
+  text-stroke: 2px rgb(255, 255, 255);
+}

@@ -1,0 +1,171 @@
+
+
+<main class="bg-[#000]">
+  <div class="bg-[#fff] rounded-b-[40px]">
+    <app-header [isWhiteBackground]="isWhiteBackground"></app-header>
+
+    <section
+      class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 pb-16 2xl:p-24 2xl:pb-32 mb-16 2xl:mb-16 relative"
+    >
+      <div class="grid grid-cols-3 lg:gap-14 xl:gap-20">
+        <div
+          class="col-span-3 lg:col-span-2 flex flex-col gap-7 2xl:gap-9 text-black"
+        >
+          <h1 class="font-myfont text-xl md:text-3xl">{{ cardData?.title }}</h1>
+
+          <img
+            class="w-full rounded-3xl h-72 2xl:h-80 object-cover"
+            [src]="imageUrl + '/' + cardData?.image"
+            alt=""
+          />
+
+          <div
+            class="flex font-quickSand font-semibold gap-3 items-center border-b pb-6 border-[#34394B]"
+          >
+            <img
+              class="h-12 w-12 object-cover rounded-full"
+              src="../../../assets/images/author-image.png"
+              [alt]="cardData?.title"
+            />
+            <div>
+              <h4 class="capitalize">
+                <span class="text-slate-400">By </span>{{ cardData?.author }}
+              </h4>
+              <span class="capitalize"
+                ><span class="text-slate-400">Posted on </span
+                >{{ cardData?.date }}</span
+              >
+            </div>
+          </div>
+
+          <div class="font-quickSand flex flex-col gap-3">
+            <p [innerHTML]="cardData?.description"></p>
+          </div>
+
+        
+
+          <div
+            class="font-quickSand"
+            #contentContainer
+            [innerHTML]="cardData?.content"
+          ></div>
+        </div>
+
+        <div class="hidden lg:block relative">
+          <div
+            #stickySidebar
+            class="sticky rounded-3xl font-quickSand p-3 text-[#000000]"
+          >
+            <h2 class="text-xl border-b border-[#34394B] pb-2 mb-3 font-myfont">
+              Recent News
+            </h2>
+
+            <a
+              *ngFor="let news of allNews | slice : 0 : 4"
+              [routerLink]="['/news', formatHeading(news.titleLink)]"
+              class="flex justify-center gap-2.5 items-center py-3.5 border-b border-[#D9D9D9]"
+            >
+              <img
+                class="h-20 w-36 object-cover rounded-xl"
+                [src]="imageUrl + '/' + news.image_2"
+                alt=""
+              />
+              <div class="font-quickSand">
+                <p class="font-semibold text-xs mb-0.5">{{ news.title }}</p>
+                <!-- <p class="text-xs">{{ news.description }}</p> -->
+              </div>
+            </a>
+
+          
+            <div *ngIf="cardData?.feed" class="linkedin-embed mt-2.5">
+              <iframe
+                [src]="sanitizer.bypassSecurityTrustResourceUrl(cardData?.feed)"
+                height="500"
+                width="100%"
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+                title="Embedded post"
+              ></iframe>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="flex justify-center items-center relative mt-20 z-20">
+    <div
+      class="bg-gradient-to-bl from-[#121b44] via-[#0B0C10] to-[#121b44] rounded-[40px] md:px-36 md:py-11 lg:py-14 xl:px-48 xl:py-16 2xl:py-24 absolute p-[2.7rem] text-center"
+    >
+      <h2
+        class="text-white text-xl sm:text-2xl md:text-[25px] lg:text-[38px] xl:text-[45px] xl:leading-[54px] 2xl:text-[60px] lg:leading-[47px] 2xl:leading-[76px] font-myfont text-center"
+      >
+        SUBSCRIBE TO OUR NEWSLETTER
+      </h2>
+      <div class="pt-4 md:pt-5 lg:pt-8 2xl:pt-10">
+        <a
+          routerLink="/contact-us"
+          class="2xl:!text-[18px] xl:text-[14px] rounded-full !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] lg:!px-6 lg:!py-2 xl:!px-6 xl:!py-2.5 2xl:!px-8 2xl:!py-3 px-6 py-2.5 text-white inline-block cursor-pointer"
+        >
+          <span class="button-container flex gap-2.5">
+            Subscribe Now
+            <img
+              src="../../assets/images/small-tilt-arrow.png"
+              alt="Image"
+              class="button-img object-contain"
+            />
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div
+    *ngIf="isModalOpen"
+    (click)="closeModal()"
+    class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-[1001]"
+  >
+  
+    <div
+      (click)="$event.stopPropagation()"
+      class="bg-gradient-to-bl from-[#121b44] via-[#0B0C10] to-[#121b44] rounded-[40px] md:px-36 md:py-11 lg:py-14 xl:px-48 xl:py-16 2xl:py-24 absolute p-[2.7rem] text-center flex flex-col gap-9 2xl:gap-12 items-center"
+    >
+      <h2
+        class="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-myfont text-center"
+      >
+        Get Updates Now!
+      </h2>
+      <label
+        for="sub-email"
+        class="!border border-[#464268] rounded-3xl 2xl:rounded-full px-6 py-2.5 2xl:py-3.5 flex items-center gap-2.5 w-full"
+      >
+        <img
+          class="size-6"
+          src="../../../assets/images/proicons_mail.svg"
+          alt=""
+        />
+        <input
+          class="w-full bg-transparent text-[#AFAFAF] font-quickSand font-medium"
+          type="email"
+          name="email"
+          id="sub-email"
+          placeholder="Email"
+        />
+      </label>
+
+      <button
+        class="px-8 py-2.5 md:px-14 md:py-2.5 md:!text-base 2xl:!text-xl !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] rounded-full text-[#fff]"
+      >
+        Submit
+      </button>
+    </div>
+  </div> -->
+
+  <app-footer
+    [showButton]="false"
+    [showCollab]="false"
+    [showHeading]="false"
+  ></app-footer>
+</main>

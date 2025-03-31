@@ -1,0 +1,303 @@
+import { Component, OnInit } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
+import { FormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { ContactService } from './contact.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router'; // Import the Router
+
+@Component({
+  selector: 'app-contact',
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.scss'],
+})
+export class ContactComponent {
+  rangeValue: number = 500;
+  clientForm: UntypedFormGroup;
+  submitted: boolean | undefined;
+  loading: boolean = false;
+  // router: any;
+  constructor(
+    private titleService: Title,
+    private metaService: Meta,
+    private fb: UntypedFormBuilder,
+    private service: ContactService,
+    private snackBar: MatSnackBar,
+    private router: Router // Inject Router here
+  ) {
+    this.clientForm = this.fb.group({
+      name: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      email: ['', [Validators.required, Validators.email]],
+      address: ['', Validators.required],
+      budget: [500],
+      service: ['', Validators.required],
+      message: [''],
+    });
+
+  }
+
+  countries: string[] = [
+    'Afghanistan',
+    'Albania',
+    'Algeria',
+    'Andorra',
+    'Angola',
+    'Antigua and Barbuda',
+    'Argentina',
+    'Armenia',
+    'Australia',
+    'Austria',
+    'Azerbaijan',
+    'Bahamas',
+    'Bahrain',
+    'Bangladesh',
+    'Barbados',
+    'Belarus',
+    'Belgium',
+    'Belize',
+    'Benin',
+    'Bhutan',
+    'Bolivia',
+    'Bosnia and Herzegovina',
+    'Botswana',
+    'Brazil',
+    'Brunei',
+    'Bulgaria',
+    'Burkina Faso',
+    'Burundi',
+    'Cabo Verde',
+    'Cambodia',
+    'Cameroon',
+    'Canada',
+    'Central African Republic',
+    'Chad',
+    'Chile',
+    'China',
+    'Colombia',
+    'Comoros',
+    'Congo (Congo-Brazzaville)',
+    'Costa Rica',
+    'Croatia',
+    'Cuba',
+    'Cyprus',
+    'Czechia',
+    'Democratic Republic of the Congo',
+    'Denmark',
+    'Djibouti',
+    'Dominica',
+    'Dominican Republic',
+    'Ecuador',
+    'Egypt',
+    'El Salvador',
+    'Equatorial Guinea',
+    'Eritrea',
+    'Estonia',
+    'Eswatini',
+    'Ethiopia',
+    'Fiji',
+    'Finland',
+    'France',
+    'Gabon',
+    'Gambia',
+    'Georgia',
+    'Germany',
+    'Ghana',
+    'Greece',
+    'Grenada',
+    'Guatemala',
+    'Guinea',
+    'Guinea-Bissau',
+    'Guyana',
+    'Haiti',
+    'Honduras',
+    'Hungary',
+    'Iceland',
+    'India',
+    'Indonesia',
+    'Iran',
+    'Iraq',
+    'Ireland',
+    'Israel',
+    'Italy',
+    'Jamaica',
+    'Japan',
+    'Jordan',
+    'Kazakhstan',
+    'Kenya',
+    'Kiribati',
+    'Kuwait',
+    'Kyrgyzstan',
+    'Laos',
+    'Latvia',
+    'Lebanon',
+    'Lesotho',
+    'Liberia',
+    'Libya',
+    'Liechtenstein',
+    'Lithuania',
+    'Luxembourg',
+    'Madagascar',
+    'Malawi',
+    'Malaysia',
+    'Maldives',
+    'Mali',
+    'Malta',
+    'Marshall Islands',
+    'Mauritania',
+    'Mauritius',
+    'Mexico',
+    'Micronesia',
+    'Moldova',
+    'Monaco',
+    'Mongolia',
+    'Montenegro',
+    'Morocco',
+    'Mozambique',
+    'Myanmar (formerly Burma)',
+    'Namibia',
+    'Nauru',
+    'Nepal',
+    'Netherlands',
+    'New Zealand',
+    'Nicaragua',
+    'Niger',
+    'Nigeria',
+    'North Korea',
+    'North Macedonia',
+    'Norway',
+    'Oman',
+    'Pakistan',
+    'Palau',
+    'Palestine State',
+    'Panama',
+    'Papua New Guinea',
+    'Paraguay',
+    'Peru',
+    'Philippines',
+    'Poland',
+    'Portugal',
+    'Qatar',
+    'Romania',
+    'Russia',
+    'Rwanda',
+    'Saint Kitts and Nevis',
+    'Saint Lucia',
+    'Saint Vincent and the Grenadines',
+    'Samoa',
+    'San Marino',
+    'Sao Tome and Principe',
+    'Saudi Arabia',
+    'Senegal',
+    'Serbia',
+    'Seychelles',
+    'Sierra Leone',
+    'Singapore',
+    'Slovakia',
+    'Slovenia',
+    'Solomon Islands',
+    'Somalia',
+    'South Africa',
+    'South Korea',
+    'South Sudan',
+    'Spain',
+    'Sri Lanka',
+    'Sudan',
+    'Suriname',
+    'Sweden',
+    'Switzerland',
+    'Syria',
+    'Tajikistan',
+    'Tanzania',
+    'Thailand',
+    'Timor-Leste',
+    'Togo',
+    'Tonga',
+    'Trinidad and Tobago',
+    'Tunisia',
+    'Turkey',
+    'Turkmenistan',
+    'Tuvalu',
+    'Uganda',
+    'Ukraine',
+    'United Arab Emirates',
+    'United Kingdom',
+    'United States',
+    'Uruguay',
+    'Uzbekistan',
+    'Vanuatu',
+    'Vatican City',
+    'Venezuela',
+    'Vietnam',
+    'Yemen',
+    'Zambia',
+    'Zimbabwe'
+  ];
+  
+  
+  ngOnInit(): void {
+    this.titleService.setTitle('Contact Us - Carina Softlabs Inc.');
+    this.metaService.updateTag({
+      name: 'description',
+      content:
+        'Contact Carina Softlabs to boost your business! Get expert help with game development, digital marketing, web & mobile app development, and emerging tech solutions.',
+    });
+  }
+
+  private showSuccessMessage(message: string) {
+    const snackBarRef = this.snackBar.open(message, '', {
+      duration: 2000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'center',
+      // panelClass: 'snackbar-success',
+    });
+
+    snackBarRef.afterDismissed().subscribe(() => {});
+  }
+
+  private showErrorMessage(message: string) {
+    const snackBarRef = this.snackBar.open(message, '', {
+      duration: 2000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'center',
+      // panelClass: 'snackbar-danger',
+    });
+
+    snackBarRef.afterDismissed().subscribe(() => {
+    });
+  }
+
+  onSave() {
+    this.submitted = true;
+    if (this.clientForm.invalid) {
+      return;
+    }
+    this.loading = true;
+    this.service
+      .Add(
+        this.clientForm.value.name,
+        this.clientForm.value.email,
+        this.clientForm.value.phone,
+        this.clientForm.value.message,
+        this.clientForm.value.address,
+        this.clientForm.value.budget,
+        this.clientForm.value.service
+      )
+      .subscribe({
+        next: (response) => {
+          this.loading = false; 
+          this.submitted = false;
+          this.clientForm.reset();
+          this.showSuccessMessage('Data submitted successfully');
+          this.router.navigate(['/thank-you']); // Use the Router to navigate
+        },
+        error: (error) => {
+          // Handle error
+          this.loading = false; // Stop showing spinner
+          console.error(error);
+          this.showErrorMessage(error.message);
+        },
+      });
+  }
+
+  cardText: string = `Got a Challenge ? <br class="hidden sm:block" /> Tell Us How We Can Help`;
+}

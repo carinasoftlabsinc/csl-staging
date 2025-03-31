@@ -1,0 +1,346 @@
+<main class="bg-[#000000]">
+  <div class="news-bg">
+    <app-header></app-header>
+    <section
+      class="px-5 py-24 body-font flex items-center justify-start h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)]"
+    >
+      <div
+        class="2xl:ml-44 xl:ml-40 lg:ml-20 md:ml-6 flex items-center justify-between overflow-hidden relative"
+      >
+        <div class="w-full md:w-1/2">
+          <!-- <h1>
+            <span
+              class="text-white font-myfont text-[30px] 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]"
+            >
+              OUR
+            </span>
+            <br />
+            <span
+              class="text-white tracking-wide text-6xl md:text-4xl lg:text-[50px] lg:leading-[50px] xl:text-[60px] xl:leading-[60px] 2xl:text-[80px] 2xl:leading-[100px] sm:text-4xl font-myfont"
+            >
+              NewsRoom
+            </span>
+          </h1>
+
+          <p
+            class="text-white mt-3 text-sm xl:text-[16px] 2xl:text-[23px] 2xl:leading-[27px] font-quickSand font-normal"
+          >
+            Stay informed with our recent milestones, news, and success stories
+            as we continue to grow and innovate.
+          </p> -->
+
+          <h1>
+            <span
+              class="text-white font-myfont text-[30px] 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]"
+            >
+              OUR
+            </span>
+            <br />
+            <span
+              class="text-white tracking-wide text-6xl md:text-4xl lg:text-[50px] lg:leading-[50px] xl:text-[60px] xl:leading-[60px] 2xl:text-[80px] 2xl:leading-[100px] sm:text-4xl font-myfont"
+            >
+              NEWS<br class="sm:hidden" />ROOM
+            </span>
+          </h1>
+
+          <p
+            class="text-white mt-3 text-sm xl:text-[16px] 2xl:text-[23px] 2xl:leading-[27px] font-quickSand font-normal"
+          >
+            Excited about the digital world? So are we! Stay updated with the
+            latest trends in Game Development, Digital Marketing, Web
+            Development, and Mobile App Development. Stay in the loop with the
+            latest trends and tricks!
+          </p>
+        </div>
+        <div class="w-full md:w-1/2 hidden md:block">
+          <img src="../../../assets/Globe.gif" alt="" />
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#000000]">
+    <div
+      class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
+    >
+      <h2
+        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+      >
+        Highlights of Our Achievements and News
+      </h2>
+    </div>
+    <div class="xl:pt-20 pt-4">
+      <p
+        class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
+      >
+        Take a moment to watch this video glimpse to discover our recent
+        achievements and exciting news!<br class="hidden md:block" />
+      </p>
+    </div>
+
+    <div class="rounded-3xl overflow-hidden my-8">
+      <iframe
+        #videoIframe
+        class="h-[80vh] w-full md:object-cover"
+        src="https://www.youtube.com/embed/J2vM81MHUa0?si=lO0Fo_F9VsVfGCnz"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+
+      <!-- <iframe
+        class="h-[80vh] w-full md:object-cover"
+        src="https://www.youtube.com/embed/J2vM81MHUa0?si=lO0Fo_F9VsVfGCnz&autoplay=1&mute=0"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe> -->
+    </div>
+  </section>
+
+  <div class="bg-white rounded-[40px]">
+    <section
+      class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
+    >
+      <div>
+        <h2
+          class="text-black text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#B4B9CB]"
+        >
+          FEATURED NEWS
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-12 2xl:mt-16">
+        <a
+          [routerLink]="['/news', formatHeading(featured[0].titleLink)]"
+          class="h-[40vh] md:h-[90vh] w-full rounded-3xl overflow-hidden relative group"
+        >
+          <img
+            class="h-full w-full object-cover"
+            [src]="imageUrl + '/' + featured[0]?.image_2 || 'default-image.jpg'"
+            alt="Main Featured Image"
+          />
+          />
+
+          <div
+            class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
+          >
+            <p
+              class="text-white text-base mb-6 md:text-2xl 2xl:text-3xl font-quickSand md:mb-12 px-6 2xl:px-10 font-medium"
+            >
+              {{ featured[0]?.title || "Default Title" }}
+            </p>
+          </div>
+        </a>
+
+        <!-- Secondary Items in a Grid -->
+        <div class="grid grid-rows-2 gap-4 h-[90vh] w-full">
+          <!-- <ng-container *ngFor="let card of featured.slice(1); let i = index"> -->
+          <div class="relative group overflow-hidden rounded-3xl">
+            <a [routerLink]="['/news', formatHeading(featured[1].titleLink)]">
+              <img
+                class="h-full w-full object-cover"
+                [src]="
+                  imageUrl + '/' + featured[1]?.image_2 || 'default-image.jpg'
+                "
+                alt="{{ featured[1].title }}"
+              />
+              <div
+                class="h-3/4 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
+              >
+                <p
+                  class="text-white text-base 2xl:text-lg font-quickSand mb-7 px-3.5 2xl:px-7 font-medium"
+                >
+                  {{ featured[1]?.title || "Default Title" }}
+                </p>
+              </div>
+            </a>
+          </div>
+          <!-- </ng-container> -->
+
+          <!-- Final Row: Static or Optional Placeholder Items -->
+          <div class="rounded-3xl overflow-hidden flex gap-4">
+            <ng-container *ngFor="let card of featured.slice(2); let i = index">
+              <a
+                [routerLink]="['/news', formatHeading(card.titleLink)]"
+                class="h-full w-full rounded-3xl overflow-hidden relative group"
+              >
+                <img
+                  class="h-full w-full object-cover"
+                  [src]="imageUrl + '/' + card.image_2"
+                  alt="Static Image 1"
+                />
+                <div
+                  class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
+                >
+                  <p
+                    class="text-white font-quickSand mb-7 px-3.5 2xl:px-6 font-medium 2xl:text-lg"
+                  >
+                    {{ card.title }}
+                  </p>
+                </div>
+              </a>
+            </ng-container>
+            <!-- <div
+              class="h-full w-full rounded-3xl overflow-hidden relative group"
+            >
+              <img
+                class="h-full w-full object-cover"
+                src="https://example.com/static-image2.jpg"
+                alt="Static Image 2"
+              />
+              <div
+                class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
+              >
+                <p
+                  class="text-white font-quickSand mb-7 px-3.5 2xl:px-6 font-medium 2xl:text-lg"
+                >
+                  Lorem ipsum dolor sit amet consectetur.
+                </p>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
+    >
+      <div>
+        <h2
+          class="text-black text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#B4B9CB]"
+        >
+          RECENT NEWS
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-12 2xl:mt-16">
+        <a
+          [routerLink]="['/news', formatHeading(prevFeatured[0].titleLink)]"
+          class="h-[40vh] md:h-[90vh] w-full rounded-3xl overflow-hidden relative group"
+        >
+          <img
+            class="h-full w-full object-cover"
+            [src]="
+              imageUrl + '/' + prevFeatured[0]?.image_2 || 'default-image.jpg'
+            "
+          />
+          <div
+            class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
+          >
+            <p
+              class="text-white text-base mb-6 md:text-2xl 2xl:text-3xl font-quickSand md:mb-12 px-6 2xl:px-10 font-medium"
+            >
+              {{ prevFeatured[0]?.title || "Default Title" }}
+            </p>
+          </div>
+        </a>
+        <a
+          [routerLink]="['/news', formatHeading(prevFeatured[1].titleLink)]"
+          class="h-[40vh] md:h-[90vh] w-full rounded-3xl overflow-hidden relative group"
+        >
+          <img
+            class="h-full w-full object-cover"
+            [src]="
+              imageUrl + '/' + prevFeatured[1]?.image_2 || 'default-image.jpg'
+            "
+          />
+          <div
+            class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
+          >
+            <p
+              class="text-white text-base mb-6 md:text-2xl 2xl:text-3xl font-quickSand md:mb-12 px-6 2xl:px-10 font-medium"
+            >
+              {{ prevFeatured[1]?.title || "Default Title" }}
+            </p>
+          </div>
+        </a>
+        <!-- <div
+          class="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 md:h-[90vh] w-full overflow-hidden gap-4"
+        >
+          <a
+            [routerLink]="['/news', formatHeading(card.titleLink)]"
+            class="relative group overflow-hidden rounded-3xl"
+            *ngFor="let card of prevFeatured | slice : 1 : 4"
+          >
+            <img
+              class="md:h-full w-full object-cover h-52"
+              [src]="imageUrl + '/' + card?.image_2 || 'default-image.jpg'"
+              alt=""
+            />
+            <div
+              class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
+            >
+              <p
+                class="text-white font-quickSand mb-7 px-3.5 2xl:px-6 font-medium 2xl:text-lg"
+              >
+                {{ card.title }}
+              </p>
+            </div>
+          </a>
+        </div> -->
+      </div>
+    </section>
+
+    <section
+      class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
+    >
+      <div>
+        <h2
+          class="text-black text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#B4B9CB]"
+        >
+          NEWS AND EVENTS
+        </h2>
+      </div>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 2xl:gap-x-9 2xl:gap-y-14 mt-12 2xl:mt-16"
+      >
+        <a
+          [routerLink]="['/news', formatHeading(card.titleLink)]"
+          class="overflow-hidden flex flex-col gap-2"
+          *ngFor="let card of allNews"
+        >
+          <img
+            class="object-cover h-72 2xl:h-80 w-full rounded-2xl"
+            [src]="imageUrl + '/' + card.image_2"
+            alt=""
+          />
+          <p
+            class="text-[#34394B] font-quickSand font-medium text-base 2xl:text-xl"
+          >
+            {{ card.title }}
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <section
+      class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
+    >
+      <div class="lg:pb-24 xl:pb-32 2xl:pb-36 py-14">
+        <div>
+          <h2
+            class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
+          >
+            Ready to Transform?
+          </h2>
+        </div>
+        <app-getinform></app-getinform>
+      </div>
+    </section>
+  </div>
+
+  <app-footer
+    [showButton]="false"
+    [showHeading]="false"
+    [btnText]="'Schedule a call'"
+    [cardText]="cardText"
+  >
+  </app-footer>
+</main>

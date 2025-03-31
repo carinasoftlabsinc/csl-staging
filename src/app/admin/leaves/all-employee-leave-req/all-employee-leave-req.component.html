@@ -1,0 +1,316 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb
+        [title]="'All Leave Request'"
+        [items]="['Home']"
+        [active_item]="'Leave Request'"
+      >
+      </app-breadcrumb>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tabbable-line">
+          <div class="row">
+            <div class="example-container">
+              <form [formGroup]="form">
+                <div class="row">
+                  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <mat-form-field
+                      class="example-full-width"
+                      appearance="outline"
+                    >
+                      <mat-label>Select Year</mat-label>
+                      <mat-select formControlName="y">
+                        <mat-option
+                          *ngFor="let yearOption of yearOptions"
+                          [value]="yearOption"
+                          >{{ yearOption }}</mat-option
+                        >
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <mat-form-field
+                      class="example-full-width"
+                      appearance="outline"
+                    >
+                      <mat-label>Select Month</mat-label>
+                      <mat-select formControlName="m">
+                        <mat-option
+                          *ngFor="let monthOption of monthOptions"
+                          [value]="monthOption.value"
+                          >{{ monthOption.label }}</mat-option
+                        >
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-3">
+                    <mat-form-field
+                      class="example-full-width"
+                      appearance="outline"
+                    >
+                      <mat-label>Name</mat-label>
+                      <mat-select formControlName="employeeName">
+                        <mat-option
+                          *ngFor="let employee of employees"
+                          [value]="employee.name"
+                        >
+                          {{ employee.name | titlecase }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <button
+                      mat-icon-button
+                      color="primary"
+                      matTooltip="Search"
+                      (click)="onSearch()"
+                    >
+                      <mat-icon style="font-size: 21px">search</mat-icon>
+                    </button>
+                    <button
+                      mat-icon-button
+                      color="warn"
+                      matTooltip="Reset"
+                      (click)="onResetSearch()"
+                    >
+                      <mat-icon style="font-size: 21px">restart_alt</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card">
+                <div class="materialTableHeader">
+                  <div class="left">
+                    <ul class="header-buttons-left ms-0">
+                      <li class="tbl-title">
+                        <h2>Leave Request</h2>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="body overflow-auto">
+                  <mat-spinner [diameter]="30" *ngIf="isLoading"></mat-spinner>
+                  <div
+                    class="responsive_table"
+                    *ngIf="employeeLeaves !== undefined && !isLoading"
+                  >
+                    <table
+                      mat-table
+                      #table
+                      [dataSource]="employeeLeaves"
+                      matSort
+                      class="mat-cell"
+                    >
+                      <!-- ID Column -->
+                      <ng-container matColumnDef="employeeName">
+                        <mat-header-cell *matHeaderCellDef
+                          >Name
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                          <span class="mobile-label">employeeName:</span
+                          >{{ row.employeeName | titlecase }}</mat-cell
+                        >
+                      </ng-container>
+                      <ng-container matColumnDef="applyDate">
+                        <mat-header-cell *matHeaderCellDef
+                          >ApplyDate
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                          <span class="mobile-label">ApplyDate:</span
+                          >{{ row.applyDate | date : "dd/MM/yyyy" }}</mat-cell
+                        >
+                      </ng-container>
+                      <ng-container matColumnDef="fromDate">
+                        <mat-header-cell *matHeaderCellDef
+                          >fromDate
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                          <span class="mobile-label">fromDate:</span
+                          >{{ row.fromDate | date : "dd/MM/yyyy" }}</mat-cell
+                        >
+                      </ng-container>
+                      <ng-container matColumnDef="toDate">
+                        <mat-header-cell *matHeaderCellDef
+                          >toDate
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                          <span class="mobile-label">toDate:</span
+                          >{{ row.toDate | date : "dd/MM/yyyy" }}</mat-cell
+                        >
+                      </ng-container>
+                      <ng-container matColumnDef="halfDay">
+                        <mat-header-cell *matHeaderCellDef
+                          >halfDay
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                          <span class="mobile-label">halfDay:</span
+                          >{{ row.halfDay }}</mat-cell
+                        >
+                      </ng-container>
+                      <ng-container matColumnDef="leaveType">
+                        <mat-header-cell *matHeaderCellDef
+                          >LeaveType
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                          <span class="mobile-label">leaveType:</span
+                          >{{ row.leaveType }}</mat-cell
+                        >
+                      </ng-container>
+
+                      <ng-container matColumnDef="reason">
+                        <mat-header-cell *matHeaderCellDef
+                          >Reason
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                          <span class="mobile-label">reason:</span
+                          >{{ row.reason }}</mat-cell
+                        >
+                      </ng-container>
+
+                      <ng-container matColumnDef="actualLeaveDays">
+                        <mat-header-cell *matHeaderCellDef
+                          >Total Days
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                          <span class="mobile-label">totalDays:</span
+                          >{{ row.actualLeaveDays }}</mat-cell
+                        >
+                      </ng-container>
+
+                      <ng-container matColumnDef="Approved_By">
+                        <mat-header-cell *matHeaderCellDef
+                          >ApprovedBy
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                          <span class="mobile-label">Approved_By:</span
+                          >{{ row.Approved_By | titlecase  }}</mat-cell
+                        >
+                      </ng-container>
+                      <ng-container matColumnDef="status">
+                        <mat-header-cell *matHeaderCellDef>
+                          Status
+                        </mat-header-cell>
+                        <mat-cell mat-cell *matCellDef="let row">
+                          <span class="mobile-label">Status:</span>
+                          <div *ngIf="row.status === 'approved'">
+                            <span
+                              class="badge badge-pill badge-primary col-green"
+                            >
+                              {{ row.status | titlecase }}</span
+                            >
+                          </div>
+                          <div *ngIf="row.status === 'pending'">
+                            <span
+                              class="badge badge-pill badge-primary col-blue"
+                            >
+                              {{ row.status | titlecase }}</span
+                            >
+                          </div>
+                          <div *ngIf="row.status === 'rejected'">
+                            <span
+                              class="badge badge-pill badge-primary col-red"
+                            >
+                              {{ row.status | titlecase }}</span
+                            >
+                          </div>
+                        </mat-cell>
+                      </ng-container>
+
+                      <ng-container matColumnDef="actions">
+                        <mat-header-cell
+                          class="psl-3 tbl-col-width-per-10"
+                          *matHeaderCellDef
+                        >
+                          Actions
+                        </mat-header-cell>
+                        <mat-cell
+                          *matCellDef="let row; let i = index"
+                          class="psl-3 tbl-col-width-per-10"
+                        >
+                          <button
+                            mat-icon-button
+                            [matMenuTriggerFor]="menu"
+                            (click)="$event.stopPropagation()"
+                          >
+                            <mat-icon>more_vert</mat-icon>
+                          </button>
+                          <mat-menu #menu="matMenu">
+
+                            <button
+                              mat-menu-item
+                              (click)="Delete(row)"
+                              matTooltip="Delete"
+                            >
+                              <mat-icon
+                                class="material-icons-two-tone align-middle msr-2"
+                                >delete</mat-icon
+                              >
+                              <span>Delete Request</span>
+                            </button>
+
+                            <button
+                              mat-menu-item
+                              (click)="approve(row)"
+                              *ngIf="row.status === 'pending' || row.status === 'rejected'"
+                              matTooltip="Approve"                  
+                            >
+                              <mat-icon
+                                class="material-icons-two-tone align-middle msr-2"
+                                >verified</mat-icon
+                              >
+                              <span>Approve Request</span>
+                            </button>
+
+                            <button
+                              mat-menu-item
+                              (click)="reject(row)"
+                              *ngIf="row.status === 'pending'"
+                              matTooltip="Reject"
+                            >
+                              <mat-icon
+                                class="material-icons-two-tone align-middle msr-2"
+                                >cancel</mat-icon
+                              >
+                              <span>Reject Request</span>
+                            </button>
+
+                          </mat-menu>
+                        </mat-cell>
+                      </ng-container>
+                      <mat-header-row *matHeaderRowDef="displayedColumns">
+                      </mat-header-row>
+                      <mat-row
+                        *matRowDef="let row; columns: displayedColumns"
+                        [style.cursor]="'pointer'"
+                        matRipple
+                      >
+                      </mat-row>
+                    </table>
+                  </div>
+                  <div
+                    *ngIf="employeeLeaves.length === 0 && !isLoading"
+                    class="not-found-message"
+                  >
+                    No results found.
+                  </div>
+                </div>
+                <mat-paginator
+                  [length]="totalCount"
+                  [pageSize]="limit"
+                  [pageIndex]="currentPage - 1"
+                  (page)="onPageChange($event)"
+                ></mat-paginator>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

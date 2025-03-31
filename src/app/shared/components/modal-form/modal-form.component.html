@@ -1,0 +1,116 @@
+<div
+  class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 font-mont"
+  (click)="closeModal()"
+>
+  <div
+    class="relative top-20 mx-auto p-0.5 w-96 rounded-badge  bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-white"
+    (click)="$event.stopPropagation()"
+  >
+    <div class="bg-[#14171E] p-5 rounded-badge">
+      <h2 class="text-xl font-bold mb-4 text-center">Submit Your Form</h2>
+
+      <form (ngSubmit)="onSubmit()" #form="ngForm">
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-white">Name</label>
+          <input
+            type="text"
+            [(ngModel)]="formData.name"
+            name="name"
+            class="mt-1 block w-full p-2 border-b border-[#F21DF5] bg-inherit focus:ring-[#20B9FA] focus:border-[#F21DF5] sm:text-sm"
+            required
+          />
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-white">Email</label>
+          <input
+            type="email"
+            [(ngModel)]="formData.email"
+            name="email"
+            class="mt-1 block w-full p-2 border-b border-[#F21DF5] bg-inherit focus:ring-[#20B9FA] focus:border-[#F21DF5] sm:text-sm"
+            required
+          />
+        </div>
+
+        <div class="flex justify-center">
+          <button
+            type="submit"
+            class="px-3.5 py-1.5 rounded-3xl font-semibold text-white bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] mx-auto cursor-pointer"
+            [disabled]="form.invalid"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+
+      <button
+        class="absolute text-9xl top-5 right-5 text-gray-500 hover:text-gray-700"
+        (click)="closeModal()"
+      >
+        &times;
+      </button>
+    </div>
+  </div>
+  <!-- <app-notification
+      [isVisible]="notificationVisible"
+      [message]="notificationMessage"
+    ></app-notification> -->
+</div>
+
+<!-- <div
+  class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
+  (click)="closeModal()"
+>
+  <div
+    class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white"
+    (click)="$event.stopPropagation()"
+  >
+    <h2 class="text-xl font-bold mb-4 text-center">Submit Your Form</h2>
+
+    <form (ngSubmit)="onSubmit()" #form="ngForm">
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">Name</label>
+        <input
+          type="text"
+          [(ngModel)]="formData.name"
+          name="name"
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          required
+        />
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700">Email</label>
+        <input
+          type="email"
+          [(ngModel)]="formData.email"
+          name="email"
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+          required
+        />
+      </div>
+
+      <div class="flex justify-center">
+        <button
+          type="submit"
+          class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 focus:outline-none"
+          [disabled]="form.invalid"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+
+    <button
+      class="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+      (click)="closeModal()"
+    >
+      &times;
+    </button>
+  </div>
+
+  <app-notification
+    [isVisible]="notificationVisible"
+    [message]="notificationMessage"
+  ></app-notification>
+</div> -->

@@ -1,0 +1,579 @@
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import loadScript from 'load-script';
+import { OwlOptions } from 'ngx-owl-carousel-o';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+import * as AOS from 'aos';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+import { OnDestroy, OnInit } from '@angular/core';
+import { CountUp } from 'countup.js';
+import { Title, Meta} from '@angular/platform-browser';
+import { id } from '@swimlane/ngx-charts';
+@Component({
+  selector: 'app-website',
+  templateUrl: './website.component.html',
+  styleUrls: ['./website.component.scss'],
+  animations: [
+    trigger('fadeInBig', [
+      state('void', style({ opacity: 0, transform: 'scale(0.5)' })),
+      transition('void => *', [
+        animate(
+          '500ms ease-in-out',
+          style({ opacity: 1, transform: 'scale(1)' })
+        ),
+      ]),
+      transition('* => void', [
+        animate(
+          '500ms ease-in-out',
+          style({ opacity: 0, transform: 'scale(0.5)' })
+        ),
+      ]),
+    ]),
+  ],
+})
+export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
+  // Counter starts
+  @ViewChild('counterSection', { static: true }) counterSection!: ElementRef;
+
+  setupIntersectionObserver(): void {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            this.initCountUp();
+            observer.disconnect(); // To trigger the animation only once
+          }
+        });
+      },
+      { threshold: 0.5 } // Adjust threshold as needed
+    );
+
+    observer.observe(this.counterSection.nativeElement);
+  }
+
+  initCountUp(): void {
+    const counters = document.querySelectorAll('.js-count-up');
+    const options = {
+      useEasing: true,
+      useGrouping: true,
+      separator: ',',
+      decimal: '.',
+    };
+
+    counters.forEach((item: Element) => {
+      const value = item.getAttribute('data-value');
+      if (value) {
+        const counter = new CountUp(
+          item as HTMLElement,
+          parseInt(value),
+          options
+        );
+        counter.start();
+      }
+    });
+  }
+  // Counter end
+
+  clients = [
+    {
+      name: 'Arunanchal Film Festival',
+      imgSrc: '../../assets/images/client-bub-1.png',
+      feedback:
+        'The website is really good. Thanks, Carina for making this event successful.',
+      feedbackClass: 'quote-text-1 show',
+      customClass: 'dp-name-1  look',
+    },
+    // {
+    //   name: 'Arizona Derby',
+    //   imgSrc: '../../assets/images/client-bub-2.png',
+    //   feedback:
+    //     'I am really happy with the performance of Team Carina. The game is exactly the same, what I wanted.',
+    //   feedbackClass: 'quote-text-3 hide-top',
+    //   customClass: 'dp-name-3 hide-dp-top',
+    // },
+    {
+      name: 'Peniel Global General Consulting Inc.',
+      imgSrc: '../../assets/images/client-bub-2.png',
+      feedback:
+        'Creating Heaven Missions was an enriching experience. It allowed us to bring Christian teachings to life through engaging gameplay and thoughtful design',
+      feedbackClass: 'quote-text-3 hide-top',
+      customClass: 'dp-name-3 hide-dp-top',
+    },
+    {
+      name: 'Space M',
+      imgSrc: '../../assets/images/client-bub-3.png',
+      feedback:
+        'The Teamwork is good. fastest service I got both the applications and website in just 5 months.',
+      feedbackClass: 'quote-text-4 hide-bottom',
+      customClass: 'dp-name-4 hide-dp-bottom',
+    },
+    {
+      name: 'Ballegro - Your Pocket Pianist',
+      imgSrc: '../../assets/images/client-bub-4.png',
+      feedback:
+        "Carina teamwork is incredible and amazing. It's good to work with them",
+      feedbackClass: 'quote-text-5 hide-top',
+      customClass: 'dp-name-5 hide-dp-top',
+    },
+    {
+      name: 'Bravo - Tip or Pay',
+      imgSrc: '../../assets/images/client-bub-5.png',
+      feedback:
+        'The Website and Application seems perfectly done. I will surely recommend them to others.',
+      feedbackClass: 'quote-text-6 hide-top',
+      customClass: 'dp-name-6 hide-dp-top',
+    },
+    {
+      name: 'E-Food',
+      imgSrc: '../../assets/images/client-bub-6.png',
+      feedback:
+        'Carina has always been the most trustworthy company for me. I got all the applications on time. Very reliable, fastest delivery and very humble team.',
+      feedbackClass: 'quote-text-7  hide-top',
+      customClass: 'dp-name-7  hide-dp-top',
+    },
+  ];
+
+  activeImage: string = 'image1';
+
+  setActiveImage(image: string) {
+    this.activeImage = image;
+  }
+
+  activeTab: string = 'tab1';
+
+  changeActiveQuote(index: number): void {
+    const quotes = document.querySelectorAll('.quote');
+    const dpNames = document.querySelectorAll('.box-dpname');
+    const peQuotes = document.querySelectorAll('.pp-quote');
+
+    const currentIndex = index;
+
+    function showCurrentQuote() {
+      quotes.forEach((quote, i) => {
+        if (i === currentIndex) {
+          quote.classList.add('show');
+          quote.classList.remove('hide-top', 'hide-bottom');
+        } else {
+          quote.classList.remove('show');
+          if (i < currentIndex) {
+            quote.classList.add('hide-top');
+          } else {
+            quote.classList.add('hide-bottom');
+          }
+        }
+      });
+
+      dpNames.forEach((dpName, i) => {
+        if (i === currentIndex) {
+          dpName.classList.add('look');
+          dpName.classList.remove('hide-dp-top', 'hide-dp-bottom');
+        } else {
+          dpName.classList.remove('look');
+          if (i < currentIndex) {
+            dpName.classList.add('hide-dp-top');
+          } else {
+            dpName.classList.add('hide-dp-bottom');
+          }
+        }
+      });
+
+      peQuotes.forEach((peQuote, i) => {
+        if (i === currentIndex) {
+          peQuote.classList.add('active');
+        } else {
+          peQuote.classList.remove('active');
+        }
+      });
+    }
+
+    showCurrentQuote();
+  }
+
+  showTab(tabId: string) {
+    this.activeTab = tabId;
+  }
+  constructor(private titleService: Title, private metaService: Meta) {}
+  ngOnInit(): void {
+    this.titleService.setTitle(
+      'Carina Softlabs - Top Game Development & Digital Marketing Company'
+    );
+    this.metaService.updateTag({
+      name: 'description',
+      content:
+        'Central India’s biggest Game Development, Digital Marketing, Web Development, Mobile App Development, and Emerging Tech company, driving innovation and growth with cutting-edge solutions.',
+    });
+
+    this.setupIntersectionObserver();
+    AOS.init({ disable: 'mobile' });
+    gsap.registerPlugin(ScrollTrigger);
+  }
+
+  ngAfterViewInit() {}
+
+  ngOnDestroy(): void {}
+
+  formatHeading(heading: string): string {
+    return heading.toLocaleLowerCase().replace(/ /g, '-');
+  }
+
+  blogCards = [
+    {
+      imgSrc: '../../assets/images/latest-B-1.png',
+      heading:
+        'The Rise of Play-to-Earn: How NFTs are Transforming the Gaming Economy?',
+      para: 'Delve into the transformative impact of NFTs on the gaming economy, exploring how they are redefining ownership & creating new avenues for players to monetize their gaming endeavors.',
+      id: 1,
+      titleLink:
+        'The-Rise-of-Play-to-Earn-How-NFTs-are-Transforming-the-Gaming-Economy',
+    },
+    {
+      imgSrc: '../../assets/images/latest-B-2.png',
+      heading:
+        'Why Should You Hire a Dedicated Website Developer for Your Company?',
+      para: 'Hiring a professional to undertake web development tasks will help you increase productivity in your team while conserving vital resources and time.',
+      id: 4,
+      titleLink:
+        'Why-Should-You-Hire-a-Dedicated-Web-Developer-for-Your-Company',
+    },
+    {
+      imgSrc: '../../assets/images/latest-B-3.png',
+      heading:
+        'How to Do Keyword Research for SEO: [Download Free Keyword Research Template]',
+      para: 'Keyword research is defined as a process of selecting and assessing keywords that your target website audience writes into Google and other search engines.',
+      id: 7,
+      titleLink: 'How-to-Do-Keyword-Research-for-SEO',
+    },
+    {
+      imgSrc: '../../assets/images/latest-B-4.webp',
+      heading:
+        'Our Director, Miss. Pragati Singh Suman, at International Eminence Excellence Awards 2023, Dubai!',
+      para: "Ms. Pragati Singh Suman's selection for the International Eminence Excellence Award is a reflection of her achievements and contributions to the digital marketing & technology industry",
+      id: 11,
+      titleLink:
+        'Our-Director-Miss-Pragati-Singh-Suman-at-International-Eminence-Excellence-Awards-2023-Dubai',
+    },
+  ];
+
+  clientLogo = [
+    {
+      ImgSrc: '../../assets/images/client-l-1.svg',
+      alt: 'abacus',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-8.svg',
+      alt: 'IPR',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-9.svg',
+      alt: 'popil tunes',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-2.svg',
+      alt: 'surfshark',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-10.svg',
+      alt: 'e food',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-11.svg',
+      alt: 'show around',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-3.svg',
+      alt: 'skale.io',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-12.svg',
+      alt: 'couchhub',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-13.svg',
+      alt: 'bookestan',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-4.svg',
+      alt: 'my own conference',
+    },
+    // {
+    //   ImgSrc: '../../assets/images/client-l-14.svg',
+    //   alt: 'arizona derby',
+    // },
+    {
+      ImgSrc: '../../assets/images/client-l-15.svg',
+      alt: 'heaven mission',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-5.svg',
+      alt: 'macadons',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-16.svg',
+      alt: 'the little guardian',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-17.svg',
+      alt: 'the howitcher',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-6.svg',
+      alt: 'my little panda',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-18.svg',
+      alt: 'arunachal film festival',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-19.svg',
+      alt: 'livr',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-7.svg',
+      alt: 'herbal life',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-20.svg',
+      alt: 'smartivity',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-21.svg',
+      alt: 'fitbit',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-22.svg',
+      alt: 'B',
+    },
+
+    // repeated for infinite loop effect
+    {
+      ImgSrc: '../../assets/images/client-l-1.svg',
+      alt: 'abacus',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-8.svg',
+      alt: 'IPR',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-9.svg',
+      alt: 'popil tunes',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-2.svg',
+      alt: 'surfshark',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-10.svg',
+      alt: 'e food',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-11.svg',
+      alt: 'show around',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-3.svg',
+      alt: 'skale.io',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-12.svg',
+      alt: 'couchhub',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-13.svg',
+      alt: 'bookestan',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-4.svg',
+      alt: 'my own conference',
+    },
+    // {
+    //   ImgSrc: '../../assets/images/client-l-14.svg',
+    //   alt: 'arizona derby',
+    // },
+    {
+      ImgSrc: '../../assets/images/client-l-15.svg',
+      alt: 'heaven mission',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-5.svg',
+      alt: 'macadons',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-16.svg',
+      alt: 'the little guardian',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-17.svg',
+      alt: 'the howitcher',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-6.svg',
+      alt: 'my little panda',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-18.svg',
+      alt: 'arunachal film festival',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-19.svg',
+      alt: 'livr',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-7.svg',
+      alt: 'herbal life',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-20.svg',
+      alt: 'smartivity',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-21.svg',
+      alt: 'fitbit',
+    },
+    {
+      ImgSrc: '../../assets/images/client-l-22.svg',
+      alt: 'B',
+    },
+  ];
+
+  awards = [
+    {
+      customClass: '',
+      imgSrc: '../../assets/images/award-4.svg',
+      heading: 'International Eminence Excellence 2023',
+      desc: 'Mrs. Pragati Singh Suman (Director), got recognition in Dubai.',
+    },
+    {
+      customClass: 'md:border-l-0 2xl:border-r-0',
+      imgSrc: '../../assets/images/award-5.svg',
+      heading: "Women's Face of the Year 2023",
+      desc: 'Mrs. Pragati Singh Suman (Director), recognized by the International Fox Story Magazine',
+    },
+    {
+      customClass: '',
+      imgSrc: '../../assets/images/award-3.svg',
+      heading: 'Women of Substance 2023',
+      desc: 'Mrs. Pragati Singh Suman (Director), got recognition in Dubai.',
+    },
+    {
+      customClass: 'md:border-l-0 2xl:border-l 2xl:border-r-0',
+      imgSrc: '../../assets/images/award-6.svg',
+      heading: 'CEO of the Year 2021 & 2022',
+      desc: 'Mr. Mayank (CEO) was awarded by “The Indian Achievers’ Forum"',
+    },
+    {
+      customClass: '',
+      imgSrc: '../../assets/images/award-2.svg',
+      heading: 'Most Innovative Tech Company',
+      desc: 'Nominated by an Australian firm “Corporate Visions”',
+    },
+    {
+      customClass: 'md:border-l-0',
+      imgSrc: '../../assets/images/award-1.svg',
+      heading: 'Entrepreneur of the Year 2019',
+      desc: '2nd Runner-up by Times of India',
+    },
+  ];
+
+  aboutus = [
+    {
+      imgSrc: '../../assets/images/lg-1.png',
+      heading: 'Industry Exposure',
+      desc: '12+ years in the industry',
+    },
+    {
+      imgSrc: '../../assets/images/lg-2.png',
+      heading: 'Customised Solutions',
+      desc: 'Tailored to your needs',
+    },
+    {
+      imgSrc: '../../assets/images/lg-3.png',
+      heading: 'Technology Experts',
+      desc: 'Cutting-edge tech Proficient',
+    },
+    {
+      imgSrc: '../../assets/images/lg-4.png',
+      heading: 'Comprehensive Support',
+      desc: 'Every step of the way',
+    },
+    {
+      imgSrc: '../../assets/images/lg-5.png',
+      heading: 'On-Time Delivery',
+      desc: 'Guaranteed project completion',
+    },
+    {
+      imgSrc: '../../assets/images/lg-6.png',
+      heading: 'Proven Success',
+      desc: 'Delivering for Our Clients',
+    },
+  ];
+
+  techStack = [
+    { imgSrc: '../../assets/images/logo1st.png', w: '150' },
+    { imgSrc: '../../assets/images/logo-2.png', w: '150' },
+    { imgSrc: '../../assets/images/meen.png', w: '160' },
+    { imgSrc: '../../assets/images/logo-4.png', w: '150' },
+    { imgSrc: '../../assets/images/logo-3.png', w: '150' },
+    { imgSrc: '../../assets/images/mean.png', w: '160' },
+    { imgSrc: '../../assets/images/logo-7.png', w: '150' },
+    { imgSrc: '../../assets/images/logo-8.png', w: '150' },
+    { imgSrc: '../../assets/images/logo-9.png', w: '150' },
+    { imgSrc: '../../assets/images/logo-10.png', w: '150' },
+    { imgSrc: '../../assets/images/logo-11.png', w: '150' },
+    { imgSrc: '../../assets/images/logo-12.png', w: '150' },
+  ];
+
+  hoverGif = [
+    {
+      heading: 'Web + App <br> Development',
+      desc: 'Empowering Your Online Journey.',
+      route: '/web-app-development',
+    },
+    {
+      heading: 'Game <br> Development',
+      desc: 'We Make Games That Players Love.',
+      route: '/game2',
+    },
+    {
+      heading: 'Digital <br> Marketing',
+      desc: 'Boost Your Brand with Digital Strategies.',
+      route: '/digital-marketing',
+    },
+    {
+      heading: 'Emerging <br> Tech',
+      desc: 'Shaping the Future with AI, AR/VR, and XR Innovation.',
+      route: '/emerging-tech',
+    },
+  ];
+  
+
+  projectNum = [
+    {
+      heading: 'WEB DEVELOPMENT <br /> PROJECT',
+      value: '455',
+    },
+    {
+      heading: 'APP DEVELOPMENT <br /> PROJECT',
+      value: '125',
+      customClass: 'mt-4 lg:mt-0',
+    },
+    {
+      heading: 'GAME DEVELOPMENT <br /> PROJECT',
+      value: '76',
+      customClass: 'mt-4 lg:mt-0',
+    },
+    {
+      heading: 'DIGITAL MARKETING',
+      value: '432',
+      customClass: 'mt-4 lg:mt-0',
+    },
+  ];
+
+  cardText: string = `Got a Vision? Let’s Make <br class="hidden sm:block" /> It a Reality Together`;
+}

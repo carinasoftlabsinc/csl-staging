@@ -1,0 +1,108 @@
+.game-service-bg {
+    background: url('../../../assets/images/GameService-hero.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.game-service-bg::after {
+    content: '';
+    background: url('../../../assets/images/GameService-hero2.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.wrapperScr {
+  position: relative;
+  width: calc((800px * 2.1) + ((100vw - 20px) * 3) + (10px * 10));
+}
+
+@media (min-width: 1536px) {
+  .wrapperScr {
+    position: relative;
+    width: calc((800px * 3) + ((100vw - 20px) * 3) + (10px * 10));
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapperScr {
+    position: relative;
+    width: calc((800px * 3.5) + ((100vw - 20px) * 3) + (10px * 10));
+  }
+}
+
+.thumbnail {
+  display: inline-block;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin-right: 20vw;
+}
+
+.thumbnail:last-child {
+  margin-right: 0px;
+}
+
+.full {
+  width: calc(100vw - 20px - 20px);
+}
+
+.text-strokeee {
+  -webkit-text-stroke: 1px rgb(255, 255, 255);
+  text-stroke: 1px rgb(255, 255, 255);
+}
+
+/* Keyframe animation for infinite scrolling */
+@keyframes Scroll {
+  0% {
+    transform: translateX(0); /* Start the text just inside the viewport */
+  }
+  100% {
+    transform: translateX(-100%); /* Move the text out of the viewport on the left */
+  }
+}
+
+
+/* Apply the animation */
+.animate-scrolling {
+  animation: Scroll 25s linear infinite; /* Adjust the speed with 15s */
+}
+
+@keyframes Scrollin {
+  0% {
+    transform: translateX(-100%); /* Start the text just outside the viewport on the left */
+  }
+  100% {
+    transform: translateX(0); /* Move the text fully into the viewport */
+  }
+}
+
+/* Apply the animation */
+.animate-scrollin {
+  animation: Scrollin 25s linear infinite; /* Adjust the speed with 15s */
+}
+
+.text-scrolling-bg {
+  background: url('../../../assets/images/text-scrolling-bg.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+
+app-three-scene {
+  width: 100%; /* Takes full width of the parent */
+  height: 100%; /* Takes full height of the parent */
+  display: block; /* Ensures proper block behavior */
+  position: relative; /* Relative positioning to its parent */
+}
+

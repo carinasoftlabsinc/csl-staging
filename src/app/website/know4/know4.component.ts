@@ -149,7 +149,7 @@ export class Know4Component {
       hoverColor: 'text-cyan-500  !border-cyan-500',
     },
     {
-      title: 'HEALTH',
+      title: 'Health & Wellness',
       image: '../../../assets/images/img-4-hover.png',
       hoverColor: 'text-lime-500 !border-lime-500',
     },

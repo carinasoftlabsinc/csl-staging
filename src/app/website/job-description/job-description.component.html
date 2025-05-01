@@ -107,12 +107,17 @@
         JOB POST
       </h2>
     </div>
-    <h3
+    <!-- <h3
       class="font-mont xl:text-4xl lg:text-3xl text-3xl font-myfont bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text"
       [innerHTML]="jobPost?.title"
     >
-      <!-- {{ jobPost?.title }} -->
-    </h3>
+      
+    </h3> -->
+
+    <h3
+      class="font-mont font-bold text-[36px] leading-[113%] tracking-[0%] bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text"
+      [innerHTML]="jobPost?.title"
+    ></h3>
 
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:py-6 py-4">
       <div>
@@ -483,7 +488,7 @@
               </label>
             </div>
 
-            <div
+            <!-- <div
               class="text-red-500 text-xs mt-1"
               *ngIf="
                 jobForm.get('phone')?.touched && jobForm.get('phone')?.errors
@@ -494,6 +499,19 @@
               </div>
               <div *ngIf="jobForm.get('phone')?.errors?.['phone']">
                 Please enter a valid Phone number.
+              </div>
+            </div> -->
+            <div
+              class="text-red-500 text-xs mt-1"
+              *ngIf="
+                jobForm.get('phone')?.touched && jobForm.get('phone')?.errors
+              "
+            >
+              <div *ngIf="jobForm.get('phone')?.errors?.['required']">
+                Phone is required.
+              </div>
+              <div *ngIf="jobForm.get('phone')?.errors?.['pattern']">
+                Please enter a valid phone number (digits only).
               </div>
             </div>
           </div>
@@ -552,6 +570,11 @@
               >
                 Resume is required.
               </div>
+
+
+
+              
+
 
               <!-- <div *ngIf="uploadedFileName" class="mt-2 text-sm text-gray-700">
                 <p>

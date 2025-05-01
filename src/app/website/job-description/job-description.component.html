@@ -1,0 +1,1035 @@
+<!-- <p>job-description works!</p> -->
+<main class="bg-[#000000]">
+  <app-header></app-header>
+
+  <!-- <section
+    class="px-5 py-24 body-font flex items-center justify-start h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)]"
+  >
+    <div class="2xl:ml-44 xl:ml-40 lg:ml-40 md:ml-40">
+      <div class="w-full md:w-1/2">
+        <h1>
+          <span
+            class="text-white font-myfont text-[30px] 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]"
+          >
+            JOB
+          </span>
+          <br />
+          <span
+            class="text-white tracking-wide text-4xl sm:text-4xl md:text-5xl lg:text-[50px] xl:text-[60px] 2xl:text-[80px] leading-[50px] sm:leading-[40px] md:leading-[45px] lg:leading-[50px] xl:leading-[60px] 2xl:leading-[80px] font-myfont"
+          >
+            DESCRIPTION
+          </span>
+        </h1>
+
+        <p
+          class="text-white mt-3 text-sm xl:text-[16px] 2xl:text-[23px] 2xl:leading-[27px] font-quickSand font-normal"
+        >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem eum
+          nisi dicta totam ut officiis, dolor enim minima adipisci voluptatibus.
+        </p>
+      </div>
+
+      <div 
+    class="absolute" 
+    style="width: 700px; height: 496px; top: 238px; left: 700px;"
+  >
+    <img 
+      src="../../../assets/images/job-banner-image.png" 
+      alt="Job Description Image" 
+      class="w-full h-full object-cover sm:hiden"
+    />
+  </div>
+
+  
+
+
+
+
+    </div>
+  </section> -->
+
+  <section
+    class="px-5 py-24 body-font flex items-center justify-start h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)]"
+  >
+    <div
+      class="2xl:ml-44 xl:ml-40 lg:ml-20 md:ml-6 flex items-center justify-between overflow-hidden relative"
+    >
+      <div class="w-full md:w-1/2">
+        <h1 class="font-mont">
+          <!-- <span
+            class="text-white font-montserrat text-[30px] 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]"
+          >
+            JOB
+          </span> -->
+          <span
+            class="text-white font-extrabold text-[30px] sm:text-[40px] md:text-[45px] lg:text-[75px] xl:text-[100px] leading-[40px] sm:leading-[50px] md:leading-[60px] lg:leading-[80px] xl:leading-[99%] tracking-normal uppercase mt-2"
+          >
+            JOB
+          </span>
+
+          <br />
+
+          <!-- <p
+            class="text-white tracking-wide text-4xl sm:text-4xl md:text-5xl lg:text-[50px] xl:text-[60px] 2xl:text-[80px] leading-[50px] sm:leading-[40px] md:leading-[45px] lg:leading-[50px] xl:leading-[60px] 2xl:leading-[80px] font-montserrat mt-2"
+          >
+            DESCRIPTION
+          </p> -->
+          <p
+            class="text-white font-extrabold text-[25px] sm:text-[40px] md:text-[43px] lg:text-[75px] xl:text-[100px] leading-[40px] sm:leading-[50px] md:leading-[60px] lg:leading-[80px] xl:leading-[99%] tracking-normal uppercase mt-2"
+          >
+            DESCRIPTION
+          </p>
+        </h1>
+
+        <p
+          class="text-white mt-3 text-sm xl:text-[16px] 2xl:text-[23px] 2xl:leading-[27px] font-mont"
+          [innerHTML]="jobPost.description"
+        >
+          <!-- {{ jobPost?.description }} -->
+        </p>
+      </div>
+      <!-- <div class="w-full md:w-1/2 hidden md:block mt-0 lg:mt-[15rem] xl:mt-[15rem]">
+          <img src="../../../assets/images/job-banner-image.png" alt="" />
+        </div> -->
+      <div class="w-full md:w-1/2 hidden md:block md:mt-0 lg:mt-[15rem]">
+        <img src="../../../assets/job-banner-image.png" alt="" />
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px] mt-3"
+  >
+    <div>
+      <h2
+        class="font-mont text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4"
+      >
+        JOB POST
+      </h2>
+    </div>
+    <h3
+      class="font-mont xl:text-4xl lg:text-3xl text-3xl font-myfont bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text"
+      [innerHTML]="jobPost?.title"
+    >
+      <!-- {{ jobPost?.title }} -->
+    </h3>
+
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:py-6 py-4">
+      <div>
+        <div class="p-6">
+          <div class="mt-6">
+            <h3
+              class="font-mont font-semibold text-[16px] md:text-[20px] leading-[113%] uppercase tracking-normal text-[#0B0C10]"
+            >
+              SKILL SET
+            </h3>
+
+            <div class="flex gap-x-4 mt-2">
+              <!-- <img
+                src="../../../assets/images/figma.png"
+                alt="product image"
+                class="mb-4"
+                style="width: 60px; height: 55px; border-radius: 7.36px"
+              />
+              <img
+                src="../../../assets/images/Ps.png"
+                alt="product image"
+                class="mb-4"
+                style="width: 60px; height: 55px; border-radius: 7.36px"
+              />
+              <img
+                src="../../../assets/images/Ai-1.png"
+                alt="product image"
+                class="mb-4"
+                style="width: 60px; height: 55px; border-radius: 7.36px"
+              /> -->
+              <img
+                *ngFor="let img of jobPost?.skillImage"
+                [src]="imageUrl + img"
+                (error)="onImgError($event)"
+                alt="skill image"
+                class="mb-4"
+                style="width: 60px; height: 55px; border-radius: 7.36px"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="pt-[4px] sm:pt-6 px-6 pb-6">
+          <div>
+            <div class="flex items-center mt-6">
+              <img
+                src="../../../assets/total-experience.png"
+                alt="icon"
+                class="w-[24px] h-[24px] mr-2"
+              />
+              <h3
+                class="font-mont font-semibold text-[16px] md:text-[20px] leading-[113%] uppercase tracking-normal text-[#0B0C10]"
+              >
+                TOTAL EXPERIENCE
+              </h3>
+            </div>
+            <p
+              class="text-[#B4B9CB] font-mont font-semibold text-[14px] md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
+            >
+              {{ jobPost?.experience }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="pt-[4px] sm:pt-6 px-6 pb-6">
+          <div>
+            <div class="flex items-center mt-6">
+              <img
+                src="../../../assets/Number-of-openings.png"
+                alt="icon"
+                class="w-[24px] h-[24px] mr-2"
+              />
+              <h3
+                class="font-mont font-semibold text-[16px] md:text-[20px] leading-[113%] uppercase tracking-normal text-[#0B0C10]"
+              >
+                NO. OF OPENINGS
+              </h3>
+            </div>
+            <p
+              class="text-[#B4B9CB] font-mont font-semibold text-[14px] md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
+            >
+              {{ jobPost?.noOfPositions }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="pt-[4px] sm:pt-6 px-6 pb-6">
+          <div>
+            <div class="flex items-center mt-6">
+              <img
+                src="../../../assets/jobpostdate.png"
+                alt="icon"
+                class="w-[24px] h-[24px] mr-2"
+              />
+              <h3
+                class="font-mont font-semibold text-[16px] md:text-[20px] leading-[113%] uppercase tracking-normal text-[#0B0C10]"
+              >
+                JOB POST DATE
+              </h3>
+            </div>
+            <p
+              class="text-[#B4B9CB] font-mont font-semibold text-[14px] md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
+            >
+              {{ jobPost?.createdAt | date : "dd/MM/yy" }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="pt-[4px] sm:pt-6 px-6 pb-6">
+          <div>
+            <div class="flex items-center mt-6">
+              <img
+                src="../../../assets/jobpostdate.png"
+                alt="icon"
+                class="w-[24px] h-[24px] mr-2"
+              />
+              <h3
+                class="font-mont font-semibold text-[16px] md:text-[20px] leading-[113%] uppercase tracking-normal text-[#0B0C10]"
+              >
+                JOB EXPIRY DATE
+              </h3>
+            </div>
+            <p
+              class="text-[#B4B9CB] font-mont font-semibold text-[14px] md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
+            >
+              {{ jobPost?.applicationDeadline | date : "dd/MM/yy" }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="pt-[4px] sm:pt-6 px-6 pb-6">
+          <div>
+            <div class="flex items-center mt-6">
+              <img
+                src="../../../assets/location-job.png"
+                alt="icon"
+                class="w-[24px] h-[24px] mr-2"
+              />
+
+              <h3
+                class="font-mont font-semibold text-[16px] md:text-[20px] leading-[113%] uppercase tracking-normal text-[#0B0C10]"
+              >
+                LOCATION
+              </h3>
+            </div>
+
+            <p
+              class="text-[#B4B9CB] font-mont font-semibold text-[14px] md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
+            >
+              {{ jobPost?.location }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:py-5">
+      <div>
+        <div class="pt-[4px] sm:pt-6 px-6 pb-6">
+          <div>
+            <div class="flex items-center mt-6">
+              <img
+                src="../../../assets/images/jobpostdate.png"
+                alt="icon"
+                class="w-[24px] h-[24px] mr-2"
+              />
+              <h3
+                class="font-quickSand font-semibold text-[16px] md:text-[20px] leading-[113%] uppercase tracking-normal text-[#0B0C10]"
+              >
+                JOB POST DATE
+              </h3>
+            </div>
+            <p
+              class="text-[#B4B9CB] font-quickSand font-semibold text-[14px] md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
+            >
+              28/05/25
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="pt-[4px] sm:pt-6 px-6 pb-6">
+          <div>
+            <div class="flex items-center mt-6">
+              <img
+                src="../../../assets/images/jobpostdate.png"
+                alt="icon"
+                class="w-[24px] h-[24px] mr-2"
+              />
+              <h3
+                class="font-quickSand font-semibold text-[16px] md:text-[20px] leading-[113%] uppercase tracking-normal text-[#0B0C10]"
+              >
+                JOB EXPIRY DATE
+              </h3>
+            </div>
+            <p
+              class="text-[#B4B9CB] font-quickSand font-semibold text-[14px] md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
+            >
+              31/05/25
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="pt-[4px] sm:pt-6 px-6 pb-6">
+          <div>
+            <div class="flex items-center mt-6">
+              <img
+                src="../../../assets/images/location-job.png"
+                alt="icon"
+                class="w-[24px] h-[24px] mr-2"
+              />
+             
+              <h3
+                class="font-quickSand font-semibold text-[16px] md:text-[20px] leading-[113%] uppercase tracking-normal text-[#0B0C10]"
+              >
+                LOCATION
+              </h3>
+            </div>
+
+
+            <p
+              class="text-[#B4B9CB] font-quickSand font-semibold text-[14px] md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
+            >
+              INDORE (M.P.), INDIA
+            </p>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="w-full bg-[#F2F8FF] rounded-[24px] p-4">
+      <div class="w-full md:w-[90%] h-auto px-4 max-w-full">
+        <p
+          class="font-mont font-semibold text-[24px] leading-[113%] tracking-normal uppercase break-words"
+        >
+          JOB SUMMERY
+        </p>
+
+        <p
+          class="font-mont text-[16px] md:text-[18px] leading-[163%] tracking-normal capitalize break-words mt-2"
+          [innerHTML]="jobPost?.content"
+        ></p>
+      </div>
+    </div>
+
+    <div class="mt-10">
+      <h2
+        class="font-mont text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl pb-4"
+      >
+        APPLY JOB
+      </h2>
+
+      <form
+        [formGroup]="jobForm"
+        (ngSubmit)="onSubmit()"
+        class="md:py-14 py-3 font-quickSand"
+      >
+        <div class="grid gap-6 md:grid-cols-3">
+          <div class="">
+            <div
+              class="relative z-0 flex items-center border-b border-[#b4b9cb80] py-1.5"
+            >
+              <input
+                type="text"
+                id="full-name"
+                formControlName="name"
+                class="block w-full py-1.5 px-0 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 peer text-[#34394B]"
+                placeholder=" "
+              />
+              <label
+                for="full-name"
+                class="absolute flex items-center gap-1 text-gray-400 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+              >
+                <img
+                  src="../../../assets/job-name.png"
+                  alt="icon"
+                  class="w-4 h-4"
+                />
+                YOUR NAME
+              </label>
+            </div>
+
+            <div
+              class="text-red-500 text-xs mt-1"
+              *ngIf="
+                jobForm.get('name')?.touched && jobForm.get('name')?.errors
+              "
+            >
+              <div *ngIf="jobForm.get('name')?.errors?.['required']">
+                Name is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="">
+            <div
+              class="relative z-0 flex items-center border-b border-[#b4b9cb80] py-1.5"
+            >
+              <input
+                type="email"
+                id="email"
+                formControlName="email"
+                class="block w-full py-1.5 px-0 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 peer text-[#34394B]"
+                placeholder=" "
+              />
+              <label
+                for="full-name"
+                class="absolute flex items-center gap-1 text-gray-400 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+              >
+                <img
+                  src="../../../assets/job-mail.png"
+                  alt="icon"
+                  class="w-4 h-4"
+                />
+                YOUR EMAIL
+              </label>
+            </div>
+
+            <div
+              class="text-red-500 text-xs mt-1"
+              *ngIf="
+                jobForm.get('email')?.touched && jobForm.get('email')?.errors
+              "
+            >
+              <div *ngIf="jobForm.get('email')?.errors?.['required']">
+                Email is required.
+              </div>
+              <div *ngIf="jobForm.get('email')?.errors?.['email']">
+                Please enter a valid email address.
+              </div>
+            </div>
+          </div>
+
+          <div class="">
+            <div
+              class="relative z-0 flex items-center border-b border-[#b4b9cb80] py-1.5"
+            >
+              <input
+                type="text"
+                id="phone"
+                formControlName="phone"
+                class="block w-full py-1.5 px-0 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 peer text-[#34394B]"
+                placeholder=" "
+              />
+              <label
+                for="full-name"
+                class="absolute flex items-center gap-1 text-gray-400 font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+              >
+                <img
+                  src="../../../assets/job-phone.png"
+                  alt="icon"
+                  class="w-4 h-4"
+                />
+                PHONE NUMBER
+              </label>
+            </div>
+
+            <div
+              class="text-red-500 text-xs mt-1"
+              *ngIf="
+                jobForm.get('phone')?.touched && jobForm.get('phone')?.errors
+              "
+            >
+              <div *ngIf="jobForm.get('phone')?.errors?.['required']">
+                Phone is required.
+              </div>
+              <div *ngIf="jobForm.get('phone')?.errors?.['phone']">
+                Please enter a valid Phone number.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- resume div -->
+
+        <div class="mt-5 mb-24">
+          <p
+            class="font-mont font-semibold text-[20px] leading-[113%] tracking-normal uppercase mb-4"
+          >
+            Upload Resume
+          </p>
+          <div class="flex flex-col items-center gap-4 sm:gap-6">
+            <div class="w-full sm:w-3/5 lg:w-4/5">
+              <label
+                for="resume"
+                (dragover)="onDragOver($event)"
+                (dragleave)="onDragLeave($event)"
+                (drop)="onDrop($event)"
+                [ngClass]="{
+                  'border-purple-600': isDragging,
+                  'border-[#D1D5DB]': !isDragging
+                }"
+                class="flex flex-col justify-center items-center p-3 border-2 border-dashed rounded-[8px] text-sm text-[#6B7280] cursor-pointer hover:border-gray-400 transition-all duration-300 h-[140px]"
+              >
+                <div class="flex flex-col items-center justify-center">
+                  <div class="bg-gray-100 p-2 rounded-full mb-2">
+                    <img
+                      src="../../../assets/resume-upload.png"
+                      alt="Upload Icon"
+                      class="w-8 h-8"
+                    />
+                  </div>
+                  <p class="text-xs text-gray-500">
+                    <span class="text-purple-600 hover:underline"
+                      >Click to upload</span
+                    >
+                    or drag and drop
+                  </p>
+                  <p class="text-xs text-gray-500">(Max. File size: 25 MB)</p>
+                </div>
+                <input
+                  id="resume"
+                  name="resume"
+                  type="file"
+                  class="hidden"
+                  (change)="onFileChange($event)"
+                />
+              </label>
+
+              <div
+                class="text-red-500 text-xs mt-1"
+                *ngIf="resumeTouched && !resumeUploaded"
+              >
+                Resume is required.
+              </div>
+
+              <!-- <div *ngIf="uploadedFileName" class="mt-2 text-sm text-gray-700">
+                <p>
+                  Uploaded File: <strong>{{ uploadedFileName }}</strong>
+                </p>
+              </div> -->
+
+              <!-- Uploading -->
+              <!-- <div
+                 *ngFor="let file of uploadedFiles"
+                class="border rounded-lg p-4 shadow-sm border-gray-200 mt-2"
+              >
+                <div class="flex justify-between items-start">
+                  <div class="flex items-start gap-2">
+                    <span class="text-xl text-gray-700">📄</span>
+                    <div>
+                      <p class="text-sm font-medium text-gray-800">
+                        {{ file.name }}
+                      </p>
+                      <p class="text-xs text-gray-500">{{ file.size }}</p>
+                    </div>
+                  </div>
+                  <button (click)="removeFile(file)">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-5 h-5 text-gray-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+             
+                <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                  <div
+                    class="bg-purple-500 h-2 rounded-full transition-all duration-300"
+                    [style.width.%]="file.progress"
+                  ></div>
+                </div>
+
+                <p class="text-right text-xs text-gray-500 mt-1">
+                  {{ file.progress }}%
+                  <ng-container *ngIf="file.status === 'success'"
+                    >✅</ng-container
+                  >
+                  <ng-container *ngIf="file.status === 'error'">
+                    ❌
+                    <button
+                      (click)="retryUpload(file)"
+                      class="text-blue-600 ml-2 underline text-xs"
+                    >
+                      Retry
+                    </button>
+                  </ng-container>
+                </p>
+              </div> -->
+
+              <!-- Success -->
+              <!-- <div  class="border rounded-lg p-4 shadow-sm border-gray-200 mt-2">
+                <div class="flex justify-between items-start">
+                  <div class="flex items-start gap-2">
+                    <span class="text-xl text-gray-700">📄</span>
+                    <div>
+                      <p class="text-sm font-medium text-gray-800">
+                      {{ uploadedFileName }}
+                      </p>
+                      <p class="text-xs text-gray-500">200 KB</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-5 h-5 text-green-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    <button>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5 text-gray-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                  <div class="bg-green-500 h-2 rounded-full w-full"></div>
+                </div>
+                <p class="text-right text-xs text-gray-500 mt-1">100%</p>
+              </div> -->
+
+              <!-- Error -->
+              <!-- <div
+                class="border rounded-lg p-4 shadow-sm border-red-500 bg-red-50 mt-2"
+              >
+                <div class="flex justify-between items-start">
+                  <div class="flex items-start gap-2">
+                    <span class="text-xl text-red-600">📄</span>
+                    <div>
+                      <p class="text-sm font-medium text-red-600">
+                        Upload failed, please try again
+                      </p>
+                      <p class="text-xs text-red-600">
+                       {{ uploadedFileName }}
+                      </p>
+                      <p
+                        class="text-sm font-medium text-red-600 mt-1 cursor-pointer"
+                      >
+                        Try again
+                      </p>
+                    </div>
+                  </div>
+                  <button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-5 h-5 text-red-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div> -->
+
+              <!-- Click to View -->
+              <!-- <div class="border rounded-lg p-4 shadow-sm border-gray-200 mt-2">
+                <div class="flex justify-between items-start">
+                  <div class="flex items-start gap-2">
+                    <span class="text-xl text-gray-700">📄</span>
+                    <div>
+                      <p class="text-sm font-medium text-gray-800">
+                       {{ uploadedFileName }}
+                      </p>
+                      <p class="text-xs text-gray-500">200 KB</p>
+                      <a
+                        href="#"
+                        class="text-purple-600 text-sm hover:underline mt-1 block"
+                        >Click to view</a
+                      >
+                    </div>
+                  </div>
+                  <button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-5 h-5 text-gray-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div> -->
+
+              <!--  -->
+              <ng-container *ngIf="!formSubmitted">
+                <!-- <div
+               
+                *ngFor="let file of uploadedFiles"
+                class="border rounded-lg p-4 shadow-sm mt-2"
+                [ngClass]="{
+                  'border-gray-200 bg-white':
+                    file.status === 'uploading' || file.status === 'success',
+                  'border-red-500 bg-red-50': file.status === 'error'
+                }"
+              >
+                <div class="flex justify-between items-start">
+                  <div class="flex items-start gap-2">
+                    <span
+                      class="text-xl"
+                      [ngClass]="{
+                        'text-gray-700': file.status !== 'error',
+                        'text-red-600': file.status === 'error'
+                      }"
+                      >📄</span
+                    >
+                    <div>
+                      <p
+                        class="text-sm font-medium"
+                        [ngClass]="{
+                          'text-gray-800': file.status !== 'error',
+                          'text-red-600': file.status === 'error'
+                        }"
+                      >
+                        {{ file.name }}
+                      </p>
+                      <p
+                        class="text-xs"
+                        [ngClass]="{
+                          'text-gray-500': file.status !== 'error',
+                          'text-red-600': file.status === 'error'
+                        }"
+                      >
+                        {{ file.size }}
+                      </p>
+
+                      
+                      <p
+                        *ngIf="file.status === 'error'"
+                        class="text-sm font-medium text-red-600 mt-1 cursor-pointer"
+                        (click)="retryUpload(file)"
+                      >
+                        Upload failed, try again
+                      </p>
+                    </div>
+                  </div>
+
+                
+                  <div class="flex items-center gap-2">
+                    <ng-container [ngSwitch]="file.status">
+                      <svg
+                        *ngSwitchCase="'success'"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5 text-green-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                      <svg
+                        *ngSwitchCase="'error'"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5 text-red-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </ng-container>
+
+                    <button (click)="removeFile(file)">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5 text-gray-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+               
+                <div
+                  *ngIf="file.status !== 'error'"
+                  class="w-full bg-gray-200 rounded-full h-2 mt-2"
+                >
+                  <div
+                    class="h-2 rounded-full transition-all duration-300"
+                    [ngClass]="{
+                      'bg-purple-500': file.status === 'uploading',
+                      'bg-green-500': file.status === 'success'
+                    }"
+                    [style.width.%]="file.progress"
+                  ></div>
+                </div>
+
+                <p
+                  *ngIf="file.status !== 'error'"
+                  class="text-right text-xs text-gray-500 mt-1"
+                >
+                  {{ file.progress }}%
+                  <ng-container *ngIf="file.status === 'success'"
+                    >✅</ng-container
+                  >
+                </p>
+              </div> -->
+
+
+
+
+              <!--  -->
+
+                <!-- <div
+                  *ngFor="let file of uploadedFiles"
+                  class="border rounded-lg p-4 shadow-sm mt-2"
+                  [ngClass]="{
+                    'border-gray-200 bg-white':
+                      file.status === 'uploading' || file.status === 'success',
+                    'border-red-500 bg-red-50': file.status === 'error'
+                  }"
+                >
+                  <div class="flex justify-between items-start">
+                    <div class="flex items-start gap-2">
+                      <span
+                        class="text-xl"
+                        [ngClass]="{
+                          'text-gray-700': file.status !== 'error',
+                          'text-red-600': file.status === 'error'
+                        }"
+                      >
+                        
+                        <img
+                          [src]="
+                            file.status === 'error'
+                              ? '/assets/job-resume-red.png'
+                              : 'assets/job-resume.svg'
+                          "
+                          alt="Job Resume"
+                          class="w-6 h-6"
+                        />
+
+                      </span>
+                      <div>
+                        <p
+                          class="text-sm font-medium"
+                          [ngClass]="{
+                            'text-gray-800': file.status !== 'error',
+                            'text-red-600': file.status === 'error'
+                          }"
+                        >
+                          {{ file.name }}
+                        </p>
+                        <p
+                          class="text-xs"
+                          [ngClass]="{
+                            'text-gray-500': file.status !== 'error',
+                            'text-red-600': file.status === 'error'
+                          }"
+                        >
+                          {{ file.size }}
+                        </p>
+
+                        <p
+                          *ngIf="file.status === 'success'"
+                          class="text-sm font-medium text-purple-600 mt-1 cursor-pointer"
+                          (click)="openFile(file)"
+                        >
+                          Click to view
+                        </p>
+
+                        <p
+                          *ngIf="file.status === 'error'"
+                          class="text-sm font-medium text-red-600 mt-1 cursor-pointer"
+                          (click)="retryUpload(file)"
+                        >
+                          Upload failed, try again
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                      <ng-container [ngSwitch]="file.status">
+                       
+
+                        <img
+                          *ngIf="
+                            file.progress === 100 && file.status !== 'success' && file.status !== 'error'
+                          "
+                          src="assets/job-sucess.svg"
+                          alt="Success"
+                          class="w-6 h-6 text-gray-500"
+                        />
+
+                       
+                      </ng-container>
+                        
+                      <button (click)="removeFile(file)">
+                        <img
+                          *ngIf="!(file.progress === 100 && file.status === 'uploading')"
+                          [src]="
+                            file.status === 'error'
+                              ? 'assets/job-delete-red.png'
+                              : 'assets/job-delete.svg'
+                          "
+                          alt="Delete"
+                          class="w-6 h-6"
+                        />
+                      </button>
+                    </div>
+                  </div>
+
+
+                  <div
+                    class="h-2 rounded-full transition-all duration-300"
+                    [ngClass]="{
+                     'bg-purple-500': file.progress <= 60 && file.status === 'uploading',
+                    'bg-green-500': file.progress > 60 && file.status === 'uploading',
+                     }"
+                    [style.width.%]="file.progress"
+                  ></div>
+
+                  <p
+                    *ngIf="file.status === 'uploading'"
+                    class="text-right text-xs text-gray-500 mt-1"
+                  >
+                    {{ file.progress }}%
+                  </p>
+                </div> -->
+                <!--  -->
+              </ng-container>
+              <!--  -->
+
+              <div
+                *ngIf="formSubmitted"
+                class="mt-4 p-3 bg-green-500 text-white rounded-xl w-1/2"
+              >
+                <p>Form submitted successfully!</p>
+              </div>
+              <button
+                type="submit"
+                [disabled]="isLoading"
+                class="font-mont mt-4 inline-flex justify-center items-center px-12 py-3 border border-transparent text-sm font-medium rounded-2xl shadow-sm text-white bg-black hover:bg-gray-800 transition-all duration-300"
+              >
+                <ng-container *ngIf="!isLoading; else loadingSpinner">
+                  Apply
+                </ng-container>
+
+                <ng-template #loadingSpinner>
+                  <mat-spinner
+                    diameter="24"
+                    strokeWidth="4"
+                    color="accent"
+                  ></mat-spinner>
+                </ng-template>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <app-footer></app-footer>
+</main>

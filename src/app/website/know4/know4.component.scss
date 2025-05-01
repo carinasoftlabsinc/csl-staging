@@ -539,3 +539,12 @@
   color: #34394b;
   font-weight: 400;
 }
+
+// 
+
+::ng-deep .job-parent span {
+  background: linear-gradient(to bottom, #F21DF5, #20B9FA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}

@@ -44,6 +44,7 @@ import { WebSliderComponent } from './components/web-slider/web-slider.component
 import { GameServiceComponent } from './game-service/game-service.component';
 import { GamingSliderComponent } from './components/gaming-slider/gaming-slider.component';
 import { CoverflowSliderComponent } from './components/coverflow-slider/coverflow-slider.component';
+import { JobDescriptionComponent } from './job-description/job-description.component';
 
 
 @NgModule({
@@ -84,6 +85,7 @@ import { CoverflowSliderComponent } from './components/coverflow-slider/coverflo
     GameServiceComponent,
     GamingSliderComponent,
     CoverflowSliderComponent,
+    JobDescriptionComponent,
   ],
   imports: [
     CommonModule,

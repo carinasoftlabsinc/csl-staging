@@ -90,6 +90,7 @@ import { PortfolioDetailComponent } from './portfolio-detail/portfolio-detail.co
 import { DigitalServiceComponent } from './digital-service/digital-service.component';
 import { WebServiceComponent } from './web-service/web-service.component';
 import { GameServiceComponent } from './game-service/game-service.component';
+import { JobDescriptionComponent } from './job-description/job-description.component';
 
 const routes: Routes = [
   {
@@ -169,6 +170,10 @@ const routes: Routes = [
   {
     path: 'portfolio/:id',
     component: PortfolioDetailComponent,
+  },
+  {
+    path: 'job-description/:id',
+    component: JobDescriptionComponent,
   },
   // Wildcard route for handling 404 pages
   {

@@ -187,7 +187,7 @@
 
  
 
-  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
+  <!-- <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
     <div
       class="flex justify-between items-center content-center my-10 pb-2 border-b border-[#34394b]"
     >
@@ -223,13 +223,13 @@
         <span class="absolute right-4 top-4 text-white">full time</span>
           <div class="flex flex-col gap-7">
           
-              <!-- <div> -->
+            
               <img
                 class="rounded-full h-20 2xl:h-28 2xl:w-28 w-20 object-cover mx-auto"
                 src="https://images.unsplash.com/photo-1725012858121-9b336157bea4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyMHx8fGVufDB8fHx8fA%3D%3D"
                 alt="product image"
               />
-              <!-- </div> -->
+             
             
             <div class="text-center flex flex-col 2xl:gap-2.5">
                <h5
@@ -250,6 +250,175 @@
                (click)="openModal()">Apply now</div>
             </div>
           </div>
+        
+        </div>
+      </div>
+    </div>
+
+    
+<app-modal-form *ngIf="isModalVisible" [isVisible]="isModalVisible" (close)="closeModal()"></app-modal-form>
+    
+  </section> -->
+ <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
+    <div
+      class="flex justify-between items-center content-center my-10 pb-2 border-b border-[#34394b]"
+    >
+      <h2
+        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white font-myfont mb-4"
+      >
+        OPEN POSITION
+      </h2>
+
+      <div class="hidden md:flex font-quickSand gap-2.5 mb-4">
+        <input
+          class="px-3.5 rounded-lg text-[#B4B9CB] w-[25vw] bg-[#b4b9cb1f] !border !border-[#b4b9cb62]"
+          type="search"
+          name=""
+          id=""
+        />
+        <button
+          class="px-14 py-2.5 rounded-lg bg-[#B1DF4F] font-medium"
+          type="button"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+
+    <h3
+      class="text-xl 2xl:text-4xl xl:text-2xl font-normal text-white !mb-4 2xl:!mb-8 font-myfont"
+    >
+      We are hiring
+    </h3>
+
+    <!-- <div class="flex flex-wrap font-quickSand gap-2.5">
+      <div
+        *ngFor="let role of roles"
+        (click)="selectRoleCategory(role.position)"
+        [ngClass]="{ 'bg-gradient-to-b': isActiveCategory(role.position) }"
+        class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] p-px rounded-md flex items-center justify-center cursor-pointer"
+      >
+        <div class="px-3.5 py-1.5 bg-black rounded-md text-sm font-semibold">
+          {{ role.position }}
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap font-quickSand gap-2.5">
+      <div
+        *ngFor="let employment of employments"
+        (click)="selectEmploymentType(employment.type)"
+        [ngClass]="{ 'bg-gradient-to-b': isActiveEmployment(employment.type) }"
+        class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] p-px rounded-md flex items-center justify-center cursor-pointer"
+      >
+        <div class="px-3.5 py-1.5 bg-black rounded-md text-sm font-semibold">
+          {{ employment.type }}
+        </div>
+      </div>
+    </div> -->
+
+    <div class="flex justify-between items-start w-full font-quickSand">
+      <div class="flex flex-wrap gap-2.5">
+        <div
+          *ngFor="let role of roles"
+          (click)="selectRoleCategory(role.position)"
+          [ngClass]="{ 'bg-gradient-to-b': isActiveCategory(role.position) }"
+          class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] p-px rounded-md flex items-center justify-center cursor-pointer"
+        >
+          <div class="px-3.5 py-1.5 bg-black rounded-md text-sm font-semibold">
+            {{ role.position }}
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-2.5">
+        <div
+          *ngFor="let employment of employments"
+          (click)="selectEmploymentType(employment.type)"
+          [ngClass]="{
+            'bg-gradient-to-b': isActiveEmployment(employment.type)
+          }"
+          class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] p-px rounded-md flex items-center justify-center cursor-pointer"
+        >
+          <div class="px-3.5 py-1.5 bg-black rounded-md text-sm font-semibold">
+            {{ employment.type }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5 2xl:gap-8 mt-9 2xl:mt-12 "
+    >
+      <div
+        *ngFor="let card of getFilteredCards()"
+        class="group bg-[#14171E] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-3xl w-full max-w-xl font-mont "
+      >
+        <div
+          class="card-hover relative bg-[#14171E] rounded-3xl h-full w-full flex flex-col justify-between py-12 px-3 group-hover:bg-[linear-gradient(180deg,_rgba(95,_64,_134,_0.24)_0%,_rgba(79,_45,_124,_0.24)_100%)]"
+        >
+          <span class="absolute right-4 top-4 text-white">{{
+            card.employmentType
+          }}</span>
+          <div class="flex flex-col gap-7">
+            <!-- <div> -->
+            <img
+              class="rounded-full h-20 2xl:h-28 2xl:w-28 w-20 object-cover mx-auto"
+              [src]="imageUrl + card.image"
+              (error)="onImgError($event)"
+              alt="product image"
+            />
+
+            <!-- </div> -->
+
+            <div class="text-center flex flex-col 2xl:gap-2.5 job-parent">
+             
+              <h5
+                class="2xl:text-3xl xl:text-xl text-lg leading-5 font-medium text-white dark:text-white font-bold "
+                [innerHTML]="card.title"
+              ></h5>
+              <p
+                class="text-white text-sm xl:text-xl 2xl:text-3xl md:text-sm"
+                [innerHTML]="card.description"
+              >
+              </p>
+              <p class="text-[#B4B9CB] text-sm 2xl:text-lg">
+                {{ card.experience }}
+              </p>
+            </div>
+
+
+            <div class="border-t border-[#b4b9cb56] pt-6 flex">
+
+
+              <div
+                class="px-3.5 py-1.5 rounded-3xl font-semibold text-white bg-[#34394B] group-hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] mx-auto cursor-pointer"
+              >
+                <a [routerLink]="['/job-description', card._id]"> Apply now</a>
+              </div>
+            </div>
+
+            <!--  -->
+
+            <!-- <div
+              class="border-t border-[#b4b9cb56] pt-6 flex justify-between items-center "
+            >
+              <div class="text-white dark:text-white">
+                <p class="text-[14.64px] leading-[100%] font-medium text-white font-[Montserrat]">
+                  Salary
+                </p>
+                <p class="text-[25px] leading-[100%] font-bold text-white font-[Montserrat] mt-2">
+                  ₹ 30000/-  
+                </p>
+              </div>
+              <div
+                class="px-3.5 py-1.5 rounded-3xl font-semibold text-white bg-[#34394B] group-hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] cursor-pointer"
+                (click)="openModal()"
+              >
+                Apply now
+              </div> 
+            </div> -->
+          </div>
           <!-- <div class="flex justify-end mr-4 mb-4 mt-3">
             <button>
               <img
@@ -261,23 +430,26 @@
           </div> -->
         </div>
       </div>
+      
     </div>
 
     <!-- Trigger Button -->
-<!-- Trigger Button -->
-<!-- Trigger Button -->
-<!-- <button
+    <!-- Trigger Button -->
+    <!-- Trigger Button -->
+    <!-- <button
   class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700"
   (click)="openModal()"
 >
   Open Modal
 </button> -->
 
-<!-- Conditionally render the modal based on isModalVisible -->
-<app-modal-form *ngIf="isModalVisible" [isVisible]="isModalVisible" (close)="closeModal()"></app-modal-form>
-    
+    <!-- Conditionally render the modal based on isModalVisible -->
+    <app-modal-form
+      *ngIf="isModalVisible"
+      [isVisible]="isModalVisible"
+      (close)="closeModal()"
+    ></app-modal-form>
   </section>
-
 
    <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c] mb-16 lg:mb-28 2xl:mb-32">
     <div

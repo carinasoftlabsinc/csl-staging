@@ -548,6 +548,8 @@ export class JobDescriptionComponent {
   //     });
   // }
 
+  
+
   onSubmit(): void {
     this.resumeTouched = true;
 

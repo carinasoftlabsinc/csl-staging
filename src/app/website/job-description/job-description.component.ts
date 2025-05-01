@@ -323,49 +323,233 @@ export class JobDescriptionComponent {
 
   isLoading: boolean = false;
 
+  // onSubmit(): void {
+  //   this.resumeTouched = true;
+
+  //   if (!this.resumeUploaded || this.jobForm.invalid) {
+  //     this.jobForm.markAllAsTouched();
+  //     return;
+  //   }
+
+  //   if (this.jobForm.valid && this.selectedFile) {
+  //     const formData = new FormData();
+  //     this.isLoading = true;
+  //     // formData.append('jobId', this.jobId);
+  //     formData.append('name', this.jobForm.get('name')?.value);
+  //     formData.append('email', this.jobForm.get('email')?.value);
+  //     formData.append('phone', this.jobForm.get('phone')?.value);
+  //     formData.append('resume', this.selectedFile);
+
+  //     if (this.jobId) {
+  //       formData.append('jobId', this.jobId);
+  //     }
+
+  //     this.http
+  //       .post(`${environment.apiUrl}/admin/applyJobcsl`, formData)
+  //       .subscribe({
+  //         next: (response) => {
+  //           console.log('Application submitted:', response);
+  //           this.jobForm.reset();
+  //           this.selectedFile = null;
+  //           this.uploadedFileName = '';
+  //           this.formSubmitted = true; // Set the flag to show the success notification
+  //           this.cdr.detectChanges();
+  //           setTimeout(() => {
+  //             this.formSubmitted = false; // Optionally hide the notification after a few seconds
+  //           }, 5000); // Hide after 5 seconds
+  //         },
+  //         error: (error) => {
+  //           console.error('Application error:', error);
+  //         },
+  //         complete: () => {
+  //           this.isLoading = false; // Set loading state to false after submission is complete
+  //         },
+  //       });
+  //   } else {
+  //     console.warn('Form is invalid or file not selected');
+  //   }
+  // }
+
+  // onSubmit(): void {
+  //   this.resumeTouched = true;
+
+  //   if (!this.resumeUploaded || this.jobForm.invalid) {
+  //     this.jobForm.markAllAsTouched();
+  //     return;
+  //   }
+
+  //   if (this.jobForm.valid && this.selectedFile) {
+  //     const formData = new FormData();
+  //     this.isLoading = true;
+
+  //     formData.append('name', this.jobForm.get('name')?.value);
+  //     formData.append('email', this.jobForm.get('email')?.value);
+  //     formData.append('phone', this.jobForm.get('phone')?.value);
+  //     formData.append('resume', this.selectedFile);
+
+  //     if (this.jobId) {
+  //       formData.append('jobId', this.jobId);
+  //     }
+
+  //     this.http
+  //       .post(`${environment.apiUrl}/admin/applyJobcsl`, formData)
+  //       .subscribe({
+  //         next: (response) => {
+  //           console.log('Application submitted:', response);
+
+  //           // Reset form and file state
+  //           this.jobForm.reset();
+  //           this.selectedFile = null;
+  //           this.uploadedFileName = '';
+  //           this.uploadedFiles = [];
+
+  //           this.formSubmitted = true;
+  //           this.resumeTouched = false; // ✅ Clear validation flags
+  //           this.cdr.detectChanges();
+
+  //           setTimeout(() => {
+  //             this.formSubmitted = false;
+  //             this.resumeUploaded = false; // ✅ Only reset this after success message disappears
+  //             this.cdr.detectChanges();
+  //           }, 5000);
+  //         },
+  //         error: (error) => {
+  //           console.error('Application error:', error);
+  //         },
+  //         complete: () => {
+  //           this.isLoading = false;
+  //         },
+  //       });
+  //   } else {
+  //     console.warn('Form is invalid or file not selected');
+  //   }
+  // }
+
+  // onSubmit(): void {
+  //   this.resumeTouched = true;
+
+  //   // If resume not uploaded or form is invalid, mark all controls as touched and exit
+  //   if (!this.resumeUploaded || this.jobForm.invalid) {
+  //     this.jobForm.markAllAsTouched();
+  //     return;
+  //   }
+
+  //   // Check if file is selected before proceeding
+  //   if (!this.selectedFile) {
+  //     console.warn('No resume file selected.');
+  //     return;
+  //   }
+
+  //   // Prepare FormData
+  //   const formData = new FormData();
+  //   formData.append('name', this.jobForm.get('name')?.value || '');
+  //   formData.append('email', this.jobForm.get('email')?.value || '');
+  //   formData.append('phone', this.jobForm.get('phone')?.value || '');
+  //   formData.append('resume', this.selectedFile);
+
+  //   if (this.jobId) {
+  //     formData.append('jobId', this.jobId);
+  //   }
+
+  //   this.isLoading = true;
+
+  //   this.http
+  //     .post(`${environment.apiUrl}/admin/applyJobcsl`, formData)
+  //     .subscribe({
+  //       next: (response) => {
+  //         console.log('Application submitted successfully:', response);
+
+  //         // Reset form and file state
+  //         this.jobForm.reset();
+  //         this.selectedFile = null;
+  //         this.uploadedFileName = '';
+  //         this.uploadedFiles = [];
+  //         this.resumeUploaded = false;
+  //         this.resumeTouched = false;
+
+  //         // Show success notification
+  //         this.formSubmitted = true;
+  //         this.cdr.detectChanges();
+
+  //         // Hide notification after 5 seconds
+  //         setTimeout(() => {
+  //           this.formSubmitted = false;
+  //           this.cdr.detectChanges();
+  //         }, 5000);
+  //       },
+  //       error: (error) => {
+  //         console.error('Application submission failed:', error);
+  //       },
+  //       complete: () => {
+  //         this.isLoading = false;
+  //       },
+  //     });
+  // }
+
   onSubmit(): void {
     this.resumeTouched = true;
 
+    // If resume not uploaded or form is invalid, mark all controls as touched and exit
     if (!this.resumeUploaded || this.jobForm.invalid) {
       this.jobForm.markAllAsTouched();
       return;
     }
 
-    if (this.jobForm.valid && this.selectedFile) {
-      const formData = new FormData();
-      this.isLoading = true;
-      // formData.append('jobId', this.jobId);
-      formData.append('name', this.jobForm.get('name')?.value);
-      formData.append('email', this.jobForm.get('email')?.value);
-      formData.append('phone', this.jobForm.get('phone')?.value);
-      formData.append('resume', this.selectedFile);
-
-      if (this.jobId) {
-        formData.append('jobId', this.jobId);
-      }
-
-      this.http
-        .post(`${environment.apiUrl}/admin/applyJobcsl`, formData)
-        .subscribe({
-          next: (response) => {
-            console.log('Application submitted:', response);
-            this.jobForm.reset();
-            this.selectedFile = null;
-            this.uploadedFileName = '';
-            this.formSubmitted = true; // Set the flag to show the success notification
-            setTimeout(() => {
-              this.formSubmitted = false; // Optionally hide the notification after a few seconds
-            }, 5000); // Hide after 5 seconds
-          },
-          error: (error) => {
-            console.error('Application error:', error);
-          },
-          complete: () => {
-            this.isLoading = false; // Set loading state to false after submission is complete
-          },
-        });
-    } else {
-      console.warn('Form is invalid or file not selected');
+    // Check if file is selected before proceeding
+    if (!this.selectedFile) {
+      console.warn('No resume file selected.');
+      return;
     }
+
+    // Prepare FormData
+    const formData = new FormData();
+    formData.append('name', this.jobForm.get('name')?.value || '');
+    formData.append('email', this.jobForm.get('email')?.value || '');
+    formData.append('phone', this.jobForm.get('phone')?.value || '');
+    formData.append('resume', this.selectedFile);
+
+    if (this.jobId) {
+      formData.append('jobId', this.jobId);
+    }
+
+    this.isLoading = true;
+
+    this.http
+      .post(`${environment.apiUrl}/admin/applyJobcsl`, formData)
+      .subscribe({
+        next: (response) => {
+          console.log('Application submitted successfully:', response);
+
+          // Reset form and file state
+          this.jobForm.reset();
+          this.selectedFile = null;
+          this.uploadedFileName = '';
+          this.uploadedFiles = [];
+          this.resumeUploaded = false;
+          this.resumeTouched = false;
+
+          // Reset file input element after submission
+          const fileInput = document.querySelector('input[type="file"]');
+          if (fileInput instanceof HTMLInputElement) {
+            fileInput.value = ''; // Reset the file input
+          }
+
+          // Show success notification
+          this.formSubmitted = true;
+          this.cdr.detectChanges();
+
+          // Hide notification after 5 seconds
+          setTimeout(() => {
+            this.formSubmitted = false;
+            this.cdr.detectChanges();
+          }, 5000);
+        },
+        error: (error) => {
+          console.error('Application submission failed:', error);
+        },
+        complete: () => {
+          this.isLoading = false;
+        },
+      });
   }
 }

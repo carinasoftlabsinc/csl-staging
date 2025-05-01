@@ -745,143 +745,8 @@
 
               <!--  -->
               <ng-container *ngIf="!formSubmitted">
-                <!-- <div
-               
-                *ngFor="let file of uploadedFiles"
-                class="border rounded-lg p-4 shadow-sm mt-2"
-                [ngClass]="{
-                  'border-gray-200 bg-white':
-                    file.status === 'uploading' || file.status === 'success',
-                  'border-red-500 bg-red-50': file.status === 'error'
-                }"
-              >
-                <div class="flex justify-between items-start">
-                  <div class="flex items-start gap-2">
-                    <span
-                      class="text-xl"
-                      [ngClass]="{
-                        'text-gray-700': file.status !== 'error',
-                        'text-red-600': file.status === 'error'
-                      }"
-                      >📄</span
-                    >
-                    <div>
-                      <p
-                        class="text-sm font-medium"
-                        [ngClass]="{
-                          'text-gray-800': file.status !== 'error',
-                          'text-red-600': file.status === 'error'
-                        }"
-                      >
-                        {{ file.name }}
-                      </p>
-                      <p
-                        class="text-xs"
-                        [ngClass]="{
-                          'text-gray-500': file.status !== 'error',
-                          'text-red-600': file.status === 'error'
-                        }"
-                      >
-                        {{ file.size }}
-                      </p>
 
-                      
-                      <p
-                        *ngIf="file.status === 'error'"
-                        class="text-sm font-medium text-red-600 mt-1 cursor-pointer"
-                        (click)="retryUpload(file)"
-                      >
-                        Upload failed, try again
-                      </p>
-                    </div>
-                  </div>
-
-                
-                  <div class="flex items-center gap-2">
-                    <ng-container [ngSwitch]="file.status">
-                      <svg
-                        *ngSwitchCase="'success'"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="w-5 h-5 text-green-500"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      <svg
-                        *ngSwitchCase="'error'"
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="w-5 h-5 text-red-500"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    </ng-container>
-
-                    <button (click)="removeFile(file)">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="w-5 h-5 text-gray-500"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-
-               
                 <div
-                  *ngIf="file.status !== 'error'"
-                  class="w-full bg-gray-200 rounded-full h-2 mt-2"
-                >
-                  <div
-                    class="h-2 rounded-full transition-all duration-300"
-                    [ngClass]="{
-                      'bg-purple-500': file.status === 'uploading',
-                      'bg-green-500': file.status === 'success'
-                    }"
-                    [style.width.%]="file.progress"
-                  ></div>
-                </div>
-
-                <p
-                  *ngIf="file.status !== 'error'"
-                  class="text-right text-xs text-gray-500 mt-1"
-                >
-                  {{ file.progress }}%
-                  <ng-container *ngIf="file.status === 'success'"
-                    >✅</ng-container
-                  >
-                </p>
-              </div> -->
-
-
-
-
-              <!--  -->
-
-                <!-- <div
                   *ngFor="let file of uploadedFiles"
                   class="border rounded-lg p-4 shadow-sm mt-2"
                   [ngClass]="{
@@ -996,14 +861,16 @@
                   >
                     {{ file.progress }}%
                   </p>
-                </div> -->
-                <!--  -->
+                </div>
+
+
+               
               </ng-container>
               <!--  -->
 
               <div
                 *ngIf="formSubmitted"
-                class="mt-4 p-3 bg-green-500 text-white rounded-xl w-1/2"
+                class="mt-4 p-3 bg-green-500 text-white rounded-xl w-full sm:w-1/2"
               >
                 <p>Form submitted successfully!</p>
               </div>

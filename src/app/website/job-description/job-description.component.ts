@@ -91,9 +91,17 @@ export class JobDescriptionComponent {
     this.jobForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
+      // phone: ['', Validators.required],
+      phone: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[0-9]+$'), // This ensures only digits are allowed
+        ],
+      ],
       // resume: [null, Validators.required],
-      resume: [null],
+      // resume: [null],
+      resume: [null, [Validators.required]],
     });
   }
 
@@ -266,11 +274,55 @@ export class JobDescriptionComponent {
   //   }
   // }
 
+  // onFileChange(event: any): void {
+  //   this.resumeTouched = true;
+
+  //   const file = event.target.files[0];
+  //   this.jobForm.get('resume')?.markAsTouched();
+
+  //   if (file) {
+  //     if (!this.ALLOWED_FILE_TYPES.includes(file.type)) {
+  //       alert('Only PDF, DOC, and DOCX files are allowed.');
+  //       this.clearFileInput();
+  //       return;
+  //     }
+
+  //     if (file.size > this.MAX_FILE_SIZE) {
+  //       alert('File size should not exceed 25MB.');
+  //       this.clearFileInput();
+  //       return;
+  //     }
+
+  //     this.jobForm.get('resume')?.setValue(file);
+  //     this.selectedFile = file;
+  //     this.uploadedFileName = file.name;
+  //     this.resumeUploaded = true;
+
+  //     this.handleFileUpload(file);
+  //   } else {
+  //     this.clearFileInput();
+  //   }
+  // }
+
+  // clearFileInput(): void {
+  //   this.selectedFile = null;
+  //   this.uploadedFileName = '';
+  //   this.resumeUploaded = false;
+  //   this.jobForm.get('resume')?.setValue(null);
+
+  //   const fileInput = document.querySelector(
+  //     'input[type="file"]'
+  //   ) as HTMLInputElement;
+  //   if (fileInput) {
+  //     fileInput.value = '';
+  //   }
+
+  //   this.cdr.detectChanges();
+  // }
+
   onFileChange(event: any): void {
     this.resumeTouched = true;
-
     const file = event.target.files[0];
-    this.jobForm.get('resume')?.markAsTouched();
 
     if (file) {
       if (!this.ALLOWED_FILE_TYPES.includes(file.type)) {
@@ -290,6 +342,10 @@ export class JobDescriptionComponent {
       this.uploadedFileName = file.name;
       this.resumeUploaded = true;
 
+      // Make sure form validation is re-evaluated
+      this.jobForm.get('resume')?.markAsTouched();
+      this.jobForm.get('resume')?.updateValueAndValidity();
+
       this.handleFileUpload(file);
     } else {
       this.clearFileInput();
@@ -301,12 +357,14 @@ export class JobDescriptionComponent {
     this.uploadedFileName = '';
     this.resumeUploaded = false;
     this.jobForm.get('resume')?.setValue(null);
+    this.jobForm.get('resume')?.markAsTouched(); // Mark as touched to trigger validation
+    this.jobForm.get('resume')?.updateValueAndValidity(); // Update validity
 
     const fileInput = document.querySelector(
       'input[type="file"]'
     ) as HTMLInputElement;
     if (fileInput) {
-      fileInput.value = '';
+      fileInput.value = ''; // Reset the file input value
     }
 
     this.cdr.detectChanges();
@@ -529,6 +587,12 @@ export class JobDescriptionComponent {
   //         this.resumeUploaded = false;
   //         this.resumeTouched = false;
 
+  //         // Reset file input element after submission
+  //         const fileInput = document.querySelector('input[type="file"]');
+  //         if (fileInput instanceof HTMLInputElement) {
+  //           fileInput.value = ''; // Reset the file input
+  //         }
+
   //         // Show success notification
   //         this.formSubmitted = true;
   //         this.cdr.detectChanges();
@@ -541,6 +605,7 @@ export class JobDescriptionComponent {
   //       },
   //       error: (error) => {
   //         console.error('Application submission failed:', error);
+  //         this.isLoading = false;
   //       },
   //       complete: () => {
   //         this.isLoading = false;
@@ -548,7 +613,7 @@ export class JobDescriptionComponent {
   //     });
   // }
 
-  
+ 
 
   onSubmit(): void {
     this.resumeTouched = true;
@@ -593,8 +658,10 @@ export class JobDescriptionComponent {
           this.resumeTouched = false;
 
           // Reset file input element after submission
-          const fileInput = document.querySelector('input[type="file"]');
-          if (fileInput instanceof HTMLInputElement) {
+          const fileInput = document.querySelector(
+            'input[type="file"]'
+          ) as HTMLInputElement;
+          if (fileInput) {
             fileInput.value = ''; // Reset the file input
           }
 
@@ -617,6 +684,4 @@ export class JobDescriptionComponent {
         },
       });
   }
-
-  
 }

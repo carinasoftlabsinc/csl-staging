@@ -541,6 +541,7 @@
                   name="resume"
                   type="file"
                   class="hidden"
+                  accept=".pdf,.doc,.docx"
                   (change)="onFileChange($event)"
                 />
               </label>
@@ -745,7 +746,6 @@
 
               <!--  -->
               <ng-container *ngIf="!formSubmitted">
-
                 <div
                   *ngFor="let file of uploadedFiles"
                   class="border rounded-lg p-4 shadow-sm mt-2"
@@ -764,7 +764,6 @@
                           'text-red-600': file.status === 'error'
                         }"
                       >
-                        
                         <img
                           [src]="
                             file.status === 'error'
@@ -774,7 +773,6 @@
                           alt="Job Resume"
                           class="w-6 h-6"
                         />
-
                       </span>
                       <div>
                         <p
@@ -811,28 +809,38 @@
                         >
                           Upload failed, try again
                         </p>
+                        <!-- <p
+                          *ngIf="file.status === 'error'"
+                          class="text-sm font-medium text-red-600 mt-1 cursor-pointer"
+                          (click)="retryUpload(file)"
+                        >
+                          {{ file.errorMessage }}
+                        </p> -->
                       </div>
                     </div>
 
                     <div class="flex items-center gap-2">
                       <ng-container [ngSwitch]="file.status">
-                       
-
                         <img
                           *ngIf="
-                            file.progress === 100 && file.status !== 'success' && file.status !== 'error'
+                            file.progress === 100 &&
+                            file.status !== 'success' &&
+                            file.status !== 'error'
                           "
                           src="assets/job-sucess.svg"
                           alt="Success"
                           class="w-6 h-6 text-gray-500"
                         />
-
-                       
                       </ng-container>
-                        
+
                       <button (click)="removeFile(file)">
                         <img
-                          *ngIf="!(file.progress === 100 && file.status === 'uploading')"
+                          *ngIf="
+                            !(
+                              file.progress === 100 &&
+                              file.status === 'uploading'
+                            )
+                          "
                           [src]="
                             file.status === 'error'
                               ? 'assets/job-delete-red.png'
@@ -844,7 +852,6 @@
                       </button>
                     </div>
                   </div>
-
 
                   <div
                     class="h-2 rounded-full transition-all duration-300"
@@ -862,9 +869,6 @@
                     {{ file.progress }}%
                   </p>
                 </div>
-
-
-               
               </ng-container>
               <!--  -->
 

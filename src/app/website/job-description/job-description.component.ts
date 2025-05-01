@@ -23,6 +23,7 @@ interface UploadedFile {
   progress: number;
   status: 'uploading' | 'success' | 'error' | 'done';
   hideProgress?: boolean;
+  errorMessage?: string;
 }
 
 interface JobPost {
@@ -150,6 +151,13 @@ export class JobDescriptionComponent {
   //   }
   // }
 
+  readonly MAX_FILE_SIZE = 25 * 1024 * 1024; // 25MB
+  readonly ALLOWED_FILE_TYPES = [
+    'application/pdf',
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  ];
+
   markFileAsSuccess(file: any) {
     file.status = 'success';
     file.progress = 100;
@@ -162,11 +170,41 @@ export class JobDescriptionComponent {
     }, 1000); // Hide after 1 second
   }
 
+  // onDrop(event: DragEvent): void {
+  //   event.preventDefault();
+  //   this.isDragging = false;
+  //   const file = event.dataTransfer?.files?.[0];
+  //   if (file) {
+  //     this.selectedFile = file;
+  //     this.jobForm.patchValue({ resume: file });
+  //     this.uploadedFileName = file.name;
+  //     this.jobForm.get('resume')?.setValue(file);
+  //     this.jobForm.get('resume')?.markAsTouched();
+  //     this.jobForm.get('resume')?.updateValueAndValidity();
+  //     this.resumeTouched = true;
+  //     this.resumeUploaded = true;
+
+  //     // 👉 Upload UI
+  //     this.handleFileUpload(file);
+  //   }
+  // }
+
   onDrop(event: DragEvent): void {
     event.preventDefault();
     this.isDragging = false;
+
     const file = event.dataTransfer?.files?.[0];
     if (file) {
+      if (!this.ALLOWED_FILE_TYPES.includes(file.type)) {
+        alert('Only PDF, DOC, and DOCX files are allowed.');
+        return;
+      }
+
+      if (file.size > this.MAX_FILE_SIZE) {
+        alert('File size should not exceed 25MB.');
+        return;
+      }
+
       this.selectedFile = file;
       this.jobForm.patchValue({ resume: file });
       this.uploadedFileName = file.name;
@@ -176,7 +214,6 @@ export class JobDescriptionComponent {
       this.resumeTouched = true;
       this.resumeUploaded = true;
 
-      // 👉 Upload UI
       this.handleFileUpload(file);
     }
   }
@@ -216,7 +253,6 @@ export class JobDescriptionComponent {
   //   if (file) {
   //     this.jobForm.get('resume')?.setValue(file);
   //     this.selectedFile = file;
-  //     this.jobForm.patchValue({ resume: file });
   //     this.uploadedFileName = file.name;
   //     this.resumeUploaded = true;
 
@@ -229,25 +265,51 @@ export class JobDescriptionComponent {
   //     this.jobForm.get('resume')?.setValue(null);
   //   }
   // }
+
   onFileChange(event: any): void {
     this.resumeTouched = true;
 
     const file = event.target.files[0];
     this.jobForm.get('resume')?.markAsTouched();
+
     if (file) {
+      if (!this.ALLOWED_FILE_TYPES.includes(file.type)) {
+        alert('Only PDF, DOC, and DOCX files are allowed.');
+        this.clearFileInput();
+        return;
+      }
+
+      if (file.size > this.MAX_FILE_SIZE) {
+        alert('File size should not exceed 25MB.');
+        this.clearFileInput();
+        return;
+      }
+
       this.jobForm.get('resume')?.setValue(file);
       this.selectedFile = file;
       this.uploadedFileName = file.name;
       this.resumeUploaded = true;
 
-      // 👉 Upload UI
       this.handleFileUpload(file);
     } else {
-      this.selectedFile = null;
-      this.uploadedFileName = '';
-      this.resumeUploaded = false;
-      this.jobForm.get('resume')?.setValue(null);
+      this.clearFileInput();
     }
+  }
+
+  clearFileInput(): void {
+    this.selectedFile = null;
+    this.uploadedFileName = '';
+    this.resumeUploaded = false;
+    this.jobForm.get('resume')?.setValue(null);
+
+    const fileInput = document.querySelector(
+      'input[type="file"]'
+    ) as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = '';
+    }
+
+    this.cdr.detectChanges();
   }
 
   handleFileUpload(file: File): void {
@@ -546,10 +608,13 @@ export class JobDescriptionComponent {
         },
         error: (error) => {
           console.error('Application submission failed:', error);
+          this.isLoading = false;
         },
         complete: () => {
           this.isLoading = false;
         },
       });
   }
+
+  
 }

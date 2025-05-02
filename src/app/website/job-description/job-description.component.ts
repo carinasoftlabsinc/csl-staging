@@ -443,6 +443,13 @@ export class JobDescriptionComponent {
 
   isLoading: boolean = false;
 
+  hasValidResume(): boolean {
+    return this.uploadedFiles?.some(
+      file => file.status !== 'uploading' && file.status !== 'error'
+    );
+  }
+  
+
   // onSubmit(): void {
   //   this.resumeTouched = true;
 

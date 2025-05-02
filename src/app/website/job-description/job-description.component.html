@@ -2,51 +2,7 @@
 <main class="bg-[#000000]">
   <app-header></app-header>
 
-  <!-- <section
-    class="px-5 py-24 body-font flex items-center justify-start h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)]"
-  >
-    <div class="2xl:ml-44 xl:ml-40 lg:ml-40 md:ml-40">
-      <div class="w-full md:w-1/2">
-        <h1>
-          <span
-            class="text-white font-myfont text-[30px] 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]"
-          >
-            JOB
-          </span>
-          <br />
-          <span
-            class="text-white tracking-wide text-4xl sm:text-4xl md:text-5xl lg:text-[50px] xl:text-[60px] 2xl:text-[80px] leading-[50px] sm:leading-[40px] md:leading-[45px] lg:leading-[50px] xl:leading-[60px] 2xl:leading-[80px] font-myfont"
-          >
-            DESCRIPTION
-          </span>
-        </h1>
-
-        <p
-          class="text-white mt-3 text-sm xl:text-[16px] 2xl:text-[23px] 2xl:leading-[27px] font-quickSand font-normal"
-        >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem eum
-          nisi dicta totam ut officiis, dolor enim minima adipisci voluptatibus.
-        </p>
-      </div>
-
-      <div 
-    class="absolute" 
-    style="width: 700px; height: 496px; top: 238px; left: 700px;"
-  >
-    <img 
-      src="../../../assets/images/job-banner-image.png" 
-      alt="Job Description Image" 
-      class="w-full h-full object-cover sm:hiden"
-    />
-  </div>
-
-  
-
-
-
-
-    </div>
-  </section> -->
+ 
 
   <section
     class="px-5 py-24 body-font flex items-center justify-start h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)]"
@@ -62,7 +18,7 @@
             JOB
           </span> -->
           <span
-            class="text-white font-extrabold text-[30px] sm:text-[40px] md:text-[45px] lg:text-[75px] xl:text-[100px] leading-[40px] sm:leading-[50px] md:leading-[60px] lg:leading-[80px] xl:leading-[99%] tracking-normal uppercase mt-2"
+            class="text-white font-extrabold text-3xl sm:text-[40px] md:text-[45px] lg:text-[75px] xl:text-[100px] leading-[40px] sm:leading-[50px] md:leading-[60px] lg:leading-[80px] xl:leading-[99%] tracking-normal uppercase mt-2"
           >
             JOB
           </span>
@@ -75,7 +31,7 @@
             DESCRIPTION
           </p> -->
           <p
-            class="text-white font-extrabold text-[25px] sm:text-[40px] md:text-[43px] lg:text-[75px] xl:text-[100px] leading-[40px] sm:leading-[50px] md:leading-[60px] lg:leading-[80px] xl:leading-[99%] tracking-normal uppercase mt-2"
+            class="text-white font-extrabold text-3xl sm:text-[40px] md:text-[43px] lg:text-[75px] xl:text-[100px] leading-[40px] sm:leading-[50px] md:leading-[60px] lg:leading-[80px] xl:leading-[99%] tracking-normal uppercase"
           >
             DESCRIPTION
           </p>
@@ -83,7 +39,7 @@
 
         <p
           class="text-white mt-3 text-sm xl:text-[16px] 2xl:text-[23px] 2xl:leading-[27px] font-mont"
-          [innerHTML]="jobPost.description"
+          [innerHTML]="jobPost?.description"
         >
           <!-- {{ jobPost?.description }} -->
         </p>
@@ -102,7 +58,7 @@
   >
     <div>
       <h2
-        class="font-mont text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl pb-4 font-semibold"
+        class="font-mont text-[#0B0C10] text-xl xl:text-xl 2xl:text-2xl font-semibold"
       >
         JOB POST
       </h2>
@@ -110,13 +66,13 @@
  
 
     <h3
-      class="font-mont font-bold text-[36px] leading-[113%] tracking-[0%] bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text"
+      class="font-mont font-bold text-2xl md:text-3xl 2xl:text-4xl bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text"
       [innerHTML]="jobPost?.title"
     ></h3>
 
-    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:py-6 py-4">
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:py-14 py-10 2xl:py-20">
       <div>
-        <div class="p-6">
+        <div class="">
           <div class="mt-6">
             <h3
               class="font-mont font-semibold text-[16px] md:text-[20px] leading-[113%] uppercase tracking-normal text-[#0B0C10]"
@@ -125,24 +81,7 @@
             </h3>
 
             <div class="flex gap-x-4 mt-2">
-              <!-- <img
-                src="../../../assets/images/figma.png"
-                alt="product image"
-                class="mb-4"
-                style="width: 60px; height: 55px; border-radius: 7.36px"
-              />
-              <img
-                src="../../../assets/images/Ps.png"
-                alt="product image"
-                class="mb-4"
-                style="width: 60px; height: 55px; border-radius: 7.36px"
-              />
-              <img
-                src="../../../assets/images/Ai-1.png"
-                alt="product image"
-                class="mb-4"
-                style="width: 60px; height: 55px; border-radius: 7.36px"
-              /> -->
+         
               <img
                 *ngFor="let img of jobPost?.skillImage"
                 [src]="imageUrl + img"
@@ -157,7 +96,7 @@
       </div>
 
       <div>
-        <div class="pt-[4px] sm:pt-6 px-6 pb-6">
+        <div class="">
           <div>
             <div class="flex items-center mt-6">
               <img
@@ -172,7 +111,7 @@
               </h3>
             </div>
             <p
-              class="text-[#B4B9CB] font-mont font-semibold text-[14px] md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
+              class="text-[#888FA8] font-mont font-semibold text-[14px] 2xl:text-2xl md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
             >
               {{ jobPost?.experience }}
             </p>
@@ -181,7 +120,7 @@
       </div>
 
       <div>
-        <div class="pt-[4px] sm:pt-6 px-6 pb-6">
+        <div class="">
           <div>
             <div class="flex items-center mt-6">
               <img
@@ -196,7 +135,7 @@
               </h3>
             </div>
             <p
-              class="text-[#B4B9CB] font-mont font-semibold text-[14px] md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
+              class="text-[#888FA8] font-mont font-semibold text-[14px] 2xl:text-2xl md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
             >
               {{ jobPost?.noOfPositions }}
             </p>
@@ -205,7 +144,7 @@
       </div>
 
       <div>
-        <div class="pt-[4px] sm:pt-6 px-6 pb-6">
+        <div class="">
           <div>
             <div class="flex items-center mt-6">
               <img
@@ -220,7 +159,7 @@
               </h3>
             </div>
             <p
-              class="text-[#B4B9CB] font-mont font-semibold text-[14px] md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
+              class="text-[#888FA8] font-mont font-semibold text-[14px] 2xl:text-2xl md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
             >
               {{ jobPost?.createdAt | date : "dd/MM/yy" }}
             </p>
@@ -229,7 +168,7 @@
       </div>
 
       <div>
-        <div class="pt-[4px] sm:pt-6 px-6 pb-6">
+        <div class="">
           <div>
             <div class="flex items-center mt-6">
               <img
@@ -244,7 +183,7 @@
               </h3>
             </div>
             <p
-              class="text-[#B4B9CB] font-mont font-semibold text-[14px] md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
+              class="text-[#888FA8] font-mont font-semibold text-[14px] 2xl:text-2xl md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
             >
               {{ jobPost?.applicationDeadline | date : "dd/MM/yy" }}
             </p>
@@ -253,7 +192,7 @@
       </div>
 
       <div>
-        <div class="pt-[4px] sm:pt-6 px-6 pb-6">
+        <div class="">
           <div>
             <div class="flex items-center mt-6">
               <img
@@ -270,7 +209,7 @@
             </div>
 
             <p
-              class="text-[#B4B9CB] font-mont font-semibold text-[14px] md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
+              class="text-[#888FA8] font-mont font-semibold text-[14px] 2xl:text-2xl md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
             >
               {{ jobPost?.location }}
             </p>
@@ -279,87 +218,12 @@
       </div>
     </div>
 
-    <!-- <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:py-5">
-      <div>
-        <div class="pt-[4px] sm:pt-6 px-6 pb-6">
-          <div>
-            <div class="flex items-center mt-6">
-              <img
-                src="../../../assets/images/jobpostdate.png"
-                alt="icon"
-                class="w-[24px] h-[24px] mr-2"
-              />
-              <h3
-                class="font-quickSand font-semibold text-[16px] md:text-[20px] leading-[113%] uppercase tracking-normal text-[#0B0C10]"
-              >
-                JOB POST DATE
-              </h3>
-            </div>
-            <p
-              class="text-[#B4B9CB] font-quickSand font-semibold text-[14px] md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
-            >
-              28/05/25
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div class="pt-[4px] sm:pt-6 px-6 pb-6">
-          <div>
-            <div class="flex items-center mt-6">
-              <img
-                src="../../../assets/images/jobpostdate.png"
-                alt="icon"
-                class="w-[24px] h-[24px] mr-2"
-              />
-              <h3
-                class="font-quickSand font-semibold text-[16px] md:text-[20px] leading-[113%] uppercase tracking-normal text-[#0B0C10]"
-              >
-                JOB EXPIRY DATE
-              </h3>
-            </div>
-            <p
-              class="text-[#B4B9CB] font-quickSand font-semibold text-[14px] md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
-            >
-              31/05/25
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div class="pt-[4px] sm:pt-6 px-6 pb-6">
-          <div>
-            <div class="flex items-center mt-6">
-              <img
-                src="../../../assets/images/location-job.png"
-                alt="icon"
-                class="w-[24px] h-[24px] mr-2"
-              />
-             
-              <h3
-                class="font-quickSand font-semibold text-[16px] md:text-[20px] leading-[113%] uppercase tracking-normal text-[#0B0C10]"
-              >
-                LOCATION
-              </h3>
-            </div>
-
-
-            <p
-              class="text-[#B4B9CB] font-quickSand font-semibold text-[14px] md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
-            >
-              INDORE (M.P.), INDIA
-            </p>
-          </div>
-        </div>
-      </div>
-    </div> -->
+  
 
     <div class="w-full bg-[#F2F8FF] rounded-[24px] p-4">
-      <div class="w-full md:w-[90%] h-auto px-4 max-w-full">
+      <div class="w-full px-4 py-6">
         <p
-          class="font-mont font-semibold text-[24px] leading-[113%] tracking-normal uppercase break-words"
+          class="font-mont font-semibold text-[24px] leading-[113%] tracking-normal uppercase break-words mb-8"
         >
           JOB SUMMERY
         </p>
@@ -373,7 +237,7 @@
 
     <div class="mt-24">
       <h2
-        class="font-mont text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl pb-4 font-semibold"
+        class="font-mont text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-5xl pb-4 font-semibold"
       >
         APPLY JOB
       </h2>
@@ -561,208 +425,12 @@
 
               <div
                 class="text-red-500 text-xs mt-1"
-                *ngIf="resumeTouched && !resumeUploaded"
+                *ngIf="resumeTouched && !hasValidResume()"
               >
                 Resume is required.
               </div>
 
 
-
-              
-
-
-              <!-- <div *ngIf="uploadedFileName" class="mt-2 text-sm text-gray-700">
-                <p>
-                  Uploaded File: <strong>{{ uploadedFileName }}</strong>
-                </p>
-              </div> -->
-
-              <!-- Uploading -->
-              <!-- <div
-                 *ngFor="let file of uploadedFiles"
-                class="border rounded-lg p-4 shadow-sm border-gray-200 mt-2"
-              >
-                <div class="flex justify-between items-start">
-                  <div class="flex items-start gap-2">
-                    <span class="text-xl text-gray-700">📄</span>
-                    <div>
-                      <p class="text-sm font-medium text-gray-800">
-                        {{ file.name }}
-                      </p>
-                      <p class="text-xs text-gray-500">{{ file.size }}</p>
-                    </div>
-                  </div>
-                  <button (click)="removeFile(file)">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="w-5 h-5 text-gray-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-                </div>
-
-             
-                <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
-                  <div
-                    class="bg-purple-500 h-2 rounded-full transition-all duration-300"
-                    [style.width.%]="file.progress"
-                  ></div>
-                </div>
-
-                <p class="text-right text-xs text-gray-500 mt-1">
-                  {{ file.progress }}%
-                  <ng-container *ngIf="file.status === 'success'"
-                    >✅</ng-container
-                  >
-                  <ng-container *ngIf="file.status === 'error'">
-                    ❌
-                    <button
-                      (click)="retryUpload(file)"
-                      class="text-blue-600 ml-2 underline text-xs"
-                    >
-                      Retry
-                    </button>
-                  </ng-container>
-                </p>
-              </div> -->
-
-              <!-- Success -->
-              <!-- <div  class="border rounded-lg p-4 shadow-sm border-gray-200 mt-2">
-                <div class="flex justify-between items-start">
-                  <div class="flex items-start gap-2">
-                    <span class="text-xl text-gray-700">📄</span>
-                    <div>
-                      <p class="text-sm font-medium text-gray-800">
-                      {{ uploadedFileName }}
-                      </p>
-                      <p class="text-xs text-gray-500">200 KB</p>
-                    </div>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="w-5 h-5 text-green-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    <button>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="w-5 h-5 text-gray-500"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
-                  <div class="bg-green-500 h-2 rounded-full w-full"></div>
-                </div>
-                <p class="text-right text-xs text-gray-500 mt-1">100%</p>
-              </div> -->
-
-              <!-- Error -->
-              <!-- <div
-                class="border rounded-lg p-4 shadow-sm border-red-500 bg-red-50 mt-2"
-              >
-                <div class="flex justify-between items-start">
-                  <div class="flex items-start gap-2">
-                    <span class="text-xl text-red-600">📄</span>
-                    <div>
-                      <p class="text-sm font-medium text-red-600">
-                        Upload failed, please try again
-                      </p>
-                      <p class="text-xs text-red-600">
-                       {{ uploadedFileName }}
-                      </p>
-                      <p
-                        class="text-sm font-medium text-red-600 mt-1 cursor-pointer"
-                      >
-                        Try again
-                      </p>
-                    </div>
-                  </div>
-                  <button>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="w-5 h-5 text-red-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div> -->
-
-              <!-- Click to View -->
-              <!-- <div class="border rounded-lg p-4 shadow-sm border-gray-200 mt-2">
-                <div class="flex justify-between items-start">
-                  <div class="flex items-start gap-2">
-                    <span class="text-xl text-gray-700">📄</span>
-                    <div>
-                      <p class="text-sm font-medium text-gray-800">
-                       {{ uploadedFileName }}
-                      </p>
-                      <p class="text-xs text-gray-500">200 KB</p>
-                      <a
-                        href="#"
-                        class="text-purple-600 text-sm hover:underline mt-1 block"
-                        >Click to view</a
-                      >
-                    </div>
-                  </div>
-                  <button>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="w-5 h-5 text-gray-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div> -->
-
-              <!--  -->
               <ng-container *ngIf="!formSubmitted">
                 <div
                   *ngFor="let file of uploadedFiles"
@@ -888,7 +556,7 @@
                   </p>
                 </div>
               </ng-container>
-              <!--  -->
+          
 
               <div
                 *ngIf="formSubmitted"

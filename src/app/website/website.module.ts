@@ -45,6 +45,7 @@ import { GameServiceComponent } from './game-service/game-service.component';
 import { GamingSliderComponent } from './components/gaming-slider/gaming-slider.component';
 import { CoverflowSliderComponent } from './components/coverflow-slider/coverflow-slider.component';
 import { JobDescriptionComponent } from './job-description/job-description.component';
+import { TestimonialBubbleComponent } from './components/testimonial-bubble/testimonial-bubble.component';
 
 
 @NgModule({
@@ -86,6 +87,7 @@ import { JobDescriptionComponent } from './job-description/job-description.compo
     GamingSliderComponent,
     CoverflowSliderComponent,
     JobDescriptionComponent,
+    TestimonialBubbleComponent,
   ],
   imports: [
     CommonModule,

@@ -87,7 +87,7 @@
                 [src]="imageUrl + img"
                 (error)="onImgError($event)"
                 alt="skill image"
-                class="mb-4"
+                class="mb-4 object-cover"
                 style="width: 60px; height: 55px; border-radius: 7.36px"
               />
             </div>
@@ -329,8 +329,8 @@
             >
               <input
                 type="text"
-                id="phone"
-                formControlName="phone"
+                id="contact"
+                formControlName="contact"
                 class="block w-full py-1.5 px-0 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 peer text-[#34394B]"
                 placeholder=" "
               />
@@ -363,13 +363,13 @@
             <div
               class="text-red-500 text-xs mt-1"
               *ngIf="
-                jobForm.get('phone')?.touched && jobForm.get('phone')?.errors
+                jobForm.get('contact')?.touched && jobForm.get('contact')?.errors
               "
             >
-              <div *ngIf="jobForm.get('phone')?.errors?.['required']">
+              <div *ngIf="jobForm.get('contact')?.errors?.['required']">
                 Phone is required.
               </div>
-              <div *ngIf="jobForm.get('phone')?.errors?.['pattern']">
+              <div *ngIf="jobForm.get('contact')?.errors?.['pattern']">
                 Please enter a valid phone number (digits only).
               </div>
             </div>

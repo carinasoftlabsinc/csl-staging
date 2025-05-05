@@ -77,7 +77,7 @@ export class TestimonialBubbleComponent {
       name: 'Aayush Shukla',
       imgSrc: '../../assets/images/aayush.png',
       feedback:
-        'Great company to work with. I worked on multiple game development projects over here. Also, learnt technical aspects of Unity and Unreal game engine.',
+        'Great company to work with. I worked on multiple game development projects over here. Also, learnt technical aspects of Unity & Unreal.',
       feedbackClass: 'quote-text-3 hide-top',
       customClass: 'dp-name-3 hide-dp-top',
     },
@@ -93,7 +93,7 @@ export class TestimonialBubbleComponent {
       name: 'Rajesh Sahu',
       imgSrc: '../../assets/images/Rajesh.png',
       feedback:
-        "This place is awesome for fresher candidates, the team leader always supports you in every situation. The administration is also good they always try to make you feel comfortable.",
+        "This place is awesome for fresher candidates, the team leader always supports you in every situation.",
       feedbackClass: 'quote-text-5 hide-top',
       customClass: 'dp-name-5 hide-dp-top',
     },
@@ -106,7 +106,7 @@ export class TestimonialBubbleComponent {
       customClass: 'dp-name-6 hide-dp-top',
     },
     {
-      name: 'Pukhraj Maheswari',
+      name: 'Pukhraj Maheshwari',
       imgSrc: '../../assets/images/pukhraj.png',
       feedback:
         'Open culture, team spirit, and appreciation for detail-oriented design make Carina Softlabs a perfect place for designers to thrive',

@@ -91,16 +91,13 @@ export class JobDescriptionComponent {
     this.jobForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      // phone: ['', Validators.required],
-      phone: [
+      contact: [
         '',
         [
           Validators.required,
-          Validators.pattern('^[0-9]+$'), // This ensures only digits are allowed
+          Validators.pattern('^[0-9]+$'), 
         ],
       ],
-      // resume: [null, Validators.required],
-      // resume: [null],
       resume: [null, [Validators.required]],
     });
   }
@@ -641,7 +638,7 @@ export class JobDescriptionComponent {
     const formData = new FormData();
     formData.append('name', this.jobForm.get('name')?.value || '');
     formData.append('email', this.jobForm.get('email')?.value || '');
-    formData.append('phone', this.jobForm.get('phone')?.value || '');
+    formData.append('contact', this.jobForm.get('contact')?.value || '');
     formData.append('resume', this.selectedFile);
 
     if (this.jobId) {

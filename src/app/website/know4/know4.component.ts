@@ -302,29 +302,31 @@ export class Know4Component {
   cards: JobPost[] = [];
   apiUrl = `${environment.apiUrl}/admin/getAllCareerJobPost`;
   imageUrl = `${environment.imageBaseUrl}`;
-
+  filteredCards: JobPost[] = [];
   roles = [
-    { id: 1, position: 'Developer' },
-    { id: 2, position: 'Designer' },
-    { id: 3, position: 'Marketing' },
-    { id: 4, position: 'Manager' },
+    { id: 1, position: 'Game Development' },
+    { id: 2, position: 'Digital Marketing' },
+    { id: 3, position: 'Web/App Development' },
+    { id: 4, position: 'Business Development' },
   ];
 
   employments = [
-    { id: 1, type: 'Full-Time' },
-    { id: 2, type: 'Part-Time' },
-    { id: 3, type: 'Remote' },
-    // { id: 4, type: 'Freelance' },
+    { id: 1, type: 'Full-time' },
+    { id: 2, type: 'Part-time' },
+    { id: 3, type: 'Contract' },
+    { id: 4, type: 'Internship' },
   ];
-
-  selectedRoleCategory: string = 'Developer'; // Default filter category
-  selectedEmploymentType: string = 'Full-Time';
+  searchTerm: string = '';
+  selectedRoleCategory: string = 'Game Development'; // Default filter category
+  selectedEmploymentType: string = 'Full-time';
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.fetchJobPosts();
     this.activeImage = this.items[0].image;
+    this.filteredCards = this.getFilteredCards();
+
   }
 
   fetchJobPosts(): void {
@@ -347,6 +349,8 @@ export class Know4Component {
           isFeatured: item.isFeatured,
           active: item.active,
         }));
+
+        this.filteredCards = this.getFilteredCards();
       },
       error: (error) => {
         console.error('Error fetching job posts data:', error);
@@ -356,35 +360,58 @@ export class Know4Component {
 
   selectRoleCategory(category: string): void {
     this.selectedRoleCategory = category;
+    this.filteredCards = this.getFilteredCards(); 
   }
 
   selectEmploymentType(type: string): void {
     this.selectedEmploymentType = type;
+    this.filteredCards = this.getFilteredCards();
   }
 
-  // getFilteredCards() {
-  //   return this.cards.filter(
-  //     (card) => card.roleCategory === this.selectedRoleCategory
-  //   );
-  // }
 
   // getFilteredCards() {
   //   return this.cards.filter(
   //     (card) =>
-  //       card.roleCategory === this.selectedRoleCategory &&
-  //       card.employmentType === this.selectedEmploymentType
+  //       card.roleCategory.toLowerCase() ===
+  //         this.selectedRoleCategory.toLowerCase() &&
+  //       card.employmentType.toLowerCase().replace('-', '') ===
+  //         this.selectedEmploymentType.toLowerCase().replace('-', '')
   //   );
   // }
 
   getFilteredCards() {
-    return this.cards.filter(
-      (card) =>
-        card.roleCategory.toLowerCase() ===
-          this.selectedRoleCategory.toLowerCase() &&
-        card.employmentType.toLowerCase().replace('-', '') ===
-          this.selectedEmploymentType.toLowerCase().replace('-', '')
-    );
+    return this.cards.filter((card) => {
+      const matchesTitle = !this.searchTerm || card.title.toLowerCase().includes(this.searchTerm.toLowerCase());
+      const matchesRole = !this.selectedRoleCategory || card.roleCategory.toLowerCase() === this.selectedRoleCategory.toLowerCase();
+      const matchesEmployment = !this.selectedEmploymentType || 
+        card.employmentType.toLowerCase().replace('-', '') === this.selectedEmploymentType.toLowerCase().replace('-', '');
+  
+      return matchesTitle && matchesRole && matchesEmployment;
+    });
   }
+  
+  // filterJobs() {
+  //   this.cards = this.getFilteredCards();
+  // }
+  
+  filterJobs() {
+    const search = this.searchTerm.toLowerCase();
+  
+    // Try to find a matching card based on the search
+    const matchingCard = this.cards.find(card =>
+      card.title.toLowerCase().includes(search)
+    );
+  
+    // If found, update selectedRoleCategory
+    if (matchingCard) {
+      this.selectedRoleCategory = matchingCard.roleCategory;
+      this.selectedEmploymentType = matchingCard.employmentType;
+    }
+  
+    // Then filter the cards
+    this.filteredCards = this.getFilteredCards();
+  }
+  
 
   isActiveCategory(category: string): boolean {
     return this.selectedRoleCategory === category;

@@ -91,6 +91,7 @@ import { DigitalServiceComponent } from './digital-service/digital-service.compo
 import { WebServiceComponent } from './web-service/web-service.component';
 import { GameServiceComponent } from './game-service/game-service.component';
 import { JobDescriptionComponent } from './job-description/job-description.component';
+import { CaseStudiesComponent } from './case-studies/case-studies.component';
 
 const routes: Routes = [
   {
@@ -174,6 +175,10 @@ const routes: Routes = [
   {
     path: 'job-description/:id',
     component: JobDescriptionComponent,
+  },
+  {
+    path: 'case-studies',
+    component: CaseStudiesComponent ,
   },
   // Wildcard route for handling 404 pages
   {

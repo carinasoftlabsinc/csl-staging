@@ -46,6 +46,7 @@ import { GamingSliderComponent } from './components/gaming-slider/gaming-slider.
 import { CoverflowSliderComponent } from './components/coverflow-slider/coverflow-slider.component';
 import { JobDescriptionComponent } from './job-description/job-description.component';
 import { TestimonialBubbleComponent } from './components/testimonial-bubble/testimonial-bubble.component';
+import { CaseStudiesComponent } from './case-studies/case-studies.component';
 
 
 @NgModule({
@@ -88,6 +89,7 @@ import { TestimonialBubbleComponent } from './components/testimonial-bubble/test
     CoverflowSliderComponent,
     JobDescriptionComponent,
     TestimonialBubbleComponent,
+    CaseStudiesComponent,
   ],
   imports: [
     CommonModule,

@@ -128,6 +128,8 @@
     </div>
   </section> -->
 
+  
+
   <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24">
     <div>
       <h2
@@ -138,89 +140,126 @@
     </div>
 
     <div class="grid md:grid-cols-5 gap-4">
-      <!-- Feature 1 (Main Blog) -->
-      <div class="col-span-3" *ngIf="featured">
-        <div
-          class="mt-3 h-full card-hover group cursor-pointer"
-          [routerLink]="['/blog', formatHeading(featured.titleLink)]"
-        >
-          <a class="block overflow-hidden rounded-[30px]">
-            <img
-              class="rounded-[30px] object-cover w-full transition-transform transform group-hover:scale-105 duration-500 ease-in-out lg:h-[65vh] xl:h-[65vh] 2xl:h-[60vh]"
-              [src]="imageUrl + '/' + featured.image_2 || 'default-image.jpg'"
-              [alt]="featured.title"
-            />
-          </a>
-          <div>
-            <h5
-              class="text-xl font-myfont text-[#B4B9CB] mb-2 mt-6 transition-opacity duration-500 ease-in-out group-hover:opacity-0"
-            >
-              Featured Article
-            </h5>
-            <p
-              class="text-white font-quickSand text-[24px] leading-[30px] mb-4 transition-transform transform group-hover:-translate-y-4 duration-500 ease-in-out"
-            >
-              {{ featured.title }}
-            </p>
-            <button
-              type="button"
-              [routerLink]="['/blog', formatHeading(featured.titleLink)]"
-              class="text-white font-quickSand font-medium transition-all duration-500 ease-in-out opacity-0 transform group-hover:!opacity-100 group-hover:-translate-y-4 flex items-center gap-2"
-            >
-              Read More
+      <!-- Large Featured -->
+      <div class="col-span-3">
+        <ng-container *ngIf="!loadingFeatured; else loadingFeatured">
+          <div
+            *ngIf="featured"
+            class="mt-3 h-full card-hover group cursor-pointer"
+            [routerLink]="['/blog', formatHeading(featured.titleLink)]"
+          >
+            <a class="block overflow-hidden rounded-[30px]">
               <img
-                src="../../../assets/images/arrow-right-gradient.svg"
-                alt=""
-                width="25"
+                class="rounded-[30px] object-cover w-full transition-transform transform group-hover:scale-105 duration-500 ease-in-out lg:h-[65vh] xl:h-[65vh] 2xl:h-[60vh]"
+                [src]="imageUrl + '/' + featured.image_2 || 'default-image.jpg'"
+                [alt]="featured.title"
               />
-            </button>
+            </a>
+            <div>
+              <h5
+                class="text-xl font-myfont text-[#B4B9CB] mb-2 mt-6 transition-opacity duration-500 ease-in-out group-hover:opacity-0"
+              >
+                Featured Article
+              </h5>
+              <p
+                class="text-white font-quickSand text-[24px] leading-[30px] mb-4 transition-transform transform group-hover:-translate-y-4 duration-500 ease-in-out"
+              >
+                {{ featured.title }}
+              </p>
+              <button
+                type="button"
+                [routerLink]="['/blog', formatHeading(featured.titleLink)]"
+                class="text-white font-quickSand font-medium transition-all duration-500 ease-in-out opacity-0 transform group-hover:!opacity-100 group-hover:-translate-y-4 flex items-center gap-2"
+              >
+                Read More
+                <img
+                  src="../../../assets/images/arrow-right-gradient.svg"
+                  alt=""
+                  width="25"
+                />
+              </button>
+            </div>
           </div>
-        </div>
+        </ng-container>
+        <ng-template #loadingFeatured>
+          <div
+            class="animate-pulse bg-[#1e1e2d] rounded-[30px] h-[60vh] w-full"
+          ></div>
+        </ng-template>
       </div>
 
-      <!-- Feature 2 and 3 (Small Blogs) -->
+      <!-- Small Featured -->
       <div class="col-span-3 sm:col-span-2 grid grid-rows-2 gap-4">
-        <div
-          *ngFor="let card of featured2"
-          class="row-span-1 card-hover group cursor-pointer"
-          [routerLink]="['/blog', formatHeading(card.titleLink)]"
-        >
-          <div class="mt-3 h-full flex flex-col items-center justify-center">
-            <div class="h-full w-full">
-              <a class="block overflow-hidden rounded-[30px]">
-                <img
-                  class="w-full transition-transform transform group-hover:scale-105 duration-500 ease-in-out h-36 md:h-28 lg:h-32 xl:h-44 2xl:h-60 object-cover"
-                  [src]="imageUrl + '/' + card.image_2 || 'default-image.jpg'"
-                  [alt]="card.title"
-                />
-              </a>
-              <div>
-                <h5
-                  class="text-xl font-myfont text-[#B4B9CB] mb-2 mt-4 transition-opacity duration-500 ease-in-out group-hover:opacity-0"
-                >
-                  Featured Article
-                </h5>
-                <p
-                  class="text-white font-quickSand text-[16px] mb-2 leading-[20px] transition-transform transform group-hover:-translate-y-4 duration-500 ease-in-out"
-                >
-                  {{ card.title }}
-                </p>
-                <button
-                  type="button"
-                  [routerLink]="['/blog', formatHeading(card.titleLink)]"
-                  class="text-white font-quickSand font-medium transition-all duration-500 ease-in-out opacity-0 transform group-hover:!opacity-100 group-hover:-translate-y-4 flex items-center gap-2"
-                >
-                  Read More
+        <ng-container *ngIf="!loadingFeatured; else loadingSmallFeatured">
+          <div
+            *ngFor="let card of featured2"
+            class="row-span-1 card-hover group cursor-pointer"
+            [routerLink]="['/blog', formatHeading(card.titleLink)]"
+          >
+            <!-- Your small featured card -->
+            <div class="mt-3 h-full flex flex-col items-center justify-center">
+              <div class="h-full w-full">
+                <a class="block overflow-hidden rounded-[30px]">
                   <img
-                    src="../../../assets/images/arrow-right-gradient.svg"
-                    alt=""
-                    width="25"
+                    class="w-full transition-transform transform group-hover:scale-105 duration-500 ease-in-out h-36 md:h-28 lg:h-32 xl:h-44 2xl:h-60 object-cover"
+                    [src]="imageUrl + '/' + card.image_2 || 'default-image.jpg'"
+                    [alt]="card.title"
                   />
-                </button>
+                </a>
+                <div>
+                  <h5
+                    class="text-xl font-myfont text-[#B4B9CB] mb-2 mt-4 transition-opacity duration-500 ease-in-out group-hover:opacity-0"
+                  >
+                    Featured Article
+                  </h5>
+                  <p
+                    class="text-white font-quickSand text-[16px] mb-2 leading-[20px] transition-transform transform group-hover:-translate-y-4 duration-500 ease-in-out"
+                  >
+                    {{ card.title }}
+                  </p>
+                  <button
+                    type="button"
+                    [routerLink]="['/blog', formatHeading(card.titleLink)]"
+                    class="text-white font-quickSand font-medium transition-all duration-500 ease-in-out opacity-0 transform group-hover:!opacity-100 group-hover:-translate-y-4 flex items-center gap-2"
+                  >
+                    Read More
+                    <img
+                      src="../../../assets/images/arrow-right-gradient.svg"
+                      alt=""
+                      width="25"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </ng-container>
+        <ng-template #loadingSmallFeatured>
+          <div>
+            <div
+              class="animate-pulse bg-[#1e1e2d] rounded-[30px] p-4 w-full mb-4 h-36 md:h-28 lg:h-32 xl:h-44 2xl:h-60"
+            ></div>
+            <div
+              class="animate-pulse h-5 bg-[#2c2c3a] rounded w-3/4 mb-2"
+            ></div>
+
+            <div
+              class="animate-pulse h-4 bg-[#2c2c3a] rounded w-full mb-1"
+            ></div>
+          </div>
+          <div>
+            <div
+              class="animate-pulse bg-[#1e1e2d] rounded-[30px] p-4 w-full mb-4 h-36 md:h-28 lg:h-32 xl:h-44 2xl:h-60"
+            ></div>
+            <div
+              class="animate-pulse h-5 bg-[#2c2c3a] rounded w-3/4 mb-2"
+            ></div>
+
+            <div
+              class="animate-pulse h-4 bg-[#2c2c3a] rounded w-full mb-1"
+            ></div>
+          </div>
+        </ng-template>
       </div>
     </div>
   </section>
@@ -362,14 +401,15 @@
 
     <div class="py-7">
       <h3
-          *ngIf="gameBlogs.length > 0"
+        *ngIf="gameBlogs.length > 0"
         class="xl:text-4xl lg:text-3xl text-3xl font-myfont bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text"
       >
         Game Development
       </h3>
     </div>
 
-    <div
+    <div 
+    *ngIf="!loadingGame; else gameSkeleton"
       class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28"
     >
       <div
@@ -413,18 +453,23 @@
         </div>
       </div>
     </div>
+    <ng-template #gameSkeleton>
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28">
+        <ng-container *ngTemplateOutlet="cardSkeleton"></ng-container>
+      </div>
+    </ng-template>
 
     <!-- OUR BLOGS DESIGN CARDS SECTION -->
     <div class="py-7">
       <h3
-         *ngIf="web.length > 0"
+        *ngIf="web.length > 0"
         class="xl:text-4xl lg:text-3xl text-3xl font-myfont bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text"
       >
         WEB DEVELOPMENT
       </h3>
     </div>
 
-    <div
+    <div  *ngIf="!loadingWeb; else webSkeleton"
       class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28"
     >
       <div
@@ -440,7 +485,6 @@
               <img
                 class="p-4 rounded-[60px] h-64 2xl:h-80 w-full object-cover"
                 [src]="imageUrl + '/' + card.image_2 || 'default-image.jpg'"
-
                 alt="product image"
               />
             </a>
@@ -469,19 +513,23 @@
         </div>
       </div>
     </div>
-
+    <ng-template #webSkeleton>
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28">
+        <ng-container *ngTemplateOutlet="cardSkeleton"></ng-container>
+      </div>
+    </ng-template>
     <!-- OUR BLOGS DIGITAL MARKETING CARDS -->
 
     <div class="py-7">
       <h3
-      *ngIf="digitalM.length > 0"
+        *ngIf="digitalM.length > 0"
         class="xl:text-4xl lg:text-3xl text-3xl font-myfont bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text"
       >
         DIGITAL MARKETING
       </h3>
     </div>
 
-    <div
+    <div *ngIf="!loadingDigital; else digitalSkeleton"
       class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28"
     >
       <div
@@ -525,19 +573,23 @@
         </div>
       </div>
     </div>
+    <ng-template #digitalSkeleton>
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28">
+        <ng-container *ngTemplateOutlet="cardSkeleton"></ng-container>
+      </div>
+    </ng-template>
+    <!-- OUR BLOGS APP DEVELOPMENT CARDS -->
 
-     <!-- OUR BLOGS APP DEVELOPMENT CARDS -->
-
-<div class="py-7">
+    <div class="py-7">
       <h3
         class="xl:text-4xl lg:text-3xl text-3xl font-myfont bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text"
-       *ngIf="App.length > 0"
+        *ngIf="App.length > 0"
       >
         App DEVELOPMENT
       </h3>
     </div>
 
-    <div
+    <div *ngIf="!loadingApp; else appSkeleton"
       class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28"
     >
       <div
@@ -581,8 +633,11 @@
         </div>
       </div>
     </div>
-
-
+    <ng-template #appSkeleton>
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28">
+        <ng-container *ngTemplateOutlet="cardSkeleton"></ng-container>
+      </div>
+    </ng-template>
   </section>
 
   <app-footer
@@ -593,3 +648,117 @@
   >
   </app-footer>
 </main>
+
+<ng-template #cardSkeleton>
+  <div
+    *ngFor="let i of [1, 2, 3]"
+    class="animate-pulse bg-[#1e1e2d] rounded-[40px] p-4 h-[410px] w-full max-w-xl"
+  >
+    <div class="h-52 bg-[#2c2c3a] rounded-[30px] mb-4"></div> <!-- Image -->
+    <div class="h-5 bg-[#2c2c3a] rounded w-3/4 mb-2 mx-auto"></div> <!-- Title -->
+    <div class="h-4 bg-[#2c2c3a] rounded w-full mb-1 mx-auto"></div> <!-- Desc line 1 -->
+    <div class="h-4 bg-[#2c2c3a] rounded w-5/6 mx-auto"></div> <!-- Desc line 2 -->
+  </div>
+</ng-template>
+
+
+
+
+
+
+
+<!-- 
+<section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24">
+  <div>
+    <h2
+      class="text-white text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#34394b]"
+    >
+      FEATURED ARTICLES
+    </h2>
+  </div>
+
+  <div class="grid md:grid-cols-5 gap-4">
+    <div class="col-span-3" *ngIf="featured">
+      <div
+        class="mt-3 h-full card-hover group cursor-pointer"
+        [routerLink]="['/blog', formatHeading(featured.titleLink)]"
+      >
+        <a class="block overflow-hidden rounded-[30px]">
+          <img
+            class="rounded-[30px] object-cover w-full transition-transform transform group-hover:scale-105 duration-500 ease-in-out lg:h-[65vh] xl:h-[65vh] 2xl:h-[60vh]"
+            [src]="imageUrl + '/' + featured.image_2 || 'default-image.jpg'"
+            [alt]="featured.title"
+          />
+        </a>
+        <div>
+          <h5
+            class="text-xl font-myfont text-[#B4B9CB] mb-2 mt-6 transition-opacity duration-500 ease-in-out group-hover:opacity-0"
+          >
+            Featured Article
+          </h5>
+          <p
+            class="text-white font-quickSand text-[24px] leading-[30px] mb-4 transition-transform transform group-hover:-translate-y-4 duration-500 ease-in-out"
+          >
+            {{ featured.title }}
+          </p>
+          <button
+            type="button"
+            [routerLink]="['/blog', formatHeading(featured.titleLink)]"
+            class="text-white font-quickSand font-medium transition-all duration-500 ease-in-out opacity-0 transform group-hover:!opacity-100 group-hover:-translate-y-4 flex items-center gap-2"
+          >
+            Read More
+            <img
+              src="../../../assets/images/arrow-right-gradient.svg"
+              alt=""
+              width="25"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-3 sm:col-span-2 grid grid-rows-2 gap-4">
+      <div
+        *ngFor="let card of featured2"
+        class="row-span-1 card-hover group cursor-pointer"
+        [routerLink]="['/blog', formatHeading(card.titleLink)]"
+      >
+        <div class="mt-3 h-full flex flex-col items-center justify-center">
+          <div class="h-full w-full">
+            <a class="block overflow-hidden rounded-[30px]">
+              <img
+                class="w-full transition-transform transform group-hover:scale-105 duration-500 ease-in-out h-36 md:h-28 lg:h-32 xl:h-44 2xl:h-60 object-cover"
+                [src]="imageUrl + '/' + card.image_2 || 'default-image.jpg'"
+                [alt]="card.title"
+              />
+            </a>
+            <div>
+              <h5
+                class="text-xl font-myfont text-[#B4B9CB] mb-2 mt-4 transition-opacity duration-500 ease-in-out group-hover:opacity-0"
+              >
+                Featured Article
+              </h5>
+              <p
+                class="text-white font-quickSand text-[16px] mb-2 leading-[20px] transition-transform transform group-hover:-translate-y-4 duration-500 ease-in-out"
+              >
+                {{ card.title }}
+              </p>
+              <button
+                type="button"
+                [routerLink]="['/blog', formatHeading(card.titleLink)]"
+                class="text-white font-quickSand font-medium transition-all duration-500 ease-in-out opacity-0 transform group-hover:!opacity-100 group-hover:-translate-y-4 flex items-center gap-2"
+              >
+                Read More
+                <img
+                  src="../../../assets/images/arrow-right-gradient.svg"
+                  alt=""
+                  width="25"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->

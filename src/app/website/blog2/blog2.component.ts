@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'environments/environment';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-blog2',
   templateUrl: './blog2.component.html',
@@ -22,9 +23,16 @@ export class Blog2Component implements OnInit {
   imageUrl = environment.imageBaseUrl;
   allBlogs: any[] = [];
   filteredBlogs: any[] = [];
+  loadingBlog = true;
+  loadingMoreBlogs = true;
+  sanitizedSections: { _id: string, heading: string, sanitizedContent: SafeHtml }[] = [];
 
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -38,8 +46,11 @@ export class Blog2Component implements OnInit {
   }
 
   fetchAllBlogs() {
+    this.loadingMoreBlogs = true;
+
     this.http.get(this.apiUrl).subscribe(
       (response: any) => {
+        this.loadingMoreBlogs = false;
         if (response && response.data && response.data.data) {
           this.allBlogs = response.data.data; // Store all fetched blogs
   
@@ -55,14 +66,18 @@ export class Blog2Component implements OnInit {
       },
       (error) => {
         console.error('Error fetching blogs:', error);
+        this.loadingMoreBlogs = false;
+
       }
     );
   }
   
 
   getFilterData(_id: string) {
+    this.loadingBlog = true;
     this.http.get(this.apiUrl).subscribe(
       (data: any) => {
+        this.loadingBlog = false;
         if (data && data.data && data.data.data) {
           // Find the blog where `titleLink` matches the `_id`
           this.cardData = data.data.data.find(
@@ -70,8 +85,16 @@ export class Blog2Component implements OnInit {
           );
 
           if (this.cardData) {
-            this.sections = this.cardData.sections || [];
-
+            // this.sections = this.cardData.sections || [];
+            const rawSections = this.cardData.sections || [];
+            this.sections = rawSections;
+            
+            this.sanitizedSections = rawSections.map((section: any) => ({
+              _id: section._id,
+              heading: section.heading,
+              sanitizedContent: this.sanitizeContent(section.content || '')
+            }));
+            
             // Apply styles after setting `cardData`
             setTimeout(() => this.applyStyles(), 0);
 
@@ -94,6 +117,7 @@ export class Blog2Component implements OnInit {
       },
       (error) => {
         console.error('Error while retrieving blog data:', error);
+        this.loadingBlog = false;
         this.resetData();
       }
     );
@@ -167,5 +191,33 @@ export class Blog2Component implements OnInit {
     }
   }
 
+
+  sanitizeContent(rawHtml: string): SafeHtml {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = rawHtml;
+  
+    // List of unwanted tags to remove entirely
+    const unwantedTags = ['font', 'span'];
+  
+    unwantedTags.forEach(tag => {
+      const elements = tempDiv.getElementsByTagName(tag);
+      while (elements.length > 0) {
+        const element = elements[0];
+        const parent = element.parentNode;
+        // Replace the tag with its inner content
+        while (element.firstChild) {
+          parent?.insertBefore(element.firstChild, element);
+        }
+        parent?.removeChild(element);
+      }
+    });
+  
+    // Remove inline styles from remaining elements
+    tempDiv.querySelectorAll('[style]').forEach(el => el.removeAttribute('style'));
+  
+    return this.sanitizer.bypassSecurityTrustHtml(tempDiv.innerHTML);
+  }
+  
+  
   
 }

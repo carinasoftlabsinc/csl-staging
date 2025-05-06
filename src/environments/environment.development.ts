@@ -11,6 +11,9 @@ export const environment = {
   // apiUrl: 'https://admin.carinasoftlabs.com/csl/csl/v1/', before
   // apiUrl: 'http://localhost:8084/csl/v1/',
 
+    // apiUrl: 'http://localhost:8086/web/v1',
+    // imageBaseUrl: 'http://localhost:8086/web/file',
+
   imageBaseUrl: 'https://admin.carinasoftlabs.com/web/web/file',
   apiUrl: 'https://admin.carinasoftlabs.com/web/web/v1',
 };

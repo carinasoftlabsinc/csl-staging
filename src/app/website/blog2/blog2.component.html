@@ -3,6 +3,198 @@
 
   <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24 relative">
     <div class="grid grid-cols-3 gap-24">
+      <!-- SIDEBAR -->
+      <div class="hidden lg:block relative">
+        <div
+          #stickySidebar
+          class="sticky bg-[#34394b53] rounded-3xl font-quickSand p-3 text-[#B4B9CB]"
+        >
+          <h2 class="text-white text-xl border-b border-[#34394B] pb-2 mb-3">
+            CONTENT
+          </h2>
+          <ng-container *ngIf="!loadingBlog; else sidebarSkeleton">
+            <ul>
+              <li class="my-2" *ngFor="let section of sections">
+                <a
+                  class="font-medium text-white"
+                  [class.active]="activeSection === section._id"
+                  href="#"
+                  (click)="scrollToSection($event, section._id)"
+                >
+                  {{ section.heading }}
+                </a>
+              </li>
+            </ul>
+          </ng-container>
+          <ng-template #sidebarSkeleton>
+            <div class="space-y-3 animate-pulse">
+              <div
+                *ngFor="let i of [1, 2, 3, 4]"
+                class="h-4 bg-gray-600 rounded w-3/4"
+              ></div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <div
+        class="col-span-3 lg:col-span-2 flex flex-col gap-7 2xl:gap-9 text-white font-quickSand"
+      >
+        <ng-container *ngIf="!loadingBlog; else contentSkeleton">
+          <img
+            class="w-full rounded-3xl h-72 object-cover img-fluid"
+            [src]="imageUrl + '/' + cardData?.image"
+            alt=""
+          />
+          <h1 class="font-myfont text-xl md:text-3xl">
+            {{ cardData?.title }}
+          </h1>
+          <div
+            class="flex font-quickSand font-semibold gap-3 items-center border-b pb-6 border-[#34394B]"
+          >
+            <img
+              class="h-12 w-12 object-cover rounded-full"
+              src="../../../assets/images/author-image.png"
+              [alt]="cardData?.title"
+            />
+            <div>
+              <h4 class="capitalize">
+                <span class="text-[#8AE0FB]">By </span>{{ cardData?.author }}
+              </h4>
+              <span class="capitalize"
+                ><span class="text-[#8AE0FB]">Posted on </span
+                >{{ cardData?.date }}</span
+              >
+            </div>
+          </div>
+
+          <!-- Blog Sections -->
+          <!-- <div
+            *ngFor="let section of sections"
+            [id]="section._id"
+            class="flex flex-col !gap-3 !text-white"
+          >
+            <h2 class="text-2xl font-semibold">{{ section?.heading }}</h2>
+            <p [innerHTML]="sanitizeContent(section?.content)"></p>
+          </div> -->
+          <div
+            *ngFor="let section of sanitizedSections"
+            [id]="section._id"
+            class="flex flex-col !gap-3 !text-white"
+          >
+            <h2 class="text-2xl font-semibold">{{ section.heading }}</h2>
+            <p [innerHTML]="section.sanitizedContent"></p>
+          </div>
+        </ng-container>
+
+        <ng-template #contentSkeleton>
+          <div class="space-y-6 animate-pulse">
+            <div class="w-full h-72 bg-gray-700 rounded-3xl"></div>
+            <div class="h-8 bg-gray-600 rounded w-1/2"></div>
+            <div class="flex gap-3 items-center">
+              <div class="h-12 w-12 rounded-full bg-gray-600"></div>
+              <div class="flex flex-col gap-2">
+                <div class="h-4 bg-gray-600 rounded w-32"></div>
+                <div class="h-4 bg-gray-600 rounded w-40"></div>
+              </div>
+            </div>
+
+            <div *ngFor="let i of [1, 2, 3]" class="space-y-3">
+              <div class="h-6 bg-gray-600 rounded w-1/3"></div>
+              <div class="h-4 bg-gray-600 rounded w-full"></div>
+              <div class="h-4 bg-gray-600 rounded w-5/6"></div>
+              <div class="h-4 bg-gray-600 rounded w-2/3"></div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </section>
+
+  <!-- MORE BLOGS SECTION -->
+  <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24">
+    <div
+      class="flex justify-between items-center content-center my-10 pb-2 border-b border-[#34394b]"
+    >
+      <p
+        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+      >
+        MORE BLOGS
+      </p>
+    </div>
+
+    <ng-container *ngIf="!loadingBlog; else moreBlogSkeleton">
+      <div
+        class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28 my-12"
+      >
+        <div
+          *ngFor="let card of filteredBlogs | slice : 0 : 3"
+          class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer"
+          [routerLink]="['/blog', formatHeading(card?.titleLink)]"
+        >
+          <div
+            class="card-hover bg-[#000000] rounded-[40px] h-full w-full flex flex-col justify-between"
+          >
+            <div>
+              <a>
+                <img
+                  class="p-4 rounded-[60px] h-64 2xl:h-80 w-full object-cover"
+                  [src]="imageUrl + '/' + card.image_2"
+                  alt="product image"
+                />
+              </a>
+              <div class="px-4">
+                <h5
+                  class="2xl:leading-7 2xl:text-2xl xl:text-xl xl:leading-6 text-lg leading-5 font-myfont font-medium text-center text-white dark:text-white !mb-2 2xl:!mb-4"
+                >
+                  {{ card?.title }}
+                </h5>
+                <p
+                  class="text-[#B4B9CB] text-center font-quickSand text-[13px] leading-[15px] xl:text-base xl:leading-5 md:text-[13px] md:leading-[15px] sm:text-[20px] sm:leading-[20px]"
+                >
+                  {{ card?.description }}
+                </p>
+              </div>
+            </div>
+            <div class="flex justify-end mr-4 mb-4 mt-3">
+              <button type="button">
+                <img
+                  class="w-8 lg:w-8 xl:w-10"
+                  src="../../../assets/images/gd-arrow-btn.svg"
+                  alt=""
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #moreBlogSkeleton>
+      <div
+        class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28 my-12 mb-24 animate-pulse"
+      >
+        <div
+          *ngFor="let i of [1, 2, 3]"
+          class="bg-[#1f1f1f] p-4 rounded-[40px]"
+        >
+          <div class="h-64 2xl:h-80 bg-gray-700 rounded-[30px] mb-4"></div>
+          <div class="h-6 bg-gray-600 rounded mb-2 w-3/4 mx-auto"></div>
+          <div class="h-4 bg-gray-600 rounded w-5/6 mx-auto"></div>
+        </div>
+      </div>
+    </ng-template>
+  </section>
+
+  <app-footer></app-footer>
+</main>
+
+<!-- <main class="bg-[#000000]">
+  <app-header></app-header>
+
+  <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24 relative">
+    <div class="grid grid-cols-3 gap-24">
       <div class="hidden lg:block relative">
         <div
           #stickySidebar
@@ -52,9 +244,7 @@
             >
           </div>
         </div>
-        <!-- <div class="font-quickSand flex flex-col gap-3">
-          <p [innerHTML]="cardData.description"></p>
-        </div> -->
+     
 
         <div
           *ngFor="let section of sections"
@@ -65,23 +255,7 @@
           <p [innerHTML]="section?.content"></p>
         </div>
 
-        <!-- <div
-          *ngFor="let section of sections"
-          [id]="section.id"
-          class="font-quickSand flex flex-col gap-3"
-        >
-          <h2 class="text-2xl font-semibold">{{ section.heading }}</h2>
-          <p [innerHTML]="section.content"></p>
-
-          <div
-            *ngFor="let subSection of section.subSections"
-            [id]="subSection.id"
-            class="font-quickSand flex flex-col gap-3 mt-4"
-          >
-            <h3 class="text-xl font-semibold">{{ subSection.subHeading }}</h3>
-            <p [innerHTML]="subSection.content"></p>
-          </div>
-        </div> -->
+       
       </div>
     </div>
   </section>
@@ -144,4 +318,4 @@
   </section>
 
   <app-footer></app-footer>
-</main>
+</main> -->

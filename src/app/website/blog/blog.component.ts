@@ -15,7 +15,12 @@ export class BlogComponent {
   digitalM : any[] = [];
   App : any[] = [];
   web : any[] = [];
-
+  loadingGame = true;
+  loadingWeb = true;
+  loadingDigital = true;
+  loadingApp = true;
+  loadingFeatured = true;
+  
   constructor(
     private router: Router,
     private titleService: Title,
@@ -37,56 +42,139 @@ export class BlogComponent {
     this.fetchFeaturedBlogs();
   }
 
+  // fetchFeaturedBlogs() {
+  //   this.http
+  //     .get<any>(`${environment.apiUrl}/admin/getAll_blog`)
+  //     .subscribe((response) => {
+  //       if (response.status === 'success' && response.data?.data) {
+  //         const blogs = response.data.data;
+
+  //         const gameBlogs = blogs
+  //         .filter((blog: { category: string }) => blog.category === 'game');
+  //         this.gameBlogs = gameBlogs;
+
+  //         const digitalM = blogs
+  //         .filter((blog: { category: string }) => blog.category === 'digital-marketing');
+  //         this.digitalM = digitalM;
+
+  //         const App = blogs
+  //         .filter((blog: { category: string }) => blog.category === 'app');
+  //         this.App = App;
+
+  //         const web = blogs
+  //         .filter((blog: { category: string }) => blog.category === 'web');
+  //         this.web = web;
+
+
+  //         // Filter, sort, and get latest 3 featured blogs
+  //         const latestFeaturedBlogs = blogs
+  //           .filter((blog: { isFeature: any }) => blog.isFeature) // Keep only featured blogs
+  //           .sort(
+  //             (
+  //               a: { createdAt: string | number | Date },
+  //               b: { createdAt: string | number | Date }
+  //             ) =>
+  //               new Date(b.createdAt).getTime() -
+  //               new Date(a.createdAt).getTime()
+  //           ) // Sort by date (latest first)
+  //           .slice(0, 3); // Keep the latest 3 blogs
+
+  //         // Assign to UI variables
+  //         if (latestFeaturedBlogs.length > 0) {
+  //           this.featured = latestFeaturedBlogs[0];
+  //         }
+
+  //         if (latestFeaturedBlogs.length > 1) {
+  //           this.featured2 = latestFeaturedBlogs.slice(1);
+  //         }
+
+          
+  //       }
+  //     });
+  // }
+
   fetchFeaturedBlogs() {
     this.http
       .get<any>(`${environment.apiUrl}/admin/getAll_blog`)
-      .subscribe((response) => {
-        if (response.status === 'success' && response.data?.data) {
-          const blogs = response.data.data;
-
-          const gameBlogs = blogs
-          .filter((blog: { category: string }) => blog.category === 'game');
-          this.gameBlogs = gameBlogs;
-
-          const digitalM = blogs
-          .filter((blog: { category: string }) => blog.category === 'digital-marketing');
-          this.digitalM = digitalM;
-
-          const App = blogs
-          .filter((blog: { category: string }) => blog.category === 'app');
-          this.App = App;
-
-          const web = blogs
-          .filter((blog: { category: string }) => blog.category === 'web');
-          this.web = web;
-
-
-          // Filter, sort, and get latest 3 featured blogs
-          const latestFeaturedBlogs = blogs
-            .filter((blog: { isFeature: any }) => blog.isFeature) // Keep only featured blogs
-            .sort(
-              (
-                a: { createdAt: string | number | Date },
-                b: { createdAt: string | number | Date }
-              ) =>
-                new Date(b.createdAt).getTime() -
-                new Date(a.createdAt).getTime()
-            ) // Sort by date (latest first)
-            .slice(0, 3); // Keep the latest 3 blogs
-
-          // Assign to UI variables
-          if (latestFeaturedBlogs.length > 0) {
-            this.featured = latestFeaturedBlogs[0];
+      .subscribe({
+        next: (response) => {
+          if (response.status === 'success' && response.data?.data) {
+            const blogs = response.data.data;
+  
+            this.gameBlogs = blogs.filter((b: any) => b.category === 'game');
+            this.loadingGame = false;
+  
+            this.web = blogs.filter((b: any) => b.category === 'web');
+            this.loadingWeb = false;
+  
+            this.digitalM = blogs.filter((b: any) => b.category === 'digital-marketing');
+            this.loadingDigital = false;
+  
+            this.App = blogs.filter((b: any) => b.category === 'app');
+            this.loadingApp = false;
+  
+            const latestFeaturedBlogs = blogs
+              .filter((blog: any) => blog.isFeature)
+              .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+              .slice(0, 3);
+  
+            if (latestFeaturedBlogs.length > 0) {
+              this.featured = latestFeaturedBlogs[0];
+            }
+  
+            if (latestFeaturedBlogs.length > 1) {
+              this.featured2 = latestFeaturedBlogs.slice(1);
+            }
           }
-
-          if (latestFeaturedBlogs.length > 1) {
-            this.featured2 = latestFeaturedBlogs.slice(1);
-          }
-
-          
+  
+          // ✅ Ensure loading is turned off regardless
+          this.loadingFeatured = false;
+        },
+        error: () => {
+          // ✅ Turn off loading even on error
+          this.loadingFeatured = false;
         }
       });
   }
+  
+
+  // fetchFeaturedBlogs() {
+  //   this.http
+  //     .get<any>(`${environment.apiUrl}/admin/getAll_blog`)
+  //     .subscribe((response) => {
+  //       if (response.status === 'success' && response.data?.data) {
+  //         const blogs = response.data.data;
+  
+  //         this.gameBlogs = blogs.filter((b: any) => b.category === 'game');
+  //         this.loadingGame = false;
+  
+  //         this.web = blogs.filter((b: any) => b.category === 'web');
+  //         this.loadingWeb = false;
+  
+  //         this.digitalM = blogs.filter((b: any) => b.category === 'digital-marketing');
+  //         this.loadingDigital = false;
+  
+  //         this.App = blogs.filter((b: any) => b.category === 'app');
+  //         this.loadingApp = false;
+  
+  //         const latestFeaturedBlogs = blogs
+  //           .filter((blog: any) => blog.isFeature)
+  //           .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+  //           .slice(0, 3);
+  
+  //         if (latestFeaturedBlogs.length > 0) {
+  //           this.featured = latestFeaturedBlogs[0];
+  //         }
+  
+  //         if (latestFeaturedBlogs.length > 1) {
+  //           this.featured2 = latestFeaturedBlogs.slice(1);
+  //         }
+  
+  //         this.loadingFeatured = false;
+  //       }
+  //     });
+  // }
+  
 
   navigateToBlog(blog: any) {
     const formattedTitle = blog.titleLink; // Ensure this matches the backend data

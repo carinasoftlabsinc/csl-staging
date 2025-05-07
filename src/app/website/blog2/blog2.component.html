@@ -9,14 +9,14 @@
           #stickySidebar
           class="sticky bg-[#34394b53] rounded-3xl font-quickSand p-3 text-[#B4B9CB]"
         >
-          <h2 class="text-white text-xl border-b border-[#34394B] pb-2 mb-3">
-            CONTENT
+          <h2 class="text-white text-xl xl:text-2xl 2xl:text-3xl border-b border-[#34394B] pb-2 mb-3 uppercase">
+            Table of Contents
           </h2>
           <ng-container *ngIf="!loadingBlog; else sidebarSkeleton">
             <ul>
-              <li class="my-2" *ngFor="let section of sections">
+              <li class="my-2.5 2xl:my-3.5" *ngFor="let section of sections">
                 <a
-                  class="font-medium text-white"
+                  class="font-medium text-white xl:!text-lg  2xl:!text-xl"
                   [class.active]="activeSection === section._id"
                   href="#"
                   (click)="scrollToSection($event, section._id)"
@@ -27,9 +27,9 @@
             </ul>
           </ng-container>
           <ng-template #sidebarSkeleton>
-            <div class="space-y-3 animate-pulse">
+            <div class="space-y-7 animate-pulse">
               <div
-                *ngFor="let i of [1, 2, 3, 4]"
+                *ngFor="let i of [1, 2, 3, 4, 5, 6]"
                 class="h-4 bg-gray-600 rounded w-3/4"
               ></div>
             </div>
@@ -43,12 +43,12 @@
       >
         <ng-container *ngIf="!loadingBlog; else contentSkeleton">
           <img
-            class="w-full rounded-3xl h-72 object-cover img-fluid"
-            [src]="imageUrl + '/' + cardData?.image"
+            class="w-full rounded-3xl h-72 2xl:h-[35vh] object-cover img-fluid"
+            [src]="imageUrl + '/' + cardDataa?.image"
             alt=""
           />
-          <h1 class="font-myfont text-xl md:text-3xl">
-            {{ cardData?.title }}
+          <h1 class="font-myfont text-xl md:text-3xl xl:text-4xl 2xl:text-5xl">
+            {{ cardDataa?.title }}
           </h1>
           <div
             class="flex font-quickSand font-semibold gap-3 items-center border-b pb-6 border-[#34394B]"
@@ -56,15 +56,15 @@
             <img
               class="h-12 w-12 object-cover rounded-full"
               src="../../../assets/images/author-image.png"
-              [alt]="cardData?.title"
+              [alt]="cardDataa?.title"
             />
-            <div>
+            <div class="xl:text-base 2xl:text-lg">
               <h4 class="capitalize">
-                <span class="text-[#8AE0FB]">By </span>{{ cardData?.author }}
+                <span class="text-[#8AE0FB]">By </span>{{ cardDataa?.author }}
               </h4>
               <span class="capitalize"
                 ><span class="text-[#8AE0FB]">Posted on </span
-                >{{ cardData?.date }}</span
+                >{{ cardDataa?.date }}</span
               >
             </div>
           </div>
@@ -83,14 +83,14 @@
             [id]="section._id"
             class="flex flex-col !gap-3 !text-white"
           >
-            <h2 class="text-2xl font-semibold">{{ section.heading }}</h2>
-            <p [innerHTML]="section.sanitizedContent"></p>
+            <h2 class="text-2xl xl:text-3xl 2xl:text-4xl font-semibold">{{ section.heading }}</h2>
+            <p class="sm:text-base xl:text-lg 2xl:text-xl" [innerHTML]="section.sanitizedContent"></p>
           </div>
         </ng-container>
 
         <ng-template #contentSkeleton>
           <div class="space-y-6 animate-pulse">
-            <div class="w-full h-72 bg-gray-700 rounded-3xl"></div>
+            <div class="w-full h-72 2xl:h-[35vh] bg-gray-700 rounded-3xl"></div>
             <div class="h-8 bg-gray-600 rounded w-1/2"></div>
             <div class="flex gap-3 items-center">
               <div class="h-12 w-12 rounded-full bg-gray-600"></div>
@@ -124,7 +124,7 @@
       </p>
     </div>
 
-    <ng-container *ngIf="!loadingBlog; else moreBlogSkeleton">
+    <ng-container *ngIf="!loadingMoreBlogs; else moreBlogSkeleton">
       <div
         class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28 my-12"
       >

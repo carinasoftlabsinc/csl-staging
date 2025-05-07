@@ -16,17 +16,20 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class Blog2Component implements OnInit {
   cardData: any = null; // Holds the matched blog data
+  cardDataa: any = null; // Holds the matched blog data
   sections: any[] = [];
   activeSection!: string;
   activeSubSection!: string;
   apiUrl = `${environment.apiUrl}/admin/getAll_blog`; // Replace with environment variable if needed
+  singleBlogApi = `${environment.apiUrl}/admin/get_blog`; // assuming your baseUrl ends with /web/web/v1
+  getAll_blogTitles = `${environment.apiUrl}/admin/getAll_blogTitles`; // assuming your baseUrl ends with /web/web/v1
   imageUrl = environment.imageBaseUrl;
   allBlogs: any[] = [];
   filteredBlogs: any[] = [];
   loadingBlog = true;
   loadingMoreBlogs = true;
   sanitizedSections: { _id: string, heading: string, sanitizedContent: SafeHtml }[] = [];
-
+  loading = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,31 +38,39 @@ export class Blog2Component implements OnInit {
   ) {}
 
   ngOnInit() {
+    // this.route.params.subscribe((params) => {
+    //   const blogId = params['title']; // Extract the `title` parameter from route
+    //   if (blogId) {
+    //     this.getFilterData(blogId);
+    //   }
+    // });
+
     this.route.params.subscribe((params) => {
-      const blogId = params['title']; // Extract the `title` parameter from route
-      if (blogId) {
-        this.getFilterData(blogId);
+      const titleLink = params['title'];
+      if (titleLink) {
+        this.getBlogIdFromTitle(titleLink);
       }
     });
+  
 
-    this.fetchAllBlogs();
+    // this.fetchAllBlogs();
   }
 
   fetchAllBlogs() {
     this.loadingMoreBlogs = true;
 
-    this.http.get(this.apiUrl).subscribe(
+    this.http.get(`${environment.apiUrl}/admin/getAll_blog?category=web`).subscribe(
       (response: any) => {
         this.loadingMoreBlogs = false;
         if (response && response.data && response.data.data) {
           this.allBlogs = response.data.data; // Store all fetched blogs
-  
-          // Exclude the currently open blog after data is fetched
-          if (this.cardData) {
+
+          if (this.cardDataa) {
             this.filteredBlogs = this.allBlogs.filter(
-              (blog) => this.formatHeading(blog.titleLink) !== this.formatHeading(this.cardData.titleLink)
+              (blog) => blog.titleLink !== this.cardDataa.titleLink
             );
           }
+
         } else {
           console.warn('No data found');
         }
@@ -73,58 +84,143 @@ export class Blog2Component implements OnInit {
   }
   
 
-  getFilterData(_id: string) {
-    this.loadingBlog = true;
-    this.http.get(this.apiUrl).subscribe(
-      (data: any) => {
-        this.loadingBlog = false;
-        if (data && data.data && data.data.data) {
-          // Find the blog where `titleLink` matches the `_id`
-          this.cardData = data.data.data.find(
-            (item: any) => this.formatHeading(item.titleLink) === _id
+  // getFilterData(_id: string) {
+  //   this.loadingBlog = true;
+  //   this.http.get(this.apiUrl).subscribe(
+  //     (data: any) => {
+  //       this.loadingBlog = false;
+  //       if (data && data.data && data.data.data) {
+  //         // Find the blog where `titleLink` matches the `_id`
+  //         this.cardData = data.data.data.find(
+  //           (item: any) => this.formatHeading(item.titleLink) === _id
+  //         );
+
+  //         if (this.cardData) {
+  //           // this.sections = this.cardData.sections || [];
+  //           const rawSections = this.cardData.sections || [];
+  //           this.sections = rawSections;
+            
+  //           this.sanitizedSections = rawSections.map((section: any) => ({
+  //             _id: section._id,
+  //             heading: section.heading,
+  //             sanitizedContent: this.sanitizeContent(section.content || '')
+  //           }));
+            
+  //           // Apply styles after setting `cardData`
+  //           setTimeout(() => this.applyStyles(), 0);
+
+  //           if (this.sections.length > 0) {
+  //             this.activeSection = this.sections[0]._id;
+  //             const flatSubSections = this.sections.flatMap(
+  //               (section) => section.subSections || []
+  //             );
+  //             this.activeSubSection =
+  //               flatSubSections.length > 0 ? flatSubSections[0]._id : '';
+  //           }
+  //         } else {
+  //           console.warn('No blog found for ID:', _id);
+  //           this.resetData();
+  //         }
+  //       } else {
+  //         console.warn('Invalid API response format');
+  //         this.resetData();
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error('Error while retrieving blog data:', error);
+  //       this.loadingBlog = false;
+  //       this.resetData();
+  //     }
+  //   );
+  // }
+
+  getBlogIdFromTitle(titleLink: string) {
+    this.loading = true; // Show loading
+  
+    this.http.get(this.getAll_blogTitles).subscribe(
+      (response: any) => {
+        this.loading = false; // Hide loading after response
+        if (response?.data) {
+          const blog = response.data.find(
+            (item: any) => this.formatHeading(item.titleLink) === titleLink
           );
-
-          if (this.cardData) {
-            // this.sections = this.cardData.sections || [];
-            const rawSections = this.cardData.sections || [];
-            this.sections = rawSections;
-            
-            this.sanitizedSections = rawSections.map((section: any) => ({
-              _id: section._id,
-              heading: section.heading,
-              sanitizedContent: this.sanitizeContent(section.content || '')
-            }));
-            
-            // Apply styles after setting `cardData`
-            setTimeout(() => this.applyStyles(), 0);
-
-            if (this.sections.length > 0) {
-              this.activeSection = this.sections[0]._id;
-              const flatSubSections = this.sections.flatMap(
-                (section) => section.subSections || []
-              );
-              this.activeSubSection =
-                flatSubSections.length > 0 ? flatSubSections[0]._id : '';
-            }
+          
+          if (blog?._id) {
+            this.getBlogById(blog._id);
           } else {
-            console.warn('No blog found for ID:', _id);
+            console.warn('No blog found with titleLink:', titleLink);
             this.resetData();
           }
         } else {
-          console.warn('Invalid API response format');
+          console.warn('No data received from blog titles API.');
           this.resetData();
         }
       },
       (error) => {
-        console.error('Error while retrieving blog data:', error);
-        this.loadingBlog = false;
-        this.resetData();
+        this.loading = false; // Hide loading on error
+        console.error('Error getting blogs:', error);
       }
     );
   }
+  
+
+  // getBlogIdFromTitle(titleLink: string) {
+  //   // Option 1: Use getAll_blog to map titleLink → _id
+  //   this.http.get(this.getAll_blogTitles).subscribe(
+  //     (data: any) => {
+  //       if (data && data.data && data.data.data) {
+  //         const blog = data.data.data.find(
+  //           (item: any) => this.formatHeading(item.titleLink) === titleLink
+  //         );
+  //         if (blog?._id) {
+  //           this.getBlogById(blog._id);
+  //         } else {
+  //           console.warn('No blog found with titleLink:', titleLink);
+  //           this.resetData();
+  //         }
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error('Error getting blogs:', error);
+  //     }
+  //   );
+  // }
+  
+
+  getBlogById(_id: string) {
+    this.loadingBlog = true;
+    this.http.get(`${environment.apiUrl}/admin/get_blog/${_id}`).subscribe(
+      (res: any) => {
+        this.loadingBlog = false;
+        this.cardDataa = res.data.data;
+        const rawSections = this.cardDataa?.sections || [];
+        this.sections = rawSections;
+        this.sanitizedSections = rawSections.map((section: any) => ({
+          _id: section._id,
+          heading: section.heading,
+          sanitizedContent: this.sanitizeContent(section.content || '')
+        }));
+        this.fetchAllBlogs();
+        if (this.sections.length > 0) {
+          this.activeSection = this.sections[0]._id;
+          const flatSubSections = this.sections.flatMap(
+            (section) => section.subSections || []
+          );
+          this.activeSubSection =
+            flatSubSections.length > 0 ? flatSubSections[0]._id : '';
+        }
+      },
+      (error) => {
+        console.error('Error fetching blog by ID:', error);
+        this.loadingBlog = false;
+      }
+    );
+  }
+  
 
   private resetData() {
     this.cardData = null;
+    this.cardDataa = null;
     this.sections = [];
     this.activeSection = '';
     this.activeSubSection = '';
@@ -214,7 +310,14 @@ export class Blog2Component implements OnInit {
   
     // Remove inline styles from remaining elements
     tempDiv.querySelectorAll('[style]').forEach(el => el.removeAttribute('style'));
-  
+    
+    const images = tempDiv.getElementsByTagName('img');
+  Array.from(images).forEach(img => {
+    img.style.width = '100%';
+    img.style.height = 'auto'; // Optional, maintain aspect ratio
+    img.classList.add('w-full', 'h-auto'); // Add Tailwind classes
+  });
+
     return this.sanitizer.bypassSecurityTrustHtml(tempDiv.innerHTML);
   }
   

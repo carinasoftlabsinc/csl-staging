@@ -93,49 +93,49 @@ export class BlogComponent {
   //     });
   // }
 
-  fetchFeaturedBlogs() {
-    this.http
-      .get<any>(`${environment.apiUrl}/admin/getAll_blog`)
-      .subscribe({
-        next: (response) => {
-          if (response.status === 'success' && response.data?.data) {
-            const blogs = response.data.data;
+  // fetchFeaturedBlogs() {
+  //   this.http
+  //     .get<any>(`${environment.apiUrl}/admin/getAll_blog`)
+  //     .subscribe({
+  //       next: (response) => {
+  //         if (response.status === 'success' && response.data?.data) {
+  //           const blogs = response.data.data;
   
-            this.gameBlogs = blogs.filter((b: any) => b.category === 'game');
-            this.loadingGame = false;
+  //           this.gameBlogs = blogs.filter((b: any) => b.category === 'game');
+  //           this.loadingGame = false;
   
-            this.web = blogs.filter((b: any) => b.category === 'web');
-            this.loadingWeb = false;
+  //           this.web = blogs.filter((b: any) => b.category === 'web');
+  //           this.loadingWeb = false;
   
-            this.digitalM = blogs.filter((b: any) => b.category === 'digital-marketing');
-            this.loadingDigital = false;
+  //           this.digitalM = blogs.filter((b: any) => b.category === 'digital-marketing');
+  //           this.loadingDigital = false;
   
-            this.App = blogs.filter((b: any) => b.category === 'app');
-            this.loadingApp = false;
+  //           this.App = blogs.filter((b: any) => b.category === 'app');
+  //           this.loadingApp = false;
   
-            const latestFeaturedBlogs = blogs
-              .filter((blog: any) => blog.isFeature)
-              .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-              .slice(0, 3);
+  //           const latestFeaturedBlogs = blogs
+  //             .filter((blog: any) => blog.isFeature)
+  //             .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+  //             .slice(0, 3);
   
-            if (latestFeaturedBlogs.length > 0) {
-              this.featured = latestFeaturedBlogs[0];
-            }
+  //           if (latestFeaturedBlogs.length > 0) {
+  //             this.featured = latestFeaturedBlogs[0];
+  //           }
   
-            if (latestFeaturedBlogs.length > 1) {
-              this.featured2 = latestFeaturedBlogs.slice(1);
-            }
-          }
+  //           if (latestFeaturedBlogs.length > 1) {
+  //             this.featured2 = latestFeaturedBlogs.slice(1);
+  //           }
+  //         }
   
-          // ✅ Ensure loading is turned off regardless
-          this.loadingFeatured = false;
-        },
-        error: () => {
-          // ✅ Turn off loading even on error
-          this.loadingFeatured = false;
-        }
-      });
-  }
+  //         // ✅ Ensure loading is turned off regardless
+  //         this.loadingFeatured = false;
+  //       },
+  //       error: () => {
+  //         // ✅ Turn off loading even on error
+  //         this.loadingFeatured = false;
+  //       }
+  //     });
+  // }
   
 
   // fetchFeaturedBlogs() {
@@ -174,6 +174,89 @@ export class BlogComponent {
   //       }
   //     });
   // }
+  
+
+  fetchFeaturedBlogs() {
+    this.loadingGame = true;
+    this.loadingWeb = true;
+    this.loadingDigital = true;
+    this.loadingApp = true;
+    this.loadingFeatured = true;
+  
+    // Game Blogs
+    this.http.get<any>(`${environment.apiUrl}/admin/getAll_blog?category=game`).subscribe({
+      next: (res) => {
+        if (res.status === 'success' && res.data?.data) {
+          this.gameBlogs = res.data.data;
+        }
+        this.loadingGame = false;
+      },
+      error: () => {
+        this.loadingGame = false;
+      },
+    });
+  
+    // Web Blogs
+    this.http.get<any>(`${environment.apiUrl}/admin/getAll_blog?category=web`).subscribe({
+      next: (res) => {
+        if (res.status === 'success' && res.data?.data) {
+          this.web = res.data.data;
+        }
+        this.loadingWeb = false;
+      },
+      error: () => {
+        this.loadingWeb = false;
+      },
+    });
+  
+    // Digital Marketing Blogs
+    this.http.get<any>(`${environment.apiUrl}/admin/getAll_blog?category=digital-marketing`).subscribe({
+      next: (res) => {
+        if (res.status === 'success' && res.data?.data) {
+          this.digitalM = res.data.data;
+        }
+        this.loadingDigital = false;
+      },
+      error: () => {
+        this.loadingDigital = false;
+      },
+    });
+  
+    // App Blogs
+    this.http.get<any>(`${environment.apiUrl}/admin/getAll_blog?category=app`).subscribe({
+      next: (res) => {
+        if (res.status === 'success' && res.data?.data) {
+          this.App = res.data.data;
+        }
+        this.loadingApp = false;
+      },
+      error: () => {
+        this.loadingApp = false;
+      },
+    });
+  
+    // Featured Blogs
+    this.http.get<any>(`${environment.apiUrl}/admin/getAll_blog?isFeature=true`).subscribe({
+      next: (res) => {
+        if (res.status === 'success' && res.data?.data) {
+          const featuredBlogs = res.data.data
+            .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+            .slice(0, 3);
+  
+          if (featuredBlogs.length > 0) {
+            this.featured = featuredBlogs[0];
+          }
+          if (featuredBlogs.length > 1) {
+            this.featured2 = featuredBlogs.slice(1);
+          }
+        }
+        this.loadingFeatured = false;
+      },
+      error: () => {
+        this.loadingFeatured = false;
+      },
+    });
+  }
   
 
   navigateToBlog(blog: any) {

@@ -177,7 +177,7 @@ const routes: Routes = [
     component: JobDescriptionComponent,
   },
   {
-    path: 'case-studies',
+    path: 'case-studies/:id',
     component: CaseStudiesComponent ,
   },
   // Wildcard route for handling 404 pages

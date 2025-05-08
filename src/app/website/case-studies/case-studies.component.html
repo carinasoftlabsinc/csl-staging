@@ -1,21 +1,15 @@
 <main class="bg-[#0B0C10]">
   <app-header></app-header>
-  <section
+  <!-- <section
     class="body-font flex items-center justify-center h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
   >
     <div class="flex flex-col md:flex-row items-center lg:px-3 w-full">
       <div class="md:w-1/2 py-8 text-left">
         <h1
-          class="text-base lg:text-lg xl:text-2xl 2xl:text-[40.01px] leading-[119%] font-normal font-melody text-[#B4B9CB]"
+          class="text-base lg:text-lg xl:text-3xl 2xl:text-[40.01px] leading-[119%] font-normal font-myfont text-[#B4B9CB]"
         >
           CASE STUDY
         </h1>
-
-        <!-- <p
-          class="text-white text-2xl lg:text-4xl xl:text-6xl 2xl:text-[75.01px] leading-[100%] font-bold font-afacad mt-3"
-        >
-          POPIL
-        </p> -->
 
         <div class="flex items-center gap-4">
           <img
@@ -25,54 +19,241 @@
           />
 
           <p
-            class="text-white text-2xl lg:text-4xl xl:text-6xl 2xl:text-[75.01px] leading-[100%] font-bold font-afacad"
+            class="text-white text-2xl lg:text-4xl xl:text-6xl 2xl:text-[75.01px] leading-[100%] font-bold font-mont"
           >
-            POPIL
+           
+             {{ cardData?.title }}
           </p>
         </div>
 
         <p
-          class="text-base md:text-base xl:text-lg 2xl:text-xl font-quickSand font-medium text-[#B4B9CB]"
+          class="text-base md:text-base xl:text-lg 2xl:text-xl font-quickSand font-medium text-[#B4B9CB] p-6"
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
-          sunt ipsum dolores quos praesentium consectetur, quasi culpa eos quis
-          eveniet.
+         
+          {{ cardData?.description }}
         </p>
       </div>
 
-      <div class="w-full md:w-1/2 py-8 hidden md:flex justify-end">
+      <div
+        class="w-full md:w-1/2 py-8 hidden md:flex justify-center items-center"
+      >
+        
+        <img
+            class="rounded-3xl h-48 md:h-60 lg:h-70 xl:h-[70vh] w-full object-cover"
+            [src]="imageUrl + '/' + cardData?.image"
+          />
+      </div>
+
+      
+    </div>
+  </section> -->
+
+  <section
+    class="body-font flex items-center justify-center h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
+  >
+    <div>
+      <div
+        class="flex flex-col-reverse md:flex-row items-center lg:px-3 gap-6 md:gap-10"
+      >
         <div
-          class="relative h-96 w-96 xl:w-[30rem] xl:h-[30rem] 2xl:w-[38rem] 2xl:h-[38rem] overflow-hidden"
+          class="md:w-1/3 md:py-8 text-left font-quickSand font-medium text-[#B4B9CB]"
         >
-          <div class="absolute inset-0">
-            <!-- <img
-              *ngFor="let image of serviceimgs; let i = index"
-              [src]="image"
-              class="absolute inset-0 h-96 w-96 xl:w-[30rem] xl:h-[30rem] 2xl:w-[36rem] 2xl:h-[36rem] object-contain transition-opacity duration-1000 ease-in-out"
-              [class.opacity-0]="i !== currentWordIndex % services.length"
-              [class.opacity-100]="i === currentWordIndex % services.length"
-            /> -->
+          <!-- <div class="2xl:ml-20 xl:ml-16 lg:ml-16 md:ml-16"> -->
+          <div class="pb-4">
+            <span
+              class="text-[#B4B9CB] font-myfont text-2xl 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]"
+            >
+              CASE STUDY
+            </span>
+            <!-- <h1 class="mt-3.5">
+              <span
+                class="text-white tracking-wide text-2xl md:text-4xl lg:text-5xl 2xl:text-6xl sm:text-4xl font-myfont"
+              >
+                {{ cardData?.title }}
+              </span>
+            </h1> -->
+            <div class="flex items-center gap-2 mt-2">
+              <img
+                [src]="imageUrl + '/' + cardData?.projectLogo"
+                alt="project Logo"
+                (error)="onImgError($event)"
+                class="w-[110px] sm:w-[100px] md:w-[110px] lg:w-[150px] h-auto"
+              />
+
+              <h1 class="mt-3.5">
+                <span
+                  class="text-white tracking-wide text-2xl md:text-2xl lg:text-4xl 2xl:text-6xl sm:text-4xl font-myfont font-bold"
+                >
+                  {{ cardData?.title }}
+                </span>
+              </h1>
+            </div>
+
+            <p
+              class="text-[#B4B9CB] mt-3 text-sm xl:text-[16px] 2xl:text-[23px] 2xl:leading-[27px] font-quickSand font-normal"
+            >
+              {{ cardData?.description }}
+            </p>
           </div>
+        </div>
+
+        <div class="w-full md:w-2/3 md:py-8">
+          <img
+            class="rounded-3xl h-48 md:h-64 lg:h-80 xl:h-[70vh] w-full object-cover"
+            [src]="imageUrl + '/' + cardData?.image"
+            (error)="onImgError($event)"
+          />
         </div>
       </div>
     </div>
   </section>
 
+  <!-- project overview -->
   <section
-    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
+    class="md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
   >
     <div
-      class="text-center mt-12 sm:mt-auto my-8 flex flex-col gap-3.5 2xl:gap-6 md:mt-8"
+      class="text-center mt-12 sm:mt-auto my-8 flex flex-col gap-3.5 2xl:gap-6 md:mt-8 pb-24"
     >
-      <h2 class="text-black text-3xl xl:text-4xl 2xl:text-5xl font-myfont">
-        Project Overview
-      </h2>
-      <p
-        class="font-quickSand font-medium text-base lg:text-lg 2xl:!text-2xl !leading-6 text-black capitalize"
+      <div
+        class="text-center flex flex-col gap-3.5 2xl:gap-6 mx-7 md:mx-10 2xl:mx-24 xl:mx-14"
       >
-        Design creates culture. Culture shapes values. Values determine the
-        future
-      </p>
+        <h1
+          class="text-[#0B0C10] text-4xl xl:text-5xl 2xl:text-6xl font-myfont"
+        >
+          Project Overview
+        </h1>
+
+        <p
+          class="font-quickSand font-medium text-[#34394B] lg:text-lg 2xl:!text-2xl !leading-6 capitalize"
+        >
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident,
+          ducimus!
+        </p>
+      </div>
+
+      <!--  -->
+
+      <div class="w-full flex justify-center px-4 mt-16 relative items-center">
+        <div
+          class="absolute top-0 w-[75%] lg:w-[85%] md:w-[85%] max-w-[1400px] rounded-[30px] md:rounded-[46px] bg-[#E5EBFF] z-10 h-full min-h-[300px]"
+        ></div>
+        <div
+          class="absolute top-1 w-[80%] lg:w-[90%] md:w-[90%] max-w-[1370px] rounded-[30px] md:rounded-[46px] bg-[#D7DCF0] z-10 mt-[1rem] h-full min-h-[260px]"
+        ></div>
+      </div>
+
+      <div class="relative z-20 w-full flex justify-center px-4 mt-4">
+        <div
+          class="w-full max-w-[1388px] rounded-[30px] md:rounded-[46px] bg-[#B4B9CB] flex flex-col md:flex-row items-center justify-between px-4 md:px-6 py-10 md:py-14 relative"
+        >
+          <div class="w-full md:w-1/3 flex flex-col text-left mb-10 md:mb-0">
+            <h2 class="text-xl md:text-[28px] font-myfont mb-6">TECH STACK</h2>
+
+            <div
+              class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-8 md:mb-12"
+            >
+              <div
+                *ngFor="let techImage of cardData?.techImages"
+                class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
+              >
+                <img
+                  [src]="imageUrl + '/' + techImage"
+                  (error)="onImgError($event)"
+                  alt="Icon"
+                  class="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-[11px]"
+                />
+              </div>
+
+              <!-- <div
+                class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
+              >
+                <img
+                  src="../../../assets/casestudy-flutter.png"
+                  alt="Icon"
+                  class="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-[11px]"
+                />
+              </div> -->
+              <!-- <div
+                class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
+              >
+                <img
+                  src="../../../assets/casestudy-mongodb.jpeg"
+                  alt="Icon"
+                  class="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-[11px]"
+                />
+              </div> -->
+              <!-- <div
+                class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
+              >
+                <img
+                  src="../../../assets/casestudy-express.png"
+                  alt="Icon"
+                  class="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-[11px]"
+                />
+              </div> -->
+              <!-- <div
+                class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
+              >
+                <img
+                  src="../../../assets/casestudy-Angular.png"
+                  alt="Icon"
+                  class="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-[11px]"
+                />
+              </div> -->
+              <!-- <div
+                class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
+              >
+                <img
+                  src="../../../assets/casestudy-js.png"
+                  alt="Icon"
+                  class="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-[11px]"
+                />
+              </div> -->
+            </div>
+
+            <h2 class="text-2xl md:text-[28px] font-myfont mb-2">INDUSTRIES</h2>
+            <p class="font-quickSand md:text-xl text-[#34394B]">
+              <!-- Entertainment, Technology, OTT -->
+              {{ cardData?.industry }}
+            </p>
+          </div>
+
+          <div
+            class="w-[175px] sm:w-[190px] md:w-[200px] lg:w-[320px] xl:w-[340px] flex justify-center mb-8 md:mb-0 z-0 md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2"
+          >
+            <!-- <img
+              src="../../../assets/casestudy-projectoverview.png"
+              alt="Project Overview"
+              class="w-full h-auto object-contain"
+            /> -->
+            <img
+              [src]="imageUrl + '/' + cardData?.overviewImage"
+              (error)="onImgError($event)"
+              alt="Project Overview"
+              class="w-full h-auto object-contain"
+            />
+          </div>
+
+          <div class="w-full md:w-1/3 flex flex-col space-y-6 text-left">
+            <p
+              class="sm:text-base xl:text-lg 2xl:text-xl font-quickSand font-medium text-[#34394B]"
+            >
+              {{ cardData?.overviewPara }}
+            </p>
+            <!-- <p
+              class="text-base sm:text-base xl:text-lg 2xl:text-xl font-quickSand font-medium text-[#34394B]"
+            >
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi,
+              quidem.
+            </p> -->
+          </div>
+        </div>
+      </div>
+
+      <!--  -->
+
+      <!--  -->
     </div>
   </section>
 
@@ -89,7 +270,7 @@
 
     <div class="xl:pt-20 pt-4">
       <p
-        class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-[#B4B9CB]"
+        class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-[#ffffff]"
       >
         We are a team of passionate and crazy individuals dedicated to bringing
         your ideas to <br class="hidden md:block" />
@@ -99,7 +280,7 @@
 
     <div class="mt-10">
       <h5
-        class="text-xl xl:text-2xl 2xl:text-3xl font-q text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] mb-6"
+        class="text-xl xl:text-2xl 2xl:text-3xl font-quickSand text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] mb-6"
       >
         OUR GOALS
       </h5>
@@ -117,7 +298,7 @@
             Lorem ipsum dolor sit amet.
           </div>
           <div
-            class="w-[200px] sm:w-[180px] md:w-[200px] lg:w-[220px] h-[150px] bg-[#161822] text-white text-center flex flex-col justify-center items-center"
+            class="w-[200px] sm:w-[180px] md:w-[200px] lg:w-[220px] h-[150px] bg-[#161822] text-white text-center flex flex-col justify-center items-center font-quickSand"
           >
             <img
               src="../../../assets/case-goal-2.png"
@@ -138,32 +319,9 @@
           </div>
         </div>
 
-        <!-- <div class="lg:w-1/3 lg:mt-0 text-start lg:text-left">
-          <p
-            class="text-[#B4B9CB] text-base 2xl:text-2xl 2xl:leading-10 font-quickSand font-medium"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed
-            justo vel risus volutpat auctor sit amet vitae ante. Vivamus ac
-            velit et odio fermentum mollis non id turpis.
-          </p>
-
-          <a href="https://calendly.com/mayank-pande12/30min" target="_blank "
-        class="2xl:text-[18px] xl:text-[14px] hidden rounded-full !border border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] lg:px-6 lg:py-2 xl:px-6 xl:py-2.5 2xl:px-8 2xl:py-3 text-white sm:flex sm:items-center sm:px-4 sm:py-2 mt-4"
-      >
-        Schedule a Call
-        <img
-          src="../../assets/images/small-tilt-arrow.png"
-          alt="Image"
-          class="button-img ml-2"
-        />
-    </a>
-
-          
-        </div> -->
-
         <div class="lg:w-1/3 lg:mt-0 text-start lg:text-left">
           <p
-            class="text-[#B4B9CB] text-base 2xl:text-2xl 2xl:leading-10 font-quickSand font-medium"
+            class="text-[#ffffff] 2xl:text-2xl 2xl:leading-10 font-quickSand font-medium"
           >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed
             justo vel risus volutpat auctor sit amet vitae ante. Vivamus ac
@@ -191,19 +349,17 @@
 
   <section class="lg:py-16 2xl:py-24 py-10 bg-white rounded-[40px]">
     <div
-      class="text-center py-8 flex flex-col gap-3.5 2xl:gap-6 border-b border-[#34394B] mx-7 md:mx-10 2xl:mx-24 xl:mx-14"
+      class="text-center flex flex-col gap-3.5 2xl:gap-6 pb-4 border-b border-[#B4B9CB] mx-7 md:mx-10 2xl:mx-24 xl:mx-14"
     >
-      <h2
-        class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-5xl font-myfont text-center text-[55px] leading-[99%] tracking-[0%] font-normal"
-      >
+      <h1 class="text-[#0B0C10] text-4xl xl:text-5xl 2xl:text-6xl font-myfont">
         WORK STEP
-      </h2>
+      </h1>
 
       <p
-        class="text-[#0B0C10] text-[26px] leading-[131%] tracking-[0%] text-center capitalize font-quicksand"
+        class="font-quickSand font-medium text-[#34394B] lg:text-lg 2xl:!text-2xl !leading-6 capitalize"
       >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
-        quia.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident,
+        ducimus!
       </p>
     </div>
 
@@ -239,6 +395,70 @@
     </div>
   </section>
 
+  <!-- UI Design system -->
+
+  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
+    <div class="flex justify-between items-center content-center mt-10 pb-2">
+      <h2
+        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+      >
+        UI DESIGN SYSTEM
+      </h2>
+    </div>
+
+    <hr class="border-t-1 border-[#34394b]" />
+
+    <div
+      class="flex flex-wrap justify-between gap-4 my-8 2xl:gap-8 2xl:my-16 font-quickSand font-medium"
+    >
+      <div
+        *ngFor="let uiImage of cardData?.uiImages"
+        class="w-full md:w-[48%] p-4 2xl:py-10 2xl:px-6 flex justify-center items-center"
+      >
+        <!-- <img
+          src="../../../assets/casestudy-Color.png"
+          alt="Color and Gradient Preview"
+          class="w-full max-w-[400px] md:max-w-[800px] h-auto rounded-[16px] md:rounded-[24px] lg:rounded-[36px] xl:rounded-[48px]"
+        /> -->
+          <img
+          [src]="imageUrl + '/' + uiImage"
+          alt="Color and Gradient Preview"
+          class="w-full max-w-[400px] md:max-w-[800px] h-auto rounded-[16px] md:rounded-[24px] lg:rounded-[36px] xl:rounded-[48px]"
+        />
+      </div>
+
+      <div
+        class="w-full md:w-[48%] p-4 2xl:py-10 2xl:px-6 flex justify-center items-center"
+      >
+        <img
+          src="../../../assets/casestudy-text-2.png"
+          alt="Text Preview"
+          class="w-full max-w-[400px] md:max-w-[800px] h-auto rounded-[16px] md:rounded-[24px] lg:rounded-[36px] xl:rounded-[48px]"
+        />
+      </div>
+
+      <div
+        class="w-full md:w-[48%] p-4 2xl:py-10 2xl:px-6 flex justify-center items-center"
+      >
+        <img
+          src="../../../assets/casestudy-component.png"
+          alt="Component Preview"
+          class="w-full max-w-[400px] md:max-w-[800px] h-auto rounded-[16px] md:rounded-[24px] lg:rounded-[36px] xl:rounded-[48px]"
+        />
+      </div>
+
+      <div
+        class="w-full md:w-[48%] p-4 2xl:py-10 2xl:px-6 flex justify-center items-center"
+      >
+        <img
+          src="../../../assets/casestudy-component-2.png"
+          alt="Component Preview"
+          class="w-full max-w-[400px] md:max-w-[800px] h-auto rounded-[16px] md:rounded-[24px] lg:rounded-[36px] xl:rounded-[48px]"
+        />
+      </div>
+    </div>
+  </section>
+
   <!-- Development -->
 
   <section
@@ -253,32 +473,33 @@
     </div>
 
     <div
-      class="grid grid-cols-1 md:grid-cols-2 my-14 md:my-24 gap-y-10 gap-x-14"
+      class="grid grid-cols-1 md:grid-cols-2 my-14 md:my-24 gap-y-10 gap-x-14 pb-12 lg:pb-[3rem]"
     >
       <img
         src="../../../assets/casestudy-devlopment.png"
         alt="Employee Group"
-        class="w-full max-w-[500px] mx-auto md:mx-0"
+        class="w-[90%] max-w-[380px] sm:max-w-[420px] md:max-w-[490px] mx-auto md:mx-0"
       />
 
       <div
         class="text-black font-quickSand flex flex-col justify-center gap-5 max-w-[600px]"
       >
         <h2
-          class="font-quickSand font-medium text-[26px] leading-[32px] md:text-[32px] md:leading-[38px] xl:text-[36px] xl:leading-[44px] 2xl:text-[41px] 2xl:leading-[47px] align-middle"
+          class="font-quickSand font-medium text-[#34394B] text-[22px] leading-[30px] sm:text-[24px] sm:leading-[32px] md:text-[28px] md:leading-[36px] lg:text-[30px] lg:leading-[38px] xl:text-[32px] xl:leading-[40px] 2xl:text-[34px] 2xl:leading-[42px]"
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
-          placeat cumque et quidem tempore molestiae voluptatum obcaecati vero
-          dolor at?
+          We used our basic tech stack for the Hamperapp project: Laravel
+          for the backend, and Angular for creating the web version of the
+          client application and admin panel.
         </h2>
 
         <p
-          class="font-quickSand font-medium text-[18px] leading-[28px] md:text-[20px] md:leading-[30px] xl:text-[22px] xl:leading-[32px] 2xl:text-[24px] 2xl:leading-[35px] align-middle"
+          class="font-quickSand font-medium text-[#34394B] lg:text-lg 2xl:!text-2xl !leading-6 capitalize"
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae aliquam,
-          cupiditate architecto beatae nihil quibusdam nesciunt obcaecati,
-          itaque aspernatur impedit praesentium ipsa modi, neque reiciendis
-          pariatur delectus veniam. Odit, temporibus?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quisquam
+          quae porro. Fuga amet, saepe eligendi beatae enim qui deserunt a
+          exercitationem aspernatur error natus aperiam quia illo consequatur
+          tempore. Culpa nemo, officiis perspiciatis deleniti ut eum sapiente
+          voluptatem in.
         </p>
       </div>
     </div>
@@ -299,13 +520,96 @@
         />
       </div>
       <div class="col-span-2 flex flex-col justify-between gap-3">
-        <h2
-          class="font-quicksand font-medium text-xl leading-[35px] cursor-pointer text-[#0B0C10] transition-colors duration-300 border-b border-transparent"
+        <p
+          class="font-quickSand font-medium text-[#34394B] lg:text-lg 2xl:!text-2xl !leading-6 capitalize"
         >
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Amet error
-          dolore non hic porro numquam ab minus consequatur minima accusantium!
-        </h2>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure,
+          possimus quos ut nisi nesciunt modi molestias magnam quis labore quas
+          quaerat nihil mollitia dignissimos vel repellendus dolorum aperiam hic
+          natus.
+        </p>
       </div>
+    </div>
+  </section>
+
+  <!-- Result -->
+
+  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
+    <div class="flex justify-between items-center content-center mt-10 pb-2">
+      <h2
+        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+      >
+        RESULT
+      </h2>
+    </div>
+
+    <hr class="border-t-1 border-[#34394b]" />
+
+    <div class="max-w-3xl mx-auto pt-6">
+      <p
+        class="text-base md:text-base xl:text-lg 2xl:text-xl font-quickSand text-center font-medium text-[#B4B9CB]"
+      >
+        <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
+        sunt ipsum dolores quos praesentium consectetur, quasi culpa eos quis
+        eveniet. -->
+        {{ cardData?.resultHeading_1}}
+      </p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-y-6 md:gap-y-4">
+      <div class="w-full md:w-[48%] px-2"
+      *ngFor="let resultImage of cardData?.resultImages"
+      >
+        <div class="relative w-full">
+          <img
+             [src]="imageUrl + '/' + resultImage"
+              (error)="onImgError($event)"
+            alt="Image 1"
+            class="w-full h-auto object-contain rounded-[10px]"
+          />
+        </div>
+      </div>
+
+      <!-- <div class="w-full md:w-[48%] px-2">
+        <div class="relative w-full">
+          <img
+            src="../../../assets/casestudy-result-2.png"
+            alt="Image 2"
+            class="w-full h-auto object-contain rounded-[10px]"
+          />
+        </div>
+      </div> -->
+
+      <!-- <div class="w-full md:w-[48%] px-2">
+        <div class="relative w-full">
+          <img
+            src="../../../assets/casestudyresult-3.png"
+            alt="Image 3"
+            class="w-full h-auto object-contain rounded-[10px]"
+          />
+        </div>
+      </div> -->
+
+      <!-- <div class="w-full md:w-[48%] px-2">
+        <div class="relative w-full">
+          <img
+            src="../../../assets/casestudyresult-4.png"
+            alt="Image 4"
+            class="w-full h-auto object-contain rounded-[10px]"
+          />
+        </div>
+      </div> -->
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+      <p
+        class="text-base md:text-base xl:text-lg 2xl:text-xl font-quickSand text-center font-medium text-[#B4B9CB]"
+      >
+        <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
+        sunt ipsum dolores quos praesentium consectetur, quasi culpa eos quis
+        eveniet. -->
+         {{ cardData?.resultHeading_2}}
+      </p>
     </div>
   </section>
 

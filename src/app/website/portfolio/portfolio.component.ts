@@ -470,5 +470,7 @@ export class PortfolioComponent implements OnInit {
     return title.toLowerCase().replace(/\s+/g, '-');
   }
 
+ 
+
   cardText: string = `Find Out How We Solved <br class="hidden sm:block" /> Complex "IT" Challenge`;
 }

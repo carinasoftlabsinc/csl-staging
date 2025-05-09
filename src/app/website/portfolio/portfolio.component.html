@@ -105,9 +105,22 @@
           class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3.5 lg:gap-6 2xl:gap-10"
         >
           <!-- [routerLink]="['/news', formatHeading(card.titleLink)]" -->
+
+          <!-- [routerLink]="['/portfolio', formatHeading(project.titleLink)]" -->
+          <!-- [routerLink]="
+    project.category === 'Digital Marketing'
+      ? ['/portfolio', formatHeading(project.titleLink)]
+      : ['/case-studies', formatHeading(project.titleLink)]
+  " -->
+
+          <!-- [routerLink]="['/case-studies', formatHeading(project.titleLink)]" -->
           <a
             *ngFor="let project of cards.slice(i, i + 3)"
-            [routerLink]="['/portfolio', formatHeading(project.titleLink)]"
+            [routerLink]="
+              project.category === 'digital-marketing'
+                ? ['/portfolio', formatHeading(project.titleLink)]
+                : ['/case-studies', formatHeading(project.titleLink)]
+            "
           >
             <img
               class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
@@ -139,6 +152,8 @@
         </div>
       </ng-container>
 
+       <!-- [routerLink]="['/portfolio', formatHeading(project.titleLink)]" -->
+
       <ng-container *ngFor="let group of cards | slice : 3 : 5; let i = index">
         <div
           *ngIf="i % 2 === 0"
@@ -146,7 +161,11 @@
         >
           <a
             *ngFor="let project of cards.slice(i + 3, i + 5)"
-            [routerLink]="['/portfolio', formatHeading(project.titleLink)]"
+            [routerLink]="
+              project.category === 'digital-marketing'
+                ? ['/portfolio', formatHeading(project.titleLink)]
+                : ['/case-studies', formatHeading(project.titleLink)]
+            "
           >
             <img
               class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
@@ -185,7 +204,11 @@
         >
           <a
             *ngFor="let project of cards.slice(i + 5, i + 8)"
-            [routerLink]="['/portfolio', formatHeading(project.titleLink)]"
+            [routerLink]="
+              project.category === 'digital-marketing'
+                ? ['/portfolio', formatHeading(project.titleLink)]
+                : ['/case-studies', formatHeading(project.titleLink)]
+            "
           >
             <img
               class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"

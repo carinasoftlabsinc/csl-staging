@@ -39,7 +39,7 @@
 
         <p
           class="text-white mt-3 text-sm xl:text-[16px] 2xl:text-[23px] 2xl:leading-[27px] font-mont"
-          [innerHTML]="jobPost?.description"
+          [innerHTML]="jobPost.description"
         >
           <!-- {{ jobPost?.description }} -->
         </p>
@@ -67,7 +67,7 @@
 
     <h3
       class="font-mont font-bold text-2xl md:text-3xl 2xl:text-4xl bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text"
-      [innerHTML]="jobPost?.title"
+      [innerHTML]="jobPost.title"
     ></h3>
 
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:py-14 py-10 2xl:py-20">
@@ -113,7 +113,7 @@
             <p
               class="text-[#888FA8] font-mont font-semibold text-[14px] 2xl:text-2xl md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
             >
-              {{ jobPost?.experience }}
+              {{ jobPost.experience }}
             </p>
           </div>
         </div>
@@ -137,7 +137,7 @@
             <p
               class="text-[#888FA8] font-mont font-semibold text-[14px] 2xl:text-2xl md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
             >
-              {{ jobPost?.noOfPositions }}
+              {{ jobPost.noOfPositions }}
             </p>
           </div>
         </div>
@@ -161,7 +161,7 @@
             <p
               class="text-[#888FA8] font-mont font-semibold text-[14px] 2xl:text-2xl md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
             >
-              {{ jobPost?.createdAt | date : "dd/MM/yy" }}
+              {{ jobPost.createdAt | date : "dd/MM/yy" }}
             </p>
           </div>
         </div>
@@ -185,7 +185,7 @@
             <p
               class="text-[#888FA8] font-mont font-semibold text-[14px] 2xl:text-2xl md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
             >
-              {{ jobPost?.applicationDeadline | date : "dd/MM/yy" }}
+              {{ jobPost.applicationDeadline | date : "dd/MM/yy" }}
             </p>
           </div>
         </div>
@@ -211,7 +211,7 @@
             <p
               class="text-[#888FA8] font-mont font-semibold text-[14px] 2xl:text-2xl md:text-[18px] leading-[113%] tracking-normal uppercase mt-3 xl:mb-8 2xl:mb-24 ml-4 md:ml-[34px]"
             >
-              {{ jobPost?.location }}
+              {{ jobPost.location }}
             </p>
           </div>
         </div>
@@ -230,7 +230,7 @@
 
         <p
           class="font-mont text-[16px] md:text-[18px] leading-[163%] tracking-normal capitalize break-words mt-2"
-          [innerHTML]="jobPost?.content"
+          [innerHTML]="jobPost.content"
         ></p>
       </div>
     </div>

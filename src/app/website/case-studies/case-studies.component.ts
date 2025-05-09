@@ -25,7 +25,7 @@ export class CaseStudiesComponent {
   _id: any;
   allProjects: PortfolioItem[] = [];
   imageUrl = environment.imageBaseUrl;
-
+  loading = true;
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
   ngOnInit() {
@@ -44,10 +44,12 @@ export class CaseStudiesComponent {
 
   getFilterData(_id: string) {
     const apiUrl = `${environment.apiUrl}/admin/getAll_project`;
-
+    this.loading = true;
     this.http.get(apiUrl).subscribe(
       (data: any) => {
         if (data && data.data && data.data.data) {
+          this.loading = false;
+
           // Find the specific cardData
           this.cardData = data.data.data.find(
             (item: any) => this.formatHeading(item.titleLink) === _id
@@ -60,6 +62,24 @@ export class CaseStudiesComponent {
                 item.category === this.cardData.category &&
                 item.titleLink !== this.cardData.titleLink
             );
+
+            if (this.cardData && this.cardData.workSteps) {
+              const icons = [
+                'assets/images/process-design.svg',
+                'assets/images/process-graphics.svg',
+                'assets/images/process-development.svg',
+                'assets/images/process-testing.svg',
+                'assets/images/process-review.svg',
+              ];
+            
+              // Map workSteps to include icon field
+              this.cardData.workSteps = this.cardData.workSteps.map((step: any, index: number) => ({
+                ...step,
+                icon: icons[index] ?? 'assets/images/default-icon.svg',
+              }));
+            }
+            
+            
 
             console.log('Filtered allProjects:', this.allProjects);
           } else {
@@ -74,6 +94,7 @@ export class CaseStudiesComponent {
         }
       },
       (error) => {
+        this.loading = false;
         console.error('Error while retrieving data:', error);
         this.cardData = null;
         this.allProjects = [];
@@ -92,6 +113,15 @@ export class CaseStudiesComponent {
     target.src = '../../../assets/job-fallback.png';
   }
   
+  icons = [
+    '../../../assets/images/process-design.svg',
+    '../../../assets/images/process-graphics.svg',
+    '../../../assets/images/process-development.svg',
+    '../../../assets/images/process-testing.svg',
+    '../../../assets/images/process-review.svg',
+  ];
+  
+
   devProcess = [
     {
       title: 'DESIGN',
@@ -123,4 +153,23 @@ export class CaseStudiesComponent {
       description: 'Client Interview, Empathy Mapping, Market Analysis',
     },
   ];
+
+  caseGoals = [
+    {
+      image: 'assets/case-goal-1.png',
+      alt: 'Image 1',
+      text: 'Lorem ipsum dolor sit amet.',
+    },
+    {
+      image: 'assets/case-goal-2.png',
+      alt: 'Image 2',
+      text: 'Lorem ipsum dolor sit amet.',
+    },
+    {
+      image: 'assets/case-goal-3.png',
+      alt: 'Image 3',
+      text: 'Lorem ipsum dolor sit amet.',
+    }
+  ];
+  
 }

@@ -378,9 +378,11 @@ export class PortfolioComponent implements OnInit {
     'Digital Marketing',
   ];
   selectedCategory: Category = this.SrcWords[0];
-  cards: PortfolioItem[] = [];
+  // cards: PortfolioItem[] = [];
+  cards: any;
   apiUrl = `${environment.apiUrl}/admin/getAll_project?category=`;
   imageUrl = `${environment.imageBaseUrl}`;
+  loading: boolean | undefined;
 
   constructor(private http: HttpClient) {}
 
@@ -423,28 +425,35 @@ export class PortfolioComponent implements OnInit {
   //     },
   //   });
   // }
+  imagesLoadedCount = 0;
+  totalImages = 0;
+    fetchPortfolioItems(category: Category): void {
+      this.loading = true;
+      this.imagesLoadedCount = 0;
 
-  fetchPortfolioItems(category: Category): void {
-    const categoryParam = this.mapCategoryToApiParam(category);
-    this.http.get<ApiResponse>(`${this.apiUrl}${categoryParam}`).subscribe({
-      next: (response) => {
-        this.cards = response.data.data.map((item) => ({
-          _id: item._id,
-          title: item.title,
-          titleLink: item.titleLink,
-          category: item.category,
-          description: item.description,
-          image: item.image || '',
-          image_2: item.image_2 || '',
-          content: item.content || '',
-        }));
-      },
-      error: (error) => {
-        console.error('Error fetching portfolio data:', error);
-      },
-    });
-  }
-
+      const categoryParam = this.mapCategoryToApiParam(category);
+      this.http.get<ApiResponse>(`${this.apiUrl}${categoryParam}`).subscribe({
+        next: (response) => {
+          const data = response.data.data.map((item) => ({
+            _id: item._id,
+            title: item.title,
+            titleLink: item.titleLink,
+            category: item.category,
+            description: item.description,
+            image: item.image || '',
+            image_2: item.image_2 || '',
+            content: item.content || '',
+          }));
+          this.cards = data;
+          this.loading = false;
+        },
+        error: (error) => {
+          console.error('Error fetching portfolio data:', error);
+          this.loading = false;
+        },
+      });
+    }
+  
   selectCategory(category: Category): void {
     this.selectedCategory = category;
     this.fetchPortfolioItems(category);

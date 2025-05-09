@@ -97,8 +97,16 @@
         Values determine the future
       </p>
     </div>
+    <div *ngIf="loading" class="flex justify-center items-center min-h-[300px]">
+      <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-[#F21DF5]"></div>
+    </div>
 
-    <div class="lg:p-7 flex flex-col gap-8 2xl:gap-14">
+    <div *ngIf="!loading && cards?.length === 0" class="text-center text-gray-400 text-xl min-h-[300px] flex items-center justify-center">
+      No portfolio items found.
+    </div>
+
+    <div class="lg:p-7 flex flex-col gap-8 2xl:gap-14" *ngIf="!loading && cards?.length > 0">
+    
       <ng-container *ngFor="let group of cards | slice : 0 : 3; let i = index">
         <div
           *ngIf="i % 3 === 0"
@@ -126,6 +134,7 @@
               class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
               [src]="imageUrl + '/' + project.image_2"
               alt="Project Image"
+              
             />
             <div
               class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"

@@ -63,47 +63,98 @@ export class NewsroomComponent implements AfterViewInit {
     this.fetchPreFeaturedItems();
   }
 
+  featuredLoading = true;
+prevFeaturedLoading = true;
+allNewsLoading = true;
+
+
+  // fetchFeaturedItems(): void {
+  //   this.newsroomService.getFeaturedItems().subscribe({
+  //     next: (data) => {
+  //       this.featured = data.data.data;
+  //     },
+  //     error: (error) => {
+  //       console.error('Error fetching featured news:', error);
+  //     },
+  //     complete: () => {
+  //       console.log('News fetch complete');
+  //     },
+  //   });
+  // }
+
+  // fetchPreFeaturedItems(): void {
+  //   this.newsroomService.getPreFeaturedItems().subscribe({
+  //     next: (data) => {
+  //       this.prevFeatured = data.data.data;
+  //     },
+  //     error: (error) => {
+  //       console.error('Error fetching featured news:', error);
+  //     },
+  //     complete: () => {
+  //       console.log('News fetch complete');
+  //     },
+  //   });
+  // }
+
+  // fetchAllNews(): void {
+  //   this.newsroomService.getAllNews().subscribe({
+  //     next: (data) => {
+  //       this.allNews = data.data.data;
+  //     },
+  //     error: (error) => {
+  //       console.error('Error fetching all news:', error);
+  //     },
+  //     complete: () => {
+  //       console.log('News fetch complete');
+  //     },
+  //   });
+  // }
+
   fetchFeaturedItems(): void {
-    this.newsroomService.getFeaturedItems().subscribe({
-      next: (data) => {
-        this.featured = data.data.data;
-      },
-      error: (error) => {
-        console.error('Error fetching featured news:', error);
-      },
-      complete: () => {
-        console.log('News fetch complete');
-      },
-    });
-  }
+  this.featuredLoading = true;
+  this.newsroomService.getFeaturedItems().subscribe({
+    next: (data) => {
+      this.featured = data.data.data;
+    },
+    error: (error) => {
+      console.error('Error fetching featured news:', error);
+    },
+    complete: () => {
+      this.featuredLoading = false;
+    },
+  });
+}
 
-  fetchPreFeaturedItems(): void {
-    this.newsroomService.getPreFeaturedItems().subscribe({
-      next: (data) => {
-        this.prevFeatured = data.data.data;
-      },
-      error: (error) => {
-        console.error('Error fetching featured news:', error);
-      },
-      complete: () => {
-        console.log('News fetch complete');
-      },
-    });
-  }
+fetchPreFeaturedItems(): void {
+  this.prevFeaturedLoading = true;
+  this.newsroomService.getPreFeaturedItems().subscribe({
+    next: (data) => {
+      this.prevFeatured = data.data.data;
+    },
+    error: (error) => {
+      console.error('Error fetching featured news:', error);
+    },
+    complete: () => {
+      this.prevFeaturedLoading = false;
+    },
+  });
+}
 
-  fetchAllNews(): void {
-    this.newsroomService.getAllNews().subscribe({
-      next: (data) => {
-        this.allNews = data.data.data;
-      },
-      error: (error) => {
-        console.error('Error fetching all news:', error);
-      },
-      complete: () => {
-        console.log('News fetch complete');
-      },
-    });
-  }
+fetchAllNews(): void {
+  this.allNewsLoading = true;
+  this.newsroomService.getAllNews().subscribe({
+    next: (data) => {
+      this.allNews = data.data.data;
+    },
+    error: (error) => {
+      console.error('Error fetching all news:', error);
+    },
+    complete: () => {
+      this.allNewsLoading = false;
+    },
+  });
+}
+
 
   formatHeading(title: string): string {
     return title.toLowerCase().replace(/\s+/g, '-');

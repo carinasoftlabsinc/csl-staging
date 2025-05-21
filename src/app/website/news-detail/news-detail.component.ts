@@ -10,7 +10,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-news-detail',
@@ -23,6 +23,9 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
   sections: any[] = [];
   activeSection!: string;
   activeSubSection!: string;
+sanitizedContent: SafeHtml | null = null;
+  loadingNews = true;
+  isLoadingNews = true;
 
   allNews: any[] = [];
 
@@ -53,22 +56,46 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
     this.fetchAllNews();
   }
 
-  fetchAllNews() {
-    const apiUrl = `${environment.apiUrl}/admin/getAll_news`;
+  // fetchAllNews() {
+  //   const apiUrl = `${environment.apiUrl}/admin/getAll_news`;
 
-    this.http.get(apiUrl).subscribe(
-      (response: any) => {
-        if (response && response.data && response.data.data) {
-          this.allNews = response.data.data; // Store the fetched data in allNews array
-        } else {
-          console.warn('No data found');
-        }
-      },
-      (error) => {
-        console.error('Error fetching news data:', error);
+  //   this.http.get(apiUrl).subscribe(
+  //     (response: any) => {
+  //       if (response && response.data && response.data.data) {
+  //         this.allNews = response.data.data; // Store the fetched data in allNews array
+  //       } else {
+  //         console.warn('No data found');
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error('Error fetching news data:', error);
+  //     }
+  //   );
+  // }
+
+  fetchAllNews() {
+  const apiUrl = `${environment.apiUrl}/admin/getAll_news`;
+
+  this.isLoadingNews = true;
+
+  this.http.get(apiUrl).subscribe(
+    (response: any) => {
+      if (response && response.data && response.data.data) {
+        this.allNews = response.data.data;
+      } else {
+        console.warn('No data found');
+        this.allNews = [];
       }
-    );
-  }
+      this.isLoadingNews = false;
+    },
+    (error) => {
+      console.error('Error fetching news data:', error);
+      this.allNews = [];
+      this.isLoadingNews = false;
+    }
+  );
+}
+
 
   ngAfterViewInit() {
     // Apply styles once the view has been initialized
@@ -76,14 +103,20 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
   }
 
   getFilterData(_id: string) {
+    this.loadingNews = true;
     const apiUrl = `${environment.apiUrl}/admin/getAll_news`;
 
     this.http.get(apiUrl).subscribe(
       (data: any) => {
         if (data && data.data && data.data.data) {
+          this.loadingNews = false;
           this.cardData = data.data.data.find(
             (item: any) => this.formatHeading(item.titleLink) === _id
           );
+
+          if (this.cardData?.content) {
+  this.sanitizedContent = this.sanitizeContent(this.cardData.content);
+}
           this.sections = data.sections || [];
 
           // Apply styles after setting cardData
@@ -107,6 +140,7 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
       },
       (error) => {
         console.error('Error while retrieving data:', error);
+        this.loadingNews = false;
         this.cardData = null;
         this.sections = [];
         this.activeSection = '';
@@ -187,6 +221,42 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
 
   closeModal(): void {
     this.isModalOpen = false;
+  }
+
+  
+  sanitizeContent(rawHtml: string): SafeHtml {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = rawHtml;
+
+    // List of unwanted tags to remove entirely
+    const unwantedTags = ['font', 'span'];
+
+    unwantedTags.forEach((tag) => {
+      const elements = tempDiv.getElementsByTagName(tag);
+      while (elements.length > 0) {
+        const element = elements[0];
+        const parent = element.parentNode;
+        // Replace the tag with its inner content
+        while (element.firstChild) {
+          parent?.insertBefore(element.firstChild, element);
+        }
+        parent?.removeChild(element);
+      }
+    });
+
+    // Remove inline styles from remaining elements
+    tempDiv
+      .querySelectorAll('[style]')
+      .forEach((el) => el.removeAttribute('style'));
+
+    const images = tempDiv.getElementsByTagName('img');
+    Array.from(images).forEach((img) => {
+      img.style.width = '100%';
+      img.style.height = 'auto'; // Optional, maintain aspect ratio
+      img.classList.add('w-full', 'h-auto'); // Add Tailwind classes
+    });
+
+    return this.sanitizer.bypassSecurityTrustHtml(tempDiv.innerHTML);
   }
 
   onSubmit(): void {

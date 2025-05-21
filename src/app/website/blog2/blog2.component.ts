@@ -28,7 +28,11 @@ export class Blog2Component implements OnInit {
   filteredBlogs: any[] = [];
   loadingBlog = true;
   loadingMoreBlogs = true;
-  sanitizedSections: { _id: string, heading: string, sanitizedContent: SafeHtml }[] = [];
+  sanitizedSections: {
+    _id: string;
+    heading: string;
+    sanitizedContent: SafeHtml;
+  }[] = [];
   loading = false;
 
   constructor(
@@ -51,7 +55,6 @@ export class Blog2Component implements OnInit {
         this.getBlogIdFromTitle(titleLink);
       }
     });
-  
 
     // this.fetchAllBlogs();
   }
@@ -59,30 +62,29 @@ export class Blog2Component implements OnInit {
   fetchAllBlogs() {
     this.loadingMoreBlogs = true;
 
-    this.http.get(`${environment.apiUrl}/admin/getAll_blog?category=web`).subscribe(
-      (response: any) => {
-        this.loadingMoreBlogs = false;
-        if (response && response.data && response.data.data) {
-          this.allBlogs = response.data.data; // Store all fetched blogs
+    this.http
+      .get(`${environment.apiUrl}/admin/getAll_blog?category=web`)
+      .subscribe(
+        (response: any) => {
+          this.loadingMoreBlogs = false;
+          if (response && response.data && response.data.data) {
+            this.allBlogs = response.data.data; // Store all fetched blogs
 
-          if (this.cardDataa) {
-            this.filteredBlogs = this.allBlogs.filter(
-              (blog) => blog.titleLink !== this.cardDataa.titleLink
-            );
+            if (this.cardDataa) {
+              this.filteredBlogs = this.allBlogs.filter(
+                (blog) => blog.titleLink !== this.cardDataa.titleLink
+              );
+            }
+          } else {
+            console.warn('No data found');
           }
-
-        } else {
-          console.warn('No data found');
+        },
+        (error) => {
+          console.error('Error fetching blogs:', error);
+          this.loadingMoreBlogs = false;
         }
-      },
-      (error) => {
-        console.error('Error fetching blogs:', error);
-        this.loadingMoreBlogs = false;
-
-      }
-    );
+      );
   }
-  
 
   // getFilterData(_id: string) {
   //   this.loadingBlog = true;
@@ -99,13 +101,13 @@ export class Blog2Component implements OnInit {
   //           // this.sections = this.cardData.sections || [];
   //           const rawSections = this.cardData.sections || [];
   //           this.sections = rawSections;
-            
+
   //           this.sanitizedSections = rawSections.map((section: any) => ({
   //             _id: section._id,
   //             heading: section.heading,
   //             sanitizedContent: this.sanitizeContent(section.content || '')
   //           }));
-            
+
   //           // Apply styles after setting `cardData`
   //           setTimeout(() => this.applyStyles(), 0);
 
@@ -136,7 +138,7 @@ export class Blog2Component implements OnInit {
 
   getBlogIdFromTitle(titleLink: string) {
     this.loading = true; // Show loading
-  
+
     this.http.get(this.getAll_blogTitles).subscribe(
       (response: any) => {
         this.loading = false; // Hide loading after response
@@ -144,7 +146,7 @@ export class Blog2Component implements OnInit {
           const blog = response.data.find(
             (item: any) => this.formatHeading(item.titleLink) === titleLink
           );
-          
+
           if (blog?._id) {
             this.getBlogById(blog._id);
           } else {
@@ -162,7 +164,6 @@ export class Blog2Component implements OnInit {
       }
     );
   }
-  
 
   // getBlogIdFromTitle(titleLink: string) {
   //   // Option 1: Use getAll_blog to map titleLink → _id
@@ -185,7 +186,6 @@ export class Blog2Component implements OnInit {
   //     }
   //   );
   // }
-  
 
   getBlogById(_id: string) {
     this.loadingBlog = true;
@@ -198,7 +198,7 @@ export class Blog2Component implements OnInit {
         this.sanitizedSections = rawSections.map((section: any) => ({
           _id: section._id,
           heading: section.heading,
-          sanitizedContent: this.sanitizeContent(section.content || '')
+          sanitizedContent: this.sanitizeContent(section.content || ''),
         }));
         this.fetchAllBlogs();
         if (this.sections.length > 0) {
@@ -216,7 +216,6 @@ export class Blog2Component implements OnInit {
       }
     );
   }
-  
 
   private resetData() {
     this.cardData = null;
@@ -226,7 +225,6 @@ export class Blog2Component implements OnInit {
     this.activeSubSection = '';
   }
 
-
   private applyStyles() {
     // Custom styles can be applied here after DOM updates if needed
   }
@@ -234,7 +232,6 @@ export class Blog2Component implements OnInit {
   formatHeading(heading: string): string {
     return heading.toLowerCase().replace(/ /g, '-');
   }
-
 
   scrollToSection(event: Event, sectionId: string) {
     event.preventDefault();
@@ -287,15 +284,14 @@ export class Blog2Component implements OnInit {
     }
   }
 
-
   sanitizeContent(rawHtml: string): SafeHtml {
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = rawHtml;
-  
+
     // List of unwanted tags to remove entirely
     const unwantedTags = ['font', 'span'];
-  
-    unwantedTags.forEach(tag => {
+
+    unwantedTags.forEach((tag) => {
       const elements = tempDiv.getElementsByTagName(tag);
       while (elements.length > 0) {
         const element = elements[0];
@@ -307,20 +303,19 @@ export class Blog2Component implements OnInit {
         parent?.removeChild(element);
       }
     });
-  
+
     // Remove inline styles from remaining elements
-    tempDiv.querySelectorAll('[style]').forEach(el => el.removeAttribute('style'));
-    
+    tempDiv
+      .querySelectorAll('[style]')
+      .forEach((el) => el.removeAttribute('style'));
+
     const images = tempDiv.getElementsByTagName('img');
-  Array.from(images).forEach(img => {
-    img.style.width = '100%';
-    img.style.height = 'auto'; // Optional, maintain aspect ratio
-    img.classList.add('w-full', 'h-auto'); // Add Tailwind classes
-  });
+    Array.from(images).forEach((img) => {
+      img.style.width = '100%';
+      img.style.height = 'auto'; // Optional, maintain aspect ratio
+      img.classList.add('w-full', 'h-auto'); // Add Tailwind classes
+    });
 
     return this.sanitizer.bypassSecurityTrustHtml(tempDiv.innerHTML);
   }
-  
-  
-  
 }

@@ -115,6 +115,7 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-12 2xl:mt-16">
+        <ng-container *ngIf="!featuredLoading; else featuredSkeleton">
         <a
           [routerLink]="['/news', formatHeading(featured[0].titleLink)]"
           class="h-[40vh] md:h-[90vh] w-full rounded-3xl overflow-hidden relative group"
@@ -136,11 +137,17 @@
             </p>
           </div>
         </a>
+</ng-container>
+
+<ng-template #featuredSkeleton>
+  <div class="h-[40vh] md:h-[90vh] w-full bg-gray-200 animate-pulse rounded-3xl"></div>
+</ng-template>
 
         <!-- Secondary Items in a Grid -->
         <div class="grid grid-rows-2 gap-4 h-[90vh] w-full">
           <!-- <ng-container *ngFor="let card of featured.slice(1); let i = index"> -->
           <div class="relative group overflow-hidden rounded-3xl">
+            <ng-container *ngIf="!featuredLoading; else secondFeaturedSkeleton">
             <a [routerLink]="['/news', formatHeading(featured[1].titleLink)]">
               <img
                 class="h-full w-full object-cover"
@@ -159,11 +166,16 @@
                 </p>
               </div>
             </a>
+            </ng-container>
+            <ng-template #secondFeaturedSkeleton>
+  <div class="h-full w-full bg-gray-200 animate-pulse rounded-3xl"></div>
+</ng-template>  
           </div>
           <!-- </ng-container> -->
 
           <!-- Final Row: Static or Optional Placeholder Items -->
           <div class="rounded-3xl overflow-hidden flex gap-4">
+            <ng-container *ngIf="!featuredLoading; else sliceSkeleton">
             <ng-container *ngFor="let card of featured.slice(2); let i = index">
               <a
                 [routerLink]="['/news', formatHeading(card.titleLink)]"
@@ -185,6 +197,10 @@
                 </div>
               </a>
             </ng-container>
+            </ng-container>
+            <ng-template #sliceSkeleton>
+  <div class="h-full w-full bg-gray-200 animate-pulse rounded-3xl" *ngFor="let _ of [1,2]"></div>
+</ng-template>
             <!-- <div
               class="h-full w-full rounded-3xl overflow-hidden relative group"
             >
@@ -220,6 +236,8 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-12 2xl:mt-16">
+        <ng-container *ngIf="!prevFeaturedLoading; else recentSkeleton">
+
         <a
           [routerLink]="['/news', formatHeading(prevFeatured[0].titleLink)]"
           class="h-[40vh] md:h-[90vh] w-full rounded-3xl overflow-hidden relative group"
@@ -260,6 +278,11 @@
             </p>
           </div>
         </a>
+        </ng-container>
+        <ng-template #recentSkeleton>
+  <div class="h-[40vh] md:h-[90vh] w-full bg-gray-200 animate-pulse rounded-3xl mb-4"></div>
+  <div class="h-[40vh] md:h-[90vh] w-full bg-gray-200 animate-pulse rounded-3xl"></div>
+</ng-template>
         <!-- <div
           class="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 md:h-[90vh] w-full overflow-hidden gap-4"
         >
@@ -301,6 +324,7 @@
       <div
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 2xl:gap-x-9 2xl:gap-y-14 mt-12 2xl:mt-16"
       >
+      <ng-container *ngIf="!allNewsLoading; else newsGridSkeleton">
         <a
           [routerLink]="['/news', formatHeading(card.titleLink)]"
           class="overflow-hidden flex flex-col gap-2"
@@ -317,6 +341,21 @@
             {{ card.title }}
           </p>
         </a>
+        </ng-container>
+
+        <ng-template #newsGridSkeleton>
+  <!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 2xl:gap-x-9 2xl:gap-y-14"> -->
+    <!-- <div class="h-72 2xl:h-80 w-full bg-gray-200 animate-pulse rounded-2xl" *ngFor="let _ of [1,2,3,4,5,6]"></div> -->
+
+     <div
+    class="flex flex-col gap-2"
+    *ngFor="let _ of [1, 2, 3, 4, 5, 6]"
+  >
+    <div class="h-72 2xl:h-80 w-full bg-gray-200 animate-pulse rounded-2xl"></div>
+    <div class="h-5 w-3/4 bg-gray-200 animate-pulse rounded"></div>
+  </div>
+  <!-- </div> -->
+</ng-template>
       </div>
     </section>
 

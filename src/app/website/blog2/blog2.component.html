@@ -43,7 +43,7 @@
       >
         <ng-container *ngIf="!loadingBlog; else contentSkeleton">
           <img
-            class="w-full rounded-3xl h-72 2xl:h-[35vh] object-cover img-fluid"
+            class="w-full rounded-3xl h-72 2xl:h-[35vh] object-contain img-fluid"
             [src]="imageUrl + '/' + cardDataa?.image"
             alt=""
           />

@@ -16,6 +16,9 @@ import { OnDestroy, OnInit } from '@angular/core';
 import { CountUp } from 'countup.js';
 import { Title, Meta} from '@angular/platform-browser';
 import { id } from '@swimlane/ngx-charts';
+import { environment } from 'environments/environment';
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-website',
   templateUrl: './website.component.html',
@@ -39,6 +42,9 @@ import { id } from '@swimlane/ngx-charts';
   ],
 })
 export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
+  blogCards: any[] = [];
+  loadingBlog = true;
+  imageUrl = environment.imageBaseUrl;
   // Counter starts
   @ViewChild('counterSection', { static: true }) counterSection!: ElementRef;
 
@@ -199,7 +205,11 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
   showTab(tabId: string) {
     this.activeTab = tabId;
   }
-  constructor(private titleService: Title, private metaService: Meta) {}
+  constructor(
+    private titleService: Title,
+    private metaService: Meta,
+    private http: HttpClient
+  ) {}
   ngOnInit(): void {
     this.titleService.setTitle(
       'Carina Softlabs - Top Game Development & Digital Marketing Company'
@@ -213,53 +223,32 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     this.setupIntersectionObserver();
     AOS.init({ disable: 'mobile' });
     gsap.registerPlugin(ScrollTrigger);
+
+    this.fetchBlogs();
   }
 
   ngAfterViewInit() {}
 
   ngOnDestroy(): void {}
 
-  formatHeading(heading: string): string {
-    return heading.toLocaleLowerCase().replace(/ /g, '-');
+  formatHeading(titleLink: string): string {
+    return (titleLink || "").toLocaleLowerCase().replace(/ /g, '-');
+  }
+  
+  fetchBlogs() {
+    this.http.get<any>(`${environment.apiUrl}/admin/getLatestBlogs`).subscribe({
+      next: (res) => {
+        if (res.success === true && res?.data) {
+          this.blogCards = res.data;
+        }
+        this.loadingBlog = false;
+      },
+      error: () => {
+        this.loadingBlog = false;
+      },
+    });
   }
 
-  blogCards = [
-    {
-      imgSrc: '../../assets/images/latest-B-1.png',
-      heading:
-        'The Rise of Play-to-Earn: How NFTs are Transforming the Gaming Economy?',
-      para: 'Delve into the transformative impact of NFTs on the gaming economy, exploring how they are redefining ownership & creating new avenues for players to monetize their gaming endeavors.',
-      id: 1,
-      titleLink:
-        'The-Rise-of-Play-to-Earn-How-NFTs-are-Transforming-the-Gaming-Economy',
-    },
-    {
-      imgSrc: '../../assets/images/latest-B-2.png',
-      heading:
-        'Why Should You Hire a Dedicated Website Developer for Your Company?',
-      para: 'Hiring a professional to undertake web development tasks will help you increase productivity in your team while conserving vital resources and time.',
-      id: 4,
-      titleLink:
-        'Why-Should-You-Hire-a-Dedicated-Web-Developer-for-Your-Company',
-    },
-    {
-      imgSrc: '../../assets/images/latest-B-3.png',
-      heading:
-        'How to Do Keyword Research for SEO: [Download Free Keyword Research Template]',
-      para: 'Keyword research is defined as a process of selecting and assessing keywords that your target website audience writes into Google and other search engines.',
-      id: 7,
-      titleLink: 'How-to-Do-Keyword-Research-for-SEO',
-    },
-    {
-      imgSrc: '../../assets/images/latest-B-4.webp',
-      heading:
-        'Our Director, Miss. Pragati Singh Suman, at International Eminence Excellence Awards 2023, Dubai!',
-      para: "Ms. Pragati Singh Suman's selection for the International Eminence Excellence Award is a reflection of her achievements and contributions to the digital marketing & technology industry",
-      id: 11,
-      titleLink:
-        'Our-Director-Miss-Pragati-Singh-Suman-at-International-Eminence-Excellence-Awards-2023-Dubai',
-    },
-  ];
 
   clientLogo = [
     {
@@ -551,7 +540,6 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
       route: '/emerging-tech',
     },
   ];
-  
 
   projectNum = [
     {

@@ -9,14 +9,16 @@
           #stickySidebar
           class="sticky bg-[#34394b53] rounded-3xl font-quickSand p-3 text-[#B4B9CB]"
         >
-          <h2 class="text-white text-xl xl:text-2xl 2xl:text-3xl border-b border-[#34394B] pb-2 mb-3 uppercase">
+          <h2
+            class="text-white text-xl xl:text-2xl 2xl:text-3xl border-b border-[#34394B] pb-2 mb-3 uppercase"
+          >
             Table of Contents
           </h2>
           <ng-container *ngIf="!loadingBlog; else sidebarSkeleton">
             <ul>
               <li class="my-2.5 2xl:my-3.5" *ngFor="let section of sections">
                 <a
-                  class="font-medium text-white xl:!text-lg  2xl:!text-xl"
+                  class="font-medium text-white xl:!text-lg 2xl:!text-xl"
                   [class.active]="activeSection === section._id"
                   href="#"
                   (click)="scrollToSection($event, section._id)"
@@ -83,8 +85,13 @@
             [id]="section._id"
             class="flex flex-col !gap-3 !text-white"
           >
-            <h2 class="text-2xl xl:text-3xl 2xl:text-4xl font-semibold">{{ section.heading }}</h2>
-            <p class="sm:text-base xl:text-lg 2xl:text-xl" [innerHTML]="section.sanitizedContent"></p>
+            <h2 class="text-2xl xl:text-3xl 2xl:text-4xl font-semibold">
+              {{ section.heading }}
+            </h2>
+            <p
+              class="sm:text-base xl:text-lg 2xl:text-xl"
+              [innerHTML]="section.sanitizedContent"
+            ></p>
           </div>
         </ng-container>
 
@@ -108,6 +115,57 @@
             </div>
           </div>
         </ng-template>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQS -->
+  <section
+   *ngIf="faqs && faqs.length > 0"
+    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px] mt-6"
+  >
+    <div>
+      <h2
+        class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
+      >
+        Frequently asked questions
+      </h2>
+    </div>
+
+    <div class="xl:pt-20 pt-4">
+      <p
+        class="text-justify font-quickSand text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-[#34394B]"
+      >
+        Everything you need to know about this blog.
+      </p>
+    </div>
+
+    <div class="my-8 2xl:my-20">
+      <div class="md:max-w-4xl  2xl:max-w-7xl mx-auto px-4 py-10">
+        <div
+          *ngFor="let faq of faqs; let i = index"
+          class="border-b border-gray-200"
+        >
+          <button
+            class="w-full text-left py-7 md:py-9 flex justify-between items-center focus:outline-none"
+            (click)="toggleFAQ(i)"
+          >
+            <span
+              class="font-quickSand font-semibold text-black text-lg lg:text-xl lg:leading-7 2xl:text-2xl 2xl:leading-3"
+              >{{ faq.question }}</span
+            >
+            <span
+              class="text-2xl text-[#34394b] border-2 border-[#34394b] rounded-full w-6 h-6 flex items-center justify-center transition-transform duration-300 ease-in-out"
+            >
+              {{ faq.open ? "−" : "+" }}
+            </span>
+          </button>
+          <div
+            *ngIf="faq.open"
+            class="font-quickSand font-medium text-sm leading-6 lg:text-[1rem] lg:leading-7 2xl:text-xl 2xl:leading-7 text-[#34394B] transition duration-300 ease-in-out pb-7"
+            [innerHTML]="faq.safeAnswer"
+          ></div>
+        </div>
       </div>
     </div>
   </section>

@@ -34,6 +34,13 @@ export class Blog2Component implements OnInit {
     sanitizedContent: SafeHtml;
   }[] = [];
   loading = false;
+  faqs: {
+    question: string;
+    answer: string;
+    _id: string;
+    open?: boolean;
+    safeAnswer?: SafeHtml;
+  }[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -200,6 +207,11 @@ export class Blog2Component implements OnInit {
           heading: section.heading,
           sanitizedContent: this.sanitizeContent(section.content || ''),
         }));
+        this.faqs = this.cardDataa?.faqs.map((faq: any, i: any) => ({
+          ...faq,
+          open: i === 0,
+          safeAnswer: this.sanitizer.bypassSecurityTrustHtml(faq.answer),
+        }));
         this.fetchAllBlogs();
         if (this.sections.length > 0) {
           this.activeSection = this.sections[0]._id;
@@ -216,6 +228,11 @@ export class Blog2Component implements OnInit {
       }
     );
   }
+
+  toggleFAQ(index: number) {
+    this.faqs[index].open = !this.faqs[index].open;
+  }
+
 
   private resetData() {
     this.cardData = null;

@@ -46,7 +46,7 @@
         <ng-container *ngIf="!loadingBlog; else contentSkeleton">
           <img
             class="w-full rounded-3xl h-72 2xl:h-[35vh] object-contain img-fluid"
-            [src]="imageUrl + '/' + cardDataa?.image"
+            [src]="imageUrl + cardDataa?.image"
             alt=""
           />
           <h1 class="font-myfont text-xl md:text-3xl xl:text-4xl 2xl:text-5xl">
@@ -198,7 +198,7 @@
               <a>
                 <img
                   class="p-4 rounded-[60px] h-64 2xl:h-80 w-full object-cover"
-                  [src]="imageUrl + '/' + card.image_2"
+                  [src]="imageUrl  + card.image_2"
                   alt="product image"
                 />
               </a>

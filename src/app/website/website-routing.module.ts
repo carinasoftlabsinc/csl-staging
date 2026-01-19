@@ -168,17 +168,17 @@ const routes: Routes = [
     path: 'portfolio',
     component: PortfolioComponent,
   },
-  {
-    path: 'portfolio/:id',
-    component: PortfolioDetailComponent,
-  },
+  // {
+  //   path: 'portfolio/:id',
+  //   component: PortfolioDetailComponent,
+  // },
   {
     path: 'job-description/:id',
     component: JobDescriptionComponent,
   },
   {
-    path: 'case-studies/:id',
-    component: CaseStudiesComponent ,
+    path: 'portfolio/:id',
+    component: CaseStudiesComponent,
   },
   // Wildcard route for handling 404 pages
   {

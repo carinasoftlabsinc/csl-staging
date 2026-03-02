@@ -47,6 +47,8 @@ import { CoverflowSliderComponent } from './components/coverflow-slider/coverflo
 import { JobDescriptionComponent } from './job-description/job-description.component';
 import { TestimonialBubbleComponent } from './components/testimonial-bubble/testimonial-bubble.component';
 import { CaseStudiesComponent } from './case-studies/case-studies.component';
+import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 
 @NgModule({
@@ -90,6 +92,8 @@ import { CaseStudiesComponent } from './case-studies/case-studies.component';
     JobDescriptionComponent,
     TestimonialBubbleComponent,
     CaseStudiesComponent,
+    TermsConditionsComponent,
+    PrivacyPolicyComponent,
   ],
   imports: [
     CommonModule,

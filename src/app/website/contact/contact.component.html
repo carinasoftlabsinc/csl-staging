@@ -290,6 +290,47 @@
             </div>
           </div>
         </div>
+
+        <!-- Terms & Privacy Checkbox -->
+<div class="mt-6 md:col-span-2">
+  <div class="flex items-start gap-3">
+    <input
+      type="checkbox"
+      id="termsAccepted"
+      formControlName="termsAccepted"
+      class="mt-1 w-4 h-4 text-black border-gray-300 rounded focus:ring-black"
+    />
+
+    <label for="termsAccepted" class="text-sm text-gray-700 leading-5">
+      I agree to the
+      <a
+        routerLink="/terms-conditions"
+        target="_blank"
+        class="text-black font-semibold underline hover:text-gray-600"
+      >
+        Terms and Conditions
+      </a>
+      &
+      <a
+        routerLink="/privacy-policy"
+        target="_blank"
+        class="text-black font-semibold underline hover:text-gray-600"
+      >
+        Privacy Policy
+      </a>
+      of the website.
+    </label>
+  </div>
+
+  <!-- Validation Error -->
+  <div
+    *ngIf="submitted && clientForm.get('termsAccepted')?.invalid"
+    class="text-red-500 text-sm mt-2"
+  >
+    You must agree to the Terms and Privacy Policy before submitting.
+  </div>
+</div>
+
         <div class="mt-6 flex justify-center md:justify-start">
           <button
             type="submit"

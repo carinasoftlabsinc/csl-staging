@@ -92,6 +92,8 @@ import { WebServiceComponent } from './web-service/web-service.component';
 import { GameServiceComponent } from './game-service/game-service.component';
 import { JobDescriptionComponent } from './job-description/job-description.component';
 import { CaseStudiesComponent } from './case-studies/case-studies.component';
+import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
   {
@@ -179,6 +181,15 @@ const routes: Routes = [
   {
     path: 'portfolio/:id',
     component: CaseStudiesComponent,
+  },
+
+  {
+    path: 'privacy-policy',
+    component: PrivacyPolicyComponent,
+  },
+  {
+    path: 'terms-conditions',
+    component: TermsConditionsComponent,
   },
   // Wildcard route for handling 404 pages
   {

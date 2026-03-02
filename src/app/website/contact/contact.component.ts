@@ -32,6 +32,7 @@ export class ContactComponent {
       budget: [500],
       service: ['', Validators.required],
       message: [''],
+      termsAccepted: [false, Validators.requiredTrue] 
     });
 
   }

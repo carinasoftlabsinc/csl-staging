@@ -328,9 +328,9 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
       position: 'Chief Marketing Officer',
     },
     {
-      imageSrc: '../../../assets/images/Sonal Mam.png',
-      name: 'SONAL JOSHI',
-      position: 'HR Manager',
+      imageSrc: '../../../assets/images/Manish.png',
+      name: 'MANISH GURNANI',
+      position: 'Director, BD & Sales',
     },
   ];
 

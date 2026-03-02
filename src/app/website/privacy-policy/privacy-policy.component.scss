@@ -1,0 +1,102 @@
+.bg-contact {
+  // position: relative;
+  // background-image: linear-gradient(
+  //     rgba(0, 0, 0, 0.8) 65%,
+  //     rgba(0, 0, 0, 0.804) 35%
+  //   ),
+  //   url("../../../assets/images/contact-hero-bg.png");
+   background-image:
+    url("../../../assets/images/contact-hero-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+
+/* White Section Styling */
+.terms-section {
+  background-color: #ffffff;
+  padding: 80px 20px;
+}
+
+.terms-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: 'Quicksand', sans-serif;
+  color: #2d2d2d;
+  line-height: 1.8;
+}
+
+/* Header Info */
+.terms-header {
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.terms-header p {
+  margin: 5px 0;
+  font-size: 15px;
+  color: #555;
+}
+
+/* Each Section Block */
+.terms-block {
+  margin-bottom: 50px;
+}
+
+.terms-block h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  position: relative;
+  padding-left: 15px;
+}
+
+/* Blue Left Border Accent */
+.terms-block h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  height: 80%;
+  width: 4px;
+  background-color: #2563eb;
+  border-radius: 4px;
+}
+
+/* Paragraph Styling */
+.terms-block p {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+/* List Styling */
+.terms-block ul {
+  margin: 15px 0 20px 25px;
+}
+
+.terms-block ul li {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .terms-section {
+    padding: 50px 15px;
+  }
+
+  .terms-block h2 {
+    font-size: 22px;
+  }
+
+  .terms-block p,
+  .terms-block ul li {
+    font-size: 15px;
+  }
+}
+.terms-block h3 {
+  color: #1f2937;
+}

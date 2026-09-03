@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, Renderer2, ViewChild } from '@angular/core';
 import loadScript from 'load-script';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import {
@@ -15,6 +15,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { OnDestroy, OnInit } from '@angular/core';
 import { CountUp } from 'countup.js';
 import { Title, Meta} from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { id } from '@swimlane/ngx-charts';
 import { environment } from 'environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -205,20 +206,28 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
   showTab(tabId: string) {
     this.activeTab = tabId;
   }
+  private seoElements: HTMLElement[] = [];
+
   constructor(
     private titleService: Title,
     private metaService: Meta,
-    private http: HttpClient
+    private http: HttpClient,
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document: Document
   ) {}
   ngOnInit(): void {
     this.titleService.setTitle(
-      'Carina Softlabs - Top Game Development & Digital Marketing Company'
+      'Game Development, Digital Marketing, Web & App Dev Services'
     );
     this.metaService.updateTag({
       name: 'description',
       content:
-        'Central India’s biggest Game Development, Digital Marketing, Web Development, Mobile App Development, and Emerging Tech company, driving innovation and growth with cutting-edge solutions.',
+        'Leverage 15 years of expertise in game development, digital marketing, web and app development services to build, grow, and scale your digital presence.',
     });
+
+    this.setCanonicalUrl('https://carinasoftlabs.com/');
+    this.setOpenGraphTags();
+    this.setSchemaMarkup();
 
     this.setupIntersectionObserver();
     AOS.init({ disable: 'mobile' });
@@ -229,7 +238,80 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {}
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.seoElements.forEach((el) => {
+      if (el.parentNode) {
+        this.renderer.removeChild(el.parentNode, el);
+      }
+    });
+    this.seoElements = [];
+  }
+
+  private setCanonicalUrl(url: string): void {
+    let link: HTMLLinkElement | null = this.document.querySelector(
+      "link[rel='canonical']"
+    );
+    if (!link) {
+      link = this.renderer.createElement('link');
+      this.renderer.setAttribute(link, 'rel', 'canonical');
+      this.renderer.appendChild(this.document.head, link);
+      this.seoElements.push(link as HTMLElement);
+    }
+    this.renderer.setAttribute(link, 'href', url);
+  }
+
+  private setOpenGraphTags(): void {
+    const title = 'Game Development, Digital Marketing, Web & App Dev Services';
+    const description =
+      'Leverage 15 years of expertise in game development, digital marketing, web and app development services to build, grow and scale your digital presence.';
+    const url = 'https://carinasoftlabs.com/';
+    const image = 'https://carinasoftlabs.com/assets/CSL-logo-footer.svg';
+
+    this.metaService.updateTag({ property: 'og:title', content: title });
+    this.metaService.updateTag({ property: 'og:description', content: description });
+    this.metaService.updateTag({ property: 'og:url', content: url });
+    this.metaService.updateTag({ property: 'og:type', content: 'website' });
+    this.metaService.updateTag({ property: 'og:image', content: image });
+    this.metaService.updateTag({ property: 'og:site_name', content: 'Carina Softlabs Inc.' });
+
+    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.metaService.updateTag({ name: 'twitter:title', content: title });
+    this.metaService.updateTag({ name: 'twitter:description', content: description });
+    this.metaService.updateTag({ name: 'twitter:image', content: image });
+  }
+
+  private setSchemaMarkup(): void {
+    const organizationSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      '@id': 'https://carinasoftlabs.com/#organization',
+      name: 'Carina Softlabs Inc.',
+      url: 'https://carinasoftlabs.com/',
+      logo: 'https://carinasoftlabs.com/assets/CSL-logo-footer.svg',
+    };
+
+    const websiteSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      '@id': 'https://carinasoftlabs.com/#website',
+      name: 'Carina Softlabs Inc.',
+      url: 'https://carinasoftlabs.com/',
+      publisher: {
+        '@id': 'https://carinasoftlabs.com/#organization',
+      },
+    };
+
+    this.appendJsonLdScript(organizationSchema);
+    this.appendJsonLdScript(websiteSchema);
+  }
+
+  private appendJsonLdScript(schema: object): void {
+    const script = this.renderer.createElement('script');
+    this.renderer.setAttribute(script, 'type', 'application/ld+json');
+    script.text = JSON.stringify(schema);
+    this.renderer.appendChild(this.document.head, script);
+    this.seoElements.push(script);
+  }
 
   formatHeading(titleLink: string): string {
     return (titleLink || "").toLocaleLowerCase().replace(/ /g, '-');

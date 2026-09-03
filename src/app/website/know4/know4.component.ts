@@ -263,8 +263,10 @@
 // }
 
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Title, Meta } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { environment } from '../../../environments/environment';
 
 interface JobPost {
@@ -298,7 +300,9 @@ interface ApiResponse {
   templateUrl: './know4.component.html',
   styleUrls: ['./know4.component.scss'],
 })
-export class Know4Component {
+export class Know4Component implements OnInit, OnDestroy {
+  private seoElements: HTMLElement[] = [];
+
   cards: JobPost[] = [];
   apiUrl = `${environment.apiUrl}/admin/getAllCareerJobPost`;
   imageUrl = `${environment.imageBaseUrl}`;
@@ -320,13 +324,121 @@ export class Know4Component {
   selectedRoleCategory: string = 'Game Development'; // Default filter category
   selectedEmploymentType: string = 'Full-time';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private titleService: Title,
+    private metaService: Meta,
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document: Document
+  ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle(
+      'Join Our Team | Build Your Career in Technology & Innovation'
+    );
+    this.metaService.updateTag({
+      name: 'description',
+      content:
+        'Explore career opportunities in game development, digital marketing, web and app development. Join a team driven by technology, creativity, and innovation.',
+    });
+
+    this.setCanonicalUrl('https://carinasoftlabs.com/careers');
+    this.setOpenGraphTags();
+    this.setSchemaMarkup();
+
     this.fetchJobPosts();
     this.activeImage = this.items[0].image;
     this.filteredCards = this.getFilteredCards();
 
+  }
+
+  ngOnDestroy(): void {
+    this.seoElements.forEach((el) => {
+      if (el.parentNode) {
+        this.renderer.removeChild(el.parentNode, el);
+      }
+    });
+    this.seoElements = [];
+  }
+
+  private setCanonicalUrl(url: string): void {
+    let link: HTMLLinkElement | null = this.document.querySelector(
+      "link[rel='canonical']"
+    );
+    if (!link) {
+      link = this.renderer.createElement('link');
+      this.renderer.setAttribute(link, 'rel', 'canonical');
+      this.renderer.appendChild(this.document.head, link);
+      this.seoElements.push(link as HTMLElement);
+    }
+    this.renderer.setAttribute(link, 'href', url);
+  }
+
+  private setOpenGraphTags(): void {
+    const title = 'Careers | Build Your Future in Technology & Innovation';
+    const description =
+      'Explore career opportunities in game development, digital marketing, web and app development. Join a team driven by technology, creativity and innovation.';
+    const url = 'https://carinasoftlabs.com/careers';
+    const image =
+      'https://carinasoftlabs.com/assets/images/employee%20group%20photo.webp';
+
+    this.metaService.updateTag({ property: 'og:title', content: title });
+    this.metaService.updateTag({ property: 'og:description', content: description });
+    this.metaService.updateTag({ property: 'og:url', content: url });
+    this.metaService.updateTag({ property: 'og:type', content: 'website' });
+    this.metaService.updateTag({ property: 'og:site_name', content: 'Carina Softlabs Inc.' });
+    this.metaService.updateTag({ property: 'og:image', content: image });
+
+    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.metaService.updateTag({ name: 'twitter:title', content: title });
+    this.metaService.updateTag({ name: 'twitter:description', content: description });
+    this.metaService.updateTag({ name: 'twitter:image', content: image });
+  }
+
+  private setSchemaMarkup(): void {
+    const schema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'CollectionPage',
+          '@id': 'https://carinasoftlabs.com/careers#webpage',
+          url: 'https://carinasoftlabs.com/careers',
+          name: 'Careers | Build Your Future in Technology & Innovation',
+          description:
+            'Explore career opportunities in game development, digital marketing, web and app development. Join a team driven by technology, creativity, and innovation.',
+          isPartOf: {
+            '@id': 'https://carinasoftlabs.com/#website',
+          },
+          about: {
+            '@id': 'https://carinasoftlabs.com/#organization',
+          },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          '@id': 'https://carinasoftlabs.com/careers#breadcrumb',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: 'https://carinasoftlabs.com/',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Careers',
+              item: 'https://carinasoftlabs.com/careers',
+            },
+          ],
+        },
+      ],
+    };
+
+    const script = this.renderer.createElement('script');
+    this.renderer.setAttribute(script, 'type', 'application/ld+json');
+    script.text = JSON.stringify(schema);
+    this.renderer.appendChild(this.document.head, script);
+    this.seoElements.push(script);
   }
 
   fetchJobPosts(): void {

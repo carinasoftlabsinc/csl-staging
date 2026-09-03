@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit, Inject, Renderer2 } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -20,8 +21,14 @@ export class ServicesComponent implements OnInit, OnDestroy {
 
   currentImage = this.allServiceimgs[0];
   private currentIndex = 0;
+  private seoElements: HTMLElement[] = [];
 
-  constructor(private titleService: Title, private metaService: Meta) {}
+  constructor(
+    private titleService: Title,
+    private metaService: Meta,
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document: Document
+  ) {}
 
   ngAfterViewInit(): void {
     const sections = document.querySelectorAll('.ini-service');
@@ -105,16 +112,108 @@ export class ServicesComponent implements OnInit, OnDestroy {
       this.updateWordIndex();
     }, 2000); // Change word and image every 2 seconds
 
-    this.titleService.setTitle('Our Services at Carina Softlabs Inc.');
+    this.titleService.setTitle(
+      'IT Solutions & Digital Services | Game, Web, App & Marketing'
+    );
     this.metaService.updateTag({
       name: 'description',
       content:
-        'Explore our diverse range of services at Carina Softlabs Inc. We specialize in Game Development, Digital Marketing, Web and Mobile App Development, and Emerging Tech solutions.',
+        '15+ years of proven work in game development, digital marketing, web and app development, delivering innovative IT and digital solutions for businesses.',
     });
+
+    this.setCanonicalUrl('https://carinasoftlabs.com/services');
+    this.setOpenGraphTags();
+    this.setSchemaMarkup();
   }
 
   ngOnDestroy() {
     clearInterval(this.intervalId);
+
+    this.seoElements.forEach((el) => {
+      if (el.parentNode) {
+        this.renderer.removeChild(el.parentNode, el);
+      }
+    });
+    this.seoElements = [];
+  }
+
+  private setCanonicalUrl(url: string): void {
+    let link: HTMLLinkElement | null = this.document.querySelector(
+      "link[rel='canonical']"
+    );
+    if (!link) {
+      link = this.renderer.createElement('link');
+      this.renderer.setAttribute(link, 'rel', 'canonical');
+      this.renderer.appendChild(this.document.head, link);
+      this.seoElements.push(link as HTMLElement);
+    }
+    this.renderer.setAttribute(link, 'href', url);
+  }
+
+  private setOpenGraphTags(): void {
+    const title = 'IT & Digital Services | Game, Web, App & Marketing';
+    const description =
+      'Explore 15+ years of expertise in game development, digital marketing, web and app development, delivering innovative IT and digital solutions for businesses.';
+    const url = 'https://carinasoftlabs.com/services';
+    const image = 'https://carinasoftlabs.com/assets/images/service-hero-game.png';
+
+    this.metaService.updateTag({ property: 'og:title', content: title });
+    this.metaService.updateTag({ property: 'og:description', content: description });
+    this.metaService.updateTag({ property: 'og:url', content: url });
+    this.metaService.updateTag({ property: 'og:type', content: 'website' });
+    this.metaService.updateTag({ property: 'og:site_name', content: 'Carina Softlabs Inc.' });
+    this.metaService.updateTag({ property: 'og:image', content: image });
+
+    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.metaService.updateTag({ name: 'twitter:title', content: title });
+    this.metaService.updateTag({ name: 'twitter:description', content: description });
+    this.metaService.updateTag({ name: 'twitter:image', content: image });
+  }
+
+  private setSchemaMarkup(): void {
+    const schema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'CollectionPage',
+          '@id': 'https://carinasoftlabs.com/services#webpage',
+          url: 'https://carinasoftlabs.com/services',
+          name: 'IT & Digital Services | Game, Web, App & Marketing',
+          description:
+            'Explore 15+ years of expertise in game development, digital marketing, web and app development, delivering innovative IT and digital solutions for businesses.',
+          isPartOf: {
+            '@id': 'https://carinasoftlabs.com/#website',
+          },
+          about: {
+            '@id': 'https://carinasoftlabs.com/#organization',
+          },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          '@id': 'https://carinasoftlabs.com/services#breadcrumb',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: 'https://carinasoftlabs.com/',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Services',
+              item: 'https://carinasoftlabs.com/services',
+            },
+          ],
+        },
+      ],
+    };
+
+    const script = this.renderer.createElement('script');
+    this.renderer.setAttribute(script, 'type', 'application/ld+json');
+    script.text = JSON.stringify(schema);
+    this.renderer.appendChild(this.document.head, script);
+    this.seoElements.push(script);
   }
 
   updateWordIndex() {

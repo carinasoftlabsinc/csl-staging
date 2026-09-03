@@ -7,7 +7,10 @@ import {
   AfterViewInit,
   ViewChild,
   ElementRef,
+  Inject,
+  Renderer2,
 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import KeenSlider, { KeenSliderInstance } from 'keen-slider';
 import { gsap } from 'gsap';
@@ -34,13 +37,16 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
   private slider2: KeenSliderInstance | null = null;
 
   private routerSubscription: Subscription | null = null;
+  private seoElements: HTMLElement[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private el: ElementRef,
     private titleService: Title,
-    private metaService: Meta
+    private metaService: Meta,
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document: Document
   ) {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -57,12 +63,17 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Discover Carina Softlabs - Know About Us!');
+    this.titleService.setTitle(
+      'About Carina Softlabs | 15+ Years of Technology Expertise'
+    );
     this.metaService.updateTag({
       name: 'description',
       content:
-        'Explore the story behind Carina Softlabs and discover how we’ve become central India’s leading Game Development & Digital Marketing Company.',
+        'Discover our 15+ year journey in game development, digital marketing, web and app development, driven by innovation, expertise, and client success.',
     });
+
+    this.setCanonicalUrl('https://carinasoftlabs.com/know-us');
+    this.setSchemaMarkup();
 
     this.hoveredItem = this.items[0];
   }
@@ -80,6 +91,72 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     // Kill all existing ScrollTriggers on component destroy
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+
+    this.seoElements.forEach((el) => {
+      if (el.parentNode) {
+        this.renderer.removeChild(el.parentNode, el);
+      }
+    });
+    this.seoElements = [];
+  }
+
+  private setCanonicalUrl(url: string): void {
+    let link: HTMLLinkElement | null = this.document.querySelector(
+      "link[rel='canonical']"
+    );
+    if (!link) {
+      link = this.renderer.createElement('link');
+      this.renderer.setAttribute(link, 'rel', 'canonical');
+      this.renderer.appendChild(this.document.head, link);
+      this.seoElements.push(link as HTMLElement);
+    }
+    this.renderer.setAttribute(link, 'href', url);
+  }
+
+  private setSchemaMarkup(): void {
+    const schema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'AboutPage',
+          '@id': 'https://carinasoftlabs.com/know-us#aboutpage',
+          url: 'https://carinasoftlabs.com/know-us',
+          name: 'About Us | 15+ Years of Digital & Technology Expertise',
+          description:
+            'Discover our 15+ year journey in game development, digital marketing, web and app development, driven by innovation, expertise and client success.',
+          isPartOf: {
+            '@id': 'https://carinasoftlabs.com/#website',
+          },
+          about: {
+            '@id': 'https://carinasoftlabs.com/#organization',
+          },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          '@id': 'https://carinasoftlabs.com/know-us#breadcrumb',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: 'https://carinasoftlabs.com/',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Know Us',
+              item: 'https://carinasoftlabs.com/know-us',
+            },
+          ],
+        },
+      ],
+    };
+
+    const script = this.renderer.createElement('script');
+    this.renderer.setAttribute(script, 'type', 'application/ld+json');
+    script.text = JSON.stringify(schema);
+    this.renderer.appendChild(this.document.head, script);
+    this.seoElements.push(script);
   }
 
   private initSliders(): void {

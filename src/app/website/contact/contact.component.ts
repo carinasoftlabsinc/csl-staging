@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2 } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { FormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ContactService } from './contact.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,11 +11,12 @@ import { Router } from '@angular/router'; // Import the Router
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit, OnDestroy {
   rangeValue: number = 500;
   clientForm: UntypedFormGroup;
   submitted: boolean | undefined;
   loading: boolean = false;
+  private seoElements: HTMLElement[] = [];
   // router: any;
   constructor(
     private titleService: Title,
@@ -22,7 +24,9 @@ export class ContactComponent {
     private fb: UntypedFormBuilder,
     private service: ContactService,
     private snackBar: MatSnackBar,
-    private router: Router // Inject Router here
+    private router: Router, // Inject Router here
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document: Document
   ) {
     this.clientForm = this.fb.group({
       name: ['', Validators.required],
@@ -236,12 +240,110 @@ export class ContactComponent {
   
   
   ngOnInit(): void {
-    this.titleService.setTitle('Contact Us - Carina Softlabs Inc.');
+    this.titleService.setTitle(
+      'Contact Us | Discuss Your Game, Tech & Marketing Project'
+    );
     this.metaService.updateTag({
       name: 'description',
       content:
-        'Contact Carina Softlabs to boost your business! Get expert help with game development, digital marketing, web & mobile app development, and emerging tech solutions.',
+        'Have a project in mind? Contact our experts to discuss game development, digital marketing, web or app development, and turn your ideas into digital solutions.',
     });
+
+    this.setCanonicalUrl('https://carinasoftlabs.com/contact-us');
+    this.setOpenGraphTags();
+    this.setSchemaMarkup();
+  }
+
+  ngOnDestroy(): void {
+    this.seoElements.forEach((el) => {
+      if (el.parentNode) {
+        this.renderer.removeChild(el.parentNode, el);
+      }
+    });
+    this.seoElements = [];
+  }
+
+  private setCanonicalUrl(url: string): void {
+    let link: HTMLLinkElement | null = this.document.querySelector(
+      "link[rel='canonical']"
+    );
+    if (!link) {
+      link = this.renderer.createElement('link');
+      this.renderer.setAttribute(link, 'rel', 'canonical');
+      this.renderer.appendChild(this.document.head, link);
+      this.seoElements.push(link as HTMLElement);
+    }
+    this.renderer.setAttribute(link, 'href', url);
+  }
+
+  private setOpenGraphTags(): void {
+    const title = 'Contact Us | Start Your Digital Project Today';
+    const description =
+      'Have a project in mind? Contact our experts to discuss game development, digital marketing, web or app development and turn your ideas into digital solutions.';
+    const url = 'https://carinasoftlabs.com/contact-us';
+    const image =
+      'https://admin.carinasoftlabs.com/web/web/file/news/image-ee54656e-a5b3-4625-a61d-3b2fc28e2eea.png';
+
+    this.metaService.updateTag({ property: 'og:title', content: title });
+    this.metaService.updateTag({ property: 'og:description', content: description });
+    this.metaService.updateTag({ property: 'og:url', content: url });
+    this.metaService.updateTag({ property: 'og:type', content: 'website' });
+    this.metaService.updateTag({ property: 'og:site_name', content: 'Carina Softlabs Inc.' });
+    this.metaService.updateTag({ property: 'og:image', content: image });
+
+    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.metaService.updateTag({ name: 'twitter:title', content: title });
+    this.metaService.updateTag({ name: 'twitter:description', content: description });
+    this.metaService.updateTag({ name: 'twitter:image', content: image });
+  }
+
+  private setSchemaMarkup(): void {
+    const schema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'ContactPage',
+          '@id': 'https://carinasoftlabs.com/contact-us#contactpage',
+          url: 'https://carinasoftlabs.com/contact-us',
+          name: 'Contact Us | Start Your Digital Project Today',
+          description:
+            'Have a project in mind? Contact our experts to discuss game development, digital marketing, web or app development and turn your ideas into digital solutions.',
+          isPartOf: {
+            '@id': 'https://carinasoftlabs.com/#website',
+          },
+          about: {
+            '@id': 'https://carinasoftlabs.com/#organization',
+          },
+          mainEntity: {
+            '@id': 'https://carinasoftlabs.com/#organization',
+          },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          '@id': 'https://carinasoftlabs.com/contact-us#breadcrumb',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: 'https://carinasoftlabs.com/',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Contact Us',
+              item: 'https://carinasoftlabs.com/contact-us',
+            },
+          ],
+        },
+      ],
+    };
+
+    const script = this.renderer.createElement('script');
+    this.renderer.setAttribute(script, 'type', 'application/ld+json');
+    script.text = JSON.stringify(schema);
+    this.renderer.appendChild(this.document.head, script);
+    this.seoElements.push(script);
   }
 
   private showSuccessMessage(message: string) {

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { id } from '@swimlane/ngx-charts';
 import { Title, Meta } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 
@@ -10,8 +11,8 @@ import { environment } from 'environments/environment';
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss'],
 })
-export class BlogComponent {
-  gameBlogs: any[] = []; 
+export class BlogComponent implements OnInit, OnDestroy {
+  gameBlogs: any[] = [];
   digitalM : any[] = [];
   App : any[] = [];
   web : any[] = [];
@@ -20,26 +21,122 @@ export class BlogComponent {
   loadingDigital = true;
   loadingApp = true;
   loadingFeatured = true;
-  
+  private seoElements: HTMLElement[] = [];
+
   constructor(
     private router: Router,
     private titleService: Title,
     private metaService: Meta,
-    private http: HttpClient
+    private http: HttpClient,
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   imageUrl = environment.imageBaseUrl;
 
   ngOnInit(): void {
     this.titleService.setTitle(
-      'Insights & Innovations: The Carina Softlabs Blog'
+      'Tech & Digital Insights | Game, Web, App & Marketing Blog'
     );
     this.metaService.updateTag({
       name: 'description',
       content:
-        'Welcome to the Carina Softlabs Blog, your go-to source for the latest insights and innovations in Game Development, Digital Marketing, Web and Mobile App Development, and Emerging Tech.',
+        'Explore the latest updates & insights on game development, web and app development, digital marketing, design, technology trends, and digital innovation.',
     });
+
+    this.setCanonicalUrl('https://carinasoftlabs.com/blog');
+    this.setOpenGraphTags();
+    this.setSchemaMarkup();
+
     this.fetchFeaturedBlogs();
+  }
+
+  ngOnDestroy(): void {
+    this.seoElements.forEach((el) => {
+      if (el.parentNode) {
+        this.renderer.removeChild(el.parentNode, el);
+      }
+    });
+    this.seoElements = [];
+  }
+
+  private setCanonicalUrl(url: string): void {
+    let link: HTMLLinkElement | null = this.document.querySelector(
+      "link[rel='canonical']"
+    );
+    if (!link) {
+      link = this.renderer.createElement('link');
+      this.renderer.setAttribute(link, 'rel', 'canonical');
+      this.renderer.appendChild(this.document.head, link);
+      this.seoElements.push(link as HTMLElement);
+    }
+    this.renderer.setAttribute(link, 'href', url);
+  }
+
+  private setOpenGraphTags(): void {
+    const title = 'Tech & Digital Insights | Game, Web, App & Marketing';
+    const description =
+      'Explore the latest insights on game development, web and app development, digital marketing, design, technology trends and digital innovation.';
+    const url = 'https://carinasoftlabs.com/blog';
+    const image = 'https://carinasoftlabs.com/assets/CSL-logo-footer.svg';
+
+    this.metaService.updateTag({ property: 'og:title', content: title });
+    this.metaService.updateTag({ property: 'og:description', content: description });
+    this.metaService.updateTag({ property: 'og:url', content: url });
+    this.metaService.updateTag({ property: 'og:type', content: 'website' });
+    this.metaService.updateTag({ property: 'og:site_name', content: 'Carina Softlabs Inc.' });
+    this.metaService.updateTag({ property: 'og:image', content: image });
+
+    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.metaService.updateTag({ name: 'twitter:title', content: title });
+    this.metaService.updateTag({ name: 'twitter:description', content: description });
+    this.metaService.updateTag({ name: 'twitter:image', content: image });
+  }
+
+  private setSchemaMarkup(): void {
+    const schema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Blog',
+          '@id': 'https://carinasoftlabs.com/blog#blog',
+          url: 'https://carinasoftlabs.com/blog',
+          name: 'Tech & Digital Insights | Game, Web, App & Marketing',
+          description:
+            'Explore the latest insights on game development, web and app development, digital marketing, design, technology trends and digital innovation.',
+          isPartOf: {
+            '@id': 'https://carinasoftlabs.com/#website',
+          },
+          publisher: {
+            '@id': 'https://carinasoftlabs.com/#organization',
+          },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          '@id': 'https://carinasoftlabs.com/blog#breadcrumb',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: 'https://carinasoftlabs.com/',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Blog',
+              item: 'https://carinasoftlabs.com/blog',
+            },
+          ],
+        },
+      ],
+    };
+
+    const script = this.renderer.createElement('script');
+    this.renderer.setAttribute(script, 'type', 'application/ld+json');
+    script.text = JSON.stringify(schema);
+    this.renderer.appendChild(this.document.head, script);
+    this.seoElements.push(script);
   }
 
   // fetchFeaturedBlogs() {

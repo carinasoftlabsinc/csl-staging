@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { newsroomService } from './newsroom.service';
 import { environment } from 'environments/environment';
 
@@ -9,9 +11,10 @@ import { environment } from 'environments/environment';
   templateUrl: './newsroom.component.html',
   styleUrls: ['./newsroom.component.scss'],
 })
-export class NewsroomComponent implements AfterViewInit {
+export class NewsroomComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('videoIframe') videoIframe!: ElementRef<HTMLIFrameElement>;
   private observer!: IntersectionObserver;
+  private seoElements: HTMLElement[] = [];
 
   ngAfterViewInit(): void {
     // Set up Intersection Observer
@@ -43,6 +46,13 @@ export class NewsroomComponent implements AfterViewInit {
     if (this.observer) {
       this.observer.disconnect();
     }
+
+    this.seoElements.forEach((el) => {
+      if (el.parentNode) {
+        this.renderer.removeChild(el.parentNode, el);
+      }
+    });
+    this.seoElements = [];
   }
 
   // formatHeading(heading: string): string {
@@ -53,14 +63,113 @@ export class NewsroomComponent implements AfterViewInit {
   allNews: any[] = [];
   prevFeatured: any[] = [];
 
-  constructor(private newsroomService: newsroomService) {}
+  constructor(
+    private newsroomService: newsroomService,
+    private titleService: Title,
+    private metaService: Meta,
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document: Document
+  ) {}
 
   imageUrl = environment.imageBaseUrl;
 
   ngOnInit(): void {
+    this.titleService.setTitle(
+      'News Room | Latest Company News, Updates & Events'
+    );
+    this.metaService.updateTag({
+      name: 'description',
+      content:
+        'Stay updated with the latest company news, achievements, events & industry updates from Carina Softlabs across game, web, app development & digital marketing.',
+    });
+
+    this.setCanonicalUrl('https://carinasoftlabs.com/news-room');
+    this.setOpenGraphTags();
+    this.setSchemaMarkup();
+
     this.fetchFeaturedItems();
     this.fetchAllNews();
     this.fetchPreFeaturedItems();
+  }
+
+  private setCanonicalUrl(url: string): void {
+    let link: HTMLLinkElement | null = this.document.querySelector(
+      "link[rel='canonical']"
+    );
+    if (!link) {
+      link = this.renderer.createElement('link');
+      this.renderer.setAttribute(link, 'rel', 'canonical');
+      this.renderer.appendChild(this.document.head, link);
+      this.seoElements.push(link as HTMLElement);
+    }
+    this.renderer.setAttribute(link, 'href', url);
+  }
+
+  private setOpenGraphTags(): void {
+    const title = 'News Room | Latest Company News, Updates & Events';
+    const description =
+      'Stay updated with the latest company news, achievements, events and industry updates from Carina Softlabs across game, web, app development and digital marketing.';
+    const url = 'https://carinasoftlabs.com/news-room';
+    const image =
+      'https://admin.carinasoftlabs.com/web/web/file/news/image-1731506036405.png';
+
+    this.metaService.updateTag({ property: 'og:title', content: title });
+    this.metaService.updateTag({ property: 'og:description', content: description });
+    this.metaService.updateTag({ property: 'og:url', content: url });
+    this.metaService.updateTag({ property: 'og:type', content: 'website' });
+    this.metaService.updateTag({ property: 'og:site_name', content: 'Carina Softlabs Inc.' });
+    this.metaService.updateTag({ property: 'og:image', content: image });
+
+    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.metaService.updateTag({ name: 'twitter:title', content: title });
+    this.metaService.updateTag({ name: 'twitter:description', content: description });
+    this.metaService.updateTag({ name: 'twitter:image', content: image });
+  }
+
+  private setSchemaMarkup(): void {
+    const schema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'CollectionPage',
+          '@id': 'https://carinasoftlabs.com/news-room#webpage',
+          url: 'https://carinasoftlabs.com/news-room',
+          name: 'News Room | Latest Company News, Updates & Events',
+          description:
+            'Stay updated with the latest company news, achievements, events and industry updates from Carina Softlabs across game, web, app development and digital marketing.',
+          isPartOf: {
+            '@id': 'https://carinasoftlabs.com/#website',
+          },
+          about: {
+            '@id': 'https://carinasoftlabs.com/#organization',
+          },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          '@id': 'https://carinasoftlabs.com/news-room#breadcrumb',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: 'https://carinasoftlabs.com/',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'News Room',
+              item: 'https://carinasoftlabs.com/news-room',
+            },
+          ],
+        },
+      ],
+    };
+
+    const script = this.renderer.createElement('script');
+    this.renderer.setAttribute(script, 'type', 'application/ld+json');
+    script.text = JSON.stringify(schema);
+    this.renderer.appendChild(this.document.head, script);
+    this.seoElements.push(script);
   }
 
   featuredLoading = true;

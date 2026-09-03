@@ -334,8 +334,10 @@
 //   cardText: string = `Find Out How We Solved <br class="hidden sm:block" /> Complex "IT" Challenge`;
 // }
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Title, Meta } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { environment } from "../../../environments/environment"
 
 type Category =
@@ -370,7 +372,7 @@ interface ApiResponse {
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.scss'],
 })
-export class PortfolioComponent implements OnInit {
+export class PortfolioComponent implements OnInit, OnDestroy {
   SrcWords: Category[] = [
     'Game Development',
     'App Development',
@@ -383,11 +385,119 @@ export class PortfolioComponent implements OnInit {
   apiUrl = `${environment.apiUrl}/admin/getAll_project?category=`;
   imageUrl = `${environment.imageBaseUrl}`;
   loading: boolean | undefined;
+  private seoElements: HTMLElement[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private titleService: Title,
+    private metaService: Meta,
+    private renderer: Renderer2,
+    @Inject(DOCUMENT) private document: Document
+  ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle(
+      'Portfolio | Game, Web, App & Digital Marketing Projects'
+    );
+    this.metaService.updateTag({
+      name: 'description',
+      content:
+        'Explore our portfolio of game, web, mobile app, and digital marketing projects, showcasing creative solutions, technical expertise, and positive feedback.',
+    });
+
+    this.setCanonicalUrl('https://carinasoftlabs.com/portfolio');
+    this.setOpenGraphTags();
+    this.setSchemaMarkup();
+
     this.fetchPortfolioItems(this.selectedCategory);
+  }
+
+  ngOnDestroy(): void {
+    this.seoElements.forEach((el) => {
+      if (el.parentNode) {
+        this.renderer.removeChild(el.parentNode, el);
+      }
+    });
+    this.seoElements = [];
+  }
+
+  private setCanonicalUrl(url: string): void {
+    let link: HTMLLinkElement | null = this.document.querySelector(
+      "link[rel='canonical']"
+    );
+    if (!link) {
+      link = this.renderer.createElement('link');
+      this.renderer.setAttribute(link, 'rel', 'canonical');
+      this.renderer.appendChild(this.document.head, link);
+      this.seoElements.push(link as HTMLElement);
+    }
+    this.renderer.setAttribute(link, 'href', url);
+  }
+
+  private setOpenGraphTags(): void {
+    const title = 'Portfolio | Game, Web, App & Digital Marketing Projects';
+    const description =
+      'Explore our portfolio of game, web, mobile app and digital marketing projects, showcasing creative solutions, technical expertise and successful digital experiences.';
+    const url = 'https://carinasoftlabs.com/portfolio';
+    const image = 'https://carinasoftlabs.com/assets/CSL-logo-footer.svg';
+
+    this.metaService.updateTag({ property: 'og:title', content: title });
+    this.metaService.updateTag({ property: 'og:description', content: description });
+    this.metaService.updateTag({ property: 'og:url', content: url });
+    this.metaService.updateTag({ property: 'og:type', content: 'website' });
+    this.metaService.updateTag({ property: 'og:site_name', content: 'Carina Softlabs Inc.' });
+    this.metaService.updateTag({ property: 'og:image', content: image });
+
+    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.metaService.updateTag({ name: 'twitter:title', content: title });
+    this.metaService.updateTag({ name: 'twitter:description', content: description });
+    this.metaService.updateTag({ name: 'twitter:image', content: image });
+  }
+
+  private setSchemaMarkup(): void {
+    const schema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'CollectionPage',
+          '@id': 'https://carinasoftlabs.com/portfolio#webpage',
+          url: 'https://carinasoftlabs.com/portfolio',
+          name: 'Portfolio | Game, Web, App & Digital Marketing Projects',
+          description:
+            'Explore our portfolio of game, web, mobile app and digital marketing projects, showcasing creative solutions, technical expertise and successful digital experiences.',
+          isPartOf: {
+            '@id': 'https://carinasoftlabs.com/#website',
+          },
+          about: {
+            '@id': 'https://carinasoftlabs.com/#organization',
+          },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          '@id': 'https://carinasoftlabs.com/portfolio#breadcrumb',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: 'Home',
+              item: 'https://carinasoftlabs.com/',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: 'Portfolio',
+              item: 'https://carinasoftlabs.com/portfolio',
+            },
+          ],
+        },
+      ],
+    };
+
+    const script = this.renderer.createElement('script');
+    this.renderer.setAttribute(script, 'type', 'application/ld+json');
+    script.text = JSON.stringify(schema);
+    this.renderer.appendChild(this.document.head, script);
+    this.seoElements.push(script);
   }
 
   // fetchPortfolioItems(category: Category): void {

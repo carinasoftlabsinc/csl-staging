@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Event, Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { AuthService } from './authentication/authServices';
 import { gsap } from 'gsap';
 
 @Component({
@@ -9,9 +8,8 @@ import { gsap } from 'gsap';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  userIsAuthenticated = false;
   currentUrl!: string;
-  constructor(public _router: Router,private authService: AuthService,) {
+  constructor(public _router: Router) {
     this._router.events.subscribe((routerEvent: Event) => {
       if (routerEvent instanceof NavigationStart) {
         this.currentUrl = routerEvent.url.substring(
@@ -25,9 +23,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
   }
   ngOnInit() {
-    this.authService.autoAuthUser(); 
-    // console.log(this.authService.autoAuthUser);
-    
+    /* empty */
   }
 
   // custom cursor

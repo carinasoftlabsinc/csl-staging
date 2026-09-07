@@ -37,7 +37,7 @@ import { NewsDetailComponent } from './news-detail/news-detail.component';
 import { GameSliderComponent } from './components/game-slider/game-slider.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { PortfolioDetailComponent } from './portfolio-detail/portfolio-detail.component';
-import { ThreeSceneComponent } from './components/three-scene/three-scene.component';
+
 import { DigitalServiceComponent } from './digital-service/digital-service.component';
 import { WebServiceComponent } from './web-service/web-service.component';
 import { WebSliderComponent } from './components/web-slider/web-slider.component';
@@ -82,7 +82,6 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
     GameSliderComponent,
     PortfolioComponent,
     PortfolioDetailComponent,
-    ThreeSceneComponent,
     DigitalServiceComponent,
     WebServiceComponent,
     WebSliderComponent,

@@ -156,7 +156,6 @@ import {
   ElementRef,
   ViewChild,
 } from '@angular/core';
-import { ThreeSceneComponent } from '../components/three-scene/three-scene.component';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -167,21 +166,12 @@ gsap.registerPlugin(ScrollTrigger);
 })
 export class Service2Component implements AfterViewInit {
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
-  @ViewChild(ThreeSceneComponent) threeScene!: ThreeSceneComponent;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
   currentSection: string = '01';
 
   ngAfterViewInit(): void {
-    this.scrollContainer.nativeElement.addEventListener(
-      'scroll',
-      (event: Event) => {
-        const scrollTop = this.scrollContainer.nativeElement.scrollTop;
-        this.threeScene.updateScrollPosition(scrollTop);
-      }
-    );
-
     const scrubValue = 0.5;
     let container = document.querySelector('.containNscroll') as HTMLElement;
     let wrapper = document.querySelector('.wrapperScr') as HTMLElement;

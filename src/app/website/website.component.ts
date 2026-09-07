@@ -16,7 +16,6 @@ import { OnDestroy, OnInit } from '@angular/core';
 import { CountUp } from 'countup.js';
 import { Title, Meta} from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
-import { id } from '@swimlane/ngx-charts';
 import { environment } from 'environments/environment';
 import { HttpClient } from '@angular/common/http';
 

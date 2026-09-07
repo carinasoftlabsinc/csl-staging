@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { color, number } from 'echarts';
 
 @Component({
   selector: 'app-game-service',

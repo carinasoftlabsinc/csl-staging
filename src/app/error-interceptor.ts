@@ -1,11 +1,5 @@
 import { Injectable } from "@angular/core";
-import {
-  HttpInterceptor,
-  HttpRequest,
-  HttpHandler,
-  HttpErrorResponse,
-  HttpResponse,
-} from "@angular/common/http";
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { catchError, tap } from "rxjs/operators";
 import { throwError } from "rxjs";
 import { MatDialog } from "@angular/material/dialog";

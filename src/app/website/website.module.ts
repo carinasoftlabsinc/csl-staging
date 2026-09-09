@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { WebsiteRoutingModule } from './website-routing.module';
 import { WebsiteComponent } from './website.component';
 import { MaterialModule } from '@shared';
@@ -12,7 +11,6 @@ import { ServicesComponent } from './services/services.component';
 import { KnowComponent } from './know/know.component';
 import { Know2Component } from './know2/know2.component';
 import { Know3Component } from './know3/know3.component';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { Know4Component } from './know4/know4.component';
 import { BlogComponent } from './blog/blog.component';
 import { ContactComponent } from './contact/contact.component';
@@ -97,10 +95,8 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
   imports: [
     CommonModule,
     WebsiteRoutingModule,
-    FlexLayoutModule,
     MaterialModule,
     CarouselModule,
-    SlickCarouselModule,
     FormsModule,
     ReactiveFormsModule,
     

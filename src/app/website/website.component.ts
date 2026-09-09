@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, ElementRef, Inject, Renderer2, ViewChild } from '@angular/core';
-import loadScript from 'load-script';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import {
   trigger,

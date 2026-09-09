@@ -98,11 +98,6 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/',
-    pathMatch: 'full',
-  },
-  {
-    path: '',
     component: WebsiteComponent,
   },
   {

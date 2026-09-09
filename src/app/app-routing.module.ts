@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { Page404Component } from './shared/components/page404/page404.component';
 import { AuthLayoutComponent } from './layout/app-layout/auth-layout/auth-layout.component';
 const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
   {
     path: '',
     component: AuthLayoutComponent,

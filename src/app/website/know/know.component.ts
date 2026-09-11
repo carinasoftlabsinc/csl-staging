@@ -1,4 +1,4 @@
-import { HostListener } from '@angular/core';
+import { HostListener, DOCUMENT } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import {
   Component,
@@ -10,7 +10,7 @@ import {
   Inject,
   Renderer2,
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import KeenSlider, { KeenSliderInstance } from 'keen-slider';
 import { gsap } from 'gsap';

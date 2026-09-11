@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit, AfterViewInit, Inject, Renderer2 } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit, Inject, Renderer2, DOCUMENT } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
+
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 

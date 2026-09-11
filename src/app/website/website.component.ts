@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, Renderer2, ViewChild, DOCUMENT } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import {
   trigger,
@@ -14,7 +14,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { OnDestroy, OnInit } from '@angular/core';
 import { CountUp } from 'countup.js';
 import { Title, Meta} from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
+
 import { environment } from 'environments/environment';
 import { HttpClient } from '@angular/common/http';
 

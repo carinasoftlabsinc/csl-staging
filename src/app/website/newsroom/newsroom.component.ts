@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild, DOCUMENT } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
+
 import { newsroomService } from './newsroom.service';
 import { environment } from 'environments/environment';
 

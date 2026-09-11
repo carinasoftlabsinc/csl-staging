@@ -334,10 +334,10 @@
 //   cardText: string = `Find Out How We Solved <br class="hidden sm:block" /> Complex "IT" Challenge`;
 // }
 
-import { Component, OnInit, OnDestroy, Inject, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Title, Meta } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
+
 import { environment } from "../../../environments/environment"
 
 type Category =

@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, Inject, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
+
 import { FormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ContactService } from './contact.service';
 import { MatSnackBar } from '@angular/material/snack-bar';

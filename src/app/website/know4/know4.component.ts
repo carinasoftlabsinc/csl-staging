@@ -263,10 +263,10 @@
 // }
 
 
-import { Component, OnInit, OnDestroy, Inject, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Title, Meta } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
+
 import { environment } from '../../../environments/environment';
 
 interface JobPost {

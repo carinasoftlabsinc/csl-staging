@@ -54,9 +54,10 @@ interface ApiResponse {
 }
 
 @Component({
-  selector: 'app-job-description',
-  templateUrl: './job-description.component.html',
-  styleUrls: ['./job-description.component.scss'],
+    selector: 'app-job-description',
+    templateUrl: './job-description.component.html',
+    styleUrls: ['./job-description.component.scss'],
+    standalone: false
 })
 export class JobDescriptionComponent {
   jobPost!: JobPost;

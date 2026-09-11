@@ -27,9 +27,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-toggle-switch',
-  templateUrl: './toggle-switch.component.html',
-  styleUrls: ['./toggle-switch.component.scss'],
+    selector: 'app-toggle-switch',
+    templateUrl: './toggle-switch.component.html',
+    styleUrls: ['./toggle-switch.component.scss'],
+    standalone: false
 })
 export class ToggleSwitchComponent implements OnInit {
   isChecked: boolean = false;

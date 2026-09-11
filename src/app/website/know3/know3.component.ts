@@ -5,9 +5,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-know3',
-  templateUrl: './know3.component.html',
-  styleUrls: ['./know3.component.scss'],
+    selector: 'app-know3',
+    templateUrl: './know3.component.html',
+    styleUrls: ['./know3.component.scss'],
+    standalone: false
 })
 export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
   private routerSubscription!: Subscription;

@@ -7,9 +7,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({
-  selector: 'app-services',
-  templateUrl: './services.component.html',
-  styleUrls: ['./services.component.scss'],
+    selector: 'app-services',
+    templateUrl: './services.component.html',
+    styleUrls: ['./services.component.scss'],
+    standalone: false
 })
 export class ServicesComponent implements OnInit, OnDestroy {
   allServiceimgs = [

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-bubble-card',
-  templateUrl: './bubble-card.component.html',
-  styleUrls: ['./bubble-card.component.scss'],
+    selector: 'app-bubble-card',
+    templateUrl: './bubble-card.component.html',
+    styleUrls: ['./bubble-card.component.scss'],
+    standalone: false
 })
 export class BubbleCardComponent {
   changeActiveQuote(index: number): void {

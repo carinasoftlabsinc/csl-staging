@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-notification',
-  templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.scss'],
+    selector: 'app-notification',
+    templateUrl: './notification.component.html',
+    styleUrls: ['./notification.component.scss'],
+    standalone: false
 })
 export class NotificationComponent {
   @Input() isVisible: boolean = false;

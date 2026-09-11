@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-testimonial-bubble',
-  templateUrl: './testimonial-bubble.component.html',
-  styleUrls: ['./testimonial-bubble.component.scss']
+    selector: 'app-testimonial-bubble',
+    templateUrl: './testimonial-bubble.component.html',
+    styleUrls: ['./testimonial-bubble.component.scss'],
+    standalone: false
 })
 export class TestimonialBubbleComponent {
   changeActiveQuote(index: number): void {

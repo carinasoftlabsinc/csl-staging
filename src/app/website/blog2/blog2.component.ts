@@ -10,9 +10,10 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from 'environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
-  selector: 'app-blog2',
-  templateUrl: './blog2.component.html',
-  styleUrls: ['./blog2.component.scss'],
+    selector: 'app-blog2',
+    templateUrl: './blog2.component.html',
+    styleUrls: ['./blog2.component.scss'],
+    standalone: false
 })
 export class Blog2Component implements OnInit {
   cardData: any = null; // Holds the matched blog data

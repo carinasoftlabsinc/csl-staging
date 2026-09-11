@@ -19,26 +19,21 @@ import { environment } from 'environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-website',
-  templateUrl: './website.component.html',
-  styleUrls: ['./website.component.scss'],
-  animations: [
-    trigger('fadeInBig', [
-      state('void', style({ opacity: 0, transform: 'scale(0.5)' })),
-      transition('void => *', [
-        animate(
-          '500ms ease-in-out',
-          style({ opacity: 1, transform: 'scale(1)' })
-        ),
-      ]),
-      transition('* => void', [
-        animate(
-          '500ms ease-in-out',
-          style({ opacity: 0, transform: 'scale(0.5)' })
-        ),
-      ]),
-    ]),
-  ],
+    selector: 'app-website',
+    templateUrl: './website.component.html',
+    styleUrls: ['./website.component.scss'],
+    animations: [
+        trigger('fadeInBig', [
+            state('void', style({ opacity: 0, transform: 'scale(0.5)' })),
+            transition('void => *', [
+                animate('500ms ease-in-out', style({ opacity: 1, transform: 'scale(1)' })),
+            ]),
+            transition('* => void', [
+                animate('500ms ease-in-out', style({ opacity: 0, transform: 'scale(0.5)' })),
+            ]),
+        ]),
+    ],
+    standalone: false
 })
 export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
   blogCards: any[] = [];

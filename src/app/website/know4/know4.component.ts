@@ -296,9 +296,10 @@ interface ApiResponse {
 }
 
 @Component({
-  selector: 'app-know4',
-  templateUrl: './know4.component.html',
-  styleUrls: ['./know4.component.scss'],
+    selector: 'app-know4',
+    templateUrl: './know4.component.html',
+    styleUrls: ['./know4.component.scss'],
+    standalone: false
 })
 export class Know4Component implements OnInit, OnDestroy {
   private seoElements: HTMLElement[] = [];

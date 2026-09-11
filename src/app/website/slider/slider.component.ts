@@ -2,9 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 // Import the default export and the type of KeenSlider
 import KeenSlider, { KeenSliderInstance } from 'keen-slider';
 @Component({
-  selector: 'app-slider',
-  templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.scss'],
+    selector: 'app-slider',
+    templateUrl: './slider.component.html',
+    styleUrls: ['./slider.component.scss'],
+    standalone: false
 })
 export class SliderComponent implements OnInit, OnDestroy {
   private slider: KeenSliderInstance | null = null;

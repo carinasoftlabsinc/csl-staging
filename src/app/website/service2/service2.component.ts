@@ -160,9 +160,10 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({
-  selector: 'app-service2',
-  templateUrl: './service2.component.html',
-  styleUrls: ['./service2.component.scss'],
+    selector: 'app-service2',
+    templateUrl: './service2.component.html',
+    styleUrls: ['./service2.component.scss'],
+    standalone: false
 })
 export class Service2Component implements AfterViewInit {
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;

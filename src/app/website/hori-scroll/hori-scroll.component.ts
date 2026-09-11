@@ -6,9 +6,10 @@ import { Observer } from 'gsap/Observer';
 gsap.registerPlugin(ScrollTrigger, Observer);
 
 @Component({
-  selector: 'app-hori-scroll',
-  templateUrl: './hori-scroll.component.html',
-  styleUrls: ['./hori-scroll.component.scss'],
+    selector: 'app-hori-scroll',
+    templateUrl: './hori-scroll.component.html',
+    styleUrls: ['./hori-scroll.component.scss'],
+    standalone: false
 })
 export class HoriScrollComponent implements OnInit {
   constructor() {}

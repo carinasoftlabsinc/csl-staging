@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-game-service',
-  templateUrl: './game-service.component.html',
-  styleUrls: ['./game-service.component.scss']
+    selector: 'app-game-service',
+    templateUrl: './game-service.component.html',
+    styleUrls: ['./game-service.component.scss'],
+    standalone: false
 })
 export class GameServiceComponent {
   clients = [

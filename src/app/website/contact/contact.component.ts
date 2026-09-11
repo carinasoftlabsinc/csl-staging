@@ -7,9 +7,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router'; // Import the Router
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss'],
+    selector: 'app-contact',
+    templateUrl: './contact.component.html',
+    styleUrls: ['./contact.component.scss'],
+    standalone: false
 })
 export class ContactComponent implements OnInit, OnDestroy {
   rangeValue: number = 500;

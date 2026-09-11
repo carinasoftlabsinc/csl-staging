@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-digital-service',
-  templateUrl: './digital-service.component.html',
-  styleUrls: ['./digital-service.component.scss']
+    selector: 'app-digital-service',
+    templateUrl: './digital-service.component.html',
+    styleUrls: ['./digital-service.component.scss'],
+    standalone: false
 })
 export class DigitalServiceComponent {
 

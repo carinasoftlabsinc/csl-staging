@@ -9,9 +9,10 @@ import { ContactService } from 'app/website/contact/contact.service';
 import { Router } from '@angular/router'; // Import the Router
 
 @Component({
-  selector: 'app-getinform',
-  templateUrl: './getinform.component.html',
-  styleUrls: ['./getinform.component.scss'],
+    selector: 'app-getinform',
+    templateUrl: './getinform.component.html',
+    styleUrls: ['./getinform.component.scss'],
+    standalone: false
 })
 export class GetinformComponent {
   @Input() theme: 'light' | 'dark' = 'light';

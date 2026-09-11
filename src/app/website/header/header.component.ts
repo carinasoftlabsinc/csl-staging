@@ -2,9 +2,10 @@ import { Component, Output, EventEmitter, HostListener, Input } from '@angular/c
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
+    standalone: false
 })
 export class HeaderComponent {
   @Output() navToggle = new EventEmitter<boolean>();

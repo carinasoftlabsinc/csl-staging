@@ -16,9 +16,10 @@ interface PortfolioItem {
 
 
 @Component({
-  selector: 'app-case-studies',
-  templateUrl: './case-studies.component.html',
-  styleUrls: ['./case-studies.component.scss'],
+    selector: 'app-case-studies',
+    templateUrl: './case-studies.component.html',
+    styleUrls: ['./case-studies.component.scss'],
+    standalone: false
 })
 export class CaseStudiesComponent {
   cardData: any;

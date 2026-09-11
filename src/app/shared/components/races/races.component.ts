@@ -5,9 +5,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 @Component({
-  selector: 'app-races',
-  templateUrl: './races.component.html',
-  styleUrls: ['./races.component.scss'],
+    selector: 'app-races',
+    templateUrl: './races.component.html',
+    styleUrls: ['./races.component.scss'],
+    standalone: false
 })
 export class RacesComponent implements AfterViewInit {
   ngAfterViewInit() {

@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import KeenSlider, { KeenSliderInstance } from 'keen-slider';
 
 @Component({
-  selector: 'app-gaming-slider',
-  templateUrl: './gaming-slider.component.html',
-  styleUrls: ['./gaming-slider.component.scss']
+    selector: 'app-gaming-slider',
+    templateUrl: './gaming-slider.component.html',
+    styleUrls: ['./gaming-slider.component.scss'],
+    standalone: false
 })
 export class GamingSliderComponent {
  private slider: KeenSliderInstance | null = null;

@@ -15,9 +15,10 @@ interface PortfolioItem {
 }
 
 @Component({
-  selector: 'app-portfolio-detail',
-  templateUrl: './portfolio-detail.component.html',
-  styleUrls: ['./portfolio-detail.component.scss'],
+    selector: 'app-portfolio-detail',
+    templateUrl: './portfolio-detail.component.html',
+    styleUrls: ['./portfolio-detail.component.scss'],
+    standalone: false
 })
 export class PortfolioDetailComponent {
   cardData: any;

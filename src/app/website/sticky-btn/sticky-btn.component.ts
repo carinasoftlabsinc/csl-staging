@@ -64,9 +64,10 @@
 import { Component, HostListener, ElementRef, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-sticky-btn',
-  templateUrl: './sticky-btn.component.html',
-  styleUrls: ['./sticky-btn.component.scss']
+    selector: 'app-sticky-btn',
+    templateUrl: './sticky-btn.component.html',
+    styleUrls: ['./sticky-btn.component.scss'],
+    standalone: false
 })
 export class StickyBtnComponent {
 

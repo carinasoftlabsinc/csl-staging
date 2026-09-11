@@ -7,10 +7,11 @@ register();
 // import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-coverflow-slider',
-  // schemas: [NO_ERRORS_SCHEMA],
-  templateUrl: './coverflow-slider.component.html',
-  styleUrls: ['./coverflow-slider.component.scss']
+    selector: 'app-coverflow-slider',
+    // schemas: [NO_ERRORS_SCHEMA],
+    templateUrl: './coverflow-slider.component.html',
+    styleUrls: ['./coverflow-slider.component.scss'],
+    standalone: false
 })
 export class CoverflowSliderComponent implements AfterViewInit  {
 

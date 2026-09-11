@@ -3,9 +3,10 @@ import { Component, AfterViewInit } from '@angular/core';
 declare const $: any; 
 
 @Component({
-  selector: 'app-game-slider',
-  templateUrl: './game-slider.component.html',
-  styleUrls: ['./game-slider.component.scss'],
+    selector: 'app-game-slider',
+    templateUrl: './game-slider.component.html',
+    styleUrls: ['./game-slider.component.scss'],
+    standalone: false
 })
 export class GameSliderComponent implements AfterViewInit {
  

@@ -6,9 +6,10 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 
 @Component({
-  selector: 'app-blog',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.scss'],
+    selector: 'app-blog',
+    templateUrl: './blog.component.html',
+    styleUrls: ['./blog.component.scss'],
+    standalone: false
 })
 export class BlogComponent implements OnInit, OnDestroy {
   gameBlogs: any[] = [];

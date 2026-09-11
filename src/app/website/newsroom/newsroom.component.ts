@@ -7,9 +7,10 @@ import { environment } from 'environments/environment';
 
 
 @Component({
-  selector: 'app-newsroom',
-  templateUrl: './newsroom.component.html',
-  styleUrls: ['./newsroom.component.scss'],
+    selector: 'app-newsroom',
+    templateUrl: './newsroom.component.html',
+    styleUrls: ['./newsroom.component.scss'],
+    standalone: false
 })
 export class NewsroomComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('videoIframe') videoIframe!: ElementRef<HTMLIFrameElement>;

@@ -3,9 +3,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import KeenSlider, { KeenSliderInstance } from 'keen-slider';
 
 @Component({
-  selector: 'app-web-slider',
-  templateUrl: './web-slider.component.html',
-  styleUrls: ['./web-slider.component.scss']
+    selector: 'app-web-slider',
+    templateUrl: './web-slider.component.html',
+    styleUrls: ['./web-slider.component.scss'],
+    standalone: false
 })
 export class WebSliderComponent {
   private slider: KeenSliderInstance | null = null;

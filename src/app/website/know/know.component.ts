@@ -24,9 +24,10 @@ export interface ListItem {
 }
 
 @Component({
-  selector: 'app-know',
-  templateUrl: './know.component.html',
-  styleUrls: ['./know.component.scss'],
+    selector: 'app-know',
+    templateUrl: './know.component.html',
+    styleUrls: ['./know.component.scss'],
+    standalone: false
 })
 export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('slider1Ref') slider1Ref!: ElementRef;

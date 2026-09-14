@@ -2,8 +2,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "ignoreDeprecations": "6.0",
-    "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -29,22 +27,28 @@
     ],
     "paths": {
       "@core": [
-        "app/core"
+        "./src/app/core"
       ],
       "@core/*": [
-        "app/core/*"
+        "./src/app/core/*"
       ],
       "@shared": [
-        "app/shared"
+        "./src/app/shared"
       ],
       "@shared/*": [
-        "app/shared/*"
+        "./src/app/shared/*"
       ],
       "@config": [
-        "app/config"
+        "./src/app/config"
       ],
       "@config/*": [
-        "app/config/*"
+        "./src/app/config/*"
+      ],
+      "environments/*": [
+        "./src/environments/*"
+      ],
+      "app/*": [
+        "./src/app/*"
       ]
     }
   },

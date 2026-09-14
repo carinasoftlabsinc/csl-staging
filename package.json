@@ -42,12 +42,12 @@
     "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^21.2.24",
     "@angular-eslint/builder": "^20.7.0",
     "@angular-eslint/eslint-plugin": "20.7.0",
     "@angular-eslint/eslint-plugin-template": "20.7.0",
     "@angular-eslint/schematics": "^20.7.0",
     "@angular-eslint/template-parser": "20.7.0",
+    "@angular/build": "^21.2.24",
     "@angular/cli": "^21.2.24",
     "@angular/compiler-cli": "^21.2.23",
     "@types/aos": "^3.0.4",

@@ -185,7 +185,7 @@ sanitizedContent: SafeHtml | null = null;
 
   @ViewChild('stickySidebar', { static: true }) stickySidebar!: ElementRef;
 
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:scroll')
   onWindowScroll() {
     this.adjustStickyPosition();
   }

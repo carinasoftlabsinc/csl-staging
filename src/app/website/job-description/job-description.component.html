@@ -83,7 +83,7 @@
             <div class="flex gap-x-4 mt-2">
          
               <img
-                *ngFor="let img of jobPost?.skillImage"
+                *ngFor="let img of jobPost.skillImage"
                 [src]="imageUrl + img"
                 (error)="onImgError($event)"
                 alt="skill image"
@@ -506,18 +506,16 @@
                     </div>
 
                     <div class="flex items-center gap-2">
-                      <ng-container [ngSwitch]="file.status">
-                        <img
-                          *ngIf="
-                            file.progress === 100 &&
-                            file.status !== 'success' &&
-                            file.status !== 'error'
-                          "
-                          src="assets/job-sucess.svg"
-                          alt="Success"
-                          class="w-6 h-6 text-gray-500"
-                        />
-                      </ng-container>
+                      <img
+                        *ngIf="
+                          file.progress === 100 &&
+                          file.status !== 'success' &&
+                          file.status !== 'error'
+                        "
+                        src="assets/job-sucess.svg"
+                        alt="Success"
+                        class="w-6 h-6 text-gray-500"
+                      />
 
                       <button (click)="removeFile(file)">
                         <img

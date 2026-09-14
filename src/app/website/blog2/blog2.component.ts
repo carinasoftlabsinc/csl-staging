@@ -278,7 +278,7 @@ export class Blog2Component implements OnInit {
 
   @ViewChild('stickySidebar', { static: true }) stickySidebar!: ElementRef;
 
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('window:scroll')
   onWindowScroll() {
     this.adjustStickyPosition();
     this.highlightActiveSection();

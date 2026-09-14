@@ -6,30 +6,30 @@
       background: no-repeat url(../../../assets/images/know-bannerglow.png);
       background-size: contain;
     "
-  >
+    >
     <div>
       <div class="flex flex-col md:flex-row items-center lg:px-3">
         <div
           class="md:w-1/2 py-8 text-left font-quickSand font-medium text-[#B4B9CB]"
-        >
+          >
           <div class="2xl:ml-20 xl:ml-16 lg:ml-16 md:ml-16">
             <h1>
               <span
                 class="text-white font-myfont text-[30px] 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]"
-              >
+                >
                 OUR
               </span>
               <br />
               <span
                 class="text-white tracking-wide text-6xl md:text-4xl lg:text-[50px] lg:leading-[50px] xl:text-[60px] xl:leading-[60px] 2xl:text-[80px] 2xl:leading-[100px] sm:text-4xl font-myfont"
-              >
+                >
                 PROJECTS
               </span>
             </h1>
 
             <p
               class="text-white mt-3 text-sm xl:text-[16px] 2xl:text-[23px] 2xl:leading-[27px] font-quickSand font-normal"
-            >
+              >
               Excited about the digital world? So are we! Stay updated with the
               latest trends in Game Development, Digital Marketing, Web
               Development, and Mobile App Development. Stay in the loop with the
@@ -46,607 +46,615 @@
             background-size: contain;
             /* background-size: 100% 110%; */
           "
-        >
+          >
           <img
             class="size-[80%] m-auto"
             src="../../../assets/images/Group 1000001897 (1).webp"
-          />
+            />
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section
-    class="relative px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
-  >
-    <div
-      class="flex flex-wrap justify-center font-quickSand font-bold absolute left-0 right-0 mx-auto -top-9 md:-top-7 2xl:-top-10 sm:bg-transparent sm:px-[unset] sm:py-[unset] rounded-3xl px-0.5 py-1.5 gap-0.5 sm:gap-[unset]"
-    >
-      <!-- <div
+    <section
+      class="relative px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
+      >
+      <div
+        class="flex flex-wrap justify-center font-quickSand font-bold absolute left-0 right-0 mx-auto -top-9 md:-top-7 2xl:-top-10 sm:bg-transparent sm:px-[unset] sm:py-[unset] rounded-3xl px-0.5 py-1.5 gap-0.5 sm:gap-[unset]"
+        >
+        <!-- <div
         *ngFor="let item of SrcWords"
         (click)="selectCategory(item)"
         [class.active]="selectedCategory === item"
         class="p-3.5 sm:px-9 sm:py-3.5 md:px-6 lg:px-10 2xl:px-14 2xl:py-7 rounded-3xl 2xl:rounded-[2.2rem] text-[#fff] hover:text-[#34394B] bg-[#000] hover:bg-[#fff] active:bg-[#fff] active:text-[#34394B] font-extrabold text-xs lg:text-lg xl:text-xl 2xl:text-2xl border border-white cursor-pointer dev-button"
-      >
+        >
         {{ item }}
       </div> -->
-      <div
-        *ngFor="let item of SrcWords"
-        (click)="selectCategory(item)"
+      @for (item of SrcWords; track item) {
+        <div
+          (click)="selectCategory(item)"
         [ngClass]="{
           'bg-[#fff] text-[#34394B]': selectedCategory === item,
           'bg-[#000] text-[#fff]': selectedCategory !== item
         }"
-        class="p-3.5 sm:px-9 sm:py-3.5 md:px-6 lg:px-10 2xl:px-14 2xl:py-7 rounded-3xl 2xl:rounded-[2.2rem] font-extrabold text-xs lg:text-lg xl:text-xl 2xl:text-2xl border border-white cursor-pointer dev-button"
-      >
-        {{ item }}
-      </div>
+          class="p-3.5 sm:px-9 sm:py-3.5 md:px-6 lg:px-10 2xl:px-14 2xl:py-7 rounded-3xl 2xl:rounded-[2.2rem] font-extrabold text-xs lg:text-lg xl:text-xl 2xl:text-2xl border border-white cursor-pointer dev-button"
+          >
+          {{ item }}
+        </div>
+      }
     </div>
 
     <div
       class="text-center mt-12 sm:mt-auto my-8 flex flex-col gap-3.5 2xl:gap-6 md:mt-8"
-    >
+      >
       <h2 class="text-black text-3xl xl:text-4xl 2xl:text-5xl font-myfont">
         {{ selectedCategory }} Projects
       </h2>
       <p
         class="font-quickSand font-medium text-base lg:text-lg 2xl:!text-2xl !leading-6 text-black capitalize"
-      >
+        >
         Design creates culture. Culture shapes values.
         <br class="hidden md:block" />
         Values determine the future
       </p>
     </div>
-    <div *ngIf="loading" class="flex justify-center items-center min-h-[300px]">
-      <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-[#F21DF5]"></div>
-    </div>
+    @if (loading) {
+      <div class="flex justify-center items-center min-h-[300px]">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-[#F21DF5]"></div>
+      </div>
+    }
 
-    <div *ngIf="!loading && cards?.length === 0" class="text-center text-gray-400 text-xl min-h-[300px] flex items-center justify-center">
-      No portfolio items found.
-    </div>
+    @if (!loading && cards?.length === 0) {
+      <div class="text-center text-gray-400 text-xl min-h-[300px] flex items-center justify-center">
+        No portfolio items found.
+      </div>
+    }
 
-    <div class="lg:p-7 flex flex-col gap-8 2xl:gap-14" *ngIf="!loading && cards?.length > 0">
-    
-      <ng-container *ngFor="let group of cards | slice : 0 : 3; let i = index">
-        <div
-          *ngIf="i % 3 === 0"
-          class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3.5 lg:gap-6 2xl:gap-10"
-        >
-          <!-- [routerLink]="['/news', formatHeading(card.titleLink)]" -->
-
-          <!-- [routerLink]="['/portfolio', formatHeading(project.titleLink)]" -->
+    @if (!loading && cards?.length > 0) {
+      <div class="lg:p-7 flex flex-col gap-8 2xl:gap-14">
+        @for (group of cards | slice : 0 : 3; track group; let i = $index) {
+          @if (i % 3 === 0) {
+            <div
+              class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3.5 lg:gap-6 2xl:gap-10"
+              >
+              <!-- [routerLink]="['/news', formatHeading(card.titleLink)]" -->
+              <!-- [routerLink]="['/portfolio', formatHeading(project.titleLink)]" -->
           <!-- [routerLink]="
     project.category === 'Digital Marketing'
       ? ['/portfolio', formatHeading(project.titleLink)]
       : ['/case-studies', formatHeading(project.titleLink)]
   " -->
-
-          <!-- [routerLink]="['/case-studies', formatHeading(project.titleLink)]" -->
-          <a
-            *ngFor="let project of cards.slice(i, i + 3)"
+              <!-- [routerLink]="['/case-studies', formatHeading(project.titleLink)]" -->
+              @for (project of cards.slice(i, i + 3); track project) {
+                <a
             [routerLink]="
               project.category === 'digital-marketing'
                 ? ['/portfolio', formatHeading(project.titleLink)]
                 : ['/portfolio', formatHeading(project.titleLink)]
             "
-          >
-            <img
-              class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-              [src]="imageUrl + '/' + project.image_2"
-              alt="Project Image"
-              
-            />
-            <div
-              class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
-            >
-              <div>
-                <h5
-                  class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
-                >
-                  {{ project.title }}
-                </h5>
-                <p
-                  class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
-                >
-                  {{ project.description }}
-                </p>
-              </div>
-              <img
-                class="size-10 self-end"
-                src="../../../assets/images/grad-arrow-btn.svg"
-                alt="Arrow Button"
-              />
-            </div>
-          </a>
-        </div>
-      </ng-container>
-
-       <!-- [routerLink]="['/portfolio', formatHeading(project.titleLink)]" -->
-
-      <ng-container *ngFor="let group of cards | slice : 3 : 5; let i = index">
-        <div
-          *ngIf="i % 2 === 0"
-          class="grid grid-cols-1 md:grid-cols-2 gap-8 2xl:gap-10"
-        >
-          <a
-            *ngFor="let project of cards.slice(i + 3, i + 5)"
+                  >
+                  <img
+                    class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                    [src]="imageUrl + '/' + project.image_2"
+                    alt="Project Image"
+                    />
+                    <div
+                      class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                      >
+                      <div>
+                        <h5
+                          class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                          >
+                          {{ project.title }}
+                        </h5>
+                        <p
+                          class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                          >
+                          {{ project.description }}
+                        </p>
+                      </div>
+                      <img
+                        class="size-10 self-end"
+                        src="../../../assets/images/grad-arrow-btn.svg"
+                        alt="Arrow Button"
+                        />
+                      </div>
+                    </a>
+                  }
+                </div>
+              }
+            }
+            <!-- [routerLink]="['/portfolio', formatHeading(project.titleLink)]" -->
+            @for (group of cards | slice : 3 : 5; track group; let i = $index) {
+              @if (i % 2 === 0) {
+                <div
+                  class="grid grid-cols-1 md:grid-cols-2 gap-8 2xl:gap-10"
+                  >
+                  @for (project of cards.slice(i + 3, i + 5); track project) {
+                    <a
             [routerLink]="
               project.category === 'digital-marketing'
                 ? ['/portfolio', formatHeading(project.titleLink)]
                 : ['/portfolio', formatHeading(project.titleLink)]
             "
-          >
-            <img
-              class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-              [src]="imageUrl + '/' + project.image_2"
-              alt="Project Image"
-            />
-            <div
-              class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
-            >
-              <div>
-                <h5
-                  class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
-                >
-                  {{ project.title }}
-                </h5>
-                <p
-                  class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
-                >
-                  {{ project.description }}
-                </p>
-              </div>
-              <img
-                class="size-10 self-end"
-                src="../../../assets/images/grad-arrow-btn.svg"
-                alt="Arrow Button"
-              />
-            </div>
-          </a>
-        </div>
-      </ng-container>
-
-      <ng-container *ngFor="let group of cards | slice : 5 : 8; let i = index">
-        <div
-          *ngIf="i % 3 === 0"
-          class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3.5 lg:gap-6 2xl:gap-10"
-        >
-          <a
-            *ngFor="let project of cards.slice(i + 5, i + 8)"
+                      >
+                      <img
+                        class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                        [src]="imageUrl + '/' + project.image_2"
+                        alt="Project Image"
+                        />
+                        <div
+                          class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                          >
+                          <div>
+                            <h5
+                              class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                              >
+                              {{ project.title }}
+                            </h5>
+                            <p
+                              class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                              >
+                              {{ project.description }}
+                            </p>
+                          </div>
+                          <img
+                            class="size-10 self-end"
+                            src="../../../assets/images/grad-arrow-btn.svg"
+                            alt="Arrow Button"
+                            />
+                          </div>
+                        </a>
+                      }
+                    </div>
+                  }
+                }
+                @for (group of cards | slice : 5 : 8; track group; let i = $index) {
+                  @if (i % 3 === 0) {
+                    <div
+                      class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3.5 lg:gap-6 2xl:gap-10"
+                      >
+                      @for (project of cards.slice(i + 5, i + 8); track project) {
+                        <a
             [routerLink]="
               project.category === 'digital-marketing'
                 ? ['/portfolio', formatHeading(project.titleLink)]
                 : ['/portfolio', formatHeading(project.titleLink)]
             "
-          >
-            <img
-              class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-              [src]="imageUrl + '/' + project.image_2"
-              alt="Project Image"
-            />
-            <div
-              class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
-            >
-              <div>
-                <h5
-                  class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
-                >
-                  {{ project.title }}
-                </h5>
-                <p
-                  class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
-                >
-                  {{ project.description }}
-                </p>
-              </div>
-              <img
-                class="size-10 self-end"
-                src="../../../assets/images/grad-arrow-btn.svg"
-                alt="Arrow Button"
-              />
-            </div>
-          </a>
-        </div>
-      </ng-container>
+                          >
+                          <img
+                            class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                            [src]="imageUrl + '/' + project.image_2"
+                            alt="Project Image"
+                            />
+                            <div
+                              class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                              >
+                              <div>
+                                <h5
+                                  class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                                  >
+                                  {{ project.title }}
+                                </h5>
+                                <p
+                                  class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                                  >
+                                  {{ project.description }}
+                                </p>
+                              </div>
+                              <img
+                                class="size-10 self-end"
+                                src="../../../assets/images/grad-arrow-btn.svg"
+                                alt="Arrow Button"
+                                />
+                              </div>
+                            </a>
+                          }
+                        </div>
+                      }
+                    }
+                    @for (group of cards | slice : 8 : 10; track group; let i = $index) {
+                      @if (i % 2 === 0) {
+                        <div
+                          class="grid grid-cols-1 md:grid-cols-2 gap-8 2xl:gap-10"
+                          >
+                          @for (project of cards.slice(i + 8, i + 10); track project) {
+                            <a
+                              [routerLink]="['/portfolio', formatHeading(project.titleLink)]"
+                              >
+                              <img
+                                class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                                [src]="imageUrl + '/' + project.image_2"
+                                alt="Project Image"
+                                />
+                                <div
+                                  class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                                  >
+                                  <div>
+                                    <h5
+                                      class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                                      >
+                                      {{ project.title }}
+                                    </h5>
+                                    <p
+                                      class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                                      >
+                                      {{ project.description }}
+                                    </p>
+                                  </div>
+                                  <img
+                                    class="size-10 self-end"
+                                    src="../../../assets/images/grad-arrow-btn.svg"
+                                    alt="Arrow Button"
+                                    />
+                                  </div>
+                                </a>
+                              }
+                            </div>
+                          }
+                        }
+                        @for (group of cards | slice : 10 : 13; track group; let i = $index) {
+                          @if (i % 3 === 0) {
+                            <div
+                              class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3.5 lg:gap-6 2xl:gap-10"
+                              >
+                              @for (project of cards.slice(i + 10, i + 13); track project) {
+                                <a
+                                  [routerLink]="['/portfolio', formatHeading(project.titleLink)]"
+                                  >
+                                  <img
+                                    class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                                    [src]="imageUrl + '/' + project.image_2"
+                                    alt="Project Image"
+                                    />
+                                    <div
+                                      class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                                      >
+                                      <div>
+                                        <h5
+                                          class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                                          >
+                                          {{ project.title }}
+                                        </h5>
+                                        <p
+                                          class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                                          >
+                                          {{ project.description }}
+                                        </p>
+                                      </div>
+                                      <img
+                                        class="size-10 self-end"
+                                        src="../../../assets/images/grad-arrow-btn.svg"
+                                        alt="Arrow Button"
+                                        />
+                                      </div>
+                                    </a>
+                                  }
+                                </div>
+                              }
+                            }
+                          </div>
+                        }
+                      </section>
 
-      <ng-container *ngFor="let group of cards | slice : 8 : 10; let i = index">
-        <div
-          *ngIf="i % 2 === 0"
-          class="grid grid-cols-1 md:grid-cols-2 gap-8 2xl:gap-10"
-        >
-          <a
-            *ngFor="let project of cards.slice(i + 8, i + 10)"
-            [routerLink]="['/portfolio', formatHeading(project.titleLink)]"
-          >
-            <img
-              class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-              [src]="imageUrl + '/' + project.image_2"
-              alt="Project Image"
-            />
-            <div
-              class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
-            >
-              <div>
-                <h5
-                  class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
-                >
-                  {{ project.title }}
-                </h5>
-                <p
-                  class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
-                >
-                  {{ project.description }}
-                </p>
-              </div>
-              <img
-                class="size-10 self-end"
-                src="../../../assets/images/grad-arrow-btn.svg"
-                alt="Arrow Button"
-              />
-            </div>
-          </a>
-        </div>
-      </ng-container>
+                      <section class="py-32">
+                        <div class="my-12 flex flex-col gap-y-6 !z-20">
+                          <!-- Container for the scrolling text -->
+                          <div class="whitespace-nowrap overflow-hidden relative">
+                            <!-- First Scrolling Block -->
+                            <div
+                              class="font-bebas text-6xl md:text-9xl font-extrabold text-white uppercase whitespace-nowrap inline-block animate-scrolling"
+                              >
+                              @for (word of SrcWords; track word) {
+                                <h4
+                                  class="hover:text-[#BC8AFB] inline-block mr-20 star"
+                                  >
+                                  {{ word }}
+                                  <!-- <img
+                                  class="inline-block"
+                                  src="../../../assets/images/portfolio-Star.svg"
+                                  alt=""
+                                  /> -->
+                                </h4>
+                              }
+                            </div>
+                            <!-- Duplicate Scrolling Block for Seamless Scrolling -->
+                            <div
+                              class="font-bebas text-6xl md:text-9xl font-extrabold text-white uppercase whitespace-nowrap inline-block animate-scrolling"
+                              >
+                              @for (word of SrcWords; track word) {
+                                <h4
+                                  class="hover:text-[#FB8ACE] inline-block mr-20 star"
+                                  >
+                                  {{ word }}
+                                  <!-- <img
+                                  class="inline-block"
+                                  src="../../../assets/images/portfolio-Star.svg"
+                                  alt=""
+                                  /> -->
+                                </h4>
+                              }
+                            </div>
+                          </div>
+                        </div>
+                      </section>
 
-      <ng-container
-        *ngFor="let group of cards | slice : 10 : 13; let i = index"
-      >
-        <div
-          *ngIf="i % 3 === 0"
-          class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3.5 lg:gap-6 2xl:gap-10"
-        >
-          <a
-            *ngFor="let project of cards.slice(i + 10, i + 13)"
-            [routerLink]="['/portfolio', formatHeading(project.titleLink)]"
-          >
-            <img
-              class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-              [src]="imageUrl + '/' + project.image_2"
-              alt="Project Image"
-            />
-            <div
-              class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
-            >
-              <div>
-                <h5
-                  class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
-                >
-                  {{ project.title }}
-                </h5>
-                <p
-                  class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
-                >
-                  {{ project.description }}
-                </p>
-              </div>
-              <img
-                class="size-10 self-end"
-                src="../../../assets/images/grad-arrow-btn.svg"
-                alt="Arrow Button"
-              />
-            </div>
-          </a>
-        </div>
-      </ng-container>
-    </div>
-  </section>
+                      <section
+                        class="relative px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px] pb-16 md:pb-24 lg:pb-36 2xl:pb-44 mb-12 lg:mb-12 2xl:mb-20"
+                        >
+                        <h2
+                          class="text-black text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#B4B9CB]"
+                          >
+                          Application Process
+                        </h2>
+                        <app-getinform></app-getinform>
+                      </section>
 
-  <section class="py-32">
-    <div class="my-12 flex flex-col gap-y-6 !z-20">
-      <!-- Container for the scrolling text -->
-      <div class="whitespace-nowrap overflow-hidden relative">
-        <!-- First Scrolling Block -->
-        <div
-          class="font-bebas text-6xl md:text-9xl font-extrabold text-white uppercase whitespace-nowrap inline-block animate-scrolling"
-        >
-          <h4
-            *ngFor="let word of SrcWords"
-            class="hover:text-[#BC8AFB] inline-block mr-20 star"
-          >
-            {{ word }}
-            <!-- <img
-            class="inline-block"
-            src="../../../assets/images/portfolio-Star.svg"
-            alt=""
-          /> -->
-          </h4>
-        </div>
-        <!-- Duplicate Scrolling Block for Seamless Scrolling -->
-        <div
-          class="font-bebas text-6xl md:text-9xl font-extrabold text-white uppercase whitespace-nowrap inline-block animate-scrolling"
-        >
-          <h4
-            *ngFor="let word of SrcWords"
-            class="hover:text-[#FB8ACE] inline-block mr-20 star"
-          >
-            {{ word }}
-            <!-- <img
-            class="inline-block"
-            src="../../../assets/images/portfolio-Star.svg"
-            alt=""
-          /> -->
-          </h4>
-        </div>
-      </div>
-    </div>
-  </section>
+                      <app-footer
+                        [showButton]="false"
+                        [showHeading]="false"
+                        [btnText]="'Schedule a call'"
+                        [cardText]="cardText"
+                        >
+                      </app-footer>
+                    </main>
 
-  <section
-    class="relative px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px] pb-16 md:pb-24 lg:pb-36 2xl:pb-44 mb-12 lg:mb-12 2xl:mb-20"
-  >
-    <h2
-      class="text-black text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#B4B9CB]"
-    >
-      Application Process
-    </h2>
-    <app-getinform></app-getinform>
-  </section>
+                    <!-- <div class="lg:p-7 flex flex-col gap-8 2xl:gap-14">
+                    <div
+                      class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3.5 lg:gap-6 2xl:gap-10"
+                      >
+                      <div>
+                        <img
+                          class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZulzEP3wYdfFpwIMxwTTiUQqXjkM3uMQ8gA&s"
+                          alt=""
+                          />
+                          <div
+                            class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                            >
+                            <div>
+                              <h5
+                                class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                                >
+                                Project Name
+                              </h5>
+                              <p
+                                class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                                >
+                                Design creates culture. Culture shapes values. Values determine
+                                the future
+                              </p>
+                            </div>
 
-  <app-footer
-    [showButton]="false"
-    [showHeading]="false"
-    [btnText]="'Schedule a call'"
-    [cardText]="cardText"
-  >
-  </app-footer>
-</main>
+                            <img
+                              class="size-10 self-end"
+                              src="../../../assets/images/grad-arrow-btn.svg"
+                              alt=""
+                              />
+                            </div>
+                          </div>
 
-<!-- <div class="lg:p-7 flex flex-col gap-8 2xl:gap-14">
-      <div
-        class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3.5 lg:gap-6 2xl:gap-10"
-      >
-        <div>
-          <img
-            class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZulzEP3wYdfFpwIMxwTTiUQqXjkM3uMQ8gA&s"
-            alt=""
-          />
-          <div
-            class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
-          >
-            <div>
-              <h5
-                class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
-              >
-                Project Name
-              </h5>
-              <p
-                class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
-              >
-                Design creates culture. Culture shapes values. Values determine
-                the future
-              </p>
-            </div>
+                          <div>
+                            <img
+                              class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZulzEP3wYdfFpwIMxwTTiUQqXjkM3uMQ8gA&s"
+                              alt=""
+                              />
+                              <div
+                                class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                                >
+                                <div>
+                                  <h5
+                                    class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                                    >
+                                    Project Name
+                                  </h5>
+                                  <p
+                                    class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                                    >
+                                    Design creates culture. Culture shapes values. Values determine
+                                    the future
+                                  </p>
+                                </div>
 
-            <img
-              class="size-10 self-end"
-              src="../../../assets/images/grad-arrow-btn.svg"
-              alt=""
-            />
-          </div>
-        </div>
+                                <img
+                                  class="size-10 self-end"
+                                  src="../../../assets/images/grad-arrow-btn.svg"
+                                  alt=""
+                                  />
+                                </div>
+                              </div>
 
-        <div>
-          <img
-            class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZulzEP3wYdfFpwIMxwTTiUQqXjkM3uMQ8gA&s"
-            alt=""
-          />
-          <div
-            class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
-          >
-            <div>
-              <h5
-                class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
-              >
-                Project Name
-              </h5>
-              <p
-                class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
-              >
-                Design creates culture. Culture shapes values. Values determine
-                the future
-              </p>
-            </div>
+                              <div>
+                                <img
+                                  class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZulzEP3wYdfFpwIMxwTTiUQqXjkM3uMQ8gA&s"
+                                  alt=""
+                                  />
+                                  <div
+                                    class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                                    >
+                                    <div>
+                                      <h5
+                                        class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                                        >
+                                        Project Name
+                                      </h5>
+                                      <p
+                                        class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                                        >
+                                        Design creates culture. Culture shapes values. Values determine
+                                        the future
+                                      </p>
+                                    </div>
 
-            <img
-              class="size-10 self-end"
-              src="../../../assets/images/grad-arrow-btn.svg"
-              alt=""
-            />
-          </div>
-        </div>
+                                    <img
+                                      class="size-10 self-end"
+                                      src="../../../assets/images/grad-arrow-btn.svg"
+                                      alt=""
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
 
-        <div>
-          <img
-            class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZulzEP3wYdfFpwIMxwTTiUQqXjkM3uMQ8gA&s"
-            alt=""
-          />
-          <div
-            class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
-          >
-            <div>
-              <h5
-                class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
-              >
-                Project Name
-              </h5>
-              <p
-                class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
-              >
-                Design creates culture. Culture shapes values. Values determine
-                the future
-              </p>
-            </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 2xl:gap-10">
+                                  <div>
+                                    <img
+                                      class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZulzEP3wYdfFpwIMxwTTiUQqXjkM3uMQ8gA&s"
+                                      alt=""
+                                      />
+                                      <div
+                                        class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                                        >
+                                        <div>
+                                          <h5
+                                            class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                                            >
+                                            Project Name
+                                          </h5>
+                                          <p
+                                            class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                                            >
+                                            Design creates culture. Culture shapes values. Values determine
+                                            the future
+                                          </p>
+                                        </div>
 
-            <img
-              class="size-10 self-end"
-              src="../../../assets/images/grad-arrow-btn.svg"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
+                                        <img
+                                          class="size-10 self-end"
+                                          src="../../../assets/images/grad-arrow-btn.svg"
+                                          alt=""
+                                          />
+                                        </div>
+                                      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 2xl:gap-10">
-        <div>
-          <img
-            class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZulzEP3wYdfFpwIMxwTTiUQqXjkM3uMQ8gA&s"
-            alt=""
-          />
-          <div
-            class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
-          >
-            <div>
-              <h5
-                class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
-              >
-                Project Name
-              </h5>
-              <p
-                class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
-              >
-                Design creates culture. Culture shapes values. Values determine
-                the future
-              </p>
-            </div>
+                                      <div>
+                                        <img
+                                          class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZulzEP3wYdfFpwIMxwTTiUQqXjkM3uMQ8gA&s"
+                                          alt=""
+                                          />
+                                          <div
+                                            class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                                            >
+                                            <div>
+                                              <h5
+                                                class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                                                >
+                                                Project Name
+                                              </h5>
+                                              <p
+                                                class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                                                >
+                                                Design creates culture. Culture shapes values. Values determine
+                                                the future
+                                              </p>
+                                            </div>
 
-            <img
-              class="size-10 self-end"
-              src="../../../assets/images/grad-arrow-btn.svg"
-              alt=""
-            />
-          </div>
-        </div>
+                                            <img
+                                              class="size-10 self-end"
+                                              src="../../../assets/images/grad-arrow-btn.svg"
+                                              alt=""
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
 
-        <div>
-          <img
-            class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZulzEP3wYdfFpwIMxwTTiUQqXjkM3uMQ8gA&s"
-            alt=""
-          />
-          <div
-            class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
-          >
-            <div>
-              <h5
-                class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
-              >
-                Project Name
-              </h5>
-              <p
-                class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
-              >
-                Design creates culture. Culture shapes values. Values determine
-                the future
-              </p>
-            </div>
+                                        <div
+                                          class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3.5 lg:gap-6 2xl:gap-10"
+                                          >
+                                          <div>
+                                            <img
+                                              class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZulzEP3wYdfFpwIMxwTTiUQqXjkM3uMQ8gA&s"
+                                              alt=""
+                                              />
+                                              <div
+                                                class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                                                >
+                                                <div>
+                                                  <h5
+                                                    class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                                                    >
+                                                    Project Name
+                                                  </h5>
+                                                  <p
+                                                    class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                                                    >
+                                                    Design creates culture. Culture shapes values. Values determine
+                                                    the future
+                                                  </p>
+                                                </div>
 
-            <img
-              class="size-10 self-end"
-              src="../../../assets/images/grad-arrow-btn.svg"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
+                                                <img
+                                                  class="size-10 self-end"
+                                                  src="../../../assets/images/grad-arrow-btn.svg"
+                                                  alt=""
+                                                  />
+                                                </div>
+                                              </div>
 
-      <div
-        class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3.5 lg:gap-6 2xl:gap-10"
-      >
-        <div>
-          <img
-            class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZulzEP3wYdfFpwIMxwTTiUQqXjkM3uMQ8gA&s"
-            alt=""
-          />
-          <div
-            class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
-          >
-            <div>
-              <h5
-                class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
-              >
-                Project Name
-              </h5>
-              <p
-                class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
-              >
-                Design creates culture. Culture shapes values. Values determine
-                the future
-              </p>
-            </div>
+                                              <div>
+                                                <img
+                                                  class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                                                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZulzEP3wYdfFpwIMxwTTiUQqXjkM3uMQ8gA&s"
+                                                  alt=""
+                                                  />
+                                                  <div
+                                                    class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                                                    >
+                                                    <div>
+                                                      <h5
+                                                        class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                                                        >
+                                                        Project Name
+                                                      </h5>
+                                                      <p
+                                                        class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                                                        >
+                                                        Design creates culture. Culture shapes values. Values determine
+                                                        the future
+                                                      </p>
+                                                    </div>
 
-            <img
-              class="size-10 self-end"
-              src="../../../assets/images/grad-arrow-btn.svg"
-              alt=""
-            />
-          </div>
-        </div>
+                                                    <img
+                                                      class="size-10 self-end"
+                                                      src="../../../assets/images/grad-arrow-btn.svg"
+                                                      alt=""
+                                                      />
+                                                    </div>
+                                                  </div>
 
-        <div>
-          <img
-            class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZulzEP3wYdfFpwIMxwTTiUQqXjkM3uMQ8gA&s"
-            alt=""
-          />
-          <div
-            class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
-          >
-            <div>
-              <h5
-                class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
-              >
-                Project Name
-              </h5>
-              <p
-                class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
-              >
-                Design creates culture. Culture shapes values. Values determine
-                the future
-              </p>
-            </div>
+                                                  <div>
+                                                    <img
+                                                      class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                                                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZulzEP3wYdfFpwIMxwTTiUQqXjkM3uMQ8gA&s"
+                                                      alt=""
+                                                      />
+                                                      <div
+                                                        class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                                                        >
+                                                        <div>
+                                                          <h5
+                                                            class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                                                            >
+                                                            Project Name
+                                                          </h5>
+                                                          <p
+                                                            class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                                                            >
+                                                            Design creates culture. Culture shapes values. Values determine
+                                                            the future
+                                                          </p>
+                                                        </div>
 
-            <img
-              class="size-10 self-end"
-              src="../../../assets/images/grad-arrow-btn.svg"
-              alt=""
-            />
-          </div>
-        </div>
-
-        <div>
-          <img
-            class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZulzEP3wYdfFpwIMxwTTiUQqXjkM3uMQ8gA&s"
-            alt=""
-          />
-          <div
-            class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
-          >
-            <div>
-              <h5
-                class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
-              >
-                Project Name
-              </h5>
-              <p
-                class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
-              >
-                Design creates culture. Culture shapes values. Values determine
-                the future
-              </p>
-            </div>
-
-            <img
-              class="size-10 self-end"
-              src="../../../assets/images/grad-arrow-btn.svg"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
-    </div> -->
+                                                        <img
+                                                          class="size-10 self-end"
+                                                          src="../../../assets/images/grad-arrow-btn.svg"
+                                                          alt=""
+                                                          />
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div> -->

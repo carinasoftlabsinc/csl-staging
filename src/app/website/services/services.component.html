@@ -16,24 +16,24 @@
       background-size: cover;
       background-position: center;
     "
-  >
+    >
     <div class="flex flex-col md:flex-row items-center lg:px-3 w-full">
       <div class="md:w-1/2 py-8 text-left">
         <h1 class="2xl:text-lg lg:text-base font-myfont text-[#B4B9CB]"
           >OUR SERVICES</h1
-        >
+          >
 
-        <p
-          class="text-white text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl mt-3 font-myfont"
-        >
-          CARINA SOFTLABS <br />
-          IS LEADING IN
-        </p>
-       
+          <p
+            class="text-white text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl mt-3 font-myfont"
+            >
+            CARINA SOFTLABS <br />
+            IS LEADING IN
+          </p>
 
-        <div class="relative h-20 overflow-hidden my-12 lg:my-7">
-          <div
-            class="absolute inset-0 transition-transform duration-500 ease-in-out"
+
+          <div class="relative h-20 overflow-hidden my-12 lg:my-7">
+            <div
+              class="absolute inset-0 transition-transform duration-500 ease-in-out"
             [style.transform]="
               'translateY(-' + (currentWordIndex % services.length) * 100 + '%)'
             "
@@ -42,426 +42,431 @@
                 ? (currentWordIndex = 0)
                 : null
             "
-          >
-            <div
-              *ngFor="let service of services; let i = index"
-              class="h-20 flex items-center justify-start"
-            >
-              <h3
-                class="font-mont text-[2rem] sm:text-4xl lg:text-[2.4rem] xl:text-5xl 2xl:text-[3.3rem] font-black text-[#BC8AFB]"
               >
-                {{ service }}
-              </h3>
+              @for (service of services; track service; let i = $index) {
+                <div
+                  class="h-20 flex items-center justify-start"
+                  >
+                  <h3
+                    class="font-mont text-[2rem] sm:text-4xl lg:text-[2.4rem] xl:text-5xl 2xl:text-[3.3rem] font-black text-[#BC8AFB]"
+                    >
+                    {{ service }}
+                  </h3>
+                </div>
+              }
+
             </div>
-           
+          </div>
+          <p
+            class="text-base md:text-base xl:text-lg 2xl:text-xl font-quickSand font-medium text-[#B4B9CB]"
+            >
+            At Carina Softlabs Inc., we serve as your comprehensive destination
+            for all your business requirements.
+          </p>
+        </div>
+
+        <div class="w-full md:w-1/2 py-8 hidden md:flex justify-end">
+
+          <div class="relative h-96 w-96 xl:w-[30rem] xl:h-[30rem] 2xl:w-[38rem] 2xl:h-[38rem] overflow-hidden">
+            <div class="absolute inset-0">
+              @for (image of serviceimgs; track image; let i = $index) {
+                <img
+                  [src]="image"
+                  class="absolute inset-0 h-96 w-96 xl:w-[30rem] xl:h-[30rem] 2xl:w-[36rem] 2xl:h-[36rem] object-contain transition-opacity duration-1000 ease-in-out"
+                  [class.opacity-0]="i !== currentWordIndex % services.length"
+                  [class.opacity-100]="i === currentWordIndex % services.length"
+                  />
+              }
+            </div>
           </div>
         </div>
-        <p
-          class="text-base md:text-base xl:text-lg 2xl:text-xl font-quickSand font-medium text-[#B4B9CB]"
-        >
-          At Carina Softlabs Inc., we serve as your comprehensive destination
-          for all your business requirements.
-        </p>
+      </div>
+    </section>
+
+    <!-- about services -->
+
+    <section
+      class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
+      >
+      <div>
+        <h2
+          class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
+          >
+          ABOUT SERVICES
+        </h2>
       </div>
 
-      <div class="w-full md:w-1/2 py-8 hidden md:flex justify-end">
-        
-        <div class="relative h-96 w-96 xl:w-[30rem] xl:h-[30rem] 2xl:w-[38rem] 2xl:h-[38rem] overflow-hidden">
-          <div class="absolute inset-0">
-            <img
-              *ngFor="let image of serviceimgs; let i = index"
-              [src]="image"
-              class="absolute inset-0 h-96 w-96 xl:w-[30rem] xl:h-[30rem] 2xl:w-[36rem] 2xl:h-[36rem] object-contain transition-opacity duration-1000 ease-in-out"
-              [class.opacity-0]="i !== currentWordIndex % services.length"
-              [class.opacity-100]="i === currentWordIndex % services.length"
-            />
-          </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 my-14 md:my-28">
+        <span
+          class="font-myfont text-black text-4xl lg:text-5xl 2xl:text-[3.5rem] mb-12 md:my-12"
+          >
+          WE PROVIDE <br />
+          BEST "IT" <br />
+          SOLUTIONS
+        </span>
+        <div>
+          <h4
+            class="font-myfont text-black text-[1.5rem] lg:text-3xl lg:leading-7 2xl:text-4xl 2xl:leading-9 mb-10"
+            >
+            WITH YEARS OF EXPERIENCE IN THE INDUSTRY, WE HAVE WORKED WITH
+            BUSINESSES OF ALL SIZES.
+          </h4>
+          <p
+            class="font-quickSand font-medium text-sm leading-6 lg:text-[1rem] lg:leading-7 2xl:text-xl 2xl:leading-9 text-[#0B0C10]"
+            >
+            At Carina Softlabs, we specialize in delivering cutting-edge solutions across game development, web development, mobile app development and digital marketing. Our team of experts crafts engaging games with immersive experiences, builds robust and scalable websites, and drives growth through strategic digital marketing campaigns. Whether you're looking to create a captivating game, a high-performance website, or enhance your online presence, we provide end-to-end services to bring your vision to life and achieve your business goals.
+          </p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- about services -->
+      <!-- OUR SERVICES -->
 
-  <section
-    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
-  >
-    <div>
       <h2
         class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
-      >
-        ABOUT SERVICES
+        >
+        OUR SERVICES
       </h2>
-    </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 my-14 md:my-28">
-      <span
-        class="font-myfont text-black text-4xl lg:text-5xl 2xl:text-[3.5rem] mb-12 md:my-12"
-      >
-        WE PROVIDE <br />
-        BEST "IT" <br />
-        SOLUTIONS
-      </span>
-      <div>
-        <h4
-          class="font-myfont text-black text-[1.5rem] lg:text-3xl lg:leading-7 2xl:text-4xl 2xl:leading-9 mb-10"
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 mt-14 md:mt-16 gap-10 lg:gap-40 md:hidden"
         >
-          WITH YEARS OF EXPERIENCE IN THE INDUSTRY, WE HAVE WORKED WITH
-          BUSINESSES OF ALL SIZES.
-        </h4>
-        <p
-          class="font-quickSand font-medium text-sm leading-6 lg:text-[1rem] lg:leading-7 2xl:text-xl 2xl:leading-9 text-[#0B0C10]"
-        >
-          At Carina Softlabs, we specialize in delivering cutting-edge solutions across game development, web development, mobile app development and digital marketing. Our team of experts crafts engaging games with immersive experiences, builds robust and scalable websites, and drives growth through strategic digital marketing campaigns. Whether you're looking to create a captivating game, a high-performance website, or enhance your online presence, we provide end-to-end services to bring your vision to life and achieve your business goals.
-        </p>
-      </div>
-    </div>
-
-    <!-- OUR SERVICES -->
-
-    <h2
-      class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
-    >
-      OUR SERVICES
-    </h2>
-
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 mt-14 md:mt-16 gap-10 lg:gap-40 md:hidden"
-    >
-      <div *ngFor="let service of allServices">
-        <div class="flex">
-          <img class="h-80 w-full object-cover rounded-2xl" [src]="service.imgSrc" alt="" />
-        </div>
-        <div
-          class="flex flex-col justify-center items-start gap-7 2xl:gap-10 mt-7"
-        >
-          <h3
-            class="font-myfont text-black text-4xl md:text-5xl xl:text-7xl 2xl:text-[5.5rem]"
-          >
-            {{ service.title }}
-      </h3>
-          <p
-            class="text-[#34394B] font-quickSand font-medium text-[1rem] leading-5 2xl:text-xl 2xl:leading-6"
-          >
-            {{ service.description }}
-          </p>
-          <a
-            class="px-10 py-2 2xl:px-14 2xl:py-5 rounded-full border-2 border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] bg-[#34394B] font-quickSand font-medium 2xl:text-xl"
-            [href]="service.buttonLink"
-            >{{ service.buttonText }}</a
-          >
-        </div>
-      </div>
-    </div>
-
-    <div class="scrolling-section">
-      <div class="md:grid grid-cols-1 md:grid-cols-2 hidden">
-        <div class="left-side">
-          <!-- Content that will scroll -->
-          <div class="content">
+        @for (service of allServices; track service) {
+          <div>
+            <div class="flex">
+              <img class="h-80 w-full object-cover rounded-2xl" [src]="service.imgSrc" alt="" />
+            </div>
             <div
-              *ngFor="let service of allServices"
-              class="ini-service h-screen flex items-center"
-              [id]="service.id"
-            >
-              <div
-                class="flex flex-col justify-center items-start gap-7 2xl:gap-10"
+              class="flex flex-col justify-center items-start gap-7 2xl:gap-10 mt-7"
               >
-                <span
-                  class="font-myfont text-black text-4xl md:text-5xl xl:text-7xl 2xl:text-[5.5rem]"
+              <h3
+                class="font-myfont text-black text-4xl md:text-5xl xl:text-7xl 2xl:text-[5.5rem]"
                 >
-                  {{ service.title }}
-                </span>
-                <p
-                  class="text-[#34394B] font-quickSand font-medium text-[1rem] leading-5 2xl:text-xl 2xl:leading-6"
+                {{ service.title }}
+              </h3>
+              <p
+                class="text-[#34394B] font-quickSand font-medium text-[1rem] leading-5 2xl:text-xl 2xl:leading-6"
                 >
-                  {{ service.description }}
-                </p>
-                <a
-                  class="px-10 py-2 2xl:px-14 2xl:py-5 rounded-full border-2 border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] bg-[#34394B] font-quickSand font-medium 2xl:text-xl"
-                  [href]="service.buttonLink"
-                  >{{ service.buttonText }}</a
+                {{ service.description }}
+              </p>
+              <a
+                class="px-10 py-2 2xl:px-14 2xl:py-5 rounded-full border-2 border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] bg-[#34394B] font-quickSand font-medium 2xl:text-xl"
+                [href]="service.buttonLink"
+                >{{ service.buttonText }}</a
                 >
               </div>
             </div>
-          </div>
+          }
         </div>
-        <div class="right-side flex items-center justify-center h-screen">
-          <!-- Fixed image container -->
-          <img
-            class="object-cover h-[70vh] w-[35vw] 2xl:h-[75vh] 2xl:w-[35vw] rounded-2xl"
-            [src]="currentImage"
-            alt="Current Image"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- 4W AND H PROCESS SECTION -->
+        <div class="scrolling-section">
+          <div class="md:grid grid-cols-1 md:grid-cols-2 hidden">
+            <div class="left-side">
+              <!-- Content that will scroll -->
+              <div class="content">
+                @for (service of allServices; track service) {
+                  <div
+                    class="ini-service h-screen flex items-center"
+                    [id]="service.id"
+                    >
+                    <div
+                      class="flex flex-col justify-center items-start gap-7 2xl:gap-10"
+                      >
+                      <span
+                        class="font-myfont text-black text-4xl md:text-5xl xl:text-7xl 2xl:text-[5.5rem]"
+                        >
+                        {{ service.title }}
+                      </span>
+                      <p
+                        class="text-[#34394B] font-quickSand font-medium text-[1rem] leading-5 2xl:text-xl 2xl:leading-6"
+                        >
+                        {{ service.description }}
+                      </p>
+                      <a
+                        class="px-10 py-2 2xl:px-14 2xl:py-5 rounded-full border-2 border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] bg-[#34394B] font-quickSand font-medium 2xl:text-xl"
+                        [href]="service.buttonLink"
+                        >{{ service.buttonText }}</a
+                        >
+                      </div>
+                    </div>
+                  }
+                </div>
+              </div>
+              <div class="right-side flex items-center justify-center h-screen">
+                <!-- Fixed image container -->
+                <img
+                  class="object-cover h-[70vh] w-[35vw] 2xl:h-[75vh] 2xl:w-[35vw] rounded-2xl"
+                  [src]="currentImage"
+                  alt="Current Image"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
 
-  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
-    <div
-      class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
-    >
-      <h2
-        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-      >
-        Carina Softlabs Inc
-        <span class="text-[#B1DF4F]">4 W and H Process</span>
-      </h2>
-    </div>
+          <!-- 4W AND H PROCESS SECTION -->
 
-    <div class="xl:pt-20 pt-4">
-      <p
-        class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
-      >
-        Carina Softlabs is based on the 4W & H Process. We know how to get
-        things done using this approach. <br class="hidden md:block" />It
-        addresses Who, What, When, Why, and How, for successful project
-        executions.
-      </p>
-    </div>
+          <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
+            <div
+              class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
+              >
+              <h2
+                class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+                >
+                Carina Softlabs Inc
+                <span class="text-[#B1DF4F]">4 W and H Process</span>
+              </h2>
+            </div>
 
-    <div class="grid grid-cols-2 lg:grid-cols-3 mt-10 2xl:mt-16 gap-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 col-span-2 gap-6">
-        <div
-          *ngFor="let W of FourW"
-          class="bg-[#34394b48] text-[#B4B9CB] rounded-3xl p-7 2xl:p-8 font-quickSand flex flex-col gap-2.5"
-        >
-          <h3 class="text-[#B1DF4F] text-2xl 2xl:text-3xl font-bold">
-            {{ W.question }}
-          </h3>
-          <p class="font-medium text-base 2xl:text-lg mb-0.5">
-            {{ W.question1 }}
-          </p>
-          <p class="text-xs 2xl:text-base">
-            {{ W.answer }}
-          </p>
-        </div>
-      </div>
-      <div
-        class="col-span-2 lg:col-span-1 text-white p-7 2xl:p-8 font-quickSand rounded-3xl flex flex-col gap-2.5"
+            <div class="xl:pt-20 pt-4">
+              <p
+                class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
+                >
+                Carina Softlabs is based on the 4W & H Process. We know how to get
+                things done using this approach. <br class="hidden md:block" />It
+                addresses Who, What, When, Why, and How, for successful project
+                executions.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-3 mt-10 2xl:mt-16 gap-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 col-span-2 gap-6">
+                @for (W of FourW; track W) {
+                  <div
+                    class="bg-[#34394b48] text-[#B4B9CB] rounded-3xl p-7 2xl:p-8 font-quickSand flex flex-col gap-2.5"
+                    >
+                    <h3 class="text-[#B1DF4F] text-2xl 2xl:text-3xl font-bold">
+                      {{ W.question }}
+                    </h3>
+                    <p class="font-medium text-base 2xl:text-lg mb-0.5">
+                      {{ W.question1 }}
+                    </p>
+                    <p class="text-xs 2xl:text-base">
+                      {{ W.answer }}
+                    </p>
+                  </div>
+                }
+              </div>
+              <div
+                class="col-span-2 lg:col-span-1 text-white p-7 2xl:p-8 font-quickSand rounded-3xl flex flex-col gap-2.5"
         style="
           background: url(../../../assets/images/fourWbg.png) no-repeat;
           background-size: cover;
         "
-      >
-        <h3 class="text-[#B1DF4F] text-2xl 2xl:text-3xl font-bold">How ?</h3>
-        <p class="font-medium text-base 2xl:text-lg mb-0.5">
-          How are we solving the problem ?
-        </p>
-        <p class="text-xs 2xl:text-base">
-          At Carina Softlabs Inc., we tackle problems with a unique, holistic
-          approach. We start by immersing ourselves in our clients' needs,
-          challenges, and objectives through in-depth research and collaborative
-          discussions. By integrating insights from competitive analysis, we
-          craft solutions that not only address immediate issues but also
-          position our clients ahead of their competition. Our goal is to
-          deliver innovative, forward-thinking strategies that drive long-term
-          success.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CLIENT TESTIMONIAL -->
-
-  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
-    <div
-      class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
-    >
-      <h2
-        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-      >
-        Client Testimonial
-      </h2>
-    </div>
-
-    <div class="xl:pt-20 pt-4">
-      <p
-        class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
-      >
-        Discover how our expertise has transformed businesses and 
-        <br class="hidden md:block" />
-        brought our clients' visions to life.
-      </p>
-    </div>
-
-    <app-bubble-card></app-bubble-card>
-  </section>
-
- 
-
-  <!-- CERTIFICATES AND BATCHES -->
-
-  <section
-    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
-  >
-    <!-- <div class="!container mx-auto"> -->
-    <div>
-      <h2
-        class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
-      >
-        CERTIFICATES AND BADGES
-      </h2>
-    </div>
-    <div class="xl:pt-20 pt-4">
-      <p
-        class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-black"
-      >
-        Explore the certifications and badges that reflect our commitment 
-        <br class="hidden md:block" />
-        to excellence and industry-leading standards.
-      </p>
-    </div>
-
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10 xl:gap-14 text-black"
-    >
-      <div
-        class="hidden md:flex justify-center items-start row-span-4 relative px-2 py-4"
-      >
-        <img
-          class="object-contain w-[80%] mt-10"
-          src="../../../assets/images/certificate-badge.png"
-          alt=""
-        />
-      </div>
-
-      <div class="col-span-3 sm:col-span-2 md:mt-5 xl:mt-8">
-        <div
-          class="flex flex-col sm:flex-row !flex-wrap sm:!flex-nowrap items-center justify-between gap-3 mt-8 md:mt-[unset]"
-        >
-          <div
-            class="bg-[#a6cfff33] py-7 px-8 xl:py-9 xl:px-10 rounded-3xl text-center w-56 2xl:w-72"
-          >
-            <span class="text-4xl 2xl:text-5xl font-myfont">50</span>
-            <p class="font-mont font-medium text-sm 2xl:text-lg mt-1.5">
-              Reviews <br />
-              across 5 platforms
-            </p>
-          </div>
-          <div
-            class="bg-[#a6cfff33] py-7 px-8 xl:py-9 xl:px-10 rounded-3xl text-center w-56 2xl:w-72"
-          >
-            <span class="text-4xl 2xl:text-5xl font-myfont">TOP 50</span>
-            <p class="font-mont font-medium text-sm 2xl:text-lg mt-1.5">
-              App development <br />
-              companies on
-            </p>
-          </div>
-          <div
-            class="bg-[#a6cfff33] py-7 px-8 xl:py-9 xl:px-10 rounded-3xl text-center w-56 2xl:w-72"
-          >
-            <span class="text-4xl 2xl:text-5xl font-myfont">4.9/5</span>
-            <p class="font-mont font-medium text-sm 2xl:text-lg mt-1.5">
-              Average <br />
-              rating
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="row-span-2 col-span-3 md:col-span-2 flex items-center justify-center"
-      >
-        <div
-          class="w-full grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-6 xl:grid-cols-6 gap-x-20 sm:gap-x-10 gap-y-6 lg:gap-y-20 lg:gap-x-6 2xl:gap-x-28 2xl:gap-y-14"
-        >
-          <a [href]="review.link"
-          target="_blank"
-            *ngFor="let review of reviews"
-            class="flex items-center justify-center gap-3.5 font-mont font-medium group cursor-pointer transition-all"
-          >
-            <span
-              class="rounded-full border-2 border-[#B4B9CB] ease-out duration-300 group-hover:border-black w-16 h-16 lg:w-12 lg:h-12 xl:w-16 xl:h-16 flex justify-center items-center"
-            >
-              <img
-                class="object-contain w-9 h-9 lg:w-7 lg:h-7 xl:w-9 xl:h-9 ease-out duration-300 group-hover:scale-125"
-                [src]="review.iconSrc"
-                alt=""
-              />
-            </span>
-            <div>
-              <!-- <div class="flex gap-0.5"> -->
-                <!-- <span
-                  ><img src="../../../assets/images/star-small.svg" alt=""
-                /></span>
-                <span
-                  ><img src="../../../assets/images/star-small.svg" alt=""
-                /></span>
-                <span
-                  ><img src="../../../assets/images/star-small.svg" alt=""
-                /></span>
-                <span
-                  ><img src="../../../assets/images/star-small.svg" alt=""
-                /></span>
-                <span
-                  ><img src="../../../assets/images/star-small.svg" alt=""
-                /></span> -->
-
-                <!-- <span class="ml-2">{{ review.rating }}</span> -->
-              <!-- </div> -->
-              <!-- <span
-                class="2xl:text-[18px] text-base md:text-[13px] text-[#0B0C10]"
-                >{{ review.reviewsNo }} reviews</span -->
-
+                >
+                <h3 class="text-[#B1DF4F] text-2xl 2xl:text-3xl font-bold">How ?</h3>
+                <p class="font-medium text-base 2xl:text-lg mb-0.5">
+                  How are we solving the problem ?
+                </p>
+                <p class="text-xs 2xl:text-base">
+                  At Carina Softlabs Inc., we tackle problems with a unique, holistic
+                  approach. We start by immersing ourselves in our clients' needs,
+                  challenges, and objectives through in-depth research and collaborative
+                  discussions. By integrating insights from competitive analysis, we
+                  craft solutions that not only address immediate issues but also
+                  position our clients ahead of their competition. Our goal is to
+                  deliver innovative, forward-thinking strategies that drive long-term
+                  success.
+                </p>
+              </div>
             </div>
-          </a>
-        </div>
-      </div>
+          </section>
 
-      <div class="col-span-3 sm:col-span-2 md:mt-5">
-        <div
-          class="flex justify-center lg:justify-start items-center gap-2.5 md:gap-9"
-        >
-          <a href="https://clutch.co/profile/carina-softlabs#highlights" target="_blank"><img
-            class="object-contain w-24 md:w-32"
-            src="../../../assets/images/clutch champion.webp"
-            alt=""
-          /></a>
-          <a href="https://www.crunchbase.com/organization/carina-softlabs-inc" target="_blank"><img
-            class="object-contain w-24 md:w-32"
-            src="../../../assets/images/crunchbase.svg"
-            alt=""
-          /></a>
-            <a href="https://www.topdevelopers.co/directory/mobile-app-development-companies-in-madhya-pradesh" target="_blank"> <img
-            class="object-contain w-24 md:w-32"
-            src="../../../assets/images/game-dev-badge.webp"
-            alt=""
-          /></a>
-        </div>
-      </div>
-    </div>
-    <!-- </div> -->
+          <!-- CLIENT TESTIMONIAL -->
 
-    <!-- CONTACT FORM -->
+          <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
+            <div
+              class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
+              >
+              <h2
+                class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+                >
+                Client Testimonial
+              </h2>
+            </div>
 
-    <div class="lg:py-24 xl:py-32 2xl:pb-36 2xl:pt-28 py-14">
-      <div>
-        <h2
-          class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
-        >
-           Ready to Transform?
-        </h2>
-      </div>
-      <app-getinform></app-getinform>
-   
-    </div>
-  </section>
+            <div class="xl:pt-20 pt-4">
+              <p
+                class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
+                >
+                Discover how our expertise has transformed businesses and
+                <br class="hidden md:block" />
+                brought our clients' visions to life.
+              </p>
+            </div>
 
-  
-<!-- 
-  <app-footer [showHeading]="true" [headingText]="line" [showButton]="true" [buttonText]="'Case Study'" [cardText]="'Start Your Project with Us <br class="hidden sm:block" /> Let’s Build Something Great.'"></app-footer> -->
-
- <app-footer 
-  [showHeading]="true" 
-  [headingText]="line" 
-  [showButton]="true" 
-  [buttonText]="'Case Study'" 
-  [cardText]="cardText">
-</app-footer>
+            <app-bubble-card></app-bubble-card>
+          </section>
 
 
-</main>
+
+          <!-- CERTIFICATES AND BATCHES -->
+
+          <section
+            class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
+            >
+            <!-- <div class="!container mx-auto"> -->
+            <div>
+              <h2
+                class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
+                >
+                CERTIFICATES AND BADGES
+              </h2>
+            </div>
+            <div class="xl:pt-20 pt-4">
+              <p
+                class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-black"
+                >
+                Explore the certifications and badges that reflect our commitment
+                <br class="hidden md:block" />
+                to excellence and industry-leading standards.
+              </p>
+            </div>
+
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10 xl:gap-14 text-black"
+              >
+              <div
+                class="hidden md:flex justify-center items-start row-span-4 relative px-2 py-4"
+                >
+                <img
+                  class="object-contain w-[80%] mt-10"
+                  src="../../../assets/images/certificate-badge.png"
+                  alt=""
+                  />
+                </div>
+
+                <div class="col-span-3 sm:col-span-2 md:mt-5 xl:mt-8">
+                  <div
+                    class="flex flex-col sm:flex-row !flex-wrap sm:!flex-nowrap items-center justify-between gap-3 mt-8 md:mt-[unset]"
+                    >
+                    <div
+                      class="bg-[#a6cfff33] py-7 px-8 xl:py-9 xl:px-10 rounded-3xl text-center w-56 2xl:w-72"
+                      >
+                      <span class="text-4xl 2xl:text-5xl font-myfont">50</span>
+                      <p class="font-mont font-medium text-sm 2xl:text-lg mt-1.5">
+                        Reviews <br />
+                        across 5 platforms
+                      </p>
+                    </div>
+                    <div
+                      class="bg-[#a6cfff33] py-7 px-8 xl:py-9 xl:px-10 rounded-3xl text-center w-56 2xl:w-72"
+                      >
+                      <span class="text-4xl 2xl:text-5xl font-myfont">TOP 50</span>
+                      <p class="font-mont font-medium text-sm 2xl:text-lg mt-1.5">
+                        App development <br />
+                        companies on
+                      </p>
+                    </div>
+                    <div
+                      class="bg-[#a6cfff33] py-7 px-8 xl:py-9 xl:px-10 rounded-3xl text-center w-56 2xl:w-72"
+                      >
+                      <span class="text-4xl 2xl:text-5xl font-myfont">4.9/5</span>
+                      <p class="font-mont font-medium text-sm 2xl:text-lg mt-1.5">
+                        Average <br />
+                        rating
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="row-span-2 col-span-3 md:col-span-2 flex items-center justify-center"
+                  >
+                  <div
+                    class="w-full grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-6 xl:grid-cols-6 gap-x-20 sm:gap-x-10 gap-y-6 lg:gap-y-20 lg:gap-x-6 2xl:gap-x-28 2xl:gap-y-14"
+                    >
+                    @for (review of reviews; track review) {
+                      <a [href]="review.link"
+                        target="_blank"
+                        class="flex items-center justify-center gap-3.5 font-mont font-medium group cursor-pointer transition-all"
+                        >
+                        <span
+                          class="rounded-full border-2 border-[#B4B9CB] ease-out duration-300 group-hover:border-black w-16 h-16 lg:w-12 lg:h-12 xl:w-16 xl:h-16 flex justify-center items-center"
+                          >
+                          <img
+                            class="object-contain w-9 h-9 lg:w-7 lg:h-7 xl:w-9 xl:h-9 ease-out duration-300 group-hover:scale-125"
+                            [src]="review.iconSrc"
+                            alt=""
+                            />
+                          </span>
+                          <div>
+                            <!-- <div class="flex gap-0.5"> -->
+                            <!-- <span
+                            ><img src="../../../assets/images/star-small.svg" alt=""
+                          /></span>
+                          <span
+                            ><img src="../../../assets/images/star-small.svg" alt=""
+                          /></span>
+                          <span
+                            ><img src="../../../assets/images/star-small.svg" alt=""
+                          /></span>
+                          <span
+                            ><img src="../../../assets/images/star-small.svg" alt=""
+                          /></span>
+                          <span
+                            ><img src="../../../assets/images/star-small.svg" alt=""
+                          /></span> -->
+                          <!-- <span class="ml-2">{{ review.rating }}</span> -->
+                        <!-- </div> -->
+                        <!-- <span
+                        class="2xl:text-[18px] text-base md:text-[13px] text-[#0B0C10]"
+                        >{{ review.reviewsNo }} reviews</span -->
+                      </div>
+                    </a>
+                  }
+                </div>
+              </div>
+
+              <div class="col-span-3 sm:col-span-2 md:mt-5">
+                <div
+                  class="flex justify-center lg:justify-start items-center gap-2.5 md:gap-9"
+                  >
+                  <a href="https://clutch.co/profile/carina-softlabs#highlights" target="_blank"><img
+                    class="object-contain w-24 md:w-32"
+                    src="../../../assets/images/clutch champion.webp"
+                    alt=""
+                  /></a>
+                  <a href="https://www.crunchbase.com/organization/carina-softlabs-inc" target="_blank"><img
+                    class="object-contain w-24 md:w-32"
+                    src="../../../assets/images/crunchbase.svg"
+                    alt=""
+                  /></a>
+                  <a href="https://www.topdevelopers.co/directory/mobile-app-development-companies-in-madhya-pradesh" target="_blank"> <img
+                    class="object-contain w-24 md:w-32"
+                    src="../../../assets/images/game-dev-badge.webp"
+                    alt=""
+                  /></a>
+                </div>
+              </div>
+            </div>
+          <!-- </div> -->
+
+          <!-- CONTACT FORM -->
+
+          <div class="lg:py-24 xl:py-32 2xl:pb-36 2xl:pt-28 py-14">
+            <div>
+              <h2
+                class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
+                >
+                Ready to Transform?
+              </h2>
+            </div>
+            <app-getinform></app-getinform>
+
+          </div>
+        </section>
+
+
+        <!--
+      <app-footer [showHeading]="true" [headingText]="line" [showButton]="true" [buttonText]="'Case Study'" [cardText]="'Start Your Project with Us <br class="hidden sm:block" /> Let’s Build Something Great.'"></app-footer> -->
+
+      <app-footer
+        [showHeading]="true"
+        [headingText]="line"
+        [showButton]="true"
+        [buttonText]="'Case Study'"
+        [cardText]="cardText">
+      </app-footer>
+
+
+    </main>

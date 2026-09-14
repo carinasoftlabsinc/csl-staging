@@ -4,9 +4,9 @@
       <li>
         <a href="https://wa.me/919131958215" target="_blank"
           ><img
-            src="../../../assets/color_whatsapp-icon.svg"
-            alt="Whatsapp"
-            width="30"
+          src="../../../assets/color_whatsapp-icon.svg"
+          alt="Whatsapp"
+          width="30"
         /></a>
       </li>
       <li>
@@ -15,15 +15,15 @@
             src="../../../assets/color_telegram.svg"
             alt="Telegram"
             width="30"
-        /></a>
-      </li>
-      <li>
-        <a href="https://teams.microsoft.com/l/chat/0/0?users=mayank@carinasoftlabs.com"
-  target="_blank"
-          ><img src="../../../assets/Teams.svg"  alt="Microsoft Teams" width="30"
-        /></a>
-      </li>
-      <!-- <li>
+          /></a>
+        </li>
+        <li>
+          <a href="https://teams.microsoft.com/l/chat/0/0?users=mayank@carinasoftlabs.com"
+            target="_blank"
+            ><img src="../../../assets/Teams.svg"  alt="Microsoft Teams" width="30"
+          /></a>
+        </li>
+        <!-- <li>
         <a href="https://discord.gg/rTfbbaV5" target="_blank"
           ><img src="../../../assets/images/discord.svg" alt="Doscord" width="30"
         /></a>
@@ -34,414 +34,417 @@
 
 <!-- collabration card -->
 
-<div
-  *ngIf="showCollab"
-  class="flex justify-center items-center relative mt-6 z-20"
->
+@if (showCollab) {
   <div
-    class="bg-gradient-to-bl from-[#121b44] via-[#0B0C10] to-[#121b44] rounded-[40px] md:px-36 md:py-11 lg:py-14 xl:px-48 xl:py-16 2xl:py-24 absolute p-[2.7rem] text-center"
-  >
-    <h2
-      class="text-white text-xl sm:text-2xl md:text-[25px] lg:text-[38px] xl:text-[45px] xl:leading-[54px] 2xl:text-[60px] lg:leading-[47px] 2xl:leading-[76px] font-myfont text-center"
-      [innerHTML]="cardText"
-    ></h2>
-    <div class="pt-4 md:pt-5 lg:pt-8 2xl:pt-10">
-      <a
-        [href]="btnLink"
-        target="_blank"
-        class="2xl:!text-[18px] xl:text-[14px] rounded-full !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] lg:!px-6 lg:!py-2 xl:!px-6 xl:!py-2.5 2xl:!px-8 2xl:!py-3 px-6 py-2.5 text-white inline-block"
+    class="flex justify-center items-center relative mt-6 z-20"
+    >
+    <div
+      class="bg-gradient-to-bl from-[#121b44] via-[#0B0C10] to-[#121b44] rounded-[40px] md:px-36 md:py-11 lg:py-14 xl:px-48 xl:py-16 2xl:py-24 absolute p-[2.7rem] text-center"
       >
-        <span class="button-container">
-          {{ btnText }}
-          <img
-            src="../../assets/images/small-tilt-arrow.png"
-            alt="Image"
-            class="button-img"
-          />
-        </span>
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- footer -->
-
-<section
-  class="px-7 md:px-10 lg:px-5 2xl:px-24 2xl:py-12 xl:px-14 lg:py-12 py-10 lg:mt-10 w-full bg-white rounded-t-[40px]"
->
-  <div class="">
-    <div class="flex justify-between items-center mt-28 2xl:pt-24">
       <h2
-        class="text-[#0B0C10] text-3xl md:text-4xl lg:text-6xl 2xl:text-7xl leading-[40px] font-myfont md:w-[50vw] lg:w-[60vw] xl:w-[50vw]"
-        *ngIf="showHeading"
-      >
-        {{ headingText }}
-      </h2>
-
-      <button
-        type="button"
-        routerLink="/contact-us"
-        class="bg-black font-quickSand font-bold tracking-widet lg:!text-xl sm:text-xl border text-white px-7 py-3 rounded-2xl hidden xl:block"
-        *ngIf="showButton"
-      >
-        {{ buttonText }}
-      </button>
-    </div>
-
-    <div>
-      <hr class="border-t-3 border-black mt-4" />
-    </div>
-
-    <div class="hidden lg:block">
-      <div class="flex justify-between mt-14 items-center">
-        <div class="">
-          <a
-            routerLink="/"
-            class="text-black !text-xl cursor-pointer font-quickSand leading-[26px] font-semibold transition duration-300 ease-in-out hover:text-red-500"
-            >Home</a
+        class="text-white text-xl sm:text-2xl md:text-[25px] lg:text-[38px] xl:text-[45px] xl:leading-[54px] 2xl:text-[60px] lg:leading-[47px] 2xl:leading-[76px] font-myfont text-center"
+        [innerHTML]="cardText"
+      ></h2>
+      <div class="pt-4 md:pt-5 lg:pt-8 2xl:pt-10">
+        <a
+          [href]="btnLink"
+          target="_blank"
+          class="2xl:!text-[18px] xl:text-[14px] rounded-full !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] lg:!px-6 lg:!py-2 xl:!px-6 xl:!py-2.5 2xl:!px-8 2xl:!py-3 px-6 py-2.5 text-white inline-block"
           >
-        </div>
-        <div>
-          <p class="text-[#B4B9CB] font-quickSand text-xl font-semibold">I</p>
-        </div>
-        <div>
-          <a
-            routerLink="/know-us"
-            class="text-black cursor-pointer font-quickSand !text-xl font-semibold"
-            >Who we are</a
-          >
-        </div>
-        <div>
-          <p class="text-[#B4B9CB] font-quickSand text-xl font-semibold">I</p>
-        </div>
-        <div>
-          <a
-            routerLink="/services"
-            class="text-black font-quickSand !text-xl font-semibold"
-            >Services</a
-          >
-        </div>
-        <div>
-          <p class="text-[#B4B9CB] font-quickSand text-xl font-semibold">I</p>
-        </div>
-        <div>
-          <a
-            routerLink="/blog"
-            class="text-black font-quickSand !text-xl font-semibold"
-            >Blog</a
-          >
-        </div>
-        <div>
-          <p class="text-[#B4B9CB] font-quickSand text-xl font-semibold">I</p>
-        </div>
-        <div>
-          <a
-            href="https://www.linkedin.com/company/carinasoftlabsinc/about/"
-            target="_blank"
-            class="text-black font-quickSand !text-xl font-semibold"
-            >Our success story</a
-          >
-        </div>
-        <div>
-          <p class="text-[#B4B9CB] font-quickSand text-xl font-semibold">I</p>
-        </div>
-        <div>
-          <a
-            href="https://www.linkedin.com/company/carinasoftlabsinc/jobs/"
-            target="_blank"
-            class="text-black font-quickSand !text-xl font-semibold"
-            >Career</a
-          >
-        </div>
-        <div>
-          <p class="text-[#B4B9CB] font-quickSand text-xl font-semibold">I</p>
-        </div>
-        <div>
-          <a
-            routerLink="/contact-us"
-            class="text-black font-quickSand !text-xl font-semibold"
-            >Contact us</a
-          >
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="sm:flex sm:flex-col md:flex md:flex-col lg:flex lg:flex-row justify-between mt-14"
-    >
-      <div class="text-black mb-8 sm:w-full lg:w-auto">
-        <div>
-          <img
-            class="h-12 w-72"
-            src="../../../assets/CSL-logo-footer.svg"
-            alt=""
-          />
-        </div>
-        <div class="mt-3 md:w-80">
-          <p
-            class="font-quickSand text-[14px] text-[#0B0C10] font-semibold leading-[22px]"
-          >
-            At Carina Softlabs Inc., we are the visionary pioneers of digital
-            transformation, blending creativity and innovation to engineer
-            immersive gaming experiences alongside empowering businesses with
-            transformative solutions.
-          </p>
-        </div>
-
-        <div class="flex mt-4 gap-2 items-center">
-          <div>
-            <a href="https://www.instagram.com/carinasoftlabs/" target="_blank">
-              <img
-                class="w-9 h-9"
-                src="../../../assets/images/insta-black-logo.svg"
-                alt=""
-              />
-            </a>
-          </div>
-          <div>
-            <a
-              href="https://www.facebook.com/CarinaSoftLabsInc/"
-              target="_blank"
-            >
-              <img
-                class="w-8 h-8"
-                src="../../../assets/images/facebook-black-logo.svg"
-                alt=""
-              />
-            </a>
-          </div>
-          <div>
-            <a
-              href="https://in.linkedin.com/company/carinasoftlabsinc"
-              target="_blank"
-            >
-              <img
-                class="w-9 h-9"
-                src="../../../assets/images/linkedin-black-logo.svg"
-                alt=""
-              />
-            </a>
-          </div>
-          <div>
-            <a href="https://twitter.com/carinasoftlabs" target="_blank">
-              <img
-                class="w-9 h-9"
-                src="../../../assets/images/twitter-black-logo.svg"
-                alt=""
-              />
-            </a>
-          </div>
-          <div class="bg-white">
-            <a
-              href="https://www.artstation.com/carinasoftlabsinc"
-              target="_blank"
-            >
-              <img
-                class="w-8 h-8 bg-white"
-                src="../../../assets/images/art-1.png"
-                alt=""
-              />
-            </a>
-          </div>
-          <div class="bg-white">
-            <a href="https://www.youtube.com/@CarinaSoftlabs" target="_blank">
-              <img
-                class="w-10 h-10 bg-white"
-                src="../../../assets/images/Youtube-black-logo.svg"
-                alt=""
-              />
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="text-black mb-8">
-        <div class="flex flex-col gap-8 sm:gap-0 md:gap-0">
-          <div class="flex gap-2">
-            <div>
-              <span
-                ><img
-                  class="h-7 w-7"
-                  src="../../../assets/images/usa-flag.svg"
-                  alt=""
-              /></span>
-            </div>
-            <div>
-              <p class="font-quickSand text-[14px] font-semibold">USA OFFICE</p>
-              <p
-                class="font-quickSand text-[13px] font-normal text-[#111111] leading-[16px] w-60"
-              >
-                66 W Flagler St Suite 900 – 2034, Miami, FL 33130, United States
-              </p>
-            </div>
-          </div>
-
-          <div class="flex gap-2 sm:mt-8">
-            <div>
-              <span
-                ><img
-                  class="h-7 w-7"
-                  src="../../../assets/images/india-flag.svg"
-                  alt=""
-              /></span>
-            </div>
-            <div>
-              <p class="font-quickSand text-[14px] font-semibold">
-                INDIA OFFICE
-              </p>
-              <p
-                class="font-quickSand text-[13px] font-normal text-[#111111] leading-[16px] w-60"
-              >
-                10/2, 2nd Floor, Shree Mahadeo House, near Hotel Surya, South
-                Tukoganj, Indore (M.P.) 452001
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="text-black mb-8">
-        <div class="flex flex-col gap-2 sm:gap-0 md:gap-0">
-          <div class="flex gap-2">
-            <div class="flex lg:flex-col xl:flex-row">
-              <a
-                href="https://www.upwork.com/agencies/carinasoftlabs/"
-                target="_blank"
-                ><span
-                  ><img
-                    class="lg:w-28 2xl:w-32"
-                    src="../../../assets/images/Upwork.svg"
-                    alt="" /></span
-              ></a>
-              <a
-                href="https://clutch.co/profile/carina-softlabs#highlights"
-                target="_blank"
-                ><span
-                  ><img
-                    class="lg:w-28 2xl:w-32"
-                    src="../../../assets/images/clutch.svg"
-                    alt="" /></span
-              ></a>
-            </div>
-          </div>
-
-          <div class="flex gap-2">
-            <a
-              href="https://www.topdevelopers.co/directory/mobile-app-development-companies-in-madhya-pradesh"
-              target="_blank"
-              ><span
-                ><img
-                  class="lg:w-28 2xl:w-32 lg:hidden xl:block"
-                  src="../../../assets/images/app-badge.svg"
-                  alt="" /></span
-            ></a>
-            <a
-              href="https://www.topdevelopers.co/directory/digital-marketing-agencies/miami"
-              target="_blank"
-              ><span
-                ><img
-                  class="lg:w-28 2xl:w-32 lg:hidden xl:block"
-                  src="../../../assets/images/digital-badge.svg"
-                  alt="" /></span
-            ></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="text-black mb-8">
-        <div class="flex flex-col gap-2 sm:gap-0 md:gap-0">
-          <div class="flex items-center gap-2">
-            <div class="flex gap-2">
-              <span>
-                <img
-                  src="../../../assets/images/mail-icon.svg"
-                  width="25"
-                  alt=""
-              /></span>
-              <span>
-                <p
-                  class="font-quickSand xl:text-[15px] md:text-[13px] text-black font-semibold"
-                >
-                  Email
-                </p>
-                <a
-                  href="mailto:business@carinasoftlabs.com"
-                  class="font-quickSand text-sm xl:text-[14px] text-black font-medium"
-                >
-                  {{ mail }}
-                </a>
-              </span>
-            </div>
-          </div>
-
-          <div class="flex text-black gap-2 mt-4">
-            <div class="flex gap-2">
-              <span>
-                <img
-                  src="../../../assets/images/phone-icon.svg"
-                  width="25"
-                  alt=""
-              /></span>
-              <span>
-                <p
-                  class="font-quickSand xl:text-[15px] md:text-[13px] text-black font-semibold"
-                >
-                  Phone No.
-                </p>
-                <a
-                  class="font-quickSand text-sm xl:text-[14px] text-black font-medium"
-                >
-                  +91 9131958215 | +1 7866490411
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr class="border-t-2 border-black mt-4" />
-    <div
-      class="lg:mt-12 mt-4 flex flex-col md:flex-row justify-between items-center"
-    >
-      <div>
-        <p
-          class="text-[#34394B] font-quickSand font-medium text-[15px] md:text-[18px]"
-        >
-          Copyright &#169; 2025, Carina Softlabs Inc. All rights reserved
-        </p>
-        <div class="flex items-center gap-3 text-[14px] md:text-[16px]">
-    <a
-      routerLink="/terms-conditions"
-      class="text-[#34394B] font-quickSand font-medium hover:text-black transition duration-300"
-    >
-      Terms & Conditions
-    </a>
-
-    <span class="text-[#B4B9CB]">|</span>
-
-    <a
-      routerLink="/privacy-policy"
-      class="text-[#34394B] font-quickSand font-medium hover:text-black transition duration-300"
-    >
-      Privacy Policy
-    </a>
-  </div>
-      </div>
-      <div class="mt-4">
-        <button
-          (click)="scrollToTop()"
-          class="pb-5 font-medium 2xl:!text-[18px] xl:text-[14px] hidden rounded-full !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] md:!px-7 md:!py-2 2xl:!px-8 2xl:!py-3 !p-3 !text-[#0B0C10] sm:inline-block"
-        >
           <span class="button-container">
-            Back to Top
+            {{ btnText }}
             <img
-              src="../../../assets/images/up-arrow/Vector 1@2x.png"
+              src="../../assets/images/small-tilt-arrow.png"
               alt="Image"
-              class="button-img w-4"
-            />
-          </span>
-        </button>
+              class="button-img"
+              />
+            </span>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  }
+
+  <!-- footer -->
+
+  <section
+    class="px-7 md:px-10 lg:px-5 2xl:px-24 2xl:py-12 xl:px-14 lg:py-12 py-10 lg:mt-10 w-full bg-white rounded-t-[40px]"
+    >
+    <div class="">
+      <div class="flex justify-between items-center mt-28 2xl:pt-24">
+        @if (showHeading) {
+          <h2
+            class="text-[#0B0C10] text-3xl md:text-4xl lg:text-6xl 2xl:text-7xl leading-[40px] font-myfont md:w-[50vw] lg:w-[60vw] xl:w-[50vw]"
+            >
+            {{ headingText }}
+          </h2>
+        }
+
+        @if (showButton) {
+          <button
+            type="button"
+            routerLink="/contact-us"
+            class="bg-black font-quickSand font-bold tracking-widet lg:!text-xl sm:text-xl border text-white px-7 py-3 rounded-2xl hidden xl:block"
+            >
+            {{ buttonText }}
+          </button>
+        }
+      </div>
+
+      <div>
+        <hr class="border-t-3 border-black mt-4" />
+      </div>
+
+      <div class="hidden lg:block">
+        <div class="flex justify-between mt-14 items-center">
+          <div class="">
+            <a
+              routerLink="/"
+              class="text-black !text-xl cursor-pointer font-quickSand leading-[26px] font-semibold transition duration-300 ease-in-out hover:text-red-500"
+              >Home</a
+              >
+            </div>
+            <div>
+              <p class="text-[#B4B9CB] font-quickSand text-xl font-semibold">I</p>
+            </div>
+            <div>
+              <a
+                routerLink="/know-us"
+                class="text-black cursor-pointer font-quickSand !text-xl font-semibold"
+                >Who we are</a
+                >
+              </div>
+              <div>
+                <p class="text-[#B4B9CB] font-quickSand text-xl font-semibold">I</p>
+              </div>
+              <div>
+                <a
+                  routerLink="/services"
+                  class="text-black font-quickSand !text-xl font-semibold"
+                  >Services</a
+                  >
+                </div>
+                <div>
+                  <p class="text-[#B4B9CB] font-quickSand text-xl font-semibold">I</p>
+                </div>
+                <div>
+                  <a
+                    routerLink="/blog"
+                    class="text-black font-quickSand !text-xl font-semibold"
+                    >Blog</a
+                    >
+                  </div>
+                  <div>
+                    <p class="text-[#B4B9CB] font-quickSand text-xl font-semibold">I</p>
+                  </div>
+                  <div>
+                    <a
+                      href="https://www.linkedin.com/company/carinasoftlabsinc/about/"
+                      target="_blank"
+                      class="text-black font-quickSand !text-xl font-semibold"
+                      >Our success story</a
+                      >
+                    </div>
+                    <div>
+                      <p class="text-[#B4B9CB] font-quickSand text-xl font-semibold">I</p>
+                    </div>
+                    <div>
+                      <a
+                        href="https://www.linkedin.com/company/carinasoftlabsinc/jobs/"
+                        target="_blank"
+                        class="text-black font-quickSand !text-xl font-semibold"
+                        >Career</a
+                        >
+                      </div>
+                      <div>
+                        <p class="text-[#B4B9CB] font-quickSand text-xl font-semibold">I</p>
+                      </div>
+                      <div>
+                        <a
+                          routerLink="/contact-us"
+                          class="text-black font-quickSand !text-xl font-semibold"
+                          >Contact us</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="sm:flex sm:flex-col md:flex md:flex-col lg:flex lg:flex-row justify-between mt-14"
+                      >
+                      <div class="text-black mb-8 sm:w-full lg:w-auto">
+                        <div>
+                          <img
+                            class="h-12 w-72"
+                            src="../../../assets/CSL-logo-footer.svg"
+                            alt=""
+                            />
+                          </div>
+                          <div class="mt-3 md:w-80">
+                            <p
+                              class="font-quickSand text-[14px] text-[#0B0C10] font-semibold leading-[22px]"
+                              >
+                              At Carina Softlabs Inc., we are the visionary pioneers of digital
+                              transformation, blending creativity and innovation to engineer
+                              immersive gaming experiences alongside empowering businesses with
+                              transformative solutions.
+                            </p>
+                          </div>
+
+                          <div class="flex mt-4 gap-2 items-center">
+                            <div>
+                              <a href="https://www.instagram.com/carinasoftlabs/" target="_blank">
+                                <img
+                                  class="w-9 h-9"
+                                  src="../../../assets/images/insta-black-logo.svg"
+                                  alt=""
+                                  />
+                                </a>
+                              </div>
+                              <div>
+                                <a
+                                  href="https://www.facebook.com/CarinaSoftLabsInc/"
+                                  target="_blank"
+                                  >
+                                  <img
+                                    class="w-8 h-8"
+                                    src="../../../assets/images/facebook-black-logo.svg"
+                                    alt=""
+                                    />
+                                  </a>
+                                </div>
+                                <div>
+                                  <a
+                                    href="https://in.linkedin.com/company/carinasoftlabsinc"
+                                    target="_blank"
+                                    >
+                                    <img
+                                      class="w-9 h-9"
+                                      src="../../../assets/images/linkedin-black-logo.svg"
+                                      alt=""
+                                      />
+                                    </a>
+                                  </div>
+                                  <div>
+                                    <a href="https://twitter.com/carinasoftlabs" target="_blank">
+                                      <img
+                                        class="w-9 h-9"
+                                        src="../../../assets/images/twitter-black-logo.svg"
+                                        alt=""
+                                        />
+                                      </a>
+                                    </div>
+                                    <div class="bg-white">
+                                      <a
+                                        href="https://www.artstation.com/carinasoftlabsinc"
+                                        target="_blank"
+                                        >
+                                        <img
+                                          class="w-8 h-8 bg-white"
+                                          src="../../../assets/images/art-1.png"
+                                          alt=""
+                                          />
+                                        </a>
+                                      </div>
+                                      <div class="bg-white">
+                                        <a href="https://www.youtube.com/@CarinaSoftlabs" target="_blank">
+                                          <img
+                                            class="w-10 h-10 bg-white"
+                                            src="../../../assets/images/Youtube-black-logo.svg"
+                                            alt=""
+                                            />
+                                          </a>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="text-black mb-8">
+                                      <div class="flex flex-col gap-8 sm:gap-0 md:gap-0">
+                                        <div class="flex gap-2">
+                                          <div>
+                                            <span
+                                              ><img
+                                              class="h-7 w-7"
+                                              src="../../../assets/images/usa-flag.svg"
+                                              alt=""
+                                            /></span>
+                                          </div>
+                                          <div>
+                                            <p class="font-quickSand text-[14px] font-semibold">USA OFFICE</p>
+                                            <p
+                                              class="font-quickSand text-[13px] font-normal text-[#111111] leading-[16px] w-60"
+                                              >
+                                              66 W Flagler St Suite 900 – 2034, Miami, FL 33130, United States
+                                            </p>
+                                          </div>
+                                        </div>
+
+                                        <div class="flex gap-2 sm:mt-8">
+                                          <div>
+                                            <span
+                                              ><img
+                                              class="h-7 w-7"
+                                              src="../../../assets/images/india-flag.svg"
+                                              alt=""
+                                            /></span>
+                                          </div>
+                                          <div>
+                                            <p class="font-quickSand text-[14px] font-semibold">
+                                              INDIA OFFICE
+                                            </p>
+                                            <p
+                                              class="font-quickSand text-[13px] font-normal text-[#111111] leading-[16px] w-60"
+                                              >
+                                              10/2, 2nd Floor, Shree Mahadeo House, near Hotel Surya, South
+                                              Tukoganj, Indore (M.P.) 452001
+                                            </p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="text-black mb-8">
+                                      <div class="flex flex-col gap-2 sm:gap-0 md:gap-0">
+                                        <div class="flex gap-2">
+                                          <div class="flex lg:flex-col xl:flex-row">
+                                            <a
+                                              href="https://www.upwork.com/agencies/carinasoftlabs/"
+                                              target="_blank"
+                                              ><span
+                                              ><img
+                                              class="lg:w-28 2xl:w-32"
+                                              src="../../../assets/images/Upwork.svg"
+                                              alt="" /></span
+                                            ></a>
+                                            <a
+                                              href="https://clutch.co/profile/carina-softlabs#highlights"
+                                              target="_blank"
+                                              ><span
+                                              ><img
+                                              class="lg:w-28 2xl:w-32"
+                                              src="../../../assets/images/clutch.svg"
+                                              alt="" /></span
+                                            ></a>
+                                          </div>
+                                        </div>
+
+                                        <div class="flex gap-2">
+                                          <a
+                                            href="https://www.topdevelopers.co/directory/mobile-app-development-companies-in-madhya-pradesh"
+                                            target="_blank"
+                                            ><span
+                                            ><img
+                                            class="lg:w-28 2xl:w-32 lg:hidden xl:block"
+                                            src="../../../assets/images/app-badge.svg"
+                                            alt="" /></span
+                                          ></a>
+                                          <a
+                                            href="https://www.topdevelopers.co/directory/digital-marketing-agencies/miami"
+                                            target="_blank"
+                                            ><span
+                                            ><img
+                                            class="lg:w-28 2xl:w-32 lg:hidden xl:block"
+                                            src="../../../assets/images/digital-badge.svg"
+                                            alt="" /></span
+                                          ></a>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="text-black mb-8">
+                                      <div class="flex flex-col gap-2 sm:gap-0 md:gap-0">
+                                        <div class="flex items-center gap-2">
+                                          <div class="flex gap-2">
+                                            <span>
+                                              <img
+                                                src="../../../assets/images/mail-icon.svg"
+                                                width="25"
+                                                alt=""
+                                              /></span>
+                                              <span>
+                                                <p
+                                                  class="font-quickSand xl:text-[15px] md:text-[13px] text-black font-semibold"
+                                                  >
+                                                  Email
+                                                </p>
+                                                <a
+                                                  href="mailto:business@carinasoftlabs.com"
+                                                  class="font-quickSand text-sm xl:text-[14px] text-black font-medium"
+                                                  >
+                                                  {{ mail }}
+                                                </a>
+                                              </span>
+                                            </div>
+                                          </div>
+
+                                          <div class="flex text-black gap-2 mt-4">
+                                            <div class="flex gap-2">
+                                              <span>
+                                                <img
+                                                  src="../../../assets/images/phone-icon.svg"
+                                                  width="25"
+                                                  alt=""
+                                                /></span>
+                                                <span>
+                                                  <p
+                                                    class="font-quickSand xl:text-[15px] md:text-[13px] text-black font-semibold"
+                                                    >
+                                                    Phone No.
+                                                  </p>
+                                                  <a
+                                                    class="font-quickSand text-sm xl:text-[14px] text-black font-medium"
+                                                    >
+                                                    +91 9131958215 | +1 7866490411
+                                                  </a>
+                                                </span>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <hr class="border-t-2 border-black mt-4" />
+                                      <div
+                                        class="lg:mt-12 mt-4 flex flex-col md:flex-row justify-between items-center"
+                                        >
+                                        <div>
+                                          <p
+                                            class="text-[#34394B] font-quickSand font-medium text-[15px] md:text-[18px]"
+                                            >
+                                            Copyright &#169; 2025, Carina Softlabs Inc. All rights reserved
+                                          </p>
+                                          <div class="flex items-center gap-3 text-[14px] md:text-[16px]">
+                                            <a
+                                              routerLink="/terms-conditions"
+                                              class="text-[#34394B] font-quickSand font-medium hover:text-black transition duration-300"
+                                              >
+                                              Terms & Conditions
+                                            </a>
+
+                                            <span class="text-[#B4B9CB]">|</span>
+
+                                            <a
+                                              routerLink="/privacy-policy"
+                                              class="text-[#34394B] font-quickSand font-medium hover:text-black transition duration-300"
+                                              >
+                                              Privacy Policy
+                                            </a>
+                                          </div>
+                                        </div>
+                                        <div class="mt-4">
+                                          <button
+                                            (click)="scrollToTop()"
+                                            class="pb-5 font-medium 2xl:!text-[18px] xl:text-[14px] hidden rounded-full !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] md:!px-7 md:!py-2 2xl:!px-8 2xl:!py-3 !p-3 !text-[#0B0C10] sm:inline-block"
+                                            >
+                                            <span class="button-container">
+                                              Back to Top
+                                              <img
+                                                src="../../../assets/images/up-arrow/Vector 1@2x.png"
+                                                alt="Image"
+                                                class="button-img w-4"
+                                                />
+                                              </span>
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </section>

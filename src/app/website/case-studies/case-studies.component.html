@@ -1,699 +1,656 @@
 <main class="bg-[#0B0C10]">
   <app-header></app-header>
   <!-- <section
-    class="body-font flex items-center justify-center h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
+  class="body-font flex items-center justify-center h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
   >
-    <div class="flex flex-col md:flex-row items-center lg:px-3 w-full">
-      <div class="md:w-1/2 py-8 text-left">
-        <h1
-          class="text-base lg:text-lg xl:text-3xl 2xl:text-[40.01px] leading-[119%] font-normal font-myfont text-[#B4B9CB]"
+  <div class="flex flex-col md:flex-row items-center lg:px-3 w-full">
+    <div class="md:w-1/2 py-8 text-left">
+      <h1
+        class="text-base lg:text-lg xl:text-3xl 2xl:text-[40.01px] leading-[119%] font-normal font-myfont text-[#B4B9CB]"
         >
-          CASE STUDY
-        </h1>
+        CASE STUDY
+      </h1>
 
-        <div class="flex items-center gap-4">
-          <img
-            src="/assets/popil-logo.png"
-            alt="Popil Logo"
-            class="w-[120px] sm:w-[140px] md:w-[160px] lg:w-[188px] h-auto"
+      <div class="flex items-center gap-4">
+        <img
+          src="/assets/popil-logo.png"
+          alt="Popil Logo"
+          class="w-[120px] sm:w-[140px] md:w-[160px] lg:w-[188px] h-auto"
           />
 
           <p
             class="text-white text-2xl lg:text-4xl xl:text-6xl 2xl:text-[75.01px] leading-[100%] font-bold font-mont"
-          >
-           
-             {{ cardData?.title }}
+            >
+
+            {{ cardData?.title }}
           </p>
         </div>
 
         <p
           class="text-base md:text-base xl:text-lg 2xl:text-xl font-quickSand font-medium text-[#B4B9CB] p-6"
-        >
-         
+          >
+
           {{ cardData?.description }}
         </p>
       </div>
 
       <div
         class="w-full md:w-1/2 py-8 hidden md:flex justify-center items-center"
-      >
-        
-        <img
-            class="rounded-3xl h-48 md:h-60 lg:h-70 xl:h-[70vh] w-full object-cover"
-            [src]="imageUrl + '/' + cardData?.image"
-          />
-      </div>
-
-      
-    </div>
-  </section> -->
-
-  <section *ngIf="loading" class="animate-pulse px-7 md:px-10 2xl:p-24 xl:px-14 py-10">
-    <div class="flex flex-col md:flex-row gap-6 md:gap-10 w-full">
-      <!-- Left skeleton (text) -->
-      <div class="md:w-1/3 space-y-6 flex flex-col justify-center">
-        <div class="h-6 w-1/2 bg-gray-700 rounded"></div>
-        <div class="flex items-center gap-4">
-          <div class="bg-gray-700 rounded-full size-32 sm:size-28 lg:size-40"></div>
-          <div class="h-8 w-1/2 bg-gray-700 rounded"></div>
-        </div>
-        <div class="space-y-2">
-          <div class="h-4 w-full bg-gray-700 rounded"></div>
-          <div class="h-4 w-3/4 bg-gray-700 rounded"></div>
-          <div class="h-4 w-1/2 bg-gray-700 rounded"></div>
-        </div>
-      </div>
-  
-      <!-- Right skeleton (image) -->
-      <div class="w-full md:w-2/3">
-        <div class="bg-gray-700 rounded-3xl h-48 md:h-64 lg:h-80 xl:h-[70vh] w-full"></div>
-      </div>
-    </div>
-  </section>
-<div *ngIf="!loading"> 
-  <section
-    class="body-font flex items-center justify-center h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
-  >
-    <!-- <div> -->
-      <div
-        class="flex flex-col md:flex-row items-center lg:justify-between lg:px-3 gap-6 md:gap-10 w-full"
-      >
-        <div
-          class="md:w-1/3 md:py-8 text-left font-quickSand font-medium text-[#B4B9CB]"
         >
-          <!-- <div class="2xl:ml-20 xl:ml-16 lg:ml-16 md:ml-16"> -->
-          <div class="flex flex-col gap-3.5 lg:gap-6 xl:gap-12">
-            <span
-              class="text-[#B4B9CB] font-myfont text-2xl 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]"
-            >
-              CASE STUDY
-            </span>
-            <!-- <h1 class="mt-3.5">
-              <span
-                class="text-white tracking-wide text-2xl md:text-4xl lg:text-5xl 2xl:text-6xl sm:text-4xl font-myfont"
-              >
-                {{ cardData?.title }}
-              </span>
-            </h1> -->
-            <div class="flex items-center gap-2 ">
-              <img
-                [src]="imageUrl + '/' + cardData?.projectLogo"
-                alt="project Logo"
-                (error)="onImgError($event)"
-                class="h-32 w-60 sm:h-28 sm:w-60 lg:h-40 lg:w-80 2xl:w-96 object-contain"
-              />
 
-              <!-- <h1 class="">
+        <img
+          class="rounded-3xl h-48 md:h-60 lg:h-70 xl:h-[70vh] w-full object-cover"
+          [src]="imageUrl + '/' + cardData?.image"
+          />
+        </div>
+
+
+      </div>
+    </section> -->
+
+    @if (loading) {
+      <section class="animate-pulse px-7 md:px-10 2xl:p-24 xl:px-14 py-10">
+        <div class="flex flex-col md:flex-row gap-6 md:gap-10 w-full">
+          <!-- Left skeleton (text) -->
+          <div class="md:w-1/3 space-y-6 flex flex-col justify-center">
+            <div class="h-6 w-1/2 bg-gray-700 rounded"></div>
+            <div class="flex items-center gap-4">
+              <div class="bg-gray-700 rounded-full size-32 sm:size-28 lg:size-40"></div>
+              <div class="h-8 w-1/2 bg-gray-700 rounded"></div>
+            </div>
+            <div class="space-y-2">
+              <div class="h-4 w-full bg-gray-700 rounded"></div>
+              <div class="h-4 w-3/4 bg-gray-700 rounded"></div>
+              <div class="h-4 w-1/2 bg-gray-700 rounded"></div>
+            </div>
+          </div>
+          <!-- Right skeleton (image) -->
+          <div class="w-full md:w-2/3">
+            <div class="bg-gray-700 rounded-3xl h-48 md:h-64 lg:h-80 xl:h-[70vh] w-full"></div>
+          </div>
+        </div>
+      </section>
+    }
+    @if (!loading) {
+      <div>
+        <section
+          class="body-font flex items-center justify-center h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
+          >
+          <!-- <div> -->
+          <div
+            class="flex flex-col md:flex-row items-center lg:justify-between lg:px-3 gap-6 md:gap-10 w-full"
+            >
+            <div
+              class="md:w-1/3 md:py-8 text-left font-quickSand font-medium text-[#B4B9CB]"
+              >
+              <!-- <div class="2xl:ml-20 xl:ml-16 lg:ml-16 md:ml-16"> -->
+              <div class="flex flex-col gap-3.5 lg:gap-6 xl:gap-12">
                 <span
-                  class="text-white tracking-wide text-2xl md:text-2xl lg:text-4xl 2xl:text-6xl sm:text-4xl font-mont font-bold capitalize"
-                >
+                  class="text-[#B4B9CB] font-myfont text-2xl 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]"
+                  >
+                  CASE STUDY
+                </span>
+                <!-- <h1 class="mt-3.5">
+                <span
+                  class="text-white tracking-wide text-2xl md:text-4xl lg:text-5xl 2xl:text-6xl sm:text-4xl font-myfont"
+                  >
                   {{ cardData?.title }}
                 </span>
               </h1> -->
-            </div>
-
-            <p
-              class="text-[#B4B9CB] text-sm xl:text-[16px] 2xl:text-[23px] 2xl:leading-[27px] font-quickSand font-normal"
-            >
-              {{ cardData?.description }}
-            </p>
-          </div>
-        </div>
-
-        <div class="w-full md:w-2/3 md:py-8">
-          <img
-            class="rounded-3xl h-48 md:h-64 lg:h-80 xl:h-[70vh] w-full object-contain"
-            [src]="imageUrl + '/' + cardData?.image"
-            (error)="onImgError($event)"
-          />
-        </div>
-      </div>
-    <!-- </div> -->
-  </section>
-
-  <!-- project overview -->
-  <section
-    class="md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
-  >
-    <div
-      class="text-center mt-12 sm:mt-auto my-8 flex flex-col items-center gap-3.5 2xl:gap-8 md:mt-8 pb-24"
-    >
-      <div
-        class="text-center flex flex-col gap-3.5 2xl:gap-6 mx-7 md:mx-10 2xl:mx-24 xl:mx-14"
-      >
-        <h1
-          class="text-[#0B0C10] text-4xl xl:text-5xl 2xl:text-6xl font-myfont"
-        >
-          Project Overview
-        </h1>
-
-        <p
-          class="font-quickSand font-medium text-[#34394B] lg:text-lg 2xl:!text-2xl !leading-6 capitalize"
-        >
-          The Blueprint of Innovation: Our Development Journey
-        </p>
-      </div>
-
-      <!--  -->
-
-      <div class="w-full flex justify-center px-4 mt-16 relative items-center">
-        <div
-          class="absolute top-0.5 2xl:top-4 w-[75%] lg:w-[85%] md:w-[85%] 2xl:w-[75vw] xl:max-w-[1400px] 2xl:max-w-[68vw] rounded-[30px] md:rounded-[46px] bg-[#E5EBFF] z-10 h-full min-h-[300px]"
-        ></div>
-        <div
-          class="absolute top-1 w-[80%] lg:w-[90%] md:w-[90%] 2xl:w-[78vw] xl:max-w-[1370px] 2xl:max-w-[71vw] rounded-[30px] md:rounded-[46px] bg-[#D7DCF0] z-10 mt-[1rem] 2xl:mt-8 h-full min-h-[260px]"
-        ></div>
-      </div>
-
-      <div class="relative z-20 w-full flex justify-center px-4 mt-4">
-        <div
-          class="w-full max-w-[1388px] 2xl:max-w-[74vw] rounded-[30px] md:rounded-[46px] bg-[#B4B9CB] flex flex-col md:flex-row items-center justify-between !px-4 md:!px-6 2xl:!px-12 py-10 md:py-14 lg:py-8 lg:px-10 relative"
-        >
-          <div class="w-full md:w-1/3 flex flex-col text-left mb-10 md:mb-0">
-            <h2 class="text-xl md:text-[28px] 2xl:text-3xl font-myfont mb-6 lg:mb-3.5 xl:mb-6">
-              TECH STACK
-            </h2>
-
-            <div class="flex gap-3.5 flex-wrap mb-8 md:mb-12 2xl:mb-14">
-              <div
-                *ngFor="let techImage of cardData?.techImages"
-                class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
-              >
+              <div class="flex items-center gap-2 ">
                 <img
-                  [src]="imageUrl + '/' + techImage"
+                  [src]="imageUrl + '/' + cardData?.projectLogo"
+                  alt="project Logo"
                   (error)="onImgError($event)"
-                  alt="Icon"
-                  class="size-8 sm:size-10 md:size-12 rounded-[11px] object-cover"
-                />
+                  class="h-32 w-60 sm:h-28 sm:w-60 lg:h-40 lg:w-80 2xl:w-96 object-contain"
+                  />
+                  <!-- <h1 class="">
+                  <span
+                    class="text-white tracking-wide text-2xl md:text-2xl lg:text-4xl 2xl:text-6xl sm:text-4xl font-mont font-bold capitalize"
+                    >
+                    {{ cardData?.title }}
+                  </span>
+                </h1> -->
               </div>
-
-              <!-- <div
-                class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
-              >
-                <img
-                  src="../../../assets/casestudy-flutter.png"
-                  alt="Icon"
-                  class="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-[11px]"
-                />
-              </div> -->
-              <!-- <div
-                class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
-              >
-                <img
-                  src="../../../assets/casestudy-mongodb.jpeg"
-                  alt="Icon"
-                  class="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-[11px]"
-                />
-              </div> -->
-              <!-- <div
-                class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
-              >
-                <img
-                  src="../../../assets/casestudy-express.png"
-                  alt="Icon"
-                  class="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-[11px]"
-                />
-              </div> -->
-              <!-- <div
-                class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
-              >
-                <img
-                  src="../../../assets/casestudy-Angular.png"
-                  alt="Icon"
-                  class="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-[11px]"
-                />
-              </div> -->
-              <!-- <div
-                class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
-              >
-                <img
-                  src="../../../assets/casestudy-js.png"
-                  alt="Icon"
-                  class="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-[11px]"
-                />
-              </div> -->
+              <p
+                class="text-[#B4B9CB] text-sm xl:text-[16px] 2xl:text-[23px] 2xl:leading-[27px] font-quickSand font-normal"
+                >
+                {{ cardData?.description }}
+              </p>
             </div>
-
-            <h2 class="text-2xl md:text-[28px] 2xl:text-3xl font-myfont mb-2">
-              INDUSTRIES
-            </h2>
-            <p
-              class="font-quickSand md:text-xl 2xl:text-2xl font-semibold text-[#34394B]"
-            >
-              <!-- Entertainment, Technology, OTT -->
-              {{ cardData?.industry }}
-            </p>
           </div>
-
-          <div
-            class="w-[175px] sm:w-[190px] md:w-[200px] lg:w-[320px] xl:w-[340px] flex justify-center mb-8 md:mb-0 z-0 md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2"
-          >
-            <!-- <img
-              src="../../../assets/casestudy-projectoverview.png"
-              alt="Project Overview"
-              class="w-full h-auto object-contain"
-            /> -->
+          <div class="w-full md:w-2/3 md:py-8">
             <img
-              [src]="imageUrl + '/' + cardData?.overviewImage"
+              class="rounded-3xl h-48 md:h-64 lg:h-80 xl:h-[70vh] w-full object-contain"
+              [src]="imageUrl + '/' + cardData?.image"
               (error)="onImgError($event)"
-              alt="Project Overview"
-              class="w-full h-[28vh] md:h-[48vh] lg:h-[80vh] object-contain"
-            />
+              />
+            </div>
           </div>
-
-          <div class="w-full md:w-1/3 flex flex-col space-y-6 text-left">
+        <!-- </div> -->
+      </section>
+      <!-- project overview -->
+      <section
+        class="md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
+        >
+        <div
+          class="text-center mt-12 sm:mt-auto my-8 flex flex-col items-center gap-3.5 2xl:gap-8 md:mt-8 pb-24"
+          >
+          <div
+            class="text-center flex flex-col gap-3.5 2xl:gap-6 mx-7 md:mx-10 2xl:mx-24 xl:mx-14"
+            >
+            <h1
+              class="text-[#0B0C10] text-4xl xl:text-5xl 2xl:text-6xl font-myfont"
+              >
+              Project Overview
+            </h1>
             <p
-              class="sm:text-base xl:text-lg 2xl:text-xl font-quickSand font-medium text-[#34394B]"
-               [innerHTML]="cardData?.overviewPara"
-            >
-              <!-- {{ cardData?.overviewPara }} -->
+              class="font-quickSand font-medium text-[#34394B] lg:text-lg 2xl:!text-2xl !leading-6 capitalize"
+              >
+              The Blueprint of Innovation: Our Development Journey
             </p>
-            <!-- <p
-              class="text-base sm:text-base xl:text-lg 2xl:text-xl font-quickSand font-medium text-[#34394B]"
+          </div>
+          <!--  -->
+          <div class="w-full flex justify-center px-4 mt-16 relative items-center">
+            <div
+              class="absolute top-0.5 2xl:top-4 w-[75%] lg:w-[85%] md:w-[85%] 2xl:w-[75vw] xl:max-w-[1400px] 2xl:max-w-[68vw] rounded-[30px] md:rounded-[46px] bg-[#E5EBFF] z-10 h-full min-h-[300px]"
+            ></div>
+            <div
+              class="absolute top-1 w-[80%] lg:w-[90%] md:w-[90%] 2xl:w-[78vw] xl:max-w-[1370px] 2xl:max-w-[71vw] rounded-[30px] md:rounded-[46px] bg-[#D7DCF0] z-10 mt-[1rem] 2xl:mt-8 h-full min-h-[260px]"
+            ></div>
+          </div>
+          <div class="relative z-20 w-full flex justify-center px-4 mt-4">
+            <div
+              class="w-full max-w-[1388px] 2xl:max-w-[74vw] rounded-[30px] md:rounded-[46px] bg-[#B4B9CB] flex flex-col md:flex-row items-center justify-between !px-4 md:!px-6 2xl:!px-12 py-10 md:py-14 lg:py-8 lg:px-10 relative"
+              >
+              <div class="w-full md:w-1/3 flex flex-col text-left mb-10 md:mb-0">
+                <h2 class="text-xl md:text-[28px] 2xl:text-3xl font-myfont mb-6 lg:mb-3.5 xl:mb-6">
+                  TECH STACK
+                </h2>
+                <div class="flex gap-3.5 flex-wrap mb-8 md:mb-12 2xl:mb-14">
+                  @for (techImage of cardData?.techImages; track techImage) {
+                    <div
+                      class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
+                      >
+                      <img
+                        [src]="imageUrl + '/' + techImage"
+                        (error)="onImgError($event)"
+                        alt="Icon"
+                        class="size-8 sm:size-10 md:size-12 rounded-[11px] object-cover"
+                        />
+                      </div>
+                    }
+                    <!-- <div
+                    class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
+                    >
+                    <img
+                      src="../../../assets/casestudy-flutter.png"
+                      alt="Icon"
+                      class="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-[11px]"
+                      />
+                    </div> -->
+                    <!-- <div
+                    class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
+                    >
+                    <img
+                      src="../../../assets/casestudy-mongodb.jpeg"
+                      alt="Icon"
+                      class="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-[11px]"
+                      />
+                    </div> -->
+                    <!-- <div
+                    class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
+                    >
+                    <img
+                      src="../../../assets/casestudy-express.png"
+                      alt="Icon"
+                      class="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-[11px]"
+                      />
+                    </div> -->
+                    <!-- <div
+                    class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
+                    >
+                    <img
+                      src="../../../assets/casestudy-Angular.png"
+                      alt="Icon"
+                      class="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-[11px]"
+                      />
+                    </div> -->
+                    <!-- <div
+                    class="flex items-center justify-center w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-white rounded-[12px]"
+                    >
+                    <img
+                      src="../../../assets/casestudy-js.png"
+                      alt="Icon"
+                      class="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-[11px]"
+                      />
+                    </div> -->
+                  </div>
+                  <h2 class="text-2xl md:text-[28px] 2xl:text-3xl font-myfont mb-2">
+                    INDUSTRIES
+                  </h2>
+                  <p
+                    class="font-quickSand md:text-xl 2xl:text-2xl font-semibold text-[#34394B]"
+                    >
+                    <!-- Entertainment, Technology, OTT -->
+                    {{ cardData?.industry }}
+                  </p>
+                </div>
+                <div
+                  class="w-[175px] sm:w-[190px] md:w-[200px] lg:w-[320px] xl:w-[340px] flex justify-center mb-8 md:mb-0 z-0 md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2"
+                  >
+                  <!-- <img
+                  src="../../../assets/casestudy-projectoverview.png"
+                  alt="Project Overview"
+                  class="w-full h-auto object-contain"
+                  /> -->
+                  <img
+                    [src]="imageUrl + '/' + cardData?.overviewImage"
+                    (error)="onImgError($event)"
+                    alt="Project Overview"
+                    class="w-full h-[28vh] md:h-[48vh] lg:h-[80vh] object-contain"
+                    />
+                  </div>
+                  <div class="w-full md:w-1/3 flex flex-col space-y-6 text-left">
+                    <p
+                      class="sm:text-base xl:text-lg 2xl:text-xl font-quickSand font-medium text-[#34394B]"
+                      [innerHTML]="cardData?.overviewPara"
+                      >
+                      <!-- {{ cardData?.overviewPara }} -->
+                    </p>
+                    <!-- <p
+                    class="text-base sm:text-base xl:text-lg 2xl:text-xl font-quickSand font-medium text-[#34394B]"
+                    >
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi,
+                    quidem.
+                  </p> -->
+                </div>
+              </div>
+            </div>
+            <!--  -->
+            <!--  -->
+          </div>
+        </section>
+        <!-- <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
+        <div class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394B]">
+          <h2
+            class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont "
             >
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi,
-              quidem.
-            </p> -->
-          </div>
-        </div>
-      </div>
-
-      <!--  -->
-
-      <!--  -->
-    </div>
-  </section>
-
-  <!-- <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
-    <div class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394B]">
-      <h2
-        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont "
-      >
-        KEY TASK
-      </h2>
-    </div> -->
-  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 pt-10 md:py-10">
-    <div
-      class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
-    >
-      <h2
-        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-      >
-        KEY TASK
-      </h2>
-    </div>
-
-    <div class="py-9 lg:py-24">
-      <p
-        class="text-justify font-quickSand  text-base lg:text-lg xl:text-[18px] 2xl:text-2xl text-[#ffffff] lg:w-[40vw]"
-        [innerHTML]="cardData?.keyHeading"
-      >
-      </p>
-    
-
-    <div class="mt-10 2xl:mt-28">
-      <h5
-        class="text-xl lg:text-2xl 2xl:text-4xl font-bold font-quickSand text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] mb-6 2xl:mb-12"
-      >
-        OUR GOALS
-      </h5>
-
-      <div class="flex flex-col lg:flex-row gap-2 pb-24">
-        <!-- <div class="flex gap-3 lg:w-2/3">
-          <div
-            class="w-[200px] sm:w-[180px] md:w-[200px] lg:w-[220px] h-[150px] bg-[#161822] text-white text-center flex flex-col justify-center items-center"
-          >
-            <img
-              src="../../../assets/case-goal-1.png"
-              alt="Image 1"
-              class="w-12 h-12 mb-2"
-            />
-            Lorem ipsum dolor sit amet.
-          </div>
-          <div
-            class="w-[200px] sm:w-[180px] md:w-[200px] lg:w-[220px] h-[150px] bg-[#161822] text-white text-center flex flex-col justify-center items-center font-quickSand"
-          >
-            <img
-              src="../../../assets/case-goal-2.png"
-              alt="Image 2"
-              class="w-12 h-12 mb-2"
-            />
-            Lorem ipsum dolor sit amet.
-          </div>
-          <div
-            class="w-[200px] sm:w-[180px] md:w-[200px] lg:w-[220px] h-[150px] bg-[#161822] text-white text-center flex flex-col justify-center items-center"
-          >
-            <img
-              src="./../../assets/case-goal-3.png"
-              alt="Image 3"
-              class="w-12 h-12 mb-2"
-            />
-            Lorem ipsum dolor sit amet.
-          </div>
+            KEY TASK
+          </h2>
         </div> -->
-
-        <div class="flex flex-wrap items-center gap-6 my-2.5 lg:my-0 lg:w-2/3 2xl:pr-10">
+        <section class="px-7 md:px-10 2xl:p-24 xl:px-14 pt-10 md:py-10">
           <div
-            *ngFor="let goal of caseGoals"
-            class=" bg-[#161822] text-white text-center flex flex-col justify-center items-center font-quickSand rounded-3xl py-9 px-3.5 xl:px-9 gap-3.5 xl:gap-6"
-          >
-            <img [src]="goal.image" [alt]="goal.alt" class="size-16 2xl:size-24" />
-           <p class="xl:text-xl"> {{ goal.text }}</p>
+            class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
+            >
+            <h2
+              class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+              >
+              KEY TASK
+            </h2>
           </div>
-        </div>
+          <div class="py-9 lg:py-24">
+            <p
+              class="text-justify font-quickSand  text-base lg:text-lg xl:text-[18px] 2xl:text-2xl text-[#ffffff] lg:w-[40vw]"
+              [innerHTML]="cardData?.keyHeading"
+              >
+            </p>
+            <div class="mt-10 2xl:mt-28">
+              <h5
+                class="text-xl lg:text-2xl 2xl:text-4xl font-bold font-quickSand text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] mb-6 2xl:mb-12"
+                >
+                OUR GOALS
+              </h5>
+              <div class="flex flex-col lg:flex-row gap-2 pb-24">
+                <!-- <div class="flex gap-3 lg:w-2/3">
+                <div
+                  class="w-[200px] sm:w-[180px] md:w-[200px] lg:w-[220px] h-[150px] bg-[#161822] text-white text-center flex flex-col justify-center items-center"
+                  >
+                  <img
+                    src="../../../assets/case-goal-1.png"
+                    alt="Image 1"
+                    class="w-12 h-12 mb-2"
+                    />
+                    Lorem ipsum dolor sit amet.
+                  </div>
+                  <div
+                    class="w-[200px] sm:w-[180px] md:w-[200px] lg:w-[220px] h-[150px] bg-[#161822] text-white text-center flex flex-col justify-center items-center font-quickSand"
+                    >
+                    <img
+                      src="../../../assets/case-goal-2.png"
+                      alt="Image 2"
+                      class="w-12 h-12 mb-2"
+                      />
+                      Lorem ipsum dolor sit amet.
+                    </div>
+                    <div
+                      class="w-[200px] sm:w-[180px] md:w-[200px] lg:w-[220px] h-[150px] bg-[#161822] text-white text-center flex flex-col justify-center items-center"
+                      >
+                      <img
+                        src="./../../assets/case-goal-3.png"
+                        alt="Image 3"
+                        class="w-12 h-12 mb-2"
+                        />
+                        Lorem ipsum dolor sit amet.
+                      </div>
+                    </div> -->
+                    <div class="flex flex-wrap items-center gap-6 my-2.5 lg:my-0 lg:w-2/3 2xl:pr-10">
+                      @for (goal of caseGoals; track goal) {
+                        <div
+                          class=" bg-[#161822] text-white text-center flex flex-col justify-center items-center font-quickSand rounded-3xl py-9 px-3.5 xl:px-9 gap-3.5 xl:gap-6"
+                          >
+                          <img [src]="goal.image" [alt]="goal.alt" class="size-16 2xl:size-24" />
+                          <p class="xl:text-xl"> {{ goal.text }}</p>
+                        </div>
+                      }
+                    </div>
+                    <div class="lg:w-1/3 lg:mt-0 text-start lg:text-left">
+                      <!-- <p
+                      class="text-[#ffffff] xl:text-xl 2xl:text-3xl 2xl:leading-10 font-quickSand font-medium"
+                      [innerHTML]="cardData?.keyDescription">
+                    </p> -->
+                    <p
+                      class="text-justify font-quickSand  text-base lg:text-lg xl:text-[18px] 2xl:text-2xl text-[#ffffff]"
+                      [innerHTML]="cardData?.keyDescription">
+                    </p>
+                    <a
+                      href="https://calendly.com/mayank-pande12/30min"
+                      target="_blank"
+                      class="w-40 flex items-center justify-center gap-2 rounded-full !border border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] px-4 py-2 text-white text-sm sm:text-base xl:text-[14px] 2xl:text-[18px] mt-4"
+                      >
+                      Fill the Form
+                      <img
+                        src="../../assets/images/small-tilt-arrow.png"
+                        alt="Arrow Icon"
+                        class="w-4 h-4"
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- work step -->
+            <section class="lg:py-16 2xl:py-24 py-10 bg-white rounded-[40px]">
+              <div
+                class="text-center flex flex-col gap-3.5 2xl:gap-6 pb-4 border-b border-[#B4B9CB] mx-7 md:mx-10 2xl:mx-24 xl:mx-14"
+                >
+                <h1 class="text-[#0B0C10] text-4xl xl:text-5xl 2xl:text-6xl font-myfont">
+                  WORK STEP
+                </h1>
+                <p
+                  class="font-quickSand font-medium text-[#34394B] lg:text-lg 2xl:!text-2xl !leading-6 capitalize"
+                  >
+                  Project creation: a cycle of planning, building, designing, coding, and testing.
+                </p>
+              </div>
+              <div
+                class="relative flex flex-wrap justify-center gap-x-[7vw] lg:gap-x-[14vw] 2xl:gap-x-[16vw] gap-y-14 md-gap-y-20 py-16 p-8"
+                >
+                @for (card of cardData.workSteps; track card) {
+                  <div
+                    class="bg-[#181921] rounded-full p-8 text-center text-white size-52 xl:size-64 flex flex-col justify-center items-center shadow-lg !border border-[#34394B] z-10"
+                    >
+                    <div class="mb-0.5 lg:mb-3.5">
+                      <img
+                        src="{{ card.icon }}"
+                        alt="Design Icon"
+                        class="size-9 xl:size-12 mx-auto"
+                        (error)="onImgError($event)"
+                        />
+                      </div>
+                      <h3 class="text-2xl xl:text-3xl mb-2.5 font-myfont">
+                        {{ card.title }}
+                      </h3>
+                      <p
+                        class="text-xs xl:text-sm font-medium font-quickSand pt-2.5 border-t border-[#34394B] text-[#B4B9CB]"
+                        >
+                        {{ card.description }}
+                      </p>
+                    </div>
+                  }
+                  <img
+                    class="hidden lg:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                    src="../../../assets/images/dotted-line.svg"
+                    alt=""
+                    />
+                  </div>
+                </section>
+                <!-- UI Design system -->
+                <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
+                  <div class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394B]">
+                    <h2
+                      class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+                      >
+                      UI DESIGN SYSTEM
+                    </h2>
+                  </div>
+                  <!-- <hr class="border-t-1 border-[#34394b]" /> -->
+                  <div
+                    class="flex flex-wrap justify-between gap-0.5 md:gap-4 my-8 2xl:gap-8 2xl:my-16 font-quickSand font-medium"
+                    >
+                    @for (uiImage of cardData?.uiImages; track uiImage) {
+                      <div
+                        class="w-full md:w-[48%]  flex justify-center items-center"
+                        >
+                        <!-- lg:p-4 2xl:py-10 2xl:px-6 -->
+                        <!-- <img
+                        src="../../../assets/casestudy-Color.png"
+                        alt="Color and Gradient Preview"
+                        class="w-full max-w-[400px] md:max-w-[800px] h-auto rounded-[16px] md:rounded-[24px] lg:rounded-[36px] xl:rounded-[48px]"
+                        /> -->
+                        <img
+                          [src]="imageUrl + '/' + uiImage"
+                          alt="Color and Gradient Preview"
+                          class="w-full h-[50vh] rounded-[16px] md:rounded-[24px] lg:rounded-[36px] xl:rounded-[48px] object-contain"
+                          />
+                        </div>
+                      }
+                      <!-- <div
+                      class="w-full md:w-[48%] p-4 2xl:py-10 2xl:px-6 flex justify-center items-center"
+                      >
+                      <img
+                        src="../../../assets/casestudy-text-2.png"
+                        alt="Text Preview"
+                        class="w-full max-w-[400px] md:max-w-[800px] h-auto rounded-[16px] md:rounded-[24px] lg:rounded-[36px] xl:rounded-[48px]"
+                        />
+                      </div>
+                      <div
+                        class="w-full md:w-[48%] p-4 2xl:py-10 2xl:px-6 flex justify-center items-center"
+                        >
+                        <img
+                          src="../../../assets/casestudy-component.png"
+                          alt="Component Preview"
+                          class="w-full max-w-[400px] md:max-w-[800px] h-auto rounded-[16px] md:rounded-[24px] lg:rounded-[36px] xl:rounded-[48px]"
+                          />
+                        </div>
+                        <div
+                          class="w-full md:w-[48%] p-4 2xl:py-10 2xl:px-6 flex justify-center items-center"
+                          >
+                          <img
+                            src="../../../assets/casestudy-component-2.png"
+                            alt="Component Preview"
+                            class="w-full max-w-[400px] md:max-w-[800px] h-auto rounded-[16px] md:rounded-[24px] lg:rounded-[36px] xl:rounded-[48px]"
+                            />
+                          </div> -->
+                        </div>
+                      </section>
+                      <!-- Development -->
+                      <section
+                        class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
+                        >
+                        <div>
+                          <h2
+                            class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
+                            >
+                            DEVELOPMENT
+                          </h2>
+                        </div>
+                        <div
+                          class="grid grid-cols-1 md:grid-cols-2 my-14 md:my-24 gap-y-10 gap-x-14 pb-12 lg:pb-[3rem]"
+                          >
+                          <img
+                            src="../../../assets/casestudy-devlopment.png"
+                            alt="Employee Group"
+                            class="w-[90%] max-w-[380px] sm:max-w-[420px] md:max-w-[490px] mx-auto md:mx-0"
+                            />
+                            @for (dev of cardData?.developement; track dev) {
+                              <div
+                                class="text-black font-quickSand flex flex-col justify-center gap-5 max-w-[600px]"
+                                >
+                                <h2
+                                  class="font-quickSand font-medium text-[#34394B] text-[22px] leading-[30px] sm:text-[24px] sm:leading-[32px] md:text-[28px] md:leading-[36px] lg:text-[30px] lg:leading-[38px] xl:text-[32px] xl:leading-[40px] 2xl:text-[34px] 2xl:leading-[42px]"
+                                  >
+                                  {{ dev?.title }}
+                                </h2>
+                                <p
+                                  class="font-quickSand font-medium text-[#34394B] lg:text-lg 2xl:!text-2xl !leading-6 capitalize"
+                                  >
+                                  {{ dev?.description }}
+                                </p>
+                              </div>
+                            }
+                          </div>
+                          <h2
+                            class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
+                            >
+                            USER FLOW
+                          </h2>
+                          <div class="grid grid-cols-1 md:grid-cols-3 my-14 md:my-24 gap-24">
+                            <div>
+                              <img
+                                src="../../../assets/casestudy-flow.png"
+                                alt="Active Image"
+                                class="object-cover w-full max-w-[510px] h-auto"
+                                style="aspect-ratio: 509 / 168"
+                                />
+                              </div>
+                              <div class="col-span-2 flex flex-col justify-between gap-3">
+                                <p
+                                  class="font-quickSand font-medium text-[#34394B] lg:text-lg 2xl:!text-2xl !leading-6 capitalize"
+                                  >
+                                  {{ cardData?.userFlowDescription }}
+                                </p>
+                              </div>
+                            </div>
+                          </section>
+                          <!-- Result -->
+                          <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
+                            <div class="flex justify-between items-center content-center mt-10 pb-2">
+                              <h2
+                                class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+                                >
+                                RESULT
+                              </h2>
+                            </div>
+                            <hr class="border-t-1 border-[#34394b]" />
+                            <div class="max-w-3xl mx-auto pt-6 relative">
+                              <p
+                                class="text-base md:text-base xl:text-xl 2xl:text-2xl font-quickSand text-center font-medium text-[#B4B9CB]  z-10 md:absolute md:top-[7vh] lg:w-[43vw] xl:w-[38vw] md:left-1/2 md:transform md:-translate-x-1/2"
+                                >
+                                <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
+                                sunt ipsum dolores quos praesentium consectetur, quasi culpa eos quis
+                                eveniet. -->
+                                {{ cardData?.resultHeading_1 }}
+                              </p>
+                            </div>
+                            <div class="flex flex-wrap justify-center my-10 2xl:my-20">
+                              @for (resultImage of cardData?.resultImages; track resultImage) {
+                                <div
+                                  class="w-full md:w-[48%] "
+                                  >
+                                  <div class="relative w-full">
+                                    <img
+                                      [src]="imageUrl + '/' + resultImage"
+                                      (error)="onImgError($event)"
+                                      alt="Image 1"
+                                      class="w-full h-[50vh] lg:h-[65vh] xl:h-[70vh] object-contain "
+                                      />
+                                    </div>
+                                  </div>
+                                }
+                                <!-- <div class="w-full md:w-[48%] px-2">
+                                <div class="relative w-full">
+                                  <img
+                                    src="../../../assets/casestudy-result-2.png"
+                                    alt="Image 2"
+                                    class="w-full h-auto object-contain rounded-[10px]"
+                                    />
+                                  </div>
+                                </div> -->
+                                <!-- <div class="w-full md:w-[48%] px-2">
+                                <div class="relative w-full">
+                                  <img
+                                    src="../../../assets/casestudyresult-3.png"
+                                    alt="Image 3"
+                                    class="w-full h-auto object-contain rounded-[10px]"
+                                    />
+                                  </div>
+                                </div> -->
+                                <!-- <div class="w-full md:w-[48%] px-2">
+                                <div class="relative w-full">
+                                  <img
+                                    src="../../../assets/casestudyresult-4.png"
+                                    alt="Image 4"
+                                    class="w-full h-auto object-contain rounded-[10px]"
+                                    />
+                                  </div>
+                                </div> -->
+                              </div>
+                              <div class="max-w-3xl mx-auto relative">
+                                <p
+                                  class="text-base md:text-base xl:text-xl 2xl:text-2xl font-quickSand text-center font-medium text-[#B4B9CB] z-10 md:absolute md:bottom-[5vh] lg:w-[43vw] xl:w-[38vw] md:left-1/2 md:transform md:-translate-x-1/2"
+                                  >
+                                  <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
+                                  sunt ipsum dolores quos praesentium consectetur, quasi culpa eos quis
+                                  eveniet. -->
+                                  {{ cardData?.resultHeading_2 }}
+                                </p>
+                              </div>
+                            </section>
+                          </div>
+                        }
+                        <!-- CLIENT TESTIMONIAL -->
 
-        <div class="lg:w-1/3 lg:mt-0 text-start lg:text-left">
-          <!-- <p
-            class="text-[#ffffff] xl:text-xl 2xl:text-3xl 2xl:leading-10 font-quickSand font-medium"
-           [innerHTML]="cardData?.keyDescription">
-         
-          </p> -->
-          <p
-            class="text-justify font-quickSand  text-base lg:text-lg xl:text-[18px] 2xl:text-2xl text-[#ffffff]"
-           [innerHTML]="cardData?.keyDescription">
-         
-          </p>
+                        <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
+                          <div
+                            class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
+                            >
+                            <h2
+                              class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+                              >
+                              Client REVIEW
+                            </h2>
+                          </div>
 
-          <a
-            href="https://calendly.com/mayank-pande12/30min"
-            target="_blank"
-            class="w-40 flex items-center justify-center gap-2 rounded-full !border border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] px-4 py-2 text-white text-sm sm:text-base xl:text-[14px] 2xl:text-[18px] mt-4"
-          >
-            Fill the Form
-            <img
-              src="../../assets/images/small-tilt-arrow.png"
-              alt="Arrow Icon"
-              class="w-4 h-4"
-            />
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  </section>
+                          <div class="xl:pt-20 pt-4">
+                            <p
+                              class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
+                              >
+                              Discover how our expertise has transformed businesses and
+                              <br class="hidden md:block" />
+                              brought our clients' visions to life.
+                            </p>
+                          </div>
 
-  <!-- work step -->
+                          <app-bubble-card></app-bubble-card>
+                        </section>
 
-  <section class="lg:py-16 2xl:py-24 py-10 bg-white rounded-[40px]">
-    <div
-      class="text-center flex flex-col gap-3.5 2xl:gap-6 pb-4 border-b border-[#B4B9CB] mx-7 md:mx-10 2xl:mx-24 xl:mx-14"
-    >
-      <h1 class="text-[#0B0C10] text-4xl xl:text-5xl 2xl:text-6xl font-myfont">
-        WORK STEP
-      </h1>
+                        <section
+                          class="relative px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px] pb-16 md:pb-24 lg:pb-36 2xl:pb-44 mb-12 lg:mb-12 2xl:mb-20"
+                          >
+                          <h2
+                            class="text-black text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#B4B9CB]"
+                            >
+                            Application Process
+                          </h2>
+                          <app-getinform></app-getinform>
+                        </section>
 
-      <p
-        class="font-quickSand font-medium text-[#34394B] lg:text-lg 2xl:!text-2xl !leading-6 capitalize"
-      >
-        Project creation: a cycle of planning, building, designing, coding, and testing.
-      </p>
-    </div>
-
-    <div
-      class="relative flex flex-wrap justify-center gap-x-[7vw] lg:gap-x-[14vw] 2xl:gap-x-[16vw] gap-y-14 md-gap-y-20 py-16 p-8"
-    >
-      <div
-        *ngFor="let card of cardData.workSteps"
-        class="bg-[#181921] rounded-full p-8 text-center text-white size-52 xl:size-64 flex flex-col justify-center items-center shadow-lg !border border-[#34394B] z-10"
-      >
-        <div class="mb-0.5 lg:mb-3.5">
-          <img
-            src="{{ card.icon }}"
-            alt="Design Icon"
-            class="size-9 xl:size-12 mx-auto"
-            (error)="onImgError($event)"
-          />
-        </div>
-        <h3 class="text-2xl xl:text-3xl mb-2.5 font-myfont">
-          {{ card.title }}
-        </h3>
-        <p
-          class="text-xs xl:text-sm font-medium font-quickSand pt-2.5 border-t border-[#34394B] text-[#B4B9CB]"
-        >
-          {{ card.description }}
-        </p>
-      </div>
-
-      <img
-        class="hidden lg:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-        src="../../../assets/images/dotted-line.svg"
-        alt=""
-      />
-    </div>
-  </section>
-
-  <!-- UI Design system -->
-
-  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
-    <div class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394B]">
-      <h2
-        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-      >
-        UI DESIGN SYSTEM
-      </h2>
-    </div>
-
-    <!-- <hr class="border-t-1 border-[#34394b]" /> -->
-
-    <div
-      class="flex flex-wrap justify-between gap-0.5 md:gap-4 my-8 2xl:gap-8 2xl:my-16 font-quickSand font-medium"
-    >
-      <div
-        *ngFor="let uiImage of cardData?.uiImages"
-        class="w-full md:w-[48%]  flex justify-center items-center"
-      > 
-      <!-- lg:p-4 2xl:py-10 2xl:px-6 -->
-        <!-- <img
-          src="../../../assets/casestudy-Color.png"
-          alt="Color and Gradient Preview"
-          class="w-full max-w-[400px] md:max-w-[800px] h-auto rounded-[16px] md:rounded-[24px] lg:rounded-[36px] xl:rounded-[48px]"
-        /> -->
-        <img
-          [src]="imageUrl + '/' + uiImage"
-          alt="Color and Gradient Preview"
-          class="w-full h-[50vh] rounded-[16px] md:rounded-[24px] lg:rounded-[36px] xl:rounded-[48px] object-contain"
-        />
-      </div>
-
-      <!-- <div
-        class="w-full md:w-[48%] p-4 2xl:py-10 2xl:px-6 flex justify-center items-center"
-      >
-        <img
-          src="../../../assets/casestudy-text-2.png"
-          alt="Text Preview"
-          class="w-full max-w-[400px] md:max-w-[800px] h-auto rounded-[16px] md:rounded-[24px] lg:rounded-[36px] xl:rounded-[48px]"
-        />
-      </div>
-
-      <div
-        class="w-full md:w-[48%] p-4 2xl:py-10 2xl:px-6 flex justify-center items-center"
-      >
-        <img
-          src="../../../assets/casestudy-component.png"
-          alt="Component Preview"
-          class="w-full max-w-[400px] md:max-w-[800px] h-auto rounded-[16px] md:rounded-[24px] lg:rounded-[36px] xl:rounded-[48px]"
-        />
-      </div>
-
-      <div
-        class="w-full md:w-[48%] p-4 2xl:py-10 2xl:px-6 flex justify-center items-center"
-      >
-        <img
-          src="../../../assets/casestudy-component-2.png"
-          alt="Component Preview"
-          class="w-full max-w-[400px] md:max-w-[800px] h-auto rounded-[16px] md:rounded-[24px] lg:rounded-[36px] xl:rounded-[48px]"
-        />
-      </div> -->
-    </div>
-  </section>
-
-  <!-- Development -->
-
-  <section
-    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
-  >
-    <div>
-      <h2
-        class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
-      >
-        DEVELOPMENT
-      </h2>
-    </div>
-
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 my-14 md:my-24 gap-y-10 gap-x-14 pb-12 lg:pb-[3rem]"
-    >
-      <img
-        src="../../../assets/casestudy-devlopment.png"
-        alt="Employee Group"
-        class="w-[90%] max-w-[380px] sm:max-w-[420px] md:max-w-[490px] mx-auto md:mx-0"
-      />
-
-      <div  *ngFor="let dev of cardData?.developement"
-        class="text-black font-quickSand flex flex-col justify-center gap-5 max-w-[600px]"
-      >
-        <h2
-          class="font-quickSand font-medium text-[#34394B] text-[22px] leading-[30px] sm:text-[24px] sm:leading-[32px] md:text-[28px] md:leading-[36px] lg:text-[30px] lg:leading-[38px] xl:text-[32px] xl:leading-[40px] 2xl:text-[34px] 2xl:leading-[42px]"
-        >
-          {{ dev?.title }}
-        </h2>
-
-        <p
-          class="font-quickSand font-medium text-[#34394B] lg:text-lg 2xl:!text-2xl !leading-6 capitalize"
-        >
-        {{ dev?.description }}
-        </p>
-      </div>
-    </div>
-
-    <h2
-      class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
-    >
-      USER FLOW
-    </h2>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 my-14 md:my-24 gap-24">
-      <div>
-        <img
-          src="../../../assets/casestudy-flow.png"
-          alt="Active Image"
-          class="object-cover w-full max-w-[510px] h-auto"
-          style="aspect-ratio: 509 / 168"
-        />
-      </div>
-      <div class="col-span-2 flex flex-col justify-between gap-3">
-        <p
-          class="font-quickSand font-medium text-[#34394B] lg:text-lg 2xl:!text-2xl !leading-6 capitalize"
-        >
-         {{ cardData?.userFlowDescription }}
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Result -->
-
-  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
-    <div class="flex justify-between items-center content-center mt-10 pb-2">
-      <h2
-        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-      >
-        RESULT
-      </h2>
-    </div>
-
-    <hr class="border-t-1 border-[#34394b]" />
-
-    <div class="max-w-3xl mx-auto pt-6 relative">
-      <p
-        class="text-base md:text-base xl:text-xl 2xl:text-2xl font-quickSand text-center font-medium text-[#B4B9CB]  z-10 md:absolute md:top-[7vh] lg:w-[43vw] xl:w-[38vw] md:left-1/2 md:transform md:-translate-x-1/2"
-      >
-        <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
-        sunt ipsum dolores quos praesentium consectetur, quasi culpa eos quis
-        eveniet. -->
-        {{ cardData?.resultHeading_1 }}
-      </p>
-    </div>
-
-    <div class="flex flex-wrap justify-center my-10 2xl:my-20">
-      <div
-        class="w-full md:w-[48%] "
-        *ngFor="let resultImage of cardData?.resultImages"
-      >
-        <div class="relative w-full">
-          <img
-            [src]="imageUrl + '/' + resultImage"
-            (error)="onImgError($event)"
-            alt="Image 1"
-            class="w-full h-[50vh] lg:h-[65vh] xl:h-[70vh] object-contain "
-          />
-        </div>
-      </div>
-
-      <!-- <div class="w-full md:w-[48%] px-2">
-        <div class="relative w-full">
-          <img
-            src="../../../assets/casestudy-result-2.png"
-            alt="Image 2"
-            class="w-full h-auto object-contain rounded-[10px]"
-          />
-        </div>
-      </div> -->
-
-      <!-- <div class="w-full md:w-[48%] px-2">
-        <div class="relative w-full">
-          <img
-            src="../../../assets/casestudyresult-3.png"
-            alt="Image 3"
-            class="w-full h-auto object-contain rounded-[10px]"
-          />
-        </div>
-      </div> -->
-
-      <!-- <div class="w-full md:w-[48%] px-2">
-        <div class="relative w-full">
-          <img
-            src="../../../assets/casestudyresult-4.png"
-            alt="Image 4"
-            class="w-full h-auto object-contain rounded-[10px]"
-          />
-        </div>
-      </div> -->
-    </div>
-
-    <div class="max-w-3xl mx-auto relative">
-      <p
-        class="text-base md:text-base xl:text-xl 2xl:text-2xl font-quickSand text-center font-medium text-[#B4B9CB] z-10 md:absolute md:bottom-[5vh] lg:w-[43vw] xl:w-[38vw] md:left-1/2 md:transform md:-translate-x-1/2"
-      >
-        <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
-        sunt ipsum dolores quos praesentium consectetur, quasi culpa eos quis
-        eveniet. -->
-        {{ cardData?.resultHeading_2 }}
-      </p>
-    </div>
-  </section>
-</div>
-  <!-- CLIENT TESTIMONIAL -->
-
-  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
-    <div
-      class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
-    >
-      <h2
-        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-      >
-        Client REVIEW
-      </h2>
-    </div>
-
-    <div class="xl:pt-20 pt-4">
-      <p
-        class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
-      >
-        Discover how our expertise has transformed businesses and
-        <br class="hidden md:block" />
-        brought our clients' visions to life.
-      </p>
-    </div>
-
-    <app-bubble-card></app-bubble-card>
-  </section>
-
-  <section
-    class="relative px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px] pb-16 md:pb-24 lg:pb-36 2xl:pb-44 mb-12 lg:mb-12 2xl:mb-20"
-  >
-    <h2
-      class="text-black text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#B4B9CB]"
-    >
-      Application Process
-    </h2>
-    <app-getinform></app-getinform>
-  </section>
-
-  <app-footer
-    [showButton]="false"
-    [showHeading]="false"
-    [btnText]="'Schedule a call'"
-  >
-  </app-footer>
-</main>
+                        <app-footer
+                          [showButton]="false"
+                          [showHeading]="false"
+                          [btnText]="'Schedule a call'"
+                          >
+                        </app-footer>
+                      </main>

@@ -4,11 +4,11 @@
 
     <section
       class="body-font md:flex items-start justify-around h-[calc(100vh-86.52px)] lg:h-[100vh] 2xl:h-[calc(100vh-109.53px)] md:px-10 2xl:p-8 xl:px-14 py-10 md:relative md:overflow-hidden"
-    >
+      >
       <div class="xl:w-full lg:w-5/6 md:w-11/12 sm:w-full px-7">
         <h1
           class="text-white tracking-wide text-3xl xl:text-5xl xl:px-20 2xl:px-36 sm:text-4xl font-myfont"
-        >
+          >
           How We Work ?
         </h1>
 
@@ -17,18 +17,19 @@
         <div
           id="scrollIt"
           class="hidden md:block md:w-[150%] absolute mt-12 md:mt-52 lg:mt-12 2xl:mt-20 -left-12 lg:overflow-hidden lg:w-[120%] h-full hero-bg-line"
-        >
-          <div
-            *ngFor="let hero of heroS"
-            [ngClass]="hero.customClass"
-            class="absolute flex flex-col flex-shrink gap-2.5"
           >
+          @for (hero of heroS; track hero) {
             <div
-              class="w-[11vw] h-[11vw] lg:h-[9vw] lg:w-[9vw] bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] rounded-full"
-            ></div>
-            <h2 class="font-myfont text-white text-3xl">{{ hero.heading }}</h2>
-            <p class="font-quickSand text-[#B4B9CB] w-60">{{ hero.desc }}</p>
-          </div>
+              [ngClass]="hero.customClass"
+              class="absolute flex flex-col flex-shrink gap-2.5"
+              >
+              <div
+                class="w-[11vw] h-[11vw] lg:h-[9vw] lg:w-[9vw] bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] rounded-full"
+              ></div>
+              <h2 class="font-myfont text-white text-3xl">{{ hero.heading }}</h2>
+              <p class="font-quickSand text-[#B4B9CB] w-60">{{ hero.desc }}</p>
+            </div>
+          }
         </div>
       </div>
 
@@ -36,310 +37,312 @@
       <div class="overflow-x-auto scrollbar-hide md:hidden px-7">
         <div class="flex space-x-2 hov-container">
           <div class="lg:hidden flex gap-14">
-            <div
-              *ngFor="let hero of heroS"
-              class="relative w-64 h-64 my-36 flex-shrink-0 rounded-xl bg-cover bg-no-repeat"
-              style="scroll-snap-align: center"
-            >
-              <div class="text-strok absolute -top-7">
-                <div
-                  class="p-14 bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] rounded-full"
-                ></div>
-
-                <svg
-                  [ngClass]="hero.line"
-                  class="absolute top-[3.25rem] left-28 w-[12.3rem]"
-                  width="100%"
-                  height="2"
-                  xmlns="http://www.w3.org/2000/svg"
+            @for (hero of heroS; track hero) {
+              <div
+                class="relative w-64 h-64 my-36 flex-shrink-0 rounded-xl bg-cover bg-no-repeat"
+                style="scroll-snap-align: center"
                 >
-                  <line
-                    x1="0"
-                    y1="1"
-                    x2="100%"
-                    y2="1"
-                    stroke="#1760DE"
-                    stroke-width="1"
-                  />
-                </svg>
-              </div>
-
-              <div class="absolute top-[50%] text-white px-3.5">
-                <h3 class="font-myfont text-lg">{{ hero.heading }}</h3>
-                <p class="py-3 font-quickSand font-normal rounded-2xl text-xs">
-                  {{ hero.desc }}
-                </p>
-              </div>
+                <div class="text-strok absolute -top-7">
+                  <div
+                    class="p-14 bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] rounded-full"
+                  ></div>
+                  <svg
+                    [ngClass]="hero.line"
+                    class="absolute top-[3.25rem] left-28 w-[12.3rem]"
+                    width="100%"
+                    height="2"
+                    xmlns="http://www.w3.org/2000/svg"
+                    >
+                    <line
+                      x1="0"
+                      y1="1"
+                      x2="100%"
+                      y2="1"
+                      stroke="#1760DE"
+                      stroke-width="1"
+                      />
+                    </svg>
+                  </div>
+                  <div class="absolute top-[50%] text-white px-3.5">
+                    <h3 class="font-myfont text-lg">{{ hero.heading }}</h3>
+                    <p class="py-3 font-quickSand font-normal rounded-2xl text-xs">
+                      {{ hero.desc }}
+                    </p>
+                  </div>
+                </div>
+              }
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  </div>
+      </section>
+    </div>
 
-  <!-- Steps section -->
+    <!-- Steps section -->
 
-  <section
-    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
+    <section
+      class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
     style="
       background: url('../../../assets/images/know3-transparentbg.png');
       background-size: contain;
     "
-  >
-    <div class="">
-      <h2
-        class="text-2xl lg:text-4xl text-[#0B0C10] font-bold font-mont uppercase"
       >
-        Comprehensive Overview of Project Lifecycle Phases
-      </h2>
-    </div>
-
-    <div
-      class="relative text-center pb-12 md:pb-16 md:p-8 lg:px-28 2xl:px-80 2xl:pb-64 lg:pb-36 tri"
-    >
-      <svg
-        class="hidden md:block absolute left-0 right-0 mx-auto"
-        width="100"
-        height="85%"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <!-- Define Gradient -->
-        <defs>
-          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color: #f21df5; stop-opacity: 1" />
-            <stop offset="100%" style="stop-color: #20b9fa; stop-opacity: 1" />
-          </linearGradient>
-        </defs>
-
-        <!-- Top Dot -->
-        <circle cx="50" cy="26" r="5" fill="url(#lineGradient)" />
-
-        <!-- Vertical Line -->
-        <line
-          x1="50"
-          y1="30"
-          x2="50"
-          y2="100%"
-          stroke="#B4B9CB"
-          stroke-width="2"
-        />
-
-        <!-- Mask for Vertical Line Fill -->
-        <mask
-          id="mask0_0_1"
-          style="mask-type: alpha"
-          maskUnits="userSpaceOnUse"
-          x="0"
-          y="0"
-          width="100"
-          height="100%"
-        >
-          <rect x="0" y="0" width="100" height="100%" fill="white" />
-        </mask>
-
-        <g mask="url(#mask0_0_1)">
-          <!-- This rect will grow in height to simulate the line being filled -->
-          <rect
-            id="fillRe"
-            x="49"
-            y="30"
-            width="2"
-            height="0"
-            fill="url(#lineGradient)"
-          />
-        </g>
-
-        <!-- Bottom Dot -->
-        <circle cx="50" cy="99.5%" r="5" fill="url(#lineGradient)" />
-      </svg>
+      <div class="">
+        <h2
+          class="text-2xl lg:text-4xl text-[#0B0C10] font-bold font-mont uppercase"
+          >
+          Comprehensive Overview of Project Lifecycle Phases
+        </h2>
+      </div>
 
       <div
-        *ngFor="let step of steps"
-        class="flex flex-wrap items-center justify-between xl:mt-20 mt-12 text-center"
-      >
-        <div class="w-full md:w-2/5 lg:w-2/5" [ngClass]="step.imgAlign">
-          <img
-            src="../../../assets/images/new-mobile.png"
-            alt="editor"
-            class="inline-block"
-          />
-        </div>
-        <div
-          [ngClass]="step.customClass"
-          class="w-full md:w-2/5 lg:w-2/5 md:text-left"
+        class="relative text-center pb-12 md:pb-16 md:p-8 lg:px-28 2xl:px-80 2xl:pb-64 lg:pb-36 tri"
         >
-          <div
-            class="flex !mx-auto mt-2.5 md:mt-[unset] md:!mx-[unset] h-12 w-12 bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] rounded-full justify-center items-center text-2xl font-mont font-bold"
+        <svg
+          class="hidden md:block absolute left-0 right-0 mx-auto"
+          width="100"
+          height="85%"
+          xmlns="http://www.w3.org/2000/svg"
           >
-            {{ step.num }}
-          </div>
-          <h2
-            class="text-[24px] sm:text-[36px] sm:leading-[32px] font-normal font-myfont mb-4 mt-3 text-[#0B0C10]"
-          >
-            {{ step.title }}
-          </h2>
-          <p
-            class="text-base sm:text-lg sm:leading-5 font-medium font-quickSand text-[#34394B] mb-4"
-          >
-            {{ step.desc }}
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+          <!-- Define Gradient -->
+          <defs>
+            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color: #f21df5; stop-opacity: 1" />
+              <stop offset="100%" style="stop-color: #20b9fa; stop-opacity: 1" />
+            </linearGradient>
+          </defs>
 
-  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c] mb-32">
-    <div
-      class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
-    >
-      <h2
-        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-      >
-        Tools
-      </h2>
-    </div>
+          <!-- Top Dot -->
+          <circle cx="50" cy="26" r="5" fill="url(#lineGradient)" />
 
-    <div class="xl:pt-20 pt-4">
-      <p
-        class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
-      >
-        Discover how our expertise has transformed businesses and 
-        <br class="hidden md:block" />
-        brought our clients' visions to life.
-      </p>
-    </div>
+          <!-- Vertical Line -->
+          <line
+            x1="50"
+            y1="30"
+            x2="50"
+            y2="100%"
+            stroke="#B4B9CB"
+            stroke-width="2"
+            />
 
-      <div class="op-section op-eight-section section" id="section5">
-      <div class="section-eight py-10 md:py-20 2xl:py-36">
-        <div class="container mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div class="md:col-span-1 relative">
-              <div class="container-pe-quote left1">
-                <div
-                  class="pp-quote li-quote-12 active"
-                  (click)="changeActiveQuote(0)"
-                >
-                  <img
-                    class="object-cover"
-                    src="../../assets/images/client-bub-1.png"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="pp-quote li-quote-13 active"
-                  (click)="changeActiveQuote(0)"
-                >
-                  <img
-                    class="object-cover"
-                    src="../../assets/images/client-bub-1.png"
-                    alt=""
-                  />
-                </div>
-                <div
-                  class="pp-quote li-quote-7 active"
-                  (click)="changeActiveQuote(0)"
-                >
-                  <img
-                    class="object-cover"
-                    src="../../assets/images/client-bub-1.png"
-                    alt=""
-                  />
-                </div>
-                <!-- <div class="pp-quote li-quote-1" (click)="changeActiveQuote(7)">
-                  <img
-                    src="http://nanaetben.fr/animation/assets/images/website/Ben-1.png"
-                    alt=""
-                  />
-                </div> -->
-                <div class="pp-quote li-quote-2" (click)="changeActiveQuote(1)">
-                  <img
-                    class="object-cover"
-                    src="../../assets/images/client-bub-2.png"
-                    alt=""
-                  />
-                </div>
-                <div class="pp-quote li-quote-3" (click)="changeActiveQuote(2)">
-                  <img
-                    class="object-cover"
-                    src="../../assets/images/client-bub-3.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="md:col-span-2">
-              <div
-                class="p-0.5 rounded-[4rem] bg-gradient-to-t from-[#20b9fa] to-[#F21DF5] 2xl:w-[38rem] mx-auto"
+            <!-- Mask for Vertical Line Fill -->
+            <mask
+              id="mask0_0_1"
+              style="mask-type: alpha"
+              maskUnits="userSpaceOnUse"
+              x="0"
+              y="0"
+              width="100"
+              height="100%"
               >
-                <div
-                  class="sec-eight-text-area rounded-[4rem] md:py-7 2xl:py-12 relative"
+              <rect x="0" y="0" width="100" height="100%" fill="white" />
+            </mask>
+
+            <g mask="url(#mask0_0_1)">
+              <!-- This rect will grow in height to simulate the line being filled -->
+              <rect
+                id="fillRe"
+                x="49"
+                y="30"
+                width="2"
+                height="0"
+                fill="url(#lineGradient)"
+                />
+              </g>
+
+              <!-- Bottom Dot -->
+              <circle cx="50" cy="99.5%" r="5" fill="url(#lineGradient)" />
+            </svg>
+
+            @for (step of steps; track step) {
+              <div
+                class="flex flex-wrap items-center justify-between xl:mt-20 mt-12 text-center"
                 >
+                <div class="w-full md:w-2/5 lg:w-2/5" [ngClass]="step.imgAlign">
                   <img
-                    class="absolute -top-9 w-20 left-0 right-0 mx-auto"
-                    src="../../assets/images/double-quotes.svg"
-                    alt=""
-                  />
-
-                  <div class="container-quote">
-                    <div
-                      *ngFor="let client of clients"
-                      [ngClass]="client.feedbackClass"
-                      class="quote text-center"
-                    >
-                      <p class="text-white font-quickSand 2xl:text-lg">
-                        {{ client.feedback }}
-                      </p>
-                    </div>
+                    src="../../../assets/images/new-mobile.png"
+                    alt="editor"
+                    class="inline-block"
+                    />
                   </div>
-                  <div class="container-dp-name">
-                    <div
-                      *ngFor="let client of clients"
-                      class="box-dpname text-center"
-                      [ngClass]="client.customClass"
+                  <div
+                    [ngClass]="step.customClass"
+                    class="w-full md:w-2/5 lg:w-2/5 md:text-left"
                     >
-                      <img
-                        class="text-center mx-auto w-20 h-20 border-[#B4B9CB] object-cover !border-2 rounded-full"
-                        [src]="client.imgSrc"
-                        alt=""
-                      />
-                      <h1 class="text-white 2xl:text-lg mt-2">
-                        {{ client.name }}
-                      </h1>
+                    <div
+                      class="flex !mx-auto mt-2.5 md:mt-[unset] md:!mx-[unset] h-12 w-12 bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] rounded-full justify-center items-center text-2xl font-mont font-bold"
+                      >
+                      {{ step.num }}
                     </div>
+                    <h2
+                      class="text-[24px] sm:text-[36px] sm:leading-[32px] font-normal font-myfont mb-4 mt-3 text-[#0B0C10]"
+                      >
+                      {{ step.title }}
+                    </h2>
+                    <p
+                      class="text-base sm:text-lg sm:leading-5 font-medium font-quickSand text-[#34394B] mb-4"
+                      >
+                      {{ step.desc }}
+                    </p>
                   </div>
                 </div>
-              </div>
+              }
             </div>
-            <div class="md:col-span-1 relative">
-              <div class="container-pe-quote right1">
-                <div class="pp-quote li-quote-4" (click)="changeActiveQuote(3)">
-                  <img
-                    class="object-cover"
-                    src="../../assets/images/client-bub-4.png"
-                    alt=""
-                  />
-                </div>
-                <div class="pp-quote li-quote-5" (click)="changeActiveQuote(4)">
-                  <img
-                    class="object-cover"
-                    src="../../assets/images/client-bub-5.png"
-                    alt=""
-                  />
-                </div>
-                <div class="pp-quote li-quote-6" (click)="changeActiveQuote(5)">
-                  <img
-                    class="object-cover"
-                    src="../../assets/images/client-bub-6.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+          </section>
 
-  <app-footer></app-footer>
-</main>
+          <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c] mb-32">
+            <div
+              class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
+              >
+              <h2
+                class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+                >
+                Tools
+              </h2>
+            </div>
+
+            <div class="xl:pt-20 pt-4">
+              <p
+                class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
+                >
+                Discover how our expertise has transformed businesses and
+                <br class="hidden md:block" />
+                brought our clients' visions to life.
+              </p>
+            </div>
+
+            <div class="op-section op-eight-section section" id="section5">
+              <div class="section-eight py-10 md:py-20 2xl:py-36">
+                <div class="container mx-auto">
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="md:col-span-1 relative">
+                      <div class="container-pe-quote left1">
+                        <div
+                          class="pp-quote li-quote-12 active"
+                          (click)="changeActiveQuote(0)"
+                          >
+                          <img
+                            class="object-cover"
+                            src="../../assets/images/client-bub-1.png"
+                            alt=""
+                            />
+                          </div>
+                          <div
+                            class="pp-quote li-quote-13 active"
+                            (click)="changeActiveQuote(0)"
+                            >
+                            <img
+                              class="object-cover"
+                              src="../../assets/images/client-bub-1.png"
+                              alt=""
+                              />
+                            </div>
+                            <div
+                              class="pp-quote li-quote-7 active"
+                              (click)="changeActiveQuote(0)"
+                              >
+                              <img
+                                class="object-cover"
+                                src="../../assets/images/client-bub-1.png"
+                                alt=""
+                                />
+                              </div>
+                              <!-- <div class="pp-quote li-quote-1" (click)="changeActiveQuote(7)">
+                              <img
+                                src="http://nanaetben.fr/animation/assets/images/website/Ben-1.png"
+                                alt=""
+                                />
+                              </div> -->
+                              <div class="pp-quote li-quote-2" (click)="changeActiveQuote(1)">
+                                <img
+                                  class="object-cover"
+                                  src="../../assets/images/client-bub-2.png"
+                                  alt=""
+                                  />
+                                </div>
+                                <div class="pp-quote li-quote-3" (click)="changeActiveQuote(2)">
+                                  <img
+                                    class="object-cover"
+                                    src="../../assets/images/client-bub-3.png"
+                                    alt=""
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="md:col-span-2">
+                                <div
+                                  class="p-0.5 rounded-[4rem] bg-gradient-to-t from-[#20b9fa] to-[#F21DF5] 2xl:w-[38rem] mx-auto"
+                                  >
+                                  <div
+                                    class="sec-eight-text-area rounded-[4rem] md:py-7 2xl:py-12 relative"
+                                    >
+                                    <img
+                                      class="absolute -top-9 w-20 left-0 right-0 mx-auto"
+                                      src="../../assets/images/double-quotes.svg"
+                                      alt=""
+                                      />
+
+                                      <div class="container-quote">
+                                        @for (client of clients; track client) {
+                                          <div
+                                            [ngClass]="client.feedbackClass"
+                                            class="quote text-center"
+                                            >
+                                            <p class="text-white font-quickSand 2xl:text-lg">
+                                              {{ client.feedback }}
+                                            </p>
+                                          </div>
+                                        }
+                                      </div>
+                                      <div class="container-dp-name">
+                                        @for (client of clients; track client) {
+                                          <div
+                                            class="box-dpname text-center"
+                                            [ngClass]="client.customClass"
+                                            >
+                                            <img
+                                              class="text-center mx-auto w-20 h-20 border-[#B4B9CB] object-cover !border-2 rounded-full"
+                                              [src]="client.imgSrc"
+                                              alt=""
+                                              />
+                                              <h1 class="text-white 2xl:text-lg mt-2">
+                                                {{ client.name }}
+                                              </h1>
+                                            </div>
+                                          }
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="md:col-span-1 relative">
+                                    <div class="container-pe-quote right1">
+                                      <div class="pp-quote li-quote-4" (click)="changeActiveQuote(3)">
+                                        <img
+                                          class="object-cover"
+                                          src="../../assets/images/client-bub-4.png"
+                                          alt=""
+                                          />
+                                        </div>
+                                        <div class="pp-quote li-quote-5" (click)="changeActiveQuote(4)">
+                                          <img
+                                            class="object-cover"
+                                            src="../../assets/images/client-bub-5.png"
+                                            alt=""
+                                            />
+                                          </div>
+                                          <div class="pp-quote li-quote-6" (click)="changeActiveQuote(5)">
+                                            <img
+                                              class="object-cover"
+                                              src="../../assets/images/client-bub-6.png"
+                                              alt=""
+                                              />
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </section>
+
+                              <app-footer></app-footer>
+                            </main>

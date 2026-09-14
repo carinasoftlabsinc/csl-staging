@@ -1,30 +1,30 @@
-  <div class="op-section op-eight-section section" id="section5">
-      <div class="section-eight py-10 md:py-20 2xl:py-36">
-        <div class="container mx-auto">
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div class="md:col-span-1 relative">
-              <div class="container-pe-quote left1">
-                <div
-                  class="pp-quote li-quote-7 active"
-                  (click)="changeActiveQuote(0)"
-                >
-                  <img
-                    class="object-cover"
-                    src="../../../assets/images/client-bub-1.png"
-                    alt=""
-                  />
-                </div>
-                <!-- <div class="pp-quote li-quote-1" (click)="changeActiveQuote(7)">
-                  <img
-                    src="http://nanaetben.fr/animation/assets/images/website/Ben-1.png"
-                    alt=""
-                  />
-                </div> -->
-                <div class="pp-quote li-quote-2" (click)="changeActiveQuote(1)">
-                  <img
-                    class="object-cover"
-                    src="../../../assets/images/client-bub-2.png"
-                    alt=""
+<div class="op-section op-eight-section section" id="section5">
+  <div class="section-eight py-10 md:py-20 2xl:py-36">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="md:col-span-1 relative">
+          <div class="container-pe-quote left1">
+            <div
+              class="pp-quote li-quote-7 active"
+              (click)="changeActiveQuote(0)"
+              >
+              <img
+                class="object-cover"
+                src="../../../assets/images/client-bub-1.png"
+                alt=""
+                />
+              </div>
+              <!-- <div class="pp-quote li-quote-1" (click)="changeActiveQuote(7)">
+              <img
+                src="http://nanaetben.fr/animation/assets/images/website/Ben-1.png"
+                alt=""
+                />
+              </div> -->
+              <div class="pp-quote li-quote-2" (click)="changeActiveQuote(1)">
+                <img
+                  class="object-cover"
+                  src="../../../assets/images/client-bub-2.png"
+                  alt=""
                   />
                 </div>
                 <div class="pp-quote li-quote-3" (click)="changeActiveQuote(2)">
@@ -32,79 +32,81 @@
                     class="object-cover"
                     src="../../../assets/images/client-bub-3.png"
                     alt=""
-                  />
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="md:col-span-2">
-              <div
-                class="p-0.5 rounded-[4rem] bg-gradient-to-t from-[#20b9fa] to-[#F21DF5] 2xl:w-[38rem] mx-auto"
-              >
+              <div class="md:col-span-2">
                 <div
-                  class="sec-eight-text-area rounded-[4rem] md:py-7 2xl:py-12 relative"
-                >
-                  <img
-                    class="absolute -top-9 w-20 left-0 right-0 mx-auto"
-                    src="../../../assets/images/double-quotes.svg"
-                    alt=""
-                  />
-
-                  <div class="container-quote">
-                    <div
-                      *ngFor="let client of clients"
-                      [ngClass]="client.feedbackClass"
-                      class="quote text-center"
+                  class="p-0.5 rounded-[4rem] bg-gradient-to-t from-[#20b9fa] to-[#F21DF5] 2xl:w-[38rem] mx-auto"
+                  >
+                  <div
+                    class="sec-eight-text-area rounded-[4rem] md:py-7 2xl:py-12 relative"
                     >
-                      <p class="text-white font-quickSand 2xl:text-lg">
-                        {{ client.feedback }}
-                      </p>
-                    </div>
-                  </div>
-                  <div class="container-dp-name">
-                    <div
-                      *ngFor="let client of clients"
-                      class="box-dpname text-center"
-                      [ngClass]="client.customClass"
-                    >
-                      <img
-                        class="text-center mx-auto w-20 h-20 border-[#B4B9CB] object-cover !border-2 rounded-full"
-                        [src]="client.imgSrc"
-                        alt=""
+                    <img
+                      class="absolute -top-9 w-20 left-0 right-0 mx-auto"
+                      src="../../../assets/images/double-quotes.svg"
+                      alt=""
                       />
-                      <p class="text-white 2xl:text-lg mt-2">
-                        {{ client.name }}
-                      </p>
+
+                      <div class="container-quote">
+                        @for (client of clients; track client) {
+                          <div
+                            [ngClass]="client.feedbackClass"
+                            class="quote text-center"
+                            >
+                            <p class="text-white font-quickSand 2xl:text-lg">
+                              {{ client.feedback }}
+                            </p>
+                          </div>
+                        }
+                      </div>
+                      <div class="container-dp-name">
+                        @for (client of clients; track client) {
+                          <div
+                            class="box-dpname text-center"
+                            [ngClass]="client.customClass"
+                            >
+                            <img
+                              class="text-center mx-auto w-20 h-20 border-[#B4B9CB] object-cover !border-2 rounded-full"
+                              [src]="client.imgSrc"
+                              alt=""
+                              />
+                              <p class="text-white 2xl:text-lg mt-2">
+                                {{ client.name }}
+                              </p>
+                            </div>
+                          }
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="md:col-span-1 relative">
+                    <div class="container-pe-quote right1">
+                      <div class="pp-quote li-quote-4" (click)="changeActiveQuote(3)">
+                        <img
+                          class="object-cover"
+                          src="../../../assets/images/client-bub-4.png"
+                          alt=""
+                          />
+                        </div>
+                        <div class="pp-quote li-quote-5" (click)="changeActiveQuote(4)">
+                          <img
+                            class="object-cover"
+                            src="../../../assets/images/client-bub-5.png"
+                            alt=""
+                            />
+                          </div>
+                          <div class="pp-quote li-quote-6" (click)="changeActiveQuote(5)">
+                            <img
+                              class="object-cover"
+                              src="../../../assets/images/client-bub-6.png"
+                              alt=""
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="md:col-span-1 relative">
-              <div class="container-pe-quote right1">
-                <div class="pp-quote li-quote-4" (click)="changeActiveQuote(3)">
-                  <img
-                    class="object-cover"
-                    src="../../../assets/images/client-bub-4.png"
-                    alt=""
-                  />
-                </div>
-                <div class="pp-quote li-quote-5" (click)="changeActiveQuote(4)">
-                  <img
-                    class="object-cover"
-                    src="../../../assets/images/client-bub-5.png"
-                    alt=""
-                  />
-                </div>
-                <div class="pp-quote li-quote-6" (click)="changeActiveQuote(5)">
-                  <img
-                    class="object-cover"
-                    src="../../../assets/images/client-bub-6.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>

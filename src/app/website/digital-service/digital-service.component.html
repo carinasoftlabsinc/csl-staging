@@ -3,30 +3,30 @@
     <app-header></app-header>
     <section
       class="body-font flex items-center justify-center h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
-    >
+      >
       <div>
         <div
           class="flex flex-col-reverse md:flex-row items-center gap-y-[3vh] lg:px-3 max-w-5xl 2xl:max-w-[75vw]"
-        >
+          >
           <div
             class="md:w-1/2 md:py-8 text-left font-medium text-[#B4B9CB] overflow-visible z-10 flex flex-col justify-center items-start gap-7 2xl:gap-10"
-          >
+            >
             <div>
               <p
                 class="text-[#B1DF4F] text-3xl md:text-5xl lg:text-7xl 2xl:text-8xl font-extrabold font-mont -mb-2.5 md:-mb-3.5 lg:-mb-6"
-              >
+                >
                 DIGITAL
               </p>
               <h1
                 class="text-5xl md:text-7xl lg:text-9xl 2xl:text-[10rem] font-myfont z-10 text-white"
-              >
+                >
                 MARKETING
               </h1>
             </div>
 
             <p
               class="text-white lg:text-lg 2xl:text-xl 2xl:!leading-6 font-light font-quickSand !leading-5 w-11/12"
-            >
+              >
               We Help Service Trades Just Like Yours with the Online Tools and
               Expertise. Partner with a Canadian marketing company that is
               invested in your growth.
@@ -34,7 +34,7 @@
 
             <button
               class="px-10 py-2.5 2xl:px-14 2xl:py-3 rounded-full border-2 border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] bg-black font-quickSand font-medium 2xl:text-xl"
-            >
+              >
               Get Started
             </button>
           </div>
@@ -50,18 +50,18 @@
   <!-- Our service -->
   <section
     class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
-  >
+    >
     <div>
       <h2
         class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
-      >
+        >
         Our Services
       </h2>
     </div>
     <div class="xl:pt-20 pt-4">
       <p
         class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-black"
-      >
+        >
         Explore the certifications and badges that reflect our commitment
         <br class="hidden md:block" />
         to excellence and industry-leading standards.
@@ -70,39 +70,40 @@
 
     <div
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12 2xl:my-20 gap-7 justify-between text-black"
-    >
-      <div
-        *ngFor="let card of numCards"
-        [ngClass]="card.bgColor"
-        class="rounded-3xl px-6 py-12 2xl:px-12 overflow-hidden relative group"
       >
-        <img
-          class="h-40 w-40 lg:h-36 lg:w-36 xl:h-40 xl:w-40 2xl:h-52 2xl:w-52 rounded-3xl absolute right-5 -top-60 group-hover:-top-6 group-hover:right-5 transition-all ease-in-out duration-500"
-          [src]="card.hovImg"
-          alt=""
-        />
-        <h3
-          class="mb-12 2xl:mb-16 font-myfont font-medium text-7xl 2xl:text-8xl"
-        >
-          {{ card.num }}
-        </h3>
-        <div class="flex flex-col gap-3.5">
-          <h5
-            class="text-3xl xl:text-4xl 2xl:text-5xl font-quickSand font-bold"
-            innerHTML="{{ card.heading }}"
-          ></h5>
-          <p class="font-quickSand font-medium 2xl:text-lg">
-            {{ card.para }}
-          </p>
-        </div>
-        <div class="flex justify-end">
+      @for (card of numCards; track card) {
+        <div
+          [ngClass]="card.bgColor"
+          class="rounded-3xl px-6 py-12 2xl:px-12 overflow-hidden relative group"
+          >
           <img
-            class="w-11 2xl:w-14"
-            src="../../../assets/images/gd-arrow-btn.svg"
+            class="h-40 w-40 lg:h-36 lg:w-36 xl:h-40 xl:w-40 2xl:h-52 2xl:w-52 rounded-3xl absolute right-5 -top-60 group-hover:-top-6 group-hover:right-5 transition-all ease-in-out duration-500"
+            [src]="card.hovImg"
             alt=""
-          />
+            />
+          <h3
+            class="mb-12 2xl:mb-16 font-myfont font-medium text-7xl 2xl:text-8xl"
+            >
+            {{ card.num }}
+          </h3>
+          <div class="flex flex-col gap-3.5">
+            <h5
+              class="text-3xl xl:text-4xl 2xl:text-5xl font-quickSand font-bold"
+              innerHTML="{{ card.heading }}"
+            ></h5>
+            <p class="font-quickSand font-medium 2xl:text-lg">
+              {{ card.para }}
+            </p>
+          </div>
+          <div class="flex justify-end">
+            <img
+              class="w-11 2xl:w-14"
+              src="../../../assets/images/gd-arrow-btn.svg"
+              alt=""
+              />
+          </div>
         </div>
-      </div>
+      }
     </div>
   </section>
 
@@ -110,13 +111,13 @@
 
   <section
     class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c] commitment-section"
-  >
+    >
     <div
       class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
-    >
+      >
       <h2
         class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-      >
+        >
         Commitment to our clients
       </h2>
     </div>
@@ -124,7 +125,7 @@
     <div class="xl:pt-20 pt-4">
       <p
         class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
-      >
+        >
         Carina Softlabs is based on the 4W & H Process. We know how to get
         things done using this approach. <br class="hidden md:block" />It
         addresses Who, What, When, Why, and How, for successful project
@@ -135,24 +136,24 @@
     <div class="grid grid-cols-2 lg:grid-cols-3 my-16 2xl:my-20 gap-6">
       <div
         class="col-span-2 lg:col-span-1 text-white p-7 2xl:p-8 2xl:py-16 2xl:px-14 font-quickSand rounded-3xl flex flex-col items-center justify-center gap-2.5 2xl:gap-8 bg-gradient-to-b from-[#0032e91A] to-[#ffffff00] backdrop-blur-md border-2 border-[#34394B]"
-      >
+        >
         <!-- <h3 class="text-[#B1DF4F] text-2xl 2xl:text-3xl font-bold">How ?</h3> -->
         <img
           class="size-16 md:size-20 2xl:size-24 mb-6"
           src="../../../assets/images/DG-clientLogo1.svg"
           alt=""
-        />
+          />
         <p class="font-medium text-7xl md:text-8xl 2xl:text-9xl font-bebas">1.8 M</p>
         <p class="text-lg md:text-xl xl:text-2xl text-center font-medium">
           1.8 Million Leads Generated For Our Clients
         </p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 col-span-2 gap-6">
-        <div
-          *ngFor="let W of FourW"
-          class="text-white rounded-3xl px-7 py-12 2xl:px-10 2xl:py-16 font-quickSand flex items-center gap-3.5 md:gap-6 2xl:gap-9 bg-gradient-to-b from-[#0032e91A] to-[#ffffff00] backdrop-blur-lg border-2 border-[#34394B]"
-        >
-          <!-- <div class=""> -->
+        @for (W of FourW; track W) {
+          <div
+            class="text-white rounded-3xl px-7 py-12 2xl:px-10 2xl:py-16 font-quickSand flex items-center gap-3.5 md:gap-6 2xl:gap-9 bg-gradient-to-b from-[#0032e91A] to-[#ffffff00] backdrop-blur-lg border-2 border-[#34394B]"
+            >
+            <!-- <div class=""> -->
             <img class="size-16 md:size-20" [src]="W.icon" alt="" />
           <!-- </div> -->
           <div class="flex flex-col gap-2.5">
@@ -164,157 +165,160 @@
             </p>
           </div>
         </div>
-      </div>
+      }
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Case studies -->
-  <section
-    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
+<!-- Case studies -->
+<section
+  class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
   >
-    <div
-      class="flex justify-between text-[#0B0C10] border-b border-[#B4B9CB] pb-4"
+  <div
+    class="flex justify-between text-[#0B0C10] border-b border-[#B4B9CB] pb-4"
     >
-      <h2 class="text-3xl xl:text-4xl 2xl:text-6xl font-myfont">
-        Case Studies
-      </h2>
-      <a
-        routerLink="/portfolio"
-        class="font-semibold font-mont text-black 2xl:text-[18px] xl:text-[14px] hidden rounded-full !border border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] lg:px-6 lg:py-2 xl:px-6 xl:py-2.5 2xl:px-8 2xl:py-3 sm:flex sm:items-center sm:px-4 sm:py-2"
+    <h2 class="text-3xl xl:text-4xl 2xl:text-6xl font-myfont">
+      Case Studies
+    </h2>
+    <a
+      routerLink="/portfolio"
+      class="font-semibold font-mont text-black 2xl:text-[18px] xl:text-[14px] hidden rounded-full !border border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] lg:px-6 lg:py-2 xl:px-6 xl:py-2.5 2xl:px-8 2xl:py-3 sm:flex sm:items-center sm:px-4 sm:py-2"
       >
-        More Projects
-        <img
-          src="../../assets/images/small-tilt-arrow.png"
-          alt="Image"
-          class="button-img ml-2"
+      More Projects
+      <img
+        src="../../assets/images/small-tilt-arrow.png"
+        alt="Image"
+        class="button-img ml-2"
         />
-      </a>
-    </div>
-    <div
-      class="grid grid-cols-1 lg:grid-cols-2 gap-6 2xl:gap-20 mt-12 2xl:mt-16"
+    </a>
+  </div>
+  <div
+    class="grid grid-cols-1 lg:grid-cols-2 gap-6 2xl:gap-20 mt-12 2xl:mt-16"
     >
-      <div class="grid grid-rows-2 gap-4 md:h-[72vh] 2xl:h-[68vh] w-full">
-        <div class="font-quickSand font-medium">
-          <h4 class="text-black text-3xl 2xl:text-5xl mb-3.5 2xl:mb-8">
-            {{ selectedCard.title }}
-          </h4>
-          <p class="text-[#34394B] text-base 2xl:text-xl">
-            {{ selectedCard.description }}
-          </p>
-        </div>
+    <div class="grid grid-rows-2 gap-4 md:h-[72vh] 2xl:h-[68vh] w-full">
+      <div class="font-quickSand font-medium">
+        <h4 class="text-black text-3xl 2xl:text-5xl mb-3.5 2xl:mb-8">
+          {{ selectedCard.title }}
+        </h4>
+        <p class="text-[#34394B] text-base 2xl:text-xl">
+          {{ selectedCard.description }}
+        </p>
+      </div>
 
-        <!-- On click should work for this -->
-        <div class="flex gap-4">
-          <div class="h-full w-full relative grid grid-cols-2 md:grid-cols-3 gap-3.5 md:gap-9">
+      <!-- On click should work for this -->
+      <div class="flex gap-4">
+        <div class="h-full w-full relative grid grid-cols-2 md:grid-cols-3 gap-3.5 md:gap-9">
+          @for (card of cases; track card) {
             <div
-              *ngFor="let card of cases"
               class="bg-black rounded-t-3xl rounded-bl-3xl overflow-hidden p-0.5 cursor-pointer"
               [ngClass]="{ 'bg-gradient-to-b from-[#F21DF5] to-[#20B9FA]': selectedCard === card, 'bg-black': selectedCard !== card }"
               (click)="selectCard(card)"
-            >
+              >
               <img
                 class="rounded-t-3xl rounded-bl-3xl object-cover w-full h-full "
                 [src]="card.image"
                 alt=""
-              />
+                />
             </div>
-          </div>
+          }
         </div>
       </div>
-      <div
-        class="rounded-3xl overflow-hidden relative group !border border-[#B4B9CB]"
+    </div>
+    <div
+      class="rounded-3xl overflow-hidden relative group !border border-[#B4B9CB]"
       >
-        <div class="p-6 rounded-t-3xl border-b border-[#B4B9CB]">
-          <img
-            class="h-[40vh] md:h-[56vh] 2xl:h-[55vh] w-full object-cover rounded-3xl"
-            [src]="selectedCard.image"
-            alt="Project Image"
+      <div class="p-6 rounded-t-3xl border-b border-[#B4B9CB]">
+        <img
+          class="h-[40vh] md:h-[56vh] 2xl:h-[55vh] w-full object-cover rounded-3xl"
+          [src]="selectedCard.image"
+          alt="Project Image"
           />
-        </div>
+      </div>
 
-        <div class="flex flex-col md:flex-row justify-center md:items-center gap-3.5 p-6">
-          <a
+      <div class="flex flex-col md:flex-row justify-center md:items-center gap-3.5 p-6">
+        <a
           [href]="selectedCard.liveDemo"
-        target="_blank"
-            class="text-center md:w-1/2 px-10 py-3.5 2xl:px-14 2xl:py-4 rounded-full border-2 border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] bg-[#34394B] font-quickSand font-medium 2xl:text-xl"
+          target="_blank"
+          class="text-center md:w-1/2 px-10 py-3.5 2xl:px-14 2xl:py-4 rounded-full border-2 border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] bg-[#34394B] font-quickSand font-medium 2xl:text-xl"
           >
-            View Live Demo
-          </a>
-          <a
+          View Live Demo
+        </a>
+        <a
           [href]="selectedCard.diviLink"
           target="_blank"
-            class="text-center md:w-1/2 px-10 py-3.5 2xl:px-14 2xl:py-4 rounded-full border-2 border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] bg-[#34394B] font-quickSand font-medium 2xl:text-xl"
+          class="text-center md:w-1/2 px-10 py-3.5 2xl:px-14 2xl:py-4 rounded-full border-2 border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] bg-[#34394B] font-quickSand font-medium 2xl:text-xl"
           >
-            Available in DIVI
-          </a>
-        </div>
+          Available in DIVI
+        </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Solution by data source  -->
-  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10">
-    <div
-      class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
+<!-- Solution by data source  -->
+<section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10">
+  <div
+    class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
     >
-      <h2
-        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+    <h2
+      class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
       >
-        Solution by data source
-      </h2>
-    </div>
+      Solution by data source
+    </h2>
+  </div>
 
-    <div class="xl:pt-20 pt-4">
-      <p
-        class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
+  <div class="xl:pt-20 pt-4">
+    <p
+      class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
       >
-        We know how to get things done using this approach. It addresses Who,
-        <br class="hidden md:block" />
-        What, When, Why, and How, for successful project executions.
-      </p>
-    </div>
+      We know how to get things done using this approach. It addresses Who,
+      <br class="hidden md:block" />
+      What, When, Why, and How, for successful project executions.
+    </p>
+  </div>
 
-    <div
-      class="flex flex-row-reverse mt-6 md:mt-10 lg:py-20 py-5 md:justify-center lg:justify-start"
+  <div
+    class="flex flex-row-reverse mt-6 md:mt-10 lg:py-20 py-5 md:justify-center lg:justify-start"
     >
-      <div
-        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-0 gap-y-8 sm:gap-y-4 2xl:gap-x-0 2xl:gap-20 items-center"
+    <div
+      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-0 gap-y-8 sm:gap-y-4 2xl:gap-x-0 2xl:gap-20 items-center"
       >
+      @for (stack of techStack; track stack) {
         <div
-          *ngFor="let stack of techStack"
           class="pr-2 mr-2 2xl:pr-6 2xl:mr-6 md:mr-2"
-        >
+          >
           <div
             class="py-4 px-6 2xl:!py-10 2xl:px-14 bg-[#34394B]/50 rounded-2xl"
-          >
+            >
             <img
               class="transition-transform duration-500 transform hover:scale-110 cursor-pointer h-12 2xl:h-16 object-contain"
               [src]="stack.imgSrc"
               [width]="stack.w"
               alt=""
-            />
+              />
           </div>
         </div>
-      </div>
+      }
     </div>
-  </section>
+  </div>
+</section>
 
-  <section
-    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px] mb-24 lg:mb-14"
+<section
+  class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px] mb-24 lg:mb-14"
   >
-    <div class="">
-      <div>
-        <h2
-          class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
+  <div class="">
+    <div>
+      <h2
+        class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
         >
-          Get Your Quote
-        </h2>
-      </div>
-      <app-getinform
-        [imgSrc]="'../../../assets/images/Digital-form.png'"
-      ></app-getinform>
+        Get Your Quote
+      </h2>
     </div>
-  </section>
+    <app-getinform
+      [imgSrc]="'../../../assets/images/Digital-form.png'"
+    ></app-getinform>
+  </div>
+</section>
 
-  <app-footer></app-footer>
+<app-footer></app-footer>
 </main>

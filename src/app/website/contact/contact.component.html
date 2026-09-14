@@ -5,18 +5,18 @@
     <!-- hero section -->
     <section
       class="body-font flex items-center justify-start h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
-    >
+      >
       <div class="ml-0">
         <div class="2xl:w-full xl:w-full sm:w-full">
           <h1
             class="text-white tracking-wide text-3xl md:text-4xl lg:text-[50px] lg:leading-[50px] xl:text-[60px] xl:leading-[60px] 2xl:text-[75px] 2xl:leading-[75px] sm:text-4xl font-myfont"
-          >
+            >
             Transform Your Ideas into<br class="hidden sm:block" />
             Impactful Solutions
           </h1>
           <p
             class="text-white mt-8 xl:text-[16px] 2xl:text-[20px] font-quickSand font-normal"
-          >
+            >
             With over a decade of experience, we’re excited to collaborate with
             you. Fill out the form below <br class="hidden sm:block" />
             to share your vision and let’s turn your innovative ideas into
@@ -37,11 +37,11 @@
           rgba(0, 0, 0, 0.07) 0px -2px 2px, rgba(0, 0, 0, 0.07) 0px -4px 4px,
           rgba(0, 0, 0, 0.07) 0px -8px 8px, rgba(0, 0, 0, 0.07) 0px -16px 16px;
       "
-    >
+      >
       <div>
         <h2
           class="font-myfont text-[30px] md:text-[25px] lg:text-[30px] xl:text-[40px] 2xl:text-[50px] 2xl:leading-[55px] text-[#0B0C10] font-normal"
-        >
+          >
           Let's Build the Future Together! <br class="hidden sm:block" />
           Connect With Us
         </h2>
@@ -55,11 +55,11 @@
         [formGroup]="clientForm"
         (ngSubmit)="onSave()"
         #formDirective="ngForm"
-      >
+        >
         <div class="grid gap-6 md:grid-cols-2">
           <div
             class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3"
-          >
+            >
             <div>
               <img src="../../../assets/images/bxs_user.svg" alt="" />
             </div>
@@ -69,541 +69,558 @@
                 class="block text-sm font-semibold 2xl:font-bold text-gray-700 mx-0.5"
                 for="full-name-1"
                 >Full Name</label
-              >
-              <input
-                type="text"
-                id="full-name-1"
-                formControlName="name"
-                placeholder="Enter Full Name"
-                class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm px-0.5"
-              />
-              <div
-                *ngIf="submitted && clientForm.get('name')?.invalid"
-                class="text-red-500 text-sm"
-              >
-                Name is required.
-              </div>
-            </div>
-          </div>
-          <div
-            class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3"
-          >
-            <div>
-              <img src="../../../assets/images/bxs_mail.svg" alt="" />
-            </div>
-
-            <div class="flex-grow-1">
-              <label
-                class="block text-sm font-semibold 2xl:font-bold text-gray-700 mx-0.5"
-                for="email"
-                >Email</label
-              >
-              <input
-                type="email"
-                id="email"
-                formControlName="email"
-                placeholder="Enter Email Address"
-                class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm px-0.5"
-              />
-
-              <div
-                *ngIf="submitted && clientForm.get('email')?.invalid"
-                class="text-red-500 text-sm"
-              >
-                <!-- Required Email -->
-                <div *ngIf="clientForm.get('email')?.errors?.['required']">
-                  Email address is required.
-                </div>
-                <!-- Invalid Email -->
-                <div *ngIf="clientForm.get('email')?.errors?.['email']">
-                  Please enter a valid email address.
+                >
+                <input
+                  type="text"
+                  id="full-name-1"
+                  formControlName="name"
+                  placeholder="Enter Full Name"
+                  class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm px-0.5"
+                  />
+                  @if (submitted && clientForm.get('name')?.invalid) {
+                    <div
+                      class="text-red-500 text-sm"
+                      >
+                      Name is required.
+                    </div>
+                  }
                 </div>
               </div>
-            </div>
-          </div>
-          <div
-            class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3"
-          >
-            <div>
-              <img src="../../../assets/images/bxs_phone.svg" alt="" />
-            </div>
-
-            <div class="flex-grow-1">
-              <label
-                class="block text-sm font-semibold 2xl:font-bold text-gray-700 mx-0.5"
-                for="contact"
-                >Contact No.</label
-              >
-              <input
-                type="text"
-                id="phone"
-                formControlName="phone"
-                placeholder="Enter Contact No."
-                class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm px-0.5"
-              />
-
               <div
-                *ngIf="submitted && clientForm.get('phone')?.invalid"
-                class="text-red-500 text-sm"
-              >
-                <!-- Required Phone -->
-                <div *ngIf="clientForm.get('phone')?.errors?.['required']">
-                  Phone number is required.
+                class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3"
+                >
+                <div>
+                  <img src="../../../assets/images/bxs_mail.svg" alt="" />
                 </div>
-                <!-- Invalid Phone (non-numeric characters) -->
-                <div *ngIf="clientForm.get('phone')?.errors?.['pattern']">
-                  Please enter a valid phone number.
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div
-            class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3"
-          >
-            <div>
-              <img src="../../../assets/images/bxs_service.svg" alt="" />
-            </div>
+                <div class="flex-grow-1">
+                  <label
+                    class="block text-sm font-semibold 2xl:font-bold text-gray-700 mx-0.5"
+                    for="email"
+                    >Email</label
+                    >
+                    <input
+                      type="email"
+                      id="email"
+                      formControlName="email"
+                      placeholder="Enter Email Address"
+                      class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm px-0.5"
+                      />
 
-            <div class="flex-grow-1">
-              <label
-                class="block text-sm font-semibold 2xl:font-bold text-gray-700 mx-0.5"
-                for="service"
-                >Service</label
-              >
+                      @if (submitted && clientForm.get('email')?.invalid) {
+                        <div
+                          class="text-red-500 text-sm"
+                          >
+                          <!-- Required Email -->
+                          @if (clientForm.get('email')?.errors?.['required']) {
+                            <div>
+                              Email address is required.
+                            </div>
+                          }
+                          <!-- Invalid Email -->
+                          @if (clientForm.get('email')?.errors?.['email']) {
+                            <div>
+                              Please enter a valid email address.
+                            </div>
+                          }
+                        </div>
+                      }
+                    </div>
+                  </div>
+                  <div
+                    class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3"
+                    >
+                    <div>
+                      <img src="../../../assets/images/bxs_phone.svg" alt="" />
+                    </div>
 
-              <select
-                name="service"
-                id="service"
-                class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
-                formControlName="service"
-              >
-                <option value="Game Development">Game Development</option>
-                <option value="App Development">App Development</option>
-                <option value="Web Development">Web Development</option>
-                <option value="Digital Marketing">Digital Marketing</option>
-                <option value="Emerging Technologies">
-                  Emerging Technologies
-                </option>
-                <option value="Others">Others</option>
-              </select>
+                    <div class="flex-grow-1">
+                      <label
+                        class="block text-sm font-semibold 2xl:font-bold text-gray-700 mx-0.5"
+                        for="contact"
+                        >Contact No.</label
+                        >
+                        <input
+                          type="text"
+                          id="phone"
+                          formControlName="phone"
+                          placeholder="Enter Contact No."
+                          class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm px-0.5"
+                          />
 
-              <div
-                *ngIf="submitted && clientForm.get('service')?.invalid"
-                class="text-red-500 text-sm"
-              >
-                Service is required.
-              </div>
-            </div>
-          </div>
+                          @if (submitted && clientForm.get('phone')?.invalid) {
+                            <div
+                              class="text-red-500 text-sm"
+                              >
+                              <!-- Required Phone -->
+                              @if (clientForm.get('phone')?.errors?.['required']) {
+                                <div>
+                                  Phone number is required.
+                                </div>
+                              }
+                              <!-- Invalid Phone (non-numeric characters) -->
+                              @if (clientForm.get('phone')?.errors?.['pattern']) {
+                                <div>
+                                  Please enter a valid phone number.
+                                </div>
+                              }
+                            </div>
+                          }
+                        </div>
+                      </div>
 
-          <div
-            class="md:col-span-2 border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3"
-          >
-            <div>
-              <img src="../../../assets/images/bxs_location.svg" alt="" />
-            </div>
+                      <div
+                        class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3"
+                        >
+                        <div>
+                          <img src="../../../assets/images/bxs_service.svg" alt="" />
+                        </div>
 
-            <div class="flex-grow-1">
-              <label
-                class="block text-sm font-semibold 2xl:font-bold text-gray-700 mx-0.5"
-                for="location"
-                >Country</label
-              >
-              <select
-                name="address"
-                id="address"
-                formControlName="address"
-                class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
-              >
-                <option *ngFor="let country of countries" [value]="country">
-                  {{ country }}
-                </option>
-              </select>
-              <!-- <input
-                type="text"
-                id="location"
-                formControlName="address"
-                placeholder="Enter address"
-                class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm px-0.5"
-              /> -->
-              <div
-                *ngIf="submitted && clientForm.get('address')?.invalid"
-                class="text-red-500 text-sm"
-              >
-                Country is required.
-              </div>
-            </div>
-          </div>
+                        <div class="flex-grow-1">
+                          <label
+                            class="block text-sm font-semibold 2xl:font-bold text-gray-700 mx-0.5"
+                            for="service"
+                            >Service</label
+                            >
 
-          <!-- <div class="md:col-span-2">
-            <p class="text-black font-semibold 2xl:font-bold">
-              Project Budget: ${{ rangeValue }}
-            </p>
+                            <select
+                              name="service"
+                              id="service"
+                              class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
+                              formControlName="service"
+                              >
+                              <option value="Game Development">Game Development</option>
+                              <option value="App Development">App Development</option>
+                              <option value="Web Development">Web Development</option>
+                              <option value="Digital Marketing">Digital Marketing</option>
+                              <option value="Emerging Technologies">
+                                Emerging Technologies
+                              </option>
+                              <option value="Others">Others</option>
+                            </select>
 
-            <input
-              type="range"
-              min="500"
-              max="100000"
-              [(ngModel)]="rangeValue"
-              class="styled-range my-6"
-            />
-          </div> -->
+                            @if (submitted && clientForm.get('service')?.invalid) {
+                              <div
+                                class="text-red-500 text-sm"
+                                >
+                                Service is required.
+                              </div>
+                            }
+                          </div>
+                        </div>
 
-          <div class="md:col-span-2">
-            <p class="text-black font-semibold 2xl:font-bold">
-              Project Budget: ${{ clientForm.get("budget")?.value
-              }}<span *ngIf="clientForm.get('budget')?.value === 100000"
-                >+</span
-              >
-            </p>
+                        <div
+                          class="md:col-span-2 border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3"
+                          >
+                          <div>
+                            <img src="../../../assets/images/bxs_location.svg" alt="" />
+                          </div>
 
-            <input
-              type="range"
-              min="500"
-              max="100000"
-              formControlName="budget"
-              class="styled-range my-6"
-            />
-          </div>
+                          <div class="flex-grow-1">
+                            <label
+                              class="block text-sm font-semibold 2xl:font-bold text-gray-700 mx-0.5"
+                              for="location"
+                              >Country</label
+                              >
+                              <select
+                                name="address"
+                                id="address"
+                                formControlName="address"
+                                class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
+                                >
+                                @for (country of countries; track country) {
+                                  <option [value]="country">
+                                    {{ country }}
+                                  </option>
+                                }
+                              </select>
+                              <!-- <input
+                              type="text"
+                              id="location"
+                              formControlName="address"
+                              placeholder="Enter address"
+                              class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm px-0.5"
+                              /> -->
+                              @if (submitted && clientForm.get('address')?.invalid) {
+                                <div
+                                  class="text-red-500 text-sm"
+                                  >
+                                  Country is required.
+                                </div>
+                              }
+                            </div>
+                          </div>
 
-          <div
-            class="md:col-span-2 border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex gap-3 p-3"
-          >
-            <div>
-              <img src="../../../assets/images/bxs_write.svg" alt="" />
-            </div>
+                          <!-- <div class="md:col-span-2">
+                          <p class="text-black font-semibold 2xl:font-bold">
+                            Project Budget: ${{ rangeValue }}
+                          </p>
 
-            <div class="flex-grow-1">
-              <label
-                class="block text-sm font-semibold 2xl:font-bold text-gray-700 mx-0.5"
-                for="message"
-                >Message</label
-              >
-              <textarea
-                id="message"
-                placeholder="Write message"
-                rows="4"
-                formControlName="message"
-                class="mt-1 py-2 px-0.5 block w-full bg-[#f9f9f9] rounded-xl focus:outline-none sm:text-sm"
-              ></textarea>
-            </div>
-          </div>
-        </div>
+                          <input
+                            type="range"
+                            min="500"
+                            max="100000"
+                            [(ngModel)]="rangeValue"
+                            class="styled-range my-6"
+                            />
+                          </div> -->
 
-        <!-- Terms & Privacy Checkbox -->
-<div class="mt-6 md:col-span-2">
-  <div class="flex items-start gap-3">
-    <input
-      type="checkbox"
-      id="termsAccepted"
-      formControlName="termsAccepted"
-      class="mt-1 w-4 h-4 text-black border-gray-300 rounded focus:ring-black"
-    />
+                          <div class="md:col-span-2">
+                            <p class="text-black font-semibold 2xl:font-bold">
+                              Project Budget: ${{ clientForm.get("budget")?.value
+                              }}@if (clientForm.get('budget')?.value === 100000) {
+                              <span
+                                >+</span
+                                >
+                            }
+                          </p>
 
-    <label for="termsAccepted" class="text-sm text-gray-700 leading-5">
-      I agree to the
-      <a
-        routerLink="/terms-conditions"
-        target="_blank"
-        class="text-black font-semibold underline hover:text-gray-600"
-      >
-        Terms and Conditions
-      </a>
-      &
-      <a
-        routerLink="/privacy-policy"
-        target="_blank"
-        class="text-black font-semibold underline hover:text-gray-600"
-      >
-        Privacy Policy
-      </a>
-      of the website.
-    </label>
-  </div>
+                          <input
+                            type="range"
+                            min="500"
+                            max="100000"
+                            formControlName="budget"
+                            class="styled-range my-6"
+                            />
+                          </div>
 
-  <!-- Validation Error -->
-  <div
-    *ngIf="submitted && clientForm.get('termsAccepted')?.invalid"
-    class="text-red-500 text-sm mt-2"
-  >
-    You must agree to the Terms and Privacy Policy before submitting.
-  </div>
-</div>
+                          <div
+                            class="md:col-span-2 border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex gap-3 p-3"
+                            >
+                            <div>
+                              <img src="../../../assets/images/bxs_write.svg" alt="" />
+                            </div>
 
-        <div class="mt-6 flex justify-center md:justify-start">
-          <button
-            type="submit"
-            class="inline-flex items-center px-6 py-2.5 xl:px-7 xl:py-3.5 2xl:px-10 2xl:py-5 border border-transparent text-sm 2xl:text-lg font-medium rounded-2xl shadow-sm text-white bg-black hover:bg-gray-800"
-            [disabled]="loading"
-          >
-            <ng-container *ngIf="!loading; else spinnerTemplate">
-              Send Message
-            </ng-container>
-            <ng-template #spinnerTemplate>
-              <mat-spinner
-                diameter="24"
-                strokeWidth="4"
-                color="accent"
-                class="mr-3"
-              ></mat-spinner>
-              Sending...
-            </ng-template>
-          </button>
-        </div>
-      </form>
+                            <div class="flex-grow-1">
+                              <label
+                                class="block text-sm font-semibold 2xl:font-bold text-gray-700 mx-0.5"
+                                for="message"
+                                >Message</label
+                                >
+                                <textarea
+                                  id="message"
+                                  placeholder="Write message"
+                                  rows="4"
+                                  formControlName="message"
+                                  class="mt-1 py-2 px-0.5 block w-full bg-[#f9f9f9] rounded-xl focus:outline-none sm:text-sm"
+                                ></textarea>
+                              </div>
+                            </div>
+                          </div>
 
-      <!-- <form
-  class="md:py-14 py-3 font-quickSand"
-  [formGroup]="clientForm"
-  (ngSubmit)="onSave()"
-  #formDirective="ngForm"
-  novalidate
->
-  <mat-horizontal-stepper linear [formGroup]="clientForm">
-    
-    <mat-step [stepControl]="clientForm.controls['name']">
-      <ng-template matStepLabel>Fill out your name</ng-template>
-      <div class="grid gap-6 md:grid-cols-2">
-        <div class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3">
-          <img src="../../../assets/images/bxs_user.svg" alt="" />
-          <div class="flex-grow-1">
-            <label for="full-name-1">Full Name</label>
-            <input
-              type="text"
-              id="full-name-1"
-              formControlName="name"
-              placeholder="Enter Full Name"
-              class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
-            />
-            <div *ngIf="clientForm.get('name')?.invalid && clientForm.get('name')?.touched" class="text-red-500 text-sm">
-              Name is required.
-            </div>
-          </div>
-        </div>
+                          <!-- Terms & Privacy Checkbox -->
+                          <div class="mt-6 md:col-span-2">
+                            <div class="flex items-start gap-3">
+                              <input
+                                type="checkbox"
+                                id="termsAccepted"
+                                formControlName="termsAccepted"
+                                class="mt-1 w-4 h-4 text-black border-gray-300 rounded focus:ring-black"
+                                />
 
-        <div class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3">
-          <img src="../../../assets/images/bxs_mail.svg" alt="" />
-          <div class="flex-grow-1">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              formControlName="email"
-              placeholder="Enter Email Address"
-              class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
-            />
-            <div *ngIf="clientForm.get('email')?.invalid && clientForm.get('email')?.touched" class="text-red-500 text-sm">
-              <div *ngIf="clientForm.get('email')?.errors?.['required']">Email address is required.</div>
-              <div *ngIf="clientForm.get('email')?.errors?.['email']">Please enter a valid email address.</div>
-            </div>
-          </div>
-        </div>
+                                <label for="termsAccepted" class="text-sm text-gray-700 leading-5">
+                                  I agree to the
+                                  <a
+                                    routerLink="/terms-conditions"
+                                    target="_blank"
+                                    class="text-black font-semibold underline hover:text-gray-600"
+                                    >
+                                    Terms and Conditions
+                                  </a>
+                                  &
+                                  <a
+                                    routerLink="/privacy-policy"
+                                    target="_blank"
+                                    class="text-black font-semibold underline hover:text-gray-600"
+                                    >
+                                    Privacy Policy
+                                  </a>
+                                  of the website.
+                                </label>
+                              </div>
 
-        <div class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3">
-          <img src="../../../assets/images/bxs_phone.svg" alt="" />
-          <div class="flex-grow-1">
-            <label for="phone">Contact No.</label>
-            <input
-              type="text"
-              id="phone"
-              formControlName="phone"
-              placeholder="Enter Contact No."
-              class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
-            />
-            <div *ngIf="clientForm.get('phone')?.invalid && clientForm.get('phone')?.touched" class="text-red-500 text-sm">
-              <div *ngIf="clientForm.get('phone')?.errors?.['required']">Phone number is required.</div>
-              <div *ngIf="clientForm.get('phone')?.errors?.['pattern']">Please enter a valid phone number.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button mat-raised-button matStepperNext class="mt-4" [disabled]="clientForm.get('name')?.invalid || clientForm.get('email')?.invalid || clientForm.get('phone')?.invalid">
-        Next
-      </button>
-    </mat-step>
+                              <!-- Validation Error -->
+                              @if (submitted && clientForm.get('termsAccepted')?.invalid) {
+                                <div
+                                  class="text-red-500 text-sm mt-2"
+                                  >
+                                  You must agree to the Terms and Privacy Policy before submitting.
+                                </div>
+                              }
+                            </div>
 
-    <mat-step [stepControl]="clientForm.controls['service']">
-      <ng-template matStepLabel>Fill out your service and address</ng-template>
-      <div class="grid gap-6 md:grid-cols-2">
-        <div class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3">
-          <img src="../../../assets/images/bxs_service.svg" alt="" />
-          <div class="flex-grow-1">
-            <label for="service">Service</label>
-            <select
-              id="service"
-              formControlName="service"
-              class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
-            >
-              <option value="Game Development">Game Development</option>
-              <option value="App Development">App Development</option>
-              <option value="Web Development">Web Development</option>
-              <option value="Digital Marketing">Digital Marketing</option>
-              <option value="Emerging Technologies">Emerging Technologies</option>
-              <option value="Others">Others</option>
-            </select>
-            <div *ngIf="clientForm.get('service')?.invalid && clientForm.get('service')?.touched" class="text-red-500 text-sm">
-              Service is required.
-            </div>
-          </div>
-        </div>
+                            <div class="mt-6 flex justify-center md:justify-start">
+                              <button
+                                type="submit"
+                                class="inline-flex items-center px-6 py-2.5 xl:px-7 xl:py-3.5 2xl:px-10 2xl:py-5 border border-transparent text-sm 2xl:text-lg font-medium rounded-2xl shadow-sm text-white bg-black hover:bg-gray-800"
+                                [disabled]="loading"
+                                >
+                                @if (!loading) {
+                                  Send Message
+                                } @else {
+                                  <mat-spinner
+                                    diameter="24"
+                                    strokeWidth="4"
+                                    color="accent"
+                                    class="mr-3"
+                                  ></mat-spinner>
+                                  Sending...
+                                }
+                              </button>
+                            </div>
+                          </form>
 
-        <div class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3">
-          <img src="../../../assets/images/bxs_location.svg" alt="" />
-          <div class="flex-grow-1">
-            <label for="location">Country</label>
-            <select
-              id="address"
-              formControlName="address"
-              class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
-            >
-              <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
-            </select>
-            <div *ngIf="clientForm.get('address')?.invalid && clientForm.get('address')?.touched" class="text-red-500 text-sm">
-              Country is required.
-            </div>
-          </div>
-        </div>
-      </div>
-      <button mat-raised-button matStepperPrevious class="mt-4">Back</button>
-      <button mat-raised-button matStepperNext class="mt-4" [disabled]="clientForm.get('service')?.invalid || clientForm.get('address')?.invalid">Next</button>
-    </mat-step>
+                          <!-- <form
+                          class="md:py-14 py-3 font-quickSand"
+                          [formGroup]="clientForm"
+                          (ngSubmit)="onSave()"
+                          #formDirective="ngForm"
+                          novalidate
+                          >
+                          <mat-horizontal-stepper linear [formGroup]="clientForm">
 
-    <mat-step>
-      <ng-template matStepLabel>Submit your details</ng-template>
-      <div class="md:col-span-2">
-        <p class="text-black font-semibold 2xl:font-bold">
-          Project Budget: ${{ clientForm.get("budget")?.value }}
-          <span *ngIf="clientForm.get('budget')?.value === 100000">+</span>
-        </p>
-        <input
-          type="range"
-          min="500"
-          max="100000"
-          formControlName="budget"
-          class="styled-range my-6"
-        />
-      </div>
+                            <mat-step [stepControl]="clientForm.controls['name']">
+                              <ng-template matStepLabel>Fill out your name</ng-template>
+                              <div class="grid gap-6 md:grid-cols-2">
+                                <div class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3">
+                                  <img src="../../../assets/images/bxs_user.svg" alt="" />
+                                  <div class="flex-grow-1">
+                                    <label for="full-name-1">Full Name</label>
+                                    <input
+                                      type="text"
+                                      id="full-name-1"
+                                      formControlName="name"
+                                      placeholder="Enter Full Name"
+                                      class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
+                                      />
+                                      <div *ngIf="clientForm.get('name')?.invalid && clientForm.get('name')?.touched" class="text-red-500 text-sm">
+                                        Name is required.
+                                      </div>
+                                    </div>
+                                  </div>
 
-      <div class="md:col-span-2 border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex gap-3 p-3">
-        <img src="../../../assets/images/bxs_write.svg" alt="" />
-        <div class="flex-grow-1">
-          <label for="message">Message</label>
-          <textarea
-            id="message"
-            placeholder="Write message"
-            rows="4"
-            formControlName="message"
-            class="mt-1 py-2 px-0.5 block w-full bg-[#f9f9f9] rounded-xl focus:outline-none sm:text-sm"
-          ></textarea>
-        </div>
-      </div>
+                                  <div class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3">
+                                    <img src="../../../assets/images/bxs_mail.svg" alt="" />
+                                    <div class="flex-grow-1">
+                                      <label for="email">Email</label>
+                                      <input
+                                        type="email"
+                                        id="email"
+                                        formControlName="email"
+                                        placeholder="Enter Email Address"
+                                        class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
+                                        />
+                                        <div *ngIf="clientForm.get('email')?.invalid && clientForm.get('email')?.touched" class="text-red-500 text-sm">
+                                          <div *ngIf="clientForm.get('email')?.errors?.['required']">Email address is required.</div>
+                                          <div *ngIf="clientForm.get('email')?.errors?.['email']">Please enter a valid email address.</div>
+                                        </div>
+                                      </div>
+                                    </div>
 
-      <button mat-raised-button matStepperPrevious class="mt-4">Back</button>
-       <button
-            type="submit"
-            class="inline-flex items-center px-6 py-2.5 xl:px-7 xl:py-3.5 2xl:px-10 2xl:py-5 border border-transparent text-sm 2xl:text-lg font-medium rounded-2xl shadow-sm text-white bg-black hover:bg-gray-800"
-            [disabled]="loading"
-          >
-            <ng-container *ngIf="!loading; else spinnerTemplate">
-              Send Message
-            </ng-container>
-            <ng-template #spinnerTemplate>
-              <mat-spinner
-                diameter="24"
-                strokeWidth="4"
-                color="accent"
-                class="mr-3"
-              ></mat-spinner>
-              Sending...
-            </ng-template>
-          </button>
-    </mat-step>
-  </mat-horizontal-stepper>
-</form> -->
+                                    <div class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3">
+                                      <img src="../../../assets/images/bxs_phone.svg" alt="" />
+                                      <div class="flex-grow-1">
+                                        <label for="phone">Contact No.</label>
+                                        <input
+                                          type="text"
+                                          id="phone"
+                                          formControlName="phone"
+                                          placeholder="Enter Contact No."
+                                          class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
+                                          />
+                                          <div *ngIf="clientForm.get('phone')?.invalid && clientForm.get('phone')?.touched" class="text-red-500 text-sm">
+                                            <div *ngIf="clientForm.get('phone')?.errors?.['required']">Phone number is required.</div>
+                                            <div *ngIf="clientForm.get('phone')?.errors?.['pattern']">Please enter a valid phone number.</div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <button mat-raised-button matStepperNext class="mt-4" [disabled]="clientForm.get('name')?.invalid || clientForm.get('email')?.invalid || clientForm.get('phone')?.invalid">
+                                      Next
+                                    </button>
+                                  </mat-step>
 
-    </div>
-  </section>
+                                  <mat-step [stepControl]="clientForm.controls['service']">
+                                    <ng-template matStepLabel>Fill out your service and address</ng-template>
+                                    <div class="grid gap-6 md:grid-cols-2">
+                                      <div class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3">
+                                        <img src="../../../assets/images/bxs_service.svg" alt="" />
+                                        <div class="flex-grow-1">
+                                          <label for="service">Service</label>
+                                          <select
+                                            id="service"
+                                            formControlName="service"
+                                            class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
+                                            >
+                                            <option value="Game Development">Game Development</option>
+                                            <option value="App Development">App Development</option>
+                                            <option value="Web Development">Web Development</option>
+                                            <option value="Digital Marketing">Digital Marketing</option>
+                                            <option value="Emerging Technologies">Emerging Technologies</option>
+                                            <option value="Others">Others</option>
+                                          </select>
+                                          <div *ngIf="clientForm.get('service')?.invalid && clientForm.get('service')?.touched" class="text-red-500 text-sm">
+                                            Service is required.
+                                          </div>
+                                        </div>
+                                      </div>
 
-  <!-- office address -->
+                                      <div class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3">
+                                        <img src="../../../assets/images/bxs_location.svg" alt="" />
+                                        <div class="flex-grow-1">
+                                          <label for="location">Country</label>
+                                          <select
+                                            id="address"
+                                            formControlName="address"
+                                            class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
+                                            >
+                                            <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+                                          </select>
+                                          <div *ngIf="clientForm.get('address')?.invalid && clientForm.get('address')?.touched" class="text-red-500 text-sm">
+                                            Country is required.
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <button mat-raised-button matStepperPrevious class="mt-4">Back</button>
+                                    <button mat-raised-button matStepperNext class="mt-4" [disabled]="clientForm.get('service')?.invalid || clientForm.get('address')?.invalid">Next</button>
+                                  </mat-step>
 
-  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
-    <div
-      class="py-7 md:py-10 mt-10 mb-28 sm:mt-10 sm:mb-24 lg:mt-10 lg:mb-44 flex flex-col md:flex-row justify-between mx-auto items-center border-y border-[#34394B]"
-    >
-      <div
-        class="flex flex-col items-center justify-center gap-y-9 lg:flex-row lg:justify-evenly flex-grow font-quickSand"
-      >
-        <div class="flex flex-col gap-3 justify-center items-center">
-          <div class="flex flex-col sm:flex-row text-white gap-6">
-            <img
-              class="w-56 2xl:w-64 rounded-xl"
-              src="../../../assets/images/usa-location.jpg"
-              alt=""
-            />
-            <div class="flex flex-col justify-center gap-3">
-              <div class="sm:w-56">
-                <h4 class="font-semibold mb-1.5">USA OFFICE</h4>
-                <p class="text-[#b4b9cb]">
-                  66 W Flagler St Suite 900 – 2034, <br />
-                  Miami, FL 33130
-                </p>
-                <span class="text-[#b4b9cb]">United States</span>
-              </div>
+                                  <mat-step>
+                                    <ng-template matStepLabel>Submit your details</ng-template>
+                                    <div class="md:col-span-2">
+                                      <p class="text-black font-semibold 2xl:font-bold">
+                                        Project Budget: ${{ clientForm.get("budget")?.value }}
+                                        <span *ngIf="clientForm.get('budget')?.value === 100000">+</span>
+                                      </p>
+                                      <input
+                                        type="range"
+                                        min="500"
+                                        max="100000"
+                                        formControlName="budget"
+                                        class="styled-range my-6"
+                                        />
+                                      </div>
 
-              <a
-                href="https://g.page/r/CcjFtJwCeMUMEAI/review"
-                target="_blank"
-                class="text-white flex gap-2 items-center font-semibold"
-              >
-                Review Us
-                <img
-                  class="w-6"
-                  src="../../../assets/images/arrow-right-gradient.svg"
-                  alt=""
-                />
-              </a>
-            </div>
-          </div>
-        </div>
+                                      <div class="md:col-span-2 border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex gap-3 p-3">
+                                        <img src="../../../assets/images/bxs_write.svg" alt="" />
+                                        <div class="flex-grow-1">
+                                          <label for="message">Message</label>
+                                          <textarea
+                                            id="message"
+                                            placeholder="Write message"
+                                            rows="4"
+                                            formControlName="message"
+                                            class="mt-1 py-2 px-0.5 block w-full bg-[#f9f9f9] rounded-xl focus:outline-none sm:text-sm"
+                                          ></textarea>
+                                        </div>
+                                      </div>
 
-        <div class="flex flex-col gap-3 justify-center items-center">
-          <div class="flex flex-col sm:flex-row text-white gap-6">
-            <img
-              class="w-56 2xl:w-64 rounded-xl"
-              src="../../../assets/images/india-location.jpg"
-              alt=""
-            />
-            <div class="flex flex-col justify-center gap-3">
-              <div class="sm:w-56">
-                <h4 class="font-semibold mb-1.5">INDIA OFFICE</h4>
-                <p class="text-[#b4b9cb]">
-                  10/2, 2nd Floor, Shree Mahadeo <br />
-                  House, near Hotel Surya, South <br />
-                  Tukoganj, Indore (M.P.) 452001
-                </p>
-                <!-- <span>India</span> -->
-              </div>
+                                      <button mat-raised-button matStepperPrevious class="mt-4">Back</button>
+                                      <button
+                                        type="submit"
+                                        class="inline-flex items-center px-6 py-2.5 xl:px-7 xl:py-3.5 2xl:px-10 2xl:py-5 border border-transparent text-sm 2xl:text-lg font-medium rounded-2xl shadow-sm text-white bg-black hover:bg-gray-800"
+                                        [disabled]="loading"
+                                        >
+                                        <ng-container *ngIf="!loading; else spinnerTemplate">
+                                          Send Message
+                                        </ng-container>
+                                        <ng-template #spinnerTemplate>
+                                          <mat-spinner
+                                            diameter="24"
+                                            strokeWidth="4"
+                                            color="accent"
+                                            class="mr-3"
+                                          ></mat-spinner>
+                                          Sending...
+                                        </ng-template>
+                                      </button>
+                                    </mat-step>
+                                  </mat-horizontal-stepper>
+                                </form> -->
 
-              <a
-                href=" https://g.page/r/Cc-q3vDimi9GEAI/review"
-                target="_blank"
-                class="text-white flex gap-2 items-center font-semibold"
-              >
-                Review Us
-                <img
-                  class="w-6"
-                  src="../../../assets/images/arrow-right-gradient.svg"
-                  alt=""
-                />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+                              </div>
+                            </section>
 
-  <app-footer [showButton]="false" [showHeading]="false" [cardText]="cardText">
-  </app-footer>
-</main>
+                            <!-- office address -->
+
+                            <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
+                              <div
+                                class="py-7 md:py-10 mt-10 mb-28 sm:mt-10 sm:mb-24 lg:mt-10 lg:mb-44 flex flex-col md:flex-row justify-between mx-auto items-center border-y border-[#34394B]"
+                                >
+                                <div
+                                  class="flex flex-col items-center justify-center gap-y-9 lg:flex-row lg:justify-evenly flex-grow font-quickSand"
+                                  >
+                                  <div class="flex flex-col gap-3 justify-center items-center">
+                                    <div class="flex flex-col sm:flex-row text-white gap-6">
+                                      <img
+                                        class="w-56 2xl:w-64 rounded-xl"
+                                        src="../../../assets/images/usa-location.jpg"
+                                        alt=""
+                                        />
+                                        <div class="flex flex-col justify-center gap-3">
+                                          <div class="sm:w-56">
+                                            <h4 class="font-semibold mb-1.5">USA OFFICE</h4>
+                                            <p class="text-[#b4b9cb]">
+                                              66 W Flagler St Suite 900 – 2034, <br />
+                                              Miami, FL 33130
+                                            </p>
+                                            <span class="text-[#b4b9cb]">United States</span>
+                                          </div>
+
+                                          <a
+                                            href="https://g.page/r/CcjFtJwCeMUMEAI/review"
+                                            target="_blank"
+                                            class="text-white flex gap-2 items-center font-semibold"
+                                            >
+                                            Review Us
+                                            <img
+                                              class="w-6"
+                                              src="../../../assets/images/arrow-right-gradient.svg"
+                                              alt=""
+                                              />
+                                            </a>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="flex flex-col gap-3 justify-center items-center">
+                                        <div class="flex flex-col sm:flex-row text-white gap-6">
+                                          <img
+                                            class="w-56 2xl:w-64 rounded-xl"
+                                            src="../../../assets/images/india-location.jpg"
+                                            alt=""
+                                            />
+                                            <div class="flex flex-col justify-center gap-3">
+                                              <div class="sm:w-56">
+                                                <h4 class="font-semibold mb-1.5">INDIA OFFICE</h4>
+                                                <p class="text-[#b4b9cb]">
+                                                  10/2, 2nd Floor, Shree Mahadeo <br />
+                                                  House, near Hotel Surya, South <br />
+                                                  Tukoganj, Indore (M.P.) 452001
+                                                </p>
+                                                <!-- <span>India</span> -->
+                                              </div>
+
+                                              <a
+                                                href=" https://g.page/r/Cc-q3vDimi9GEAI/review"
+                                                target="_blank"
+                                                class="text-white flex gap-2 items-center font-semibold"
+                                                >
+                                                Review Us
+                                                <img
+                                                  class="w-6"
+                                                  src="../../../assets/images/arrow-right-gradient.svg"
+                                                  alt=""
+                                                  />
+                                                </a>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </section>
+
+                                    <app-footer [showButton]="false" [showHeading]="false" [cardText]="cardText">
+                                    </app-footer>
+                                  </main>

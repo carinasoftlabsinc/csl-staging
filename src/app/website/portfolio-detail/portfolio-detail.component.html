@@ -2,32 +2,32 @@
   <app-header></app-header>
   <section
     class="body-font flex items-center justify-center h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
-  >
+    >
     <div>
       <div
         class="flex flex-col-reverse md:flex-row items-center lg:px-3 gap-6 md:gap-8"
-      >
+        >
         <div
           class="md:w-1/3 md:py-8 text-left font-quickSand font-medium text-[#B4B9CB]"
-        >
+          >
           <!-- <div class="2xl:ml-20 xl:ml-16 lg:ml-16 md:ml-16"> -->
           <div>
             <span
               class="text-[#B4B9CB] font-myfont text-2xl 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]"
-            >
+              >
               CASE STUDY
             </span>
             <h1 class="mt-3.5">
               <span
                 class="text-white tracking-wide text-2xl md:text-4xl lg:text-5xl 2xl:text-6xl sm:text-4xl font-myfont"
-              >
+                >
                 {{ cardData?.title }}
               </span>
             </h1>
 
             <p
               class="text-[#B4B9CB] mt-3 text-sm xl:text-[16px] 2xl:text-[23px] 2xl:leading-[27px] font-quickSand font-normal"
-            >
+              >
               {{ cardData?.description }}
             </p>
           </div>
@@ -37,32 +37,32 @@
           <img
             class="rounded-3xl h-48 md:h-64 lg:h-80 xl:h-[70vh] w-full object-cover"
             [src]="imageUrl + '/' + cardData?.image"
-          />
+            />
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section
-    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
-  >
-    <!-- <div>
+    <section
+      class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
+      >
+      <!-- <div>
       <h2
         class="text-black text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#B4B9CB]"
-      >
+        >
         Project overview
       </h2>
     </div> -->
 
     <div
       class="text-center mt-12 sm:mt-auto my-8 flex flex-col gap-3.5 2xl:gap-6 md:mt-8"
-    >
+      >
       <h2 class="text-black text-3xl xl:text-4xl 2xl:text-5xl font-myfont">
         Project Overview
       </h2>
       <p
         class="font-quickSand font-medium text-base lg:text-lg 2xl:!text-2xl !leading-6 text-black capitalize"
-      >
+        >
         Design creates culture. Culture shapes values. Values determine the
         future
       </p>
@@ -72,36 +72,36 @@
       <div class="border-l border-[#B4B9CB] md:border-none px-9 py-6">
         <h4
           class="text-black text-2xl xl:text-3xl 2xl:text-4xl font-myfont mb-1.5 2xl:mb-3.5"
-        >
+          >
           Industry
         </h4>
         <p
           class="font-quickSand text-base lg:text-lg 2xl:!text-2xl !leading-6 text-black capitalize"
-        >
+          >
           {{ cardData?.industry }}
         </p>
       </div>
       <div class="border-l border-[#B4B9CB] px-9 py-6">
         <h4
           class="text-black text-2xl xl:text-3xl 2xl:text-4xl font-myfont mb-1.5 2xl:mb-3.5"
-        >
+          >
           Tech Stack
         </h4>
         <p
           class="font-quickSand text-base lg:text-lg 2xl:!text-2xl !leading-6 text-black capitalize"
-        >
+          >
           {{ cardData?.tech }}
         </p>
       </div>
       <div class="border-l border-[#B4B9CB] px-9 py-6">
         <h4
           class="text-black text-2xl xl:text-3xl 2xl:text-4xl font-myfont mb-1.5 2xl:mb-3.5"
-        >
+          >
           Deliverables
         </h4>
         <p
           class="font-quickSand text-base lg:text-lg 2xl:!text-2xl !leading-6 text-black capitalize"
-        >
+          >
           {{ cardData?.deliverables }}
         </p>
       </div>
@@ -110,31 +110,31 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 my-8">
       <div
         class="p-6 2xl:p-8 bg-gradient-to-b from-[#f11df548] to-[#20b9fa48] rounded-badge flex justify-center items-center md:w-fit"
-      >
+        >
         <img
           class="w-60 h-32 2xl:w-72 2xl:h-36 object-contain"
           [src]="imageUrl + '/' + cardData?.projectLogo"
           alt=""
-        />
-      </div>
+          />
+        </div>
 
-      <div
-        class="md:col-span-2 p-6 2xl:p-8 bg-gradient-to-b from-[#f11df548] to-[#20b9fa48] rounded-badge font-quickSand text-sm lg:text-base 2xl:!text-lg !leading-6 flex flex-col justify-center"
-      >
-        <p
-          class="text-black 2xl:text-xl capitalize pb-2.5 mb-2.5 border-b border-[#B4B9CB]"
-          [innerHTML]="cardData?.clientReview"
-        ></p>
-        <!-- <p class="font-medium 2xl:text-xl">{{ cardData?.clientName }}</p> -->
-        <p class="font-medium 2xl:text-xl">
-          {{
+        <div
+          class="md:col-span-2 p-6 2xl:p-8 bg-gradient-to-b from-[#f11df548] to-[#20b9fa48] rounded-badge font-quickSand text-sm lg:text-base 2xl:!text-lg !leading-6 flex flex-col justify-center"
+          >
+          <p
+            class="text-black 2xl:text-xl capitalize pb-2.5 mb-2.5 border-b border-[#B4B9CB]"
+            [innerHTML]="cardData?.clientReview"
+          ></p>
+          <!-- <p class="font-medium 2xl:text-xl">{{ cardData?.clientName }}</p> -->
+          <p class="font-medium 2xl:text-xl">
+            {{
             cardData?.clientName
-              ? cardData.clientName
-              : cardData?.title + " team"
-          }}
-        </p>
+            ? cardData.clientName
+            : cardData?.title + " team"
+            }}
+          </p>
 
-        <!-- <p class="text-xs lg:text-sm 2xl:!text-lg">
+          <!-- <p class="text-xs lg:text-sm 2xl:!text-lg">
           {{ cardData?.designation }}
         </p> -->
       </div>
@@ -143,422 +143,423 @@
 
   <section
     class="relative px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 h-screen overflow-hidden"
-  >
+    >
     <div
       class="bg-[#000000cc] absolute top-0 left-0 w-full h-full !z-10 flex flex-col justify-center items-center gap-2.5 px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10"
-    >
+      >
       <h4
         class="text-[#fff] text-2xl xl:text-3xl 2xl:text-5xl font-myfont mb-1.5"
-      >
+        >
         About
       </h4>
       <!-- <h4 class="text-white text-4xl xl:text-5xl 2xl:text-6xl font-myfont">
-        Arizona Derby
-      </h4> -->
-      <h4
-        class="text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-3xl md:text-4xl xl:text-5xl 2xl:text-7xl font-myfont"
-        [innerHTML]="cardData?.about_title"
-      ></h4>
+      Arizona Derby
+    </h4> -->
+    <h4
+      class="text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-3xl md:text-4xl xl:text-5xl 2xl:text-7xl font-myfont"
+      [innerHTML]="cardData?.about_title"
+    ></h4>
 
-      <p
-        class="text-[#B4B9CB] mt-3 text-sm xl:text-base 2xl:text-xl 2xl:leading-[27px] font-quickSand font-medium max-w-2xl 2xl:max-w-4xl text-center"
-        [innerHTML]="cardData?.aboutDescription"
-      ></p>
-    </div>
+    <p
+      class="text-[#B4B9CB] mt-3 text-sm xl:text-base 2xl:text-xl 2xl:leading-[27px] font-quickSand font-medium max-w-2xl 2xl:max-w-4xl text-center"
+      [innerHTML]="cardData?.aboutDescription"
+    ></p>
+  </div>
 
-    <img
-      class="absolute top-0 left-0 w-full h-full object-cover !z-0"
-      [src]="imageUrl + '/' + cardData?.aboutBg"
-      alt=""
+  <img
+    class="absolute top-0 left-0 w-full h-full object-cover !z-0"
+    [src]="imageUrl + '/' + cardData?.aboutBg"
+    alt=""
     />
   </section>
 
   <section
     class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
-  >
+    >
     <div
       class="text-center py-8 flex flex-col gap-3.5 2xl:gap-6 border-b border-[#B4B9CB]"
-    >
+      >
       <h2 class="text-black text-3xl xl:text-4xl 2xl:text-5xl font-myfont">
         Project Execution
       </h2>
       <p
         class="font-quickSand font-medium text-base lg:text-lg 2xl:!text-2xl !leading-6 text-black capitalize"
-      >
+        >
         Design creates culture. Culture shapes values. Values determine the
         future
       </p>
     </div>
     <!-- <div
-      class="text-black text-2xl xl:text-3xl 2xl:text-4xl font-myfont py-6 text-center"
+    class="text-black text-2xl xl:text-3xl 2xl:text-4xl font-myfont py-6 text-center"
     >
-      The Challenges
-      <img
-        class="inline w-10 mx-1.5"
-        src="../../../assets/images/project-execution-arrow.svg"
-        alt=""
+    The Challenges
+    <img
+      class="inline w-10 mx-1.5"
+      src="../../../assets/images/project-execution-arrow.svg"
+      alt=""
       />
       <span
         class="text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA]"
         >The Solutions</span
-      >
-    </div>
-
-    <div class="grid grid-cols-3 gap-3.5 my-8">
-      <div
-        class="flex flex-col justify-between items-end font-quickSand font-medium"
-      >
-        <p class="text-xs lg:text-sm 2xl:!text-base pl-9">
-          We are a team of passionate and crazy individuals dedicated to
-          bringing your ideas to life. With a keen eye for aesthetics, attention
-          to detail, and
-        </p>
-
-        <p class="text-xs lg:text-sm 2xl:!text-base">
-          We are a team of passionate and crazy individuals dedicated to
-          bringing your ideas to life. With a keen eye for aesthetics, attention
-          to detail, and
-        </p>
-
-        <p class="text-xs lg:text-sm 2xl:!text-base">
-          We are a team of passionate and crazy individuals dedicated to
-          bringing your ideas to life. With a keen eye for aesthetics, attention
-          to detail, and
-        </p>
-
-        <p class="text-xs lg:text-sm 2xl:!text-base pl-9">
-          We are a team of passionate and crazy individuals dedicated to
-          bringing your ideas to life. With a keen eye for aesthetics, attention
-          to detail, and
-        </p>
-      </div>
-      <img
-        class="object-contain"
-        src="../../../assets/images/project-execution.png"
-        alt=""
-      />
-      <div
-        class="flex flex-col justify-between items-end font-quickSand font-medium"
-      >
-        <p class="text-xs lg:text-sm 2xl:!text-base -ml-9">
-          We are a team of passionate and crazy individuals dedicated to
-          bringing your ideas to life. With a keen eye for aesthetics, attention
-          to detail, and
-        </p>
-
-        <p class="text-xs lg:text-sm 2xl:!text-base">
-          We are a team of passionate and crazy individuals dedicated to
-          bringing your ideas to life. With a keen eye for aesthetics, attention
-          to detail, and
-        </p>
-
-        <p class="text-xs lg:text-sm 2xl:!text-base">
-          We are a team of passionate and crazy individuals dedicated to
-          bringing your ideas to life. With a keen eye for aesthetics, attention
-          to detail, and
-        </p>
-
-        <p class="text-xs lg:text-sm 2xl:!text-base -ml-9">
-          We are a team of passionate and crazy individuals dedicated to
-          bringing your ideas to life. With a keen eye for aesthetics, attention
-          to detail, and
-        </p>
-      </div>
-    </div> -->
-
-    <div
-      class="flex flex-col md:flex-row gap-12 md:gap-1.5 lg:gap-12 my-12 2xl:my-20 font-quickSand font-medium"
-    >
-      <div
-        class="p-6 2xl:py-14 2xl:px-9 bg-[#EFEFEF] rounded-badge flex flex-col items-center gap-3.5 2xl:gap-6 md:w-[50%]"
-      >
-        <img
-          class="size-14"
-          src="../../../assets/images/challenge-icon.svg"
-          alt=""
-        />
-        <h4
-          class="text-black text-2xl xl:text-3xl 2xl:text-4xl font-myfont text-center"
         >
-          The Challenges
-        </h4>
-
-        <div class="2xl:text-xl" [innerHTML]="cardData?.content"></div>
-      </div>
-      <img
-        class="hidden md:inline w-10 mx-1.5"
-        src="../../../assets/images/project-execution-arrow.svg"
-        alt=""
-      />
-      <div
-        class="p-6 2xl:py-14 2xl:px-9 bg-gradient-to-b from-[#f11df548] to-[#20b9fa48] rounded-badge flex flex-col items-center gap-3.5 2xl:gap-6 md:w-[50%]"
-      >
-        <img
-          class="size-14"
-          src="../../../assets/images/solution-icon.svg"
-          alt=""
-        />
-        <h4
-          class="text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-2xl xl:text-3xl 2xl:text-4xl font-myfont text-center"
-        >
-          The Solutions
-        </h4>
-
-        <div class="2xl:text-xl" [innerHTML]="cardData?.solutionContent"></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="lg:py-16 2xl:py-24 py-10">
-    <div
-      class="text-center py-8 flex flex-col gap-3.5 2xl:gap-6 border-b border-[#34394B] mx-7 md:mx-10 2xl:mx-24 xl:mx-14"
-    >
-      <h2 class="text-[#fff] text-3xl xl:text-4xl 2xl:text-5xl font-myfont">
-        INNOVATIVE DESIGN & <br />
-        DEVELOPMENT PROCESS
-      </h2>
-    </div>
-
-    <div
-      class="relative flex flex-wrap justify-center gap-x-[7vw] lg:gap-x-[14vw] 2xl:gap-x-[16vw] gap-y-14 md-gap-y-20 py-16 p-8"
-    >
-      <div
-        *ngFor="let card of devProcess"
-        class="bg-[#181921] rounded-full p-8 text-center text-white size-52 xl:size-64 flex flex-col justify-center items-center shadow-lg !border border-[#34394B] z-10"
-      >
-        <div class="mb-0.5 lg:mb-3.5">
-          <img
-            src="{{ card.icon }}"
-            alt="Design Icon"
-            class="size-9 xl:size-12 mx-auto"
-          />
-        </div>
-        <h3 class="text-2xl xl:text-3xl mb-2.5 font-myfont">
-          {{ card.title }}
-        </h3>
-        <p
-          class="text-xs xl:text-sm font-medium font-quickSand pt-2.5 border-t border-[#34394B] text-[#B4B9CB]"
-        >
-          {{ card.description }}
-        </p>
       </div>
 
-      <img
-        class="hidden lg:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-        src="../../../assets/images/dotted-line.svg"
-        alt=""
-      />
-
-      <!-- <div
-        class="bg-[#181921] rounded-full p-8 text-center text-white w-64 h-64 flex flex-col justify-center items-center shadow-lg !border border-[#34394B] z-10"
-      >
-        <div class="mb-3.5">
-          <img
-            src="../../../assets/images/process-design.svg"
-            alt="Design Icon"
-            class="h-12 w-12 mx-auto"
-          />
-        </div>
-        <h3 class="text-3xl mb-2.5 font-myfont">GRAPHICS</h3>
-        <p
-          class="text-sm font-medium font-quickSand pt-2.5 border-t border-[#34394B] text-[#B4B9CB]"
-        >
-          Animations and Graphics Integration, Admin Console Integration
-        </p>
-      </div>
-
-      <div
-        class="bg-[#181921] rounded-full p-8 text-center text-white w-64 h-64 flex flex-col justify-center items-center shadow-lg !border border-[#34394B] z-10"
-      >
-        <div class="mb-3.5">
-          <img
-            src="../../../assets/images/process-design.svg"
-            alt="Design Icon"
-            class="h-12 w-12 mx-auto"
-          />
-        </div>
-        <h3 class="text-3xl mb-2.5 font-myfont">DEVELOPMENT</h3>
-        <p
-          class="text-sm font-medium font-quickSand pt-2.5 border-t border-[#34394B] text-[#B4B9CB]"
-        >
-          Technical Documentation, Frontend Development, Backend Development
-        </p>
-      </div>
-
-      <div
-        class="bg-[#181921] rounded-full p-8 text-center text-white w-64 h-64 flex flex-col justify-center items-center shadow-lg !border border-[#34394B] z-10"
-      >
-        <div class="mb-3.5">
-          <img
-            src="../../../assets/images/process-design.svg"
-            alt="Design Icon"
-            class="h-12 w-12 mx-auto"
-          />
-        </div>
-        <h3 class="text-3xl mb-2.5 font-myfont">TESTING</h3>
-        <p
-          class="text-sm font-medium font-quickSand pt-2.5 border-t border-[#34394B] text-[#B4B9CB]"
-        >
-          Concept Validation, First-click Testing, Usability Task Analysis, UAT
-        </p>
-      </div>
-
-      <div
-        class="bg-[#181921] rounded-full p-8 text-center text-white w-64 h-64 flex flex-col justify-center items-center shadow-lg !border border-[#34394B] z-10"
-      >
-        <div class="mb-3.5">
-          <img
-            src="../../../assets/images/process-design.svg"
-            alt="Design Icon"
-            class="h-12 w-12 mx-auto"
-          />
-        </div>
-        <h3 class="text-3xl mb-2.5 font-myfont">REVIEW</h3>
-        <p
-          class="text-sm font-medium font-quickSand pt-2.5 border-t border-[#34394B] text-[#B4B9CB]"
-        >
-          Client Interview, Empathy Mapping, Market Analysis
-        </p>
-      </div> -->
-    </div>
-  </section>
-
-  <section class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10">
-    <!-- <div
-      class="text-center pb-8 flex flex-col gap-3.5 2xl:gap-6 border-b border-[#B4B9CB]"
-    >
-      <h2 class="text-[#fff] text-3xl xl:text-4xl 2xl:text-5xl font-myfont">
-        INNOVATIVE DESIGN & <br />
-        DEVELOPMENT PROCESS
-      </h2>
-    </div> -->
-
-    <div
-      class="text-center pb-8 flex flex-col gap-3.5 2xl:gap-6 !border-b !border-[#34394B]"
-    >
-      <h2 class="text-[#fff] text-3xl xl:text-4xl 2xl:text-5xl font-myfont">
-        HOW WE MADE IT WORK
-      </h2>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 py-12">
-      <div class="rounded-badge overflow-hidden">
-        <img
-          class="h-[70vh] w-full object-cover"
-          [src]="imageUrl + '/' + cardData?.how_image"
-          alt=""
-        />
-      </div>
-      <div class="flex flex-col md:gap-1.5 justify-evenly gap-3.5">
-        <div>
-          <h5
-            class="text-xl xl:text-2xl 2xl:text-3xl font-myfont text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] mb-1.5"
-          >
-            {{ cardData?.title_1 }}
-          </h5>
-          <p
-            class="text-xs lg:text-sm 2xl:!text-base text-[#B4B9CB] font-quickSand"
-          >
-            {{ cardData?.desc_1 }}
-          </p>
-        </div>
-        <div>
-          <h5
-            class="text-xl xl:text-2xl 2xl:text-3xl font-myfont text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] mb-1.5"
-          >
-            {{ cardData?.title_2 }}
-          </h5>
-          <p
-            class="text-xs lg:text-sm 2xl:!text-base text-[#B4B9CB] font-quickSand"
-          >
-            {{ cardData?.desc_2 }}
-          </p>
-        </div>
-        <div>
-          <h5
-            class="text-xl xl:text-2xl 2xl:text-3xl font-myfont text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] mb-1.5"
-          >
-            {{ cardData?.title_3 }}
-          </h5>
-          <p
-            class="text-xs lg:text-sm 2xl:!text-base text-[#B4B9CB] font-quickSand"
-          >
-            {{ cardData?.desc_3 }}
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section
-    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
-  >
-    <h2
-      class="text-[#000] text-3xl xl:text-4xl 2xl:text-5xl font-myfont pb-8 text-center"
-    >
-      More case studies
-    </h2>
-
-    <div class="grid grid-cols3"></div>
-
-    <div class="lg:p-7 flex flex-col gap-8 2xl:gap-14">
-      <ng-container
-        *ngFor="let group of allProjects | slice : 0 : 3; let i = index"
-      >
+      <div class="grid grid-cols-3 gap-3.5 my-8">
         <div
-          *ngIf="i % 3 === 0"
-          class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3.5 lg:gap-6 2xl:gap-10"
-        >
-          <a *ngFor="let project of allProjects.slice(i, i + 3)"
-          [routerLink]="['/portfolio', formatHeading(project.titleLink)]">
-            <img
-              class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-              [src]="imageUrl + '/' + project.image_2"
-              alt="Project Image"
-            />
+          class="flex flex-col justify-between items-end font-quickSand font-medium"
+          >
+          <p class="text-xs lg:text-sm 2xl:!text-base pl-9">
+            We are a team of passionate and crazy individuals dedicated to
+            bringing your ideas to life. With a keen eye for aesthetics, attention
+            to detail, and
+          </p>
 
-            <div
-              class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
-            >
-              <div>
-                <h5
-                  class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
-                >
-                  {{ project.title }}
-                </h5>
-                <p
-                  class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
-                >
-                  {{ project.description }}
-                </p>
-              </div>
-              <img
-                class="size-10 self-end"
-                src="../../../assets/images/grad-arrow-btn.svg"
-                alt="Arrow Button"
-              />
-            </div>
-          </a>
+          <p class="text-xs lg:text-sm 2xl:!text-base">
+            We are a team of passionate and crazy individuals dedicated to
+            bringing your ideas to life. With a keen eye for aesthetics, attention
+            to detail, and
+          </p>
+
+          <p class="text-xs lg:text-sm 2xl:!text-base">
+            We are a team of passionate and crazy individuals dedicated to
+            bringing your ideas to life. With a keen eye for aesthetics, attention
+            to detail, and
+          </p>
+
+          <p class="text-xs lg:text-sm 2xl:!text-base pl-9">
+            We are a team of passionate and crazy individuals dedicated to
+            bringing your ideas to life. With a keen eye for aesthetics, attention
+            to detail, and
+          </p>
         </div>
-      </ng-container>
-    </div>
-  </section>
+        <img
+          class="object-contain"
+          src="../../../assets/images/project-execution.png"
+          alt=""
+          />
+          <div
+            class="flex flex-col justify-between items-end font-quickSand font-medium"
+            >
+            <p class="text-xs lg:text-sm 2xl:!text-base -ml-9">
+              We are a team of passionate and crazy individuals dedicated to
+              bringing your ideas to life. With a keen eye for aesthetics, attention
+              to detail, and
+            </p>
 
-  <section
-    class="relative px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px] pb-16 md:pb-24 lg:pb-36 2xl:pb-44 mb-12 lg:mb-12 2xl:mb-20 mt-2.5"
-  >
-    <h2
-      class="text-black text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#B4B9CB]"
-    >
-      Application Process
-    </h2>
-    <app-getinform></app-getinform>
-  </section>
+            <p class="text-xs lg:text-sm 2xl:!text-base">
+              We are a team of passionate and crazy individuals dedicated to
+              bringing your ideas to life. With a keen eye for aesthetics, attention
+              to detail, and
+            </p>
 
-  <app-footer
-    [showButton]="false"
-    [showHeading]="false"
-    [btnText]="'Schedule a call'"
-  >
-  </app-footer>
-</main>
+            <p class="text-xs lg:text-sm 2xl:!text-base">
+              We are a team of passionate and crazy individuals dedicated to
+              bringing your ideas to life. With a keen eye for aesthetics, attention
+              to detail, and
+            </p>
+
+            <p class="text-xs lg:text-sm 2xl:!text-base -ml-9">
+              We are a team of passionate and crazy individuals dedicated to
+              bringing your ideas to life. With a keen eye for aesthetics, attention
+              to detail, and
+            </p>
+          </div>
+        </div> -->
+
+        <div
+          class="flex flex-col md:flex-row gap-12 md:gap-1.5 lg:gap-12 my-12 2xl:my-20 font-quickSand font-medium"
+          >
+          <div
+            class="p-6 2xl:py-14 2xl:px-9 bg-[#EFEFEF] rounded-badge flex flex-col items-center gap-3.5 2xl:gap-6 md:w-[50%]"
+            >
+            <img
+              class="size-14"
+              src="../../../assets/images/challenge-icon.svg"
+              alt=""
+              />
+              <h4
+                class="text-black text-2xl xl:text-3xl 2xl:text-4xl font-myfont text-center"
+                >
+                The Challenges
+              </h4>
+
+              <div class="2xl:text-xl" [innerHTML]="cardData?.content"></div>
+            </div>
+            <img
+              class="hidden md:inline w-10 mx-1.5"
+              src="../../../assets/images/project-execution-arrow.svg"
+              alt=""
+              />
+              <div
+                class="p-6 2xl:py-14 2xl:px-9 bg-gradient-to-b from-[#f11df548] to-[#20b9fa48] rounded-badge flex flex-col items-center gap-3.5 2xl:gap-6 md:w-[50%]"
+                >
+                <img
+                  class="size-14"
+                  src="../../../assets/images/solution-icon.svg"
+                  alt=""
+                  />
+                  <h4
+                    class="text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-2xl xl:text-3xl 2xl:text-4xl font-myfont text-center"
+                    >
+                    The Solutions
+                  </h4>
+
+                  <div class="2xl:text-xl" [innerHTML]="cardData?.solutionContent"></div>
+                </div>
+              </div>
+            </section>
+
+            <section class="lg:py-16 2xl:py-24 py-10">
+              <div
+                class="text-center py-8 flex flex-col gap-3.5 2xl:gap-6 border-b border-[#34394B] mx-7 md:mx-10 2xl:mx-24 xl:mx-14"
+                >
+                <h2 class="text-[#fff] text-3xl xl:text-4xl 2xl:text-5xl font-myfont">
+                  INNOVATIVE DESIGN & <br />
+                  DEVELOPMENT PROCESS
+                </h2>
+              </div>
+
+              <div
+                class="relative flex flex-wrap justify-center gap-x-[7vw] lg:gap-x-[14vw] 2xl:gap-x-[16vw] gap-y-14 md-gap-y-20 py-16 p-8"
+                >
+                @for (card of devProcess; track card) {
+                  <div
+                    class="bg-[#181921] rounded-full p-8 text-center text-white size-52 xl:size-64 flex flex-col justify-center items-center shadow-lg !border border-[#34394B] z-10"
+                    >
+                    <div class="mb-0.5 lg:mb-3.5">
+                      <img
+                        src="{{ card.icon }}"
+                        alt="Design Icon"
+                        class="size-9 xl:size-12 mx-auto"
+                        />
+                      </div>
+                      <h3 class="text-2xl xl:text-3xl mb-2.5 font-myfont">
+                        {{ card.title }}
+                      </h3>
+                      <p
+                        class="text-xs xl:text-sm font-medium font-quickSand pt-2.5 border-t border-[#34394B] text-[#B4B9CB]"
+                        >
+                        {{ card.description }}
+                      </p>
+                    </div>
+                  }
+
+                  <img
+                    class="hidden lg:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                    src="../../../assets/images/dotted-line.svg"
+                    alt=""
+                    />
+
+                    <!-- <div
+                    class="bg-[#181921] rounded-full p-8 text-center text-white w-64 h-64 flex flex-col justify-center items-center shadow-lg !border border-[#34394B] z-10"
+                    >
+                    <div class="mb-3.5">
+                      <img
+                        src="../../../assets/images/process-design.svg"
+                        alt="Design Icon"
+                        class="h-12 w-12 mx-auto"
+                        />
+                      </div>
+                      <h3 class="text-3xl mb-2.5 font-myfont">GRAPHICS</h3>
+                      <p
+                        class="text-sm font-medium font-quickSand pt-2.5 border-t border-[#34394B] text-[#B4B9CB]"
+                        >
+                        Animations and Graphics Integration, Admin Console Integration
+                      </p>
+                    </div>
+
+                    <div
+                      class="bg-[#181921] rounded-full p-8 text-center text-white w-64 h-64 flex flex-col justify-center items-center shadow-lg !border border-[#34394B] z-10"
+                      >
+                      <div class="mb-3.5">
+                        <img
+                          src="../../../assets/images/process-design.svg"
+                          alt="Design Icon"
+                          class="h-12 w-12 mx-auto"
+                          />
+                        </div>
+                        <h3 class="text-3xl mb-2.5 font-myfont">DEVELOPMENT</h3>
+                        <p
+                          class="text-sm font-medium font-quickSand pt-2.5 border-t border-[#34394B] text-[#B4B9CB]"
+                          >
+                          Technical Documentation, Frontend Development, Backend Development
+                        </p>
+                      </div>
+
+                      <div
+                        class="bg-[#181921] rounded-full p-8 text-center text-white w-64 h-64 flex flex-col justify-center items-center shadow-lg !border border-[#34394B] z-10"
+                        >
+                        <div class="mb-3.5">
+                          <img
+                            src="../../../assets/images/process-design.svg"
+                            alt="Design Icon"
+                            class="h-12 w-12 mx-auto"
+                            />
+                          </div>
+                          <h3 class="text-3xl mb-2.5 font-myfont">TESTING</h3>
+                          <p
+                            class="text-sm font-medium font-quickSand pt-2.5 border-t border-[#34394B] text-[#B4B9CB]"
+                            >
+                            Concept Validation, First-click Testing, Usability Task Analysis, UAT
+                          </p>
+                        </div>
+
+                        <div
+                          class="bg-[#181921] rounded-full p-8 text-center text-white w-64 h-64 flex flex-col justify-center items-center shadow-lg !border border-[#34394B] z-10"
+                          >
+                          <div class="mb-3.5">
+                            <img
+                              src="../../../assets/images/process-design.svg"
+                              alt="Design Icon"
+                              class="h-12 w-12 mx-auto"
+                              />
+                            </div>
+                            <h3 class="text-3xl mb-2.5 font-myfont">REVIEW</h3>
+                            <p
+                              class="text-sm font-medium font-quickSand pt-2.5 border-t border-[#34394B] text-[#B4B9CB]"
+                              >
+                              Client Interview, Empathy Mapping, Market Analysis
+                            </p>
+                          </div> -->
+                        </div>
+                      </section>
+
+                      <section class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10">
+                        <!-- <div
+                        class="text-center pb-8 flex flex-col gap-3.5 2xl:gap-6 border-b border-[#B4B9CB]"
+                        >
+                        <h2 class="text-[#fff] text-3xl xl:text-4xl 2xl:text-5xl font-myfont">
+                          INNOVATIVE DESIGN & <br />
+                          DEVELOPMENT PROCESS
+                        </h2>
+                      </div> -->
+
+                      <div
+                        class="text-center pb-8 flex flex-col gap-3.5 2xl:gap-6 !border-b !border-[#34394B]"
+                        >
+                        <h2 class="text-[#fff] text-3xl xl:text-4xl 2xl:text-5xl font-myfont">
+                          HOW WE MADE IT WORK
+                        </h2>
+                      </div>
+
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 py-12">
+                        <div class="rounded-badge overflow-hidden">
+                          <img
+                            class="h-[70vh] w-full object-cover"
+                            [src]="imageUrl + '/' + cardData?.how_image"
+                            alt=""
+                            />
+                          </div>
+                          <div class="flex flex-col md:gap-1.5 justify-evenly gap-3.5">
+                            <div>
+                              <h5
+                                class="text-xl xl:text-2xl 2xl:text-3xl font-myfont text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] mb-1.5"
+                                >
+                                {{ cardData?.title_1 }}
+                              </h5>
+                              <p
+                                class="text-xs lg:text-sm 2xl:!text-base text-[#B4B9CB] font-quickSand"
+                                >
+                                {{ cardData?.desc_1 }}
+                              </p>
+                            </div>
+                            <div>
+                              <h5
+                                class="text-xl xl:text-2xl 2xl:text-3xl font-myfont text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] mb-1.5"
+                                >
+                                {{ cardData?.title_2 }}
+                              </h5>
+                              <p
+                                class="text-xs lg:text-sm 2xl:!text-base text-[#B4B9CB] font-quickSand"
+                                >
+                                {{ cardData?.desc_2 }}
+                              </p>
+                            </div>
+                            <div>
+                              <h5
+                                class="text-xl xl:text-2xl 2xl:text-3xl font-myfont text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] mb-1.5"
+                                >
+                                {{ cardData?.title_3 }}
+                              </h5>
+                              <p
+                                class="text-xs lg:text-sm 2xl:!text-base text-[#B4B9CB] font-quickSand"
+                                >
+                                {{ cardData?.desc_3 }}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+
+                      <section
+                        class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
+                        >
+                        <h2
+                          class="text-[#000] text-3xl xl:text-4xl 2xl:text-5xl font-myfont pb-8 text-center"
+                          >
+                          More case studies
+                        </h2>
+
+                        <div class="grid grid-cols3"></div>
+
+                        <div class="lg:p-7 flex flex-col gap-8 2xl:gap-14">
+                          @for (group of allProjects | slice : 0 : 3; track group; let i = $index) {
+                            @if (i % 3 === 0) {
+                              <div
+                                class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3.5 lg:gap-6 2xl:gap-10"
+                                >
+                                @for (project of allProjects.slice(i, i + 3); track project) {
+                                  <a
+                                    [routerLink]="['/portfolio', formatHeading(project.titleLink)]">
+                                    <img
+                                      class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                                      [src]="imageUrl + '/' + project.image_2"
+                                      alt="Project Image"
+                                      />
+                                      <div
+                                        class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                                        >
+                                        <div>
+                                          <h5
+                                            class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                                            >
+                                            {{ project.title }}
+                                          </h5>
+                                          <p
+                                            class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                                            >
+                                            {{ project.description }}
+                                          </p>
+                                        </div>
+                                        <img
+                                          class="size-10 self-end"
+                                          src="../../../assets/images/grad-arrow-btn.svg"
+                                          alt="Arrow Button"
+                                          />
+                                        </div>
+                                      </a>
+                                    }
+                                  </div>
+                                }
+                              }
+                            </div>
+                          </section>
+
+                          <section
+                            class="relative px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px] pb-16 md:pb-24 lg:pb-36 2xl:pb-44 mb-12 lg:mb-12 2xl:mb-20 mt-2.5"
+                            >
+                            <h2
+                              class="text-black text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#B4B9CB]"
+                              >
+                              Application Process
+                            </h2>
+                            <app-getinform></app-getinform>
+                          </section>
+
+                          <app-footer
+                            [showButton]="false"
+                            [showHeading]="false"
+                            [btnText]="'Schedule a call'"
+                            >
+                          </app-footer>
+                        </main>

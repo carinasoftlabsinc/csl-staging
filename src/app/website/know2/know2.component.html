@@ -2,219 +2,502 @@
   <div class="know2-bg">
     <!-- <div class="relative z-10" > -->
     <app-header></app-header>
-    <!-- </div> -->
+  <!-- </div> -->
 
-    <section
-      class="body-font flex items-center justify-start h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
+  <section
+    class="body-font flex items-center justify-start h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
     >
-      <div class="ml-0">
-        <div class="w-full">
-          <h1
-            class="text-white tracking-wide text-3xl xl:text-5xl sm:text-4xl font-myfont"
+    <div class="ml-0">
+      <div class="w-full">
+        <h1
+          class="text-white tracking-wide text-3xl xl:text-5xl sm:text-4xl font-myfont"
           >
 
 
-            We are dedicated to <br class="hidden sm:block" /> meeting your unique needs <br class="hidden sm:block" />with precision and care.
-          </h1>
+          We are dedicated to <br class="hidden sm:block" /> meeting your unique needs <br class="hidden sm:block" />with precision and care.
+        </h1>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- hero -->
+
+<section
+  class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px] text-black"
+  >
+  <!-- <div class="pt-0 lg:pb-28 xl:px-20">
+  <div class="w-full rounded-[40px] pb-3 md:h-[800px]" [ngStyle]="{'background-color': backgroundColor}">
+
+    <div class="grid lg:grid-cols-4 grid-cols-1">
+
+      <button id="tab1" (click)="showTab('tab1')" class="lg:!text-4xl !text-2xl tab-button xl:py-20 py-7  px-4 border-none font-quickSand bg-[#B1DF4F] text-black font-semibold rounded-[40px] lg:rounded-none xl:rounded-tl-[40px] text-start w-full">Expertise & Experience</button>
+
+      <button id="tab2" (click)="showTab('tab2')"  class="lg:!text-4xl !text-2xl tab-button xl:py-20 py-7 px-4 border-none font-quickSand bg-[#BC8AFB] text-black font-semibold rounded-[40px] lg:rounded-none text-start w-full">Creativity & Innovation</button>
+
+      <button id="tab3" (click)="showTab('tab3')" class="lg:!text-4xl !text-2xl tab-button xl:py-20 py-7 px-4 border-none font-quickSand bg-[#FB8ACE] text-black font-semibold rounded-[40px] lg:rounded-none text-start w-full">Results-Oriented Approach</button>
+
+      <button id="tab4" (click)="showTab('tab4')"  class="lg:!text-4xl !text-2xl tab-button xl:py-20 py-7 px-4 border-none font-quickSand bg-[#8AE0FB] text-black font-semibold rounded-[40px] lg:rounded-none xl:rounded-tr-[40px] text-start w-full">Exceptional Client Service</button>
+
+    </div>
+
+    <div class="flex flex-col lg:flex-row justify-between mt-12 mb-9 relative">
+      <div class="flex justify-center lg:justify-start hidden 2xl:block w-full lg:w-96">
+        <img class="w-full max-w-[500px] xl:absolute top-[40px]" src="../../../assets/images/know-logo.png" alt="">
+      </div>
+
+      <div>{{ para }}</div>
+
+      <div class="mr-16 pl-9 max-w-4xl">
+        <div *ngIf="activeTab === 'tab1'" id="content-tab1" class="tab-content">
+          <p class="font-myfont font-normal text-3xl lg:text-[33px] xl:text-[45px] xl:leading-[45px] text-[#0B0C10] mt-10">With years of experience in the  industry, We have worked with businesses of all sizes.</p>
+          <p class="font-quickSand font-medium text-lg lg:text-[22px] lg:leading-[40px] text-justify text-[#34394B] lg:mt-10 pb-6 mt-4">At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive array of services is designed to propel your brand toward success and foster growth. At Carina Softlabs Inc., we serve as your comprehensive destination for all  your business requiremen.</p>
+        </div>
+
+        <div *ngIf="activeTab === 'tab2'" id="content-tab2" class="tab-content ">
+          <p class="font-myfont font-normal text-3xl lg:text-[33px] lg:leading-[45px] xl:text-[45px] xl:leading-[45px] text-[#0B0C10] mt-10"> in the  industry, We have worked with  businesses of all sizes.</p>
+          <p class="font-quickSand font-medium text-lg lg:text-[22px] lg:leading-[40px] text-justify text-[#34394B] lg:mt-10 pb-6 mt-4">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur, voluptatibus asperiores illum dolorum tenetur ipsam? Aliquid quos explicabo beatae quaerat exercitationem rem voluptatum nesciunt, similique dignissimos iste! Sunt.</p>
+        </div>
+
+        <div *ngIf="activeTab === 'tab3'" id="content-tab3" class="tab-content ">
+          <p class="font-myfont font-normal text-3xl lg:text-[33px] lg:leading-[45px] xl:text-[45px] xl:leading-[45px] text-[#0B0C10] mt-10"> We have worked with  businesses of all sizes.</p>
+          <p class="font-quickSand font-medium text-lg lg:text-[22px] lg:leading-[40px] text-justify text-[#34394B] lg:mt-10 pb-6 mt-4"> we serve as your comprehensive destination for all your business requirements. Our extensive array of services is designed to propel your brand toward success  and foster growth. At Carina Softlabs Inc., we serve as your comprehensive destination for all  your business requirements.</p>
+        </div>
+
+        <div *ngIf="activeTab === 'tab4'" id="content-tab4" class="tab-content ">
+          <p class="font-myfont font-normal text-3xl lg:text-[33px] lg:leading-[45px] xl:text-[45px] xl:leading-[45px] text-[#0B0C10] mt-10">With years of experience in the  industry, We have worked with  businesses of all sizes.</p>
+          <p class="font-quickSand font-medium text-lg lg:text-[22px] lg:leading-[40px] text-justify text-[#34394B] lg:mt-10 pb-6 mt-4"> all your business requirements. Our extensive array of services is designed to propel your brand toward success and foster growth. At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirement</p>
         </div>
       </div>
-    </section>
+
+    </div>
   </div>
+</div> -->
 
-  <!-- hero -->
-
-  <section
-    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px] text-black"
+<!-- HTML Template (dynamic) -->
+<!-- <div class="rounded-2xl"> -->
+<div
+  class="button-group grid grid-cols-2 md:grid-cols-4 rounded-t-3xl overflow-hidden"
   >
-    <!-- <div class="pt-0 lg:pb-28 xl:px-20">     
-          <div class="w-full rounded-[40px] pb-3 md:h-[800px]" [ngStyle]="{'background-color': backgroundColor}">
-             
-            <div class="grid lg:grid-cols-4 grid-cols-1">
-                      
-                        <button id="tab1" (click)="showTab('tab1')" class="lg:!text-4xl !text-2xl tab-button xl:py-20 py-7  px-4 border-none font-quickSand bg-[#B1DF4F] text-black font-semibold rounded-[40px] lg:rounded-none xl:rounded-tl-[40px] text-start w-full">Expertise & Experience</button>
-                        
-                       <button id="tab2" (click)="showTab('tab2')"  class="lg:!text-4xl !text-2xl tab-button xl:py-20 py-7 px-4 border-none font-quickSand bg-[#BC8AFB] text-black font-semibold rounded-[40px] lg:rounded-none text-start w-full">Creativity & Innovation</button>
-                 
-                      <button id="tab3" (click)="showTab('tab3')" class="lg:!text-4xl !text-2xl tab-button xl:py-20 py-7 px-4 border-none font-quickSand bg-[#FB8ACE] text-black font-semibold rounded-[40px] lg:rounded-none text-start w-full">Results-Oriented Approach</button>
-                  
-                      <button id="tab4" (click)="showTab('tab4')"  class="lg:!text-4xl !text-2xl tab-button xl:py-20 py-7 px-4 border-none font-quickSand bg-[#8AE0FB] text-black font-semibold rounded-[40px] lg:rounded-none xl:rounded-tr-[40px] text-start w-full">Exceptional Client Service</button>
-             
-              </div>
-      
-              <div class="flex flex-col lg:flex-row justify-between mt-12 mb-9 relative">
-                  <div class="flex justify-center lg:justify-start hidden 2xl:block w-full lg:w-96">
-                      <img class="w-full max-w-[500px] xl:absolute top-[40px]" src="../../../assets/images/know-logo.png" alt="">
-                  </div>
-                 
-                  <div>{{ para }}</div>
-
-                  <div class="mr-16 pl-9 max-w-4xl">
-                      <div *ngIf="activeTab === 'tab1'" id="content-tab1" class="tab-content">
-                          <p class="font-myfont font-normal text-3xl lg:text-[33px] xl:text-[45px] xl:leading-[45px] text-[#0B0C10] mt-10">With years of experience in the  industry, We have worked with businesses of all sizes.</p>
-                          <p class="font-quickSand font-medium text-lg lg:text-[22px] lg:leading-[40px] text-justify text-[#34394B] lg:mt-10 pb-6 mt-4">At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive array of services is designed to propel your brand toward success and foster growth. At Carina Softlabs Inc., we serve as your comprehensive destination for all  your business requiremen.</p>
-                      </div>
-
-                      <div *ngIf="activeTab === 'tab2'" id="content-tab2" class="tab-content ">
-                        <p class="font-myfont font-normal text-3xl lg:text-[33px] lg:leading-[45px] xl:text-[45px] xl:leading-[45px] text-[#0B0C10] mt-10"> in the  industry, We have worked with  businesses of all sizes.</p>
-                        <p class="font-quickSand font-medium text-lg lg:text-[22px] lg:leading-[40px] text-justify text-[#34394B] lg:mt-10 pb-6 mt-4">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur, voluptatibus asperiores illum dolorum tenetur ipsam? Aliquid quos explicabo beatae quaerat exercitationem rem voluptatum nesciunt, similique dignissimos iste! Sunt.</p>
-                      </div>
-
-                      <div *ngIf="activeTab === 'tab3'" id="content-tab3" class="tab-content ">
-                        <p class="font-myfont font-normal text-3xl lg:text-[33px] lg:leading-[45px] xl:text-[45px] xl:leading-[45px] text-[#0B0C10] mt-10"> We have worked with  businesses of all sizes.</p>
-                        <p class="font-quickSand font-medium text-lg lg:text-[22px] lg:leading-[40px] text-justify text-[#34394B] lg:mt-10 pb-6 mt-4"> we serve as your comprehensive destination for all your business requirements. Our extensive array of services is designed to propel your brand toward success  and foster growth. At Carina Softlabs Inc., we serve as your comprehensive destination for all  your business requirements.</p>
-                      </div>
-
-                      <div *ngIf="activeTab === 'tab4'" id="content-tab4" class="tab-content ">
-                        <p class="font-myfont font-normal text-3xl lg:text-[33px] lg:leading-[45px] xl:text-[45px] xl:leading-[45px] text-[#0B0C10] mt-10">With years of experience in the  industry, We have worked with  businesses of all sizes.</p>
-                        <p class="font-quickSand font-medium text-lg lg:text-[22px] lg:leading-[40px] text-justify text-[#34394B] lg:mt-10 pb-6 mt-4"> all your business requirements. Our extensive array of services is designed to propel your brand toward success and foster growth. At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirement</p>
-                      </div>
-                  </div>
-
-              </div>
-          </div>    
-      </div> -->
-
-    <!-- HTML Template (dynamic) -->
-    <!-- <div class="rounded-2xl"> -->
+  @for (item of contentArray; track item; let i = $index) {
     <div
-      class="button-group grid grid-cols-2 md:grid-cols-4 rounded-t-3xl overflow-hidden"
-    >
-      <div
-        class="flex items-end justify-between font-quickSand font-semibold text-base md:text-xl 2xl:text-3xl 2xl:leading-8 leading-6 p-6 md:px-6 md:py-8 lg:py-10 xl:px-10 xl:py-12 2xl:px-16 2xl:py-16 cursor-pointer relative"
-        *ngFor="let item of contentArray; let i = index"
-        (click)="showContent(i)"
-        [ngClass]="item.bgColor"
+      class="flex items-end justify-between font-quickSand font-semibold text-base md:text-xl 2xl:text-3xl 2xl:leading-8 leading-6 p-6 md:px-6 md:py-8 lg:py-10 xl:px-10 xl:py-12 2xl:px-16 2xl:py-16 cursor-pointer relative"
+      (click)="showContent(i)"
+      [ngClass]="item.bgColor"
       >
-        {{ item.btnHeading }}
-        <div
-          class="border border-black rounded-full p-1.5 mb-8 2xl:mb-12 absolute right-2 2xl:right-5 top-2 xl:top-7"
+      {{ item.btnHeading }}
+      <div
+        class="border border-black rounded-full p-1.5 mb-8 2xl:mb-12 absolute right-2 2xl:right-5 top-2 xl:top-7"
         >
-          <img
-            class="w-2.5 md:w-3.5 2xl:w-7"
-            src="../../../assets/images/black-right-arrow.svg"
-            alt=""
-            width="20"
+        <img
+          class="w-2.5 md:w-3.5 2xl:w-7"
+          src="../../../assets/images/black-right-arrow.svg"
+          alt=""
+          width="20"
           />
         </div>
       </div>
-    </div>
+    }
+  </div>
 
+  @if (selectedContent !== null) {
     <div
       class="flex flex-col md:flex-row justify-around mb-16 p-6 md:py-7 lg:py-12 2xl:py-24 rounded-b-3xl"
-      *ngIf="selectedContent !== null"
       [ngClass]="contentArray[selectedContent].bgColor"
-    >
+      >
       <img
         class="mb-3.5 md:-mb-32 2xl:-mb-40 h-80 md:h-80 md:w-60 lg:h-[27rem] lg:w-80 2xl:h-[30rem] 2xl:w-96 object-cover object-top"
         [src]="contentArray[selectedContent].image"
         alt="Image"
-      />
-      <div class="md:w-1/2 flex flex-col gap-3.5 md:gap-6">
-        <h4
-          class="text-2xl leading-6 lg:text-3xl 2xl:text-[2.5rem] 2xl:leading-10 font-myfont"
-        >
-          {{ contentArray[selectedContent].heading }}
-        </h4>
-        <p
-          class="text-sm lg:text-base 2xl:text-xl 2xl:leading-8 font-quickSand font-medium text-[#34394B]"
-        >
-          {{ contentArray[selectedContent].text }}
-        </p>
+        />
+        <div class="md:w-1/2 flex flex-col gap-3.5 md:gap-6">
+          <h4
+            class="text-2xl leading-6 lg:text-3xl 2xl:text-[2.5rem] 2xl:leading-10 font-myfont"
+            >
+            {{ contentArray[selectedContent].heading }}
+          </h4>
+          <p
+            class="text-sm lg:text-base 2xl:text-xl 2xl:leading-8 font-quickSand font-medium text-[#34394B]"
+            >
+            {{ contentArray[selectedContent].text }}
+          </p>
+        </div>
       </div>
-    </div>
-    <!-- </div> -->
+    }
+  <!-- </div> -->
 
-    <!-- Button Group -->
-    <!-- <div class="button-group bg-red-500 grid grid-cols-4">
+  <!-- Button Group -->
+  <!-- <div class="button-group bg-red-500 grid grid-cols-4">
   <button class="p-7" *ngFor="let item of contentArray; let i = index" (click)="showContent(i)">
     Show Content {{ i + 1 }}
   </button>
 </div> -->
 
-    <!-- Content Section with Transition -->
-    <!-- <div class="flex justify-around mb-10 transition-opacity duration-500 ease-in-out" 
-     *ngIf="selectedContent !== null"
-     [ngClass]="contentArray[selectedContent].bgColor"
-     [class.opacity-100]="contentVisible"
-     [class.opacity-0]="!contentVisible">
-  <img class="-mb-10 h-[27rem] w-80 object-contain transition-transform duration-500 ease-in-out transform" 
-       [src]="contentArray[selectedContent].image" alt="Image" 
-       [class.scale-100]="contentVisible"
-       [class.scale-90]="!contentVisible" />
+<!-- Content Section with Transition -->
+<!-- <div class="flex justify-around mb-10 transition-opacity duration-500 ease-in-out"
+*ngIf="selectedContent !== null"
+[ngClass]="contentArray[selectedContent].bgColor"
+[class.opacity-100]="contentVisible"
+[class.opacity-0]="!contentVisible">
+<img class="-mb-10 h-[27rem] w-80 object-contain transition-transform duration-500 ease-in-out transform"
+  [src]="contentArray[selectedContent].image" alt="Image"
+  [class.scale-100]="contentVisible"
+  [class.scale-90]="!contentVisible" />
   <div>
     <h4>{{ contentArray[selectedContent].heading }}</h4>
     <p>{{ contentArray[selectedContent].text }}</p>
   </div>
 </div> -->
-  </section>
+</section>
 
-  <!-- 
-        <section class="px-7 md:px-20 xl:px-20 2xl:py-10 py-10 bg-white rounded-[40px]">
-          <div class="pt-0 pb-28 xl:px-20">
-            <div class="bg-[#BC8AFB] w-full rounded-[40px] pb-3">
-              <div class="grid lg:grid-cols-4 grid-cols-1">
-                <div>
-                  <button (click)="showTab('tab1')"
-                          style="font-size: 33px; line-height: 33px;"
-                          class="tab-button py-20 pt-16 px-4 border-none font-quickSand bg-[#B1DF4F] text-black font-semibold rounded-[40px] lg:rounded-none xl:rounded-tl-[40px] text-start w-full"
-                          id="tab1">Expertise & Experience</button>
-                </div>
-                <div>
-                  <button (click)="showTab('tab2')"
-                          style="font-size: 33px; line-height: 33px;"
-                          class="tab-button py-20 pt-16 px-4 border-none font-quickSand bg-[#BC8AFB] text-black font-semibold rounded-[40px] lg:rounded-none text-start w-full"
-                          id="tab2">Creativity & Innovation</button>
-                </div>
-                <div>
-                  <button (click)="showTab('tab3')"
-                          style="font-size: 33px; line-height: 33px;"
-                          class="tab-button py-20 pt-16 px-4 border-none font-quickSand bg-[#FB8ACE] text-black font-semibold rounded-[40px] lg:rounded-none text-start w-full"
-                          id="tab3">Results-Oriented Approach</button>
-                </div>
-                <div>
-                  <button (click)="showTab('tab4')"
-                          style="font-size: 33px; line-height: 33px;"
-                          class="tab-button py-20 pt-16 px-4 border-none font-quickSand bg-[#8AE0FB] text-black font-semibold rounded-[40px] lg:rounded-none xl:rounded-tr-[40px] text-start w-full"
-                          id="tab4">Exceptional Client Service</button>
-                </div>
-              </div>
-        
-              <div class="flex flex-col lg:flex-row justify-between mt-12 mb-9 relative">
-                <div class="flex justify-center lg:justify-start xl:block w-full lg:w-96">
-                  <img class="w-full max-w-[500px] xl:absolute top-[6px]" src="../../../assets/images/know-logo.png" alt="Placeholder Image">
-                </div>
-                <div class="mr-16 pl-4">
-                  <div *ngIf="activeTab === 'tab1'" class="tab-content flex justify-end ">
-                    <p class="font-quickSand font-normal text-3xl lg:text-[45px] lg:leading-[45px] text-[#0B0C10] mt-10">
-                      With years of experience in the industry, We have worked with businesses of all sizes.
+<!--
+<section class="px-7 md:px-20 xl:px-20 2xl:py-10 py-10 bg-white rounded-[40px]">
+  <div class="pt-0 pb-28 xl:px-20">
+    <div class="bg-[#BC8AFB] w-full rounded-[40px] pb-3">
+      <div class="grid lg:grid-cols-4 grid-cols-1">
+        <div>
+          <button (click)="showTab('tab1')"
+            style="font-size: 33px; line-height: 33px;"
+            class="tab-button py-20 pt-16 px-4 border-none font-quickSand bg-[#B1DF4F] text-black font-semibold rounded-[40px] lg:rounded-none xl:rounded-tl-[40px] text-start w-full"
+          id="tab1">Expertise & Experience</button>
+        </div>
+        <div>
+          <button (click)="showTab('tab2')"
+            style="font-size: 33px; line-height: 33px;"
+            class="tab-button py-20 pt-16 px-4 border-none font-quickSand bg-[#BC8AFB] text-black font-semibold rounded-[40px] lg:rounded-none text-start w-full"
+          id="tab2">Creativity & Innovation</button>
+        </div>
+        <div>
+          <button (click)="showTab('tab3')"
+            style="font-size: 33px; line-height: 33px;"
+            class="tab-button py-20 pt-16 px-4 border-none font-quickSand bg-[#FB8ACE] text-black font-semibold rounded-[40px] lg:rounded-none text-start w-full"
+          id="tab3">Results-Oriented Approach</button>
+        </div>
+        <div>
+          <button (click)="showTab('tab4')"
+            style="font-size: 33px; line-height: 33px;"
+            class="tab-button py-20 pt-16 px-4 border-none font-quickSand bg-[#8AE0FB] text-black font-semibold rounded-[40px] lg:rounded-none xl:rounded-tr-[40px] text-start w-full"
+          id="tab4">Exceptional Client Service</button>
+        </div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row justify-between mt-12 mb-9 relative">
+        <div class="flex justify-center lg:justify-start xl:block w-full lg:w-96">
+          <img class="w-full max-w-[500px] xl:absolute top-[6px]" src="../../../assets/images/know-logo.png" alt="Placeholder Image">
+        </div>
+        <div class="mr-16 pl-4">
+          <div *ngIf="activeTab === 'tab1'" class="tab-content flex justify-end ">
+            <p class="font-quickSand font-normal text-3xl lg:text-[45px] lg:leading-[45px] text-[#0B0C10] mt-10">
+              With years of experience in the industry, We have worked with businesses of all sizes.
+            </p>
+            <p class="font-quickSand font-medium text-lg lg:text-[22px] lg:leading-[40px] text-justify text-[#34394B] lg:mt-10 pb-6 mt-4">
+              At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive array of services is designed to propel your brand toward success and foster growth.
+            </p>
+          </div>
+          <div *ngIf="activeTab === 'tab2'" class="tab-content">
+            <p class="font-quickSand font-normal text-3xl lg:text-[45px] lg:leading-[45px] text-[#0B0C10] mt-10">
+              We believe in fostering creativity and innovation.
+            </p>
+            <p class="font-quickSand font-medium text-lg lg:text-[22px] lg:leading-[40px] text-justify text-[#34394B] lg:mt-10 pb-6 mt-4">
+              Our team is committed to providing innovative solutions that meet your needs and exceed your expectations.
+            </p>
+          </div>
+          <div *ngIf="activeTab === 'tab3'" class="tab-content">
+            <p class="font-quickSand font-normal text-3xl lg:text-[45px] lg:leading-[45px] text-[#0B0C10] mt-10">
+              Our approach is results-oriented.
+            </p>
+            <p class="font-quickSand font-medium text-lg lg:text-[22px] lg:leading-[40px] text-justify text-[#34394B] lg:mt-10 pb-6 mt-4">
+              We focus on delivering measurable outcomes that drive your business forward.
+            </p>
+          </div>
+          <div *ngIf="activeTab === 'tab4'" class="tab-content">
+            <p class="font-quickSand font-normal text-3xl lg:text-[45px] lg:leading-[45px] text-[#0B0C10] mt-10">
+              We prioritize exceptional client service.
+            </p>
+            <p class="font-quickSand font-medium text-lg lg:text-[22px] lg:leading-[40px] text-justify text-[#34394B] lg:mt-10 pb-6 mt-4">
+              Our goal is to build lasting relationships with our clients by providing top-notch service and support.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="px-7 md:px-10 2xl:p-24 xl:px-14 pt-10 md:py-10">
+  <div
+    class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
+    >
+    <h2
+      class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+      >
+      Case Study
+    </h2>
+
+    <a
+      class="2xl:text-[18px] xl:text-[14px] hidden rounded-full !border border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] lg:px-6 lg:py-2 xl:px-6 xl:py-2.5 2xl:px-8 2xl:py-3 text-white sm:flex sm:items-center sm:px-4 sm:py-2"
+      >
+      More Project
+      <img
+        src="../../assets/images/small-tilt-arrow.png"
+        alt="Image"
+        class="button-img ml-2"
+        />
+      </a>
+    </div>
+
+    <div class="xl:pt-20 pt-4">
+      <p
+        class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
+        >
+        Explore how we’ve tackled unique challenges, delivered tailored solutions, and achieved exceptional results. Each case study <br class="hidden md:block" /> highlights our commitment to understanding client needs, innovative problem-solving, and the impact of our partnership.
+
+      </p>
+    </div>
+
+    <div class="containNscroll">
+      <div
+        class="hidden top-[35%] lg:-left-[7vw] md:-left-[47vw] absolute md:flex flex-col items-end"
+        >
+        <!-- <div> -->
+        <span
+          class="text-8xl 2xl:text-9xl text-[#0B0C10] font-thin font-myfont text-strokeee"
+          >
+          {{ currentSection }}</span
+          >
+          <svg
+            class="lg:w-[35vw] 2xl:w-[35vw]"
+            xmlns="http://www.w3.org/2000/svg"
+            height="10"
+            width="600"
+            >
+            <line
+              x1="0"
+              y1="5"
+              x2="100%"
+              y2="5"
+              style="stroke: rgba(180, 185, 203, 1); stroke-width: 1"
+              />
+            </svg>
+          </div>
+          <div
+            class="wrapperScr md:pl-[35vw] px-2.5 py-16 md:py-12 flex items-center h-[85vh] md:h-[85vh] 2xl:h-[90vh]"
+            >
+            @for (card of caseStudy; track card) {
+              <div
+                class="thumbnail fakePin bg-[#0B0C10] h-fit w-[80vw] md:w-[50vw]"
+                >
+                <img
+                  class="h-[40vh] 2xl:h-[45vh] rounded-badge w-full object-cover"
+                  [src]="card.imgSrc"
+                  alt=""
+                  />
+                  <h4
+                    class="font-myfont text-4xl 2xl:text-5xl mt-3.5 mb-2.5 2xl:mt-7 2xl:mb-3.5"
+                    >
+                    {{ card.heading }}
+                  </h4>
+                  <div
+                    class="flex flex-col lg:flex-row md:items-start gap-6 md:gap-y-3.5 justify-between lg:items-center"
+                    >
+                    <p
+                      class="font-quickSand text-sm 2xl:!text-lg leading-5 md:w-[100%] lg:w-[67%]"
+                      >
+                      {{ card.desc }}
                     </p>
-                    <p class="font-quickSand font-medium text-lg lg:text-[22px] lg:leading-[40px] text-justify text-[#34394B] lg:mt-10 pb-6 mt-4">
-                      At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive array of services is designed to propel your brand toward success and foster growth.
-                    </p>
+                    <a
+                      class="flex justify-center items-center rounded-3xl px-6 py-1.5 bg-slate-500 !border border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] font-mont font-medium"
+                      >Case Study</a
+                      >
+                    <!-- </div> -->
                   </div>
-                  <div *ngIf="activeTab === 'tab2'" class="tab-content">
-                    <p class="font-quickSand font-normal text-3xl lg:text-[45px] lg:leading-[45px] text-[#0B0C10] mt-10">
-                      We believe in fostering creativity and innovation.
-                    </p>
-                    <p class="font-quickSand font-medium text-lg lg:text-[22px] lg:leading-[40px] text-justify text-[#34394B] lg:mt-10 pb-6 mt-4">
-                      Our team is committed to providing innovative solutions that meet your needs and exceed your expectations.
-                    </p>
+                </div>
+              }
+
+              <!-- <div class="thumbnail fakePin">1</div>
+              <div class="thumbnail fakePin">2</div>
+              <div class="thumbnail fakePin">3</div>
+              <div class="thumbnail fakePin">4</div> -->
+              <!-- <div class="thumbnail fakePin">5</div>
+              <div class="thumbnail fakePin">6</div>
+              <div class="thumbnail full fakePin">7</div>
+              <div class="thumbnail fakePin">8</div>
+              <div class="thumbnail fakePin">9</div>
+              <div class="thumbnail full fakePin">10</div>
+              <div class="thumbnail fakePin">11</div> -->
+            </div>
+          </div>
+        </section>
+
+        <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10">
+          <div
+            class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
+            >
+            <h2
+              class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+              >
+              Case Study
+            </h2>
+
+            <a
+              class="2xl:text-[18px] xl:text-[14px] hidden rounded-full !border border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] lg:px-6 lg:py-2 xl:px-6 xl:py-2.5 2xl:px-8 2xl:py-3 text-white sm:flex sm:items-center sm:px-4 sm:py-2"
+              >
+              More Project
+              <img
+                src="../../assets/images/small-tilt-arrow.png"
+                alt="Image"
+                class="button-img ml-2"
+                />
+              </a>
+            </div>
+
+            <div class="xl:pt-20 pt-4">
+              <p
+                class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
+                >
+                With years of experience in the industry, We provide high-quality and
+                cost effective <br class="hidden md:block" />
+                web , Game and Software development services.
+              </p>
+            </div>
+
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-12 mb-36 2xl:mt-20 2xl:mb-44 gap-7 justify-between"
+              >
+
+
+              @for (card of numCards; track card) {
+                <div
+                  [ngClass]="card.bgColor"
+                  class="rounded-3xl px-6 py-12 2xl:px-12 overflow-hidden relative group"
+                  >
+                  <img
+                    class="h-40 w-40 lg:h-36 lg:w-36 xl:h-40 xl:w-40 2xl:h-52 2xl:w-52 rounded-full absolute -right-72 -top-3 group-hover:-top-5 group-hover:-right-5 transition-all ease-in"
+                    [src]="card.hovImg"
+                    alt=""
+                    />
+                    <h3
+                      class="mb-12 2xl:mb-16 font-myfont font-medium text-7xl 2xl:text-8xl"
+                      >
+                      {{ card.num }}
+                    </h3>
+                    <div class="flex flex-col gap-3.5">
+                      <h5
+                        class="text-3xl xl:text-4xl 2xl:text-5xl font-quickSand font-bold"
+                        >
+                        {{ card.heading }}
+                      </h5>
+                      <p class="font-quickSand font-medium 2xl:text-lg">
+                        {{ card.para }}
+                      </p>
+                    </div>
+                    <div class="flex justify-end">
+                      <img
+                        class="w-11 2xl:w-14"
+                        src="../../../assets/images/gd-arrow-btn.svg"
+                        alt=""
+                        />
+                      </div>
+                    </div>
+                  }
+                </div>
+              </section>
+
+              <!-- <header>
+              <h1>Fake Horizontal-Scroll with Fake-Pinning</h1>
+            </header> -->
+
+            <!-- <footer>
+            <div class="scrollbar"></div>
+          </footer> -->
+
+          <!-- <header class="fixed z-50 ml-2">
+          <h1 class="text-xl">Fake Horizontal-Scroll with Fake-Pinning</h1>
+        </header>
+
+        <div class="containNscroll">
+          <div class="wrapper relative border-t-[10vh] border-b-[10vh] border-white h-[80vh] flex flex-row">
+            <div class="thumbnail bg-red-600 text-white font-bold flex items-center justify-center rounded-lg h-full w-96">1</div>
+            <div class="thumbnail bg-blue-900 text-white font-bold flex items-center justify-center rounded-lg fakePin w-96">2</div>
+            <div class="thumbnail bg-gray-600 text-white font-bold flex items-center justify-center rounded-lg full fakePin w-96">3</div>
+            <div class="thumbnail bg-orange-600 text-white font-bold flex items-center justify-center rounded-lg fakePin w-96">4</div>
+            <div class="thumbnail bg-purple-600 text-white font-bold flex items-center justify-center rounded-lg fakePin w-96">5</div>
+            <div class="thumbnail bg-black text-white font-bold flex items-center justify-center rounded-lg fakePin w-96">6</div>
+            <div class="thumbnail bg-green-600 text-white font-bold flex items-center justify-center rounded-lg full fakePin  w-96">7</div>
+            <div class="thumbnail bg-red-800 text-white font-bold flex items-center justify-center rounded-lg fakePin  w-96">8</div>
+            <div class="thumbnail bg-teal-600 text-white font-bold flex items-center justify-center rounded-lg fakePin w-96">9</div>
+            <div class="thumbnail bg-blue-600 text-white font-bold flex items-center justify-center rounded-lg full fakePin w-96">10</div>
+            <div class="thumbnail bg-pink-400 text-white font-bold flex items-center justify-center rounded-lg fakePin w-96">11</div>
+          </div>
+        </div>
+
+        <footer class="fixed bottom-0 h-[10vh]">
+          <div class="scrollbar relative rounded-full bg-gray-800 w-[150px] h-[10px] top-[5vh+5px] left-2 cursor-pointer"></div>
+        </footer> -->
+
+        <!-- case study 1-->
+
+        <!-- <section class="px-7 md:px-20 xl:px-20 2xl:py-20 py-10 bg-[#08090c]">
+        <div class="">
+          <div
+            class="flex justify-between items-center content-center lg:mt-16 mt-6"
+            >
+            <p class="text-4xl md:text-6xl font-medium text-white mb-4 font-myfont">
+              CASE STUDY
+            </p>
+            <button
+              class="pb-5 !text-[18px] hidden rounded-full !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] !px-8 !py-3 !p-3 text-white sm:inline-block"
+              >
+              More Project
+            </button>
+          </div>
+
+          <hr class="border-t-1 border-white" />
+
+          <div class="flex justify-center mt-5">
+            <p
+              class="font-quickSand font-medium text-[26px] leading-[34px] text-white"
+              >
+              With years of experience in the industry, We provide high-quality and
+              cost effective <br />
+              web , Game and Software development services.
+            </p>
+          </div>
+
+
+          <div class="overflow-x-auto scrollbar-hide mt-11">
+            <div class="flex space-x-8">
+              <div class="relative mx-auto">
+                <div
+                  class="bg-[#08090c] rounded-[35px] shadow-md flex-shrink-0 flex flex-col"
+                  >
+                  <img
+                    class="object-cover"
+                    src="../../../assets/images/case-study.png"
+                    alt="img"
+                    />
                   </div>
-                  <div *ngIf="activeTab === 'tab3'" class="tab-content">
-                    <p class="font-quickSand font-normal text-3xl lg:text-[45px] lg:leading-[45px] text-[#0B0C10] mt-10">
-                      Our approach is results-oriented.
-                    </p>
-                    <p class="font-quickSand font-medium text-lg lg:text-[22px] lg:leading-[40px] text-justify text-[#34394B] lg:mt-10 pb-6 mt-4">
-                      We focus on delivering measurable outcomes that drive your business forward.
-                    </p>
-                  </div>
-                  <div *ngIf="activeTab === 'tab4'" class="tab-content">
-                    <p class="font-quickSand font-normal text-3xl lg:text-[45px] lg:leading-[45px] text-[#0B0C10] mt-10">
-                      We prioritize exceptional client service.
-                    </p>
-                    <p class="font-quickSand font-medium text-lg lg:text-[22px] lg:leading-[40px] text-justify text-[#34394B] lg:mt-10 pb-6 mt-4">
-                      Our goal is to build lasting relationships with our clients by providing top-notch service and support.
-                    </p>
+
+                  <div class="flex items-center justify-between px-3">
+                    <div class="max-w-xl">
+                      <h1 class="text-white font-myfont text-3xl lg:text-5xl mt-4">
+                        TRUE CATER
+                      </h1>
+                      <P
+                      class="text-[#B4B9CB] font-quickSand text-[17px] leading-[20px] font-normal mt-4"
+                      >Servcie App is a One-Stop Solution for finding any Service
+                      Problems. finding a qualified professional is relatively a
+                      tough task - especially when there is an urgent requirement</P
+                      >
+                    </div>
+
+                    <div>
+                      <button
+                        class="pb-5 !text-[18px] bg-[#34394B] hidden rounded-full !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] !px-8 !py-3 !p-3 text-white sm:inline-block"
+                        >
+                        Case Study
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -222,412 +505,131 @@
           </div>
         </section> -->
 
-  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 pt-10 md:py-10">
-    <div
-      class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
-    >
-      <h2
-        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-      >
-        Case Study
-      </h2>
+        <!-- case study 2 -->
 
-      <a
-        class="2xl:text-[18px] xl:text-[14px] hidden rounded-full !border border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] lg:px-6 lg:py-2 xl:px-6 xl:py-2.5 2xl:px-8 2xl:py-3 text-white sm:flex sm:items-center sm:px-4 sm:py-2"
-      >
-        More Project
-        <img
-          src="../../assets/images/small-tilt-arrow.png"
-          alt="Image"
-          class="button-img ml-2"
-        />
-      </a>
-    </div>
+        <!-- <section class="px-7 md:px-20 xl:px-20 2xl:py-20 py-4 bg-[#08090c]">
+        <div class="flex justify-between items-center content-center mt-8">
+          <p class="text-4xl md:text-6xl font-medium text-white mb-4 font-myfont">
+            CASE STUDY
+          </p>
+          <button
+            class="pb-5 !text-[18px] hidden rounded-full !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] !px-8 !py-3 !p-3 text-white sm:inline-block"
+            >
+            More Project
+          </button>
+        </div>
 
-    <div class="xl:pt-20 pt-4">
-      <p
-        class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
-      >
-        Explore how we’ve tackled unique challenges, delivered tailored solutions, and achieved exceptional results. Each case study <br class="hidden md:block" /> highlights our commitment to understanding client needs, innovative problem-solving, and the impact of our partnership. 
-      
-      </p>
-    </div>
+        <hr class="border-t-1 border-white" />
 
-    <div class="containNscroll">
-      <div
-        class="hidden top-[35%] lg:-left-[7vw] md:-left-[47vw] absolute md:flex flex-col items-end"
-      >
-        <!-- <div> -->
-        <span
-          class="text-8xl 2xl:text-9xl text-[#0B0C10] font-thin font-myfont text-strokeee"
-        >
-          {{ currentSection }}</span
-        >
-        <svg
-          class="lg:w-[35vw] 2xl:w-[35vw]"
-          xmlns="http://www.w3.org/2000/svg"
-          height="10"
-          width="600"
-        >
-          <line
-            x1="0"
-            y1="5"
-            x2="100%"
-            y2="5"
-            style="stroke: rgba(180, 185, 203, 1); stroke-width: 1"
-          />
-        </svg>
-      </div>
-      <div
-        class="wrapperScr md:pl-[35vw] px-2.5 py-16 md:py-12 flex items-center h-[85vh] md:h-[85vh] 2xl:h-[90vh]"
-      >
+        <div class="flex justify-end mt-5">
+          <p
+            class="font-quickSand font-medium text-[26px] leading-[34px] text-white"
+            >
+            With years of experience in the industry, We provide high-quality and
+            cost effective <br />
+            web , Game and Software development services.
+          </p>
+        </div>
+
+
         <div
-          *ngFor="let card of caseStudy"
-          class="thumbnail fakePin bg-[#0B0C10] h-fit w-[80vw] md:w-[50vw]"
-        >
-          <img
-            class="h-[40vh] 2xl:h-[45vh] rounded-badge w-full object-cover"
-            [src]="card.imgSrc"
-            alt=""
-          />
-
-          <h4
-            class="font-myfont text-4xl 2xl:text-5xl mt-3.5 mb-2.5 2xl:mt-7 2xl:mb-3.5"
+          class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 mt-16 justify-between lg:pb-56 mb-44"
           >
-            {{ card.heading }}
-          </h4>
           <div
-            class="flex flex-col lg:flex-row md:items-start gap-6 md:gap-y-3.5 justify-between lg:items-center"
-          >
-            <p
-              class="font-quickSand text-sm 2xl:!text-lg leading-5 md:w-[100%] lg:w-[67%]"
+            class="max-w-lg bg-[#B1DF4F] rounded-3xl overflow-hidden relative px-6 h-[500px]"
             >
-              {{ card.desc }}
-            </p>
-
-            <a
-              class="flex justify-center items-center rounded-3xl px-6 py-1.5 bg-slate-500 !border border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] font-mont font-medium"
-              >Case Study</a
-            >
-            <!-- </div> -->
-          </div>
-        </div>
-
-        <!-- <div class="thumbnail fakePin">1</div>
-     <div class="thumbnail fakePin">2</div>
-     <div class="thumbnail fakePin">3</div>
-     <div class="thumbnail fakePin">4</div> -->
-        <!-- <div class="thumbnail fakePin">5</div>
-     <div class="thumbnail fakePin">6</div>
-     <div class="thumbnail full fakePin">7</div>
-     <div class="thumbnail fakePin">8</div> 
-     <div class="thumbnail fakePin">9</div>
-     <div class="thumbnail full fakePin">10</div>
-     <div class="thumbnail fakePin">11</div> -->
-      </div>
-    </div>
-  </section>
-
-  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10">
-    <div
-      class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
-    >
-      <h2
-        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-      >
-        Case Study
-      </h2>
-
-      <a
-        class="2xl:text-[18px] xl:text-[14px] hidden rounded-full !border border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] lg:px-6 lg:py-2 xl:px-6 xl:py-2.5 2xl:px-8 2xl:py-3 text-white sm:flex sm:items-center sm:px-4 sm:py-2"
-      >
-        More Project
-        <img
-          src="../../assets/images/small-tilt-arrow.png"
-          alt="Image"
-          class="button-img ml-2"
-        />
-      </a>
-    </div>
-
-    <div class="xl:pt-20 pt-4">
-      <p
-        class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
-      >
-        With years of experience in the industry, We provide high-quality and
-        cost effective <br class="hidden md:block" />
-        web , Game and Software development services.
-      </p>
-    </div>
-
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-12 mb-36 2xl:mt-20 2xl:mb-44 gap-7 justify-between"
-    >
-    
-
-      <div
-        *ngFor="let card of numCards"
-        [ngClass]="card.bgColor"
-        class="rounded-3xl px-6 py-12 2xl:px-12 overflow-hidden relative group"
-      >
-        <img
-          class="h-40 w-40 lg:h-36 lg:w-36 xl:h-40 xl:w-40 2xl:h-52 2xl:w-52 rounded-full absolute -right-72 -top-3 group-hover:-top-5 group-hover:-right-5 transition-all ease-in"
-          [src]="card.hovImg"
-          alt=""
-        />
-        <h3
-          class="mb-12 2xl:mb-16 font-myfont font-medium text-7xl 2xl:text-8xl"
-        >
-          {{ card.num }}
-        </h3>
-        <div class="flex flex-col gap-3.5">
-          <h5
-            class="text-3xl xl:text-4xl 2xl:text-5xl font-quickSand font-bold"
-          >
-            {{ card.heading }}
-          </h5>
-          <p class="font-quickSand font-medium 2xl:text-lg">
-            {{ card.para }}
-          </p>
-        </div>
-        <div class="flex justify-end">
-          <img
-            class="w-11 2xl:w-14"
-            src="../../../assets/images/gd-arrow-btn.svg"
-            alt=""
-          />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- <header>
-  <h1>Fake Horizontal-Scroll with Fake-Pinning</h1>
-</header> -->
-
-  <!-- <footer>
-  <div class="scrollbar"></div>
-</footer> -->
-
-  <!-- <header class="fixed z-50 ml-2">
-  <h1 class="text-xl">Fake Horizontal-Scroll with Fake-Pinning</h1>
-</header>
-
-<div class="containNscroll">
-  <div class="wrapper relative border-t-[10vh] border-b-[10vh] border-white h-[80vh] flex flex-row">
-    <div class="thumbnail bg-red-600 text-white font-bold flex items-center justify-center rounded-lg h-full w-96">1</div>
-    <div class="thumbnail bg-blue-900 text-white font-bold flex items-center justify-center rounded-lg fakePin w-96">2</div>
-    <div class="thumbnail bg-gray-600 text-white font-bold flex items-center justify-center rounded-lg full fakePin w-96">3</div>
-    <div class="thumbnail bg-orange-600 text-white font-bold flex items-center justify-center rounded-lg fakePin w-96">4</div>
-    <div class="thumbnail bg-purple-600 text-white font-bold flex items-center justify-center rounded-lg fakePin w-96">5</div>
-    <div class="thumbnail bg-black text-white font-bold flex items-center justify-center rounded-lg fakePin w-96">6</div>
-    <div class="thumbnail bg-green-600 text-white font-bold flex items-center justify-center rounded-lg full fakePin  w-96">7</div>
-    <div class="thumbnail bg-red-800 text-white font-bold flex items-center justify-center rounded-lg fakePin  w-96">8</div>
-    <div class="thumbnail bg-teal-600 text-white font-bold flex items-center justify-center rounded-lg fakePin w-96">9</div>
-    <div class="thumbnail bg-blue-600 text-white font-bold flex items-center justify-center rounded-lg full fakePin w-96">10</div>
-    <div class="thumbnail bg-pink-400 text-white font-bold flex items-center justify-center rounded-lg fakePin w-96">11</div>
-  </div>
-</div>
-
-<footer class="fixed bottom-0 h-[10vh]">
-  <div class="scrollbar relative rounded-full bg-gray-800 w-[150px] h-[10px] top-[5vh+5px] left-2 cursor-pointer"></div>
-</footer> -->
-
-  <!-- case study 1-->
-
-  <!-- <section class="px-7 md:px-20 xl:px-20 2xl:py-20 py-10 bg-[#08090c]">
-    <div class="">
-      <div
-        class="flex justify-between items-center content-center lg:mt-16 mt-6"
-      >
-        <p class="text-4xl md:text-6xl font-medium text-white mb-4 font-myfont">
-          CASE STUDY
-        </p>
-        <button
-          class="pb-5 !text-[18px] hidden rounded-full !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] !px-8 !py-3 !p-3 text-white sm:inline-block"
-        >
-          More Project
-        </button>
-      </div>
-
-      <hr class="border-t-1 border-white" />
-
-      <div class="flex justify-center mt-5">
-        <p
-          class="font-quickSand font-medium text-[26px] leading-[34px] text-white"
-        >
-          With years of experience in the industry, We provide high-quality and
-          cost effective <br />
-          web , Game and Software development services.
-        </p>
-      </div>
-
-
-      <div class="overflow-x-auto scrollbar-hide mt-11">
-        <div class="flex space-x-8">
-          <div class="relative mx-auto">
-            <div
-              class="bg-[#08090c] rounded-[35px] shadow-md flex-shrink-0 flex flex-col"
-            >
-              <img
-                class="object-cover"
-                src="../../../assets/images/case-study.png"
-                alt="img"
-              />
+            <div>
+              <p
+                class="text-4xl leading-tight md:text-6xl md:leading-snug lg:text-[97px] lg:leading-[128px] mt-5 px-6"
+                >
+                O1
+              </p>
             </div>
-
-            <div class="flex items-center justify-between px-3">
-              <div class="max-w-xl">
-                <h1 class="text-white font-myfont text-3xl lg:text-5xl mt-4">
-                  TRUE CATER
-                </h1>
-                <P
-                  class="text-[#B4B9CB] font-quickSand text-[17px] leading-[20px] font-normal mt-4"
-                  >Servcie App is a One-Stop Solution for finding any Service
-                  Problems. finding a qualified professional is relatively a
-                  tough task - especially when there is an urgent requirement</P
+            <div>
+              <p
+                class="font-quickSand text-4xl md:text-5xl lg:text-5xl font-semibold text-[#0B0C10] mt-3 md:mt-5 px-6"
                 >
-              </div>
-
-              <div>
-                <button
-                  class="pb-5 !text-[18px] bg-[#34394B] hidden rounded-full !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] !px-8 !py-3 !p-3 text-white sm:inline-block"
+                Service Web
+              </p>
+            </div>
+            <div class="text-black p-4">
+              <p
+                class="text-base md:text-lg lg:text-[22px] leading-normal md:leading-relaxed lg:leading-[26px] text-start font-quickSand font-semibold text-[#34394B] pb-4 md:pb-6 mt-14"
                 >
-                  Case Study
-                </button>
-              </div>
+                We have worked with businesses of all sizes to create stunning
+                websites, games, and designs that capture their brand's identity.
+              </p>
+            </div>
+          </div>
+
+          =
+          <div
+            class="max-w-lg bg-[#BC8AFB] rounded-3xl overflow-hidden relative px-6"
+            >
+            <div>
+              <p
+                class="text-4xl leading-tight md:text-6xl md:leading-snug lg:text-[97px] lg:leading-[128px] mt-5 px-6"
+                >
+                O2
+              </p>
+            </div>
+            <div>
+              <p
+                class="font-quickSand text-4xl md:text-5xl lg:text-5xl font-semibold text-[#0B0C10] mt-3 md:mt-5 lg:mt-7 px-6"
+                >
+                Service Web
+              </p>
+            </div>
+            <div class="text-black p-4">
+              <p
+                class="text-base md:text-lg lg:text-[22px] leading-normal md:leading-relaxed lg:leading-[26px] text-start font-quickSand font-semibold text-[#34394B] pb-4 md:pb-6 lg:pb-10"
+                >
+                We have worked with businesses of all sizes to create stunning
+                websites, games, and designs that capture their brand's identity.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="max-w-lg bg-[#FB8ACE] rounded-3xl overflow-hidden relative px-6"
+            >
+            <div>
+              <p
+                class="text-4xl leading-tight md:text-6xl md:leading-snug lg:text-[97px] lg:leading-[128px] mt-5 px-6"
+                >
+                O3
+              </p>
+            </div>
+            <div>
+              <p
+                class="font-quickSand text-4xl md:text-5xl lg:text-5xl font-semibold text-[#0B0C10] mt-3 md:mt-5 lg:mt-7 px-6"
+                >
+                Service Web
+              </p>
+            </div>
+            <div class="text-black p-4">
+              <p
+                class="text-base md:text-lg lg:text-[22px] leading-normal md:leading-relaxed lg:leading-[26px] text-start font-quickSand font-semibold text-[#34394B] pb-4 md:pb-6 lg:pb-10"
+                >
+                We have worked with businesses of all sizes to create stunning
+                websites, games, and designs that capture their brand's identity.
+              </p>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section> -->
+      </section> -->
 
-  <!-- case study 2 -->
+      <!-- collaboration card -->
 
-  <!-- <section class="px-7 md:px-20 xl:px-20 2xl:py-20 py-4 bg-[#08090c]">
-    <div class="flex justify-between items-center content-center mt-8">
-      <p class="text-4xl md:text-6xl font-medium text-white mb-4 font-myfont">
-        CASE STUDY
-      </p>
-      <button
-        class="pb-5 !text-[18px] hidden rounded-full !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] !px-8 !py-3 !p-3 text-white sm:inline-block"
-      >
-        More Project
-      </button>
-    </div>
-
-    <hr class="border-t-1 border-white" />
-
-    <div class="flex justify-end mt-5">
-      <p
-        class="font-quickSand font-medium text-[26px] leading-[34px] text-white"
-      >
-        With years of experience in the industry, We provide high-quality and
-        cost effective <br />
-        web , Game and Software development services.
-      </p>
-    </div>
-
-
-    <div
-      class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 mt-16 justify-between lg:pb-56 mb-44"
-    >
-      <div
-        class="max-w-lg bg-[#B1DF4F] rounded-3xl overflow-hidden relative px-6 h-[500px]"
-      >
-        <div>
-          <p
-            class="text-4xl leading-tight md:text-6xl md:leading-snug lg:text-[97px] lg:leading-[128px] mt-5 px-6"
-          >
-            O1
-          </p>
-        </div>
-        <div>
-          <p
-            class="font-quickSand text-4xl md:text-5xl lg:text-5xl font-semibold text-[#0B0C10] mt-3 md:mt-5 px-6"
-          >
-            Service Web
-          </p>
-        </div>
-        <div class="text-black p-4">
-          <p
-            class="text-base md:text-lg lg:text-[22px] leading-normal md:leading-relaxed lg:leading-[26px] text-start font-quickSand font-semibold text-[#34394B] pb-4 md:pb-6 mt-14"
-          >
-            We have worked with businesses of all sizes to create stunning
-            websites, games, and designs that capture their brand's identity.
-          </p>
-        </div>
-      </div>
-
-=
-      <div
-        class="max-w-lg bg-[#BC8AFB] rounded-3xl overflow-hidden relative px-6"
-      >
-        <div>
-          <p
-            class="text-4xl leading-tight md:text-6xl md:leading-snug lg:text-[97px] lg:leading-[128px] mt-5 px-6"
-          >
-            O2
-          </p>
-        </div>
-        <div>
-          <p
-            class="font-quickSand text-4xl md:text-5xl lg:text-5xl font-semibold text-[#0B0C10] mt-3 md:mt-5 lg:mt-7 px-6"
-          >
-            Service Web
-          </p>
-        </div>
-        <div class="text-black p-4">
-          <p
-            class="text-base md:text-lg lg:text-[22px] leading-normal md:leading-relaxed lg:leading-[26px] text-start font-quickSand font-semibold text-[#34394B] pb-4 md:pb-6 lg:pb-10"
-          >
-            We have worked with businesses of all sizes to create stunning
-            websites, games, and designs that capture their brand's identity.
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="max-w-lg bg-[#FB8ACE] rounded-3xl overflow-hidden relative px-6"
-      >
-        <div>
-          <p
-            class="text-4xl leading-tight md:text-6xl md:leading-snug lg:text-[97px] lg:leading-[128px] mt-5 px-6"
-          >
-            O3
-          </p>
-        </div>
-        <div>
-          <p
-            class="font-quickSand text-4xl md:text-5xl lg:text-5xl font-semibold text-[#0B0C10] mt-3 md:mt-5 lg:mt-7 px-6"
-          >
-            Service Web
-          </p>
-        </div>
-        <div class="text-black p-4">
-          <p
-            class="text-base md:text-lg lg:text-[22px] leading-normal md:leading-relaxed lg:leading-[26px] text-start font-quickSand font-semibold text-[#34394B] pb-4 md:pb-6 lg:pb-10"
-          >
-            We have worked with businesses of all sizes to create stunning
-            websites, games, and designs that capture their brand's identity.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-  <!-- collaboration card -->
-
-  <!-- <div class="flex justify-center items-center relative  z-20 ">
+      <!-- <div class="flex justify-center items-center relative  z-20 ">
       <div class="bg-gradient-to-bl from-[#121b44] via-[#0B0C10] to-[#121b44] rounded-[40px] md:px-36 xl:px-52 2xl:py-24 absolute p-8 text-center">
         <p class="text-white text-2xl md:text-[20px] lg:text-[45px] 2xl:text-[60px] lg:leading-[80px] font-myfont text-center">HAVE PROJECT
           IN MIND ? <br> LET'S COLLABORATE.</p>
           <div class="pt-10">
             <button  class=" text-[18px] rounded-full !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] xl:!px-16  xl:!py-3 !p-3 text-white ">schedule a call</button>
           </div>
-        
-      </div>
-    </div> -->
-  <app-footer></app-footer>
-</main>
+
+        </div>
+      </div> -->
+      <app-footer></app-footer>
+    </main>

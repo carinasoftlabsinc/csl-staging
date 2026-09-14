@@ -1,8 +1,8 @@
 <!-- <swiper
-  [effect]="'coverflow'"
-  [grabCursor]="true"
-  [centeredSlides]="true"
-  [slidesPerView]="'auto'"
+[effect]="'coverflow'"
+[grabCursor]="true"
+[centeredSlides]="true"
+[slidesPerView]="'auto'"
   [coverflowEffect]="{
     rotate: 0,
     stretch: 0,
@@ -10,21 +10,21 @@
     modifier: 1.5,
     slideShadows: false
   }"
-  [navigation]="true"
-  [pagination]="{ clickable: true }"
-  class="mySwiper"
+[navigation]="true"
+[pagination]="{ clickable: true }"
+class="mySwiper"
 >
-  <ng-template swiperSlide *ngFor="let slide of slides">
-    <img [src]="slide.img" alt="Image" class="cover-image"/>
-  </ng-template>
+<ng-template swiperSlide *ngFor="let slide of slides">
+  <img [src]="slide.img" alt="Image" class="cover-image"/>
+</ng-template>
 </swiper> -->
 
 <!-- coverflow-slider.component.html -->
 <!-- <swiper-container
-  [effect]="'coverflow'"
-  [grabCursor]="true"
-  [centeredSlides]="true"
-  [slidesPerView]="'auto'"
+[effect]="'coverflow'"
+[grabCursor]="true"
+[centeredSlides]="true"
+[slidesPerView]="'auto'"
   [coverflowEffect]="{
     rotate: 0,
     stretch: 0,
@@ -32,40 +32,40 @@
     modifier: 2.5,
     slideShadows: false
   }"
-  [navigation]="true"
-  [pagination]="{ clickable: true }"
-  class="mySwiper"
+[navigation]="true"
+[pagination]="{ clickable: true }"
+class="mySwiper"
 >
-  <swiper-slide *ngFor="let slide of slides">
-    <img [src]="slide.img" alt="Coverflow Image" />
-  </swiper-slide>
+<swiper-slide *ngFor="let slide of slides">
+  <img [src]="slide.img" alt="Coverflow Image" />
+</swiper-slide>
 </swiper-container> -->
 
 
 <!-- <swiper-container
-  effect="coverflow"
-  grab-cursor="true"
-  centered-slides="true"
-  slides-per-view="auto"
-  navigation="true"
-  pagination="true"
-  coverflow-effect-rotate="50"
-  coverflow-effect-stretch="0"
-  coverflow-effect-depth="100"
-  coverflow-effect-modifier="1"
-  coverflow-effect-slide-shadows="true"
+effect="coverflow"
+grab-cursor="true"
+centered-slides="true"
+slides-per-view="auto"
+navigation="true"
+pagination="true"
+coverflow-effect-rotate="50"
+coverflow-effect-stretch="0"
+coverflow-effect-depth="100"
+coverflow-effect-modifier="1"
+coverflow-effect-slide-shadows="true"
 >
-  <swiper-slide *ngFor="let slide of slides">
-    <img [src]="slide.img" alt="coverflow-image" />
-  </swiper-slide>
+<swiper-slide *ngFor="let slide of slides">
+  <img [src]="slide.img" alt="coverflow-image" />
+</swiper-slide>
 </swiper-container> -->
 
 <!-- <swiper [config]="config">
-  <ng-template swiperSlide *ngFor="let slide of slides">
-    <img [src]="slide.img" alt="coverflow-image" />
-  </ng-template>
+<ng-template swiperSlide *ngFor="let slide of slides">
+  <img [src]="slide.img" alt="coverflow-image" />
+</ng-template>
 </swiper> -->
-<!-- 
+<!--
 <div class="splide">
   <div class="splide__track">
     <ul class="splide__list">
@@ -77,9 +77,9 @@
 </div> -->
 
 <!-- <div #sliderRef class="keen-slider">
-  <div class="keen-slider__slide" *ngFor="let slide of slides">
-    <img [src]="slide.img" alt="Coverflow Image" />
-  </div>
+<div class="keen-slider__slide" *ngFor="let slide of slides">
+  <img [src]="slide.img" alt="Coverflow Image" />
+</div>
 </div> -->
 
 <!-- navigation="true"
@@ -104,14 +104,16 @@ navigation-next-el=".custom-next" -->
     pagination="false"
 
     class="mySwiper max-w-[100vw] w-full mx-auto my-20"
-  >
-    <swiper-slide class="flex items-center justify-center h-[55vh] w-[65vw] lg:w-[40vw]" *ngFor="let slide of slides">
-      <img class="h-full w-full object-cover rounded-[47px]" [src]="slide.img" alt="Coverflow Image" />
-    </swiper-slide>
+    >
+    @for (slide of slides; track slide) {
+      <swiper-slide class="flex items-center justify-center h-[55vh] w-[65vw] lg:w-[40vw]">
+        <img class="h-full w-full object-cover rounded-[47px]" [src]="slide.img" alt="Coverflow Image" />
+      </swiper-slide>
+    }
   </swiper-container>
 
-   <!-- Custom Navigation Buttons --> 
-   <div class="custom-navigation flex justify-center items-center gap-6">
+  <!-- Custom Navigation Buttons -->
+  <div class="custom-navigation flex justify-center items-center gap-6">
     <button (click)="goPrev()" [disabled]="!swiperReady" class="custom-prev p-3.5 border-2 border-[#34394B] rounded-full">
       <img class="size-8" src="../../../../assets/images/grad-left-arrow.svg" alt="Prev" />
     </button>

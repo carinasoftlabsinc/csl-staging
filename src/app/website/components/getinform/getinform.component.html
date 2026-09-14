@@ -1,26 +1,29 @@
 <div class="flex flex-col md:flex-row xl:pt-14 md:pt-12">
   <!-- <div class="md:w-1/2 mb-8 md:mb-0 sm:mx-auto mt-5">
-    <p
-      class="text-black font-myfont text-6xl md:text-[70px] md:leading-[70px] lg:leading-[90px] lg:text-[90px] xl:text-[130px] xl:leading-[130px] 2xl:text-[160px] 2xl:leading-[152px] font-normal"
+  <p
+    class="text-black font-myfont text-6xl md:text-[70px] md:leading-[70px] lg:leading-[90px] lg:text-[90px] xl:text-[130px] xl:leading-[130px] 2xl:text-[160px] 2xl:leading-[152px] font-normal"
     >
-      LET'S <br />
-      <span class="md:ml-16 lg:ml-32 2xl:ml-28 sm:ml-20">GET IN</span>
-      <br />
-      TOUCH
-    </p>
-  </div> -->
+    LET'S <br />
+    <span class="md:ml-16 lg:ml-32 2xl:ml-28 sm:ml-20">GET IN</span>
+    <br />
+    TOUCH
+  </p>
+</div> -->
 
-  <div *ngIf="imgSrc" class="md:w-1/2 mb-8 md:mb-0 sm:mx-auto px-7">
+@if (imgSrc) {
+  <div class="md:w-1/2 mb-8 md:mb-0 sm:mx-auto px-7">
     <div class="w-full h-auto">
       <img [src]="imgSrc" alt="Custom Image" class="w-full lg:h-[60vh] object-contain" />
     </div>
   </div>
+}
 
-  <div *ngIf="!imgSrc" class="md:w-1/2 mb-8 md:mb-0 sm:mx-auto mt-5">
+@if (!imgSrc) {
+  <div class="md:w-1/2 mb-8 md:mb-0 sm:mx-auto mt-5">
     <div >
       <p
         class="text-black font-myfont text-6xl md:text-[70px] md:leading-[70px] lg:leading-[90px] lg:text-[90px] xl:text-[130px] xl:leading-[130px] 2xl:text-[160px] 2xl:leading-[152px] font-normal"
-      >
+        >
         LET'S <br />
         <span class="md:ml-16 lg:ml-32 2xl:ml-28 sm:ml-20">GET IN</span>
         <br />
@@ -28,206 +31,221 @@
       </p>
     </div>
   </div>
+}
 
-  <div class="md:w-1/2 flex justify-center items-center">
-    <form
-      class="w-full font-quickSand font-semibold"
-      [formGroup]="getinformForm"
-      (ngSubmit)="onSave()"
-      #formDirective="ngForm"
+<div class="md:w-1/2 flex justify-center items-center">
+  <form
+    class="w-full font-quickSand font-semibold"
+    [formGroup]="getinformForm"
+    (ngSubmit)="onSave()"
+    #formDirective="ngForm"
     >
-      <div class="">
-        <div
-          class="relative z-0 flex items-center border-b border-[#b4b9cb80] py-1.5"
+    <div class="">
+      <div
+        class="relative z-0 flex items-center border-b border-[#b4b9cb80] py-1.5"
         >
-          <input
-            type="text"
-            id="full-name"
-            formControlName="name"
-            class="block w-full py-1.5 px-0 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 peer text-[#34394B]"
-             [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }"
-            placeholder=" "
+        <input
+          type="text"
+          id="full-name"
+          formControlName="name"
+          class="block w-full py-1.5 px-0 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 peer text-[#34394B]"
+          [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }"
+          placeholder=" "
           />
           <label
             for="full-name"
             class="absolute  font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
             [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }">FULL NAME</label
-          >
+            >
+          </div>
+          @if (submitted && getinformForm.get('name')?.invalid) {
+            <div
+              class="text-red-500 text-sm font-medium mt-1.5"
+              >
+              Name is required.
+            </div>
+          }
         </div>
+
         <div
-          *ngIf="submitted && getinformForm.get('name')?.invalid"
-          class="text-red-500 text-sm font-medium mt-1.5"
-        >
-          Name is required.
-        </div>
-      </div>
-
-      <div
-        class="flex flex-col gap-3.5 md:gap-7 md:flex-row justify-between lg:mt-7 !mt-5 mb-4 md:mb-0"
-      >
-        <!-- Email Field -->
-        <div class="flex-grow">
-          <div
-            class="relative z-0 flex-grow border-b border-[#b4b9cb80] py-2 md:mr-2"
+          class="flex flex-col gap-3.5 md:gap-7 md:flex-row justify-between lg:mt-7 !mt-5 mb-4 md:mb-0"
           >
-            <input
-              type="email"
-              id="email"
-              formControlName="email"
-              class="block w-full py-1.5 px-0 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 peer text-[#34394B]"
-              [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }"
-              placeholder=" "
-            />
-            <label
-              for="email"
-              class="absolute text-[#34394B] font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
-              [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }"
+          <!-- Email Field -->
+          <div class="flex-grow">
+            <div
+              class="relative z-0 flex-grow border-b border-[#b4b9cb80] py-2 md:mr-2"
               >
-              EMAIL
-            </label>
-          </div>
-          <div
-            *ngIf="submitted && getinformForm.get('email')?.invalid"
-            class="text-red-500 text-sm font-medium mt-1.5"
-          >
-            <!-- Required Email -->
-            <div *ngIf="getinformForm.get('email')?.errors?.['required']">
-              Email address is required.
+              <input
+                type="email"
+                id="email"
+                formControlName="email"
+                class="block w-full py-1.5 px-0 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 peer text-[#34394B]"
+                [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }"
+                placeholder=" "
+                />
+                <label
+                  for="email"
+                  class="absolute text-[#34394B] font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+                  [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }"
+                  >
+                  EMAIL
+                </label>
+              </div>
+              @if (submitted && getinformForm.get('email')?.invalid) {
+                <div
+                  class="text-red-500 text-sm font-medium mt-1.5"
+                  >
+                  <!-- Required Email -->
+                  @if (getinformForm.get('email')?.errors?.['required']) {
+                    <div>
+                      Email address is required.
+                    </div>
+                  }
+                  <!-- Invalid Email -->
+                  @if (getinformForm.get('email')?.errors?.['email']) {
+                    <div>
+                      Please enter a valid email address.
+                    </div>
+                  }
+                </div>
+              }
             </div>
-            <!-- Invalid Email -->
-            <div *ngIf="getinformForm.get('email')?.errors?.['email']">
-              Please enter a valid email address.
+
+            <!-- Phone Number Field -->
+            <div class="flex-grow">
+              <div class="relative z-0 border-b border-[#b4b9cb80] py-2 md:mr-2">
+                <input
+                  type="text"
+                  id="full-number"
+                  formControlName="phone"
+                  class="block w-full py-1.5 px-0 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 peer text-[#34394B]"
+                  [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }"
+                  placeholder=" "
+                  />
+                  <label
+                    for="full-number"
+                    class="absolute text-[#34394B] font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+                    [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }"
+                    >
+                    PHONE
+                  </label>
+                </div>
+                @if (submitted && getinformForm.get('phone')?.invalid) {
+                  <div
+                    class="text-red-500 text-sm font-medium mt-1.5"
+                    >
+                    <!-- Required Phone -->
+                    @if (getinformForm.get('phone')?.errors?.['required']) {
+                      <div>
+                        Phone number is required.
+                      </div>
+                    }
+                    <!-- Invalid Phone (non-numeric characters) -->
+                    @if (getinformForm.get('phone')?.errors?.['pattern']) {
+                      <div>
+                        Please enter a valid phone number.
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
             </div>
+
+            <div class="lg:mt-7 !mt-3">
+              <label
+                for="message"
+                class="block mb-2 font-semibold text-[#34394B]"
+                [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }"
+                >
+                MESSAGE</label
+                >
+                <textarea
+                  id="message"
+                  formControlName="message"
+                  rows="6"
+                  class="block p-2.5 w-full text-gray-700 bg-[#F4F5F7] rounded-2xl mt-3 outline-none focus:outline-[#34394B] ease-in duration-100"
+                  [ngClass]="{'bg-[#b4b9cb29]' : theme === 'dark'}"
+                ></textarea>
+              </div>
+
+              <div
+                class="mt-3.5 pb-3.5 2xl:mt-7 2xl:pb-7 flex flex-col md:flex-row justify-between border-b border-[#b4b9cb80]"
+                >
+                <div class="flex flex-col gap-2.5">
+                  <div class="flex justify-start items-center gap-2">
+                    <!-- <img
+                    class="w-7"
+                    src="../../../assets/images/phone_icon.svg"
+                    alt=""
+                    /> -->
+                    @if (theme !== 'dark') {
+                      <img
+                        class="w-7"
+                        src="../../../assets/images/phone_icon.svg"
+                        alt="Phone Icon"
+                        />
+                    }
+
+                    <!-- Dark Theme Image -->
+                    @if (theme === 'dark') {
+                      <img
+                        class="w-7"
+                        src="../../../assets/images/phone-icon.svg"
+                        alt="Phone Icon Dark"
+                        />
+                    }
+                    <p
+                      class="text-[#34394B] 2xl:text-[18px] font-semibold font-quickSand"
+                      [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }"
+                      >
+                      +91 91319 58215
+                    </p>
+                  </div>
+                  <div class="flex justify-start items-center gap-2">
+                    @if (theme !== 'dark') {
+                      <img
+                        class="w-7"
+                        src="../../../assets/images/email_icon.svg"
+                        alt=""
+                        />
+                    }
+                    @if (theme === 'dark') {
+                      <img
+                        class="w-5"
+                        src="../../../assets/images/email-gradient-icon.svg"
+                        alt=""
+                        />
+                    }
+                    <a
+                      href="mailto:business@carinasoftlabs.com"
+                      class="text-[#34394B] 2xl:text-[18px] font-semibold font-quickSand"
+                      [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }"
+                      >
+                      {{ mail }}
+                    </a>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-end">
+                  <button
+                    type="submit"
+                    [disabled]="loading"
+                    class="p-3 rounded-full bg-[#34394B]"
+                    >
+                    @if (!loading) {
+                      <img src="../../../assets/images/submit-btn.svg" alt="" />
+                    } @else {
+                      <mat-spinner
+                        diameter="24"
+                        strokeWidth="4"
+                        color="accent"
+                        class="mr-3"
+                      ></mat-spinner>
+                    }
+
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-
-        <!-- Phone Number Field -->
-        <div class="flex-grow">
-          <div class="relative z-0 border-b border-[#b4b9cb80] py-2 md:mr-2">
-            <input
-              type="text"
-              id="full-number"
-              formControlName="phone"
-              class="block w-full py-1.5 px-0 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 peer text-[#34394B]"
-              [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }"
-              placeholder=" "
-            />
-            <label
-              for="full-number"
-              class="absolute text-[#34394B] font-semibold duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
-              [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }"
-              >
-              PHONE
-            </label>
-          </div>
-          <div
-            *ngIf="submitted && getinformForm.get('phone')?.invalid"
-            class="text-red-500 text-sm font-medium mt-1.5"
-          >
-            <!-- Required Phone -->
-            <div *ngIf="getinformForm.get('phone')?.errors?.['required']">
-              Phone number is required.
-            </div>
-            <!-- Invalid Phone (non-numeric characters) -->
-            <div *ngIf="getinformForm.get('phone')?.errors?.['pattern']">
-              Please enter a valid phone number.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="lg:mt-7 !mt-3">
-        <label
-          for="message"
-          class="block mb-2 font-semibold text-[#34394B]"
-          [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }"
-          >
-          MESSAGE</label
-        >
-        <textarea
-          id="message"
-          formControlName="message"
-          rows="6"
-          class="block p-2.5 w-full text-gray-700 bg-[#F4F5F7] rounded-2xl mt-3 outline-none focus:outline-[#34394B] ease-in duration-100"
-          [ngClass]="{'bg-[#b4b9cb29]' : theme === 'dark'}"
-        ></textarea>
-      </div>
-
-      <div
-        class="mt-3.5 pb-3.5 2xl:mt-7 2xl:pb-7 flex flex-col md:flex-row justify-between border-b border-[#b4b9cb80]"
-      >
-        <div class="flex flex-col gap-2.5">
-          <div class="flex justify-start items-center gap-2">
-            <!-- <img
-              class="w-7"
-              src="../../../assets/images/phone_icon.svg"
-              alt=""
-            /> -->
-            <img
-            *ngIf="theme !== 'dark'"
-            class="w-7"
-            src="../../../assets/images/phone_icon.svg"
-            alt="Phone Icon"
-          />
-        
-          <!-- Dark Theme Image -->
-          <img
-            *ngIf="theme === 'dark'"
-            class="w-7"
-            src="../../../assets/images/phone-icon.svg"
-            alt="Phone Icon Dark"
-          />
-            <p
-              class="text-[#34394B] 2xl:text-[18px] font-semibold font-quickSand"
-              [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }"
-            >
-              +91 91319 58215
-            </p>
-          </div>
-          <div class="flex justify-start items-center gap-2">
-            <img
-            *ngIf="theme !== 'dark'"
-              class="w-7"
-              src="../../../assets/images/email_icon.svg"
-              alt=""
-            />
-            <img
-            *ngIf="theme === 'dark'"
-              class="w-5"
-              src="../../../assets/images/email-gradient-icon.svg"
-              alt=""
-            />
-            <a
-              href="mailto:business@carinasoftlabs.com"
-              class="text-[#34394B] 2xl:text-[18px] font-semibold font-quickSand"
-              [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }"
-            >
-              {{ mail }}
-            </a>
-          </div>
-        </div>
-
-        <div class="flex items-center justify-end">
-          <button
-            type="submit"
-            [disabled]="loading"
-            class="p-3 rounded-full bg-[#34394B]"
-          >
-            <ng-container *ngIf="!loading; else spinnerTemplate">
-              <img src="../../../assets/images/submit-btn.svg" alt="" />
-            </ng-container>
-
-            <ng-template #spinnerTemplate>
-              <mat-spinner
-                diameter="24"
-                strokeWidth="4"
-                color="accent"
-                class="mr-3"
-              ></mat-spinner>
-            </ng-template>
-          </button>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>

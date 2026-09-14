@@ -8,372 +8,376 @@
         <div
           #stickySidebar
           class="sticky bg-[#34394b53] rounded-3xl font-quickSand p-3 text-[#B4B9CB]"
-        >
+          >
           <h2
             class="text-white text-xl xl:text-2xl 2xl:text-3xl border-b border-[#34394B] pb-2 mb-3 uppercase"
-          >
+            >
             Table of Contents
           </h2>
-          <ng-container *ngIf="!loadingBlog; else sidebarSkeleton">
+          @if (!loadingBlog) {
             <ul>
-              <li class="my-2.5 2xl:my-3.5" *ngFor="let section of sections">
-                <a
-                  class="font-medium text-white xl:!text-lg 2xl:!text-xl"
-                  [class.active]="activeSection === section._id"
-                  href="#"
-                  (click)="scrollToSection($event, section._id)"
-                >
-                  {{ section.heading }}
-                </a>
-              </li>
+              @for (section of sections; track section) {
+                <li class="my-2.5 2xl:my-3.5">
+                  <a
+                    class="font-medium text-white xl:!text-lg 2xl:!text-xl"
+                    [class.active]="activeSection === section._id"
+                    href="#"
+                    (click)="scrollToSection($event, section._id)"
+                    >
+                    {{ section.heading }}
+                  </a>
+                </li>
+              }
             </ul>
-          </ng-container>
-          <ng-template #sidebarSkeleton>
+          } @else {
             <div class="space-y-7 animate-pulse">
-              <div
-                *ngFor="let i of [1, 2, 3, 4, 5, 6]"
-                class="h-4 bg-gray-600 rounded w-3/4"
-              ></div>
+              @for (i of [1, 2, 3, 4, 5, 6]; track i) {
+                <div
+                  class="h-4 bg-gray-600 rounded w-3/4"
+                ></div>
+              }
             </div>
-          </ng-template>
+          }
         </div>
       </div>
 
       <!-- MAIN CONTENT -->
       <div
         class="col-span-3 lg:col-span-2 flex flex-col gap-7 2xl:gap-9 text-white font-quickSand"
-      >
-        <ng-container *ngIf="!loadingBlog; else contentSkeleton">
+        >
+        @if (!loadingBlog) {
           <img
             class="w-full rounded-3xl h-72 2xl:h-[35vh] object-contain img-fluid"
             [src]="imageUrl + cardDataa?.image"
             alt=""
-          />
-          <h1 class="font-myfont text-xl md:text-3xl xl:text-4xl 2xl:text-5xl">
-            {{ cardDataa?.title }}
-          </h1>
-          <div
-            class="flex font-quickSand font-semibold gap-3 items-center border-b pb-6 border-[#34394B]"
-          >
-            <img
-              class="h-12 w-12 object-cover rounded-full"
-              src="../../../assets/images/author-image.png"
-              [alt]="cardDataa?.title"
             />
-            <div class="xl:text-base 2xl:text-lg">
-              <h4 class="capitalize">
-                <span class="text-[#8AE0FB]">By </span>{{ cardDataa?.author }}
-              </h4>
-              <span class="capitalize"
-                ><span class="text-[#8AE0FB]">Posted on </span
-                >{{ cardDataa?.date }}</span
+            <h1 class="font-myfont text-xl md:text-3xl xl:text-4xl 2xl:text-5xl">
+              {{ cardDataa?.title }}
+            </h1>
+            <div
+              class="flex font-quickSand font-semibold gap-3 items-center border-b pb-6 border-[#34394B]"
               >
-            </div>
-          </div>
+              <img
+                class="h-12 w-12 object-cover rounded-full"
+                src="../../../assets/images/author-image.png"
+                [alt]="cardDataa?.title"
+                />
+                <div class="xl:text-base 2xl:text-lg">
+                  <h4 class="capitalize">
+                    <span class="text-[#8AE0FB]">By </span>{{ cardDataa?.author }}
+                  </h4>
+                  <span class="capitalize"
+                    ><span class="text-[#8AE0FB]">Posted on </span
+                    >{{ cardDataa?.date }}</span
+                    >
+                  </div>
+                </div>
+                <!-- Blog Sections -->
+                <!-- <div
+                *ngFor="let section of sections"
+                [id]="section._id"
+                class="flex flex-col !gap-3 !text-white"
+                >
+                <h2 class="text-2xl font-semibold">{{ section?.heading }}</h2>
+                <p [innerHTML]="sanitizeContent(section?.content)"></p>
+              </div> -->
+              @for (section of sanitizedSections; track section) {
+                <div
+                  [id]="section._id"
+                  class="flex flex-col !gap-3 !text-white"
+                  >
+                  <h2 class="text-2xl xl:text-3xl 2xl:text-4xl font-semibold">
+                    {{ section.heading }}
+                  </h2>
+                  <p
+                    class="sm:text-base xl:text-lg 2xl:text-xl"
+                    [innerHTML]="section.sanitizedContent"
+                  ></p>
+                </div>
+              }
+            } @else {
+              <div class="space-y-6 animate-pulse">
+                <div class="w-full h-72 2xl:h-[35vh] bg-gray-700 rounded-3xl"></div>
+                <div class="h-8 bg-gray-600 rounded w-1/2"></div>
+                <div class="flex gap-3 items-center">
+                  <div class="h-12 w-12 rounded-full bg-gray-600"></div>
+                  <div class="flex flex-col gap-2">
+                    <div class="h-4 bg-gray-600 rounded w-32"></div>
+                    <div class="h-4 bg-gray-600 rounded w-40"></div>
+                  </div>
+                </div>
+                @for (i of [1, 2, 3]; track i) {
+                  <div class="space-y-3">
+                    <div class="h-6 bg-gray-600 rounded w-1/3"></div>
+                    <div class="h-4 bg-gray-600 rounded w-full"></div>
+                    <div class="h-4 bg-gray-600 rounded w-5/6"></div>
+                    <div class="h-4 bg-gray-600 rounded w-2/3"></div>
+                  </div>
+                }
+              </div>
+            }
 
-          <!-- Blog Sections -->
-          <!-- <div
-            *ngFor="let section of sections"
-            [id]="section._id"
-            class="flex flex-col !gap-3 !text-white"
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQS -->
+      @if (faqs && faqs.length > 0) {
+        <section
+          class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px] mt-6"
           >
-            <h2 class="text-2xl font-semibold">{{ section?.heading }}</h2>
-            <p [innerHTML]="sanitizeContent(section?.content)"></p>
-          </div> -->
-          <div
-            *ngFor="let section of sanitizedSections"
-            [id]="section._id"
-            class="flex flex-col !gap-3 !text-white"
-          >
-            <h2 class="text-2xl xl:text-3xl 2xl:text-4xl font-semibold">
-              {{ section.heading }}
+          <div>
+            <h2
+              class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
+              >
+              Frequently asked questions
             </h2>
+          </div>
+          <div class="xl:pt-20 pt-4">
             <p
-              class="sm:text-base xl:text-lg 2xl:text-xl"
-              [innerHTML]="section.sanitizedContent"
-            ></p>
+              class="text-justify font-quickSand text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-[#34394B]"
+              >
+              Everything you need to know about this blog.
+            </p>
           </div>
-        </ng-container>
-
-        <ng-template #contentSkeleton>
-          <div class="space-y-6 animate-pulse">
-            <div class="w-full h-72 2xl:h-[35vh] bg-gray-700 rounded-3xl"></div>
-            <div class="h-8 bg-gray-600 rounded w-1/2"></div>
-            <div class="flex gap-3 items-center">
-              <div class="h-12 w-12 rounded-full bg-gray-600"></div>
-              <div class="flex flex-col gap-2">
-                <div class="h-4 bg-gray-600 rounded w-32"></div>
-                <div class="h-4 bg-gray-600 rounded w-40"></div>
+          <div class="my-8 2xl:my-20">
+            <div class="md:max-w-4xl  2xl:max-w-7xl mx-auto px-4 py-10">
+              @for (faq of faqs; track faq; let i = $index) {
+                <div
+                  class="border-b border-gray-200"
+                  >
+                  <button
+                    class="w-full text-left py-7 md:py-9 flex justify-between items-center focus:outline-none"
+                    (click)="toggleFAQ(i)"
+                    >
+                    <span
+                      class="font-quickSand font-semibold text-black text-lg lg:text-xl lg:leading-7 2xl:text-2xl 2xl:leading-3"
+                      >{{ faq.question }}</span
+                      >
+                      <span
+                        class="text-2xl text-[#34394b] border-2 border-[#34394b] rounded-full w-6 h-6 flex items-center justify-center transition-transform duration-300 ease-in-out"
+                        >
+                        {{ faq.open ? "−" : "+" }}
+                      </span>
+                    </button>
+                    @if (faq.open) {
+                      <div
+                        class="font-quickSand font-medium text-sm leading-6 lg:text-[1rem] lg:leading-7 2xl:text-xl 2xl:leading-7 text-[#34394B] transition duration-300 ease-in-out pb-7"
+                        [innerHTML]="faq.safeAnswer"
+                      ></div>
+                    }
+                  </div>
+                }
               </div>
             </div>
+          </section>
+        }
 
-            <div *ngFor="let i of [1, 2, 3]" class="space-y-3">
-              <div class="h-6 bg-gray-600 rounded w-1/3"></div>
-              <div class="h-4 bg-gray-600 rounded w-full"></div>
-              <div class="h-4 bg-gray-600 rounded w-5/6"></div>
-              <div class="h-4 bg-gray-600 rounded w-2/3"></div>
-            </div>
+        <!-- MORE BLOGS SECTION -->
+        <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24">
+          <div
+            class="flex justify-between items-center content-center my-10 pb-2 border-b border-[#34394b]"
+            >
+            <p
+              class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+              >
+              MORE BLOGS
+            </p>
           </div>
-        </ng-template>
-      </div>
-    </div>
-  </section>
 
-  <!-- FAQS -->
-  <section
-   *ngIf="faqs && faqs.length > 0"
-    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px] mt-6"
-  >
-    <div>
-      <h2
-        class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
-      >
-        Frequently asked questions
-      </h2>
-    </div>
+          @if (!loadingMoreBlogs) {
+            <div
+              class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28 my-12"
+              >
+              @for (card of filteredBlogs | slice : 0 : 3; track card) {
+                <div
+                  class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer"
+                  [routerLink]="['/blog', formatHeading(card?.titleLink)]"
+                  >
+                  <div
+                    class="card-hover bg-[#000000] rounded-[40px] h-full w-full flex flex-col justify-between"
+                    >
+                    <div>
+                      <a>
+                        <img
+                          class="p-4 rounded-[60px] h-64 2xl:h-80 w-full object-cover"
+                          [src]="imageUrl  + card.image_2"
+                          alt="product image"
+                          />
+                        </a>
+                        <div class="px-4">
+                          <h5
+                            class="2xl:leading-7 2xl:text-2xl xl:text-xl xl:leading-6 text-lg leading-5 font-myfont font-medium text-center text-white dark:text-white !mb-2 2xl:!mb-4"
+                            >
+                            {{ card?.title }}
+                          </h5>
+                          <p
+                            class="text-[#B4B9CB] text-center font-quickSand text-[13px] leading-[15px] xl:text-base xl:leading-5 md:text-[13px] md:leading-[15px] sm:text-[20px] sm:leading-[20px]"
+                            >
+                            {{ card?.description }}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="flex justify-end mr-4 mb-4 mt-3">
+                        <button type="button">
+                          <img
+                            class="w-8 lg:w-8 xl:w-10"
+                            src="../../../assets/images/gd-arrow-btn.svg"
+                            alt=""
+                            />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                </div>
+              } @else {
+                <div
+                  class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28 my-12 mb-24 animate-pulse"
+                  >
+                  @for (i of [1, 2, 3]; track i) {
+                    <div
+                      class="bg-[#1f1f1f] p-4 rounded-[40px]"
+                      >
+                      <div class="h-64 2xl:h-80 bg-gray-700 rounded-[30px] mb-4"></div>
+                      <div class="h-6 bg-gray-600 rounded mb-2 w-3/4 mx-auto"></div>
+                      <div class="h-4 bg-gray-600 rounded w-5/6 mx-auto"></div>
+                    </div>
+                  }
+                </div>
+              }
 
-    <div class="xl:pt-20 pt-4">
-      <p
-        class="text-justify font-quickSand text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-[#34394B]"
-      >
-        Everything you need to know about this blog.
-      </p>
-    </div>
+            </section>
 
-    <div class="my-8 2xl:my-20">
-      <div class="md:max-w-4xl  2xl:max-w-7xl mx-auto px-4 py-10">
-        <div
-          *ngFor="let faq of faqs; let i = index"
-          class="border-b border-gray-200"
-        >
-          <button
-            class="w-full text-left py-7 md:py-9 flex justify-between items-center focus:outline-none"
-            (click)="toggleFAQ(i)"
-          >
-            <span
-              class="font-quickSand font-semibold text-black text-lg lg:text-xl lg:leading-7 2xl:text-2xl 2xl:leading-3"
-              >{{ faq.question }}</span
-            >
-            <span
-              class="text-2xl text-[#34394b] border-2 border-[#34394b] rounded-full w-6 h-6 flex items-center justify-center transition-transform duration-300 ease-in-out"
-            >
-              {{ faq.open ? "−" : "+" }}
-            </span>
-          </button>
-          <div
-            *ngIf="faq.open"
-            class="font-quickSand font-medium text-sm leading-6 lg:text-[1rem] lg:leading-7 2xl:text-xl 2xl:leading-7 text-[#34394B] transition duration-300 ease-in-out pb-7"
-            [innerHTML]="faq.safeAnswer"
-          ></div>
-        </div>
-      </div>
-    </div>
-  </section>
+            <app-footer></app-footer>
+          </main>
 
-  <!-- MORE BLOGS SECTION -->
-  <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24">
-    <div
-      class="flex justify-between items-center content-center my-10 pb-2 border-b border-[#34394b]"
-    >
-      <p
-        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-      >
-        MORE BLOGS
-      </p>
-    </div>
+          <!-- <main class="bg-[#000000]">
+          <app-header></app-header>
 
-    <ng-container *ngIf="!loadingMoreBlogs; else moreBlogSkeleton">
-      <div
-        class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28 my-12"
-      >
-        <div
-          *ngFor="let card of filteredBlogs | slice : 0 : 3"
-          class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer"
-          [routerLink]="['/blog', formatHeading(card?.titleLink)]"
-        >
-          <div
-            class="card-hover bg-[#000000] rounded-[40px] h-full w-full flex flex-col justify-between"
-          >
-            <div>
-              <a>
-                <img
-                  class="p-4 rounded-[60px] h-64 2xl:h-80 w-full object-cover"
-                  [src]="imageUrl  + card.image_2"
-                  alt="product image"
-                />
-              </a>
-              <div class="px-4">
-                <h5
-                  class="2xl:leading-7 2xl:text-2xl xl:text-xl xl:leading-6 text-lg leading-5 font-myfont font-medium text-center text-white dark:text-white !mb-2 2xl:!mb-4"
-                >
-                  {{ card?.title }}
-                </h5>
-                <p
-                  class="text-[#B4B9CB] text-center font-quickSand text-[13px] leading-[15px] xl:text-base xl:leading-5 md:text-[13px] md:leading-[15px] sm:text-[20px] sm:leading-[20px]"
-                >
-                  {{ card?.description }}
-                </p>
+          <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24 relative">
+            <div class="grid grid-cols-3 gap-24">
+              <div class="hidden lg:block relative">
+                <div
+                  #stickySidebar
+                  class="sticky bg-[#34394b53] rounded-3xl font-quickSand p-3 text-[#B4B9CB]"
+                  >
+                  <h2 class="text-white text-xl border-b border-[#34394B] pb-2 mb-3">
+                    CONTENT
+                  </h2>
+                  <ul>
+                    <li class="my-2 " *ngFor="let section of sections">
+                      <a
+                        class="font-medium text-white"
+                        [class.active]="activeSection === section._id"
+                        href="#"
+                        (click)="scrollToSection($event, section._id)"
+                        >
+                        {{ section.heading }}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div class="flex justify-end mr-4 mb-4 mt-3">
-              <button type="button">
+              <div
+                class="col-span-3 lg:col-span-2 flex flex-col gap-7 2xl:gap-9 text-white font-quickSand"
+                >
                 <img
-                  class="w-8 lg:w-8 xl:w-10"
-                  src="../../../assets/images/gd-arrow-btn.svg"
+                  class="w-full rounded-3xl h-72 object-cover img-fluid"
+                  [src]="imageUrl + '/' + cardData?.image"
                   alt=""
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </ng-container>
+                  />
+                  <h1 class="font-myfont text-xl md:text-3xl">{{ cardData?.title }}</h1>
+                  <div
+                    class="flex font-quickSand font-semibold gap-3 items-center border-b pb-6 border-[#34394B]"
+                    >
+                    <img
+                      class="h-12 w-12 object-cover rounded-full"
+                      src="../../../assets/images/author-image.png"
+                      [alt]="cardData?.title"
+                      />
+                      <div>
+                        <h4 class="capitalize">
+                          <span class="text-[#8AE0FB]">By </span>{{ cardData?.author }}
+                        </h4>
+                        <span class="capitalize"
+                          ><span class="text-[#8AE0FB]">Posted on </span
+                          >{{ cardData?.date }}</span
+                          >
+                        </div>
+                      </div>
 
-    <ng-template #moreBlogSkeleton>
-      <div
-        class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28 my-12 mb-24 animate-pulse"
-      >
-        <div
-          *ngFor="let i of [1, 2, 3]"
-          class="bg-[#1f1f1f] p-4 rounded-[40px]"
-        >
-          <div class="h-64 2xl:h-80 bg-gray-700 rounded-[30px] mb-4"></div>
-          <div class="h-6 bg-gray-600 rounded mb-2 w-3/4 mx-auto"></div>
-          <div class="h-4 bg-gray-600 rounded w-5/6 mx-auto"></div>
-        </div>
-      </div>
-    </ng-template>
-  </section>
 
-  <app-footer></app-footer>
-</main>
+                      <div
+                        *ngFor="let section of sections"
+                        [id]="section._id"
+                        class="flex flex-col !gap-3 !text-white"
+                        >
+                        <h2 class="text-2xl font-semibold">{{ section?.heading }}</h2>
+                        <p [innerHTML]="section?.content"></p>
+                      </div>
 
-<!-- <main class="bg-[#000000]">
-  <app-header></app-header>
 
-  <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24 relative">
-    <div class="grid grid-cols-3 gap-24">
-      <div class="hidden lg:block relative">
-        <div
-          #stickySidebar
-          class="sticky bg-[#34394b53] rounded-3xl font-quickSand p-3 text-[#B4B9CB]"
-        >
-          <h2 class="text-white text-xl border-b border-[#34394B] pb-2 mb-3">
-            CONTENT
-          </h2>
-          <ul>
-            <li class="my-2 " *ngFor="let section of sections">
-              <a
-                class="font-medium text-white"
-                [class.active]="activeSection === section._id"
-                href="#"
-                (click)="scrollToSection($event, section._id)"
-              >
-                {{ section.heading }}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div
-        class="col-span-3 lg:col-span-2 flex flex-col gap-7 2xl:gap-9 text-white font-quickSand"
-      >
-        <img
-          class="w-full rounded-3xl h-72 object-cover img-fluid"
-          [src]="imageUrl + '/' + cardData?.image"
-          alt=""
-        />
-        <h1 class="font-myfont text-xl md:text-3xl">{{ cardData?.title }}</h1>
-        <div
-          class="flex font-quickSand font-semibold gap-3 items-center border-b pb-6 border-[#34394B]"
-        >
-          <img
-            class="h-12 w-12 object-cover rounded-full"
-            src="../../../assets/images/author-image.png"
-            [alt]="cardData?.title"
-          />
-          <div>
-            <h4 class="capitalize">
-              <span class="text-[#8AE0FB]">By </span>{{ cardData?.author }}
-            </h4>
-            <span class="capitalize"
-              ><span class="text-[#8AE0FB]">Posted on </span
-              >{{ cardData?.date }}</span
-            >
-          </div>
-        </div>
-     
+                    </div>
+                  </div>
+                </section>
 
-        <div
-          *ngFor="let section of sections"
-          [id]="section._id"
-          class="flex flex-col !gap-3 !text-white"
-        >
-          <h2 class="text-2xl font-semibold">{{ section?.heading }}</h2>
-          <p [innerHTML]="section?.content"></p>
-        </div>
+                <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24">
+                  <div
+                    class="flex justify-between items-center content-center my-10 pb-2 border-b border-[#34394b]"
+                    >
+                    <p
+                      class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
+                      >
+                      MORE BLOGS
+                    </p>
+                  </div>
 
-       
-      </div>
-    </div>
-  </section>
+                  <div
+                    class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28 my-12"
+                    >
+                    <div
+                      *ngFor="let card of filteredBlogs | slice : 0 : 3"
+                      class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer"
+                      [routerLink]="['/blog', formatHeading(card?.titleLink)]"
+                      >
+                      <div
+                        class="card-hover bg-[#000000] rounded-[40px] h-full w-full flex flex-col justify-between"
+                        >
+                        <div>
+                          <a>
+                            <img
+                              class="p-4 rounded-[60px] h-64 2xl:h-80 w-full object-cover"
+                              [src]="imageUrl + '/' + card.image_2"
+                              alt="product image"
+                              />
+                            </a>
+                            <div class="px-4">
+                              <h5
+                                class="2xl:leading-7 2xl:text-2xl xl:text-xl xl:leading-6 text-lg leading-5 font-myfont font-medium text-center text-white dark:text-white !mb-2 2xl:!mb-4"
+                                >
+                                {{ card?.title }}
+                              </h5>
+                              <p
+                                class="text-[#B4B9CB] text-center font-quickSand text-[13px] leading-[15px] xl:text-base xl:leading-5 md:text-[13px] md:leading-[15px] sm:text-[20px] sm:leading-[20px]"
+                                >
+                                {{ card?.description }}
+                              </p>
+                            </div>
+                          </div>
+                          <div class="flex justify-end mr-4 mb-4 mt-3">
+                            <button type="button">
+                              <img
+                                class="w-8 lg:w-8 xl:w-10"
+                                src="../../../assets/images/gd-arrow-btn.svg"
+                                alt=""
+                                />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
 
-  <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24">
-    <div
-      class="flex justify-between items-center content-center my-10 pb-2 border-b border-[#34394b]"
-    >
-      <p
-        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-      >
-        MORE BLOGS
-      </p>
-    </div>
-
-    <div
-      class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28 my-12"
-    >
-      <div
-        *ngFor="let card of filteredBlogs | slice : 0 : 3"
-        class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer"
-        [routerLink]="['/blog', formatHeading(card?.titleLink)]"
-      >
-        <div
-          class="card-hover bg-[#000000] rounded-[40px] h-full w-full flex flex-col justify-between"
-        >
-          <div>
-            <a>
-              <img
-                class="p-4 rounded-[60px] h-64 2xl:h-80 w-full object-cover"
-                [src]="imageUrl + '/' + card.image_2"
-                alt="product image"
-              />
-            </a>
-            <div class="px-4">
-              <h5
-                class="2xl:leading-7 2xl:text-2xl xl:text-xl xl:leading-6 text-lg leading-5 font-myfont font-medium text-center text-white dark:text-white !mb-2 2xl:!mb-4"
-              >
-                {{ card?.title }}
-              </h5>
-              <p
-                class="text-[#B4B9CB] text-center font-quickSand text-[13px] leading-[15px] xl:text-base xl:leading-5 md:text-[13px] md:leading-[15px] sm:text-[20px] sm:leading-[20px]"
-              >
-                {{ card?.description }}
-              </p>
-            </div>
-          </div>
-          <div class="flex justify-end mr-4 mb-4 mt-3">
-            <button type="button">
-              <img
-                class="w-8 lg:w-8 xl:w-10"
-                src="../../../assets/images/gd-arrow-btn.svg"
-                alt=""
-              />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <app-footer></app-footer>
-</main> -->
+                    <app-footer></app-footer>
+                  </main> -->

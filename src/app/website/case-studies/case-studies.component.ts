@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
@@ -19,6 +19,7 @@ interface PortfolioItem {
     selector: 'app-case-studies',
     templateUrl: './case-studies.component.html',
     styleUrls: ['./case-studies.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CaseStudiesComponent {

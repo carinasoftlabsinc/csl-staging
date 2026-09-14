@@ -48,7 +48,7 @@
         @if (!loadingBlog) {
           <img
             class="w-full rounded-3xl h-72 2xl:h-[35vh] object-contain img-fluid"
-            [src]="imageUrl + cardDataa?.image"
+            [src]="imageUrl + $safeNavigationMigration(cardDataa?.image)"
             alt=""
             />
             <h1 class="font-myfont text-xl md:text-3xl xl:text-4xl 2xl:text-5xl">
@@ -60,7 +60,7 @@
               <img
                 class="h-12 w-12 object-cover rounded-full"
                 src="../../../assets/images/author-image.png"
-                [alt]="cardDataa?.title"
+                [alt]="$safeNavigationMigration(cardDataa?.title)"
                 />
                 <div class="xl:text-base 2xl:text-lg">
                   <h4 class="capitalize">
@@ -192,7 +192,7 @@
               @for (card of filteredBlogs | slice : 0 : 3; track card) {
                 <div
                   class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer"
-                  [routerLink]="['/blog', formatHeading(card?.titleLink)]"
+                  [routerLink]="['/blog', formatHeading($safeNavigationMigration(card?.titleLink))]"
                   >
                   <div
                     class="card-hover bg-[#000000] rounded-[40px] h-full w-full flex flex-col justify-between"

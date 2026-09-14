@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-testimonial-bubble',
     templateUrl: './testimonial-bubble.component.html',
     styleUrls: ['./testimonial-bubble.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TestimonialBubbleComponent {

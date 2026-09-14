@@ -36,7 +36,7 @@
         <div class="w-full md:w-2/3 md:py-8">
           <img
             class="rounded-3xl h-48 md:h-64 lg:h-80 xl:h-[70vh] w-full object-cover"
-            [src]="imageUrl + '/' + cardData?.image"
+            [src]="imageUrl + '/' + $safeNavigationMigration(cardData?.image)"
             />
           </div>
         </div>
@@ -113,7 +113,7 @@
         >
         <img
           class="w-60 h-32 2xl:w-72 2xl:h-36 object-contain"
-          [src]="imageUrl + '/' + cardData?.projectLogo"
+          [src]="imageUrl + '/' + $safeNavigationMigration(cardData?.projectLogo)"
           alt=""
           />
         </div>
@@ -123,7 +123,7 @@
           >
           <p
             class="text-black 2xl:text-xl capitalize pb-2.5 mb-2.5 border-b border-[#B4B9CB]"
-            [innerHTML]="cardData?.clientReview"
+            [innerHTML]="$safeNavigationMigration(cardData?.clientReview)"
           ></p>
           <!-- <p class="font-medium 2xl:text-xl">{{ cardData?.clientName }}</p> -->
           <p class="font-medium 2xl:text-xl">
@@ -157,18 +157,18 @@
     </h4> -->
     <h4
       class="text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-3xl md:text-4xl xl:text-5xl 2xl:text-7xl font-myfont"
-      [innerHTML]="cardData?.about_title"
+      [innerHTML]="$safeNavigationMigration(cardData?.about_title)"
     ></h4>
 
     <p
       class="text-[#B4B9CB] mt-3 text-sm xl:text-base 2xl:text-xl 2xl:leading-[27px] font-quickSand font-medium max-w-2xl 2xl:max-w-4xl text-center"
-      [innerHTML]="cardData?.aboutDescription"
+      [innerHTML]="$safeNavigationMigration(cardData?.aboutDescription)"
     ></p>
   </div>
 
   <img
     class="absolute top-0 left-0 w-full h-full object-cover !z-0"
-    [src]="imageUrl + '/' + cardData?.aboutBg"
+    [src]="imageUrl + '/' + $safeNavigationMigration(cardData?.aboutBg)"
     alt=""
     />
   </section>
@@ -283,7 +283,7 @@
                 The Challenges
               </h4>
 
-              <div class="2xl:text-xl" [innerHTML]="cardData?.content"></div>
+              <div class="2xl:text-xl" [innerHTML]="$safeNavigationMigration(cardData?.content)"></div>
             </div>
             <img
               class="hidden md:inline w-10 mx-1.5"
@@ -304,7 +304,7 @@
                     The Solutions
                   </h4>
 
-                  <div class="2xl:text-xl" [innerHTML]="cardData?.solutionContent"></div>
+                  <div class="2xl:text-xl" [innerHTML]="$safeNavigationMigration(cardData?.solutionContent)"></div>
                 </div>
               </div>
             </section>
@@ -446,7 +446,7 @@
                         <div class="rounded-badge overflow-hidden">
                           <img
                             class="h-[70vh] w-full object-cover"
-                            [src]="imageUrl + '/' + cardData?.how_image"
+                            [src]="imageUrl + '/' + $safeNavigationMigration(cardData?.how_image)"
                             alt=""
                             />
                           </div>

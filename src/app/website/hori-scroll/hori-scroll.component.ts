@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Observer } from 'gsap/Observer';
@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger, Observer);
     selector: 'app-hori-scroll',
     templateUrl: './hori-scroll.component.html',
     styleUrls: ['./hori-scroll.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class HoriScrollComponent implements OnInit {

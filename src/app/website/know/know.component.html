@@ -285,7 +285,7 @@
                       >
                       <img
                         class="w-52 2xl:w-[17rem] rounded-2xl object-cover"
-                        [src]="hoveredItem?.image"
+                        [src]="$safeNavigationMigration(hoveredItem?.image)"
                         alt="Image"
                         />
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 
@@ -9,6 +9,7 @@ import { environment } from 'environments/environment';
     selector: 'app-blog',
     templateUrl: './blog.component.html',
     styleUrls: ['./blog.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class BlogComponent implements OnInit, OnDestroy {

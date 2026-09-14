@@ -17,7 +17,7 @@
             </h1>
             <img
               class="w-full rounded-3xl h-72 2xl:h-[35vh] object-cover"
-              [src]="imageUrl + cardData?.image"
+              [src]="imageUrl + $safeNavigationMigration(cardData?.image)"
               alt=""
               />
               <div
@@ -26,7 +26,7 @@
                 <img
                   class="h-12 w-12 object-cover rounded-full"
                   src="../../../assets/images/author-image.png"
-                  [alt]="cardData?.title"
+                  [alt]="$safeNavigationMigration(cardData?.title)"
                   />
                   <div class="xl:text-base 2xl:text-lg">
                     <h4 class="capitalize">
@@ -41,7 +41,7 @@
                   <div
                     class="font-quickSand flex flex-col gap-3 sm:text-base xl:text-lg 2xl:text-xl"
                     >
-                    <p [innerHTML]="cardData?.description"></p>
+                    <p [innerHTML]="$safeNavigationMigration(cardData?.description)"></p>
                   </div>
                   <div
                     class="font-quickSand sm:text-base xl:text-lg 2xl:text-xl"
@@ -125,7 +125,7 @@
                     @if (cardData?.feed) {
                       <div class="linkedin-embed mt-2.5">
                         <iframe
-                          [src]="sanitizer.bypassSecurityTrustResourceUrl(cardData?.feed)"
+                          [src]="sanitizer.bypassSecurityTrustResourceUrl($safeNavigationMigration(cardData?.feed))"
                           height="500"
                           width="100%"
                           frameborder="0"

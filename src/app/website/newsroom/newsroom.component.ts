@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild, DOCUMENT } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 
 import { newsroomService } from './newsroom.service';
@@ -10,6 +10,7 @@ import { environment } from 'environments/environment';
     selector: 'app-newsroom',
     templateUrl: './newsroom.component.html',
     styleUrls: ['./newsroom.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class NewsroomComponent implements OnInit, AfterViewInit, OnDestroy {

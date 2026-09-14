@@ -263,7 +263,7 @@
 // }
 
 
-import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Title, Meta } from '@angular/platform-browser';
 
@@ -299,6 +299,7 @@ interface ApiResponse {
     selector: 'app-know4',
     templateUrl: './know4.component.html',
     styleUrls: ['./know4.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class Know4Component implements OnInit, OnDestroy {

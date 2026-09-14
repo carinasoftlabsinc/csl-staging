@@ -1,4 +1,4 @@
-import { HostListener, DOCUMENT } from '@angular/core';
+import { HostListener, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import {
   Component,
@@ -27,6 +27,7 @@ export interface ListItem {
     selector: 'app-know',
     templateUrl: './know.component.html',
     styleUrls: ['./know.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {

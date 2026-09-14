@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 // Import the default export and the type of KeenSlider
 import KeenSlider, { KeenSliderInstance } from 'keen-slider';
 
@@ -6,6 +6,7 @@ import KeenSlider, { KeenSliderInstance } from 'keen-slider';
     selector: 'app-web-slider',
     templateUrl: './web-slider.component.html',
     styleUrls: ['./web-slider.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class WebSliderComponent {

@@ -6,6 +6,7 @@ import {
   OnInit,
   AfterViewInit,
   Renderer2,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -16,6 +17,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     selector: 'app-news-detail',
     templateUrl: './news-detail.component.html',
     styleUrls: ['./news-detail.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class NewsDetailComponent implements OnInit, AfterViewInit {

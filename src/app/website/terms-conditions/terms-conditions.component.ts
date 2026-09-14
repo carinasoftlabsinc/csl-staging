@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-terms-conditions',
     templateUrl: './terms-conditions.component.html',
     styleUrls: ['./terms-conditions.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class TermsConditionsComponent implements OnInit {

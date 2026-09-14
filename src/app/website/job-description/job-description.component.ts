@@ -9,7 +9,7 @@
 
 // }
 
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -57,6 +57,7 @@ interface ApiResponse {
     selector: 'app-job-description',
     templateUrl: './job-description.component.html',
     styleUrls: ['./job-description.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class JobDescriptionComponent {

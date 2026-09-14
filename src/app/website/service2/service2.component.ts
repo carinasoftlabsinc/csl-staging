@@ -155,6 +155,7 @@ import {
   Component,
   ElementRef,
   ViewChild,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -163,6 +164,7 @@ gsap.registerPlugin(ScrollTrigger);
     selector: 'app-service2',
     templateUrl: './service2.component.html',
     styleUrls: ['./service2.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class Service2Component implements AfterViewInit {

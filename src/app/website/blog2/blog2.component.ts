@@ -5,6 +5,7 @@ import {
   ElementRef,
   ViewChild,
   OnInit,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'environments/environment';
@@ -13,6 +14,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
     selector: 'app-blog2',
     templateUrl: './blog2.component.html',
     styleUrls: ['./blog2.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class Blog2Component implements OnInit {

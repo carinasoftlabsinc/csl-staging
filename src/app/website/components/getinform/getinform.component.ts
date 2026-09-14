@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
@@ -12,6 +12,7 @@ import { Router } from '@angular/router'; // Import the Router
     selector: 'app-getinform',
     templateUrl: './getinform.component.html',
     styleUrls: ['./getinform.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class GetinformComponent {

@@ -61,12 +61,13 @@
 //   }
 //   }
 
-import { Component, HostListener, ElementRef, EventEmitter, Output } from '@angular/core';
+import { Component, HostListener, ElementRef, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-sticky-btn',
     templateUrl: './sticky-btn.component.html',
     styleUrls: ['./sticky-btn.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class StickyBtnComponent {

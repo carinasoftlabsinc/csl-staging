@@ -24,12 +24,13 @@
 //   }
 // }
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-toggle-switch',
     templateUrl: './toggle-switch.component.html',
     styleUrls: ['./toggle-switch.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ToggleSwitchComponent implements OnInit {

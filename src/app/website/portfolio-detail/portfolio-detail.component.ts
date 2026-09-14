@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
@@ -18,6 +18,7 @@ interface PortfolioItem {
     selector: 'app-portfolio-detail',
     templateUrl: './portfolio-detail.component.html',
     styleUrls: ['./portfolio-detail.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class PortfolioDetailComponent {

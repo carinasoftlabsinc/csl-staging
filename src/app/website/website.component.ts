@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, Renderer2, ViewChild, DOCUMENT } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import {
   trigger,
@@ -33,6 +33,7 @@ import { HttpClient } from '@angular/common/http';
             ]),
         ]),
     ],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {

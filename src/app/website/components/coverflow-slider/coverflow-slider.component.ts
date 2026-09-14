@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, NO_ERRORS_SCHEMA, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, NO_ERRORS_SCHEMA, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 register();
 
@@ -11,6 +11,7 @@ register();
     // schemas: [NO_ERRORS_SCHEMA],
     templateUrl: './coverflow-slider.component.html',
     styleUrls: ['./coverflow-slider.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class CoverflowSliderComponent implements AfterViewInit  {

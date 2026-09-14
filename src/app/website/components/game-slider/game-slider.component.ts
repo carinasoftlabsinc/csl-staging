@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
 
 declare const $: any; 
 
@@ -6,6 +6,7 @@ declare const $: any;
     selector: 'app-game-slider',
     templateUrl: './game-slider.component.html',
     styleUrls: ['./game-slider.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class GameSliderComponent implements AfterViewInit {

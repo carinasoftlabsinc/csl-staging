@@ -1,6 +1,8 @@
-<!-- <p>job-description works!</p> -->
 <main class="bg-[#000000]">
   <app-header></app-header>
+  @if (isNotFound) {
+    <app-not-found></app-not-found>
+  } @else if (jobPost) {
 
  
 
@@ -585,6 +587,7 @@
       </form>
     </div>
   </section>
+  }
 
   <app-footer></app-footer>
 </main>

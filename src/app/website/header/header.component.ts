@@ -1,19 +1,33 @@
-import { Component, Output, EventEmitter, HostListener, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  HostListener,
+  Input,
+  ChangeDetectionStrategy,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
-    selector: 'app-header',
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class HeaderComponent {
   @Output() navToggle = new EventEmitter<boolean>();
   isOpen = false;
   openDropdown: number | null = null;
+  @Input() isWhiteBackground: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
     // Listen to router events and reset body overflow on route change
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -26,11 +40,12 @@ export class HeaderComponent {
     this.isOpen = !this.isOpen;
     this.navToggle.emit(this.isOpen);
 
-    // Toggle body scrolling for smaller screens
-    if (window.innerWidth < 1024) {
-      document.body.style.overflow = this.isOpen ? 'hidden' : '';
-    } else {
-      document.body.style.overflow = '';
+    if (isPlatformBrowser(this.platformId)) {
+      if (window.innerWidth < 1024) {
+        document.body.style.overflow = this.isOpen ? 'hidden' : '';
+      } else {
+        document.body.style.overflow = '';
+      }
     }
   }
 
@@ -40,19 +55,19 @@ export class HeaderComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
-    // Reset body overflow when screen size changes to larger than 1024px
-    if (window.innerWidth >= 1024) {
-      document.body.style.overflow = '';
+    if (isPlatformBrowser(this.platformId)) {
+      if (window.innerWidth >= 1024) {
+        document.body.style.overflow = '';
+      }
     }
   }
 
   private resetBodyOverflow() {
-    if (window.innerWidth < 1024) {
-      document.body.style.overflow = '';
-      this.isOpen = false;
+    if (isPlatformBrowser(this.platformId)) {
+      if (window.innerWidth < 1024) {
+        document.body.style.overflow = '';
+        this.isOpen = false;
+      }
     }
   }
-
-   @Input() isWhiteBackground: boolean = false; 
-
 }

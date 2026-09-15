@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
+import { SeoService } from '@core/service/seo.service';
 
 @Component({
     selector: 'app-terms-conditions',
@@ -13,16 +13,13 @@ export class TermsConditionsComponent implements OnInit {
   cardText: string = `Partner with Clarity
 Understand Our Terms Before We Begin.`;
 
-  constructor(
-    private titleService: Title,
-    private metaService: Meta
-  ) {}
+  private readonly seoService = inject(SeoService);
 
   ngOnInit(): void {
-    this.titleService.setTitle('Terms & Conditions - Carina Softlabs Inc.');
-    this.metaService.updateTag({
-      name: 'description',
-      content: 'Read the Terms and Conditions of Carina Softlabs Inc. to understand the rules and guidelines for using our website and services.'
+    this.seoService.setPage({
+      title: 'Terms & Conditions - Carina Softlabs Inc.',
+      description: 'Read the Terms and Conditions of Carina Softlabs Inc. to understand the rules and guidelines for using our website and services.',
+      url: 'https://carinasoftlabs.com/terms-conditions',
     });
   }
 }

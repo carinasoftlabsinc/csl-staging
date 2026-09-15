@@ -94,6 +94,7 @@ import { JobDescriptionComponent } from './job-description/job-description.compo
 import { CaseStudiesComponent } from './case-studies/case-studies.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -189,7 +190,7 @@ const routes: Routes = [
   // Wildcard route for handling 404 pages
   {
     path: '**',
-    redirectTo: '/',
+    component: NotFoundComponent,
   },
 ];
 

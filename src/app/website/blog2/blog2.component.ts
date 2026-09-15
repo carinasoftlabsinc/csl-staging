@@ -5,27 +5,33 @@ import {
   ElementRef,
   ViewChild,
   OnInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  Inject,
+  PLATFORM_ID,
+  SecurityContext,
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { SeoService } from '@core/service/seo.service';
+
 @Component({
-    selector: 'app-blog2',
-    templateUrl: './blog2.component.html',
-    styleUrls: ['./blog2.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-blog2',
+  templateUrl: './blog2.component.html',
+  styleUrls: ['./blog2.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class Blog2Component implements OnInit {
-  cardData: any = null; // Holds the matched blog data
-  cardDataa: any = null; // Holds the matched blog data
+  cardData: any = null;
+  cardDataa: any = null;
   sections: any[] = [];
   activeSection!: string;
   activeSubSection!: string;
-  apiUrl = `${environment.apiUrl}/admin/getAll_blog`; // Replace with environment variable if needed
-  singleBlogApi = `${environment.apiUrl}/admin/get_blog`; // assuming your baseUrl ends with /web/web/v1
-  getAll_blogTitles = `${environment.apiUrl}/admin/getAll_blogTitles`; // assuming your baseUrl ends with /web/web/v1
+  apiUrl = `${environment.apiUrl}/admin/getAll_blog`;
+  singleBlogApi = `${environment.apiUrl}/admin/get_blog`;
+  getAll_blogTitles = `${environment.apiUrl}/admin/getAll_blogTitles`;
   imageUrl = environment.imageBaseUrl;
   allBlogs: any[] = [];
   filteredBlogs: any[] = [];
@@ -37,6 +43,7 @@ export class Blog2Component implements OnInit {
     sanitizedContent: SafeHtml;
   }[] = [];
   loading = false;
+  isNotFound = false;
   faqs: {
     question: string;
     answer: string;
@@ -45,28 +52,23 @@ export class Blog2Component implements OnInit {
     safeAnswer?: SafeHtml;
   }[] = [];
 
+  @ViewChild('stickySidebar') stickySidebar!: ElementRef;
+
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private seoService: SeoService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit() {
-    // this.route.params.subscribe((params) => {
-    //   const blogId = params['title']; // Extract the `title` parameter from route
-    //   if (blogId) {
-    //     this.getFilterData(blogId);
-    //   }
-    // });
-
     this.route.params.subscribe((params) => {
       const titleLink = params['title'];
       if (titleLink) {
         this.getBlogIdFromTitle(titleLink);
       }
     });
-
-    // this.fetchAllBlogs();
   }
 
   fetchAllBlogs() {
@@ -74,135 +76,75 @@ export class Blog2Component implements OnInit {
 
     this.http
       .get(`${environment.apiUrl}/admin/getAll_blog?category=web`)
-      .subscribe(
-        (response: any) => {
+      .subscribe({
+        next: (response: any) => {
           this.loadingMoreBlogs = false;
           if (response && response.data && response.data.data) {
-            this.allBlogs = response.data.data; // Store all fetched blogs
+            this.allBlogs = response.data.data;
 
             if (this.cardDataa) {
               this.filteredBlogs = this.allBlogs.filter(
                 (blog) => blog.titleLink !== this.cardDataa.titleLink
               );
             }
-          } else {
-            console.warn('No data found');
           }
         },
-        (error) => {
+        error: (error) => {
           console.error('Error fetching blogs:', error);
           this.loadingMoreBlogs = false;
-        }
-      );
+        },
+      });
   }
 
-  // getFilterData(_id: string) {
-  //   this.loadingBlog = true;
-  //   this.http.get(this.apiUrl).subscribe(
-  //     (data: any) => {
-  //       this.loadingBlog = false;
-  //       if (data && data.data && data.data.data) {
-  //         // Find the blog where `titleLink` matches the `_id`
-  //         this.cardData = data.data.data.find(
-  //           (item: any) => this.formatHeading(item.titleLink) === _id
-  //         );
-
-  //         if (this.cardData) {
-  //           // this.sections = this.cardData.sections || [];
-  //           const rawSections = this.cardData.sections || [];
-  //           this.sections = rawSections;
-
-  //           this.sanitizedSections = rawSections.map((section: any) => ({
-  //             _id: section._id,
-  //             heading: section.heading,
-  //             sanitizedContent: this.sanitizeContent(section.content || '')
-  //           }));
-
-  //           // Apply styles after setting `cardData`
-  //           setTimeout(() => this.applyStyles(), 0);
-
-  //           if (this.sections.length > 0) {
-  //             this.activeSection = this.sections[0]._id;
-  //             const flatSubSections = this.sections.flatMap(
-  //               (section) => section.subSections || []
-  //             );
-  //             this.activeSubSection =
-  //               flatSubSections.length > 0 ? flatSubSections[0]._id : '';
-  //           }
-  //         } else {
-  //           console.warn('No blog found for ID:', _id);
-  //           this.resetData();
-  //         }
-  //       } else {
-  //         console.warn('Invalid API response format');
-  //         this.resetData();
-  //       }
-  //     },
-  //     (error) => {
-  //       console.error('Error while retrieving blog data:', error);
-  //       this.loadingBlog = false;
-  //       this.resetData();
-  //     }
-  //   );
-  // }
-
   getBlogIdFromTitle(titleLink: string) {
-    this.loading = true; // Show loading
+    this.loading = true;
 
-    this.http.get(this.getAll_blogTitles).subscribe(
-      (response: any) => {
-        this.loading = false; // Hide loading after response
+    this.http.get(this.getAll_blogTitles).subscribe({
+      next: (response: any) => {
+        this.loading = false;
         if (response?.data) {
           const blog = response.data.find(
-            (item: any) => this.formatHeading(item.titleLink) === titleLink
+            (item: any) =>
+              item.titleLink === titleLink ||
+              this.formatHeading(item.titleLink) === titleLink
           );
 
           if (blog?._id) {
+            this.isNotFound = false;
             this.getBlogById(blog._id);
           } else {
             console.warn('No blog found with titleLink:', titleLink);
+            this.isNotFound = true;
+            this.seoService.setNotFoundStatus();
             this.resetData();
           }
         } else {
-          console.warn('No data received from blog titles API.');
+          this.isNotFound = true;
+          this.seoService.setNotFoundStatus();
           this.resetData();
         }
       },
-      (error) => {
-        this.loading = false; // Hide loading on error
+      error: (error) => {
+        this.loading = false;
+        this.isNotFound = true;
+        this.seoService.setNotFoundStatus();
         console.error('Error getting blogs:', error);
-      }
-    );
+      },
+    });
   }
-
-  // getBlogIdFromTitle(titleLink: string) {
-  //   // Option 1: Use getAll_blog to map titleLink → _id
-  //   this.http.get(this.getAll_blogTitles).subscribe(
-  //     (data: any) => {
-  //       if (data && data.data && data.data.data) {
-  //         const blog = data.data.data.find(
-  //           (item: any) => this.formatHeading(item.titleLink) === titleLink
-  //         );
-  //         if (blog?._id) {
-  //           this.getBlogById(blog._id);
-  //         } else {
-  //           console.warn('No blog found with titleLink:', titleLink);
-  //           this.resetData();
-  //         }
-  //       }
-  //     },
-  //     (error) => {
-  //       console.error('Error getting blogs:', error);
-  //     }
-  //   );
-  // }
 
   getBlogById(_id: string) {
     this.loadingBlog = true;
-    this.http.get(`${environment.apiUrl}/admin/get_blog/${_id}`).subscribe(
-      (res: any) => {
+    this.http.get(`${environment.apiUrl}/admin/get_blog/${_id}`).subscribe({
+      next: (res: any) => {
         this.loadingBlog = false;
         this.cardDataa = res.data.data;
+        if (!this.cardDataa) {
+          this.isNotFound = true;
+          this.seoService.setNotFoundStatus();
+          return;
+        }
+
         const rawSections = this.cardDataa?.sections || [];
         this.sections = rawSections;
         this.sanitizedSections = rawSections.map((section: any) => ({
@@ -210,11 +152,39 @@ export class Blog2Component implements OnInit {
           heading: section.heading,
           sanitizedContent: this.sanitizeContent(section.content || ''),
         }));
-        this.faqs = this.cardDataa?.faqs.map((faq: any, i: any) => ({
+        this.faqs = (this.cardDataa?.faqs || []).map((faq: any, i: any) => ({
           ...faq,
           open: i === 0,
           safeAnswer: this.sanitizer.bypassSecurityTrustHtml(faq.answer),
         }));
+
+        this.seoService.setPage({
+          title: `${this.cardDataa.title} | Carina Softlabs`,
+          description:
+            this.cardDataa.description ||
+            'Read more insights on technology and innovation from Carina Softlabs.',
+          url: `https://carinasoftlabs.com/blog/${this.cardDataa.titleLink}`,
+          image: this.cardDataa.image
+            ? `${environment.imageBaseUrl}${this.cardDataa.image}`
+            : undefined,
+          type: 'article',
+          jsonLd: {
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: this.cardDataa.title,
+            description: this.cardDataa.description,
+            image: this.cardDataa.image
+              ? `${environment.imageBaseUrl}${this.cardDataa.image}`
+              : undefined,
+            author: {
+              '@type': 'Person',
+              name: this.cardDataa.author || 'Carina Softlabs',
+            },
+            datePublished: this.cardDataa.createdAt,
+            dateModified: this.cardDataa.updatedAt || this.cardDataa.createdAt,
+          },
+        });
+
         this.fetchAllBlogs();
         if (this.sections.length > 0) {
           this.activeSection = this.sections[0]._id;
@@ -225,17 +195,20 @@ export class Blog2Component implements OnInit {
             flatSubSections.length > 0 ? flatSubSections[0]._id : '';
         }
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching blog by ID:', error);
         this.loadingBlog = false;
-      }
-    );
+        this.isNotFound = true;
+        this.seoService.setNotFoundStatus();
+      },
+    });
   }
 
   toggleFAQ(index: number) {
-    this.faqs[index].open = !this.faqs[index].open;
+    if (this.faqs[index]) {
+      this.faqs[index].open = !this.faqs[index].open;
+    }
   }
-
 
   private resetData() {
     this.cardData = null;
@@ -245,23 +218,21 @@ export class Blog2Component implements OnInit {
     this.activeSubSection = '';
   }
 
-  private applyStyles() {
-    // Custom styles can be applied here after DOM updates if needed
-  }
-
   formatHeading(heading: string): string {
-    return heading.toLowerCase().replace(/ /g, '-');
+    return heading || '';
   }
 
   scrollToSection(event: Event, sectionId: string) {
     event.preventDefault();
+    if (!isPlatformBrowser(this.platformId)) return;
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
     this.activeSection = sectionId;
-    this.activeSubSection = ''; // Clear active sub-section on main section scroll
+    this.activeSubSection = '';
   }
 
   scrollToSubSection(event: Event, subSectionId: string) {
     event.preventDefault();
+    if (!isPlatformBrowser(this.platformId)) return;
     document
       .getElementById(subSectionId)
       ?.scrollIntoView({ behavior: 'smooth' });
@@ -269,6 +240,7 @@ export class Blog2Component implements OnInit {
   }
 
   private highlightActiveSection() {
+    if (!isPlatformBrowser(this.platformId)) return;
     this.sections.forEach((section) => {
       const element = document.getElementById(section._id);
       const rect = element?.getBoundingClientRect();
@@ -278,17 +250,18 @@ export class Blog2Component implements OnInit {
     });
   }
 
-  @ViewChild('stickySidebar', { static: true }) stickySidebar!: ElementRef;
-
   @HostListener('window:scroll')
   onWindowScroll() {
+    if (!isPlatformBrowser(this.platformId)) return;
     this.adjustStickyPosition();
     this.highlightActiveSection();
   }
 
   private adjustStickyPosition() {
+    if (!isPlatformBrowser(this.platformId) || !this.stickySidebar?.nativeElement) return;
     const stickyElement = this.stickySidebar.nativeElement;
     const sectionElement = stickyElement.closest('section');
+    if (!sectionElement) return;
     const sectionBottom = sectionElement.getBoundingClientRect().bottom;
     const stickyHeight = stickyElement.offsetHeight;
 
@@ -305,18 +278,20 @@ export class Blog2Component implements OnInit {
   }
 
   sanitizeContent(rawHtml: string): SafeHtml {
+    if (!isPlatformBrowser(this.platformId)) {
+      const cleaned = this.sanitizer.sanitize(SecurityContext.HTML, rawHtml) ?? '';
+      return this.sanitizer.bypassSecurityTrustHtml(cleaned);
+    }
+
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = rawHtml;
 
-    // List of unwanted tags to remove entirely
     const unwantedTags = ['font', 'span'];
-
     unwantedTags.forEach((tag) => {
       const elements = tempDiv.getElementsByTagName(tag);
       while (elements.length > 0) {
         const element = elements[0];
         const parent = element.parentNode;
-        // Replace the tag with its inner content
         while (element.firstChild) {
           parent?.insertBefore(element.firstChild, element);
         }
@@ -324,7 +299,6 @@ export class Blog2Component implements OnInit {
       }
     });
 
-    // Remove inline styles from remaining elements
     tempDiv
       .querySelectorAll('[style]')
       .forEach((el) => el.removeAttribute('style'));
@@ -332,8 +306,8 @@ export class Blog2Component implements OnInit {
     const images = tempDiv.getElementsByTagName('img');
     Array.from(images).forEach((img) => {
       img.style.width = '100%';
-      img.style.height = 'auto'; // Optional, maintain aspect ratio
-      img.classList.add('w-full', 'h-auto'); // Add Tailwind classes
+      img.style.height = 'auto';
+      img.classList.add('w-full', 'h-auto');
     });
 
     return this.sanitizer.bypassSecurityTrustHtml(tempDiv.innerHTML);

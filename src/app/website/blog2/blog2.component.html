@@ -1,7 +1,10 @@
 <main class="bg-[#000000]">
   <app-header></app-header>
 
-  <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24 relative">
+  @if (isNotFound) {
+    <app-not-found></app-not-found>
+  } @else {
+    <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24 relative">
     <div class="grid grid-cols-3 gap-24">
       <!-- SIDEBAR -->
       <div class="hidden lg:block relative">
@@ -248,6 +251,7 @@
               }
 
             </section>
+  }
 
             <app-footer></app-footer>
           </main>

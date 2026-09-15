@@ -1,17 +1,34 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ChangeDetectionStrategy,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Event, Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { gsap } from 'gsap';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AppComponent implements OnInit, AfterViewInit {
   currentUrl!: string;
-  constructor(public _router: Router) {
+
+  @ViewChild('cursorDot') cursorDot!: ElementRef<HTMLDivElement>;
+  @ViewChild('cursorOutline') cursorOutline!: ElementRef<HTMLDivElement>;
+
+  constructor(
+    public _router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
     this._router.events.subscribe((routerEvent: Event) => {
       if (routerEvent instanceof NavigationStart) {
         this.currentUrl = routerEvent.url.substring(
@@ -21,23 +38,27 @@ export class AppComponent implements OnInit, AfterViewInit {
       if (routerEvent instanceof NavigationEnd) {
         /* empty */
       }
-      window.scrollTo(0, 0);
+      if (isPlatformBrowser(this.platformId)) {
+        window.scrollTo(0, 0);
+      }
     });
   }
+
   ngOnInit() {
     /* empty */
   }
 
-  // custom cursor
-  
-  @ViewChild('cursorDot') cursorDot!: ElementRef<HTMLDivElement>;
-  @ViewChild('cursorOutline') cursorOutline!: ElementRef<HTMLDivElement>;
-
   ngAfterViewInit() {
-    document.addEventListener('mousemove', this.onMouseMove);
+    if (isPlatformBrowser(this.platformId)) {
+      document.addEventListener('mousemove', this.onMouseMove);
+    }
   }
 
   onMouseMove = (event: MouseEvent) => {
+    if (!this.cursorDot?.nativeElement || !this.cursorOutline?.nativeElement) {
+      return;
+    }
+
     // Move inner dot instantly
     gsap.to(this.cursorDot.nativeElement, {
       x: event.clientX,
@@ -50,9 +71,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       x: event.clientX,
       y: event.clientY,
       duration: 0.2,
-      ease: "power2.out",
+      ease: 'power2.out',
     });
   };
-
-  // custom cursor end
 }

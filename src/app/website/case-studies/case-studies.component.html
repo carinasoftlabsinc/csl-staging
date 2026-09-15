@@ -1,5 +1,8 @@
 <main class="bg-[#0B0C10]">
   <app-header></app-header>
+  @if (isNotFound) {
+    <app-not-found></app-not-found>
+  } @else {
   <!-- <section
   class="body-font flex items-center justify-center h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
   >
@@ -646,6 +649,7 @@
                           </h2>
                           <app-getinform></app-getinform>
                         </section>
+  }
 
                         <app-footer
                           [showButton]="false"

@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, Inject, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import {
   trigger,
@@ -7,7 +8,6 @@ import {
   animate,
   transition,
 } from '@angular/animations';
-import * as AOS from 'aos';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -44,6 +44,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('counterSection', { static: true }) counterSection!: ElementRef;
 
   setupIntersectionObserver(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -60,6 +61,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   initCountUp(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     const counters = document.querySelectorAll('.js-count-up');
     const options = {
       useEasing: true,
@@ -207,7 +209,8 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     private metaService: Meta,
     private http: HttpClient,
     private renderer: Renderer2,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
   ngOnInit(): void {
     this.titleService.setTitle(
@@ -219,18 +222,20 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
         'Leverage 15 years of expertise in game development, digital marketing, web and app development services to build, grow, and scale your digital presence.',
     });
 
-    this.setCanonicalUrl('https://carinasoftlabs.com/');
+    this.setCanonicalUrl('https://carinasoftlabs.com');
     this.setOpenGraphTags();
     this.setSchemaMarkup();
-
-    this.setupIntersectionObserver();
-    AOS.init({ disable: 'mobile' });
-    gsap.registerPlugin(ScrollTrigger);
 
     this.fetchBlogs();
   }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.setupIntersectionObserver();
+      import('aos').then((AOS) => (AOS.default || AOS).init({ disable: 'mobile' }));
+      gsap.registerPlugin(ScrollTrigger);
+    }
+  }
 
   ngOnDestroy(): void {
     this.seoElements.forEach((el) => {
@@ -258,7 +263,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     const title = 'Game Development, Digital Marketing, Web & App Dev Services';
     const description =
       'Leverage 15 years of expertise in game development, digital marketing, web and app development services to build, grow and scale your digital presence.';
-    const url = 'https://carinasoftlabs.com/';
+    const url = 'https://carinasoftlabs.com';
     const image = 'https://carinasoftlabs.com/assets/CSL-logo-footer.svg';
 
     this.metaService.updateTag({ property: 'og:title', content: title });
@@ -280,7 +285,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
       '@type': 'Organization',
       '@id': 'https://carinasoftlabs.com/#organization',
       name: 'Carina Softlabs Inc.',
-      url: 'https://carinasoftlabs.com/',
+      url: 'https://carinasoftlabs.com',
       logo: 'https://carinasoftlabs.com/assets/CSL-logo-footer.svg',
     };
 
@@ -289,7 +294,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
       '@type': 'WebSite',
       '@id': 'https://carinasoftlabs.com/#website',
       name: 'Carina Softlabs Inc.',
-      url: 'https://carinasoftlabs.com/',
+      url: 'https://carinasoftlabs.com',
       publisher: {
         '@id': 'https://carinasoftlabs.com/#organization',
       },
@@ -308,7 +313,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   formatHeading(titleLink: string): string {
-    return (titleLink || "").toLocaleLowerCase().replace(/ /g, '-');
+    return titleLink || '';
   }
   
   fetchBlogs() {

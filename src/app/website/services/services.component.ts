@@ -1,10 +1,9 @@
-import { Component, OnDestroy, OnInit, AfterViewInit, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 @Component({
     selector: 'app-services',
@@ -29,10 +28,13 @@ export class ServicesComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private metaService: Meta,
     private renderer: Renderer2,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    gsap.registerPlugin(ScrollTrigger);
     const sections = document.querySelectorAll('.ini-service');
     const options = {
       root: null,
@@ -110,9 +112,11 @@ export class ServicesComponent implements OnInit, OnDestroy {
   private intervalId: any;
 
   ngOnInit() {
-    this.intervalId = setInterval(() => {
-      this.updateWordIndex();
-    }, 2000); // Change word and image every 2 seconds
+    if (isPlatformBrowser(this.platformId)) {
+      this.intervalId = setInterval(() => {
+        this.updateWordIndex();
+      }, 2000); // Change word and image every 2 seconds
+    }
 
     this.titleService.setTitle(
       'IT Solutions & Digital Services | Game, Web, App & Marketing'

@@ -2,9 +2,12 @@
   <div class="bg-[#fff] rounded-b-[40px]">
     <app-header [isWhiteBackground]="isWhiteBackground"></app-header>
 
-    <section
-      class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 pb-16 2xl:p-24 2xl:pb-32 mb-16 2xl:mb-16 relative"
-      >
+    @if (isNotFound) {
+      <app-not-found></app-not-found>
+    } @else {
+      <section
+        class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 pb-16 2xl:p-24 2xl:pb-32 mb-16 2xl:mb-16 relative"
+        >
       <div class="grid grid-cols-3 lg:gap-14 xl:gap-20">
         <div
           class="col-span-3 lg:col-span-2 flex flex-col gap-7 2xl:gap-9 text-black"
@@ -139,6 +142,7 @@
                 </div>
               </div>
             </section>
+    }
           </div>
 
           <div class="flex justify-center items-center relative mt-20 z-20">

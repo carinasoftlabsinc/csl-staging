@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 
 import { newsroomService } from './newsroom.service';
@@ -19,6 +20,7 @@ export class NewsroomComponent implements OnInit, AfterViewInit, OnDestroy {
   private seoElements: HTMLElement[] = [];
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     // Set up Intersection Observer
     this.observer = new IntersectionObserver(
       (entries) => {
@@ -70,7 +72,8 @@ export class NewsroomComponent implements OnInit, AfterViewInit, OnDestroy {
     private titleService: Title,
     private metaService: Meta,
     private renderer: Renderer2,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   imageUrl = environment.imageBaseUrl;
@@ -268,7 +271,7 @@ fetchAllNews(): void {
 
 
   formatHeading(title: string): string {
-    return title.toLowerCase().replace(/\s+/g, '-');
+    return title || '';
   }
 
   cardText: string = `Find Out How We Solved <br class="hidden sm:block" /> Complex "IT" Challenge`;

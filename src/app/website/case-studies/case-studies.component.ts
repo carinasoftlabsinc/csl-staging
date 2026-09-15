@@ -1,7 +1,8 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { SeoService } from '@core/service/seo.service';
 
 interface PortfolioItem {
   _id: string;
@@ -14,21 +15,31 @@ interface PortfolioItem {
   content: string;
 }
 
-
 @Component({
-    selector: 'app-case-studies',
-    templateUrl: './case-studies.component.html',
-    styleUrls: ['./case-studies.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-case-studies',
+  templateUrl: './case-studies.component.html',
+  styleUrls: ['./case-studies.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
-export class CaseStudiesComponent {
+export class CaseStudiesComponent implements OnInit {
   cardData: any;
   _id: any;
   allProjects: PortfolioItem[] = [];
   imageUrl = environment.imageBaseUrl;
   loading = true;
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  isNotFound = false;
+  caseGoals = [
+    { image: 'assets/case-goal-1.png', alt: 'Goal 1', text: 'Lorem ipsum dolor sit amet.' },
+    { image: 'assets/case-goal-2.png', alt: 'Goal 2', text: 'Lorem ipsum dolor sit amet.' },
+    { image: 'assets/case-goal-3.png', alt: 'Goal 3', text: 'Lorem ipsum dolor sit amet.' },
+  ];
+
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private seoService: SeoService
+  ) {}
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -40,32 +51,30 @@ export class CaseStudiesComponent {
         console.warn('Title parameter is missing');
       }
     });
-
-    // this.fetchAllNews();
   }
 
   getFilterData(_id: string) {
     const apiUrl = `${environment.apiUrl}/admin/getAll_project`;
     this.loading = true;
-    this.http.get(apiUrl).subscribe(
-      (data: any) => {
+    this.http.get(apiUrl).subscribe({
+      next: (data: any) => {
         if (data && data.data && data.data.data) {
           this.loading = false;
 
-          // Find the specific cardData
           this.cardData = data.data.data.find(
-            (item: any) => this.formatHeading(item.titleLink) === _id
+            (item: any) =>
+              item.titleLink === _id || this.formatHeading(item.titleLink) === _id
           );
 
           if (this.cardData) {
-            // Filter all projects to include only those in the same category, excluding the current cardData
+            this.isNotFound = false;
             this.allProjects = data.data.data.filter(
               (item: any) =>
                 item.category === this.cardData.category &&
                 item.titleLink !== this.cardData.titleLink
             );
 
-            if (this.cardData && this.cardData.workSteps) {
+            if (this.cardData.workSteps) {
               const icons = [
                 'assets/images/process-design.svg',
                 'assets/images/process-graphics.svg',
@@ -73,48 +82,69 @@ export class CaseStudiesComponent {
                 'assets/images/process-testing.svg',
                 'assets/images/process-review.svg',
               ];
-            
-              // Map workSteps to include icon field
-              this.cardData.workSteps = this.cardData.workSteps.map((step: any, index: number) => ({
-                ...step,
-                icon: icons[index] ?? 'assets/images/default-icon.svg',
-              }));
-            }
-            
-            
 
-            console.log('Filtered allProjects:', this.allProjects);
+              this.cardData.workSteps = this.cardData.workSteps.map(
+                (step: any, index: number) => ({
+                  ...step,
+                  icon: icons[index] ?? 'assets/images/default-icon.svg',
+                })
+              );
+            }
+
+            this.seoService.setPage({
+              title: `${this.cardData.title} | Case Study | Carina Softlabs`,
+              description:
+                this.cardData.description ||
+                'Explore our project case studies and engineering portfolio at Carina Softlabs.',
+              url: `https://carinasoftlabs.com/portfolio/${this.cardData.titleLink}`,
+              image: this.cardData.image
+                ? `${environment.imageBaseUrl}${this.cardData.image}`
+                : undefined,
+              type: 'article',
+              jsonLd: {
+                '@context': 'https://schema.org',
+                '@type': 'CreativeWork',
+                headline: this.cardData.title,
+                description: this.cardData.description,
+                image: this.cardData.image
+                  ? `${environment.imageBaseUrl}${this.cardData.image}`
+                  : undefined,
+              },
+            });
           } else {
             console.warn('No data found for id:', _id);
+            this.isNotFound = true;
+            this.seoService.setNotFoundStatus();
             this.cardData = null;
             this.allProjects = [];
           }
         } else {
-          console.warn('Data structure is not as expected');
+          this.isNotFound = true;
+          this.seoService.setNotFoundStatus();
           this.cardData = null;
           this.allProjects = [];
         }
       },
-      (error) => {
+      error: (error) => {
         this.loading = false;
         console.error('Error while retrieving data:', error);
+        this.isNotFound = true;
+        this.seoService.setNotFoundStatus();
         this.cardData = null;
         this.allProjects = [];
-      }
-    );
+      },
+    });
   }
 
   formatHeading(title: string): string {
-    return title.toLowerCase().replace(/\s+/g, '-');
+    return title || '';
   }
-
-  //for fallback
 
   onImgError(event: Event) {
     const target = event.target as HTMLImageElement;
     target.src = '../../../assets/job-fallback.png';
   }
-  
+
   icons = [
     '../../../assets/images/process-design.svg',
     '../../../assets/images/process-graphics.svg',
@@ -122,56 +152,4 @@ export class CaseStudiesComponent {
     '../../../assets/images/process-testing.svg',
     '../../../assets/images/process-review.svg',
   ];
-  
-
-  devProcess = [
-    {
-      title: 'DESIGN',
-      icon: '../../../assets/images/process-design.svg',
-      description:
-        'Graphic Design, Mock-up Testing, Visual Feedback, Progress and Loading',
-    },
-    {
-      title: 'GRAPHICS',
-      icon: '../../../assets/images/process-graphics.svg',
-      description:
-        'Animations and Graphics Integration, Admin Console Integration',
-    },
-    {
-      title: 'DEVELOPMENT',
-      icon: '../../../assets/images/process-development.svg',
-      description:
-        'Technical Documentation, Frontend Development, Backend Development',
-    },
-    {
-      title: 'TESTING',
-      icon: '../../../assets/images/process-testing.svg',
-      description:
-        'Concept Validation, First-click Testing, Usability Task Analysis, UAT',
-    },
-    {
-      title: 'REVIEW',
-      icon: '../../../assets/images/process-review.svg',
-      description: 'Client Interview, Empathy Mapping, Market Analysis',
-    },
-  ];
-
-  caseGoals = [
-    {
-      image: 'assets/case-goal-1.png',
-      alt: 'Image 1',
-      text: 'Lorem ipsum dolor sit amet.',
-    },
-    {
-      image: 'assets/case-goal-2.png',
-      alt: 'Image 2',
-      text: 'Lorem ipsum dolor sit amet.',
-    },
-    {
-      image: 'assets/case-goal-3.png',
-      alt: 'Image 3',
-      text: 'Lorem ipsum dolor sit amet.',
-    }
-  ];
-  
 }

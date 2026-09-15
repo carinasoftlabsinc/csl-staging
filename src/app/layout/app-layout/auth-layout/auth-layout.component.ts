@@ -1,8 +1,8 @@
 import { Direction } from '@angular/cdk/bidi';
-import { Component, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { DirectionService, InConfiguration } from '@core';
 import { ConfigService } from '@config';
-
 
 @Component({
     selector: 'app-auth-layout',
@@ -12,19 +12,22 @@ import { ConfigService } from '@config';
     standalone: false
 })
 export class AuthLayoutComponent {
-  direction!: Direction;
+  direction: Direction = 'ltr';
   public config!: InConfiguration;
   constructor(
     @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object,
     private directoryService: DirectionService,
     private configService: ConfigService,
     private renderer: Renderer2
   ) {
     this.config = this.configService.configData;
+    const isBrowser = isPlatformBrowser(this.platformId);
+
     this.directoryService.currentData.subscribe((currentData) => {
       if (currentData) {
         this.direction = currentData === 'ltr' ? 'ltr' : 'rtl';
-      } else {
+      } else if (isBrowser) {
         if (localStorage.getItem('isRtl')) {
           if (localStorage.getItem('isRtl') === 'true') {
             this.direction = 'rtl';
@@ -46,13 +49,13 @@ export class AuthLayoutComponent {
     });
 
     // set theme on startup
-    if (localStorage.getItem('theme')) {
+    if (isBrowser && localStorage.getItem('theme')) {
       this.renderer.removeClass(this.document.body, this.config.layout.variant);
       this.renderer.addClass(
         this.document.body,
         localStorage.getItem('theme') as string
       );
-    } else {
+    } else if (this.config?.layout?.variant) {
       this.renderer.addClass(this.document.body, this.config.layout.variant);
     }
   }

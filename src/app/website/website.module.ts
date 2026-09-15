@@ -47,6 +47,7 @@ import { TestimonialBubbleComponent } from './components/testimonial-bubble/test
 import { CaseStudiesComponent } from './case-studies/case-studies.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -91,6 +92,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
     CaseStudiesComponent,
     TermsConditionsComponent,
     PrivacyPolicyComponent,
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,

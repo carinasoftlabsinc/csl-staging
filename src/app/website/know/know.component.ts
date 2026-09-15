@@ -1,4 +1,5 @@
-import { HostListener, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { HostListener, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import {
   Component,
@@ -48,20 +49,23 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
     private titleService: Title,
     private metaService: Meta,
     private renderer: Renderer2,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    gsap.registerPlugin(ScrollTrigger);
+    if (isPlatformBrowser(this.platformId)) {
+      gsap.registerPlugin(ScrollTrigger);
 
-    // Subscribe to router events
-    this.routerSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.destroySliders();
-        setTimeout(() => {
-          this.initSliders();
-          this.initializeProgressBar();
-        }, 0);
-      }
-    });
+      // Subscribe to router events
+      this.routerSubscription = this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.destroySliders();
+          setTimeout(() => {
+            this.initSliders();
+            this.initializeProgressBar();
+          }, 0);
+        }
+      });
+    }
   }
 
   ngOnInit(): void {
@@ -81,8 +85,10 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.initSliders();
-    this.initializeProgressBar();
+    if (isPlatformBrowser(this.platformId)) {
+      this.initSliders();
+      this.initializeProgressBar();
+    }
   }
 
   ngOnDestroy(): void {
@@ -92,7 +98,9 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
       this.routerSubscription.unsubscribe();
     }
     // Kill all existing ScrollTriggers on component destroy
-    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    if (isPlatformBrowser(this.platformId)) {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    }
 
     this.seoElements.forEach((el) => {
       if (el.parentNode) {
@@ -162,6 +170,7 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private initSliders(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     this.slider1 = new KeenSlider(this.slider1Ref.nativeElement, {
       loop: true,
       slides: {
@@ -200,6 +209,7 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private destroySliders(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     this.slider1?.destroy();
     this.slider2?.destroy();
     this.slider1 = null;
@@ -227,6 +237,7 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   initializeProgressBar() {
+    if (!isPlatformBrowser(this.platformId)) return;
     const mask = document.querySelector('.mask');
     const jourElements = document.querySelectorAll('.jour');
     const jourWrap = document.querySelector('.jour-wrap');

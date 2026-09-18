@@ -67,7 +67,7 @@ async function main() {
     lastmod: BUILD_DATE,
   }));
 
-  // Blogs: verbatim titleLink from getAll_blogTitles + real updatedAt from getAll_blog
+  // Blogs: clean slugified titleLink + real updatedAt from getAll_blog
   const blogDetails = new Map<string, any>(
     (blogsRes?.data?.data ?? []).map((b: any) => [b._id, b])
   );
@@ -75,30 +75,33 @@ async function main() {
   for (const b of blogTitles) {
     if (b.titleLink) {
       const full = blogDetails.get(b._id);
+      const slug = b.titleLink.trim().toLowerCase().replace(/\s+/g, '-');
       entries.push({
-        loc: `${BASE_URL}/blog/${b.titleLink}`,
+        loc: `${BASE_URL}/blog/${slug}`,
         lastmod: formatDate(full?.updatedAt || full?.createdAt),
       });
     }
   }
 
-  // News: verbatim titleLink + real updatedAt
+  // News: clean slugified titleLink + real updatedAt
   const news = newsRes?.data?.data ?? [];
   for (const n of news) {
     if (n.titleLink) {
+      const slug = n.titleLink.trim().toLowerCase().replace(/\s+/g, '-');
       entries.push({
-        loc: `${BASE_URL}/news/${n.titleLink}`,
+        loc: `${BASE_URL}/news/${slug}`,
         lastmod: formatDate(n.updatedAt || n.createdAt),
       });
     }
   }
 
-  // Portfolio: verbatim titleLink + real updatedAt
+  // Portfolio: clean slugified titleLink + real updatedAt
   const projects = projectsRes?.data?.data ?? [];
   for (const p of projects) {
     if (p.titleLink) {
+      const slug = p.titleLink.trim().toLowerCase().replace(/\s+/g, '-');
       entries.push({
-        loc: `${BASE_URL}/portfolio/${p.titleLink}`,
+        loc: `${BASE_URL}/portfolio/${slug}`,
         lastmod: formatDate(p.updatedAt || p.createdAt),
       });
     }

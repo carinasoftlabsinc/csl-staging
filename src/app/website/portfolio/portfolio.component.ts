@@ -339,6 +339,7 @@ import { HttpClient } from '@angular/common/http';
 import { Title, Meta } from '@angular/platform-browser';
 
 import { environment } from "../../../environments/environment"
+import { formatHeading } from '@core/utils/slug.util';
 
 type Category =
   | 'Game Development'
@@ -588,7 +589,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   }
 
   formatHeading(title: string): string {
-    return title.toLowerCase().replace(/\s+/g, '-');
+    return formatHeading(title);
   }
 
  

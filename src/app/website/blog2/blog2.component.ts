@@ -1,20 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import {
   Component,
-  HostListener,
   ElementRef,
   ViewChild,
   OnInit,
   ChangeDetectionStrategy,
+  HostListener,
+  SecurityContext,
   Inject,
   PLATFORM_ID,
-  SecurityContext,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SeoService } from '@core/service/seo.service';
+import { matchesSlug, formatHeading } from '@core/utils/slug.util';
 
 @Component({
   selector: 'app-blog2',
@@ -26,23 +27,18 @@ import { SeoService } from '@core/service/seo.service';
 export class Blog2Component implements OnInit {
   cardData: any = null;
   cardDataa: any = null;
-  sections: any[] = [];
-  activeSection!: string;
-  activeSubSection!: string;
-  apiUrl = `${environment.apiUrl}/admin/getAll_blog`;
-  singleBlogApi = `${environment.apiUrl}/admin/get_blog`;
-  getAll_blogTitles = `${environment.apiUrl}/admin/getAll_blogTitles`;
-  imageUrl = environment.imageBaseUrl;
+  allCards: any[] = [];
   allBlogs: any[] = [];
   filteredBlogs: any[] = [];
-  loadingBlog = true;
-  loadingMoreBlogs = true;
+  sections: any[] = [];
   sanitizedSections: {
     _id: string;
     heading: string;
     sanitizedContent: SafeHtml;
   }[] = [];
   loading = false;
+  loadingBlog = true;
+  loadingMoreBlogs = true;
   isNotFound = false;
   faqs: {
     question: string;
@@ -52,23 +48,36 @@ export class Blog2Component implements OnInit {
     safeAnswer?: SafeHtml;
   }[] = [];
 
-  @ViewChild('stickySidebar') stickySidebar!: ElementRef;
-
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
     private sanitizer: DomSanitizer,
-    private seoService: SeoService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private seoService: SeoService
   ) {}
 
-  ngOnInit() {
+  getAll_blogTitles = `${environment.apiUrl}/admin/getAll_blogTitles`;
+  imageUrl = environment.imageBaseUrl;
+
+  activeSection = '';
+  activeSubSection = '';
+
+  @ViewChild('stickySidebar') stickySidebar!: ElementRef;
+
+  ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const titleLink = params['title'];
       if (titleLink) {
         this.getBlogIdFromTitle(titleLink);
+      } else {
+        console.warn('Title parameter is missing in URL');
+        this.isNotFound = true;
+        this.seoService.setNotFoundStatus();
+        this.resetData();
       }
     });
+
+    this.fetchAllBlogs();
   }
 
   fetchAllBlogs() {
@@ -104,9 +113,7 @@ export class Blog2Component implements OnInit {
         this.loading = false;
         if (response?.data) {
           const blog = response.data.find(
-            (item: any) =>
-              item.titleLink === titleLink ||
-              this.formatHeading(item.titleLink) === titleLink
+            (item: any) => matchesSlug(item, titleLink)
           );
 
           if (blog?._id) {
@@ -158,12 +165,13 @@ export class Blog2Component implements OnInit {
           safeAnswer: this.sanitizer.bypassSecurityTrustHtml(faq.answer),
         }));
 
+        const canonicalSlug = this.formatHeading(this.cardDataa.titleLink || this.cardDataa.title);
         this.seoService.setPage({
           title: `${this.cardDataa.title} | Carina Softlabs`,
           description:
             this.cardDataa.description ||
             'Read more insights on technology and innovation from Carina Softlabs.',
-          url: `https://carinasoftlabs.com/blog/${this.cardDataa.titleLink}`,
+          url: `https://carinasoftlabs.com/blog/${canonicalSlug}`,
           image: this.cardDataa.image
             ? `${environment.imageBaseUrl}${this.cardDataa.image}`
             : undefined,
@@ -219,7 +227,7 @@ export class Blog2Component implements OnInit {
   }
 
   formatHeading(heading: string): string {
-    return heading || '';
+    return formatHeading(heading);
   }
 
   scrollToSection(event: Event, sectionId: string) {

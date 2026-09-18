@@ -28,7 +28,7 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'terms-conditions',    renderMode: RenderMode.Prerender },
 
   // ── Dynamic Prerender: Blog ────────────────────────────────────
-  // Uses verbatim API titleLink. Falls back to SSR at request time.
+  // Prerenders clean slugified routes and raw titleLink with Server fallback.
   {
     path: 'blog/:title',
     renderMode: RenderMode.Prerender,
@@ -37,11 +37,22 @@ export const serverRoutes: ServerRoute[] = [
       try {
         const res = await fetch(`${API}/admin/getAll_blogTitles`);
         const json = await res.json();
-        return (json.data ?? [])
-          .filter((b: { titleLink: string }) => isFsSafe(b.titleLink))
-          .map((b: { titleLink: string }) => ({
-            title: b.titleLink,
-          }));
+        const params: { title: string }[] = [];
+        const seen = new Set<string>();
+
+        for (const b of json.data ?? []) {
+          if (!b.titleLink) continue;
+          const slug = b.titleLink.trim().toLowerCase().replace(/\s+/g, '-');
+          if (isFsSafe(slug) && !seen.has(slug)) {
+            seen.add(slug);
+            params.push({ title: slug });
+          }
+          if (b.titleLink !== slug && isFsSafe(b.titleLink) && !seen.has(b.titleLink)) {
+            seen.add(b.titleLink);
+            params.push({ title: b.titleLink });
+          }
+        }
+        return params;
       } catch (err) {
         console.error('Error fetching blog params for prerender:', err);
         return [];
@@ -50,7 +61,7 @@ export const serverRoutes: ServerRoute[] = [
   },
 
   // ── Dynamic Prerender: News ────────────────────────────────────
-  // Uses verbatim API titleLink. Falls back to SSR at request time.
+  // Prerenders clean slugified routes and raw titleLink with Server fallback.
   {
     path: 'news/:id',
     renderMode: RenderMode.Prerender,
@@ -59,11 +70,22 @@ export const serverRoutes: ServerRoute[] = [
       try {
         const res = await fetch(`${API}/admin/getAll_news`);
         const json = await res.json();
-        return (json.data?.data ?? [])
-          .filter((n: { titleLink: string }) => isFsSafe(n.titleLink))
-          .map((n: { titleLink: string }) => ({
-            id: n.titleLink,
-          }));
+        const params: { id: string }[] = [];
+        const seen = new Set<string>();
+
+        for (const n of json.data?.data ?? []) {
+          if (!n.titleLink) continue;
+          const slug = n.titleLink.trim().toLowerCase().replace(/\s+/g, '-');
+          if (isFsSafe(slug) && !seen.has(slug)) {
+            seen.add(slug);
+            params.push({ id: slug });
+          }
+          if (n.titleLink !== slug && isFsSafe(n.titleLink) && !seen.has(n.titleLink)) {
+            seen.add(n.titleLink);
+            params.push({ id: n.titleLink });
+          }
+        }
+        return params;
       } catch (err) {
         console.error('Error fetching news params for prerender:', err);
         return [];
@@ -72,7 +94,7 @@ export const serverRoutes: ServerRoute[] = [
   },
 
   // ── Dynamic Prerender: Portfolio / Case Studies ────────────────
-  // Uses verbatim API titleLink. Falls back to SSR at request time.
+  // Prerenders clean slugified routes and raw titleLink with Server fallback.
   {
     path: 'portfolio/:id',
     renderMode: RenderMode.Prerender,
@@ -81,11 +103,22 @@ export const serverRoutes: ServerRoute[] = [
       try {
         const res = await fetch(`${API}/admin/getAll_project`);
         const json = await res.json();
-        return (json.data?.data ?? [])
-          .filter((p: { titleLink: string }) => isFsSafe(p.titleLink))
-          .map((p: { titleLink: string }) => ({
-            id: p.titleLink,
-          }));
+        const params: { id: string }[] = [];
+        const seen = new Set<string>();
+
+        for (const p of json.data?.data ?? []) {
+          if (!p.titleLink) continue;
+          const slug = p.titleLink.trim().toLowerCase().replace(/\s+/g, '-');
+          if (isFsSafe(slug) && !seen.has(slug)) {
+            seen.add(slug);
+            params.push({ id: slug });
+          }
+          if (p.titleLink !== slug && isFsSafe(p.titleLink) && !seen.has(p.titleLink)) {
+            seen.add(p.titleLink);
+            params.push({ id: p.titleLink });
+          }
+        }
+        return params;
       } catch (err) {
         console.error('Error fetching portfolio params for prerender:', err);
         return [];

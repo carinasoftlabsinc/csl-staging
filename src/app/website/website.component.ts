@@ -17,6 +17,7 @@ import { Title, Meta} from '@angular/platform-browser';
 
 import { environment } from 'environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { formatHeading } from '@core/utils/slug.util';
 
 @Component({
     selector: 'app-website',
@@ -313,7 +314,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   formatHeading(titleLink: string): string {
-    return titleLink || '';
+    return formatHeading(titleLink);
   }
   
   fetchBlogs() {

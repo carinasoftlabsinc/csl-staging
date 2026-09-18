@@ -17,6 +17,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SeoService } from '@core/service/seo.service';
+import { matchesSlug, formatHeading } from '@core/utils/slug.util';
 
 @Component({
   selector: 'app-news-detail',
@@ -107,8 +108,7 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
         if (data?.data?.data) {
           this.loadingNews = false;
           this.cardData = data.data.data.find(
-            (item: any) =>
-              item.titleLink === _id || this.formatHeading(item.titleLink) === _id
+            (item: any) => matchesSlug(item, _id)
           );
 
           if (this.cardData) {
@@ -118,12 +118,13 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
             }
             this.sections = data.sections || [];
 
+            const canonicalSlug = this.formatHeading(this.cardData.titleLink || this.cardData.title);
             this.seoService.setPage({
               title: `${this.cardData.title} | Carina Softlabs`,
               description:
                 this.cardData.description ||
                 'Latest news and press releases from Carina Softlabs.',
-              url: `https://carinasoftlabs.com/news/${this.cardData.titleLink}`,
+              url: `https://carinasoftlabs.com/news/${canonicalSlug}`,
               image: this.cardData.image
                 ? `${environment.imageBaseUrl}${this.cardData.image}`
                 : undefined,
@@ -158,7 +159,7 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
                 flatSubSections.length > 0 ? flatSubSections[0].id : '';
             }
           } else {
-            console.warn('No news found for id:', _id);
+            console.warn('No news found with id:', _id);
             this.isNotFound = true;
             this.seoService.setNotFoundStatus();
             this.resetData();

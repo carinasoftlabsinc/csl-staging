@@ -4,8 +4,7 @@ import { Title, Meta } from '@angular/platform-browser';
 
 import { newsroomService } from './newsroom.service';
 import { environment } from 'environments/environment';
-
-
+import { formatHeading } from '@core/utils/slug.util';
 
 @Component({
     selector: 'app-newsroom',
@@ -271,7 +270,7 @@ fetchAllNews(): void {
 
 
   formatHeading(title: string): string {
-    return title || '';
+    return formatHeading(title);
   }
 
   cardText: string = `Find Out How We Solved <br class="hidden sm:block" /> Complex "IT" Challenge`;

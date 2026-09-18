@@ -4,6 +4,7 @@ import { Title, Meta } from '@angular/platform-browser';
 
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
+import { formatHeading } from '@core/utils/slug.util';
 
 @Component({
     selector: 'app-blog',
@@ -368,7 +369,7 @@ export class BlogComponent implements OnInit, OnDestroy {
 
  
   formatHeading(heading: string): string {
-    return heading.toLocaleLowerCase().replace(/ /g, '-');
+    return formatHeading(heading);
   }
 
   cardText: string = `Find Out How We Solved <br class="hidden sm:block" /> Complex "IT" Challenge`;

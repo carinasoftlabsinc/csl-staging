@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { SeoService } from '@core/service/seo.service';
+import { matchesSlug, formatHeading } from '@core/utils/slug.util';
 
 interface PortfolioItem {
   _id: string;
@@ -62,8 +63,7 @@ export class CaseStudiesComponent implements OnInit {
           this.loading = false;
 
           this.cardData = data.data.data.find(
-            (item: any) =>
-              item.titleLink === _id || this.formatHeading(item.titleLink) === _id
+            (item: any) => matchesSlug(item, _id)
           );
 
           if (this.cardData) {
@@ -91,12 +91,13 @@ export class CaseStudiesComponent implements OnInit {
               );
             }
 
+            const canonicalSlug = this.formatHeading(this.cardData.titleLink || this.cardData.title);
             this.seoService.setPage({
               title: `${this.cardData.title} | Case Study | Carina Softlabs`,
               description:
                 this.cardData.description ||
                 'Explore our project case studies and engineering portfolio at Carina Softlabs.',
-              url: `https://carinasoftlabs.com/portfolio/${this.cardData.titleLink}`,
+              url: `https://carinasoftlabs.com/portfolio/${canonicalSlug}`,
               image: this.cardData.image
                 ? `${environment.imageBaseUrl}${this.cardData.image}`
                 : undefined,
@@ -137,7 +138,7 @@ export class CaseStudiesComponent implements OnInit {
   }
 
   formatHeading(title: string): string {
-    return title || '';
+    return formatHeading(title);
   }
 
   onImgError(event: Event) {

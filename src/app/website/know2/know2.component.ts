@@ -1,4 +1,5 @@
-import { Component, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, AfterViewInit, Inject, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -12,11 +13,13 @@ gsap.registerPlugin(ScrollTrigger);
     standalone: false
 })
 export class Know2Component implements AfterViewInit {
-  
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   currentSection: string = '01'; // Default initial value
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     const scrubValue = 0.5;
     let container = document.querySelector('.containNscroll') as HTMLElement;
     let wrapper = document.querySelector('.wrapperScr') as HTMLElement;

@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Observer } from 'gsap/Observer';
@@ -12,12 +13,14 @@ gsap.registerPlugin(ScrollTrigger, Observer);
     changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
-export class HoriScrollComponent implements OnInit {
-  constructor() {}
+export class HoriScrollComponent implements OnInit, AfterViewInit {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   currentSection = '01';
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     const sections = document.querySelectorAll('.sec-text');
     const options = {
       root: null,
@@ -37,6 +40,8 @@ export class HoriScrollComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     let sections = gsap.utils.toArray<HTMLElement>('.conto section');
     let dragRatio = 1;
     let scrollTo: (value: number) => void;
@@ -90,6 +95,4 @@ export class HoriScrollComponent implements OnInit {
       },
     });
   }
-
-  
 }

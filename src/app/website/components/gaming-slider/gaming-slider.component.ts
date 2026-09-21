@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import KeenSlider, { KeenSliderInstance } from 'keen-slider';
 
 @Component({
@@ -8,8 +9,9 @@ import KeenSlider, { KeenSliderInstance } from 'keen-slider';
     changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
-export class GamingSliderComponent {
- private slider: KeenSliderInstance | null = null;
+export class GamingSliderComponent implements OnInit, OnDestroy {
+  private slider: KeenSliderInstance | null = null;
+  private isBrowser: boolean;
   currentSlideIndex: number = 0;
   slideTexts: string[] = [
     // 'Explore the world of Arizona Derby, a high-octane racing game that brings you into the heart of the action.',
@@ -19,7 +21,13 @@ export class GamingSliderComponent {
     'Join the hunt with Bounty Hunter, a game that tests your skills and strategy.',
   ];
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
+
   ngOnInit(): void {
+    if (!this.isBrowser) return;
+
     this.slider = new KeenSlider('#keen-slider-gmg', {
       loop: true,
       slides: {
@@ -62,15 +70,21 @@ export class GamingSliderComponent {
   }
 
   ngOnDestroy(): void {
-    this.slider?.destroy();
+    if (this.slider && typeof this.slider.destroy === 'function') {
+      this.slider.destroy();
+    }
   }
 
   prevSlide(): void {
-    this.slider?.prev();
+    if (this.isBrowser) {
+      this.slider?.prev();
+    }
   }
 
   nextSlide(): void {
-    this.slider?.next();
+    if (this.isBrowser) {
+      this.slider?.next();
+    }
   }
 
   slides = [

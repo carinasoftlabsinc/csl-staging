@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, Inject, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -14,9 +15,14 @@ import { Subscription } from 'rxjs';
 export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
   private routerSubscription!: Subscription;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     gsap.registerPlugin(ScrollTrigger);
 
     // Listen for route changes and reinitialize animations
@@ -30,6 +36,8 @@ export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     setTimeout(() => {
       this.initScrollAnimation();
     }, 100); // Small delay to ensure the DOM is fully rendered
@@ -41,11 +49,15 @@ export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
       this.routerSubscription.unsubscribe();
     }
 
-    // Kill GSAP ScrollTriggers to avoid issues when navigating away
-    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    if (isPlatformBrowser(this.platformId)) {
+      // Kill GSAP ScrollTriggers to avoid issues when navigating away
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    }
   }
 
   initScrollAnimation(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     // Clear previous ScrollTriggers
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
@@ -79,6 +91,8 @@ export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
   }
 
   changeActiveQuote(index: number): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     const quotes = document.querySelectorAll('.quote');
     const dpNames = document.querySelectorAll('.box-dpname');
     const peQuotes = document.querySelectorAll('.pp-quote');

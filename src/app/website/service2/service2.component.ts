@@ -155,8 +155,11 @@ import {
   Component,
   ElementRef,
   ViewChild,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  Inject,
+  PLATFORM_ID
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -170,11 +173,16 @@ gsap.registerPlugin(ScrollTrigger);
 export class Service2Component implements AfterViewInit {
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   currentSection: string = '01';
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     const scrubValue = 0.5;
     let container = document.querySelector('.containNscroll') as HTMLElement;
     let wrapper = document.querySelector('.wrapperScr') as HTMLElement;

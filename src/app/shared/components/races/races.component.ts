@@ -1,4 +1,5 @@
-import { Component, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, AfterViewInit, Inject, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -12,7 +13,11 @@ gsap.registerPlugin(ScrollTrigger);
     standalone: false
 })
 export class RacesComponent implements AfterViewInit {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
   ngAfterViewInit() {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     const container = document.querySelector('.container');
     const sections = gsap.utils.toArray('.container section') as Element[];
     const texts = gsap.utils.toArray('.anim') as Element[];

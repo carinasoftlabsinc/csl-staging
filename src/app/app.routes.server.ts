@@ -7,13 +7,13 @@ const isFsSafe = (slug?: string) => !!slug && !/[<>:"/\\|?*]/.test(slug);
 
 export const serverRoutes: ServerRoute[] = [
   // ── Client-only Routes ─────────────────────────────────────────
-  { path: 'game',      renderMode: RenderMode.Client },
   { path: 'thank-you', renderMode: RenderMode.Client },
 
   // ── Static Public Routes (Prerendered at build time) ────────────
   { path: '',                    renderMode: RenderMode.Prerender },
   { path: 'know-us',             renderMode: RenderMode.Prerender },
   { path: 'services',            renderMode: RenderMode.Prerender },
+  { path: 'game',                renderMode: RenderMode.Prerender },
   { path: 'game2',               renderMode: RenderMode.Prerender },
   { path: 'digital-marketing',   renderMode: RenderMode.Prerender },
   { path: 'web',                 renderMode: RenderMode.Prerender },

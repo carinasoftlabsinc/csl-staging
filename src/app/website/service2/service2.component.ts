@@ -157,11 +157,12 @@ import {
   ViewChild,
   ChangeDetectionStrategy,
   Inject,
-  PLATFORM_ID
+  PLATFORM_ID,
+  OnInit,
+  inject
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-
-gsap.registerPlugin(ScrollTrigger);
+import { SeoService } from '@core/service/seo.service';
 
 @Component({
     selector: 'app-service2',
@@ -170,8 +171,9 @@ gsap.registerPlugin(ScrollTrigger);
     changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
-export class Service2Component implements AfterViewInit {
+export class Service2Component implements OnInit, AfterViewInit {
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
+  private readonly seoService = inject(SeoService);
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -180,8 +182,17 @@ export class Service2Component implements AfterViewInit {
 
   currentSection: string = '01';
 
+  ngOnInit(): void {
+    this.seoService.setPage({
+      title: 'Game Development | Carina Softlabs',
+      description: 'End-to-end game development services from Carina Softlabs, crafting immersive 2D and 3D gaming experiences across platforms.',
+      url: 'https://carinasoftlabs.com/game',
+    });
+  }
+
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
+    gsap.registerPlugin(ScrollTrigger);
 
     const scrubValue = 0.5;
     let container = document.querySelector('.containNscroll') as HTMLElement;

@@ -1,9 +1,8 @@
-import { Component, AfterViewInit, Inject, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID, ChangeDetectionStrategy, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import { SeoService } from '@core/service/seo.service';
 
 @Component({
     selector: 'app-know2',
@@ -12,13 +11,24 @@ gsap.registerPlugin(ScrollTrigger);
     changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
-export class Know2Component implements AfterViewInit {
+export class Know2Component implements OnInit, AfterViewInit {
+  private readonly seoService = inject(SeoService);
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   currentSection: string = '01'; // Default initial value
 
+  ngOnInit(): void {
+    this.seoService.setPage({
+      title: 'What You Can Expect | Carina Softlabs',
+      description: 'Discover what you can expect when partnering with Carina Softlabs: tailored solutions, transparent communication, timely delivery, and high-quality results.',
+      url: 'https://carinasoftlabs.com/what-you-can-expect',
+    });
+  }
+
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
+    gsap.registerPlugin(ScrollTrigger);
 
     const scrubValue = 0.5;
     let container = document.querySelector('.containNscroll') as HTMLElement;

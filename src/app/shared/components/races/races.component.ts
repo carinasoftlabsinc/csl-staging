@@ -3,8 +3,6 @@ import { isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
-
 @Component({
     selector: 'app-races',
     templateUrl: './races.component.html',
@@ -17,6 +15,7 @@ export class RacesComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     if (!isPlatformBrowser(this.platformId)) return;
+    gsap.registerPlugin(ScrollTrigger);
 
     const container = document.querySelector('.container');
     const sections = gsap.utils.toArray('.container section') as Element[];

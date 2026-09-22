@@ -1,9 +1,10 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, Inject, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, Inject, PLATFORM_ID, ChangeDetectionStrategy, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Subscription } from 'rxjs';
+import { SeoService } from '@core/service/seo.service';
 
 @Component({
     selector: 'app-know3',
@@ -14,6 +15,7 @@ import { Subscription } from 'rxjs';
 })
 export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
   private routerSubscription!: Subscription;
+  private readonly seoService = inject(SeoService);
 
   constructor(
     private router: Router,
@@ -21,6 +23,12 @@ export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.seoService.setPage({
+      title: 'How We Work | Carina Softlabs',
+      description: 'Learn about Carina Softlabs agile workflow, from project understanding and requirements analysis to planning and execution.',
+      url: 'https://carinasoftlabs.com/how-we-work',
+    });
+
     if (!isPlatformBrowser(this.platformId)) return;
 
     gsap.registerPlugin(ScrollTrigger);

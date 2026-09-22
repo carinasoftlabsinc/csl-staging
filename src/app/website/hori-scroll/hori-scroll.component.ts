@@ -4,8 +4,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Observer } from 'gsap/Observer';
 
-gsap.registerPlugin(ScrollTrigger, Observer);
-
 @Component({
     selector: 'app-hori-scroll',
     templateUrl: './hori-scroll.component.html',
@@ -41,6 +39,7 @@ export class HoriScrollComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
+    gsap.registerPlugin(ScrollTrigger, Observer);
 
     let sections = gsap.utils.toArray<HTMLElement>('.conto section');
     let dragRatio = 1;

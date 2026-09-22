@@ -1,13 +1,23 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, inject } from '@angular/core';
+import { SeoService } from '@core/service/seo.service';
 
 @Component({
-    selector: 'app-digital-service',
-    templateUrl: './digital-service.component.html',
-    styleUrls: ['./digital-service.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-digital-service',
+  templateUrl: './digital-service.component.html',
+  styleUrls: ['./digital-service.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false
 })
-export class DigitalServiceComponent {
+export class DigitalServiceComponent implements OnInit {
+  private readonly seoService = inject(SeoService);
+
+  ngOnInit(): void {
+    this.seoService.setPage({
+      title: 'Digital Marketing Services | Carina Softlabs',
+      description: 'Scale your brand with data-driven digital marketing services from Carina Softlabs: SEO, email marketing, social media, and performance ads.',
+      url: 'https://carinasoftlabs.com/digital-marketing',
+    });
+  }
 
   cases = [
     {

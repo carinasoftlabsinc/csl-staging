@@ -1,4 +1,5 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Inject, PLATFORM_ID } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { catchError, tap } from "rxjs/operators";
 import { throwError } from "rxjs";
@@ -12,7 +13,8 @@ export class ErrorInterceptor implements HttpInterceptor {
   constructor(
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
@@ -29,12 +31,15 @@ export class ErrorInterceptor implements HttpInterceptor {
         if (error.error?.message) {
           errorMessage = error.error.message;
         }
-        this.snackBar.open(errorMessage, '', {
+
+        if (isPlatformBrowser(this.platformId)) {
+          this.snackBar.open(errorMessage, '', {
             duration: 2500,
             verticalPosition: 'top',
             horizontalPosition: 'right',
-            panelClass:'snackbar-danger',
+            panelClass: 'snackbar-danger',
           });
+        }
         return throwError(() => new Error(error.error?.message));
       })
     );

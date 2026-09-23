@@ -125,7 +125,6 @@
             [src]="imageUrl + featured[0]?.image_2 || 'default-image.jpg'"
             alt="Main Featured Image"
             />
-            />
             <div
               class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
               >
@@ -173,7 +172,7 @@
           <!-- Final Row: Static or Optional Placeholder Items -->
           <div class="rounded-3xl overflow-hidden flex gap-4">
             @if (!featuredLoading) {
-              @for (card of featured.slice(2); track card; let i = $index) {
+              @for (card of featured.slice(2, 4); track (card?._id || card?.titleLink || i); let i = $index) {
                 <a
                   [routerLink]="['/news', formatHeading(card.titleLink)]"
                   class="h-full w-full rounded-3xl overflow-hidden relative group"
@@ -199,24 +198,6 @@
                   <div class="h-full w-full bg-gray-200 animate-pulse rounded-3xl"></div>
                 }
               }
-              <!-- <div
-              class="h-full w-full rounded-3xl overflow-hidden relative group"
-              >
-              <img
-                class="h-full w-full object-cover"
-                src="https://example.com/static-image2.jpg"
-                alt="Static Image 2"
-                />
-                <div
-                  class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
-                  >
-                  <p
-                    class="text-white font-quickSand mb-7 px-3.5 2xl:px-6 font-medium 2xl:text-lg"
-                    >
-                    Lorem ipsum dolor sit amet consectetur.
-                  </p>
-                </div>
-              </div> -->
             </div>
           </div>
         </div>

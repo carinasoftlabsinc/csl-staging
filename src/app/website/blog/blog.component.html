@@ -189,7 +189,7 @@
                 <!-- Small Featured -->
                 <div class="col-span-3 sm:col-span-2 grid grid-rows-2 gap-4">
                   @if (!loadingFeatured) {
-                    @for (card of featured2; track card) {
+                    @for (card of featured2; track (card?._id || card?.titleLink || $index)) {
                       <div
                         class="row-span-1 card-hover group cursor-pointer"
                         [routerLink]="['/blog', formatHeading(card.titleLink)]"
@@ -409,7 +409,7 @@
                           <div
                             class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28"
                             >
-                            @for (card of gameBlogs; track card) {
+                            @for (card of gameBlogs; track (card?._id || card?.titleLink || $index)) {
                               <div
                                 class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer"
                                 [routerLink]="['/blog', formatHeading(card.titleLink)]"
@@ -472,7 +472,7 @@
                               <div
                                 class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28"
                                 >
-                                @for (card of web; track card) {
+                                @for (card of web; track (card?._id || card?.titleLink || $index)) {
                                   <div
                                     class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer"
                                     [routerLink]="['/blog', formatHeading(card.titleLink)]"
@@ -535,7 +535,7 @@
                                   <div
                                     class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28"
                                     >
-                                    @for (card of digitalM; track card) {
+                                    @for (card of digitalM; track (card?._id || card?.titleLink || $index)) {
                                       <div
                                         class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer"
                                         [routerLink]="['/blog', formatHeading(card.titleLink)]"
@@ -598,7 +598,7 @@
                                       <div
                                         class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28"
                                         >
-                                        @for (card of App; track card) {
+                                        @for (card of App; track (card?._id || card?.titleLink || $index)) {
                                           <div
                                             class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer"
                                             [routerLink]="['/blog', formatHeading(card.titleLink)]"

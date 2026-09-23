@@ -1,10 +1,12 @@
-import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { formatHeading } from '@core/utils/slug.util';
+import { timeout, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
     selector: 'app-blog',
@@ -31,6 +33,7 @@ export class BlogComponent implements OnInit, OnDestroy {
     private metaService: Meta,
     private http: HttpClient,
     private renderer: Renderer2,
+    private cdr: ChangeDetectorRef,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
@@ -141,220 +144,65 @@ export class BlogComponent implements OnInit, OnDestroy {
     this.seoElements.push(script);
   }
 
-  // fetchFeaturedBlogs() {
-  //   this.http
-  //     .get<any>(`${environment.apiUrl}/admin/getAll_blog`)
-  //     .subscribe((response) => {
-  //       if (response.status === 'success' && response.data?.data) {
-  //         const blogs = response.data.data;
-
-  //         const gameBlogs = blogs
-  //         .filter((blog: { category: string }) => blog.category === 'game');
-  //         this.gameBlogs = gameBlogs;
-
-  //         const digitalM = blogs
-  //         .filter((blog: { category: string }) => blog.category === 'digital-marketing');
-  //         this.digitalM = digitalM;
-
-  //         const App = blogs
-  //         .filter((blog: { category: string }) => blog.category === 'app');
-  //         this.App = App;
-
-  //         const web = blogs
-  //         .filter((blog: { category: string }) => blog.category === 'web');
-  //         this.web = web;
-
-
-  //         // Filter, sort, and get latest 3 featured blogs
-  //         const latestFeaturedBlogs = blogs
-  //           .filter((blog: { isFeature: any }) => blog.isFeature) // Keep only featured blogs
-  //           .sort(
-  //             (
-  //               a: { createdAt: string | number | Date },
-  //               b: { createdAt: string | number | Date }
-  //             ) =>
-  //               new Date(b.createdAt).getTime() -
-  //               new Date(a.createdAt).getTime()
-  //           ) // Sort by date (latest first)
-  //           .slice(0, 3); // Keep the latest 3 blogs
-
-  //         // Assign to UI variables
-  //         if (latestFeaturedBlogs.length > 0) {
-  //           this.featured = latestFeaturedBlogs[0];
-  //         }
-
-  //         if (latestFeaturedBlogs.length > 1) {
-  //           this.featured2 = latestFeaturedBlogs.slice(1);
-  //         }
-
-          
-  //       }
-  //     });
-  // }
-
-  // fetchFeaturedBlogs() {
-  //   this.http
-  //     .get<any>(`${environment.apiUrl}/admin/getAll_blog`)
-  //     .subscribe({
-  //       next: (response) => {
-  //         if (response.status === 'success' && response.data?.data) {
-  //           const blogs = response.data.data;
-  
-  //           this.gameBlogs = blogs.filter((b: any) => b.category === 'game');
-  //           this.loadingGame = false;
-  
-  //           this.web = blogs.filter((b: any) => b.category === 'web');
-  //           this.loadingWeb = false;
-  
-  //           this.digitalM = blogs.filter((b: any) => b.category === 'digital-marketing');
-  //           this.loadingDigital = false;
-  
-  //           this.App = blogs.filter((b: any) => b.category === 'app');
-  //           this.loadingApp = false;
-  
-  //           const latestFeaturedBlogs = blogs
-  //             .filter((blog: any) => blog.isFeature)
-  //             .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-  //             .slice(0, 3);
-  
-  //           if (latestFeaturedBlogs.length > 0) {
-  //             this.featured = latestFeaturedBlogs[0];
-  //           }
-  
-  //           if (latestFeaturedBlogs.length > 1) {
-  //             this.featured2 = latestFeaturedBlogs.slice(1);
-  //           }
-  //         }
-  
-  //         // ✅ Ensure loading is turned off regardless
-  //         this.loadingFeatured = false;
-  //       },
-  //       error: () => {
-  //         // ✅ Turn off loading even on error
-  //         this.loadingFeatured = false;
-  //       }
-  //     });
-  // }
-  
-
-  // fetchFeaturedBlogs() {
-  //   this.http
-  //     .get<any>(`${environment.apiUrl}/admin/getAll_blog`)
-  //     .subscribe((response) => {
-  //       if (response.status === 'success' && response.data?.data) {
-  //         const blogs = response.data.data;
-  
-  //         this.gameBlogs = blogs.filter((b: any) => b.category === 'game');
-  //         this.loadingGame = false;
-  
-  //         this.web = blogs.filter((b: any) => b.category === 'web');
-  //         this.loadingWeb = false;
-  
-  //         this.digitalM = blogs.filter((b: any) => b.category === 'digital-marketing');
-  //         this.loadingDigital = false;
-  
-  //         this.App = blogs.filter((b: any) => b.category === 'app');
-  //         this.loadingApp = false;
-  
-  //         const latestFeaturedBlogs = blogs
-  //           .filter((blog: any) => blog.isFeature)
-  //           .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-  //           .slice(0, 3);
-  
-  //         if (latestFeaturedBlogs.length > 0) {
-  //           this.featured = latestFeaturedBlogs[0];
-  //         }
-  
-  //         if (latestFeaturedBlogs.length > 1) {
-  //           this.featured2 = latestFeaturedBlogs.slice(1);
-  //         }
-  
-  //         this.loadingFeatured = false;
-  //       }
-  //     });
-  // }
-  
-
   fetchFeaturedBlogs() {
     this.loadingGame = true;
     this.loadingWeb = true;
     this.loadingDigital = true;
     this.loadingApp = true;
     this.loadingFeatured = true;
-  
-    // Game Blogs
-    this.http.get<any>(`${environment.apiUrl}/admin/getAll_blog?category=game`).subscribe({
-      next: (res) => {
-        if (res.status === 'success' && res.data?.data) {
-          this.gameBlogs = res.data.data;
-        }
-        this.loadingGame = false;
-      },
-      error: () => {
-        this.loadingGame = false;
-      },
-    });
-  
-    // Web Blogs
-    this.http.get<any>(`${environment.apiUrl}/admin/getAll_blog?category=web`).subscribe({
-      next: (res) => {
-        if (res.status === 'success' && res.data?.data) {
-          this.web = res.data.data;
-        }
-        this.loadingWeb = false;
-      },
-      error: () => {
-        this.loadingWeb = false;
-      },
-    });
-  
-    // Digital Marketing Blogs
-    this.http.get<any>(`${environment.apiUrl}/admin/getAll_blog?category=digital-marketing`).subscribe({
-      next: (res) => {
-        if (res.status === 'success' && res.data?.data) {
-          this.digitalM = res.data.data;
-        }
-        this.loadingDigital = false;
-      },
-      error: () => {
-        this.loadingDigital = false;
-      },
-    });
-  
-    // App Blogs
-    this.http.get<any>(`${environment.apiUrl}/admin/getAll_blog?category=app`).subscribe({
-      next: (res) => {
-        if (res.status === 'success' && res.data?.data) {
-          this.App = res.data.data;
-        }
-        this.loadingApp = false;
-      },
-      error: () => {
-        this.loadingApp = false;
-      },
-    });
-  
-    // Featured Blogs
-    this.http.get<any>(`${environment.apiUrl}/admin/getAll_blog?isFeature=true`).subscribe({
-      next: (res) => {
-        if (res.status === 'success' && res.data?.data) {
-          const featuredBlogs = res.data.data
-            .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-            .slice(0, 3);
-  
-          if (featuredBlogs.length > 0) {
-            this.featured = featuredBlogs[0];
+
+    const fields = 'title,titleLink,category,description,image,image_2,author,date,isFeature,createdAt';
+    this.http
+      .get<any>(`${environment.apiUrl}/admin/getAll_blog?fields=${fields}`)
+      .pipe(
+        timeout(15000),
+        catchError((err) => {
+          console.error('Error fetching blogs in BlogComponent:', err);
+          return of(null);
+        })
+      )
+      .subscribe({
+        next: (response) => {
+          if (response?.status === 'success' && response?.data?.data) {
+            const blogs = response.data.data;
+
+            this.gameBlogs = blogs.filter((b: any) => b.category === 'game');
+            this.web = blogs.filter((b: any) => b.category === 'web');
+            this.digitalM = blogs.filter((b: any) => b.category === 'digital-marketing');
+            this.App = blogs.filter((b: any) => b.category === 'app');
+
+            const latestFeaturedBlogs = blogs
+              .filter((blog: any) => blog.isFeature)
+              .sort(
+                (a: any, b: any) =>
+                  new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+              )
+              .slice(0, 3);
+
+            if (latestFeaturedBlogs.length > 0) {
+              this.featured = latestFeaturedBlogs[0];
+            }
+            if (latestFeaturedBlogs.length > 1) {
+              this.featured2 = latestFeaturedBlogs.slice(1);
+            }
           }
-          if (featuredBlogs.length > 1) {
-            this.featured2 = featuredBlogs.slice(1);
-          }
-        }
-        this.loadingFeatured = false;
-      },
-      error: () => {
-        this.loadingFeatured = false;
-      },
-    });
+
+          this.loadingGame = false;
+          this.loadingWeb = false;
+          this.loadingDigital = false;
+          this.loadingApp = false;
+          this.loadingFeatured = false;
+          this.cdr.markForCheck();
+        },
+        error: () => {
+          this.loadingGame = false;
+          this.loadingWeb = false;
+          this.loadingDigital = false;
+          this.loadingApp = false;
+          this.loadingFeatured = false;
+          this.cdr.markForCheck();
+        },
+      });
   }
   
 

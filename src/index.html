@@ -15,54 +15,35 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-    <link rel="preconnect" href="https://unpkg.com" crossorigin />
 
+    <!-- Google Fonts & Material Icons (Loaded asynchronously to prevent render-blocking) -->
     <link
+      rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp&display=swap"
-      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp&display=swap"
+      />
+    </noscript>
+
     <link
+      rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
-      rel="stylesheet"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/pagedone@1.1.2/src/css/pagedone.css"
       media="print"
       onload="this.media='all'"
     />
     <noscript>
       <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/pagedone@1.1.2/src/css/pagedone.css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
       />
     </noscript>
 
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper/swiper-bundle.min.css"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://unpkg.com/swiper/swiper-bundle.min.css"
-      />
-    </noscript>
-
-    <script defer src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbvyBxmMbFhrzP9Z8moyYr6dCr-pzjhBE&callback=Function.prototype"></script>
-
-    <script defer src="https://cdn.jsdelivr.net/npm/pagedone@1.1.2/src/js/pagedone.js"></script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics 4 -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-8SJ2ER7BGJ"
@@ -73,16 +54,18 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
-      gtag("config", "UA-150660534-1");
       gtag("config", "G-8SJ2ER7BGJ");
     </script>
     
-    <script
-      async
-      defer
-      src="https://tools.luckyorange.com/core/lo.js?site-id=f6363de4"
-    ></script>
+    <!-- Lucky Orange (Deferred until page load to keep main thread unblocked during hydration) -->
+    <script>
+      window.addEventListener('load', function () {
+        var lo = document.createElement('script');
+        lo.async = true;
+        lo.src = 'https://tools.luckyorange.com/core/lo.js?site-id=f6363de4';
+        document.head.appendChild(lo);
+      });
+    </script>
   </head>
 
   <body>

@@ -1,4 +1,4 @@
-import { writeFileSync } from 'node:fs';
+import { existsSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const API = 'https://admin.carinasoftlabs.com/web/web/v1';
@@ -17,14 +17,14 @@ function formatDate(dateStr?: string): string {
 
 async function fetchJson(url: string) {
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, { signal: AbortSignal.timeout(12000) });
     if (!res.ok) {
       console.warn(`Fetch returned status ${res.status} for ${url}`);
       return null;
     }
     return await res.json();
-  } catch (err) {
-    console.error(`Failed to fetch ${url}:`, err);
+  } catch (err: any) {
+    console.warn(`Failed to fetch ${url} (using fallback):`, err?.message || err);
     return null;
   }
 }
@@ -37,20 +37,25 @@ interface SitemapEntry {
 async function main() {
   console.log('Generating sitemap.xml with real API dates and verbatim slugs...');
 
-  const [blogTitlesRes, blogsRes, newsRes, projectsRes] = await Promise.all([
-    fetchJson(`${API}/admin/getAll_blogTitles`),
-    fetchJson(`${API}/admin/getAll_blog`),
-    fetchJson(`${API}/admin/getAll_news`),
-    fetchJson(`${API}/admin/getAll_project`),
+  const [blogsRes, newsRes, projectsRes] = await Promise.all([
+    fetchJson(`${API}/admin/getAll_blog?fields=_id,titleLink,updatedAt,createdAt`),
+    fetchJson(`${API}/admin/getAll_news?fields=_id,titleLink,updatedAt,createdAt`),
+    fetchJson(`${API}/admin/getAll_project?fields=_id,titleLink,updatedAt,createdAt`),
   ]);
+
+  const hasCollection = (value: any) => Array.isArray(value?.data?.data);
+  if ((!hasCollection(blogsRes) || !hasCollection(newsRes) || !hasCollection(projectsRes)) && existsSync(join(process.cwd(), 'src/sitemap.xml'))) {
+    console.warn('A content API is unavailable or returned an unexpected response; keeping the existing sitemap.');
+    return;
+  }
 
   const staticPaths = [
     '',
     '/know-us',
     '/services',
+    '/web-development',
+    '/game-development',
     '/digital-marketing',
-    '/web',
-    '/game2',
     '/what-you-can-expect',
     '/how-we-work',
     '/careers',
@@ -68,17 +73,13 @@ async function main() {
   }));
 
   // Blogs: clean slugified titleLink + real updatedAt from getAll_blog
-  const blogDetails = new Map<string, any>(
-    (blogsRes?.data?.data ?? []).map((b: any) => [b._id, b])
-  );
-  const blogTitles = blogTitlesRes?.data ?? [];
-  for (const b of blogTitles) {
+  const blogs = blogsRes?.data?.data ?? [];
+  for (const b of blogs) {
     if (b.titleLink) {
-      const full = blogDetails.get(b._id);
       const slug = b.titleLink.trim().toLowerCase().replace(/\s+/g, '-');
       entries.push({
         loc: `${BASE_URL}/blog/${slug}`,
-        lastmod: formatDate(full?.updatedAt || full?.createdAt),
+        lastmod: formatDate(b.updatedAt || b.createdAt),
       });
     }
   }

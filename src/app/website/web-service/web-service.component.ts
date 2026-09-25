@@ -15,7 +15,7 @@ export class WebServiceComponent implements OnInit {
     this.seoService.setPage({
       title: 'Web Development Services | Carina Softlabs',
       description: 'Modern, responsive web development services by Carina Softlabs, including front-end, back-end, eCommerce, and enterprise web applications.',
-      url: 'https://carinasoftlabs.com/web',
+      url: 'https://carinasoftlabs.com/web-development',
     });
   }
 

@@ -81,7 +81,6 @@ export class ContactService {
       phone,
       message,
     };
-    console.log(payload, 'f')
 
     return this.http.post<{ message: string; data: any }>(
       `${BACKEND_URL}/admin/getServiceDetails`,

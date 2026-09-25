@@ -18,6 +18,7 @@ import { environment } from '../../../environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SeoService } from '@core/service/seo.service';
 import { matchesSlug, formatHeading } from '@core/utils/slug.util';
+import { timeout, catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-news-detail',
@@ -68,8 +69,6 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
         console.warn('Title parameter is missing');
       }
     });
-
-    this.fetchAllNews();
   }
 
   ngAfterViewInit() {
@@ -80,38 +79,71 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
 
   fetchAllNews() {
     this.isLoadingNews = true;
-    const apiUrl = `${environment.apiUrl}/admin/getAll_news`;
+    const apiUrl = `${environment.apiUrl}/admin/getAll_news?fields=_id,title,titleLink,description,image,image_2,author,date,createdAt,updatedAt`;
 
-    this.http.get(apiUrl).subscribe({
-      next: (data: any) => {
-        if (data?.data?.data) {
-          this.allNews = data.data.data;
-        } else {
-          this.allNews = [];
-        }
-        this.isLoadingNews = false;
-      },
-      error: (error) => {
-        console.error('Error fetching news data:', error);
-        this.allNews = [];
-        this.isLoadingNews = false;
-      },
-    });
+    this.http
+      .get(apiUrl)
+      .pipe(
+        timeout(10000),
+        catchError((err) => {
+          console.error('Error fetching news data:', err);
+          return of({ data: { data: [] } });
+        })
+      )
+      .subscribe({
+        next: (data: any) => {
+          if (data?.data?.data) {
+            this.allNews = data.data.data;
+          } else {
+            this.allNews = [];
+          }
+          this.isLoadingNews = false;
+        },
+      });
   }
 
   getFilterData(_id: string) {
     this.loadingNews = true;
-    const apiUrl = `${environment.apiUrl}/admin/getAll_news`;
+    const apiUrl = `${environment.apiUrl}/admin/getAll_news?fields=_id,title,titleLink,description,image,image_2,author,date,createdAt,updatedAt`;
 
-    this.http.get(apiUrl).subscribe({
-      next: (data: any) => {
-        if (data?.data?.data) {
-          this.loadingNews = false;
-          this.cardData = data.data.data.find(
-            (item: any) => matchesSlug(item, _id)
-          );
+    this.http
+      .get(apiUrl)
+      .pipe(
+        timeout(10000),
+        catchError((err) => {
+          console.error('Error fetching news detail data:', err);
+          return of({ data: { data: [] } });
+        })
+      )
+      .subscribe({
+        next: (data: any) => {
+          if (data?.data?.data) {
+            this.loadingNews = false;
+            this.allNews = data.data.data;
+            this.isLoadingNews = false;
+            const summary = data.data.data.find(
+              (item: any) => matchesSlug(item, _id)
+            );
 
-          if (this.cardData) {
+          if (summary?._id) {
+            this.http
+              .get(`${environment.apiUrl}/admin/get_news/${summary._id}`)
+              .pipe(
+                timeout(10000),
+                catchError((err) => {
+                  console.error('Error fetching news detail:', err);
+                  return of(null);
+                })
+              )
+              .subscribe((detail: any) => {
+                this.cardData = detail?.data?.data;
+                if (!this.cardData) {
+                  this.isNotFound = true;
+                  this.seoService.setNotFoundStatus();
+                  this.resetData();
+                  return;
+                }
+
             this.isNotFound = false;
             if (this.cardData.content) {
               this.sanitizedContent = this.sanitizeContent(this.cardData.content);
@@ -158,6 +190,7 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
               this.activeSubSection =
                 flatSubSections.length > 0 ? flatSubSections[0].id : '';
             }
+              });
           } else {
             console.warn('No news found with id:', _id);
             this.isNotFound = true;

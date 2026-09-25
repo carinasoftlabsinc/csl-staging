@@ -545,7 +545,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
       this.imagesLoadedCount = 0;
 
       const categoryParam = this.mapCategoryToApiParam(category);
-      this.http.get<ApiResponse>(`${this.apiUrl}${categoryParam}`).subscribe({
+      this.http.get<ApiResponse>(`${this.apiUrl}${categoryParam}&fields=_id,title,titleLink,category,description,image,image_2,projectLogo`).subscribe({
         next: (response) => {
           const data = response.data.data.map((item) => ({
             _id: item._id,

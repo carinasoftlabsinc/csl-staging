@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { SeoService } from '@core/service/seo.service';
 import { matchesSlug, formatHeading } from '@core/utils/slug.util';
+import { timeout } from 'rxjs';
 
 interface PortfolioItem {
   _id: string;
@@ -55,24 +56,32 @@ export class CaseStudiesComponent implements OnInit {
   }
 
   getFilterData(_id: string) {
-    const apiUrl = `${environment.apiUrl}/admin/getAll_project`;
+    const apiUrl = `${environment.apiUrl}/admin/getAll_project?fields=_id,title,titleLink,category,description,image,image_2,projectLogo`;
     this.loading = true;
-    this.http.get(apiUrl).subscribe({
+    this.http.get(apiUrl).pipe(timeout(10000)).subscribe({
       next: (data: any) => {
         if (data && data.data && data.data.data) {
           this.loading = false;
 
-          this.cardData = data.data.data.find(
+          const summary = data.data.data.find(
             (item: any) => matchesSlug(item, _id)
           );
 
-          if (this.cardData) {
-            this.isNotFound = false;
+          this.allProjects = data.data.data;
+          if (summary?._id) {
             this.allProjects = data.data.data.filter(
               (item: any) =>
-                item.category === this.cardData.category &&
-                item.titleLink !== this.cardData.titleLink
+                item.category === summary.category && item.titleLink !== summary.titleLink
             );
+            this.http.get(`${environment.apiUrl}/admin/get_/${summary._id}`).subscribe({
+              next: (detail: any) => {
+                this.cardData = detail?.data?.data;
+                if (!this.cardData) {
+                  this.isNotFound = true;
+                  this.seoService.setNotFoundStatus();
+                  return;
+                }
+            this.isNotFound = false;
 
             if (this.cardData.workSteps) {
               const icons = [
@@ -110,6 +119,13 @@ export class CaseStudiesComponent implements OnInit {
                 image: this.cardData.image
                   ? `${environment.imageBaseUrl}${this.cardData.image}`
                   : undefined,
+              },
+            });
+              },
+              error: (error) => {
+                console.error('Error fetching portfolio detail:', error);
+                this.isNotFound = true;
+                this.seoService.setNotFoundStatus();
               },
             });
           } else {

@@ -16,6 +16,7 @@ import { environment } from 'environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SeoService } from '@core/service/seo.service';
 import { matchesSlug, formatHeading } from '@core/utils/slug.util';
+import { timeout, catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-blog2',
@@ -84,11 +85,20 @@ export class Blog2Component implements OnInit {
     this.loadingMoreBlogs = true;
 
     this.http
-      .get(`${environment.apiUrl}/admin/getAll_blog?category=web`)
+      .get(
+        `${environment.apiUrl}/admin/getAll_blog?category=web&fields=title,titleLink,category,image,image_2,author,date`
+      )
+      .pipe(
+        timeout(10000),
+        catchError((err) => {
+          console.error('Error fetching blogs:', err);
+          return of({ data: { data: [] } });
+        })
+      )
       .subscribe({
         next: (response: any) => {
           this.loadingMoreBlogs = false;
-          if (response && response.data && response.data.data) {
+          if (response?.data?.data) {
             this.allBlogs = response.data.data;
 
             if (this.cardDataa) {
@@ -98,59 +108,67 @@ export class Blog2Component implements OnInit {
             }
           }
         },
-        error: (error) => {
-          console.error('Error fetching blogs:', error);
-          this.loadingMoreBlogs = false;
-        },
       });
   }
 
   getBlogIdFromTitle(titleLink: string) {
     this.loading = true;
 
-    this.http.get(this.getAll_blogTitles).subscribe({
-      next: (response: any) => {
-        this.loading = false;
-        if (response?.data) {
-          const blog = response.data.find(
-            (item: any) => matchesSlug(item, titleLink)
-          );
+    this.http
+      .get(this.getAll_blogTitles)
+      .pipe(
+        timeout(10000),
+        catchError((err) => {
+          console.error('Error getting blog titles:', err);
+          return of(null);
+        })
+      )
+      .subscribe({
+        next: (response: any) => {
+          this.loading = false;
+          if (response?.data) {
+            const blog = response.data.find(
+              (item: any) => matchesSlug(item, titleLink)
+            );
 
-          if (blog?._id) {
-            this.isNotFound = false;
-            this.getBlogById(blog._id);
+            if (blog?._id) {
+              this.isNotFound = false;
+              this.getBlogById(blog._id);
+            } else {
+              console.warn('No blog found with titleLink:', titleLink);
+              this.isNotFound = true;
+              this.seoService.setNotFoundStatus();
+              this.resetData();
+            }
           } else {
-            console.warn('No blog found with titleLink:', titleLink);
             this.isNotFound = true;
             this.seoService.setNotFoundStatus();
             this.resetData();
           }
-        } else {
-          this.isNotFound = true;
-          this.seoService.setNotFoundStatus();
-          this.resetData();
-        }
-      },
-      error: (error) => {
-        this.loading = false;
-        this.isNotFound = true;
-        this.seoService.setNotFoundStatus();
-        console.error('Error getting blogs:', error);
-      },
-    });
+        },
+      });
   }
 
   getBlogById(_id: string) {
     this.loadingBlog = true;
-    this.http.get(`${environment.apiUrl}/admin/get_blog/${_id}`).subscribe({
-      next: (res: any) => {
-        this.loadingBlog = false;
-        this.cardDataa = res.data.data;
-        if (!this.cardDataa) {
-          this.isNotFound = true;
-          this.seoService.setNotFoundStatus();
-          return;
-        }
+    this.http
+      .get(`${environment.apiUrl}/admin/get_blog/${_id}`)
+      .pipe(
+        timeout(10000),
+        catchError((err) => {
+          console.error('Error fetching blog by id:', err);
+          return of(null);
+        })
+      )
+      .subscribe({
+        next: (res: any) => {
+          this.loadingBlog = false;
+          this.cardDataa = res?.data?.data;
+          if (!this.cardDataa) {
+            this.isNotFound = true;
+            this.seoService.setNotFoundStatus();
+            return;
+          }
 
         const rawSections = this.cardDataa?.sections || [];
         this.sections = rawSections;

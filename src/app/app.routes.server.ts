@@ -13,10 +13,9 @@ export const serverRoutes: ServerRoute[] = [
   { path: '',                    renderMode: RenderMode.Prerender },
   { path: 'know-us',             renderMode: RenderMode.Prerender },
   { path: 'services',            renderMode: RenderMode.Prerender },
-  { path: 'game',                renderMode: RenderMode.Prerender },
-  { path: 'game2',               renderMode: RenderMode.Prerender },
+  { path: 'web-development',     renderMode: RenderMode.Prerender },
+  { path: 'game-development',    renderMode: RenderMode.Prerender },
   { path: 'digital-marketing',   renderMode: RenderMode.Prerender },
-  { path: 'web',                 renderMode: RenderMode.Prerender },
   { path: 'blog',                renderMode: RenderMode.Prerender },
   { path: 'news-room',           renderMode: RenderMode.Prerender },
   { path: 'what-you-can-expect', renderMode: RenderMode.Prerender },
@@ -35,7 +34,8 @@ export const serverRoutes: ServerRoute[] = [
     fallback: PrerenderFallback.Server,
     getPrerenderParams: async () => {
       try {
-        const res = await fetch(`${API}/admin/getAll_blogTitles`);
+        const res = await fetch(`${API}/admin/getAll_blogTitles`, { signal: AbortSignal.timeout(12000) });
+        if (!res.ok) return [];
         const json = await res.json();
         const params: { title: string }[] = [];
         const seen = new Set<string>();
@@ -47,28 +47,25 @@ export const serverRoutes: ServerRoute[] = [
             seen.add(slug);
             params.push({ title: slug });
           }
-          if (b.titleLink !== slug && isFsSafe(b.titleLink) && !seen.has(b.titleLink)) {
-            seen.add(b.titleLink);
-            params.push({ title: b.titleLink });
-          }
         }
         return params;
       } catch (err) {
-        console.error('Error fetching blog params for prerender:', err);
+        console.warn('Prerender blog routes skipped (API unreachable or timed out):', err);
         return [];
       }
     },
   },
 
   // ── Dynamic Prerender: News ────────────────────────────────────
-  // Prerenders clean slugified routes and raw titleLink with Server fallback.
+  // Prerenders clean slugified routes with Server fallback.
   {
     path: 'news/:id',
     renderMode: RenderMode.Prerender,
     fallback: PrerenderFallback.Server,
     getPrerenderParams: async () => {
       try {
-        const res = await fetch(`${API}/admin/getAll_news`);
+        const res = await fetch(`${API}/admin/getAll_news?fields=_id,titleLink`, { signal: AbortSignal.timeout(12000) });
+        if (!res.ok) return [];
         const json = await res.json();
         const params: { id: string }[] = [];
         const seen = new Set<string>();
@@ -80,28 +77,25 @@ export const serverRoutes: ServerRoute[] = [
             seen.add(slug);
             params.push({ id: slug });
           }
-          if (n.titleLink !== slug && isFsSafe(n.titleLink) && !seen.has(n.titleLink)) {
-            seen.add(n.titleLink);
-            params.push({ id: n.titleLink });
-          }
         }
         return params;
       } catch (err) {
-        console.error('Error fetching news params for prerender:', err);
+        console.warn('Prerender news routes skipped (API unreachable or timed out):', err);
         return [];
       }
     },
   },
 
   // ── Dynamic Prerender: Portfolio / Case Studies ────────────────
-  // Prerenders clean slugified routes and raw titleLink with Server fallback.
+  // Prerenders clean slugified routes with Server fallback.
   {
     path: 'portfolio/:id',
     renderMode: RenderMode.Prerender,
     fallback: PrerenderFallback.Server,
     getPrerenderParams: async () => {
       try {
-        const res = await fetch(`${API}/admin/getAll_project`);
+        const res = await fetch(`${API}/admin/getAll_project?fields=_id,titleLink`, { signal: AbortSignal.timeout(12000) });
+        if (!res.ok) return [];
         const json = await res.json();
         const params: { id: string }[] = [];
         const seen = new Set<string>();
@@ -113,14 +107,10 @@ export const serverRoutes: ServerRoute[] = [
             seen.add(slug);
             params.push({ id: slug });
           }
-          if (p.titleLink !== slug && isFsSafe(p.titleLink) && !seen.has(p.titleLink)) {
-            seen.add(p.titleLink);
-            params.push({ id: p.titleLink });
-          }
         }
         return params;
       } catch (err) {
-        console.error('Error fetching portfolio params for prerender:', err);
+        console.warn('Prerender portfolio routes skipped (API unreachable or timed out):', err);
         return [];
       }
     },
@@ -133,13 +123,9 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Server,
   },
 
-  // ── Catch-All: SSR with Genuine HTTP 404 Status ────────────────
+  // ── Catch-All: SSR on Demand ──────────────────────────────────
   {
     path: '**',
     renderMode: RenderMode.Server,
-    status: 404,
-    headers: {
-      'Cache-Control': 'no-cache, no-store, must-revalidate',
-    },
   },
 ];

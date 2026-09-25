@@ -15,7 +15,7 @@ export class GameServiceComponent implements OnInit {
     this.seoService.setPage({
       title: 'Game Development Services | Carina Softlabs',
       description: 'Explore game development services by Carina Softlabs: concept art, 2D/3D assets creation, animation, and multiplatform game design.',
-      url: 'https://carinasoftlabs.com/game2',
+      url: 'https://carinasoftlabs.com/game-development',
     });
   }
 

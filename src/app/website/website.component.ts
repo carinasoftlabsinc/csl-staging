@@ -602,14 +602,14 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
 
   hoverGif = [
     {
-      heading: 'Web + App <br> Development',
+      heading: 'Web <br> Development',
       desc: 'Empowering Your Online Journey.',
-      route: '/web-app-development',
+      route: '/web-development',
     },
     {
       heading: 'Game <br> Development',
       desc: 'We Make Games That Players Love.',
-      route: '/game2',
+      route: '/game-development',
     },
     {
       heading: 'Digital <br> Marketing',
@@ -619,7 +619,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       heading: 'Emerging <br> Tech',
       desc: 'Shaping the Future with AI, AR/VR, and XR Innovation.',
-      route: '/emerging-tech',
+      route: '/services',
     },
   ];
 

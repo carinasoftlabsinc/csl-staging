@@ -31,6 +31,37 @@ app.use(
   }),
 );
 
+const PERMANENT_REDIRECTS: Record<string, string> = {
+  '/web': '/web-development',
+  '/game': '/game-development',
+  '/game2': '/game-development',
+  '/service2': '/game-development',
+  '/web-app-development': '/web-development',
+  '/about': '/know-us',
+  '/about-us': '/know-us',
+  '/know2': '/what-you-can-expect',
+  '/know3': '/how-we-work',
+  '/know4': '/careers',
+  '/blog-details': '/blog',
+  '/contact': '/contact-us',
+  '/service-details/digital-marketing': '/digital-marketing',
+  '/service-details/game-development': '/game-development',
+  '/service-details/web-development': '/web-development',
+  '/service-details/mobile-app-development': '/services',
+};
+
+/**
+ * 301 Permanent Redirect middleware for legacy, short, or orphaned URLs
+ */
+app.use((req, res, next) => {
+  const cleanPath = req.path.replace(/\/+$/, '') || '/';
+  const target = PERMANENT_REDIRECTS[cleanPath.toLowerCase()];
+  if (target) {
+    return res.redirect(301, target);
+  }
+  next();
+});
+
 /**
  * Handle all other requests by rendering the Angular application.
  */

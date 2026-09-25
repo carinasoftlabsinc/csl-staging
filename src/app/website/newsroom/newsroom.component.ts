@@ -224,49 +224,55 @@ allNewsLoading = true;
   // }
 
   fetchFeaturedItems(): void {
-  this.featuredLoading = true;
-  this.newsroomService.getFeaturedItems().subscribe({
-    next: (data) => {
-      this.featured = data.data.data;
-    },
-    error: (error) => {
-      console.error('Error fetching featured news:', error);
-    },
-    complete: () => {
-      this.featuredLoading = false;
-    },
-  });
-}
+    this.featuredLoading = true;
+    this.newsroomService.getFeaturedItems().subscribe({
+      next: (data) => {
+        this.featured = data?.data?.data || [];
+        this.featuredLoading = false;
+      },
+      error: (error) => {
+        console.error('Error fetching featured news:', error);
+        this.featuredLoading = false;
+      },
+      complete: () => {
+        this.featuredLoading = false;
+      },
+    });
+  }
 
-fetchPreFeaturedItems(): void {
-  this.prevFeaturedLoading = true;
-  this.newsroomService.getPreFeaturedItems().subscribe({
-    next: (data) => {
-      this.prevFeatured = data.data.data;
-    },
-    error: (error) => {
-      console.error('Error fetching featured news:', error);
-    },
-    complete: () => {
-      this.prevFeaturedLoading = false;
-    },
-  });
-}
+  fetchPreFeaturedItems(): void {
+    this.prevFeaturedLoading = true;
+    this.newsroomService.getPreFeaturedItems().subscribe({
+      next: (data) => {
+        this.prevFeatured = data?.data?.data || [];
+        this.prevFeaturedLoading = false;
+      },
+      error: (error) => {
+        console.error('Error fetching previous featured news:', error);
+        this.prevFeaturedLoading = false;
+      },
+      complete: () => {
+        this.prevFeaturedLoading = false;
+      },
+    });
+  }
 
-fetchAllNews(): void {
-  this.allNewsLoading = true;
-  this.newsroomService.getAllNews().subscribe({
-    next: (data) => {
-      this.allNews = data.data.data;
-    },
-    error: (error) => {
-      console.error('Error fetching all news:', error);
-    },
-    complete: () => {
-      this.allNewsLoading = false;
-    },
-  });
-}
+  fetchAllNews(): void {
+    this.allNewsLoading = true;
+    this.newsroomService.getAllNews().subscribe({
+      next: (data) => {
+        this.allNews = data?.data?.data || [];
+        this.allNewsLoading = false;
+      },
+      error: (error) => {
+        console.error('Error fetching all news:', error);
+        this.allNewsLoading = false;
+      },
+      complete: () => {
+        this.allNewsLoading = false;
+      },
+    });
+  }
 
 
   formatHeading(title: string): string {

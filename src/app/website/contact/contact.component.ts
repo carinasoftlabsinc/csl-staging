@@ -4,7 +4,8 @@ import { Title, Meta } from '@angular/platform-browser';
 import { FormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ContactService } from './contact.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router'; // Import the Router
+import { Router } from '@angular/router';
+import { AnalyticsService } from '@core/service/analytics.service';
 
 @Component({
     selector: 'app-contact',
@@ -26,7 +27,8 @@ export class ContactComponent implements OnInit, OnDestroy {
     private fb: UntypedFormBuilder,
     private service: ContactService,
     private snackBar: MatSnackBar,
-    private router: Router, // Inject Router here
+    private router: Router,
+    private analyticsService: AnalyticsService,
     private renderer: Renderer2,
     @Inject(DOCUMENT) private document: Document
   ) {
@@ -391,6 +393,10 @@ export class ContactComponent implements OnInit, OnDestroy {
         next: (response) => {
           this.loading = false; 
           this.submitted = false;
+          this.analyticsService.trackGenerateLead({
+            formName: 'Contact Us Page Form',
+            category: 'lead_generation',
+          });
           this.clientForm.reset();
           this.showSuccessMessage('Data submitted successfully');
           this.router.navigate(['/thank-you']); // Use the Router to navigate

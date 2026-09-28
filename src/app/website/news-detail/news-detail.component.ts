@@ -7,6 +7,7 @@ import {
   AfterViewInit,
   Renderer2,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Inject,
   PLATFORM_ID,
   SecurityContext,
@@ -56,6 +57,7 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     public sanitizer: DomSanitizer,
     private seoService: SeoService,
+    private cdr: ChangeDetectorRef,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
@@ -190,6 +192,7 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
               this.activeSubSection =
                 flatSubSections.length > 0 ? flatSubSections[0].id : '';
             }
+            this.cdr.detectChanges();
               });
           } else {
             console.warn('No news found with id:', _id);

@@ -34,6 +34,15 @@ interface SitemapEntry {
   lastmod: string;
 }
 
+function escapeXml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
 async function main() {
   console.log('Generating sitemap.xml with real API dates and verbatim slugs...');
 
@@ -53,9 +62,9 @@ async function main() {
     '',
     '/know-us',
     '/services',
-    '/web-development',
-    '/game-development',
-    '/digital-marketing',
+    // '/web-development',
+    // '/game-development',
+    // '/digital-marketing',
     '/what-you-can-expect',
     '/how-we-work',
     '/careers',
@@ -120,8 +129,8 @@ async function main() {
 ${uniqueEntries
   .map(
     e => `  <url>
-    <loc>${e.loc}</loc>
-    <lastmod>${e.lastmod}</lastmod>
+    <loc>${escapeXml(e.loc)}</loc>
+    <lastmod>${escapeXml(e.lastmod)}</lastmod>
   </url>`,
   )
   .join('\n')}

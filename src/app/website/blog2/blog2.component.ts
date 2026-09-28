@@ -5,6 +5,7 @@ import {
   ViewChild,
   OnInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   HostListener,
   SecurityContext,
   Inject,
@@ -54,7 +55,8 @@ export class Blog2Component implements OnInit {
     private http: HttpClient,
     private sanitizer: DomSanitizer,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private seoService: SeoService
+    private seoService: SeoService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   getAll_blogTitles = `${environment.apiUrl}/admin/getAll_blogTitles`;
@@ -220,6 +222,7 @@ export class Blog2Component implements OnInit {
           this.activeSubSection =
             flatSubSections.length > 0 ? flatSubSections[0]._id : '';
         }
+        this.cdr.detectChanges();
       },
       error: (error) => {
         console.error('Error fetching blog by ID:', error);

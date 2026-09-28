@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
@@ -40,7 +40,8 @@ export class CaseStudiesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private seoService: SeoService
+    private seoService: SeoService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -121,6 +122,7 @@ export class CaseStudiesComponent implements OnInit {
                   : undefined,
               },
             });
+            this.cdr.detectChanges();
               },
               error: (error) => {
                 console.error('Error fetching portfolio detail:', error);

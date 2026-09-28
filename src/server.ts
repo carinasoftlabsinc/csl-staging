@@ -32,11 +32,11 @@ app.use(
 );
 
 const PERMANENT_REDIRECTS: Record<string, string> = {
-  '/web': '/web-development',
-  '/game': '/game-development',
-  '/game2': '/game-development',
-  '/service2': '/game-development',
-  '/web-app-development': '/web-development',
+  // '/web': '/web-development',
+  // '/game': '/game-development',
+  // '/game2': '/game-development',
+  // '/service2': '/game-development',
+  // '/web-app-development': '/web-development',
   '/about': '/know-us',
   '/about-us': '/know-us',
   '/know2': '/what-you-can-expect',
@@ -44,9 +44,9 @@ const PERMANENT_REDIRECTS: Record<string, string> = {
   '/know4': '/careers',
   '/blog-details': '/blog',
   '/contact': '/contact-us',
-  '/service-details/digital-marketing': '/digital-marketing',
-  '/service-details/game-development': '/game-development',
-  '/service-details/web-development': '/web-development',
+  // '/service-details/digital-marketing': '/digital-marketing',
+  // '/service-details/game-development': '/game-development',
+  // '/service-details/web-development': '/web-development',
   '/service-details/mobile-app-development': '/services',
 };
 

@@ -595,8 +595,7 @@
                               LATEST BLOGS
                             </h2>
 
-                            <button
-                              type="button"
+                            <a
                               routerLink="/blog"
                               class="pb-5 2xl:!text-[18px] xl:text-[14px] hidden rounded-full !border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5] 2xl:!py-3 !p-3 md:!px-8 md:!py-2 2xl:!px-12 text-white sm:inline-block"
                               >
@@ -608,7 +607,7 @@
                                   class="button-img"
                                   />
                                 </span>
-                              </button>
+                            </a>
                             </div>
 
                             <hr style="border: 1px solid #34394b" />
@@ -638,22 +637,21 @@
                                       alt=""
                                       />
                                       <div class="flex flex-col gap-y-7">
-                                        <p
+                                        <a
                                           [routerLink]="['/blog', formatHeading(card.titleLink)]"
                                           class="text-[#B4B9CB] font-quickSand font-medium lat-bl-h"
                                           >
                                           {{ card.title }}
-                                        </p>
+                                        </a>
                                         <p class="hidden text-[#B4B9CB] text-xs 2xl:text-sm lat-bl-p">
                                           {{ card.description }}
                                         </p>
-                                        <button
-                                          type="button"
+                                        <a
                                           [routerLink]="['/blog', formatHeading(card.titleLink)]"
                                           class="text-white text-sm w-1/2 rounded-3xl py-1 px-2 border !border-b-[#20B9FA] !border-l-[#20B9FA] !border-r-[#20B9FA] !border-t-[#F21DF5]"
                                           >
                                           View More
-                                        </button>
+                                        </a>
                                       </div>
                                     </div>
                                   }

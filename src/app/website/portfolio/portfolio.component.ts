@@ -334,7 +334,7 @@
 //   cardText: string = `Find Out How We Solved <br class="hidden sm:block" /> Complex "IT" Challenge`;
 // }
 
-import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Title, Meta } from '@angular/platform-browser';
 
@@ -342,6 +342,7 @@ import { environment } from "../../../environments/environment"
 import { formatHeading } from '@core/utils/slug.util';
 
 type Category =
+  | 'All Projects'
   | 'Game Development'
   | 'App Development'
   | 'Web Development'
@@ -377,15 +378,16 @@ interface ApiResponse {
 })
 export class PortfolioComponent implements OnInit, OnDestroy {
   SrcWords: Category[] = [
+    'All Projects',
     'Game Development',
     'App Development',
     'Web Development',
     'Digital Marketing',
   ];
-  selectedCategory: Category = this.SrcWords[0];
-  // cards: PortfolioItem[] = [];
-  cards: any;
-  apiUrl = `${environment.apiUrl}/admin/getAll_project?category=`;
+  selectedCategory: Category = 'All Projects';
+  allCards: PortfolioItem[] = [];
+  cards: PortfolioItem[] = [];
+  apiUrl = `${environment.apiUrl}/admin/getAll_project`;
   imageUrl = `${environment.imageBaseUrl}`;
   loading: boolean | undefined;
   private seoElements: HTMLElement[] = [];
@@ -395,6 +397,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private metaService: Meta,
     private renderer: Renderer2,
+    private changeDetector: ChangeDetectorRef,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
@@ -412,7 +415,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
     this.setOpenGraphTags();
     this.setSchemaMarkup();
 
-    this.fetchPortfolioItems(this.selectedCategory);
+    this.fetchPortfolioItems();
   }
 
   ngOnDestroy(): void {
@@ -540,14 +543,13 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   // }
   imagesLoadedCount = 0;
   totalImages = 0;
-    fetchPortfolioItems(category: Category): void {
+    fetchPortfolioItems(): void {
       this.loading = true;
       this.imagesLoadedCount = 0;
 
-      const categoryParam = this.mapCategoryToApiParam(category);
-      this.http.get<ApiResponse>(`${this.apiUrl}${categoryParam}&fields=_id,title,titleLink,category,description,image,image_2,projectLogo`).subscribe({
+      this.http.get<ApiResponse>(`${this.apiUrl}?fields=_id,title,titleLink,category,description,image,image_2,projectLogo`).subscribe({
         next: (response) => {
-          const data = response.data.data.map((item) => ({
+          this.allCards = (response?.data?.data || []).map((item) => ({
             _id: item._id,
             title: item.title,
             titleLink: item.titleLink,
@@ -557,24 +559,35 @@ export class PortfolioComponent implements OnInit, OnDestroy {
             image_2: item.image_2 || '',
             content: item.content || '',
           }));
-          this.cards = data;
+          this.applySelectedCategory();
           this.loading = false;
+          this.changeDetector.detectChanges();
         },
         error: (error) => {
           console.error('Error fetching portfolio data:', error);
           this.loading = false;
+          this.changeDetector.detectChanges();
         },
       });
     }
   
   selectCategory(category: Category): void {
     this.selectedCategory = category;
-    this.fetchPortfolioItems(category);
+    this.applySelectedCategory();
+  }
+
+  private applySelectedCategory(): void {
+    const categoryParam = this.mapCategoryToApiParam(this.selectedCategory);
+    this.cards = categoryParam
+      ? this.allCards.filter((project) => project.category === categoryParam)
+      : [...this.allCards];
   }
 
   mapCategoryToApiParam(category: Category): string {
     // Map category names to API parameters
     switch (category) {
+      case 'All Projects':
+        return '';
       case 'Game Development':
         return 'game';
       case 'App Development':

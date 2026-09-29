@@ -224,7 +224,7 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
   }
 
   formatHeading(title: string): string {
-    return title || '';
+    return formatHeading(title);
   }
 
   applyStyles() {

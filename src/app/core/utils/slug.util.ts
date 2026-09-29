@@ -4,9 +4,13 @@
 export function formatHeading(title?: string): string {
   if (!title) return '';
   return title
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
     .trim()
     .toLowerCase()
-    .replace(/\s+/g, '-');
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 }
 
 /**
@@ -58,9 +62,9 @@ export function matchesSlug(item: any, routeParam?: string): boolean {
   }
 
   // 3. Simple space-to-hyphen slug match
-  const slugFromParam = rawParam.toLowerCase().replace(/\s+/g, '-');
-  const slugFromTitleLink = titleLink.toLowerCase().replace(/\s+/g, '-');
-  const slugFromTitle = title.toLowerCase().replace(/\s+/g, '-');
+  const slugFromParam = formatHeading(decodedParam);
+  const slugFromTitleLink = formatHeading(titleLink);
+  const slugFromTitle = formatHeading(title);
 
   if (
     slugFromTitleLink === slugFromParam ||

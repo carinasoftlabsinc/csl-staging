@@ -1,4 +1,5 @@
 import { RenderMode, PrerenderFallback, ServerRoute } from '@angular/ssr';
+import { formatHeading } from './core/utils/slug.util';
 
 const API = 'https://admin.carinasoftlabs.com/web/web/v1';
 
@@ -42,7 +43,7 @@ export const serverRoutes: ServerRoute[] = [
 
         for (const b of json.data ?? []) {
           if (!b.titleLink) continue;
-          const slug = b.titleLink.trim().toLowerCase().replace(/\s+/g, '-');
+          const slug = formatHeading(b.titleLink);
           if (isFsSafe(slug) && !seen.has(slug)) {
             seen.add(slug);
             params.push({ title: slug });
@@ -72,7 +73,7 @@ export const serverRoutes: ServerRoute[] = [
 
         for (const n of json.data?.data ?? []) {
           if (!n.titleLink) continue;
-          const slug = n.titleLink.trim().toLowerCase().replace(/\s+/g, '-');
+          const slug = formatHeading(n.titleLink);
           if (isFsSafe(slug) && !seen.has(slug)) {
             seen.add(slug);
             params.push({ id: slug });
@@ -102,7 +103,7 @@ export const serverRoutes: ServerRoute[] = [
 
         for (const p of json.data?.data ?? []) {
           if (!p.titleLink) continue;
-          const slug = p.titleLink.trim().toLowerCase().replace(/\s+/g, '-');
+          const slug = formatHeading(p.titleLink);
           if (isFsSafe(slug) && !seen.has(slug)) {
             seen.add(slug);
             params.push({ id: slug });

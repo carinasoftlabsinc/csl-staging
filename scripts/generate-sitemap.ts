@@ -1,5 +1,6 @@
 import { existsSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { formatHeading } from '../src/app/core/utils/slug.util';
 
 const API = 'https://admin.carinasoftlabs.com/web/web/v1';
 const BASE_URL = 'https://carinasoftlabs.com';
@@ -44,7 +45,7 @@ function escapeXml(value: string): string {
 }
 
 async function main() {
-  console.log('Generating sitemap.xml with real API dates and verbatim slugs...');
+  console.log('Generating sitemap.xml with canonical slugs and real API dates...');
 
   const [blogsRes, newsRes, projectsRes] = await Promise.all([
     fetchJson(`${API}/admin/getAll_blog?fields=_id,titleLink,updatedAt,createdAt`),
@@ -81,11 +82,11 @@ async function main() {
     lastmod: BUILD_DATE,
   }));
 
-  // Blogs: clean slugified titleLink + real updatedAt from getAll_blog
+  // Blogs: canonical slugified titleLink + real updatedAt from getAll_blog
   const blogs = blogsRes?.data?.data ?? [];
   for (const b of blogs) {
     if (b.titleLink) {
-      const slug = b.titleLink.trim().toLowerCase().replace(/\s+/g, '-');
+      const slug = formatHeading(b.titleLink);
       entries.push({
         loc: `${BASE_URL}/blog/${slug}`,
         lastmod: formatDate(b.updatedAt || b.createdAt),
@@ -97,7 +98,7 @@ async function main() {
   const news = newsRes?.data?.data ?? [];
   for (const n of news) {
     if (n.titleLink) {
-      const slug = n.titleLink.trim().toLowerCase().replace(/\s+/g, '-');
+      const slug = formatHeading(n.titleLink);
       entries.push({
         loc: `${BASE_URL}/news/${slug}`,
         lastmod: formatDate(n.updatedAt || n.createdAt),
@@ -109,7 +110,7 @@ async function main() {
   const projects = projectsRes?.data?.data ?? [];
   for (const p of projects) {
     if (p.titleLink) {
-      const slug = p.titleLink.trim().toLowerCase().replace(/\s+/g, '-');
+      const slug = formatHeading(p.titleLink);
       entries.push({
         loc: `${BASE_URL}/portfolio/${slug}`,
         lastmod: formatDate(p.updatedAt || p.createdAt),

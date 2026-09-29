@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 
@@ -71,6 +71,7 @@ export class NewsroomComponent implements OnInit, AfterViewInit, OnDestroy {
     private titleService: Title,
     private metaService: Meta,
     private renderer: Renderer2,
+    private changeDetector: ChangeDetectorRef,
     @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
@@ -229,10 +230,12 @@ allNewsLoading = true;
       next: (data) => {
         this.featured = data?.data?.data || [];
         this.featuredLoading = false;
+        this.changeDetector.detectChanges();
       },
       error: (error) => {
         console.error('Error fetching featured news:', error);
         this.featuredLoading = false;
+        this.changeDetector.detectChanges();
       },
       complete: () => {
         this.featuredLoading = false;
@@ -246,10 +249,12 @@ allNewsLoading = true;
       next: (data) => {
         this.prevFeatured = data?.data?.data || [];
         this.prevFeaturedLoading = false;
+        this.changeDetector.detectChanges();
       },
       error: (error) => {
         console.error('Error fetching previous featured news:', error);
         this.prevFeaturedLoading = false;
+        this.changeDetector.detectChanges();
       },
       complete: () => {
         this.prevFeaturedLoading = false;
@@ -263,10 +268,12 @@ allNewsLoading = true;
       next: (data) => {
         this.allNews = data?.data?.data || [];
         this.allNewsLoading = false;
+        this.changeDetector.detectChanges();
       },
       error: (error) => {
         console.error('Error fetching all news:', error);
         this.allNewsLoading = false;
+        this.changeDetector.detectChanges();
       },
       complete: () => {
         this.allNewsLoading = false;

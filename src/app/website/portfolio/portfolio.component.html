@@ -88,7 +88,7 @@
       class="text-center mt-12 sm:mt-auto my-8 flex flex-col gap-3.5 2xl:gap-6 md:mt-8"
       >
       <h2 class="text-black text-3xl xl:text-4xl 2xl:text-5xl font-myfont">
-        {{ selectedCategory }} Projects
+        {{ selectedCategory === 'All Projects' ? 'All Projects' : selectedCategory + ' Projects' }}
       </h2>
       <p
         class="font-quickSand font-medium text-base lg:text-lg 2xl:!text-2xl !leading-6 text-black capitalize"
@@ -333,11 +333,28 @@
                                 </div>
                               }
                             }
-                          </div>
-                        }
-                      </section>
+                          @if (cards.length > 13) {
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 2xl:gap-10">
+                              @for (project of cards | slice : 13; track project._id) {
+                                <a [routerLink]="['/portfolio', formatHeading(project.titleLink)]">
+                                  <img
+                                    class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                                    [src]="imageUrl + '/' + project.image_2"
+                                    [alt]="project.title"
+                                  />
+                                  <div class="!px-4 py-3.5 flex flex-col gap-1.5">
+                                    <h5 class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5">{{ project.title }}</h5>
+                                    <p class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4">{{ project.description }}</p>
+                                  </div>
+                                </a>
+                              }
+                            </div>
+                          }
+                        </div>
+                      }
+                    </section>
 
-                      <section class="py-32">
+                    <section class="py-32">
                         <div class="my-12 flex flex-col gap-y-6 !z-20">
                           <!-- Container for the scrolling text -->
                           <div class="whitespace-nowrap overflow-hidden relative">

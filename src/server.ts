@@ -20,17 +20,6 @@ const angularApp = new AngularNodeAppEngine({
   trustProxyHeaders: true,
 });
 
-/**
- * Serve static files from /browser
- */
-app.use(
-  express.static(browserDistFolder, {
-    maxAge: '1y',
-    index: 'index.html',
-    redirect: false,
-  }),
-);
-
 const PERMANENT_REDIRECTS: Record<string, string> = {
   // '/web': '/web-development',
   // '/game': '/game-development',
@@ -54,13 +43,50 @@ const PERMANENT_REDIRECTS: Record<string, string> = {
  * 301 Permanent Redirect middleware for legacy, short, or orphaned URLs
  */
 app.use((req, res, next) => {
-  const cleanPath = req.path.replace(/\/+$/, '') || '/';
+  let decodedPath = req.path;
+  try {
+    decodedPath = decodeURIComponent(req.path);
+  } catch {
+    // Keep the original path if it contains malformed percent escapes.
+  }
+
+  const cleanPath = decodedPath.replace(/\/+$/, '') || '/';
   const target = PERMANENT_REDIRECTS[cleanPath.toLowerCase()];
   if (target) {
     return res.redirect(301, target);
   }
+
+  const contentRoute = cleanPath.match(/^\/(blog|news|portfolio)\/([^/]+)$/i);
+  if (contentRoute) {
+    const canonicalSlug = contentRoute[2]
+      .normalize('NFKD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/&/g, ' and ')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+    if (canonicalSlug && canonicalSlug !== contentRoute[2]) {
+      const canonicalPath = `/${contentRoute[1].toLowerCase()}/${canonicalSlug}`;
+      const queryIndex = req.url.indexOf('?');
+      const queryString = queryIndex >= 0 ? req.url.slice(queryIndex) : '';
+      return res.redirect(301, `${canonicalPath}${queryString}`);
+    }
+  }
+
   next();
 });
+
+/**
+ * Serve static files from /browser after redirects so legacy prerendered URLs
+ * cannot bypass canonicalization.
+ */
+app.use(
+  express.static(browserDistFolder, {
+    maxAge: '1y',
+    index: 'index.html',
+    redirect: false,
+  }),
+);
 
 /**
  * Handle all other requests by rendering the Angular application.

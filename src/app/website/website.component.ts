@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import {
@@ -210,6 +210,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     private metaService: Meta,
     private http: HttpClient,
     private renderer: Renderer2,
+    private changeDetector: ChangeDetectorRef,
     @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
@@ -324,9 +325,11 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
           this.blogCards = res.data;
         }
         this.loadingBlog = false;
+        this.changeDetector.detectChanges();
       },
       error: () => {
         this.loadingBlog = false;
+        this.changeDetector.detectChanges();
       },
     });
   }

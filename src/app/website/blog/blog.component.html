@@ -148,35 +148,28 @@
                   >
                   <a class="block overflow-hidden rounded-[30px]" [routerLink]="['/blog', formatHeading(featured.titleLink)]">
                     <img
-                      class="rounded-[30px] object-cover w-full transition-transform transform group-hover:scale-105 duration-500 ease-in-out lg:h-[65vh] xl:h-[65vh] 2xl:h-[60vh]"
+                      class="rounded-[30px] object-cover w-full transition-transform duration-700 ease-out group-hover:scale-105 group-focus-within:scale-105 motion-reduce:transition-none lg:h-[65vh] xl:h-[65vh] 2xl:h-[60vh]"
                       [src]="imageUrl + featured.image_2 || 'default-image.jpg'"
                       [alt]="featured.title"
                       />
                     </a>
-                    <div>
-                      <h5
-                        class="text-xl font-myfont text-[#B4B9CB] mb-2 mt-6 transition-opacity duration-500 ease-in-out group-hover:opacity-0"
-                        >
-                        Featured Article
-                      </h5>
-                      <a
-                        [routerLink]="['/blog', formatHeading(featured.titleLink)]"
-                        class="text-white font-quickSand text-[24px] leading-[30px] mb-4 transition-transform transform group-hover:-translate-y-4 duration-500 ease-in-out"
-                        >
-                        {{ featured.title }}
-                      </a>
-                      <a
-                        [routerLink]="['/blog', formatHeading(featured.titleLink)]"
-                        class="text-white font-quickSand font-medium transition-all duration-500 ease-in-out opacity-0 transform group-hover:!opacity-100 group-hover:-translate-y-4 flex items-center gap-2"
-                        >
-                        Read More
-                        <img
-                          src="../../../assets/images/arrow-right-gradient.svg"
-                          alt=""
-                          width="25"
-                          />
-                      </a>
+                    <div class="featured-article-reveal mt-6">
+                      <h5 class="featured-article-label text-xl font-myfont text-[#B4B9CB]">Featured Article</h5>
+                      <!-- Exchange zone: title exits UP, read-more enters from BELOW -->
+                      <div class="featured-article-exchange">
+                        <a
+                          [routerLink]="['/blog', formatHeading(featured.titleLink)]"
+                          class="featured-article-title block text-white font-quickSand text-[24px] leading-[30px]"
+                          >{{ featured.title }}</a>
+                        <a
+                          [routerLink]="['/blog', formatHeading(featured.titleLink)]"
+                          class="featured-article-read-more text-white font-quickSand font-medium flex items-center gap-2"
+                          >
+                          Read More
+                          <img src="../../../assets/images/arrow-right-gradient.svg" alt="" width="25" />
+                        </a>
                       </div>
+                    </div>
                     </div>
                   } @else {
                     <div
@@ -197,35 +190,28 @@
                           <div class="h-full w-full">
                             <a class="block overflow-hidden rounded-[30px]" [routerLink]="['/blog', formatHeading(card.titleLink)]">
                               <img
-                                class="w-full transition-transform transform group-hover:scale-105 duration-500 ease-in-out h-36 md:h-28 lg:h-32 xl:h-44 2xl:h-60 object-cover"
+                                class="w-full transition-transform duration-700 ease-out group-hover:scale-105 group-focus-within:scale-105 motion-reduce:transition-none h-36 md:h-28 lg:h-32 xl:h-44 2xl:h-60 object-cover"
                                 [src]="imageUrl + card.image_2 || 'default-image.jpg'"
                                 [alt]="card.title"
                                 />
                               </a>
-                              <div>
-                                <h5
-                                  class="text-xl font-myfont text-[#B4B9CB] mb-2 mt-4 transition-opacity duration-500 ease-in-out group-hover:opacity-0"
-                                  >
-                                  Featured Article
-                                </h5>
-                                <a
-                                  [routerLink]="['/blog', formatHeading(card.titleLink)]"
-                                  class="text-white font-quickSand text-[16px] mb-2 leading-[20px] transition-transform transform group-hover:-translate-y-4 duration-500 ease-in-out"
-                                  >
-                                  {{ card.title }}
-                                </a>
-                                <a
-                                  [routerLink]="['/blog', formatHeading(card.titleLink)]"
-                                  class="text-white font-quickSand font-medium transition-all duration-500 ease-in-out opacity-0 transform group-hover:!opacity-100 group-hover:-translate-y-4 flex items-center gap-2"
-                                  >
-                                  Read More
-                                  <img
-                                    src="../../../assets/images/arrow-right-gradient.svg"
-                                    alt=""
-                                    width="25"
-                                    />
-                                </a>
+                              <div class="featured-article-reveal mt-4">
+                                <h5 class="featured-article-label text-xl font-myfont text-[#B4B9CB]">Featured Article</h5>
+                                <!-- Exchange zone: title exits UP, read-more enters from BELOW -->
+                                <div class="featured-article-exchange">
+                                  <a
+                                    [routerLink]="['/blog', formatHeading(card.titleLink)]"
+                                    class="featured-article-title block text-white font-quickSand text-[16px] leading-[20px]"
+                                    >{{ card.title }}</a>
+                                  <a
+                                    [routerLink]="['/blog', formatHeading(card.titleLink)]"
+                                    class="featured-article-read-more text-white font-quickSand font-medium flex items-center gap-2"
+                                    >
+                                    Read More
+                                    <img src="../../../assets/images/arrow-right-gradient.svg" alt="" width="25" />
+                                  </a>
                                 </div>
+                              </div>
                               </div>
                             </div>
                           </div>
@@ -283,100 +269,87 @@
                   <!-- card -->
 
                   <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:py-12 py-8">
-                    <div
-                      class="w-full border !border-[#B4B9CB] rounded-[40px] overflow-hidden cursor-pointer"
-                      >
-                      <div
-                        class="p-6 transition-transform duration-500 hover:translate-y-[-140px] relative"
-                        >
+                    <!-- Development -->
+                    <div class="category-card w-full border !border-[#B4B9CB] rounded-[40px]">
+                      <div class="category-card__inner p-6">
                         <div class="py-10">
                           <img
                             src="../../../assets/images/blog-dev.png"
                             alt="product image"
                             class="w-16 h-16 mb-4"
                             />
-                            <h3
-                              class="2xl:text-5xl xl:text-4xl lg:text-3xl sm:text-3xl text-2xl font-quickSand font-bold text-[#0B0C10] mt-16"
-                              >
-                              Development
-                            </h3>
-                            <p
-                              class="text-[#34394B] font-quickSand font-medium text-base 2xl:text-2xl mt-3 xl:mb-8 2xl:mb-24"
-                              >
-                              Tech Related Knowledge
-                            </p>
-                          </div>
-                          <button
-                            class="absolute bottom-0 text-left p-6 w-full py-2 bg-transparent text-[#34394B] sm:!text-base xl:!text-xl !text-[15px] font-medium font-quickSand underline transition-transform duration-500 ease-in-out transform translate-y-full"
+                          <h3
+                            class="2xl:text-5xl xl:text-4xl lg:text-3xl sm:text-3xl text-2xl font-quickSand font-bold text-[#0B0C10] mt-16"
                             >
-                            Browse Category
-                          </button>
+                            Development
+                          </h3>
+                          <p
+                            class="text-[#34394B] font-quickSand font-medium text-base 2xl:text-2xl mt-3 xl:mb-8 2xl:mb-24"
+                            >
+                            Tech Related Knowledge
+                          </p>
                         </div>
                       </div>
+                      <!-- Button is OUTSIDE __inner so it doesn't move with the sliding content -->
+                      <button class="category-card__btn text-left bg-transparent text-[#34394B] sm:!text-base xl:!text-xl !text-[15px] font-medium font-quickSand underline">
+                        Browse Category
+                      </button>
+                    </div>
 
-                      <div
-                        class="w-full border !border-[#B4B9CB] rounded-[40px] overflow-hidden cursor-pointer"
-                        >
-                        <div
-                          class="p-6 transition-transform duration-500 hover:translate-y-[-140px] relative"
-                          >
-                          <div class="py-10">
-                            <img
-                              src="../../../assets/images/blog-design.png"
-                              alt="product image"
-                              class="w-16 h-16 mb-4"
-                              />
-                              <h3
-                                class="2xl:text-5xl xl:text-4xl lg:text-3xl sm:text-3xl text-2xl font-quickSand font-bold text-[#0B0C10] mt-16"
-                                >
-                                Design
-                              </h3>
-                              <p
-                                class="text-[#34394B] font-quickSand font-medium text-base 2xl:text-2xl mt-3 xl:mb-8 2xl:mb-24"
-                                >
-                                Tech Related Knowledge
-                              </p>
-                            </div>
-                            <button
-                              class="absolute bottom-0 text-left p-6 w-full py-2 bg-transparent text-[#34394B] sm:!text-base xl:!text-xl !text-[15px] font-medium font-quickSand underline transition-transform duration-500 ease-in-out transform translate-y-full"
-                              >
-                              Browse Category
-                            </button>
-                          </div>
-                        </div>
-
-                        <div
-                          class="w-full border !border-[#B4B9CB] rounded-[40px] overflow-hidden cursor-pointer"
-                          >
-                          <div
-                            class="p-6 transition-transform duration-500 hover:translate-y-[-140px] relative"
+                    <!-- Design -->
+                    <div class="category-card w-full border !border-[#B4B9CB] rounded-[40px]">
+                      <div class="category-card__inner p-6">
+                        <div class="py-10">
+                          <img
+                            src="../../../assets/images/blog-design.png"
+                            alt="product image"
+                            class="w-16 h-16 mb-4"
+                            />
+                          <h3
+                            class="2xl:text-5xl xl:text-4xl lg:text-3xl sm:text-3xl text-2xl font-quickSand font-bold text-[#0B0C10] mt-16"
                             >
-                            <div class="py-10">
-                              <img
-                                src="../../../assets/images/blog-dg.png"
-                                alt="product image"
-                                class="w-16 h-16 mb-4"
-                                />
-                                <h3
-                                  class="2xl:text-5xl xl:text-4xl lg:text-3xl sm:text-3xl text-2xl font-quickSand font-bold text-[#0B0C10] mt-16"
-                                  >
-                                  Digital Marketing
-                                </h3>
-                                <p
-                                  class="text-[#34394B] font-quickSand font-medium text-base 2xl:text-2xl mt-3 xl:mb-8 2xl:mb-24"
-                                  >
-                                  Tech Related Knowledge
-                                </p>
-                              </div>
-                              <button
-                                class="absolute bottom-0 text-left p-6 w-full py-2 bg-transparent text-[#34394B] sm:!text-base xl:!text-xl !text-[15px] font-medium font-quickSand underline transition-transform duration-500 ease-in-out transform translate-y-full"
-                                >
-                                Browse Category
-                              </button>
-                            </div>
-                          </div>
+                            Design
+                          </h3>
+                          <p
+                            class="text-[#34394B] font-quickSand font-medium text-base 2xl:text-2xl mt-3 xl:mb-8 2xl:mb-24"
+                            >
+                            Tech Related Knowledge
+                          </p>
                         </div>
-                      </section>
+                      </div>
+                      <button class="category-card__btn text-left bg-transparent text-[#34394B] sm:!text-base xl:!text-xl !text-[15px] font-medium font-quickSand underline">
+                        Browse Category
+                      </button>
+                    </div>
+
+                    <!-- Digital Marketing -->
+                    <div class="category-card w-full border !border-[#B4B9CB] rounded-[40px]">
+                      <div class="category-card__inner p-6">
+                        <div class="py-10">
+                          <img
+                            src="../../../assets/images/blog-dg.png"
+                            alt="product image"
+                            class="w-16 h-16 mb-4"
+                            />
+                          <h3
+                            class="2xl:text-5xl xl:text-4xl lg:text-3xl sm:text-3xl text-2xl font-quickSand font-bold text-[#0B0C10] mt-16"
+                            >
+                            Digital Marketing
+                          </h3>
+                          <p
+                            class="text-[#34394B] font-quickSand font-medium text-base 2xl:text-2xl mt-3 xl:mb-8 2xl:mb-24"
+                            >
+                            Tech Related Knowledge
+                          </p>
+                        </div>
+                      </div>
+                      <button class="category-card__btn text-left bg-transparent text-[#34394B] sm:!text-base xl:!text-xl !text-[15px] font-medium font-quickSand underline">
+                        Browse Category
+                      </button>
+                    </div>
+                  </div><!-- /grid -->
+                </section>
+
 
                       <section
                         class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24 mb-14 2xl:mb-32"

@@ -63,7 +63,7 @@ export class ContactService {
       service,
     };
 
-    return this.http.post<{ message: string; data: any }>(
+    return this.http.post<{ status: string; message: string; data: any }>(
       `${BACKEND_URL}/admin/getContactDetails`,
       payload
     );

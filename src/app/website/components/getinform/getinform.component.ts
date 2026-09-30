@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
@@ -16,15 +16,30 @@ import { AnalyticsService } from '@core/service/analytics.service';
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
-export class GetinformComponent {
+export class GetinformComponent implements OnInit {
   @Input() theme: 'light' | 'dark' = 'light';
   @Input() imgSrc: string | null = null;
+  @Input() servicePreset: string = '';
+  @Input() bookingUrl = 'https://calendar.app.google/A5eDKdLkRDF9KokT7';
   mail = 'business@carinasoftlabs.com';
 
-  rangeValue: number = 500;
+  readonly services = [
+    'Web Development',
+    'Mobile App Development',
+    'Game Development',
+    'Digital Marketing',
+    'AI & Emerging Tech',
+  ];
+  readonly budgets = [
+    'Under $5,000',
+    '$5,000 – $15,000',
+    '$15,000 – $50,000',
+    '$50,000+',
+    'Not sure yet',
+  ];
   getinformForm: UntypedFormGroup;
-  submitted: boolean | undefined;
-  loading: boolean | undefined;
+  submitted = false;
+  loading = false;
 
   constructor(
     private fb: UntypedFormBuilder,
@@ -34,11 +49,20 @@ export class GetinformComponent {
     private analyticsService: AnalyticsService
   ) {
     this.getinformForm = this.fb.group({
-      name: ['', Validators.required],
-      phone: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      name: ['', [Validators.required, Validators.pattern(/.*\S.*/)]],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]*$'), Validators.minLength(10), Validators.maxLength(15)]],
       email: ['', [Validators.required, Validators.email]],
+      service: ['', Validators.required],
+      budget: [''],
       message: [''],
+      termsAccepted: [false, Validators.requiredTrue],
     });
+  }
+
+  ngOnInit(): void {
+    if (this.servicePreset) {
+      this.getinformForm.patchValue({ service: this.servicePreset });
+    }
   }
 
   private showSuccessMessage(message: string) {
@@ -62,30 +86,52 @@ export class GetinformComponent {
   }
 
   onSave() {
+    if (this.loading) return;
+    for (const field of ['name', 'email', 'phone', 'message']) {
+      const control = this.getinformForm.get(field);
+      control?.setValue((control.value || '').trim(), { emitEvent: false });
+    }
     this.submitted = true;
     if (this.getinformForm.invalid) {
+      this.getinformForm.markAllAsTouched();
       return;
     }
     this.loading = true;
+    const form = this.getinformForm.value;
     this.service
-      .addService(
-        this.getinformForm.value.name,
-        this.getinformForm.value.email,
-        this.getinformForm.value.phone,
-        this.getinformForm.value.message
+      .Add(
+        form.name.trim(),
+        form.email.trim(),
+        form.phone.trim(),
+        form.message.trim(),
+        '',
+        form.budget,
+        form.service
       )
       .subscribe({
-        next: () => {
+        next: (response) => {
           this.loading = false;
+          if (response.status !== 'success') {
+            this.showErrorMessage(response.message || 'Unable to submit your enquiry. Please try again.');
+            return;
+          }
           this.submitted = false;
 
           // Track GA4 generate_lead conversion event
           this.analyticsService.trackGenerateLead({
-            formName: 'Get Your Quote Form',
+            formName: 'Lead Capture Form — ' + form.service,
             category: 'lead_generation',
           });
 
-          this.getinformForm.reset();
+          this.getinformForm.reset({
+            name: '',
+            phone: '',
+            email: '',
+            service: this.servicePreset || '',
+            budget: '',
+            message: '',
+            termsAccepted: false,
+          });
           this.showSuccessMessage('Data submitted successfully');
           this.router.navigate(['/thank-you']);
         },

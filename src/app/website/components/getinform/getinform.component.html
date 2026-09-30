@@ -159,27 +159,33 @@
               </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-7 lg:mt-7 !mt-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 md:gap-7 lg:mt-7 !mt-5">
               <div>
-                <label for="lead-service" class="block mb-2 font-semibold text-[#34394B]" [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }">SERVICE</label>
-                <select id="lead-service" formControlName="service" class="block w-full border-0 border-b border-[#b4b9cb80] bg-transparent py-2 text-[#34394B] focus:outline-none focus:ring-0" [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }">
-                  <option value="" disabled>Select a Service</option>
-                  @for (service of services; track service) {
-                    <option [value]="service" class="text-[#34394B]">{{ service }}</option>
-                  }
-                </select>
+                <div class="relative z-0 border-b border-[#b4b9cb80] py-2">
+                  <label for="lead-service" class="absolute left-0 top-0 text-xs font-semibold text-[#34394B]" [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }">SERVICE</label>
+                  <select id="lead-service" formControlName="service" class="block w-full mt-3 py-1.5 px-0 pr-7 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 font-quickSand text-[#34394B]" [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }">
+                    <option value="" disabled class="text-[#34394B]">Select a Service</option>
+                    @for (service of services; track service) {
+                      <option [value]="service" [attr.selected]="servicePreset === service ? '' : null" class="text-[#34394B]">{{ service }}</option>
+                    }
+                  </select>
+                  <svg aria-hidden="true" viewBox="0 0 20 20" class="pointer-events-none absolute right-1 bottom-5 h-4 w-4 text-[#34394B]" [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 7 5 5 5-5" /></svg>
+                </div>
                 @if (submitted && getinformForm.get('service')?.invalid) {
                   <p class="text-red-500 text-sm font-medium mt-1.5">Please select a service.</p>
                 }
               </div>
               <div>
-                <label for="lead-budget" class="block mb-2 font-semibold text-[#34394B]" [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }">BUDGET</label>
-                <select id="lead-budget" formControlName="budget" class="block w-full border-0 border-b border-[#b4b9cb80] bg-transparent py-2 text-[#34394B] focus:outline-none focus:ring-0" [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }">
-                  <option value="">Estimated Budget (optional)</option>
-                  @for (budget of budgets; track budget) {
-                    <option [value]="budget" class="text-[#34394B]">{{ budget }}</option>
-                  }
-                </select>
+                <div class="relative z-0 border-b border-[#b4b9cb80] py-2">
+                  <label for="lead-budget" class="absolute left-0 top-0 text-xs font-semibold text-[#34394B]" [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }">BUDGET</label>
+                  <select id="lead-budget" formControlName="budget" class="block w-full mt-3 py-1.5 px-0 pr-7 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 font-quickSand text-[#34394B]" [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }">
+                    <option value="" class="text-[#34394B]">Estimated Budget (optional)</option>
+                    @for (budget of budgets; track budget) {
+                      <option [value]="budget" class="text-[#34394B]">{{ budget }}</option>
+                    }
+                  </select>
+                  <svg aria-hidden="true" viewBox="0 0 20 20" class="pointer-events-none absolute right-1 bottom-5 h-4 w-4 text-[#34394B]" [ngClass]="{ 'text-[#B4B9CB]': theme === 'dark' }" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 7 5 5 5-5" /></svg>
+                </div>
               </div>
             </div>
 

@@ -219,22 +219,33 @@
   <app-web-slider></app-web-slider>
 </section>
 
-<section
-  class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#000] rounded-[40px] mb-24 lg:mb-14"
-  >
-  <div class="lg:pb-9 2xl:pb-20">
-    <div>
-      <h2
-        class="text-white text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#34394B]"
-        >
-        Get Your Quote
-      </h2>
+<section class="py-16 md:py-24 px-6 md:px-12 lg:px-20 bg-gradient-to-br from-[#1a1e2e] to-[#34394B]">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="text-[#a78bfa] text-sm font-bold uppercase tracking-widest mb-3 font-quickSand">GET STARTED</p>
+      <h2 class="text-white text-4xl md:text-5xl font-bold font-quickSand leading-tight mb-4">Ready to Start Your Web Development Project?</h2>
+      <p class="text-[#B4B9CB] text-lg font-quickSand max-w-2xl mx-auto">Fill in the form and our team will get back to you within 24 hours. Or book a free 30-minute call with our experts right now.</p>
     </div>
-    <app-getinform
-      [theme]="'dark'"
-      [imgSrc]="'../../../assets/images/web-form.png'"
-      servicePreset="Web Development"
-    ></app-getinform>
+    <div class="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
+      <div class="w-full lg:w-2/5 flex flex-col justify-center gap-8">
+        <div>
+          <h3 class="text-white text-2xl font-bold font-quickSand mb-4">Prefer to talk first?</h3>
+          <p class="text-[#B4B9CB] font-quickSand mb-6">Skip the form and book a free 30-minute consultation directly on our calendar. You'll get a Google Meet link automatically.</p>
+          <a href="https://calendar.app.google/A5eDKdLkRDF9KokT7" target="_blank" rel="noopener noreferrer" id="book-free-call-web-development" class="inline-flex items-center gap-3 bg-white text-[#34394B] font-bold font-quickSand px-8 py-4 rounded-full hover:bg-[#a78bfa] hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl text-base">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+            <span>Book a Free 30-Min Call →</span>
+          </a>
+        </div>
+        <ul class="flex flex-col gap-3 text-[#B4B9CB] font-quickSand text-sm">
+          <li class="flex items-center gap-3"><span aria-hidden="true" class="text-[#a78bfa]">✓</span>Response within 24 hours</li>
+          <li class="flex items-center gap-3"><span aria-hidden="true" class="text-[#a78bfa]">✓</span>Free 30-minute consultation</li>
+          <li class="flex items-center gap-3"><span aria-hidden="true" class="text-[#a78bfa]">✓</span>No commitment required</li>
+        </ul>
+      </div>
+      <div class="w-full lg:w-3/5">
+        <app-getinform [theme]="'dark'" [servicePreset]="'Web Development'" [formOnly]="true"></app-getinform>
+      </div>
+    </div>
   </div>
 </section>
 

@@ -41,14 +41,11 @@
 // and reveal the read-more link just below it.
 .featured-article-label {
   display: block;
-  max-height: 2rem;
+  min-height: 2rem;
   margin-bottom: 0.375rem;
-  overflow: hidden;
   opacity: 1;
   transform: translateY(0);
   transition:
-    max-height 420ms cubic-bezier(0.22, 1, 0.36, 1),
-    margin-bottom 420ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 280ms ease-out,
     transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -78,8 +75,6 @@
 
 .card-hover:hover .featured-article-label,
 .card-hover:focus-within .featured-article-label {
-  max-height: 0;
-  margin-bottom: 0;
   opacity: 0;
   transform: translateY(-8px);
 }

@@ -36,18 +36,19 @@ const routes: Routes = [
     path: 'services',
     component: ServicesComponent,
   },
-  // {
-  //   path: 'web-development',
-  //   component: WebServiceComponent,
-  // },
-  // {
-  //   path: 'game-development',
-  //   component: GameServiceComponent,
-  // },
-  // {
-  //   path: 'digital-marketing',
-  //   component: DigitalServiceComponent,
-  // },
+  {
+    path: 'web-development',
+    component: WebServiceComponent,
+  },
+  {
+    path: 'game-development',
+    component: GameServiceComponent,
+  },
+  {
+    path: 'digital-marketing',
+    component: DigitalServiceComponent,
+  },
+  // Future service pages: mobile-service/ and ai-service/ will be added when built.
   {
     path: 'blog',
     component: BlogComponent,
@@ -106,11 +107,11 @@ const routes: Routes = [
   },
 
   // ── Legacy & Short Route Redirects (Preserve SEO & Backlinks) ─────
-  // { path: 'web', redirectTo: 'web-development', pathMatch: 'full' },
-  // { path: 'game', redirectTo: 'game-development', pathMatch: 'full' },
-  // { path: 'game2', redirectTo: 'game-development', pathMatch: 'full' },
-  // { path: 'service2', redirectTo: 'game-development', pathMatch: 'full' },
-  // { path: 'web-app-development', redirectTo: 'web-development', pathMatch: 'full' },
+  { path: 'web', redirectTo: 'web-development', pathMatch: 'full' },
+  { path: 'game', redirectTo: 'game-development', pathMatch: 'full' },
+  { path: 'game2', redirectTo: 'game-development', pathMatch: 'full' },
+  { path: 'service2', redirectTo: 'game-development', pathMatch: 'full' },
+  { path: 'web-app-development', redirectTo: 'web-development', pathMatch: 'full' },
   { path: 'about', redirectTo: 'know-us', pathMatch: 'full' },
   { path: 'about-us', redirectTo: 'know-us', pathMatch: 'full' },
   { path: 'know2', redirectTo: 'what-you-can-expect', pathMatch: 'full' },
@@ -118,9 +119,9 @@ const routes: Routes = [
   { path: 'know4', redirectTo: 'careers', pathMatch: 'full' },
   { path: 'blog-details', redirectTo: 'blog', pathMatch: 'full' },
   { path: 'contact', redirectTo: 'contact-us', pathMatch: 'full' },
-  // { path: 'service-details/digital-marketing', redirectTo: 'digital-marketing', pathMatch: 'full' },
-  // { path: 'service-details/game-development', redirectTo: 'game-development', pathMatch: 'full' },
-  // { path: 'service-details/web-development', redirectTo: 'web-development', pathMatch: 'full' },
+  { path: 'service-details/digital-marketing', redirectTo: 'digital-marketing', pathMatch: 'full' },
+  { path: 'service-details/game-development', redirectTo: 'game-development', pathMatch: 'full' },
+  { path: 'service-details/web-development', redirectTo: 'web-development', pathMatch: 'full' },
   { path: 'service-details/mobile-app-development', redirectTo: 'services', pathMatch: 'full' },
 
   // ── Wildcard 404 Route ───────────────────────────────────────────

@@ -1,4 +1,4 @@
-<div class="flex flex-col md:flex-row xl:pt-14 md:pt-12">
+<div class="flex flex-col md:flex-row xl:pt-14 md:pt-12" [ngClass]="{ '!pt-0': formOnly }">
   <!-- <div class="md:w-1/2 mb-8 md:mb-0 sm:mx-auto mt-5">
   <p
     class="text-black font-myfont text-6xl md:text-[70px] md:leading-[70px] lg:leading-[90px] lg:text-[90px] xl:text-[130px] xl:leading-[130px] 2xl:text-[160px] 2xl:leading-[152px] font-normal"
@@ -10,7 +10,7 @@
   </p>
 </div> -->
 
-@if (imgSrc) {
+@if (!formOnly && imgSrc) {
   <div class="md:w-1/2 mb-8 md:mb-0 sm:mx-auto px-7">
     <div class="w-full h-auto">
       <img [src]="imgSrc" alt="Custom Image" class="w-full lg:h-[60vh] object-contain" />
@@ -18,7 +18,7 @@
   </div>
 }
 
-@if (!imgSrc) {
+@if (!formOnly && !imgSrc) {
   <div class="md:w-1/2 mb-8 md:mb-0 sm:mx-auto mt-5">
     <div >
       <p
@@ -33,7 +33,7 @@
   </div>
 }
 
-<div class="md:w-1/2 flex justify-center items-center">
+<div class="flex justify-center items-center" [ngClass]="formOnly ? 'w-full' : 'md:w-1/2'">
   <form
     class="w-full font-quickSand font-semibold"
     [formGroup]="getinformForm"
@@ -269,7 +269,7 @@
                 </div>
 
                 <div class="flex flex-wrap items-center justify-end gap-3">
-                  @if (bookingUrl) {
+                  @if (bookingUrl && !formOnly) {
                     <a [href]="bookingUrl" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-full border border-[#20B9FA] px-5 py-3 font-quickSand font-bold text-[#34394B]" [ngClass]="{ 'text-white': theme === 'dark' }">Book a Free Call</a>
                   }
                   <button

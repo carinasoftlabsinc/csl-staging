@@ -20,6 +20,7 @@ export class GetinformComponent implements OnInit {
   @Input() theme: 'light' | 'dark' = 'light';
   @Input() imgSrc: string | null = null;
   @Input() servicePreset: string = '';
+  @Input() formOnly = false;
   @Input() bookingUrl = 'https://calendar.app.google/A5eDKdLkRDF9KokT7';
   mail = 'business@carinasoftlabs.com';
 

@@ -7,8 +7,10 @@ import {
 import express from 'express';
 import compression from 'compression';
 import { join } from 'node:path';
+import { createDynamicSitemap } from './dynamic-sitemap';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
+const getSitemap = createDynamicSitemap(browserDistFolder);
 
 const app = express();
 
@@ -74,6 +76,18 @@ app.use((req, res, next) => {
   }
 
   next();
+});
+
+// Refresh API-backed URLs without rebuilding the site. This must precede static assets.
+app.get('/sitemap.xml', async (_req, res, next) => {
+  try {
+    const xml = await getSitemap();
+    res.set('Content-Type', 'application/xml; charset=utf-8');
+    res.set('Cache-Control', 'public, max-age=300');
+    res.send(xml);
+  } catch (error) {
+    next(error);
+  }
 });
 
 /**

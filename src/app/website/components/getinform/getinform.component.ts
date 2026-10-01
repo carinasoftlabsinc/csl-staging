@@ -21,7 +21,7 @@ export class GetinformComponent implements OnInit {
   @Input() imgSrc: string | null = null;
   @Input() servicePreset: string = '';
   @Input() formOnly = false;
-  @Input() bookingUrl = 'https://calendar.app.google/A5eDKdLkRDF9KokT7';
+  @Input() bookingUrl = 'https://calendar.app.google/mezjQ2cpZyzbixNv6';
   mail = 'business@carinasoftlabs.com';
 
   readonly services = [
@@ -118,11 +118,11 @@ export class GetinformComponent implements OnInit {
           }
           this.submitted = false;
 
-          // Track GA4 generate_lead conversion event
-          this.analyticsService.trackGenerateLead({
-            formName: 'Lead Capture Form — ' + form.service,
-            category: 'lead_generation',
-          });
+          // Paused while generate_lead is configured in GA4 to avoid duplicate leads.
+          // this.analyticsService.trackGenerateLead({
+          //   formName: 'Lead Capture Form — ' + form.service,
+          //   category: 'lead_generation',
+          // });
 
           this.getinformForm.reset({
             name: '',

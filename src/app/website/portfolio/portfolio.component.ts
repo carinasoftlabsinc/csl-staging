@@ -342,7 +342,6 @@ import { environment } from "../../../environments/environment"
 import { formatHeading } from '@core/utils/slug.util';
 
 type Category =
-  | 'All Projects'
   | 'Game Development'
   | 'App Development'
   | 'Web Development'
@@ -378,13 +377,12 @@ interface ApiResponse {
 })
 export class PortfolioComponent implements OnInit, OnDestroy {
   SrcWords: Category[] = [
-    'All Projects',
     'Game Development',
     'App Development',
     'Web Development',
     'Digital Marketing',
   ];
-  selectedCategory: Category = 'All Projects';
+  selectedCategory: Category = this.SrcWords[0];
   allCards: PortfolioItem[] = [];
   cards: PortfolioItem[] = [];
   apiUrl = `${environment.apiUrl}/admin/getAll_project`;
@@ -578,16 +576,12 @@ export class PortfolioComponent implements OnInit, OnDestroy {
 
   private applySelectedCategory(): void {
     const categoryParam = this.mapCategoryToApiParam(this.selectedCategory);
-    this.cards = categoryParam
-      ? this.allCards.filter((project) => project.category === categoryParam)
-      : [...this.allCards];
+    this.cards = this.allCards.filter((project) => project.category === categoryParam);
   }
 
   mapCategoryToApiParam(category: Category): string {
     // Map category names to API parameters
     switch (category) {
-      case 'All Projects':
-        return '';
       case 'Game Development':
         return 'game';
       case 'App Development':

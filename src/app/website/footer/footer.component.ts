@@ -24,7 +24,7 @@ export class FooterComponent implements AfterViewInit {
   @Input() btnText: string = 'Schedule a call';
   @Input() cardText: string =
     'HAVE PROJECT IN MIND ? <br class="hidden sm:block" /> LET’S COLLABORATE.';
-  @Input() btnLink: string = 'https://calendar.app.google/A5eDKdLkRDF9KokT7';
+  @Input() btnLink: string = 'https://calendar.app.google/mezjQ2cpZyzbixNv6';
 
   @Input() showButton: boolean = true;
   @Input() buttonText: string = 'GET IN TOUCH';

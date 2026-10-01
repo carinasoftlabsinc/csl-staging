@@ -60,7 +60,7 @@ describe('GetinformComponent', () => {
     expect(phone.valid).toBeTrue();
   });
 
-  it('sends all lead fields and tracks GA4 after backend success', () => {
+  it('sends all lead fields without firing a code-side GA4 event after backend success', () => {
     component.servicePreset = 'Web Development';
     component.ngOnInit();
     component.getinformForm.setValue({
@@ -85,10 +85,7 @@ describe('GetinformComponent', () => {
       '$5,000 – $15,000',
       'Web Development'
     );
-    expect(analytics.trackGenerateLead).toHaveBeenCalledOnceWith({
-      formName: 'Lead Capture Form — Web Development',
-      category: 'lead_generation',
-    });
+    expect(analytics.trackGenerateLead).not.toHaveBeenCalled();
     expect(router.navigate).toHaveBeenCalledOnceWith(['/thank-you']);
   });
 

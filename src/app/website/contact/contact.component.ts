@@ -393,10 +393,11 @@ export class ContactComponent implements OnInit, OnDestroy {
         next: (response) => {
           this.loading = false; 
           this.submitted = false;
-          this.analyticsService.trackGenerateLead({
-            formName: 'Contact Us Page Form',
-            category: 'lead_generation',
-          });
+          // Paused while generate_lead is configured in GA4 to avoid duplicate leads.
+          // this.analyticsService.trackGenerateLead({
+          //   formName: 'Contact Us Page Form',
+          //   category: 'lead_generation',
+          // });
           this.clientForm.reset();
           this.showSuccessMessage('Data submitted successfully');
           this.router.navigate(['/thank-you']); // Use the Router to navigate

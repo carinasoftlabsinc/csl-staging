@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit, AfterViewInit, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID, inject } from '@angular/core';
+import { SeoService } from '@core/service/seo.service';
 import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 
@@ -23,6 +24,8 @@ export class ServicesComponent implements OnInit, OnDestroy {
   currentImage = this.allServiceimgs[0];
   private currentIndex = 0;
   private seoElements: HTMLElement[] = [];
+
+  private readonly seoService = inject(SeoService);
 
   constructor(
     private titleService: Title,
@@ -163,17 +166,7 @@ export class ServicesComponent implements OnInit, OnDestroy {
     const url = 'https://carinasoftlabs.com/services';
     const image = 'https://carinasoftlabs.com/assets/images/service-hero-game.png';
 
-    this.metaService.updateTag({ property: 'og:title', content: title });
-    this.metaService.updateTag({ property: 'og:description', content: description });
-    this.metaService.updateTag({ property: 'og:url', content: url });
-    this.metaService.updateTag({ property: 'og:type', content: 'website' });
-    this.metaService.updateTag({ property: 'og:site_name', content: 'Carina Softlabs Inc.' });
-    this.metaService.updateTag({ property: 'og:image', content: image });
-
-    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.metaService.updateTag({ name: 'twitter:title', content: title });
-    this.metaService.updateTag({ name: 'twitter:description', content: description });
-    this.metaService.updateTag({ name: 'twitter:image', content: image });
+    this.seoService.setOg({ title, description, url, image });
   }
 
   private setSchemaMarkup(): void {
@@ -215,11 +208,7 @@ export class ServicesComponent implements OnInit, OnDestroy {
       ],
     };
 
-    const script = this.renderer.createElement('script');
-    this.renderer.setAttribute(script, 'type', 'application/ld+json');
-    script.text = JSON.stringify(schema);
-    this.renderer.appendChild(this.document.head, script);
-    this.seoElements.push(script);
+    this.seoService.setJsonLd(schema);
   }
 
   updateWordIndex() {
@@ -418,32 +407,24 @@ export class ServicesComponent implements OnInit, OnDestroy {
       id: 'section1',
       title: 'GAME DEVELOPMENT',
       description: `Carina Softlabs is central India’s Leading Game Development Company. We deal in custom games, and our team of talented designers and developers is dedicated to turning your vision into reality. We have a varied spectrum of clients worldwide, and our experience of over a decade makes us unique and attuned to our clients’ needs.`,
-      buttonText: 'View More',
-      buttonLink: '#',
       imgSrc: '../../../assets/images/game-service.png',
     },
     {
       id: 'section2',
       title: 'Digital Marketing',
       description: `We started as an SEO company, and later after a few successful projects we re-launched as a Digital Marketing Company to provide social media services, SEO services, Email Marketing Services, Guest Post Outreach, and all the other services in Digital Marketing. Contact us to get started ranking your business in SERPs.`,
-      buttonText: 'View More',
-      buttonLink: '#',
       imgSrc: '../../../assets/images/digital-service.png',
     },
     {
       id: 'section3',
       title: 'Mobile App Development',
       description: `Developing complex applications is harder nowadays, but our team of highly skilled developers can turn your dream ideas into reality. We have the best records in App Development, from developing to marketing we are the complete solution to your business needs. Connect with us & let us know how we can touch new heights together.`,
-      buttonText: 'View More',
-      buttonLink: '#',
       imgSrc: '../../../assets/images/app-service.png',
     },
     {
       id: 'section4',
       title: 'Web Development',
       description: `At Carina Softlabs, we understand the need for a website of a business. We have complete web development solutions, from designing to marketing your business. Whether you are an established business or a start-up, we know the steps to launch you on the Internet. Our team of highly experienced developers is here to execute your vision.`,
-      buttonText: 'View More',
-      buttonLink: '#',
       imgSrc: '../../../assets/images/web-service.png',
     },
   ];

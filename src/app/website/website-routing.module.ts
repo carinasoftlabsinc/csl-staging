@@ -13,9 +13,9 @@ import { Know2Component } from './know2/know2.component';
 import { Know3Component } from './know3/know3.component';
 import { Know4Component } from './know4/know4.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
-import { DigitalServiceComponent } from './digital-service/digital-service.component';
-import { WebServiceComponent } from './web-service/web-service.component';
-import { GameServiceComponent } from './game-service/game-service.component';
+// import { DigitalServiceComponent } from './digital-service/digital-service.component';
+// import { WebServiceComponent } from './web-service/web-service.component';
+// import { GameServiceComponent } from './game-service/game-service.component';
 import { JobDescriptionComponent } from './job-description/job-description.component';
 import { CaseStudiesComponent } from './case-studies/case-studies.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
@@ -36,18 +36,22 @@ const routes: Routes = [
     path: 'services',
     component: ServicesComponent,
   },
-  {
-    path: 'web-development',
-    component: WebServiceComponent,
-  },
-  {
-    path: 'game-development',
-    component: GameServiceComponent,
-  },
-  {
-    path: 'digital-marketing',
-    component: DigitalServiceComponent,
-  },
+  // Individual service pages hidden for now; their URLs redirect to /services.
+  // {
+  //   path: 'web-development',
+  //   component: WebServiceComponent,
+  // },
+  // {
+  //   path: 'game-development',
+  //   component: GameServiceComponent,
+  // },
+  // {
+  //   path: 'digital-marketing',
+  //   component: DigitalServiceComponent,
+  // },
+  { path: 'web-development', redirectTo: 'services', pathMatch: 'full' },
+  { path: 'game-development', redirectTo: 'services', pathMatch: 'full' },
+  { path: 'digital-marketing', redirectTo: 'services', pathMatch: 'full' },
   // Future service pages: mobile-service/ and ai-service/ will be added when built.
   {
     path: 'blog',
@@ -107,11 +111,11 @@ const routes: Routes = [
   },
 
   // ── Legacy & Short Route Redirects (Preserve SEO & Backlinks) ─────
-  { path: 'web', redirectTo: 'web-development', pathMatch: 'full' },
-  { path: 'game', redirectTo: 'game-development', pathMatch: 'full' },
-  { path: 'game2', redirectTo: 'game-development', pathMatch: 'full' },
-  { path: 'service2', redirectTo: 'game-development', pathMatch: 'full' },
-  { path: 'web-app-development', redirectTo: 'web-development', pathMatch: 'full' },
+  { path: 'web', redirectTo: 'services', pathMatch: 'full' },
+  { path: 'game', redirectTo: 'services', pathMatch: 'full' },
+  { path: 'game2', redirectTo: 'services', pathMatch: 'full' },
+  { path: 'service2', redirectTo: 'services', pathMatch: 'full' },
+  { path: 'web-app-development', redirectTo: 'services', pathMatch: 'full' },
   { path: 'about', redirectTo: 'know-us', pathMatch: 'full' },
   { path: 'about-us', redirectTo: 'know-us', pathMatch: 'full' },
   { path: 'know2', redirectTo: 'what-you-can-expect', pathMatch: 'full' },
@@ -119,9 +123,9 @@ const routes: Routes = [
   { path: 'know4', redirectTo: 'careers', pathMatch: 'full' },
   { path: 'blog-details', redirectTo: 'blog', pathMatch: 'full' },
   { path: 'contact', redirectTo: 'contact-us', pathMatch: 'full' },
-  { path: 'service-details/digital-marketing', redirectTo: 'digital-marketing', pathMatch: 'full' },
-  { path: 'service-details/game-development', redirectTo: 'game-development', pathMatch: 'full' },
-  { path: 'service-details/web-development', redirectTo: 'web-development', pathMatch: 'full' },
+  { path: 'service-details/digital-marketing', redirectTo: 'services', pathMatch: 'full' },
+  { path: 'service-details/game-development', redirectTo: 'services', pathMatch: 'full' },
+  { path: 'service-details/web-development', redirectTo: 'services', pathMatch: 'full' },
   { path: 'service-details/mobile-app-development', redirectTo: 'services', pathMatch: 'full' },
 
   // ── Wildcard 404 Route ───────────────────────────────────────────

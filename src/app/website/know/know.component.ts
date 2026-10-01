@@ -1,4 +1,5 @@
-import { HostListener, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID } from '@angular/core';
+import { HostListener, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID, inject } from '@angular/core';
+import { SeoService } from '@core/service/seo.service';
 import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import {
@@ -41,6 +42,7 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private routerSubscription: Subscription | null = null;
   private seoElements: HTMLElement[] = [];
+  private readonly seoService = inject(SeoService);
 
   constructor(
     private route: ActivatedRoute,
@@ -79,6 +81,7 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
     });
 
     this.setCanonicalUrl('https://carinasoftlabs.com/know-us');
+    this.setOpenGraphTags();
     this.setSchemaMarkup();
 
     this.hoveredItem = this.items[0];
@@ -123,6 +126,16 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
     this.renderer.setAttribute(link, 'href', url);
   }
 
+  private setOpenGraphTags(): void {
+    const title = 'About Carina Softlabs | 15+ Years of Technology Expertise';
+    const description =
+      'Discover our 15+ year journey in game development, digital marketing, web and app development, driven by innovation, expertise, and client success.';
+    const url = 'https://carinasoftlabs.com/know-us';
+    const image = 'https://carinasoftlabs.com/assets/images/og/og-default.png';
+
+    this.seoService.setOg({ title, description, url, image });
+  }
+
   private setSchemaMarkup(): void {
     const schema = {
       '@context': 'https://schema.org',
@@ -162,11 +175,7 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
       ],
     };
 
-    const script = this.renderer.createElement('script');
-    this.renderer.setAttribute(script, 'type', 'application/ld+json');
-    script.text = JSON.stringify(schema);
-    this.renderer.appendChild(this.document.head, script);
-    this.seoElements.push(script);
+    this.seoService.setJsonLd(schema);
   }
 
   private initSliders(): void {

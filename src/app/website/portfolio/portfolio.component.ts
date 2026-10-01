@@ -334,7 +334,8 @@
 //   cardText: string = `Find Out How We Solved <br class="hidden sm:block" /> Complex "IT" Challenge`;
 // }
 
-import { ChangeDetectorRef, Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
+import { SeoService } from '@core/service/seo.service';
 import { HttpClient } from '@angular/common/http';
 import { Title, Meta } from '@angular/platform-browser';
 
@@ -390,6 +391,8 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   loading: boolean | undefined;
   private seoElements: HTMLElement[] = [];
 
+  private readonly seoService = inject(SeoService);
+
   constructor(
     private http: HttpClient,
     private titleService: Title,
@@ -443,19 +446,9 @@ export class PortfolioComponent implements OnInit, OnDestroy {
     const description =
       'Explore our portfolio of game, web, mobile app and digital marketing projects, showcasing creative solutions, technical expertise and successful digital experiences.';
     const url = 'https://carinasoftlabs.com/portfolio';
-    const image = 'https://carinasoftlabs.com/assets/CSL-logo-footer.svg';
+    const image = 'https://carinasoftlabs.com/assets/images/og/og-portfolio.jpg';
 
-    this.metaService.updateTag({ property: 'og:title', content: title });
-    this.metaService.updateTag({ property: 'og:description', content: description });
-    this.metaService.updateTag({ property: 'og:url', content: url });
-    this.metaService.updateTag({ property: 'og:type', content: 'website' });
-    this.metaService.updateTag({ property: 'og:site_name', content: 'Carina Softlabs Inc.' });
-    this.metaService.updateTag({ property: 'og:image', content: image });
-
-    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.metaService.updateTag({ name: 'twitter:title', content: title });
-    this.metaService.updateTag({ name: 'twitter:description', content: description });
-    this.metaService.updateTag({ name: 'twitter:image', content: image });
+    this.seoService.setOg({ title, description, url, image });
   }
 
   private setSchemaMarkup(): void {
@@ -497,11 +490,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
       ],
     };
 
-    const script = this.renderer.createElement('script');
-    this.renderer.setAttribute(script, 'type', 'application/ld+json');
-    script.text = JSON.stringify(schema);
-    this.renderer.appendChild(this.document.head, script);
-    this.seoElements.push(script);
+    this.seoService.setJsonLd(schema);
   }
 
   // fetchPortfolioItems(category: Category): void {

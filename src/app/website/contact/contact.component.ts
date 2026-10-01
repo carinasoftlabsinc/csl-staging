@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
+import { SeoService } from '@core/service/seo.service';
 import { Title, Meta } from '@angular/platform-browser';
 
 import { FormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
@@ -21,6 +22,8 @@ export class ContactComponent implements OnInit, OnDestroy {
   loading: boolean = false;
   private seoElements: HTMLElement[] = [];
   // router: any;
+  private readonly seoService = inject(SeoService);
+
   constructor(
     private titleService: Title,
     private metaService: Meta,
@@ -285,20 +288,9 @@ export class ContactComponent implements OnInit, OnDestroy {
     const description =
       'Have a project in mind? Contact our experts to discuss game development, digital marketing, web or app development and turn your ideas into digital solutions.';
     const url = 'https://carinasoftlabs.com/contact-us';
-    const image =
-      'https://admin.carinasoftlabs.com/web/web/file/news/image-ee54656e-a5b3-4625-a61d-3b2fc28e2eea.png';
+    const image = 'https://admin.carinasoftlabs.com/web/web/file/news/image-ee54656e-a5b3-4625-a61d-3b2fc28e2eea.png';
 
-    this.metaService.updateTag({ property: 'og:title', content: title });
-    this.metaService.updateTag({ property: 'og:description', content: description });
-    this.metaService.updateTag({ property: 'og:url', content: url });
-    this.metaService.updateTag({ property: 'og:type', content: 'website' });
-    this.metaService.updateTag({ property: 'og:site_name', content: 'Carina Softlabs Inc.' });
-    this.metaService.updateTag({ property: 'og:image', content: image });
-
-    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.metaService.updateTag({ name: 'twitter:title', content: title });
-    this.metaService.updateTag({ name: 'twitter:description', content: description });
-    this.metaService.updateTag({ name: 'twitter:image', content: image });
+    this.seoService.setOg({ title, description, url, image });
   }
 
   private setSchemaMarkup(): void {
@@ -343,11 +335,7 @@ export class ContactComponent implements OnInit, OnDestroy {
       ],
     };
 
-    const script = this.renderer.createElement('script');
-    this.renderer.setAttribute(script, 'type', 'application/ld+json');
-    script.text = JSON.stringify(schema);
-    this.renderer.appendChild(this.document.head, script);
-    this.seoElements.push(script);
+    this.seoService.setJsonLd(schema);
   }
 
   private showSuccessMessage(message: string) {

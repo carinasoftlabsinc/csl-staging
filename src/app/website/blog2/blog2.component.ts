@@ -196,6 +196,9 @@ export class Blog2Component implements OnInit {
             ? `${environment.imageBaseUrl}${this.cardDataa.image}`
             : undefined,
           type: 'article',
+          imageAlt: this.cardDataa.title,
+          publishedTime: this.cardDataa.createdAt,
+          modifiedTime: this.cardDataa.updatedAt || this.cardDataa.createdAt,
           jsonLd: {
             '@context': 'https://schema.org',
             '@type': 'Article',

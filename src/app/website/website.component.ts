@@ -1,4 +1,5 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID, inject } from '@angular/core';
+import { SeoService } from '@core/service/seo.service';
 import { isPlatformBrowser } from '@angular/common';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import {
@@ -205,6 +206,8 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   private seoElements: HTMLElement[] = [];
 
+  private readonly seoService = inject(SeoService);
+
   constructor(
     private titleService: Title,
     private metaService: Meta,
@@ -266,19 +269,9 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     const description =
       'Leverage 15 years of expertise in game development, digital marketing, web and app development services to build, grow and scale your digital presence.';
     const url = 'https://carinasoftlabs.com';
-    const image = 'https://carinasoftlabs.com/assets/CSL-logo-footer.svg';
+    const image = 'https://carinasoftlabs.com/assets/images/og/og-default.png';
 
-    this.metaService.updateTag({ property: 'og:title', content: title });
-    this.metaService.updateTag({ property: 'og:description', content: description });
-    this.metaService.updateTag({ property: 'og:url', content: url });
-    this.metaService.updateTag({ property: 'og:type', content: 'website' });
-    this.metaService.updateTag({ property: 'og:image', content: image });
-    this.metaService.updateTag({ property: 'og:site_name', content: 'Carina Softlabs Inc.' });
-
-    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.metaService.updateTag({ name: 'twitter:title', content: title });
-    this.metaService.updateTag({ name: 'twitter:description', content: description });
-    this.metaService.updateTag({ name: 'twitter:image', content: image });
+    this.seoService.setOg({ title, description, url, image });
   }
 
   private setSchemaMarkup(): void {
@@ -287,7 +280,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
       '@type': 'Organization',
       '@id': 'https://carinasoftlabs.com/#organization',
       name: 'Carina Softlabs Inc.',
-      url: 'https://carinasoftlabs.com',
+      url: 'https://carinasoftlabs.com/',
       logo: 'https://carinasoftlabs.com/assets/CSL-logo-footer.svg',
     };
 
@@ -296,22 +289,52 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
       '@type': 'WebSite',
       '@id': 'https://carinasoftlabs.com/#website',
       name: 'Carina Softlabs Inc.',
-      url: 'https://carinasoftlabs.com',
+      url: 'https://carinasoftlabs.com/',
       publisher: {
         '@id': 'https://carinasoftlabs.com/#organization',
       },
     };
 
-    this.appendJsonLdScript(organizationSchema);
-    this.appendJsonLdScript(websiteSchema);
-  }
+    // Values exactly as given in the SEO audit doc (Home §3.III Local Schema).
+    // '@context' is added because a standalone JSON-LD block is ignored without it.
+    const localSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      '@id': 'https://www.carinasoftlabs.com/#india-office',
+      name: 'Carina Softlabs Inc.',
+      url: 'https://www.carinasoftlabs.com/',
+      image: 'https://carinasoftlabs.com/assets/CSL-logo.svg',
+      logo: 'https://carinasoftlabs.com/assets/CSL-logo.svg',
+      telephone: '+91 9131958215',
+      priceRange: '$$',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress:
+          '10/2, 2nd Floor, Shree Mahadeo House, near Hotel Surya, Sriram Nagar, South Tukoganj',
+        addressLocality: 'Indore',
+        addressRegion: 'Madhya Pradesh',
+        postalCode: '452001',
+        addressCountry: 'IN',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 22.7177305,
+        longitude: 75.8763343,
+      },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          opens: '09:30',
+          closes: '18:30',
+        },
+      ],
+      parentOrganization: {
+        '@id': 'https://www.carinasoftlabs.com/#organization',
+      },
+    };
 
-  private appendJsonLdScript(schema: object): void {
-    const script = this.renderer.createElement('script');
-    this.renderer.setAttribute(script, 'type', 'application/ld+json');
-    script.text = JSON.stringify(schema);
-    this.renderer.appendChild(this.document.head, script);
-    this.seoElements.push(script);
+    this.seoService.setJsonLd([organizationSchema, websiteSchema, localSchema]);
   }
 
   formatHeading(titleLink: string): string {
@@ -607,17 +630,17 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       heading: 'Web <br> Development',
       desc: 'Empowering Your Online Journey.',
-      route: '/web-development',
+      route: '/services',
     },
     {
       heading: 'Game <br> Development',
       desc: 'We Make Games That Players Love.',
-      route: '/game-development',
+      route: '/services',
     },
     {
       heading: 'Digital <br> Marketing',
       desc: 'Boost Your Brand with Digital Strategies.',
-      route: '/digital-marketing',
+      route: '/services',
     },
     {
       heading: 'Emerging <br> Tech',

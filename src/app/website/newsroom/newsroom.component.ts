@@ -1,4 +1,5 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, OnDestroy, OnInit, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID, inject } from '@angular/core';
+import { SeoService } from '@core/service/seo.service';
 import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 
@@ -66,6 +67,8 @@ export class NewsroomComponent implements OnInit, AfterViewInit, OnDestroy {
   allNews: any[] = [];
   prevFeatured: any[] = [];
 
+  private readonly seoService = inject(SeoService);
+
   constructor(
     private newsroomService: newsroomService,
     private titleService: Title,
@@ -115,20 +118,9 @@ export class NewsroomComponent implements OnInit, AfterViewInit, OnDestroy {
     const description =
       'Stay updated with the latest company news, achievements, events and industry updates from Carina Softlabs across game, web, app development and digital marketing.';
     const url = 'https://carinasoftlabs.com/news-room';
-    const image =
-      'https://admin.carinasoftlabs.com/web/web/file/news/image-1731506036405.png';
+    const image = 'https://admin.carinasoftlabs.com/web/web/file/news/image-1731506036405.png';
 
-    this.metaService.updateTag({ property: 'og:title', content: title });
-    this.metaService.updateTag({ property: 'og:description', content: description });
-    this.metaService.updateTag({ property: 'og:url', content: url });
-    this.metaService.updateTag({ property: 'og:type', content: 'website' });
-    this.metaService.updateTag({ property: 'og:site_name', content: 'Carina Softlabs Inc.' });
-    this.metaService.updateTag({ property: 'og:image', content: image });
-
-    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.metaService.updateTag({ name: 'twitter:title', content: title });
-    this.metaService.updateTag({ name: 'twitter:description', content: description });
-    this.metaService.updateTag({ name: 'twitter:image', content: image });
+    this.seoService.setOg({ title, description, url, image });
   }
 
   private setSchemaMarkup(): void {
@@ -170,11 +162,7 @@ export class NewsroomComponent implements OnInit, AfterViewInit, OnDestroy {
       ],
     };
 
-    const script = this.renderer.createElement('script');
-    this.renderer.setAttribute(script, 'type', 'application/ld+json');
-    script.text = JSON.stringify(schema);
-    this.renderer.appendChild(this.document.head, script);
-    this.seoElements.push(script);
+    this.seoService.setJsonLd(schema);
   }
 
   featuredLoading = true;

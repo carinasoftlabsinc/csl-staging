@@ -163,6 +163,9 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
                 ? `${environment.imageBaseUrl}${this.cardData.image}`
                 : undefined,
               type: 'article',
+              imageAlt: this.cardData.title,
+              publishedTime: this.cardData.createdAt,
+              modifiedTime: this.cardData.updatedAt || this.cardData.createdAt,
               jsonLd: {
                 '@context': 'https://schema.org',
                 '@type': 'NewsArticle',

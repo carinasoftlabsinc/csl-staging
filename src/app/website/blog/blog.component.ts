@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy, ChangeDetectorRef, inject } from '@angular/core';
+import { SeoService } from '@core/service/seo.service';
 import { Router } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 
@@ -26,6 +27,8 @@ export class BlogComponent implements OnInit, OnDestroy {
   loadingApp = true;
   loadingFeatured = true;
   private seoElements: HTMLElement[] = [];
+
+  private readonly seoService = inject(SeoService);
 
   constructor(
     private router: Router,
@@ -83,19 +86,9 @@ export class BlogComponent implements OnInit, OnDestroy {
     const description =
       'Explore the latest insights on game development, web and app development, digital marketing, design, technology trends and digital innovation.';
     const url = 'https://carinasoftlabs.com/blog';
-    const image = 'https://carinasoftlabs.com/assets/CSL-logo-footer.svg';
+    const image = 'https://carinasoftlabs.com/assets/images/og/og-default.png';
 
-    this.metaService.updateTag({ property: 'og:title', content: title });
-    this.metaService.updateTag({ property: 'og:description', content: description });
-    this.metaService.updateTag({ property: 'og:url', content: url });
-    this.metaService.updateTag({ property: 'og:type', content: 'website' });
-    this.metaService.updateTag({ property: 'og:site_name', content: 'Carina Softlabs Inc.' });
-    this.metaService.updateTag({ property: 'og:image', content: image });
-
-    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.metaService.updateTag({ name: 'twitter:title', content: title });
-    this.metaService.updateTag({ name: 'twitter:description', content: description });
-    this.metaService.updateTag({ name: 'twitter:image', content: image });
+    this.seoService.setOg({ title, description, url, image });
   }
 
   private setSchemaMarkup(): void {
@@ -137,11 +130,7 @@ export class BlogComponent implements OnInit, OnDestroy {
       ],
     };
 
-    const script = this.renderer.createElement('script');
-    this.renderer.setAttribute(script, 'type', 'application/ld+json');
-    script.text = JSON.stringify(schema);
-    this.renderer.appendChild(this.document.head, script);
-    this.seoElements.push(script);
+    this.seoService.setJsonLd(schema);
   }
 
   fetchFeaturedBlogs() {

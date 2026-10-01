@@ -16,9 +16,20 @@ export interface SeoPageConfig {
   description: string;
   url: string;
   image?: string;
+  imageAlt?: string;
+  /** Social-share copy when it differs from the <title>/meta description. */
+  ogTitle?: string;
+  ogDescription?: string;
   type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
   jsonLd?: object | object[];
 }
+
+export const SITE_NAME = 'Carina Softlabs Inc.';
+export const DEFAULT_OG_IMAGE = 'https://carinasoftlabs.com/assets/images/og/og-default.png';
+const DEFAULT_OG_IMAGE_WIDTH = '1200';
+const DEFAULT_OG_IMAGE_HEIGHT = '630';
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
@@ -39,7 +50,7 @@ export class SeoService {
   setPage(config: SeoPageConfig): void {
     this.clearDynamicTags();
     this.titleSvc.setTitle(config.title);
-    this.metaSvc.updateTag({ name: 'description', content: config.description });
+    this.metaSvc.updateTag({ name: 'description', content: this.cleanText(config.description) });
     this.setCanonical(config.url);
     this.setOg(config);
     if (config.jsonLd) {
@@ -83,14 +94,61 @@ export class SeoService {
     }
   }
 
-  private setOg(config: SeoPageConfig): void {
-    this.metaSvc.updateTag({ property: 'og:title', content: config.title });
-    this.metaSvc.updateTag({ property: 'og:description', content: config.description });
+  /**
+   * Writes the full Open Graph + Twitter Card set on every call so tags from a
+   * previously visited route never leak into the next one.
+   */
+  setOg(config: Omit<SeoPageConfig, 'jsonLd'>): void {
+    const title = config.ogTitle || config.title;
+    // Social platforms show ~200 chars; keeps marketing-approved copy intact.
+    const description = this.cleanText(config.ogDescription || config.description, 200);
+    const image = config.image || DEFAULT_OG_IMAGE;
+    const imageAlt = config.imageAlt || title;
+    const type = config.type || 'website';
+
+    this.metaSvc.updateTag({ property: 'og:title', content: title });
+    this.metaSvc.updateTag({ property: 'og:description', content: description });
     this.metaSvc.updateTag({ property: 'og:url', content: config.url });
-    this.metaSvc.updateTag({ property: 'og:type', content: config.type || 'website' });
-    if (config.image) {
-      this.metaSvc.updateTag({ property: 'og:image', content: config.image });
+    this.metaSvc.updateTag({ property: 'og:type', content: type });
+    this.metaSvc.updateTag({ property: 'og:site_name', content: SITE_NAME });
+    this.metaSvc.updateTag({ property: 'og:locale', content: 'en_US' });
+    this.metaSvc.updateTag({ property: 'og:image', content: image });
+    this.metaSvc.updateTag({ property: 'og:image:alt', content: imageAlt });
+
+    // Dimensions are only known for the default image; let crawlers measure the rest.
+    if (image === DEFAULT_OG_IMAGE) {
+      this.metaSvc.updateTag({ property: 'og:image:width', content: DEFAULT_OG_IMAGE_WIDTH });
+      this.metaSvc.updateTag({ property: 'og:image:height', content: DEFAULT_OG_IMAGE_HEIGHT });
+    } else {
+      this.metaSvc.removeTag("property='og:image:width'");
+      this.metaSvc.removeTag("property='og:image:height'");
     }
+
+    this.setOrRemove('article:published_time', type === 'article' ? config.publishedTime : undefined);
+    this.setOrRemove('article:modified_time', type === 'article' ? config.modifiedTime : undefined);
+
+    this.metaSvc.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.metaSvc.updateTag({ name: 'twitter:title', content: title });
+    this.metaSvc.updateTag({ name: 'twitter:description', content: description });
+    this.metaSvc.updateTag({ name: 'twitter:image', content: image });
+    this.metaSvc.updateTag({ name: 'twitter:image:alt', content: imageAlt });
+  }
+
+  private setOrRemove(property: string, content?: string): void {
+    if (content) {
+      this.metaSvc.updateTag({ property, content });
+    } else {
+      this.metaSvc.removeTag(`property='${property}'`);
+    }
+  }
+
+  /** Strips HTML, collapses whitespace and trims to `max` chars at a word boundary. */
+  private cleanText(text: string, max = 160): string {
+    const plain = (text || '').replace(/<[^>]*>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+    if (plain.length <= max) return plain;
+    const cut = plain.slice(0, max - 1);
+    const lastSpace = cut.lastIndexOf(' ');
+    return `${(lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut).replace(/[\s,.;:–-]+$/, '')}…`;
   }
 
   private injectJsonLd(schema: object): void {

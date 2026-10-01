@@ -263,7 +263,8 @@
 // }
 
 
-import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
+import { SeoService } from '@core/service/seo.service';
 import { HttpClient } from '@angular/common/http';
 import { Title, Meta } from '@angular/platform-browser';
 
@@ -326,6 +327,8 @@ export class Know4Component implements OnInit, OnDestroy {
   selectedRoleCategory: string = 'Game Development'; // Default filter category
   selectedEmploymentType: string = 'Full-time';
 
+  private readonly seoService = inject(SeoService);
+
   constructor(
     private http: HttpClient,
     private titleService: Title,
@@ -381,20 +384,9 @@ export class Know4Component implements OnInit, OnDestroy {
     const description =
       'Explore career opportunities in game development, digital marketing, web and app development. Join a team driven by technology, creativity and innovation.';
     const url = 'https://carinasoftlabs.com/careers';
-    const image =
-      'https://carinasoftlabs.com/assets/images/employee%20group%20photo.webp';
+    const image = 'https://carinasoftlabs.com/assets/images/employee%20group%20photo.webp';
 
-    this.metaService.updateTag({ property: 'og:title', content: title });
-    this.metaService.updateTag({ property: 'og:description', content: description });
-    this.metaService.updateTag({ property: 'og:url', content: url });
-    this.metaService.updateTag({ property: 'og:type', content: 'website' });
-    this.metaService.updateTag({ property: 'og:site_name', content: 'Carina Softlabs Inc.' });
-    this.metaService.updateTag({ property: 'og:image', content: image });
-
-    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.metaService.updateTag({ name: 'twitter:title', content: title });
-    this.metaService.updateTag({ name: 'twitter:description', content: description });
-    this.metaService.updateTag({ name: 'twitter:image', content: image });
+    this.seoService.setOg({ title, description, url, image });
   }
 
   private setSchemaMarkup(): void {

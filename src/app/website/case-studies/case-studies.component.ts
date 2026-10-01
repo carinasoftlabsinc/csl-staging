@@ -112,6 +112,7 @@ export class CaseStudiesComponent implements OnInit {
                 ? `${environment.imageBaseUrl}${this.cardData.image}`
                 : undefined,
               type: 'article',
+              imageAlt: this.cardData.title,
               jsonLd: {
                 '@context': 'https://schema.org',
                 '@type': 'CreativeWork',

@@ -295,7 +295,46 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
       },
     };
 
-    this.seoService.setJsonLd([organizationSchema, websiteSchema]);
+    // Values exactly as given in the SEO audit doc (Home §3.III Local Schema).
+    // '@context' is added because a standalone JSON-LD block is ignored without it.
+    const localSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      '@id': 'https://www.carinasoftlabs.com/#india-office',
+      name: 'Carina Softlabs Inc.',
+      url: 'https://www.carinasoftlabs.com/',
+      image: 'https://carinasoftlabs.com/assets/CSL-logo.svg',
+      logo: 'https://carinasoftlabs.com/assets/CSL-logo.svg',
+      telephone: '+91 9131958215',
+      priceRange: '$$',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress:
+          '10/2, 2nd Floor, Shree Mahadeo House, near Hotel Surya, Sriram Nagar, South Tukoganj',
+        addressLocality: 'Indore',
+        addressRegion: 'Madhya Pradesh',
+        postalCode: '452001',
+        addressCountry: 'IN',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 22.7177305,
+        longitude: 75.8763343,
+      },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          opens: '09:30',
+          closes: '18:30',
+        },
+      ],
+      parentOrganization: {
+        '@id': 'https://www.carinasoftlabs.com/#organization',
+      },
+    };
+
+    this.seoService.setJsonLd([organizationSchema, websiteSchema, localSchema]);
   }
 
   formatHeading(titleLink: string): string {
@@ -591,17 +630,17 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       heading: 'Web <br> Development',
       desc: 'Empowering Your Online Journey.',
-      route: '/web-development',
+      route: '/services',
     },
     {
       heading: 'Game <br> Development',
       desc: 'We Make Games That Players Love.',
-      route: '/game-development',
+      route: '/services',
     },
     {
       heading: 'Digital <br> Marketing',
       desc: 'Boost Your Brand with Digital Strategies.',
-      route: '/digital-marketing',
+      route: '/services',
     },
     {
       heading: 'Emerging <br> Tech',

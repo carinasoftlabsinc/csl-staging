@@ -280,7 +280,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
       '@type': 'Organization',
       '@id': 'https://carinasoftlabs.com/#organization',
       name: 'Carina Softlabs Inc.',
-      url: 'https://carinasoftlabs.com',
+      url: 'https://carinasoftlabs.com/',
       logo: 'https://carinasoftlabs.com/assets/CSL-logo-footer.svg',
     };
 
@@ -289,22 +289,13 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
       '@type': 'WebSite',
       '@id': 'https://carinasoftlabs.com/#website',
       name: 'Carina Softlabs Inc.',
-      url: 'https://carinasoftlabs.com',
+      url: 'https://carinasoftlabs.com/',
       publisher: {
         '@id': 'https://carinasoftlabs.com/#organization',
       },
     };
 
-    this.appendJsonLdScript(organizationSchema);
-    this.appendJsonLdScript(websiteSchema);
-  }
-
-  private appendJsonLdScript(schema: object): void {
-    const script = this.renderer.createElement('script');
-    this.renderer.setAttribute(script, 'type', 'application/ld+json');
-    script.text = JSON.stringify(schema);
-    this.renderer.appendChild(this.document.head, script);
-    this.seoElements.push(script);
+    this.seoService.setJsonLd([organizationSchema, websiteSchema]);
   }
 
   formatHeading(titleLink: string): string {

@@ -53,10 +53,27 @@ export class SeoService {
     this.metaSvc.updateTag({ name: 'description', content: this.cleanText(config.description) });
     this.setCanonical(config.url);
     this.setOg(config);
-    if (config.jsonLd) {
-      const schemas = Array.isArray(config.jsonLd) ? config.jsonLd : [config.jsonLd];
-      schemas.forEach((s) => this.injectJsonLd(s));
-    }
+    this.setJsonLd(config.jsonLd);
+  }
+
+  /**
+   * Replaces the page's JSON-LD. Removes every block previously added through this
+   * method — including ones rendered on the server before hydration — so each page
+   * carries exactly one copy of its own schema.
+   */
+  setJsonLd(schema?: object | object[]): void {
+    this.doc.head
+      .querySelectorAll('script[type="application/ld+json"][data-seo]')
+      .forEach((el) => this.renderer.removeChild(this.doc.head, el));
+
+    const schemas = !schema ? [] : Array.isArray(schema) ? schema : [schema];
+    schemas.forEach((s) => {
+      const script = this.renderer.createElement('script');
+      this.renderer.setAttribute(script, 'type', 'application/ld+json');
+      this.renderer.setAttribute(script, 'data-seo', '');
+      this.renderer.setProperty(script, 'textContent', JSON.stringify(s));
+      this.renderer.appendChild(this.doc.head, script);
+    });
   }
 
   /**
@@ -149,13 +166,5 @@ export class SeoService {
     const cut = plain.slice(0, max - 1);
     const lastSpace = cut.lastIndexOf(' ');
     return `${(lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut).replace(/[\s,.;:–-]+$/, '')}…`;
-  }
-
-  private injectJsonLd(schema: object): void {
-    const script = this.renderer.createElement('script');
-    this.renderer.setAttribute(script, 'type', 'application/ld+json');
-    this.renderer.setProperty(script, 'textContent', JSON.stringify(schema));
-    this.renderer.appendChild(this.doc.head, script);
-    this.injectedElements.push(script);
   }
 }

@@ -352,6 +352,23 @@
                           }
                         </div>
                       }
+                      @if (!loading && allCards.length > 0) {
+                        <nav class="mt-12 border-t border-[#B4B9CB] pt-8" aria-label="Portfolio project directory">
+                          <h2 class="text-black text-2xl xl:text-3xl font-myfont mb-5">Browse all projects</h2>
+                          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
+                            @for (project of allCards; track project._id) {
+                              @if (project.titleLink) {
+                                <li>
+                                  <a
+                                    class="font-quickSand text-[#34394B] hover:text-[#9B21C5] underline underline-offset-4"
+                                    [routerLink]="['/portfolio', formatHeading(project.titleLink)]"
+                                  >{{ project.title || project.titleLink }}</a>
+                                </li>
+                              }
+                            }
+                          </ul>
+                        </nav>
+                      }
                     </section>
 
                     <section class="py-32">

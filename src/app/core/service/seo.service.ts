@@ -74,6 +74,35 @@ export class SeoService {
       this.renderer.setProperty(script, 'textContent', JSON.stringify(s));
       this.renderer.appendChild(this.doc.head, script);
     });
+    // Only crawlers need the reordering, and they read the server-rendered HTML.
+    if (isPlatformServer(this.platformId)) {
+      this.moveSeoTagsToTop();
+    }
+  }
+
+  /**
+   * Places SEO tags right after <title>, ahead of the large inlined critical CSS.
+   * Link-preview fetchers (WhatsApp, Instagram) read only the start of the HTML,
+   * so tags left at the end of <head> are never seen.
+   */
+  private moveSeoTagsToTop(): void {
+    const title = this.doc.head.querySelector('title');
+    if (!title) return;
+    const selectors = [
+      'meta[name="description"]',
+      'link[rel="canonical"]',
+      'meta[property^="og:"]',
+      'meta[property^="article:"]',
+      'meta[name^="twitter:"]',
+      'script[type="application/ld+json"][data-seo]',
+    ];
+    let anchor: Element = title;
+    selectors.forEach((selector) =>
+      this.doc.head.querySelectorAll(selector).forEach((el) => {
+        this.renderer.insertBefore(this.doc.head, el, anchor.nextSibling);
+        anchor = el;
+      }),
+    );
   }
 
   /**

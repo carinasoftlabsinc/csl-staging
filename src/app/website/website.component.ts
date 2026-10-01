@@ -296,10 +296,9 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     };
 
     // Values exactly as given in the SEO audit doc (Home §3.III Local Schema).
-    // '@context' is added because a standalone JSON-LD block is ignored without it.
     const localSchema = {
       '@context': 'https://schema.org',
-      '@type': 'ProfessionalService',
+      '@type': 'LocalBusiness',
       '@id': 'https://www.carinasoftlabs.com/#india-office',
       name: 'Carina Softlabs Inc.',
       url: 'https://www.carinasoftlabs.com/',

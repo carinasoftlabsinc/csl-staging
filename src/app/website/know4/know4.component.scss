@@ -12,12 +12,18 @@
   background-size: contain;
   background-repeat: no-repeat;
   width: 17vw;
-  height: 15vh;
-  top: -1rem;
+  height: 13vh;
+  top: -4rem;
   right: 0vw;
   position: absolute;
   display: inline-block;
   z-index: -1;
+
+  // Below the lg breakpoint (1024px) the heading wraps tighter and the
+  // decoration overlaps the text, so hide it instead of chasing position.
+  @media (max-width: 1023px) {
+    display: none;
+  }
 }
 
 //   .know-4-bg::after {

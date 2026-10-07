@@ -14,7 +14,7 @@ import { Know3Component } from './know3/know3.component';
 import { Know4Component } from './know4/know4.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 // import { DigitalServiceComponent } from './digital-service/digital-service.component';
-// import { WebServiceComponent } from './web-service/web-service.component';
+import { WebServiceComponent } from './web-service/web-service.component';
 // import { GameServiceComponent } from './game-service/game-service.component';
 import { JobDescriptionComponent } from './job-description/job-description.component';
 import { CaseStudiesComponent } from './case-studies/case-studies.component';
@@ -37,10 +37,10 @@ const routes: Routes = [
     component: ServicesComponent,
   },
   // Individual service pages hidden for now; their URLs redirect to /services.
-  // {
-  //   path: 'web-development',
-  //   component: WebServiceComponent,
-  // },
+  {
+    path: 'web-development',
+    component: WebServiceComponent,
+  },
   // {
   //   path: 'game-development',
   //   component: GameServiceComponent,
@@ -49,7 +49,6 @@ const routes: Routes = [
   //   path: 'digital-marketing',
   //   component: DigitalServiceComponent,
   // },
-  { path: 'web-development', redirectTo: 'services', pathMatch: 'full' },
   { path: 'game-development', redirectTo: 'services', pathMatch: 'full' },
   { path: 'digital-marketing', redirectTo: 'services', pathMatch: 'full' },
   // Future service pages: mobile-service/ and ai-service/ will be added when built.

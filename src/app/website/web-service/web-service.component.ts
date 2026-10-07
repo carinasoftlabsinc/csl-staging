@@ -16,6 +16,8 @@ export class WebServiceComponent implements OnInit {
       title: 'Web Development Services | Carina Softlabs',
       description: 'Modern, responsive web development services by Carina Softlabs, including front-end, back-end, eCommerce, and enterprise web applications.',
       url: 'https://carinasoftlabs.com/web-development',
+      image: 'https://carinasoftlabs.com/assets/images/service-hero-web.png',
+      imageAlt: 'Web development services by Carina Softlabs',
     });
   }
 
@@ -23,7 +25,7 @@ export class WebServiceComponent implements OnInit {
   viscards = [
     {
       imgSrc: 'assets/images/webIcon1.svg',
-      heading: 'website',
+      heading: 'Websites',
       description:
         'A well-designed website is a powerful marketing and communication tool that helps build trust and generate leads.',
     },

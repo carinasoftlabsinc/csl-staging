@@ -40,7 +40,6 @@ const PERMANENT_REDIRECTS: Record<string, string> = {
   '/service-details/web-development': '/services',
   '/service-details/mobile-app-development': '/services',
   // Individual service pages are hidden for now
-  '/web-development': '/services',
   '/game-development': '/services',
   '/digital-marketing': '/services',
 };

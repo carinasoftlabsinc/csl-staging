@@ -1,32 +1,30 @@
 <main class="bg-[#0B0C10]">
-  <div class="bg-contact">
-    <app-header></app-header>
+  <app-header></app-header>
 
-    <!-- hero section -->
-    <section
-      class="body-font flex items-center justify-start h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 2xl:px-52 py-10"
-      >
-      <div class="ml-0">
-        <div class="2xl:w-full xl:w-full sm:w-full">
-          <h1
-            class="text-white tracking-wide text-3xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black font-mont uppercase"
-            >
-            Game <br class="hidden sm:block" />
-            <span class="2xl:text-[7.5rem]"> Development</span>
-          </h1>
-          <p
-            class="text-white mt-8 xl:text-[16px] 2xl:text-[20px] font-quickSand font-normal"
-            >
-            We have designed and developed more than 200 web products with
-            booking systems, marketplaces, real estate, and corporate sites<br
-            class="hidden md:block"
-            />
-            among them.
-          </p>
-        </div>
+  <!-- hero section -->
+  <section
+    class="body-font flex items-center justify-start h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 2xl:px-52 py-10"
+    >
+    <div class="ml-0">
+      <div class="2xl:w-full xl:w-full sm:w-full">
+        <h1
+          class="text-white tracking-wide text-3xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black font-mont uppercase"
+          >
+          Game <br class="hidden sm:block" />
+          <span class="2xl:text-[7.5rem]"> Development</span>
+        </h1>
+        <p
+          class="text-white mt-8 xl:text-[16px] 2xl:text-[20px] font-quickSand font-normal"
+          >
+          We have designed and developed more than 200 web products with
+          booking systems, marketplaces, real estate, and corporate sites<br
+          class="hidden md:block"
+          />
+          among them.
+        </p>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
   <!-- game design section -->
 
@@ -41,11 +39,11 @@
     </h2>
   </div> -->
 
-  <div class="grid grid-cols-1 lg:grid-cols-3 my-14 md:my-28">
-    <div class="col-span-1 md:col-span-2">
+  <div class="grid grid-cols-1 lg:grid-cols-4 my-14 md:my-28">
+    <div class="col-span-1 md:col-span-3">
       <div>
         <h4
-          class="font-mont text-[#34394B] font-bold text-[1.5rem] md:text-[2rem] lg:text-4xl 2xl:text-5xl mb-10 lg:mt-10"
+          class="font-mont text-[#34394B] font-bold text-[1.5rem] md:text-[2rem] lg:text-4xl 2xl:text-5xl mb-10 lg:mt-10 2xl:!leading-snug"
           >
           We are known in the field of <br class="hidden lg:block" />
           Game Development for <br class="hidden lg:block" />
@@ -65,7 +63,7 @@
           in the market.
         </h4>
         <p
-          class="font-quickSand font-medium text-sm leading-6 lg:text-base 2xl:text-xl text-[#34394B] md:w-3/4"
+          class="font-quickSand font-medium text-sm leading-6 lg:text-base xl:text-xl 2xl:text-2xl text-[#34394B] md:w-3/4"
           >
           We have designed and developed more than 200 web products with
           booking systems, marketplaces, real estate, and corporate sites
@@ -79,12 +77,12 @@
       <img
         src="../../../assets/character.gif"
         alt=""
-        class="scale-x-[1.3] sm:scale-x-100 sm:scale-y-125 lg:scale-x-[1.8] lg:scale-y-[1] xl:scale-y-[1.2] absolute right-[12vw] lg:right-0 lg:-left-[34vw] bottom-0 w-[180%] h-[100%]"
+        class="scale-x-[1.2] sm:scale-x-100 sm:scale-y-125 lg:scale-x-[2.4] lg:scale-y-[1] xl:scale-y-[1] absolute right-[12vw] lg:right-0 lg:-left-[34vw] bottom-0 w-[180%] h-[100%]"
         />
         @for (client of clients; track client) {
           <div class="py-4">
             <p
-              class="uppercase text-black lg:text-sm 2xl:text-2xl font-medium font-mont"
+              class="uppercase text-black lg:text-sm 2xl:text-lg font-medium font-mont"
               >
               {{ client.heading }}
             </p>
@@ -158,7 +156,7 @@
     </h2>
   </div>
 
-  <app-gaming-slider></app-gaming-slider>
+  <app-gaming-slider ngSkipHydration></app-gaming-slider>
 </section>
 
 <section class="px-7 md:px-10 2xl:p-24 xl:px-14 pt-10 md:py-10">
@@ -301,7 +299,7 @@
           Case Studies & Testimonials
         </h2>
       </div>
-      <app-coverflow-slider></app-coverflow-slider>
+      <app-coverflow-slider ngSkipHydration></app-coverflow-slider>
     </section>
 
 
@@ -329,7 +327,7 @@
             </ul>
           </div>
           <div class="w-full lg:w-3/5">
-            <app-getinform [theme]="'dark'" [servicePreset]="'Game Development'" [formOnly]="true"></app-getinform>
+            <app-getinform ngSkipHydration [theme]="'dark'" [servicePreset]="'Game Development'" [formOnly]="true"></app-getinform>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ import { Know4Component } from './know4/know4.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 // import { DigitalServiceComponent } from './digital-service/digital-service.component';
 // import { WebServiceComponent } from './web-service/web-service.component';
-// import { GameServiceComponent } from './game-service/game-service.component';
+import { GameServiceComponent } from './game-service/game-service.component';
 import { JobDescriptionComponent } from './job-description/job-description.component';
 import { CaseStudiesComponent } from './case-studies/case-studies.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
@@ -41,16 +41,15 @@ const routes: Routes = [
   //   path: 'web-development',
   //   component: WebServiceComponent,
   // },
-  // {
-  //   path: 'game-development',
-  //   component: GameServiceComponent,
-  // },
+  {
+    path: 'game-development',
+    component: GameServiceComponent,
+  },
   // {
   //   path: 'digital-marketing',
   //   component: DigitalServiceComponent,
   // },
   { path: 'web-development', redirectTo: 'services', pathMatch: 'full' },
-  { path: 'game-development', redirectTo: 'services', pathMatch: 'full' },
   { path: 'digital-marketing', redirectTo: 'services', pathMatch: 'full' },
   // Future service pages: mobile-service/ and ai-service/ will be added when built.
   {
@@ -112,8 +111,8 @@ const routes: Routes = [
 
   // ── Legacy & Short Route Redirects (Preserve SEO & Backlinks) ─────
   { path: 'web', redirectTo: 'services', pathMatch: 'full' },
-  { path: 'game', redirectTo: 'services', pathMatch: 'full' },
-  { path: 'game2', redirectTo: 'services', pathMatch: 'full' },
+  { path: 'game', redirectTo: 'game-development', pathMatch: 'full' },
+  { path: 'game2', redirectTo: 'game-development', pathMatch: 'full' },
   { path: 'service2', redirectTo: 'services', pathMatch: 'full' },
   { path: 'web-app-development', redirectTo: 'services', pathMatch: 'full' },
   { path: 'about', redirectTo: 'know-us', pathMatch: 'full' },
@@ -124,7 +123,7 @@ const routes: Routes = [
   { path: 'blog-details', redirectTo: 'blog', pathMatch: 'full' },
   { path: 'contact', redirectTo: 'contact-us', pathMatch: 'full' },
   { path: 'service-details/digital-marketing', redirectTo: 'services', pathMatch: 'full' },
-  { path: 'service-details/game-development', redirectTo: 'services', pathMatch: 'full' },
+  { path: 'service-details/game-development', redirectTo: 'game-development', pathMatch: 'full' },
   { path: 'service-details/web-development', redirectTo: 'services', pathMatch: 'full' },
   { path: 'service-details/mobile-app-development', redirectTo: 'services', pathMatch: 'full' },
 

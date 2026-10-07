@@ -5,6 +5,11 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* Prevent browser visited link color from turning dark across the site */
+a:visited {
+  color: inherit;
+}
+
 @import "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
 @import "ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
 

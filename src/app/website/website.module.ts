@@ -26,6 +26,8 @@ import { Blog2Component } from './blog2/blog2.component';
 import { CategoryBlogComponent } from './category-blog/category-blog.component';
 import { BubbleCardComponent } from '@shared/components/bubble-card/bubble-card.component';
 import { GetinformComponent } from './components/getinform/getinform.component';
+import { QuoteSectionComponent } from './components/quote-section/quote-section.component';
+import { FormDropdownComponent } from './components/form-dropdown/form-dropdown.component';
 import { ModalFormComponent } from '@shared/components/modal-form/modal-form.component';
 import { NotificationComponent } from '@shared/components/notification/notification.component';
 import { Service2Component } from './service2/service2.component';
@@ -39,6 +41,7 @@ import { PortfolioDetailComponent } from './portfolio-detail/portfolio-detail.co
 import { DigitalServiceComponent } from './digital-service/digital-service.component';
 import { WebServiceComponent } from './web-service/web-service.component';
 import { WebSliderComponent } from './components/web-slider/web-slider.component';
+import { ServiceCardComponent } from './components/service-card/service-card.component';
 import { GameServiceComponent } from './game-service/game-service.component';
 import { GamingSliderComponent } from './components/gaming-slider/gaming-slider.component';
 import { CoverflowSliderComponent } from './components/coverflow-slider/coverflow-slider.component';
@@ -72,6 +75,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     CategoryBlogComponent,
     BubbleCardComponent,
     GetinformComponent,
+    QuoteSectionComponent,
+    FormDropdownComponent,
     ModalFormComponent,
     NotificationComponent,
     Service2Component,
@@ -84,6 +89,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     DigitalServiceComponent,
     WebServiceComponent,
     WebSliderComponent,
+    ServiceCardComponent,
     GameServiceComponent,
     GamingSliderComponent,
     CoverflowSliderComponent,

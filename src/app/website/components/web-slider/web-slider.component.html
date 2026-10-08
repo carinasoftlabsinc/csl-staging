@@ -1,116 +1,118 @@
 <section>
   <div
-    class="flex justify-between text-[#0B0C10] border-b border-[#B4B9CB] pb-4"
+    class="flex justify-between items-center gap-4 text-[#0B0C10] border-b border-[#B4B9CB] pb-5 2xl:pb-8"
   >
-    <h2 class="text-3xl xl:text-4xl 2xl:text-6xl font-myfont">Case Studies</h2>
+    <h2 class="text-[clamp(1.875rem,2.86vw,3.4375rem)] leading-none font-myfont uppercase">Case Studies</h2>
     <a
       routerLink="/portfolio"
-      class="font-semibold font-mont text-black 2xl:text-[18px] xl:text-[14px] hidden rounded-full !border border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] lg:px-6 lg:py-2 xl:px-6 xl:py-2.5 2xl:px-8 2xl:py-3 sm:flex sm:items-center sm:px-4 sm:py-2"
+      class="hidden sm:inline-flex items-center transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(155,93,247,0.3)] active:translate-y-0 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7] gap-4 2xl:gap-6 h-10 2xl:h-[50px] pl-5 2xl:pl-9 rounded-full border border-transparent [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] font-quickSand font-semibold text-[#0B0C10] text-sm 2xl:text-xl"
     >
       More Projects
       <img
-        src="../../assets/images/small-tilt-arrow.png"
-        alt="Image"
-        class="button-img ml-2"
+        src="../../../assets/images/more-arrow-circle.svg"
+        alt=""
+        aria-hidden="true"
+        width="50"
+        height="50"
+        class="w-10 h-10 2xl:w-[50px] 2xl:h-[50px]"
       />
     </a>
   </div>
 
-  <div
-    class="mx-auto py-4 md:py-20 lg:py-16 xl:py-24 border-b border-[#B4B9CB]"
-  >
+  <div class="mx-auto pt-8 md:pt-14 2xl:pt-16">
     <div
-      class="grid grid-cols-1 gap-8 lg:grid-cols-4 lg:items-center lg:gap-11"
+      class="grid grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-9"
     >
-      <div class="lg:max-w-sm text-center ltr:sm:text-left rtl:sm:text-right">
-        <p
-          class="font-quickSand font-medium text-base lg:text-lg xl:text-xl 2xl:text-[26px] 2xl:leading-[34px] text-left text-[#34394B] h-28 md:h-10 lg:h-64 xl:h-60 2xl:h-72"
-        >
-          {{ slideTexts[currentSlideIndex] }}
+      <div class="flex flex-col lg:py-14 2xl:py-14">
+        <div class="h-32 md:h-20 lg:h-64 2xl:h-80">
+          @for (text of [slideTexts[currentSlideIndex]]; track text) {
+            <p
+              class="slide-text font-quickSand font-medium text-base lg:text-lg xl:text-xl 2xl:text-[26px] 2xl:leading-[34px] text-left 2xl:text-justify text-[#34394B]"
+            >
+              {{ text }}
+            </p>
+          }
+        </div>
+
+        <p class="hidden lg:block mt-auto font-quickSand text-base 2xl:text-xl text-[#34394B]" aria-live="polite">
+          {{ (currentSlideIndex + 1).toString().padStart(2, '0') }}/{{ totalSlides }}
         </p>
 
-        <div class="hidden lg:mt-8 lg:flex lg:gap-4 2xl:mt-16">
+        <div class="hidden lg:flex gap-6 2xl:gap-11 mt-6 2xl:mt-14">
           <button
+            type="button"
             aria-label="Previous slide"
             id="keen-slider-previous-desktop"
-            class="rounded-full !border !border-[#B4B9CB] p-3 2xl:!p-6"
+            class="rounded-full cursor-pointer transition-transform duration-200 ease-out hover:scale-110 hover:drop-shadow-[0_4px_10px_rgba(155,93,247,0.45)] active:scale-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7]"
             (click)="prevSlide()"
           >
             <img
-              src="../../assets/images/grad-left-arrow.svg"
-              alt="arrow-left"
-              height="20"
-              width="17"
+              src="../../../assets/images/case-slider-arrow.svg"
+              alt=""
+              width="62"
+              height="62"
+              class="w-12 h-12 2xl:w-[62px] 2xl:h-[62px] rotate-180"
             />
           </button>
 
           <button
+            type="button"
             aria-label="Next slide"
             id="keen-slider-next-desktop"
-            class="rounded-full !border !border-[#B4B9CB] p-3 2xl:!p-6"
+            class="rounded-full cursor-pointer transition-transform duration-200 ease-out hover:scale-110 hover:drop-shadow-[0_4px_10px_rgba(155,93,247,0.45)] active:scale-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7]"
             (click)="nextSlide()"
           >
             <img
-              src="../../assets/images/grad-right-arrow.svg"
-              alt="arrow-right"
-              height="20"
-              width="17"
+              src="../../../assets/images/case-slider-arrow.svg"
+              alt=""
+              width="62"
+              height="62"
+              class="w-12 h-12 2xl:w-[62px] 2xl:h-[62px]"
             />
           </button>
         </div>
       </div>
 
       <div
-        class="-mx-6 lg:col-span-3 lg:mx-0 md:py-16 lg:py-20 lg:px-9 lg:border-l lg:border-[#B4B9CB]"
+        class="min-w-0 -mx-6 lg:col-span-3 lg:mx-0 lg:py-14 lg:pl-9 lg:border-l lg:border-[#B4B9CB]"
       >
-        <div id="keen-slider-w" class="keen-slider">
-          <div class="keen-slider__slide">
-            <img src="../../../assets/images/MOBA.png" alt="MOBA" />
-            <div class="font-quickSand flex flex-col items-center mt-2">
-              <h3 class="text-black font-semibold md:text-lg mt-1 ml-1.5">
-                WEBSITE NAME
-              </h3>
-              <p class="text-center text-[#34394B]">
-                We use server-side technologies like Python, Ruby on Rails, and
-                Node.js for prototyping and development, producing fast and
-                scalable web apps.
-              </p>
+        <div #sliderEl id="keen-slider-w" class="keen-slider">
+          <!-- The list is rendered twice so the loop always has an off-screen card to slide in.
+               The second copy is hidden from search engines and screen readers. -->
+          @for (item of loopedCaseStudies; track $index) {
+            @let clone = $index >= caseStudies.length;
+            <div class="keen-slider__slide" [attr.aria-hidden]="clone ? 'true' : null">
+              <div class="relative overflow-hidden rounded-[2rem] 2xl:rounded-[50px]">
+                <img
+                  [src]="item.image"
+                  [alt]="clone ? '' : item.imageAlt"
+                  width="765"
+                  height="1012"
+                  loading="lazy"
+                  decoding="async"
+                  class="block w-full h-auto"
+                />
+                <img
+                  src="../../../assets/images/case-arrow-badge.svg"
+                  alt=""
+                  aria-hidden="true"
+                  width="48"
+                  height="48"
+                  class="absolute right-[9.5%] bottom-[14%] w-9 md:w-10 2xl:w-12"
+                />
+              </div>
+              <div class="font-quickSand flex flex-col items-center mt-4 2xl:mt-8 gap-2">
+                @if (clone) {
+                  <p class="font-quickSand text-black font-bold capitalize text-xl 2xl:text-[31px] leading-tight text-center">{{ item.title }}</p>
+                } @else {
+                  <h3 class="font-quickSand text-black font-bold capitalize text-xl 2xl:text-[31px] leading-tight text-center">{{ item.title }}</h3>
+                }
+                <p class="text-center text-[#34394B] font-medium text-sm leading-5 2xl:text-[17px] 2xl:leading-6">
+                  {{ item.description }}
+                </p>
+              </div>
             </div>
-          </div>
-
-          <!-- Repeat for other slides -->
-          <div class="keen-slider__slide">
-            <img
-              src="../../../assets/images/project-2.png"
-              alt="ARUNACHAL FILM FESTIVAL"
-            />
-          
-            <div class="font-quickSand flex flex-col items-center mt-2">
-              <h3 class="text-black font-semibold md:text-lg mt-1 ml-1.5">
-                ARUNACHAL FILM FESTIVAL
-              </h3>
-              <p class="text-center text-[#34394B]">
-                We use server-side technologies like Python, Ruby on Rails, and
-                Node.js for prototyping and development, producing fast and
-                scalable web apps.
-              </p>
-            </div>
-          </div>
-
-          <!-- Repeat for other slides -->
-          <div class="keen-slider__slide">
-            <img src="../../../assets/images/SpaceM.png" alt="space m" />
-            <div class="font-quickSand flex flex-col items-center mt-2">
-              <h3 class="text-black font-semibold md:text-lg mt-1 ml-1.5">
-                SPACE M
-              </h3>
-              <p class="text-center text-[#34394B]">
-                We use server-side technologies like Python, Ruby on Rails, and
-                Node.js for prototyping and development, producing fast and
-                scalable web apps.
-              </p>
-            </div>
-          </div>
+          }
         </div>
       </div>
     </div>

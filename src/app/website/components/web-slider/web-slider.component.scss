@@ -1,0 +1,29 @@
+.slide-text {
+  animation: slide-text-in 0.45s ease-out both;
+}
+
+@keyframes slide-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-text {
+    animation: none;
+  }
+}
+
+// Card widths before keen-slider starts (first paint, or if the script fails): match its
+// perView 1.5 / 3 layout so cards never squash. keen-slider's inline min/max-width wins once it runs.
+.keen-slider:not([data-keen-slider-disabled]) .keen-slider__slide {
+  flex: 0 0 auto;
+  width: 66.666%;
+}
+
+@media (min-width: 768px) {
+  .keen-slider:not([data-keen-slider-disabled]) .keen-slider__slide {
+    width: calc((100% - 64px) / 3);
+  }
+}

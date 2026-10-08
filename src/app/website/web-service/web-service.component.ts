@@ -54,25 +54,25 @@ export class WebServiceComponent implements OnInit {
       imgSrc: 'assets/images/webIcon5.svg',
       heading: 'Frontend Development',
       description:
-        'A well-designed website is a powerful marketing and communication tool that helps build trust and generate leads.',
+        'We use the most popular frontend frameworks like React.js, Vue.js, and Angular that enable us to create the surface layer of your product.',
     },
     {
       imgSrc: 'assets/images/webIcon6.svg',
       heading: 'Backend Development',
       description:
-        'A well-designed website is a powerful marketing and communication tool that helps build trust and generate leads.',
+        'We use server-side technologies like Python, Ruby on Rails, and Node.js for prototyping and development, producing fast and scalable web apps.',
     },
     {
       imgSrc: 'assets/images/webIcon7.svg',
       heading: 'Full Stack Development',
       description:
-        'A well-designed website is a powerful marketing and communication tool that helps build trust and generate leads.',
+        'We deliver end-to-end web development, combining frontend and backend solutions and other technologies necessary to make your product a success.',
     },
     {
       imgSrc: 'assets/images/webIcon8.svg',
       heading: 'Low-Code Development',
       description:
-        'A well-designed website is a powerful marketing and communication tool that helps build trust and generate leads.',
+        'We also specialize in building no-code and low-code web solutions that allow clients to save time and money. We use platforms like Webflow or Mendix.',
     },
   ];
 }

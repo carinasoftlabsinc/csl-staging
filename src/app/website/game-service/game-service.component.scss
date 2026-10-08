@@ -1,18 +1,18 @@
-/* Keyframe animation for infinite scrolling */
-@keyframes Scroll {
-    0% {
-      transform: translateX(0); /* Start the text just inside the viewport */
-    }
-    100% {
-      transform: translateX(-100%); /* Move the text out of the viewport on the left */
-    }
+@keyframes game-service-scroll {
+  to {
+    transform: translateX(-50%);
   }
-  
-  
-  /* Apply the animation */
-  .animate-scrolling {
-    animation: Scroll 25s linear infinite; /* Adjust the speed with 15s */
+}
+
+.game-service-marquee {
+  animation: game-service-scroll 25s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-service-marquee {
+    animation: none;
   }
+}
   
 
 // @keyframes scroll {

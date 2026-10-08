@@ -1,30 +1,54 @@
 <main class="bg-[#0B0C10]">
-  <app-header></app-header>
-
-  <!-- hero section -->
-  <section
-    class="body-font flex items-center justify-start h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 2xl:px-52 py-10"
+  <!-- Hero Section with Background Video behind Header -->
+  <div class="relative overflow-hidden min-h-screen flex flex-col justify-between">
+    <!-- Background Video -->
+    <video
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="auto"
+      class="absolute inset-0 h-full w-full object-cover pointer-events-none"
     >
-    <div class="ml-0">
-      <div class="2xl:w-full xl:w-full sm:w-full">
-        <h1
-          class="text-white tracking-wide text-3xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black font-mont uppercase"
-          >
-          Game <br class="hidden sm:block" />
-          <span class="2xl:text-[7.5rem]"> Development</span>
-        </h1>
-        <p
-          class="text-white mt-8 xl:text-[16px] 2xl:text-[20px] font-quickSand font-normal"
-          >
-          We have designed and developed more than 200 web products with
-          booking systems, marketplaces, real estate, and corporate sites<br
-          class="hidden md:block"
-          />
-          among them.
-        </p>
+      <source
+        src="https://www.shutterstock.com/shutterstock/videos/3795379781/preview/stock-footage-slaying-enemies-in-futuristic-cuberpunk-virtual-world-video-game-level-losing-battle-with-enemy.webm"
+        type="video/webm"
+      />
+    </video>
+
+    <!-- Dark Overlay -->
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-[#0B0C10]/90 via-[#0B0C10]/75 to-[#0B0C10]/60 pointer-events-none"
+    ></div>
+
+    <!-- Header sitting above video -->
+    <app-header class="relative z-20 w-full block"></app-header>
+
+    <!-- Hero Content -->
+    <section
+      class="relative z-10 flex-1 body-font flex items-center justify-start px-7 md:px-10 2xl:p-24 xl:px-14 2xl:px-52 py-10"
+      >
+      <div class="ml-0">
+        <div class="2xl:w-full xl:w-full sm:w-full">
+          <h1
+            class="text-white tracking-wide text-3xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-black font-mont uppercase"
+            >
+            Game <br class="hidden sm:block" />
+            <span class="2xl:text-[7.5rem]"> Development</span>
+          </h1>
+          <p
+            class="text-white mt-8 xl:text-[16px] 2xl:text-[20px] font-quickSand font-normal"
+            >
+            We have designed and developed more than 200 web products with
+            booking systems, marketplaces, real estate, and corporate sites<br
+            class="hidden md:block"
+            />
+            among them.
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <!-- game design section -->
 
@@ -104,30 +128,32 @@
     </div>
   </div>
 
-  <div
-    class="whitespace-nowrap overflow-x-hidden overflow-y-hidden scrollbar-hide"
-    >
-    <div
-      class="font-anton text-3xl md:text-5xl lg:text-6xl 2xl:text-7xl text-[#34394B] uppercase whitespace-nowrap inline-block animate-scrolling"
-      >
-      @for (word of SrcWords; track word) {
-        <h4
-          class="inline-block mr-8 border-r-2 pr-8"
-          >
-          {{ word.word }}
-        </h4>
-      }
-    </div>
-    <div
-      class="font-anton text-3xl md:text-5xl lg:text-6xl 2xl:text-7xl text-[#34394B] uppercase whitespace-nowrap inline-block animate-scrolling"
-      >
-      @for (word of SrcWords; track word) {
-        <h4
-          class="inline-block mr-8 border-r-2 pr-8"
-          >
-          {{ word.word }}
-        </h4>
-      }
+  <div class="overflow-hidden scrollbar-hide">
+    <div class="game-service-marquee flex w-max font-anton text-3xl md:text-5xl lg:text-6xl 2xl:text-7xl text-[#34394B] uppercase">
+      <div class="flex shrink-0">
+        @for (word of SrcWords; track word) {
+          <h4 class="flex shrink-0 items-center gap-6 md:gap-8 mr-8 whitespace-nowrap">
+            <span class="shrink-0">{{ word.word }}</span>
+            <img
+              src="../../../assets/images/csl-gamePage.svg"
+              alt=""
+              class="size-8 md:size-10 lg:size-12 2xl:size-14 shrink-0 object-contain"
+              />
+          </h4>
+        }
+      </div>
+      <div class="flex shrink-0" aria-hidden="true">
+        @for (word of SrcWords; track word) {
+          <h4 class="flex shrink-0 items-center gap-6 md:gap-8 mr-8 whitespace-nowrap">
+            <span class="shrink-0">{{ word.word }}</span>
+            <img
+              src="../../../assets/images/csl-gamePage.svg"
+              alt=""
+              class="size-8 md:size-10 lg:size-12 2xl:size-14 shrink-0 object-contain"
+              />
+          </h4>
+        }
+      </div>
     </div>
   </div>
 
@@ -156,7 +182,7 @@
     </h2>
   </div>
 
-  <app-gaming-slider ngSkipHydration></app-gaming-slider>
+  <app-gaming-slider></app-gaming-slider>
 </section>
 
 <section class="px-7 md:px-10 2xl:p-24 xl:px-14 pt-10 md:py-10">

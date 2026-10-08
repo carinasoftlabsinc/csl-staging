@@ -62,3 +62,31 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.case-study-overlay {
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.case-study-card:hover .case-study-overlay,
+.case-study-card:focus-within .case-study-overlay {
+  opacity: 1;
+}
+
+.case-study-link {
+  background:
+    linear-gradient(rgba(11, 12, 16, 0.88), rgba(11, 12, 16, 0.88)) padding-box,
+    linear-gradient(135deg, #f21df5, #20b9fa) border-box;
+  transition: transform 200ms ease;
+}
+
+.case-study-link:hover,
+.case-study-link:focus-visible {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 767px), (hover: none) {
+  .case-study-overlay {
+    opacity: 1;
+  }
+}

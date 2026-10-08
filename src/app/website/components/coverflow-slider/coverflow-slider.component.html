@@ -86,11 +86,13 @@ coverflow-effect-slide-shadows="true"
 navigation-prev-el=".custom-prev"
 navigation-next-el=".custom-next" -->
 
-<div class="">
+<div class="w-full min-w-0">
   <swiper-container
     #swiperContainer
+    init="false"
     loop="true"
     autoplay="true"
+    autoplay-pause-on-mouse-enter="true"
     effect="coverflow"
     grab-cursor="true"
     centered-slides="true"
@@ -103,22 +105,47 @@ navigation-next-el=".custom-next" -->
     coverflow-effect-slide-shadows="true"
     pagination="false"
 
-    class="mySwiper max-w-[100vw] w-full mx-auto my-20"
+    class="mySwiper w-full mx-auto my-8 sm:my-12 lg:my-20"
     >
-    @for (slide of slides; track slide) {
-      <swiper-slide class="flex items-center justify-center h-[55vh] w-[65vw] lg:w-[40vw]">
-        <img class="h-full w-full object-cover rounded-[47px]" [src]="slide.img" alt="Coverflow Image" />
+    @for (slide of slides; track slide; let cardIndex = $index) {
+      <swiper-slide class="case-study-card relative flex items-center justify-center h-[40svh] min-h-[230px] max-h-[420px] w-[88vw] max-w-[420px] sm:h-[46svh] sm:w-[76vw] sm:max-w-[620px] md:h-[55vh] md:min-h-0 md:max-h-none md:w-[72vw] md:max-w-none lg:w-[52vw] overflow-hidden rounded-[20px] sm:rounded-[28px] md:rounded-[47px] bg-[#34394B] bg-cover bg-center" [style.background-image]="'url(' + fallbackImages[cardIndex % fallbackImages.length] + ')'">
+          <img class="absolute inset-0 h-full w-full object-cover" [src]="slide.img" [alt]="'Game Project ' + (cardIndex + 1)" (error)="onSlideImageError($event, cardIndex)" />
+          <div class="case-study-overlay absolute inset-0 z-10 flex items-end gap-3 bg-gradient-to-t from-black/90 via-black/35 to-transparent p-3 sm:!p-7 lg:!p-10">
+            <div class="min-w-0 flex-1 text-white">
+              <h3 class="font-poppins text-2xl font-bold leading-tight sm:text-3xl lg:text-5xl">
+                Game Project {{ cardIndex + 1 }}
+              </h3>
+              <p class="mt-2 max-w-xl font-mont text-xs leading-relaxed sm:text-sm lg:text-base">
+                Explore the creative work behind this game experience.
+              </p>
+            </div>
+            <a
+              routerLink="/portfolio"
+              [attr.aria-label]="'View Game Project ' + (cardIndex + 1) + ' in portfolio'"
+              class="case-study-link flex size-11 shrink-0 items-center justify-center rounded-full border-2 border-transparent sm:size-14"
+            >
+              <svg class="size-6 sm:size-8" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <defs>
+                  <linearGradient [attr.id]="'case-study-arrow-gradient-' + cardIndex" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#F21DF5" />
+                    <stop offset="100%" stop-color="#20B9FA" />
+                  </linearGradient>
+                </defs>
+                <path d="M5 19 19 5M8 5h11v11" [attr.stroke]="'url(#case-study-arrow-gradient-' + cardIndex + ')'" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
       </swiper-slide>
     }
   </swiper-container>
 
   <!-- Custom Navigation Buttons -->
-  <div class="custom-navigation flex justify-center items-center gap-6">
-    <button (click)="goPrev()" [disabled]="!swiperReady" class="custom-prev p-3.5 border-2 border-[#34394B] rounded-full">
-      <img class="size-8" src="../../../../assets/images/grad-left-arrow.svg" alt="Prev" />
+  <div class="custom-navigation flex justify-center items-center gap-4 sm:gap-6">
+    <button type="button" aria-label="Previous slide" (click)="goPrev()" [disabled]="!swiperReady" class="custom-prev p-3 sm:p-3.5 border-2 border-[#34394B] rounded-full">
+      <img class="size-5 sm:size-8" src="../../../../assets/images/grad-left-arrow.svg" alt="" />
     </button>
-    <button (click)="goNext()"  [disabled]="!swiperReady" class="custom-next p-3.5 border-2 border-[#34394B] rounded-full">
-      <img class="size-8" src="../../../../assets/images/grad-right-arrow.svg" alt="Next" />
+    <button type="button" aria-label="Next slide" (click)="goNext()" [disabled]="!swiperReady" class="custom-next p-3 sm:p-3.5 border-2 border-[#34394B] rounded-full">
+      <img class="size-5 sm:size-8" src="../../../../assets/images/grad-right-arrow.svg" alt="" />
     </button>
   </div>
 </div>

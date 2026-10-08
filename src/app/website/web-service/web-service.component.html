@@ -4,25 +4,22 @@
     <section
       class="body-font flex items-center justify-center h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10">
       <div>
-        <div class="flex flex-col-reverse md:flex-row items-center gap-y-[3vh] lg:px-3 max-w-5xl 2xl:max-w-[76vw]">
+        <div class="flex flex-col-reverse md:flex-row items-center gap-y-[3vh] lg:px-3 w-full max-w-5xl 2xl:max-w-[76vw]">
           <div
             class="md:w-1/2 md:py-8 text-left font-medium text-[#B4B9CB] overflow-visible z-10 flex flex-col justify-center items-start gap-7 2xl:gap-10">
             <h1 class="font-myfont z-10 text-white">
               <span
-                class="block text-[#B1DF4F] text-[clamp(1.875rem,6.2vw,7.45rem)] leading-none font-extrabold font-mont -mb-[0.2em]">WEB</span>&ngsp;<span
-                class="block text-[clamp(2.25rem,8.24vw,9.9rem)] leading-none">DEVELOPMENT</span>
+                class="block text-[#B1DF4F] text-[clamp(1.875rem,6.2vw,7.45rem)] md:max-lg:text-[5.2vw] leading-none font-extrabold font-mont -mb-[0.2em]">WEB</span>&ngsp;<span
+                class="block text-[clamp(2.25rem,8.24vw,9.9rem)] md:max-lg:text-[6.4vw] leading-none">DEVELOPMENT</span>
             </h1>
 
-            <p class="text-white lg:text-lg xl:text-xl 2xl:text-2xl  2xl:!leading-6 font-light font-quickSand !leading-5 w-11/12">
+            <p class="text-white md:text-lg xl:text-xl 2xl:text-2xl  2xl:!leading-6 font-light font-quickSand !leading-5 w-11/12">
               We Help Service Trades Just Like Yours with the Online Tools and
               Expertise. Partner with a Canadian marketing company that is
               invested in your growth.
             </p>
 
-            <button
-              class="px-10 py-2.5 2xl:px-14 2xl:py-3 rounded-full border-2 border-transparent [background:linear-gradient(#0B0C10,#0B0C10)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] font-quickSand font-medium text-white 2xl:text-xl">
-              Get Started
-            </button>
+            <button appGradientButton>Get Started</button>
           </div>
 
           <div class="w-full md:w-1/2 md:py-8">
@@ -76,10 +73,9 @@
           development services. Here are some of the solutions that we can
           deliver for you.
         </p>
-        <a routerLink="/portfolio"
-          class="font-medium font-quickSand text-white bg-gradient-to-b from-[#989CFA3D] to-transparent 2xl:text-[18px] xl:text-[14px] flex items-center rounded-full !border border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] px-4 py-2 lg:px-6 lg:py-2 xl:px-6 xl:py-2.5 2xl:px-8 2xl:py-3">
+        <a appGradientButton size="md" routerLink="/portfolio">
           Schedule a free expert session
-          <img src="../../assets/images/arrow-right-gradient.svg" alt="" aria-hidden="true" class="button-img ml-2 w-5" />
+          <img src="../../assets/images/arrow-right-gradient.svg" alt="" aria-hidden="true" class="w-5" />
         </a>
       </div>
     </div>

@@ -4,18 +4,19 @@
   >
     <h2 class="text-[clamp(1.875rem,2.86vw,3.4375rem)] leading-none font-myfont uppercase">Case Studies</h2>
     <a
+      appGradientButton
+      variant="light"
+      size="md"
       routerLink="/portfolio"
-      class="hidden sm:inline-flex items-center transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_16px_rgba(155,93,247,0.3)] active:translate-y-0 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7] gap-4 2xl:gap-6 h-10 2xl:h-[50px] pl-5 2xl:pl-9 rounded-full border border-transparent [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] font-quickSand font-semibold text-[#0B0C10] text-sm 2xl:text-xl"
+      class="hidden sm:inline-flex h-10 2xl:h-[50px] !p-0 !pl-5 2xl:!pl-[37px] gap-4 2xl:gap-[25px] 2xl:!text-[20px]"
     >
       More Projects
-      <img
-        src="../../../assets/images/more-arrow-circle.svg"
-        alt=""
+      <span
         aria-hidden="true"
-        width="50"
-        height="50"
-        class="w-10 h-10 2xl:w-[50px] 2xl:h-[50px]"
-      />
+        class="-my-[2px] -mr-[2px] flex size-10 2xl:size-[50px] shrink-0 items-center justify-center rounded-full border-2 border-transparent [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box]"
+      >
+        <img src="../../../assets/images/more-arrow.svg" alt="" width="50" height="50" class="size-full" />
+      </span>
     </a>
   </div>
 
@@ -74,7 +75,7 @@
       </div>
 
       <div
-        class="min-w-0 -mx-6 lg:col-span-3 lg:mx-0 lg:py-14 lg:pl-9 lg:border-l lg:border-[#B4B9CB]"
+        class="min-w-0 -mx-6 md:mx-0 lg:col-span-3 lg:py-14 lg:pl-9 lg:border-l lg:border-[#B4B9CB]"
       >
         <div #sliderEl id="keen-slider-w" class="keen-slider">
           <!-- The list is rendered twice so the loop always has an off-screen card to slide in.

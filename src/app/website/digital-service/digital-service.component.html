@@ -2,45 +2,34 @@
   <div class="digital-marketing">
     <app-header></app-header>
     <section
-      class="body-font flex items-center justify-center h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
+      class="body-font flex items-center justify-center min-h-[calc(100vh-86.52px)] xl:min-h-[calc(100vh-90.33px)] 2xl:min-h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
       >
       <div>
         <div
-          class="flex flex-col-reverse md:flex-row items-center gap-y-[3vh] lg:px-3 max-w-5xl 2xl:max-w-[75vw]"
+          class="flex flex-col-reverse lg:flex-row items-center gap-y-[3vh] lg:px-3 w-full mx-auto max-lg:max-w-[min(100%,72vh)] lg:max-w-5xl 2xl:max-w-[76vw]"
           >
           <div
-            class="md:w-1/2 md:py-8 text-left font-medium text-[#B4B9CB] overflow-visible z-10 flex flex-col justify-center items-start gap-7 2xl:gap-10"
+            class="w-full lg:w-1/2 md:py-8 text-left font-medium text-[#B4B9CB] overflow-visible z-10 flex flex-col justify-center items-start gap-7 2xl:gap-10"
             >
-            <div>
-              <p
-                class="text-[#B1DF4F] text-3xl md:text-5xl lg:text-7xl 2xl:text-8xl font-extrabold font-mont -mb-2.5 md:-mb-3.5 lg:-mb-6"
-                >
-                DIGITAL
-              </p>
-              <h1
-                class="text-5xl md:text-7xl lg:text-9xl 2xl:text-[10rem] font-myfont z-10 text-white"
-                >
-                MARKETING
-              </h1>
-            </div>
+            <h1 class="font-myfont z-10 text-white">
+              <span
+                class="block text-[#B1DF4F] text-[clamp(1.875rem,6.2vw,7.45rem)] md:max-lg:text-[7vw] lg:max-xl:text-[5.8vw] leading-none font-extrabold font-mont -mb-[0.2em]">DIGITAL</span>&ngsp;<span
+                class="block text-[clamp(2.25rem,8.24vw,9.9rem)] md:max-lg:text-[9.4vw] lg:max-xl:text-[7.5vw] leading-none">MARKETING</span>
+            </h1>
 
             <p
-              class="text-white lg:text-lg 2xl:text-xl 2xl:!leading-6 font-light font-quickSand !leading-5 w-11/12"
+              class="text-white md:max-lg:text-xl lg:text-lg xl:text-xl 2xl:text-2xl 2xl:!leading-6 font-light font-quickSand !leading-5 w-11/12"
               >
               We Help Service Trades Just Like Yours with the Online Tools and
               Expertise. Partner with a Canadian marketing company that is
               invested in your growth.
             </p>
 
-            <button
-              class="px-10 py-2.5 2xl:px-14 2xl:py-3 rounded-full border-2 border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] bg-black font-quickSand font-medium 2xl:text-xl"
-              >
-              Get Started
-            </button>
+            <button appGradientButton>Get Started</button>
           </div>
 
-          <div class="w-full md:w-1/2 md:py-8">
-            <img src="../../../assets/images/Digital-marketing.png" />
+          <div class="w-full lg:w-1/2 md:py-8">
+            <img src="../../../assets/images/Digital-marketing.png" alt="Marketer reviewing website analytics on a laptop" width="717" height="553" fetchpriority="high" class="w-full h-auto" />
           </div>
         </div>
       </div>
@@ -51,206 +40,204 @@
   <section
     class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
     >
-    <div>
+    <div class="mx-auto max-w-[1671px]">
       <h2
-        class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
+        class="text-[#0B0C10] text-[clamp(1.875rem,2.86vw,3.4375rem)] leading-none font-myfont pb-5 2xl:pb-[34px] border-b border-[#B4B9CB]"
         >
-        Our Services
+        Our Service
       </h2>
     </div>
-    <div class="xl:pt-20 pt-4">
+    <div class="mx-auto max-w-[1671px] pt-4 2xl:pt-[31px]">
       <p
-        class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-black"
+        class="max-w-[581px] font-quickSand font-medium text-sm lg:text-base 2xl:text-lg leading-6 text-[#34394B]"
         >
-        Explore the certifications and badges that reflect our commitment
-        <br class="hidden md:block" />
-        to excellence and industry-leading standards.
+        A full- cycle digital service agency. We do from design to end-to end
+        development to maintenance.
       </p>
     </div>
 
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12 2xl:my-20 gap-7 justify-between text-black"
-      >
-      @for (card of numCards; track card) {
+    <!-- Sizes use container-query units (cqw = 1% of the card width) so every card keeps the Figma proportions at any screen size. -->
+    <div class="mx-auto max-w-[1671px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12 2xl:my-20 gap-7 2xl:gap-[38px]">
+      @for (card of numCards; track card.num) {
         <div
-          [ngClass]="card.bgColor"
-          class="rounded-3xl px-6 py-12 2xl:px-12 overflow-hidden relative group"
+          [ngClass]="[card.bgColor, card.textColor]"
+          class="group relative  aspect-[532/573] overflow-hidden rounded-[8.33%/7.74%] [container-type:inline-size] md:max-lg:last:odd:col-span-2 md:max-lg:last:odd:w-[calc(50%-14px)] md:max-lg:last:odd:justify-self-center"
           >
           <img
-            class="h-40 w-40 lg:h-36 lg:w-36 xl:h-40 xl:w-40 2xl:h-52 2xl:w-52 rounded-3xl absolute right-5 -top-60 group-hover:-top-6 group-hover:right-5 transition-all ease-in-out duration-500"
+            class="absolute right-[8.7cqw] -top-[60cqw] w-[49.4cqw] aspect-[263/246] rounded-[9.2cqw] object-cover transition-all ease-in-out duration-500 group-hover:-top-[10.45cqw]"
             [src]="card.hovImg"
             alt=""
+            loading="lazy"
             />
-          <h3
-            class="mb-12 2xl:mb-16 font-myfont font-medium text-7xl 2xl:text-8xl"
-            >
-            {{ card.num }}
-          </h3>
-          <div class="flex flex-col gap-3.5">
-            <h5
-              class="text-3xl xl:text-4xl 2xl:text-5xl font-quickSand font-bold"
+          <div class="pl-[9.2cqw] pr-[3cqw] pt-[6.4cqw]">
+            <p class="font-myfont font-medium text-[18.4cqw] leading-[1.313]" aria-hidden="true">{{ card.num }}</p>
+            <h3
+              class="mt-[13.3cqw] whitespace-nowrap font-quickSand font-bold text-[9.3cqw] leading-[1.1]"
               innerHTML="{{ card.heading }}"
-            ></h5>
-            <p class="font-quickSand font-medium 2xl:text-lg">
+            ></h3>
+            <p [ngClass]="card.paraColor" class="mt-[7.7cqw] max-w-[75.7cqw] font-quickSand font-medium text-[max(14px,4.14cqw)] leading-[1.18]">
               {{ card.para }}
             </p>
           </div>
-          <div class="flex justify-end">
-            <img
-              class="w-11 2xl:w-14"
-              src="../../../assets/images/gd-arrow-btn.svg"
-              alt=""
-              />
-          </div>
+          <img
+            class="absolute right-[5.2cqw] bottom-[4.4cqw] w-[11.5cqw]"
+            src="../../../assets/images/gd-arrow-btn.svg"
+            alt=""
+            width="61"
+            height="61"
+            loading="lazy"
+            />
         </div>
       }
     </div>
   </section>
 
-  <!-- Commitment to our clients  -->
-
-  <section
-    class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c] commitment-section"
-    >
-    <div
-      class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
-      >
-      <h2
-        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-        >
-        Commitment to our clients
+  <!-- Commitments to our clients: Figma 1980:5140. Card contents are sized in cqw (1% of the card width) so they keep the design proportions at every screen size. -->
+  <section class="commitment-section relative isolate overflow-hidden rounded-[50px] px-7 md:px-10 xl:px-14 2xl:px-24 pt-10 lg:pt-[clamp(2.5rem,3.85vw,4.625rem)] pb-14 lg:pb-[clamp(3rem,7.4vw,8.875rem)]">
+    <div class="relative z-10 mx-auto max-w-[1671px]">
+      <h2 class="text-white text-[clamp(1.5rem,2.34vw,2.8125rem)] leading-[0.988] font-myfont pb-4 2xl:pb-[34px] border-b border-[#34394B]">
+        Commitments to Our Clients
       </h2>
-    </div>
 
-    <div class="xl:pt-20 pt-4">
-      <p
-        class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
-        >
-        Carina Softlabs is based on the 4W & H Process. We know how to get
-        things done using this approach. <br class="hidden md:block" />It
-        addresses Who, What, When, Why, and How, for successful project
-        executions.
+      <p class="mt-4 lg:mt-[clamp(1rem,1.2vw,1.5rem)] max-w-[709px] font-quickSand font-medium text-sm lg:text-[15px] xl:text-[clamp(1rem,1.15vw,1.375rem)] leading-[1.55] text-[#B4B9CB]">
+        Our employees are at the heart of our company. Here&rsquo;s what they have to say about working at Mixmax.
       </p>
-    </div>
 
-    <div class="grid grid-cols-2 lg:grid-cols-3 my-16 2xl:my-20 gap-6">
-      <div
-        class="col-span-2 lg:col-span-1 text-white p-7 2xl:p-8 2xl:py-16 2xl:px-14 font-quickSand rounded-3xl flex flex-col items-center justify-center gap-2.5 2xl:gap-8 bg-gradient-to-b from-[#0032e91A] to-[#ffffff00] backdrop-blur-md border-2 border-[#34394B]"
-        >
-        <!-- <h3 class="text-[#B1DF4F] text-2xl 2xl:text-3xl font-bold">How ?</h3> -->
-        <img
-          class="size-16 md:size-20 2xl:size-24 mb-6"
-          src="../../../assets/images/DG-clientLogo1.svg"
-          alt=""
-          />
-        <p class="font-medium text-7xl md:text-8xl 2xl:text-9xl font-bebas">1.8 M</p>
-        <p class="text-lg md:text-xl xl:text-2xl text-center font-medium">
-          1.8 Million Leads Generated For Our Clients
-        </p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 col-span-2 gap-6">
-        @for (W of FourW; track W) {
-          <div
-            class="text-white rounded-3xl px-7 py-12 2xl:px-10 2xl:py-16 font-quickSand flex items-center gap-3.5 md:gap-6 2xl:gap-9 bg-gradient-to-b from-[#0032e91A] to-[#ffffff00] backdrop-blur-lg border-2 border-[#34394B]"
-            >
-            <!-- <div class=""> -->
-            <img class="size-16 md:size-20" [src]="W.icon" alt="" />
-          <!-- </div> -->
-          <div class="flex flex-col gap-2.5">
-            <p class="text-5xl md:text-6xl 2xl:text-7xl font-bebas border-b border-[#ffffff1A] pb-0.5">
-              {{ W.digits }} <span class="text-xl xl:text-3xl 2xl:text-4xl">{{ W.desc }}</span>
-            </p>
-            <p class="text-base 2xl:text-lg font-medium">
-              {{ W.para }}
-            </p>
-          </div>
+      <div class="mt-8 lg:mt-[clamp(2rem,4.6vw,5.5rem)] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[533fr_536fr_536fr] gap-[1rem] md:max-lg:gap-6 lg:[gap:clamp(1rem,1.8vw,2.1875rem)] text-white font-quickSand">
+        <!-- Big card -->
+        <div class="md:col-span-2 lg:col-span-1 lg:row-span-2 flex flex-col items-center justify-center text-center rounded-[31px] border-2 border-[#34394B] bg-gradient-to-b from-[#0033E91A] via-transparent to-transparent backdrop-blur-2xl py-10 md:py-12 lg:py-0 [container-type:inline-size]">
+          <img class="size-[clamp(72px,18cqw,96px)]" src="../../../assets/images/DG-clientLogo1.svg" alt="" width="96" height="96" loading="lazy" />
+          <p class="mt-[clamp(1.5rem,10cqw,3.5rem)] font-bebas uppercase leading-none text-[clamp(88px,29cqw,155px)] max-md:text-[clamp(88px,22vw,120px)] md:max-lg:text-[140px]">1.8 M</p>
+          <p class="mt-[clamp(1rem,5cqw,2rem)] font-semibold capitalize leading-[1.38] text-[clamp(.9375rem,5.6cqw,1.875rem)] max-md:text-[clamp(1rem,4.4vw,1.5rem)] md:max-lg:text-3xl">
+            1.8 Million Leads<br />Generated For Our Clients
+          </p>
         </div>
-      }
-    </div>
-  </div>
-</section>
 
-<!-- Case studies -->
-<section
-  class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
-  >
-  <div
-    class="flex justify-between text-[#0B0C10] border-b border-[#B4B9CB] pb-4"
-    >
-    <h2 class="text-3xl xl:text-4xl 2xl:text-6xl font-myfont">
-      Case Studies
-    </h2>
+        @for (W of FourW; track W.digits) {
+          <div class="relative aspect-[536/286] max-md:aspect-auto max-md:min-h-[150px] max-md:py-6 flex items-center rounded-[31px] border-2 border-[#34394B] bg-gradient-to-b from-[#0033E91A] via-transparent to-transparent backdrop-blur-2xl [container-type:inline-size]">
+            <img class="ml-[6.9cqw] size-[17.9cqw] max-md:size-[72px] shrink-0" [src]="W.icon" alt="" width="96" height="96" loading="lazy" />
+            <div class="ml-[8cqw] max-md:ml-5 flex flex-col gap-[3.9cqw] max-md:gap-3 pr-[4cqw]">
+              <p class="flex items-end gap-[3.7cqw] font-bebas leading-none whitespace-nowrap text-white">
+                <span class="uppercase text-[clamp(2.5rem,14.9cqw,5rem)] max-md:text-[clamp(2.5rem,12vw,3.5rem)]">{{ W.digits }}</span>
+                @if (W.desc) {
+                  <span [ngClass]="W.small ? 'lowercase text-[clamp(1.5rem,9.3cqw,3.125rem)] max-md:text-[clamp(1.5rem,7.5vw,2rem)]' : 'uppercase text-[clamp(2.5rem,14.9cqw,5rem)] max-md:text-[clamp(2.5rem,12vw,3.5rem)]'">{{ W.desc }}</span>
+                }
+              </p>
+              <div class="h-px w-[50.2cqw] max-md:w-full bg-[#FFFFFF1A]" aria-hidden="true"></div>
+              <p class="max-w-[65cqw] font-semibold capitalize leading-[1.5] text-[clamp(.8125rem,4.1cqw,1.375rem)] max-md:text-[clamp(.875rem,3.4vw,1.125rem)]">{{ W.para }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+<!-- Case studies: Figma 1980:5202. The preview frame is sized in cqw (1% of its own width) so it keeps the design proportions at any screen size. -->
+<section class="bg-white rounded-[50px] px-7 md:px-10 xl:px-14 2xl:px-24 pt-10 lg:pt-[clamp(1.75rem,2.4vw,2.875rem)] pb-12 lg:pb-[clamp(2.5rem,4.8vw,5.75rem)]">
+  <div class="mx-auto max-w-[1671px] flex justify-between items-center gap-4 text-[#0B0C10] border-b border-[#B4B9CB] pb-4 lg:pb-[clamp(1rem,1.77vw,2.125rem)]">
+    <h2 class="text-[clamp(1.5rem,2.34vw,2.8125rem)] leading-[0.988] font-myfont uppercase">Case Studies</h2>
     <a
+      appGradientButton
+      variant="light"
+      size="md"
       routerLink="/portfolio"
-      class="font-semibold font-mont text-black 2xl:text-[18px] xl:text-[14px] hidden rounded-full !border border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] lg:px-6 lg:py-2 xl:px-6 xl:py-2.5 2xl:px-8 2xl:py-3 sm:flex sm:items-center sm:px-4 sm:py-2"
-      >
+      class="hidden sm:inline-flex h-10 2xl:h-[50px] !p-0 !pl-5 2xl:!pl-[37px] gap-4 2xl:gap-[25px] 2xl:!text-[20px]"
+    >
       More Projects
-      <img
-        src="../../assets/images/small-tilt-arrow.png"
-        alt="Image"
-        class="button-img ml-2"
-        />
+      <span
+        aria-hidden="true"
+        class="-my-[2px] -mr-[2px] flex size-10 2xl:size-[50px] shrink-0 items-center justify-center rounded-full border-2 border-transparent [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box]"
+      >
+        <img src="../../../assets/images/more-arrow.svg" alt="" width="50" height="50" class="size-full" />
+      </span>
     </a>
   </div>
-  <div
-    class="grid grid-cols-1 lg:grid-cols-2 gap-6 2xl:gap-20 mt-12 2xl:mt-16"
-    >
-    <div class="grid grid-rows-2 gap-4 md:h-[72vh] 2xl:h-[68vh] w-full">
-      <div class="font-quickSand font-medium">
-        <h4 class="text-black text-3xl 2xl:text-5xl mb-3.5 2xl:mb-8">
-          {{ selectedCard.title }}
-        </h4>
-        <p class="text-[#34394B] text-base 2xl:text-xl">
+
+  <div class="mx-auto mt-8 lg:mt-[clamp(1.5rem,1.72vw,2.0625rem)] max-w-[1709px] grid grid-cols-1 lg:grid-cols-[678fr_932.75fr] gap-8 lg:gap-[clamp(2rem,5.14vw,98.6px)] items-start">
+    <!-- Left: title, text and the 3 x 2 thumbnails. Below lg it dissolves (contents) so the order becomes text, preview, swipe cards. -->
+    <div class="max-lg:contents flex flex-col lg:pt-[clamp(1rem,1.46vw,1.75rem)] lg:pb-[clamp(1rem,2vw,2.4rem)] font-quickSand font-medium">
+      <!-- On laptops the description reserves 10 lines (min-h in em; fewer on tablet and phone), so the thumbnails stay put for short text; longer text pushes them down. -->
+      <div class="max-lg:order-1 font-quickSand font-medium">
+        <h3 class="text-[#0B0C10] text-[clamp(1.75rem,2.5vw,3rem)] leading-tight">{{ selectedCard.title }}</h3>
+        <p class="mt-4 lg:mt-[clamp(1rem,1.56vw,1.875rem)] max-w-[653px] lg:min-h-[15.5em] text-[#34394B] text-[clamp(.875rem,1.15vw,1.375rem)] leading-[1.55]">
           {{ selectedCard.description }}
         </p>
       </div>
 
-      <!-- On click should work for this -->
-      <div class="flex gap-4">
-        <div class="h-full w-full relative grid grid-cols-2 md:grid-cols-3 gap-3.5 md:gap-9">
-          @for (card of cases; track card) {
-            <div
-              class="bg-black rounded-t-3xl rounded-bl-3xl overflow-hidden p-0.5 cursor-pointer"
-              [ngClass]="{ 'bg-gradient-to-b from-[#F21DF5] to-[#20B9FA]': selectedCard === card, 'bg-black': selectedCard !== card }"
-              (click)="selectCard(card)"
-              >
-              <img
-                class="rounded-t-3xl rounded-bl-3xl object-cover w-full h-full "
-                [src]="card.image"
-                alt=""
-                />
-            </div>
-          }
-        </div>
+      <div class="case-swipe max-lg:order-3 max-lg:-mx-7 max-lg:md:-mx-10 max-lg:px-7 max-lg:md:px-10 max-lg:flex max-lg:gap-3 max-lg:overflow-x-auto max-lg:snap-x max-lg:snap-mandatory max-lg:scroll-px-7 max-lg:md:scroll-px-10 max-lg:pb-1 lg:mt-[clamp(1.5rem,1.7vw,2.4rem)] lg:grid lg:[grid-template-columns:repeat(3,30.16%)] lg:justify-between lg:gap-y-[clamp(1rem,1.56vw,1.875rem)]">
+        @for (card of cases; track card.title) {
+          <div class="[container-type:inline-size] max-lg:shrink-0 max-md:basis-[37%] md:max-lg:basis-[28%] max-lg:snap-start">
+          <button
+            type="button"
+            (click)="selectCard(card)"
+            [attr.aria-pressed]="selectedCard === card"
+            [attr.aria-label]="'Show ' + card.title"
+            class="relative block w-full aspect-[204.484/148.759] overflow-hidden cursor-pointer rounded-tl-[24.1cqw] rounded-tr-[24.1cqw] rounded-bl-[24.1cqw] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7]"
+          >
+            <img
+              class="block size-full object-cover"
+              [src]="card.thumb"
+              alt=""
+              width="204"
+              height="149"
+              loading="lazy"
+              decoding="async"
+            />
+            <!-- Thin default border, always on top of the image -->
+            <span aria-hidden="true" class="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_0_1px_#34394B]"></span>
+            <!-- 4px pink-to-blue ring for the selected card: it only fades in and out, the image never moves -->
+            <span
+              aria-hidden="true"
+              class="pointer-events-none absolute inset-0 rounded-[inherit] p-1 opacity-0 transition-opacity duration-200 ease-out [background:linear-gradient(to_bottom,#F21DF5,#20B9FA)] [mask:linear-gradient(#000_0_0)_content-box_exclude,linear-gradient(#000_0_0)]"
+              [class.opacity-100]="selectedCard === card"
+            ></span>
+          </button>
+          <!-- Card label, only for the mobile swipe row -->
+          <p class="lg:hidden mt-2 font-quickSand font-semibold text-sm leading-snug" [ngClass]="selectedCard === card ? 'text-[#0B0C10]' : 'text-[#6B7189]'">{{ card.title }}</p>
+          </div>
+        }
       </div>
     </div>
-    <div
-      class="rounded-3xl overflow-hidden relative group !border border-[#B4B9CB]"
-      >
-      <div class="p-6 rounded-t-3xl border-b border-[#B4B9CB]">
-        <img
-          class="h-[40vh] md:h-[56vh] 2xl:h-[55vh] w-full object-cover rounded-3xl"
-          [src]="selectedCard.image"
-          alt="Project Image"
+
+    <!-- Right: preview frame -->
+    <div class="max-lg:order-2 w-full [container-type:inline-size]">
+    <div class="w-full rounded-[4.18cqw] border !border-[#B4B9CB] px-[2.78cqw] pt-[2.58cqw] pb-[3.5cqw]">
+      <div class="relative w-full aspect-[881/645] overflow-hidden rounded-[4.08cqw] border !border-[#B4B9CB] bg-[#0B0C10]">
+        <!-- All previews stay in the frame and crossfade, so each one is already loaded and no blank frame ever shows. -->
+        @for (card of cases; track card.title; let i = $index) {
+          <img
+            class="case-img absolute inset-0 size-full object-cover"
+            [class.is-active]="selectedCard === card"
+            [src]="card.imageSm"
+            [attr.srcset]="card.imageSm + ' 640w, ' + card.imageMd + ' 960w, ' + card.image + ' 1400w'"
+            sizes="(min-width: 1024px) 880px, calc(100vw - 110px)"
+            [alt]="selectedCard === card ? card.title + ' preview' : ''"
+            [attr.aria-hidden]="selectedCard === card ? null : 'true'"
+            width="881"
+            height="645"
+            [attr.loading]="i === 0 ? null : 'lazy'"
+            decoding="async"
           />
+        }
       </div>
 
-      <div class="flex flex-col md:flex-row justify-center md:items-center gap-3.5 p-6">
+      <div class="mt-[2.54cqw] -mx-[2.78cqw] h-px bg-[#B4B9CB]" aria-hidden="true"></div>
+
+      <div class="mt-[2.7cqw] max-md:mt-3 flex flex-row justify-between gap-3">
         <a
           [href]="selectedCard.liveDemo"
           target="_blank"
-          class="text-center md:w-1/2 px-10 py-3.5 2xl:px-14 2xl:py-4 rounded-full border-2 border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] bg-[#34394B] font-quickSand font-medium 2xl:text-xl"
-          >
-          View Live Demo
-        </a>
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center h-12 md:h-[8.47cqw] flex-1 md:flex-none md:w-[46.1cqw] whitespace-nowrap rounded-full border-[1.67px] border-transparent text-white font-quickSand font-semibold capitalize !text-[clamp(.8125rem,1.93cqw,1.125rem)] transition-colors duration-200 [background:linear-gradient(#34394B,#34394B)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] hover:[background:linear-gradient(#424B65,#424B65)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7]"
+        >View Live Demo</a>
         <a
           [href]="selectedCard.diviLink"
           target="_blank"
-          class="text-center md:w-1/2 px-10 py-3.5 2xl:px-14 2xl:py-4 rounded-full border-2 border-b-[#20B9FA] border-l-[#20B9FA] border-r-[#20B9FA] border-t-[#F21DF5] bg-[#34394B] font-quickSand font-medium 2xl:text-xl"
-          >
-          Available in DIVI
-        </a>
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center h-12 md:h-[8.47cqw] flex-1 md:flex-none md:w-[46.1cqw] whitespace-nowrap rounded-full border-[1.67px] border-transparent text-white font-quickSand font-semibold capitalize !text-[clamp(.8125rem,1.93cqw,1.125rem)] transition-colors duration-200 [background:linear-gradient(#34394B,#34394B)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] hover:[background:linear-gradient(#424B65,#424B65)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7]"
+        >Available In DIVI</a>
       </div>
+    </div>
     </div>
   </div>
 </section>

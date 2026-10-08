@@ -41,7 +41,6 @@ const PERMANENT_REDIRECTS: Record<string, string> = {
   '/service-details/mobile-app-development': '/services',
   // Individual service pages are hidden for now
   '/game-development': '/services',
-  '/digital-marketing': '/services',
 };
 
 /**

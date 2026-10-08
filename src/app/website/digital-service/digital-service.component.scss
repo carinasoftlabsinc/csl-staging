@@ -1,7 +1,46 @@
 .digital-marketing {
-    background: url('../../../assets/images/digitalheroBG.png') no-repeat center center;
+    background: #0B0C10 url('../../../assets/images/digitalheroBG.png') no-repeat center / cover;
 }
 
-.commitment-section {
-    background: url('../../../assets/images/blog-hero-bg.png') no-repeat bottom center;
+.commitment-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: url('../../../assets/images/commitment-bg.webp') no-repeat center bottom / 100% 100%;
+    opacity: 0.7;
+    filter: saturate(1.35);
+    pointer-events: none;
+}
+
+
+// Preview images are stacked. The selected one sits on top and fades in over the previous one,
+// which only hides after that fade has finished, so nothing blank is ever visible.
+// Only opacity animates (cheap on phones); will-change keeps each image on its own layer.
+.case-img {
+    opacity: 0;
+    will-change: opacity;
+    transition: opacity 0.25s ease-out 0.25s;
+}
+
+.case-img.is-active {
+    z-index: 10;
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .case-img {
+        transition: none;
+    }
+}
+
+// Mobile swipe row for the case study cards: no visible scrollbar.
+.case-swipe {
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }

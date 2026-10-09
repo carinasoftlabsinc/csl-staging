@@ -366,6 +366,7 @@ export class ServicesComponent implements OnInit, OnDestroy {
   reviews = [
     {
       filled: false,
+      name: 'Techreviewer',
       iconSrc: '../../../assets/images/rating-icon-1.svg',
       rating: '4.7',
       reviewsNo: '45',
@@ -375,6 +376,7 @@ export class ServicesComponent implements OnInit, OnDestroy {
       filled: true,
       // this artwork has built-in padding, so it is enlarged to fill the circle
       imgClass: 'scale-[1.24]',
+      name: 'Upwork',
       iconSrc: '../../../assets/images/rating-icon-2.svg',
       rating: '4.9',
       reviewsNo: '1202',
@@ -382,6 +384,7 @@ export class ServicesComponent implements OnInit, OnDestroy {
     },
     {
       filled: false,
+      name: 'AmbitionBox',
       iconSrc: '../../../assets/images/rating-icon-3.svg',
       rating: '4.9',
       reviewsNo: '1303',
@@ -389,6 +392,7 @@ export class ServicesComponent implements OnInit, OnDestroy {
     },
     {
       filled: false,
+      name: 'Clutch',
       iconSrc: '../../../assets/images/rating-icon-5.svg',
       rating: '4.9',
       reviewsNo: '1505',
@@ -396,6 +400,7 @@ export class ServicesComponent implements OnInit, OnDestroy {
     },
     {
       filled: true,
+      name: 'TechBehemoths',
       iconSrc: '../../../assets/images/rating-icon-4.svg',
       rating: '4.9',
       reviewsNo: '1404',
@@ -403,6 +408,7 @@ export class ServicesComponent implements OnInit, OnDestroy {
     },
     {
       filled: true,
+      name: 'TopDevelopers',
       iconSrc: '../../../assets/images/rating-icon-6.svg',
       rating: '4.9',
       reviewsNo: '1606',

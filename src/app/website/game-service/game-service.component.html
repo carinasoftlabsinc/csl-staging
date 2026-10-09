@@ -51,126 +51,50 @@
   </div>
 
   <!-- game design section -->
-
-  <section
-    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
-    >
-    <!-- <div>
-    <h2
-      class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
-      >
-      ABOUT SERVICES
-    </h2>
-  </div> -->
-
-  <div class="grid grid-cols-1 lg:grid-cols-4 my-14 md:my-28">
-    <div class="col-span-1 md:col-span-3">
-      <div>
-        <h4
-          class="font-mont text-[#34394B] font-bold text-[1.5rem] md:text-[2rem] lg:text-4xl 2xl:text-5xl mb-10 lg:mt-10 2xl:!leading-snug"
-          >
-          We are known in the field of <br class="hidden lg:block" />
-          Game Development for <br class="hidden lg:block" />
-          <span
-            class="bg-gradient-to-b from-[#9B5DF7] to-[#727CF8] bg-clip-text text-transparent font-black lg:text-4xl 2xl:text-6xl uppercase"
-            >
-            Creating Unique and
-          </span>
-          <br class="hidden lg:block" />
-          <span
-            class="bg-gradient-to-b from-[#727CF8] to-[#479CF9] bg-clip-text text-transparent font-black lg:text-4xl 2xl:text-6xl uppercase"
-            >
-            Immersive Games
-          </span>
-          that <br class="hidden 2xl:block" />
-          standout <br class="hidden lg:block 2xl:hidden" />
-          in the market.
-        </h4>
-        <p
-          class="font-quickSand font-medium text-sm leading-6 lg:text-base xl:text-xl 2xl:text-2xl text-[#34394B] md:w-3/4"
-          >
-          We have designed and developed more than 200 web products with
-          booking systems, marketplaces, real estate, and corporate sites
-          among them.
+  <section class="game-design" aria-labelledby="game-design-title">
+    <div class="game-design__layout">
+      <div class="game-design__copy">
+        <h2 id="game-design-title" class="game-design__title">
+          <span class="game-design__intro">Our passion for game development drives us in </span>
+          <span class="game-design__highlight">Creating Unique, Immersive &amp; one-of-a-<br class="game-design__desktop-break" />kind Games</span>{{ ' ' }}<span class="game-design__closing">that redefine player<br class="game-design__desktop-break" /> engagement</span>
+        </h2>
+        <p class="game-design__description">
+          We have developed and delivered more than 76 game 2D &amp; 3D
+          development projects. From concept to launch, we build groundbreaking
+          games that engage players and make waves in the industry.
         </p>
       </div>
+      <div class="game-design__visual">
+        <div class="game-design__character" aria-hidden="true">
+          <img src="assets/images/game-design/character.png" alt="" width="1316" height="938" />
+        </div>
+        <dl class="game-design__stats">
+          @for (client of clients; track $index) {
+            <div class="game-design__stat">
+              <dt>{{ client.heading }}</dt>
+              <dd>{{ client.number }}+</dd>
+            </div>
+          }
+        </dl>
+      </div>
     </div>
-    <div
-      class="flex flex-col justify-between lg:items-center md:gap-y-14 lg:border-l border-[#B4B9CB] relative"
-      >
-      <img
-        src="../../../assets/character.gif"
-        alt=""
-        class="scale-x-[1.2] sm:scale-x-100 sm:scale-y-125 lg:scale-x-[2.4] lg:scale-y-[1] xl:scale-y-[1] absolute right-[12vw] lg:right-0 lg:-left-[34vw] bottom-0 w-[180%] h-[100%]"
-        />
-        @for (client of clients; track client) {
-          <div class="py-4">
-            <p
-              class="uppercase text-black lg:text-sm 2xl:text-lg font-medium font-mont"
-              >
-              {{ client.heading }}
-            </p>
-            <p
-              class="text-[#34394B] font-Anton font-black text-5xl md:text-7xl 2xl:text-8xl font-anton"
-              >
-              {{ client.number }}+
-            </p>
+    <div class="game-design__marquee" aria-label="Game development, game design, multiplatform development, shooting game, puzzle game and simulation">
+      <div class="game-service-marquee" aria-hidden="true">
+        @for (copy of [0, 1]; track copy) {
+          <div class="game-design__marquee-group">
+            @for (word of SrcWords; track word.word) {
+              <span class="game-design__marquee-item">
+                <span>{{ word.word }}</span>
+                <span class="game-design__logo">
+                  <img src="assets/images/game-design/csl-mark.svg" alt="" width="57.1605" height="54.3007" />
+                </span>
+              </span>
+            }
           </div>
         }
-        <!-- <div class="font-mont ">
-        <p class="uppercase text-black lg:text-sm 2xl:text-2xl font-medium">Total clients</p>
-        <p class="text-[#34394B] font-Anton font-black lg:text-6xl 2xl:text-8xl">50+</p>
-      </div>
-      <div class="font-mont ">
-        <p class="uppercase text-black lg:text-sm 2xl:text-2xl font-medium">Total clients</p>
-        <p class="text-[#34394B] font-Anton font-black lg:text-6xl 2xl:text-8xl">50+</p>
-      </div> -->
-    </div>
-  </div>
-
-  <div class="overflow-hidden scrollbar-hide">
-    <div class="game-service-marquee flex w-max font-anton text-3xl md:text-5xl lg:text-6xl 2xl:text-7xl text-[#34394B] uppercase">
-      <div class="flex shrink-0">
-        @for (word of SrcWords; track word) {
-          <h4 class="flex shrink-0 items-center gap-6 md:gap-8 mr-8 whitespace-nowrap">
-            <span class="shrink-0">{{ word.word }}</span>
-            <img
-              src="../../../assets/images/csl-gamePage.svg"
-              alt=""
-              class="size-8 md:size-10 lg:size-12 2xl:size-14 shrink-0 object-contain"
-              />
-          </h4>
-        }
-      </div>
-      <div class="flex shrink-0" aria-hidden="true">
-        @for (word of SrcWords; track word) {
-          <h4 class="flex shrink-0 items-center gap-6 md:gap-8 mr-8 whitespace-nowrap">
-            <span class="shrink-0">{{ word.word }}</span>
-            <img
-              src="../../../assets/images/csl-gamePage.svg"
-              alt=""
-              class="size-8 md:size-10 lg:size-12 2xl:size-14 shrink-0 object-contain"
-              />
-          </h4>
-        }
       </div>
     </div>
-  </div>
-
-  <!-- <div class="w-full overflow-hidden whitespace-nowrap relative">
-  <div class="flex animate-scroll">
-    <span *ngFor="let word of SrcWords" class="flex items-center mr-11 font-anton text-7xl font-extrabold text-[#34394B] uppercase">
-      {{ word.word }}
-      <img src="../../../assets/images/csl-gamePage.svg" alt="icon" class="size-10 mx-7" />
-    </span>
-    <span *ngFor="let word of SrcWords" class="flex items-center mr-11 font-anton text-7xl font-extrabold text-[#34394B] uppercase">
-      {{ word.word }}
-      <img src="../../../assets/images/csl-gamePage.svg" alt="icon" class="size-10 mx-7" />
-    </span>
-  </div>
-</div> -->
-</section>
-
+  </section>
 <section class="px-7 md:px-10 2xl:p-24 xl:px-14 pt-10 md:py-10">
   <div
     class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"

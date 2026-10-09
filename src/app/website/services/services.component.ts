@@ -365,36 +365,44 @@ export class ServicesComponent implements OnInit, OnDestroy {
 
   reviews = [
     {
+      filled: false,
       iconSrc: '../../../assets/images/rating-icon-1.svg',
       rating: '4.7',
       reviewsNo: '45',
       link: 'https://techreviewer.co/companies/carina-softlabs-inc',
     },
     {
+      filled: true,
+      // this artwork has built-in padding, so it is enlarged to fill the circle
+      imgClass: 'scale-[1.24]',
       iconSrc: '../../../assets/images/rating-icon-2.svg',
       rating: '4.9',
       reviewsNo: '1202',
       link: 'https://www.upwork.com/agencies/carinasoftlabs/',
     },
     {
+      filled: false,
       iconSrc: '../../../assets/images/rating-icon-3.svg',
       rating: '4.9',
       reviewsNo: '1303',
       link: 'https://www.ambitionbox.com/overview/carina-softlabs-overview',
     },
     {
-      iconSrc: '../../../assets/images/rating-icon-4.svg',
-      rating: '4.9',
-      reviewsNo: '1404',
-      link: 'https://techbehemoths.com/company/carina-softlabs',
-    },
-    {
+      filled: false,
       iconSrc: '../../../assets/images/rating-icon-5.svg',
       rating: '4.9',
       reviewsNo: '1505',
       link: 'https://clutch.co/profile/carina-softlabs#highlights',
     },
     {
+      filled: true,
+      iconSrc: '../../../assets/images/rating-icon-4.svg',
+      rating: '4.9',
+      reviewsNo: '1404',
+      link: 'https://techbehemoths.com/company/carina-softlabs',
+    },
+    {
+      filled: true,
       iconSrc: '../../../assets/images/rating-icon-6.svg',
       rating: '4.9',
       reviewsNo: '1606',

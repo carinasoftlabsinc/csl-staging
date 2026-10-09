@@ -4,7 +4,7 @@
   <!-- hero section -->
 
   <section
-    class="body-font flex items-center justify-center h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
+    class="body-font flex items-center justify-center min-h-[calc(100vh-86.52px)] xl:min-h-[calc(100vh-90.33px)] 2xl:min-h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10 max-md:pb-28"
     style="
       background: linear-gradient(
           180deg,
@@ -17,19 +17,20 @@
       background-position: center;
     "
     >
-    <div class="flex flex-col md:flex-row items-center lg:px-3 w-full">
-      <div class="md:w-1/2 py-8 text-left">
+    <!-- Below lg the image comes first and the text sits under it; from lg they sit side by side -->
+    <div class="flex flex-col-reverse lg:flex-row items-center gap-y-[3vh] lg:px-3 w-full mx-auto max-lg:max-w-[min(100%,72vh)]">
+      <div class="w-full lg:w-1/2 py-4 lg:py-8 text-left">
         <!-- Figma 1961:3336 (1920 frame): H1 24px grey, lead 45px white, rotating word 70px, paragraph 26/40px. Sizes scale with the screen width (vw). -->
-        <h1 class="font-myfont text-[#B4B9CB] text-[clamp(.9375rem,1.25vw,1.5rem)] !leading-none"
+        <h1 class="font-myfont text-[#B4B9CB] text-[clamp(1.125rem,1.25vw,1.5rem)] md:max-lg:text-[1.5rem] !leading-none"
           >WE DEVELOP <span class="block">GAMES, APPS &amp; WEB<span class="block">SITES, AND MARKET THEM</span></span></h1>
 
           <p
-            class="font-myfont text-white text-[clamp(1.5rem,2.34vw,2.8125rem)] !leading-none max-w-[15em] mt-[clamp(.75rem,1.46vw,1.75rem)]"
+            class="font-myfont text-white text-[clamp(1.75rem,2.34vw,2.8125rem)] md:max-lg:text-[2.25rem] !leading-none max-w-[15em] mt-[clamp(.75rem,1.46vw,1.75rem)]"
             >
             Our Services Include
           </p>
 
-          <div class="relative h-[clamp(2.75rem,4.6vw,5.5rem)] overflow-hidden mt-[clamp(1.25rem,3.9vw,4.7rem)]">
+          <div class="relative h-[4.5rem] md:max-lg:h-[5.5rem] lg:h-[clamp(2.75rem,4.6vw,5.5rem)] overflow-hidden mt-[clamp(1.25rem,3.9vw,4.7rem)]">
             <div
               class="absolute inset-0 transition-transform duration-500 ease-in-out"
             [style.transform]="
@@ -43,10 +44,10 @@
               >
               @for (service of services; track service; let i = $index) {
                 <div
-                  class="h-[clamp(2.75rem,4.6vw,5.5rem)] flex items-center justify-start"
+                  class="h-[4.5rem] md:max-lg:h-[5.5rem] lg:h-[clamp(2.75rem,4.6vw,5.5rem)] flex items-center justify-start"
                   >
                   <h2
-                    class="font-mont text-[clamp(1.75rem,3.65vw,4.375rem)] font-black text-[#BC8AFB] !leading-none"
+                    class="font-mont text-[clamp(2.125rem,3.65vw,4.375rem)] md:max-lg:text-[2.75rem] font-black text-[#BC8AFB] !leading-none"
                     >
                     {{ service }}
                   </h2>
@@ -56,7 +57,7 @@
             </div>
           </div>
           <p
-            class="max-w-[27.3em] mt-[clamp(1rem,3vw,3.6rem)] text-[clamp(1rem,1.35vw,1.625rem)] !leading-[1.54] font-quickSand font-medium text-justify text-[#B4B9CB]"
+            class="max-w-[27.3em] mt-[clamp(1.25rem,3vw,3.6rem)] text-[clamp(1.0625rem,1.35vw,1.625rem)] md:max-lg:text-[1.3125rem] !leading-[1.54] font-quickSand font-medium text-justify text-[#B4B9CB]"
             >
             15+ years turning ideas into games, apps, and websites people use,
             then marketing them so they get found. Rated 4.9/5 by clients
@@ -64,14 +65,14 @@
           </p>
         </div>
 
-        <div class="w-full md:w-1/2 py-8 hidden md:flex justify-end">
+        <div class="w-full lg:w-1/2 py-4 lg:py-8 flex justify-center lg:justify-end">
 
-          <div class="relative h-96 w-96 xl:w-[30rem] xl:h-[30rem] 2xl:w-[38rem] 2xl:h-[38rem] overflow-hidden">
+          <div class="relative w-[min(100%,24rem)] aspect-square lg:aspect-auto lg:h-96 lg:w-96 xl:w-[30rem] xl:h-[30rem] 2xl:w-[38rem] 2xl:h-[38rem] overflow-hidden">
             <div class="absolute inset-0">
               @for (image of serviceimgs; track image; let i = $index) {
                 <img
                   [src]="image"
-                  class="absolute inset-0 h-96 w-96 xl:w-[30rem] xl:h-[30rem] 2xl:w-[36rem] 2xl:h-[36rem] object-contain transition-opacity duration-1000 ease-in-out"
+                  class="absolute inset-0 h-full w-full lg:h-96 lg:w-96 xl:w-[30rem] xl:h-[30rem] 2xl:w-[36rem] 2xl:h-[36rem] object-contain transition-opacity duration-1000 ease-in-out"
                   [class.opacity-0]="i !== currentWordIndex % services.length"
                   [class.opacity-100]="i === currentWordIndex % services.length"
                   />
@@ -291,7 +292,7 @@
           <!-- CERTIFICATES AND BATCHES -->
 
           <section
-            class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
+            class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 pb-[90px] lg:pb-[114px] 2xl:pb-[146px] bg-white rounded-[40px]"
             >
             <!-- <div class="!container mx-auto"> -->
             <div>
@@ -311,117 +312,82 @@
               </p>
             </div>
 
-            <div
-              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-10 xl:gap-14 text-black"
-              >
-              <div
-                class="hidden md:flex justify-center items-start row-span-4 relative px-2 py-4"
-                >
+            <!-- Figma 1987:5737: image column (42%) + content column (58%): stats row, logo circles, badges. -->
+            <div class="flex flex-col lg:flex-row gap-10 lg:gap-0 mt-8 lg:mt-[1.6vw] text-black">
+              <div class="hidden lg:flex lg:w-[42.4%] shrink-0 justify-center items-start pt-[4.9vw]">
                 <img
-                  class="object-contain w-[80%] mt-10"
+                  class="object-contain w-[56%]"
                   src="../../../assets/images/certificate-badge.png"
                   alt=""
                   />
+              </div>
+
+              <div class="flex-1 min-w-0 flex flex-col gap-10 lg:gap-[5vw]">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-[1.3vw]">
+                <div class="bg-[#a6cfff33] rounded-[clamp(1.25rem,1.5vw,1.75rem)] text-center flex flex-col items-center justify-center py-7 lg:py-0 lg:aspect-[304/222]">
+                  <span class="font-myfont text-[clamp(2rem,2.6vw,3.125rem)] leading-none">50</span>
+                  <p class="font-mont font-medium text-[clamp(.875rem,1.04vw,1.25rem)] leading-[1.3] mt-[1.2vw] lg:mt-[.9vw]">
+                    Reviews <br />
+                    across 5 platforms
+                  </p>
+                </div>
+                <div class="bg-[#a6cfff33] rounded-[clamp(1.25rem,1.5vw,1.75rem)] text-center flex flex-col items-center justify-center py-7 lg:py-0 lg:aspect-[304/222]">
+                  <span class="font-myfont text-[clamp(2rem,2.6vw,3.125rem)] leading-none">TOP 50</span>
+                  <p class="font-mont font-medium text-[clamp(.875rem,1.04vw,1.25rem)] leading-[1.3] mt-[1.2vw] lg:mt-[.9vw]">
+                    App development <br />
+                    companies on
+                  </p>
+                </div>
+                <div class="bg-[#a6cfff33] rounded-[clamp(1.25rem,1.5vw,1.75rem)] text-center flex flex-col items-center justify-center py-7 lg:py-0 lg:aspect-[304/222]">
+                  <span class="font-myfont text-[clamp(2rem,2.6vw,3.125rem)] leading-none">4.9/5</span>
+                  <p class="font-mont font-medium text-[clamp(.875rem,1.04vw,1.25rem)] leading-[1.3] mt-[1.2vw] lg:mt-[.9vw]">
+                    Average <br />
+                    rating
+                  </p>
+                </div>
                 </div>
 
-                <div class="col-span-3 sm:col-span-2 md:mt-5 xl:mt-8">
-                  <div
-                    class="flex flex-col sm:flex-row !flex-wrap sm:!flex-nowrap items-center justify-between gap-3 mt-8 md:mt-[unset]"
-                    >
-                    <div
-                      class="bg-[#a6cfff33] py-7 px-8 xl:py-9 xl:px-10 rounded-3xl text-center w-56 2xl:w-72"
+                <div class="grid grid-cols-3 sm:grid-cols-6 lg:flex lg:justify-between gap-y-6 justify-items-center">
+                  @for (review of reviews; track review) {
+                    <a [href]="review.link"
+                      target="_blank"
+                      class="group block w-16 h-16 sm:w-14 sm:h-14 lg:w-[8%] lg:h-auto lg:aspect-square"
                       >
-                      <span class="text-4xl 2xl:text-5xl font-myfont">50</span>
-                      <p class="font-mont font-medium text-sm 2xl:text-lg mt-1.5">
-                        Reviews <br />
-                        across 5 platforms
-                      </p>
-                    </div>
-                    <div
-                      class="bg-[#a6cfff33] py-7 px-8 xl:py-9 xl:px-10 rounded-3xl text-center w-56 2xl:w-72"
-                      >
-                      <span class="text-4xl 2xl:text-5xl font-myfont">TOP 50</span>
-                      <p class="font-mont font-medium text-sm 2xl:text-lg mt-1.5">
-                        App development <br />
-                        companies on
-                      </p>
-                    </div>
-                    <div
-                      class="bg-[#a6cfff33] py-7 px-8 xl:py-9 xl:px-10 rounded-3xl text-center w-56 2xl:w-72"
-                      >
-                      <span class="text-4xl 2xl:text-5xl font-myfont">4.9/5</span>
-                      <p class="font-mont font-medium text-sm 2xl:text-lg mt-1.5">
-                        Average <br />
-                        rating
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  class="row-span-2 col-span-3 md:col-span-2 flex items-center justify-center"
-                  >
-                  <div
-                    class="w-full grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-6 xl:grid-cols-6 gap-x-20 sm:gap-x-10 gap-y-6 lg:gap-y-20 lg:gap-x-6 2xl:gap-x-28 2xl:gap-y-14"
-                    >
-                    @for (review of reviews; track review) {
-                      <a [href]="review.link"
-                        target="_blank"
-                        class="flex items-center justify-center gap-3.5 font-mont font-medium group cursor-pointer transition-all"
-                        >
+                      @if (review.filled) {
+                        <!-- Logo fills the whole circle -->
+                        <img
+                          class="w-full h-full rounded-full object-cover ease-out duration-300 group-hover:scale-110 {{ review.imgClass }}"
+                          [src]="review.iconSrc"
+                          alt=""
+                          />
+                      } @else {
                         <span
-                          class="rounded-full border-2 border-[#B4B9CB] ease-out duration-300 group-hover:border-black w-16 h-16 lg:w-12 lg:h-12 xl:w-16 xl:h-16 flex justify-center items-center"
+                          class="rounded-full border border-[#B4B9CB] ease-out duration-300 group-hover:border-black w-full h-full flex justify-center items-center"
                           >
                           <img
-                            class="object-contain w-9 h-9 lg:w-7 lg:h-7 xl:w-9 xl:h-9 ease-out duration-300 group-hover:scale-125"
+                            class="object-contain w-[62%] h-[62%] ease-out duration-300 group-hover:scale-110"
                             [src]="review.iconSrc"
                             alt=""
                             />
-                          </span>
-                          <div>
-                            <!-- <div class="flex gap-0.5"> -->
-                            <!-- <span
-                            ><img src="../../../assets/images/star-small.svg" alt=""
-                          /></span>
-                          <span
-                            ><img src="../../../assets/images/star-small.svg" alt=""
-                          /></span>
-                          <span
-                            ><img src="../../../assets/images/star-small.svg" alt=""
-                          /></span>
-                          <span
-                            ><img src="../../../assets/images/star-small.svg" alt=""
-                          /></span>
-                          <span
-                            ><img src="../../../assets/images/star-small.svg" alt=""
-                          /></span> -->
-                          <!-- <span class="ml-2">{{ review.rating }}</span> -->
-                        <!-- </div> -->
-                        <!-- <span
-                        class="2xl:text-[18px] text-base md:text-[13px] text-[#0B0C10]"
-                        >{{ review.reviewsNo }} reviews</span -->
-                      </div>
+                        </span>
+                      }
                     </a>
                   }
                 </div>
-              </div>
 
-              <div class="col-span-3 sm:col-span-2 md:mt-5">
-                <div
-                  class="flex justify-center lg:justify-start items-center gap-2.5 md:gap-9"
-                  >
-                  <a href="https://clutch.co/profile/carina-softlabs#highlights" target="_blank"><img
-                    class="object-contain w-24 md:w-32"
+                <div class="flex justify-center lg:justify-start items-center gap-4 lg:gap-[3.9%]">
+                  <a class="w-[18%] min-w-20" href="https://clutch.co/profile/carina-softlabs#highlights" target="_blank"><img
+                    class="object-contain w-full"
                     src="../../../assets/images/clutch champion.webp"
                     alt=""
                   /></a>
-                  <a href="https://www.crunchbase.com/organization/carina-softlabs-inc" target="_blank"><img
-                    class="object-contain w-24 md:w-32"
+                  <a class="w-[18%] min-w-20" href="https://www.crunchbase.com/organization/carina-softlabs-inc" target="_blank"><img
+                    class="object-contain w-full"
                     src="../../../assets/images/crunchbase.svg"
                     alt=""
                   /></a>
-                  <a href="https://www.topdevelopers.co/directory/mobile-app-development-companies-in-madhya-pradesh" target="_blank"> <img
-                    class="object-contain w-24 md:w-32"
+                  <a class="w-[18%] min-w-20" href="https://www.topdevelopers.co/directory/mobile-app-development-companies-in-madhya-pradesh" target="_blank"><img
+                    class="object-contain w-full"
                     src="../../../assets/images/game-dev-badge.webp"
                     alt=""
                   /></a>
@@ -429,21 +395,23 @@
               </div>
             </div>
           <!-- </div> -->
-
-          <!-- CONTACT FORM -->
-
-          <div class="lg:py-24 xl:py-32 2xl:pb-36 2xl:pt-28 py-14">
-            <div>
-              <h2
-                class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
-                >
-                Ready to Transform?
-              </h2>
-            </div>
-            <app-getinform></app-getinform>
-
-          </div>
         </section>
+
+        <!-- ===== Quote form (shared quote-section component) ===== -->
+        <ng-template #quoteLeft>
+          <p class="font-myfont uppercase text-[color:#0B0C10] leading-[0.945] text-[clamp(3rem,16vw,7rem)] lg:text-[7.4vw] xl:text-[8.4vw] 2xl:text-[clamp(3rem,9.48vw,11.375rem)]">
+            Let’s <span class="block pl-[0.8em]">get in </span>touch
+          </p>
+        </ng-template>
+        <!-- Pulled up over the section above so the dark gap between the two rounded white cards disappears -->
+        <div class="relative -mt-[50px] bg-[linear-gradient(#fff,#fff)] bg-[length:100%_50px] bg-no-repeat">
+          <app-quote-section
+            theme="light"
+            heading="Ready to Transform?"
+            service=""
+            [leftTemplate]="quoteLeft"
+          />
+        </div>
 
 
         <!--

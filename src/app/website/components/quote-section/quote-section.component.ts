@@ -65,6 +65,8 @@ import { ContactService } from 'app/website/contact/contact.service';
   standalone: false,
 })
 export class QuoteSectionComponent implements OnInit {
+  /** Section title above the form. */
+  @Input() heading = 'Get Your Quote';
   @Input() service = 'Web Development';
   /** 'dark' (default) or 'light' colour theme. */
   @Input() theme: 'dark' | 'light' = 'dark';

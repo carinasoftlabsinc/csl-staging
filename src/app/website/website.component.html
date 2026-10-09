@@ -852,22 +852,12 @@
                                             </section>
 
     <!-- Homepage lead form -->
-    <section id="lead-form" class="relative px-7 md:px-10 2xl:px-24 xl:px-14 py-16 bg-[#0B0C10] mb-14 2xl:mb-36">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-10">
-          <h2 class="text-3xl md:text-5xl font-bold text-white font-myfont">
-            Let's Build Something Great Together
-          </h2>
-          <p class="text-gray-400 mt-3 text-lg">
-            Have a project in mind? Reach out to us and let's get started.
-          </p>
-        </div>
-        <app-getinform
-          [theme]="'dark'"
-          [imgSrc]="'assets/images/web-form.png'"
-        ></app-getinform>
-      </div>
-    </section>
+    <app-quote-section
+      theme="dark"
+      heading="Let's Build Something Great Together"
+      description="Have a project in mind? Reach out to us and let's get started."
+      service=""
+    />
 
     <app-footer [cardText]="cardText" />
                                           </main>

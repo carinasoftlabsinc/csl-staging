@@ -123,18 +123,20 @@ export class DigitalServiceComponent implements OnInit {
     { icon: '../../../assets/images/DGclientLogo5.svg', digits: '28%', desc: 'Avg.', small: true, para: 'Increase in Website Traffic' },
   ];
 
-  techStack = [
-    { imgSrc: '../../assets/images/logo1st.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-2.png', w: '150' },
-    { imgSrc: '../../assets/images/meen.png', w: '160' },
-    { imgSrc: '../../assets/images/logo-4.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-3.png', w: '150' },
-    { imgSrc: '../../assets/images/mean.png', w: '160' },
-    { imgSrc: '../../assets/images/logo-7.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-8.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-9.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-10.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-11.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-12.png', w: '150' },
+  // Solution by Data Source tiles, in Figma order. "tile" logos are drawn on the full 312 x 140 tile;
+  // "icon" logos are centred, sized in cqw (1% of the tile width). The last tile is an empty placeholder as in the design.
+  dataSources: { name: string; tile?: string; icon?: string; size?: string; label?: string; text?: string }[] = [
+    { name: 'Salesforce', tile: 'salesforce' },
+    { name: 'Excel', icon: 'excel', size: 'h-[20.2cqw] w-auto', label: 'Excel' },
+    { name: 'Google Analytics', icon: 'google-analytics', size: 'h-[20.2cqw] w-auto', label: 'Google Analytics' },
+    { name: 'Box', icon: 'box', size: 'w-[34.9cqw] h-auto' },
+    { name: 'MySQL', tile: 'mysql' },
+    { name: 'QuickBooks', tile: 'quickbooks' },
+    { name: 'X', tile: 'x' },
+    { name: 'Google Docs', icon: 'google-docs', size: 'h-[23.8cqw] w-auto' },
+    { name: 'Facebook', tile: 'facebook' },
+    { name: 'JSON', text: 'JSON' },
+    { name: 'HubSpot', tile: 'hubspot' },
+    { name: '' },
   ];
 }

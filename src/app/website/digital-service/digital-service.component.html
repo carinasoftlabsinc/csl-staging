@@ -1,4 +1,16 @@
+<!-- Page outline: each section is a named <ng-template> further down this file. -->
 <main class="bg-[#0B0C10]">
+  <ng-container *ngTemplateOutlet="hero" />
+  <ng-container *ngTemplateOutlet="ourService" />
+  <ng-container *ngTemplateOutlet="commitments" />
+  <ng-container *ngTemplateOutlet="caseStudies" />
+  <ng-container *ngTemplateOutlet="solutionByDataSource" />
+  <ng-container *ngTemplateOutlet="getStarted" />
+  <app-footer></app-footer>
+</main>
+
+<!-- ===== Hero ===== -->
+<ng-template #hero>
   <div class="digital-marketing">
     <app-header></app-header>
     <section
@@ -35,8 +47,10 @@
       </div>
     </section>
   </div>
+</ng-template>
 
-  <!-- Our service -->
+<!-- ===== Our Service ===== -->
+<ng-template #ourService>
   <section
     class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
     >
@@ -69,13 +83,13 @@
             alt=""
             loading="lazy"
             />
-          <div class="pl-[9.2cqw] pr-[3cqw] pt-[6.4cqw]">
+          <div class="pl-[9.2cqw] pr-[3cqw] pt-[5.1cqw]">
             <p class="font-myfont font-medium text-[18.4cqw] leading-[1.313]" aria-hidden="true">{{ card.num }}</p>
             <h3
               class="mt-[13.3cqw] whitespace-nowrap font-quickSand font-bold text-[9.3cqw] leading-[1.1]"
               innerHTML="{{ card.heading }}"
             ></h3>
-            <p [ngClass]="card.paraColor" class="mt-[7.7cqw] max-w-[75.7cqw] font-quickSand font-medium text-[max(14px,4.14cqw)] leading-[1.18]">
+            <p [ngClass]="card.paraColor" class="mt-[7.2cqw] max-w-[75.7cqw] font-quickSand font-medium text-[max(14px,4.14cqw)] leading-[1.18]">
               {{ card.para }}
             </p>
           </div>
@@ -91,7 +105,10 @@
       }
     </div>
   </section>
+</ng-template>
 
+<!-- ===== Commitments to Our Clients ===== -->
+<ng-template #commitments>
   <!-- Commitments to our clients: Figma 1980:5140. Card contents are sized in cqw (1% of the card width) so they keep the design proportions at every screen size. -->
   <section class="commitment-section relative isolate overflow-hidden rounded-[50px] px-7 md:px-10 xl:px-14 2xl:px-24 pt-10 lg:pt-[clamp(2.5rem,3.85vw,4.625rem)] pb-14 lg:pb-[clamp(3rem,7.4vw,8.875rem)]">
     <div class="relative z-10 mx-auto max-w-[1671px]">
@@ -108,7 +125,7 @@
         <div class="md:col-span-2 lg:col-span-1 lg:row-span-2 flex flex-col items-center justify-center text-center rounded-[31px] border-2 border-[#34394B] bg-gradient-to-b from-[#0033E91A] via-transparent to-transparent backdrop-blur-2xl py-10 md:py-12 lg:py-0 [container-type:inline-size]">
           <img class="size-[clamp(72px,18cqw,96px)]" src="../../../assets/images/DG-clientLogo1.svg" alt="" width="96" height="96" loading="lazy" />
           <p class="mt-[clamp(1.5rem,10cqw,3.5rem)] font-bebas uppercase leading-none text-[clamp(88px,29cqw,155px)] max-md:text-[clamp(88px,22vw,120px)] md:max-lg:text-[140px]">1.8 M</p>
-          <p class="mt-[clamp(1rem,5cqw,2rem)] font-semibold capitalize leading-[1.38] text-[clamp(.9375rem,5.6cqw,1.875rem)] max-md:text-[clamp(1rem,4.4vw,1.5rem)] md:max-lg:text-3xl">
+          <p class="mt-[clamp(1rem,4cqw,1.8rem)] font-semibold capitalize leading-[1.38] text-[clamp(.9375rem,5.6cqw,1.875rem)] max-md:text-[clamp(1rem,4.4vw,1.5rem)] md:max-lg:text-3xl">
             1.8 Million Leads<br />Generated For Our Clients
           </p>
         </div>
@@ -116,9 +133,9 @@
         @for (W of FourW; track W.digits) {
           <div class="relative aspect-[536/286] max-md:aspect-auto max-md:min-h-[150px] max-md:py-6 flex items-center rounded-[31px] border-2 border-[#34394B] bg-gradient-to-b from-[#0033E91A] via-transparent to-transparent backdrop-blur-2xl [container-type:inline-size]">
             <img class="ml-[6.9cqw] size-[17.9cqw] max-md:size-[72px] shrink-0" [src]="W.icon" alt="" width="96" height="96" loading="lazy" />
-            <div class="ml-[8cqw] max-md:ml-5 flex flex-col gap-[3.9cqw] max-md:gap-3 pr-[4cqw]">
+            <div class="ml-[8cqw] max-md:ml-5 flex flex-col gap-[2cqw] max-md:gap-2 pr-[4cqw]">
               <p class="flex items-end gap-[3.7cqw] font-bebas leading-none whitespace-nowrap text-white">
-                <span class="uppercase text-[clamp(2.5rem,14.9cqw,5rem)] max-md:text-[clamp(2.5rem,12vw,3.5rem)]">{{ W.digits }}</span>
+                <span class="uppercase text-[clamp(2.5rem,14.9cqw,5rem)] max-md:text-[clamp(2.5rem,12vw,3.5rem)] -mb-1">{{ W.digits }}</span>
                 @if (W.desc) {
                   <span [ngClass]="W.small ? 'lowercase text-[clamp(1.5rem,9.3cqw,3.125rem)] max-md:text-[clamp(1.5rem,7.5vw,2rem)]' : 'uppercase text-[clamp(2.5rem,14.9cqw,5rem)] max-md:text-[clamp(2.5rem,12vw,3.5rem)]'">{{ W.desc }}</span>
                 }
@@ -131,194 +148,186 @@
       </div>
     </div>
   </section>
+</ng-template>
 
-<!-- Case studies: Figma 1980:5202. The preview frame is sized in cqw (1% of its own width) so it keeps the design proportions at any screen size. -->
-<section class="bg-white rounded-[50px] px-7 md:px-10 xl:px-14 2xl:px-24 pt-10 lg:pt-[clamp(1.75rem,2.4vw,2.875rem)] pb-12 lg:pb-[clamp(2.5rem,4.8vw,5.75rem)]">
-  <div class="mx-auto max-w-[1671px] flex justify-between items-center gap-4 text-[#0B0C10] border-b border-[#B4B9CB] pb-4 lg:pb-[clamp(1rem,1.77vw,2.125rem)]">
-    <h2 class="text-[clamp(1.5rem,2.34vw,2.8125rem)] leading-[0.988] font-myfont uppercase">Case Studies</h2>
-    <a
-      appGradientButton
-      variant="light"
-      size="md"
-      routerLink="/portfolio"
-      class="hidden sm:inline-flex h-10 2xl:h-[50px] !p-0 !pl-5 2xl:!pl-[37px] gap-4 2xl:gap-[25px] 2xl:!text-[20px]"
-    >
-      More Projects
-      <span
-        aria-hidden="true"
-        class="-my-[2px] -mr-[2px] flex size-10 2xl:size-[50px] shrink-0 items-center justify-center rounded-full border-2 border-transparent [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box]"
+<!-- ===== Case Studies ===== -->
+<ng-template #caseStudies>
+  <!-- Case studies: Figma 1980:5202. The preview frame is sized in cqw (1% of its own width) so it keeps the design proportions at any screen size. -->
+  <section class="bg-white rounded-[50px] px-7 md:px-10 xl:px-14 2xl:px-24 pt-10 lg:pt-[clamp(1.75rem,2.4vw,2.875rem)] pb-12 lg:pb-[clamp(2.5rem,4.8vw,5.75rem)]">
+    <div class="mx-auto max-w-[1671px] flex justify-between items-center gap-4 text-[#0B0C10] border-b border-[#B4B9CB] pb-4 lg:pb-[clamp(1rem,1.77vw,2.125rem)]">
+      <h2 class="text-[clamp(1.5rem,2.34vw,2.8125rem)] leading-[0.988] font-myfont uppercase">Case Studies</h2>
+      <a
+        appGradientButton
+        variant="light"
+        size="md"
+        routerLink="/portfolio"
+        class="hidden sm:inline-flex h-10 2xl:h-[50px] !p-0 !pl-5 2xl:!pl-[37px] gap-4 2xl:gap-[25px] 2xl:!text-[20px]"
       >
-        <img src="../../../assets/images/more-arrow.svg" alt="" width="50" height="50" class="size-full" />
-      </span>
-    </a>
-  </div>
+        More Projects
+        <span
+          aria-hidden="true"
+          class="-my-[2px] -mr-[2px] flex size-10 2xl:size-[50px] shrink-0 items-center justify-center rounded-full border-2 border-transparent [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box]"
+        >
+          <img src="../../../assets/images/more-arrow.svg" alt="" width="50" height="50" class="size-full" />
+        </span>
+      </a>
+    </div>
 
-  <div class="mx-auto mt-8 lg:mt-[clamp(1.5rem,1.72vw,2.0625rem)] max-w-[1709px] grid grid-cols-1 lg:grid-cols-[678fr_932.75fr] gap-8 lg:gap-[clamp(2rem,5.14vw,98.6px)] items-start">
-    <!-- Left: title, text and the 3 x 2 thumbnails. Below lg it dissolves (contents) so the order becomes text, preview, swipe cards. -->
-    <div class="max-lg:contents flex flex-col lg:pt-[clamp(1rem,1.46vw,1.75rem)] lg:pb-[clamp(1rem,2vw,2.4rem)] font-quickSand font-medium">
-      <!-- On laptops the description reserves 10 lines (min-h in em; fewer on tablet and phone), so the thumbnails stay put for short text; longer text pushes them down. -->
-      <div class="max-lg:order-1 font-quickSand font-medium">
-        <h3 class="text-[#0B0C10] text-[clamp(1.75rem,2.5vw,3rem)] leading-tight">{{ selectedCard.title }}</h3>
-        <p class="mt-4 lg:mt-[clamp(1rem,1.56vw,1.875rem)] max-w-[653px] lg:min-h-[15.5em] text-[#34394B] text-[clamp(.875rem,1.15vw,1.375rem)] leading-[1.55]">
-          {{ selectedCard.description }}
-        </p>
+    <div class="mx-auto mt-8 lg:mt-[clamp(1.5rem,1.72vw,2.0625rem)] max-w-[1709px] grid grid-cols-1 lg:grid-cols-[678fr_932.75fr] gap-8 lg:gap-[clamp(2rem,5.14vw,98.6px)] items-start">
+      <!-- Left: title, text and the 3 x 2 thumbnails. Below lg it dissolves (contents) so the order becomes text, preview, swipe cards. -->
+      <div class="max-lg:contents flex flex-col lg:pt-[clamp(1rem,1.46vw,1.75rem)] lg:pb-[clamp(1rem,2vw,2.4rem)] font-quickSand font-medium">
+        <!-- On laptops the description reserves 10 lines (min-h in em; fewer on tablet and phone), so the thumbnails stay put for short text; longer text pushes them down. -->
+        <div class="max-lg:order-1 font-quickSand font-medium">
+          <h3 class="text-[#0B0C10] text-[clamp(1.75rem,2.5vw,3rem)] leading-tight">{{ selectedCard.title }}</h3>
+          <p class="mt-4 lg:mt-[clamp(1rem,1.56vw,1.875rem)] max-w-[653px] lg:min-h-[15.5em] text-[#34394B] text-[clamp(.875rem,1.15vw,1.375rem)] leading-[1.55]">
+            {{ selectedCard.description }}
+          </p>
+        </div>
+
+        <div class="case-swipe max-lg:order-3 max-lg:-mx-7 max-lg:md:-mx-10 max-lg:px-7 max-lg:md:px-10 max-lg:flex max-lg:gap-3 max-lg:overflow-x-auto max-lg:snap-x max-lg:snap-mandatory max-lg:scroll-px-7 max-lg:md:scroll-px-10 max-lg:pb-1 lg:mt-[clamp(1.5rem,1.7vw,2.4rem)] lg:grid lg:[grid-template-columns:repeat(3,30.16%)] lg:justify-between lg:gap-y-[clamp(1rem,1.56vw,1.875rem)]">
+          @for (card of cases; track card.title) {
+            <div class="[container-type:inline-size] max-lg:shrink-0 max-md:basis-[37%] md:max-lg:basis-[28%] max-lg:snap-start">
+            <button
+              type="button"
+              (click)="selectCard(card)"
+              [attr.aria-pressed]="selectedCard === card"
+              [attr.aria-label]="'Show ' + card.title"
+              class="relative block w-full aspect-[204.484/148.759] overflow-hidden cursor-pointer rounded-tl-[24.1cqw] rounded-tr-[24.1cqw] rounded-bl-[24.1cqw] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7]"
+            >
+              <img
+                class="block size-full object-cover"
+                [src]="card.thumb"
+                alt=""
+                width="204"
+                height="149"
+                loading="lazy"
+                decoding="async"
+              />
+              <!-- Thin default border, always on top of the image -->
+              <span aria-hidden="true" class="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_0_1px_#34394B]"></span>
+              <!-- 4px pink-to-blue ring for the selected card: it only fades in and out, the image never moves -->
+              <span
+                aria-hidden="true"
+                class="pointer-events-none absolute inset-0 rounded-[inherit] p-1 opacity-0 transition-opacity duration-200 ease-out [background:linear-gradient(to_bottom,#F21DF5,#20B9FA)] [mask:linear-gradient(#000_0_0)_content-box_exclude,linear-gradient(#000_0_0)]"
+                [class.opacity-100]="selectedCard === card"
+              ></span>
+            </button>
+            <!-- Card label, only for the mobile swipe row -->
+            <p class="lg:hidden mt-2 font-quickSand font-semibold text-sm leading-snug" [ngClass]="selectedCard === card ? 'text-[#0B0C10]' : 'text-[#6B7189]'">{{ card.title }}</p>
+            </div>
+          }
+        </div>
       </div>
 
-      <div class="case-swipe max-lg:order-3 max-lg:-mx-7 max-lg:md:-mx-10 max-lg:px-7 max-lg:md:px-10 max-lg:flex max-lg:gap-3 max-lg:overflow-x-auto max-lg:snap-x max-lg:snap-mandatory max-lg:scroll-px-7 max-lg:md:scroll-px-10 max-lg:pb-1 lg:mt-[clamp(1.5rem,1.7vw,2.4rem)] lg:grid lg:[grid-template-columns:repeat(3,30.16%)] lg:justify-between lg:gap-y-[clamp(1rem,1.56vw,1.875rem)]">
-        @for (card of cases; track card.title) {
-          <div class="[container-type:inline-size] max-lg:shrink-0 max-md:basis-[37%] md:max-lg:basis-[28%] max-lg:snap-start">
-          <button
-            type="button"
-            (click)="selectCard(card)"
-            [attr.aria-pressed]="selectedCard === card"
-            [attr.aria-label]="'Show ' + card.title"
-            class="relative block w-full aspect-[204.484/148.759] overflow-hidden cursor-pointer rounded-tl-[24.1cqw] rounded-tr-[24.1cqw] rounded-bl-[24.1cqw] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7]"
-          >
+      <!-- Right: preview frame -->
+      <div class="max-lg:order-2 w-full [container-type:inline-size]">
+      <div class="w-full rounded-[4.18cqw] border !border-[#B4B9CB] px-[2.78cqw] pt-[2.58cqw] pb-[3.5cqw]">
+        <div class="relative w-full aspect-[881/645] overflow-hidden rounded-[4.08cqw] border !border-[#B4B9CB] bg-[#0B0C10]">
+          <!-- All previews stay in the frame and crossfade, so each one is already loaded and no blank frame ever shows. -->
+          @for (card of cases; track card.title; let i = $index) {
             <img
-              class="block size-full object-cover"
-              [src]="card.thumb"
-              alt=""
-              width="204"
-              height="149"
-              loading="lazy"
+              class="case-img absolute inset-0 size-full object-cover"
+              [class.is-active]="selectedCard === card"
+              [src]="card.imageSm"
+              [attr.srcset]="card.imageSm + ' 640w, ' + card.imageMd + ' 960w, ' + card.image + ' 1400w'"
+              sizes="(min-width: 1024px) 880px, calc(100vw - 110px)"
+              [alt]="selectedCard === card ? card.title + ' preview' : ''"
+              [attr.aria-hidden]="selectedCard === card ? null : 'true'"
+              width="881"
+              height="645"
+              [attr.loading]="i === 0 ? null : 'lazy'"
               decoding="async"
             />
-            <!-- Thin default border, always on top of the image -->
-            <span aria-hidden="true" class="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_0_1px_#34394B]"></span>
-            <!-- 4px pink-to-blue ring for the selected card: it only fades in and out, the image never moves -->
-            <span
-              aria-hidden="true"
-              class="pointer-events-none absolute inset-0 rounded-[inherit] p-1 opacity-0 transition-opacity duration-200 ease-out [background:linear-gradient(to_bottom,#F21DF5,#20B9FA)] [mask:linear-gradient(#000_0_0)_content-box_exclude,linear-gradient(#000_0_0)]"
-              [class.opacity-100]="selectedCard === card"
-            ></span>
-          </button>
-          <!-- Card label, only for the mobile swipe row -->
-          <p class="lg:hidden mt-2 font-quickSand font-semibold text-sm leading-snug" [ngClass]="selectedCard === card ? 'text-[#0B0C10]' : 'text-[#6B7189]'">{{ card.title }}</p>
-          </div>
-        }
+          }
+        </div>
+
+        <div class="mt-[2.54cqw] -mx-[2.78cqw] h-px bg-[#B4B9CB]" aria-hidden="true"></div>
+
+        <div class="mt-[2.7cqw] max-md:mt-3 flex flex-row justify-between gap-3">
+          <a
+            [href]="selectedCard.liveDemo"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center h-12 md:h-[8.47cqw] flex-1 md:flex-none md:w-[46.1cqw] whitespace-nowrap rounded-full border-[1.67px] border-transparent text-white font-quickSand font-semibold capitalize !text-[clamp(.8125rem,1.93cqw,1.125rem)] transition-colors duration-200 [background:linear-gradient(#34394B,#34394B)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] hover:[background:linear-gradient(#424B65,#424B65)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7]"
+          >View Live Demo</a>
+          <a
+            [href]="selectedCard.diviLink"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center h-12 md:h-[8.47cqw] flex-1 md:flex-none md:w-[46.1cqw] whitespace-nowrap rounded-full border-[1.67px] border-transparent text-white font-quickSand font-semibold capitalize !text-[clamp(.8125rem,1.93cqw,1.125rem)] transition-colors duration-200 [background:linear-gradient(#34394B,#34394B)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] hover:[background:linear-gradient(#424B65,#424B65)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7]"
+          >Available In DIVI</a>
+        </div>
+      </div>
       </div>
     </div>
+  </section>
+</ng-template>
 
-    <!-- Right: preview frame -->
-    <div class="max-lg:order-2 w-full [container-type:inline-size]">
-    <div class="w-full rounded-[4.18cqw] border !border-[#B4B9CB] px-[2.78cqw] pt-[2.58cqw] pb-[3.5cqw]">
-      <div class="relative w-full aspect-[881/645] overflow-hidden rounded-[4.08cqw] border !border-[#B4B9CB] bg-[#0B0C10]">
-        <!-- All previews stay in the frame and crossfade, so each one is already loaded and no blank frame ever shows. -->
-        @for (card of cases; track card.title; let i = $index) {
-          <img
-            class="case-img absolute inset-0 size-full object-cover"
-            [class.is-active]="selectedCard === card"
-            [src]="card.imageSm"
-            [attr.srcset]="card.imageSm + ' 640w, ' + card.imageMd + ' 960w, ' + card.image + ' 1400w'"
-            sizes="(min-width: 1024px) 880px, calc(100vw - 110px)"
-            [alt]="selectedCard === card ? card.title + ' preview' : ''"
-            [attr.aria-hidden]="selectedCard === card ? null : 'true'"
-            width="881"
-            height="645"
-            [attr.loading]="i === 0 ? null : 'lazy'"
-            decoding="async"
-          />
-        }
-      </div>
+<!-- ===== Solution by Data Source (Figma 1980:5230) ===== -->
+<ng-template #solutionByDataSource>
+  <section class="bg-[#0B0C10] rounded-[50px] px-7 md:px-10 xl:px-14 2xl:px-24 py-12 lg:py-[clamp(3rem,8.65vw,10.375rem)]">
+    <div class="mx-auto max-w-[1671px]">
+      <h2 class="text-white uppercase font-myfont text-[clamp(1.875rem,2.86vw,3.4375rem)] leading-[0.988] pb-5 2xl:pb-[34px] border-b border-[#34394B]">
+        Solution by Data Source
+      </h2>
 
-      <div class="mt-[2.54cqw] -mx-[2.78cqw] h-px bg-[#B4B9CB]" aria-hidden="true"></div>
+      <p class="mt-4 lg:mt-[clamp(1rem,1.3vw,1.6rem)] max-w-[709px] font-quickSand font-medium text-sm lg:text-[15px] xl:text-[clamp(1rem,1.15vw,1.375rem)] leading-[1.55] text-[#B4B9CB]">
+        Our employees are at the heart of our company. Here&rsquo;s what they have to say about working at Mixmax.
+      </p>
 
-      <div class="mt-[2.7cqw] max-md:mt-3 flex flex-row justify-between gap-3">
-        <a
-          [href]="selectedCard.liveDemo"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center h-12 md:h-[8.47cqw] flex-1 md:flex-none md:w-[46.1cqw] whitespace-nowrap rounded-full border-[1.67px] border-transparent text-white font-quickSand font-semibold capitalize !text-[clamp(.8125rem,1.93cqw,1.125rem)] transition-colors duration-200 [background:linear-gradient(#34394B,#34394B)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] hover:[background:linear-gradient(#424B65,#424B65)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7]"
-        >View Live Demo</a>
-        <a
-          [href]="selectedCard.diviLink"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center h-12 md:h-[8.47cqw] flex-1 md:flex-none md:w-[46.1cqw] whitespace-nowrap rounded-full border-[1.67px] border-transparent text-white font-quickSand font-semibold capitalize !text-[clamp(.8125rem,1.93cqw,1.125rem)] transition-colors duration-200 [background:linear-gradient(#34394B,#34394B)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] hover:[background:linear-gradient(#424B65,#424B65)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7]"
-        >Available In DIVI</a>
-      </div>
-    </div>
-    </div>
-  </div>
-</section>
-
-<!-- Solution by data source  -->
-<section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10">
-  <div
-    class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
-    >
-    <h2
-      class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-      >
-      Solution by data source
-    </h2>
-  </div>
-
-  <div class="xl:pt-20 pt-4">
-    <p
-      class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
-      >
-      We know how to get things done using this approach. It addresses Who,
-      <br class="hidden md:block" />
-      What, When, Why, and How, for successful project executions.
-    </p>
-  </div>
-
-  <div
-    class="flex flex-row-reverse mt-6 md:mt-10 lg:py-20 py-5 md:justify-center lg:justify-start"
-    >
-    <div
-      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-0 gap-y-8 sm:gap-y-4 2xl:gap-x-0 2xl:gap-20 items-center"
-      >
-      @for (stack of techStack; track stack) {
-        <div
-          class="pr-2 mr-2 2xl:pr-6 2xl:mr-6 md:mr-2"
+      <!-- Tiles keep the 312 x 140 design ratio; their contents are sized in cqw (1% of the tile width). -->
+      <ul class="mt-8 lg:mt-[clamp(2rem,4.9vw,5.875rem)] grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[.75rem] sm:gap-[1rem] lg:gap-x-[clamp(1rem,1.3vw,25px)] lg:gap-y-[clamp(1rem,1.35vw,26px)] lg:ml-auto lg:w-[79.2%]">
+        @for (source of dataSources; track $index) {
+          <li
+            class="relative flex flex-col items-center justify-center aspect-[312/140] rounded-[8.33%/18.57%] bg-[#34394B80] [container-type:inline-size]"
+            [attr.aria-hidden]="source.name ? null : 'true'"
           >
-          <div
-            class="py-4 px-6 2xl:!py-10 2xl:px-14 bg-[#34394B]/50 rounded-2xl"
-            >
-            <img
-              class="transition-transform duration-500 transform hover:scale-110 cursor-pointer h-12 2xl:h-16 object-contain"
-              [src]="stack.imgSrc"
-              [width]="stack.w"
-              alt=""
-              />
+            @if (source.tile) {
+              <img class="absolute inset-0 size-full" [src]="'assets/images/data-sources/' + source.tile + '.svg'" [alt]="source.name" width="312" height="140" loading="lazy" />
+            } @else if (source.icon) {
+              <img [ngClass]="source.size" [src]="'assets/images/data-sources/' + source.icon + '.svg'" [alt]="source.label ? '' : source.name" loading="lazy" />
+              @if (source.label) {
+                <span class="mt-[1.2cqw] font-quickSand font-semibold text-white leading-tight text-[max(11px,4.5cqw)]">{{ source.label }}</span>
+              }
+            } @else if (source.text) {
+              <span class="font-['Arial_Black',Arial,sans-serif] font-black text-white leading-none text-[12.6cqw]">{{ source.text }}</span>
+            }
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+</ng-template>
+
+<!-- ===== Get started form (old design, not yet rebuilt) ===== -->
+<ng-template #getStarted>
+  <section class="py-16 md:py-24 px-6 md:px-12 lg:px-20 bg-gradient-to-br from-[#1a1e2e] to-[#34394B]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-[#a78bfa] text-sm font-bold uppercase tracking-widest mb-3 font-quickSand">GET STARTED</p>
+        <h2 class="text-white text-4xl md:text-5xl font-bold font-quickSand leading-tight mb-4">Ready to Start Your Digital Marketing Project?</h2>
+        <p class="text-[#B4B9CB] text-lg font-quickSand max-w-2xl mx-auto">Fill in the form and our team will get back to you within 24 hours. Or book a free 30-minute call with our experts right now.</p>
+      </div>
+      <div class="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
+        <div class="w-full lg:w-2/5 flex flex-col justify-center gap-8">
+          <div>
+            <h3 class="text-white text-2xl font-bold font-quickSand mb-4">Prefer to talk first?</h3>
+            <p class="text-[#B4B9CB] font-quickSand mb-6">Skip the form and book a free 30-minute consultation directly on our calendar. You'll get a Google Meet link automatically.</p>
+            <a href="https://calendar.app.google/mezjQ2cpZyzbixNv6" target="_blank" rel="noopener noreferrer" id="book-free-call-digital-marketing" class="inline-flex items-center gap-3 bg-white text-[#34394B] font-bold font-quickSand px-8 py-4 rounded-full hover:bg-[#a78bfa] hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl text-base">
+              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+              <span>Book a Free 30-Min Call →</span>
+            </a>
           </div>
+          <ul class="flex flex-col gap-3 text-[#B4B9CB] font-quickSand text-sm">
+            <li class="flex items-center gap-3"><span aria-hidden="true" class="text-[#a78bfa]">✓</span>Response within 24 hours</li>
+            <li class="flex items-center gap-3"><span aria-hidden="true" class="text-[#a78bfa]">✓</span>Free 30-minute consultation</li>
+            <li class="flex items-center gap-3"><span aria-hidden="true" class="text-[#a78bfa]">✓</span>No commitment required</li>
+          </ul>
         </div>
-      }
-    </div>
-  </div>
-</section>
-
-<section class="py-16 md:py-24 px-6 md:px-12 lg:px-20 bg-gradient-to-br from-[#1a1e2e] to-[#34394B]">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-12">
-      <p class="text-[#a78bfa] text-sm font-bold uppercase tracking-widest mb-3 font-quickSand">GET STARTED</p>
-      <h2 class="text-white text-4xl md:text-5xl font-bold font-quickSand leading-tight mb-4">Ready to Start Your Digital Marketing Project?</h2>
-      <p class="text-[#B4B9CB] text-lg font-quickSand max-w-2xl mx-auto">Fill in the form and our team will get back to you within 24 hours. Or book a free 30-minute call with our experts right now.</p>
-    </div>
-    <div class="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
-      <div class="w-full lg:w-2/5 flex flex-col justify-center gap-8">
-        <div>
-          <h3 class="text-white text-2xl font-bold font-quickSand mb-4">Prefer to talk first?</h3>
-          <p class="text-[#B4B9CB] font-quickSand mb-6">Skip the form and book a free 30-minute consultation directly on our calendar. You'll get a Google Meet link automatically.</p>
-          <a href="https://calendar.app.google/mezjQ2cpZyzbixNv6" target="_blank" rel="noopener noreferrer" id="book-free-call-digital-marketing" class="inline-flex items-center gap-3 bg-white text-[#34394B] font-bold font-quickSand px-8 py-4 rounded-full hover:bg-[#a78bfa] hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl text-base">
-            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-            <span>Book a Free 30-Min Call →</span>
-          </a>
+        <div class="w-full lg:w-3/5">
+          <app-getinform [theme]="'dark'" [servicePreset]="'Digital Marketing'" [formOnly]="true"></app-getinform>
         </div>
-        <ul class="flex flex-col gap-3 text-[#B4B9CB] font-quickSand text-sm">
-          <li class="flex items-center gap-3"><span aria-hidden="true" class="text-[#a78bfa]">✓</span>Response within 24 hours</li>
-          <li class="flex items-center gap-3"><span aria-hidden="true" class="text-[#a78bfa]">✓</span>Free 30-minute consultation</li>
-          <li class="flex items-center gap-3"><span aria-hidden="true" class="text-[#a78bfa]">✓</span>No commitment required</li>
-        </ul>
-      </div>
-      <div class="w-full lg:w-3/5">
-        <app-getinform [theme]="'dark'" [servicePreset]="'Digital Marketing'" [formOnly]="true"></app-getinform>
       </div>
     </div>
-  </div>
-</section>
-
-<app-footer></app-footer>
-</main>
+  </section>
+</ng-template>

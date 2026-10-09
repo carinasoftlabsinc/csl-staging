@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -18,6 +18,7 @@ import { ContactService } from 'app/website/contact/contact.service';
         --q-rule: #34394b;
         --q-line: #424b65;
         --q-field-bg: #b4b9cb1a;
+        --q-field-border: #424b65;
         --q-muted: #6b7189;
         --q-link: #ffffff;
         --q-send-bg: #34394b;
@@ -27,8 +28,8 @@ import { ContactService } from 'app/website/contact/contact.service';
         --q-panel-active: #ffffff;
         --q-panel-shadow: rgba(0, 0, 0, 0.5);
         --q-panel-border: #34394b;
-        --q-sel-bg: rgba(188, 138, 251, 0.18);
-        --q-sel-text: #bc8afb;
+        --q-accent: #b4b9cb;
+        --q-accent-fg: #0b0c10;
       }
       .quote-light {
         --q-bg: #ffffff;
@@ -37,17 +38,18 @@ import { ContactService } from 'app/website/contact/contact.service';
         --q-rule: #b4b9cb;
         --q-line: #b4b9cb;
         --q-field-bg: #f4f5f7;
+        --q-field-border: transparent;
         --q-muted: #8a90a8;
         --q-link: #0b0c10;
         --q-send-bg: #34394b;
         --q-send-hover: #0b0c10;
-        --q-panel: color-mix(in srgb, #b4b9cb 18%, #ffffff);
-        --q-panel-hover: color-mix(in srgb, #b4b9cb 40%, #ffffff);
+        --q-panel: #ffffff;
+        --q-panel-hover: color-mix(in srgb, #b4b9cb 22%, #ffffff);
         --q-panel-active: #0b0c10;
         --q-panel-shadow: rgba(11, 12, 16, 0.12);
         --q-panel-border: #b4b9cb;
-        --q-sel-bg: color-mix(in srgb, #bc8afb 30%, #ffffff);
-        --q-sel-text: #0b0c10;
+        --q-accent: #34394b;
+        --q-accent-fg: #ffffff;
       }
       input:-webkit-autofill,
       input:-webkit-autofill:hover,
@@ -71,6 +73,10 @@ export class QuoteSectionComponent implements OnInit {
   @Input() imageAlt = 'Web design and development projects shown across desktop, laptop, tablet and phone';
   @Input() imageWidth = 750;
   @Input() imageHeight = 560;
+  /** Extra CSS classes for the image, e.g. to change its size or position. */
+  @Input() imageClass = '';
+  /** Replaces the image with a custom block: <ng-template #left>…</ng-template> then [leftTemplate]="left". */
+  @Input() leftTemplate: TemplateRef<unknown> | null = null;
 
   readonly bookingUrl = 'https://calendar.app.google/mezjQ2cpZyzbixNv6';
   readonly services = [

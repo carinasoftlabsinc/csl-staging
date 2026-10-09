@@ -30,8 +30,8 @@ const PANEL_GAP = 12;
       <button
         type="button"
         [id]="inputId"
-        class="w-full flex items-center justify-between gap-3 h-8 2xl:h-[34px] border-b text-left transition-colors duration-200 focus:outline-none focus-visible:border-[#9B5DF7]"
-        [ngClass]="open ? 'border-[#9B5DF7]' : 'border-[color:var(--q-line,#424B65)]'"
+        class="w-full flex items-center justify-between gap-3 h-8 2xl:h-[34px] border-b text-left transition-colors duration-200 focus:outline-none focus-visible:border-[color:var(--q-accent,#B4B9CB)]"
+        [ngClass]="open ? 'border-[color:var(--q-accent,#B4B9CB)]' : 'border-[color:var(--q-line,#424B65)]'"
         aria-haspopup="listbox"
         [attr.aria-expanded]="open"
         [attr.aria-controls]="inputId + '-list'"

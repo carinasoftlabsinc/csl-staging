@@ -4,6 +4,26 @@
   background-position: center;
 }
 
+.schedule-call-btn {
+  color: #ffffff !important;
+  &:visited {
+    color: #ffffff !important;
+  }
+  &:hover {
+    color: #ffffff !important;
+  }
+
+  &.white-bg-mode {
+    color: #000000 !important;
+    &:visited {
+      color: #000000 !important;
+    }
+    &:hover {
+      color: #000000 !important;
+    }
+  }
+}
+
 .hamburger {
   cursor: pointer;
   z-index: 100;

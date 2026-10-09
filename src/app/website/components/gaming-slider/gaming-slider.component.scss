@@ -1,0 +1,10 @@
+@media (min-width: 768px) {
+  .gaming-card {
+    opacity: 0.3;
+    transition: opacity 300ms;
+  }
+
+  .gaming-card:hover {
+    opacity: 1;
+  }
+}

@@ -634,7 +634,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       heading: 'Game <br> Development',
       desc: 'We Make Games That Players Love.',
-      route: '/services',
+      route: '/game-development',
     },
     {
       heading: 'Digital <br> Marketing',

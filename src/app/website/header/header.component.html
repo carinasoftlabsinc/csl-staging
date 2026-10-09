@@ -33,8 +33,9 @@
     rel="noopener noreferrer"
     type="button"
     style="cursor: pointer"
-    class="hidden md:block px-4 py-2 md:mr-12 xl:mr-14 rounded-full border !border-[#34394B]  font-quickSand 2xl:!text-[18px] xl:text-[14px] lg:!px-6 lg:!py-2 xl:!px-6 xl:!py-2.5 2xl:!px-8 2xl:!py-3 "
-    [ngClass]="isWhiteBackground ? 'text-black' : 'text-white'"
+    class="schedule-call-btn hidden md:block px-4 py-2 md:mr-12 xl:mr-14 rounded-full border !border-[#34394B] font-quickSand 2xl:!text-[18px] xl:text-[14px] lg:!px-6 lg:!py-2 xl:!px-6 xl:!py-2.5 2xl:!px-8 2xl:!py-3 !text-white visited:!text-white hover:!text-white"
+    [class.white-bg-mode]="isWhiteBackground"
+    [ngClass]="isWhiteBackground ? '!text-black visited:!text-black' : '!text-white visited:!text-white hover:!text-white'"
   >
     Schedule a call
   </a>

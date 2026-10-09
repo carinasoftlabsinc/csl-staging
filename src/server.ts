@@ -24,8 +24,8 @@ const angularApp = new AngularNodeAppEngine({
 
 const PERMANENT_REDIRECTS: Record<string, string> = {
   '/web': '/services',
-  '/game': '/services',
-  '/game2': '/services',
+  '/game': '/game-development',
+  '/game2': '/game-development',
   '/service2': '/services',
   '/web-app-development': '/services',
   '/about': '/know-us',
@@ -35,12 +35,10 @@ const PERMANENT_REDIRECTS: Record<string, string> = {
   '/know4': '/careers',
   '/blog-details': '/blog',
   '/contact': '/contact-us',
-  '/service-details/digital-marketing': '/services',
-  '/service-details/game-development': '/services',
-  '/service-details/web-development': '/services',
+  '/service-details/digital-marketing': '/digital-marketing',
+  '/service-details/game-development': '/game-development',
+  '/service-details/web-development': '/web-development',
   '/service-details/mobile-app-development': '/services',
-  // Individual service pages are hidden for now
-  '/game-development': '/services',
 };
 
 /**

@@ -38,6 +38,9 @@ export class GameServiceComponent implements OnInit {
       word: 'MULTIPLATFORM DEVELOPMENT',
       color: '#00BCD4',
     },
+    { word: 'SHOOTING GAME', color: '#' },
+    { word: 'PUZZLE GAME', color: '#' },
+    { word: 'SIMULATION', color: '#' },
   ];
 
   processList = [

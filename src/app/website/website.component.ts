@@ -629,7 +629,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       heading: 'Web <br> Development',
       desc: 'Empowering Your Online Journey.',
-      route: '/services',
+      route: '/web-development',
     },
     {
       heading: 'Game <br> Development',
@@ -639,7 +639,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       heading: 'Digital <br> Marketing',
       desc: 'Boost Your Brand with Digital Strategies.',
-      route: '/services',
+      route: '/digital-marketing',
     },
     {
       heading: 'Emerging <br> Tech',

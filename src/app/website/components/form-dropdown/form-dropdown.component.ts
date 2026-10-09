@@ -24,14 +24,14 @@ const PANEL_GAP = 12;
     <div class="font-quickSand">
       <span
         [id]="inputId + '-label'"
-        class="block text-sm 2xl:text-lg leading-[0.988] 2xl:leading-[0.988] font-semibold uppercase text-[#B4B9CB] mb-2"
+        class="block text-sm 2xl:text-lg leading-[0.988] 2xl:leading-[0.988] font-semibold uppercase text-[color:var(--q-text,#B4B9CB)] mb-2"
       >{{ label }}</span>
       <div class="relative">
       <button
         type="button"
         [id]="inputId"
         class="w-full flex items-center justify-between gap-3 h-8 2xl:h-[34px] border-b text-left transition-colors duration-200 focus:outline-none focus-visible:border-[#9B5DF7]"
-        [ngClass]="open ? 'border-[#9B5DF7]' : 'border-[#424B65]'"
+        [ngClass]="open ? 'border-[#9B5DF7]' : 'border-[color:var(--q-line,#424B65)]'"
         aria-haspopup="listbox"
         [attr.aria-expanded]="open"
         [attr.aria-controls]="inputId + '-list'"
@@ -41,10 +41,10 @@ const PANEL_GAP = 12;
         (keydown)="onKeydown($event)"
         (blur)="onTouched()"
       >
-        <span class="truncate text-sm 2xl:text-lg" [ngClass]="value ? 'text-[#B4B9CB]' : 'text-[#6B7189]'">
+        <span class="truncate text-lg 2xl:text-lg font-medium" [ngClass]="value ? 'text-[color:var(--q-text,#B4B9CB)]' : 'text-[color:var(--q-muted,#6B7189)]'">
           {{ value || placeholder }}
         </span>
-        <svg aria-hidden="true" viewBox="0 0 20 20" class="h-4 w-4 shrink-0 text-[#B4B9CB] transition-transform duration-200" [class.rotate-180]="open" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 7 5 5 5-5" /></svg>
+        <svg aria-hidden="true" viewBox="0 0 20 20" class="h-4 w-4 shrink-0 text-[color:var(--q-text,#B4B9CB)] transition-transform duration-200" [class.rotate-180]="open" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 7 5 5 5-5" /></svg>
       </button>
 
       @if (open) {
@@ -53,14 +53,20 @@ const PANEL_GAP = 12;
           role="listbox"
           [attr.aria-labelledby]="inputId + '-label'"
           [ngClass]="dropUp ? 'bottom-full mb-1' : 'top-full mt-1'"
-          class="dropdown-panel absolute left-0 right-0 z-20 max-h-72 overflow-auto rounded-xl bg-[#16181F] shadow-[0_8px_24px_rgba(0,0,0,0.5)]"
+          class="dropdown-panel absolute left-0 right-0 z-20 max-h-72 overflow-auto rounded-xl border-[1px] border-[color:var(--q-panel-border,#34394B)] bg-[var(--q-panel,#16181F)] shadow-[0_8px_24px_var(--q-panel-shadow,rgba(0,0,0,0.5))]"
         >
           @for (option of options; track option; let i = $index) {
             <li
               role="option"
               [attr.aria-selected]="option === value"
-              class="px-4 py-2 text-sm 2xl:text-base cursor-pointer transition-colors duration-150"
-              [ngClass]="i === activeIndex ? 'bg-[#23262F] text-white' : option === value ? 'text-white' : 'text-[#B4B9CB]'"
+              class="px-4 py-2 text-lg 2xl:text-lg font-medium cursor-pointer transition-colors duration-150"
+              [ngClass]="
+                option === value
+                  ? 'bg-[var(--q-panel-hover,#23262F)] text-[color:var(--q-panel-active,#fff)] font-semibold'
+                  : i === activeIndex
+                    ? 'bg-[var(--q-panel-hover,#23262F)] text-[color:var(--q-panel-active,#fff)]'
+                    : 'text-[color:var(--q-text,#B4B9CB)]'
+              "
               (mouseenter)="activeIndex = i"
               (mousedown)="$event.preventDefault()"
               (click)="select(option)"

@@ -1,18 +1,18 @@
-<section id="lead-form" class="px-7 md:px-10 xl:px-14 2xl:px-24 pt-12 lg:pt-16 2xl:pt-20 pb-40 lg:pb-48 2xl:pb-64 bg-[#0B0C10] rounded-[40px] 2xl:rounded-[50px]">
+<section id="lead-form" [ngClass]="theme === 'light' ? 'quote-light' : 'quote-dark'" class="px-7 md:px-10 xl:px-14 2xl:px-24 pt-12 lg:pt-16 2xl:pt-20 pb-40 lg:pb-48 2xl:pb-64 bg-[var(--q-bg)] rounded-[40px] 2xl:rounded-[50px]">
   <div class="max-w-[1671px] mx-auto">
-    <h2 class="text-white font-myfont text-[clamp(1.875rem,2.86vw,3.4375rem)] leading-[0.988] pb-5 2xl:pb-[30px] border-b border-[#34394B]">
+    <h2 class="text-[color:var(--q-heading)] font-myfont text-[clamp(1.875rem,2.86vw,3.4375rem)] leading-[0.988] pb-5 2xl:pb-[30px] border-b border-[color:var(--q-rule)]">
       Get Your Quote
     </h2>
 
     <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,45fr)_minmax(0,55fr)] 2xl:grid-cols-[minmax(0,1fr)_820px] items-start gap-10 lg:gap-14 2xl:gap-12 pt-10 lg:pt-16 2xl:pt-[83px]">
       <img
-        src="assets/images/web-form.webp"
-        alt="Web design and development projects shown across desktop, laptop, tablet and phone"
-        width="750"
-        height="560"
+        [src]="image"
+        [alt]="imageAlt"
+        [attr.width]="imageWidth"
+        [attr.height]="imageHeight"
         loading="lazy"
         decoding="async"
-        class="w-full max-w-md lg:max-w-none 2xl:w-full 2xl:max-w-[749px] h-auto max-lg:mx-auto lg:mt-8 2xl:-ml-4"
+        class="w-full max-w-md lg:max-w-none 2xl:w-full 2xl:max-w-[749px] h-auto max-lg:mx-auto lg:mt-8 2xl:-ml-4 rounded-[2rem]"
       />
 
       <form
@@ -23,18 +23,18 @@
       >
         <div class="flex flex-col gap-8 2xl:gap-[46px]">
           <div>
-            <div class="relative border-b border-[#424B65] focus-within:border-[#9B5DF7]">
+            <div class="relative border-b border-[color:var(--q-line)] focus-within:border-[#9B5DF7]">
               <input
                 id="quote-name"
                 type="text"
                 formControlName="name"
                 autocomplete="name"
                 placeholder=" "
-                class="peer block w-full h-8 2xl:h-[34px] bg-transparent !border-0 p-0 text-[#B4B9CB] focus:outline-none"
+                class="peer block w-full h-8 2xl:h-[34px] bg-transparent !border-0 p-0 !text-lg 2xl:!text-lg font-medium text-[color:var(--q-text)] focus:outline-none"
               />
               <label
                 for="quote-name"
-                class="absolute left-0 top-0 origin-left pointer-events-none text-sm 2xl:text-lg leading-[0.988] 2xl:leading-[0.988] font-semibold uppercase text-[#B4B9CB] transition duration-200 peer-focus:-translate-y-6 peer-focus:scale-75 peer-[:not(:placeholder-shown)]:-translate-y-6 peer-[:not(:placeholder-shown)]:scale-75"
+                class="absolute left-0 top-0 origin-left pointer-events-none text-sm 2xl:text-lg leading-[0.988] 2xl:leading-[0.988] font-semibold uppercase text-[color:var(--q-text)] transition duration-200 peer-focus:-translate-y-6 peer-focus:scale-75 peer-[:not(:placeholder-shown)]:-translate-y-6 peer-[:not(:placeholder-shown)]:scale-75"
               >Full Name</label>
             </div>
             @if (submitted && quoteForm.get('name')?.invalid) {
@@ -44,18 +44,18 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-x-10 2xl:gap-x-[70px]">
             <div>
-              <div class="relative border-b border-[#424B65] focus-within:border-[#9B5DF7]">
+              <div class="relative border-b border-[color:var(--q-line)] focus-within:border-[#9B5DF7]">
                 <input
                   id="quote-email"
                   type="email"
                   formControlName="email"
                   autocomplete="email"
                   placeholder=" "
-                  class="peer block w-full h-8 2xl:h-[34px] bg-transparent !border-0 p-0 text-[#B4B9CB] focus:outline-none"
+                  class="peer block w-full h-8 2xl:h-[34px] bg-transparent !border-0 p-0 !text-lg 2xl:!text-lg font-medium text-[color:var(--q-text)] focus:outline-none"
                 />
                 <label
                   for="quote-email"
-                  class="absolute left-0 top-0 origin-left pointer-events-none text-sm 2xl:text-lg leading-[0.988] 2xl:leading-[0.988] font-semibold uppercase text-[#B4B9CB] transition duration-200 peer-focus:-translate-y-6 peer-focus:scale-75 peer-[:not(:placeholder-shown)]:-translate-y-6 peer-[:not(:placeholder-shown)]:scale-75"
+                  class="absolute left-0 top-0 origin-left pointer-events-none text-sm 2xl:text-lg leading-[0.988] 2xl:leading-[0.988] font-semibold uppercase text-[color:var(--q-text)] transition duration-200 peer-focus:-translate-y-6 peer-focus:scale-75 peer-[:not(:placeholder-shown)]:-translate-y-6 peer-[:not(:placeholder-shown)]:scale-75"
                 >Email</label>
               </div>
               @if (submitted && quoteForm.get('email')?.invalid) {
@@ -65,18 +65,18 @@
               }
             </div>
             <div>
-              <div class="relative border-b border-[#424B65] focus-within:border-[#9B5DF7]">
+              <div class="relative border-b border-[color:var(--q-line)] focus-within:border-[#9B5DF7]">
                 <input
                   id="quote-phone"
                   type="tel"
                   formControlName="phone"
                   autocomplete="tel"
                   placeholder=" "
-                  class="peer block w-full h-8 2xl:h-[34px] bg-transparent !border-0 p-0 text-[#B4B9CB] focus:outline-none"
+                  class="peer block w-full h-8 2xl:h-[34px] bg-transparent !border-0 p-0 !text-lg 2xl:!text-lg font-medium text-[color:var(--q-text)] focus:outline-none"
                 />
                 <label
                   for="quote-phone"
-                  class="absolute left-0 top-0 origin-left pointer-events-none text-sm 2xl:text-lg leading-[0.988] 2xl:leading-[0.988] font-semibold uppercase text-[#B4B9CB] transition duration-200 peer-focus:-translate-y-6 peer-focus:scale-75 peer-[:not(:placeholder-shown)]:-translate-y-6 peer-[:not(:placeholder-shown)]:scale-75"
+                  class="absolute left-0 top-0 origin-left pointer-events-none text-sm 2xl:text-lg leading-[0.988] 2xl:leading-[0.988] font-semibold uppercase text-[color:var(--q-text)] transition duration-200 peer-focus:-translate-y-6 peer-focus:scale-75 peer-[:not(:placeholder-shown)]:-translate-y-6 peer-[:not(:placeholder-shown)]:scale-75"
                 >Phone</label>
               </div>
               @if (submitted && quoteForm.get('phone')?.invalid) {
@@ -110,11 +110,11 @@
           </div>
 
           <div>
-            <label for="quote-message" class="block text-sm 2xl:text-lg leading-[0.988] 2xl:leading-[0.988] font-semibold uppercase text-[#B4B9CB] mb-3">Message</label>
+            <label for="quote-message" class="block text-sm 2xl:text-lg leading-[0.988] 2xl:leading-[0.988] font-semibold uppercase text-[color:var(--q-text)] mb-3">Message</label>
             <textarea
               id="quote-message"
               formControlName="message"
-              class="block w-full h-40 2xl:h-[239px] resize-none rounded-3xl border-2 border-[#424B65] bg-[#B4B9CB1A] p-4 text-[#B4B9CB] focus:outline-none focus:border-[#9B5DF7]"
+              class="block w-full h-40 2xl:h-[239px] resize-none rounded-3xl border-2 border-[color:var(--q-line)] bg-[var(--q-field-bg)] p-4 !text-lg 2xl:!text-lg font-medium text-[color:var(--q-text)] focus:outline-none focus:border-[#9B5DF7]"
             ></textarea>
           </div>
 
@@ -123,15 +123,15 @@
               <input id="quote-terms" type="checkbox" formControlName="termsAccepted" class="peer sr-only" />
               <span
                 aria-hidden="true"
-                class="flex size-[18px] shrink-0 items-center justify-center rounded-[5px] border-[1.5px] border-[#6B7189] transition-colors duration-150 group-hover:border-[#B4B9CB] peer-checked:border-[#9B5DF7] peer-checked:bg-[#9B5DF7] peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#9B5DF7] [&>svg]:opacity-0 peer-checked:[&>svg]:opacity-100"
+                class="flex size-[18px] shrink-0 items-center justify-center rounded-[5px] border-[1.5px] border-[color:var(--q-muted)] transition-colors duration-150 group-hover:border-[color:var(--q-text)] peer-checked:border-[#9B5DF7] peer-checked:bg-[#9B5DF7] peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#9B5DF7] [&>svg]:opacity-0 peer-checked:[&>svg]:opacity-100"
               >
                 <svg viewBox="0 0 20 20" class="h-3 w-3 text-white transition-opacity duration-150" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 10.5 3.5 3.5 7.5-8" /></svg>
               </span>
-              <span class="text-sm 2xl:text-base font-medium text-[#B4B9CB]">
+              <span class="text-sm 2xl:text-base font-medium text-[color:var(--q-text)]">
                 I agree to the
-                <a routerLink="/terms-conditions" target="_blank" rel="noopener noreferrer" class="text-white underline underline-offset-2 hover:text-[#9B5DF7]">Terms and Conditions</a>
+                <a routerLink="/terms-conditions" target="_blank" rel="noopener noreferrer" class="text-[color:var(--q-link)] underline underline-offset-2 hover:text-[#9B5DF7]">Terms and Conditions</a>
                 and
-                <a routerLink="/privacy-policy" target="_blank" rel="noopener noreferrer" class="text-white underline underline-offset-2 hover:text-[#9B5DF7]">Privacy Policy</a>.
+                <a routerLink="/privacy-policy" target="_blank" rel="noopener noreferrer" class="text-[color:var(--q-link)] underline underline-offset-2 hover:text-[#9B5DF7]">Privacy Policy</a>.
               </span>
             </label>
             @if (submitted && quoteForm.get('termsAccepted')?.invalid) {
@@ -143,6 +143,7 @@
             <a
               appGradientButton
               size="md"
+              [variant]="theme === 'light' ? 'light' : 'outline'"
               [href]="bookingUrl"
               target="_blank"
               rel="noopener noreferrer"
@@ -154,7 +155,7 @@
             <button
               type="submit"
               [disabled]="loading"
-              class="group inline-flex items-center justify-center gap-2.5 h-12 lg:h-11 2xl:h-14 px-6 2xl:px-9 rounded-full bg-[#34394B] hover:bg-[#424B65] text-white font-semibold !text-sm 2xl:!text-lg transition-colors duration-200 disabled:opacity-70 disabled:cursor-wait focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7]"
+              class="group inline-flex items-center justify-center gap-2.5 h-12 lg:h-11 2xl:h-14 px-6 2xl:px-9 rounded-full bg-[var(--q-send-bg)] hover:bg-[var(--q-send-hover)] text-white font-semibold !text-sm 2xl:!text-lg transition-colors duration-200 disabled:opacity-70 disabled:cursor-wait focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7]"
             >
               @if (!loading) {
                 Send Enquiry
@@ -166,9 +167,9 @@
             </button>
           </div>
 
-          <div class="h-px bg-[#424B65]" aria-hidden="true"></div>
+          <div class="h-px bg-[var(--q-line)]" aria-hidden="true"></div>
 
-          <div class="flex flex-col md:flex-row md:justify-between gap-6 2xl:gap-[66px] font-quickSand text-sm 2xl:text-lg font-semibold capitalize text-[#B4B9CB]">
+          <div class="flex flex-col md:flex-row md:justify-between gap-6 2xl:gap-[66px] font-quickSand text-sm 2xl:text-lg font-semibold capitalize text-[color:var(--q-text)]">
             <div class="flex gap-2.5 md:max-w-[453px]">
               <img src="assets/images/location-purple.svg" alt="" width="31" height="32" class="size-6 2xl:size-[31px] shrink-0" />
               <address class="not-italic leading-[1.24] 2xl:leading-[1.24] 2xl:w-[412px]">{{ address }}</address>

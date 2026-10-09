@@ -7,15 +7,54 @@ import { ContactService } from 'app/website/contact/contact.service';
 @Component({
   selector: 'app-quote-section',
   templateUrl: './quote-section.component.html',
-  // Keep autofilled fields on the dark background instead of the browser's blue/grey fill.
+  // Two colour themes driven by CSS variables. The form dropdowns read the same variables,
+  // and autofilled fields keep the theme colours instead of the browser's blue/grey fill.
   styles: [
     `
+      .quote-dark {
+        --q-bg: #0b0c10;
+        --q-heading: #ffffff;
+        --q-text: #b4b9cb;
+        --q-rule: #34394b;
+        --q-line: #424b65;
+        --q-field-bg: #b4b9cb1a;
+        --q-muted: #6b7189;
+        --q-link: #ffffff;
+        --q-send-bg: #34394b;
+        --q-send-hover: #424b65;
+        --q-panel: #16181f;
+        --q-panel-hover: #23262f;
+        --q-panel-active: #ffffff;
+        --q-panel-shadow: rgba(0, 0, 0, 0.5);
+        --q-panel-border: #34394b;
+        --q-sel-bg: rgba(188, 138, 251, 0.18);
+        --q-sel-text: #bc8afb;
+      }
+      .quote-light {
+        --q-bg: #ffffff;
+        --q-heading: #0b0c10;
+        --q-text: #34394b;
+        --q-rule: #b4b9cb;
+        --q-line: #b4b9cb;
+        --q-field-bg: #f4f5f7;
+        --q-muted: #8a90a8;
+        --q-link: #0b0c10;
+        --q-send-bg: #34394b;
+        --q-send-hover: #0b0c10;
+        --q-panel: color-mix(in srgb, #b4b9cb 18%, #ffffff);
+        --q-panel-hover: color-mix(in srgb, #b4b9cb 40%, #ffffff);
+        --q-panel-active: #0b0c10;
+        --q-panel-shadow: rgba(11, 12, 16, 0.12);
+        --q-panel-border: #b4b9cb;
+        --q-sel-bg: color-mix(in srgb, #bc8afb 30%, #ffffff);
+        --q-sel-text: #0b0c10;
+      }
       input:-webkit-autofill,
       input:-webkit-autofill:hover,
       input:-webkit-autofill:focus {
-        -webkit-text-fill-color: #b4b9cb;
-        caret-color: #b4b9cb;
-        -webkit-box-shadow: 0 0 0 1000px #0b0c10 inset;
+        -webkit-text-fill-color: var(--q-text);
+        caret-color: var(--q-text);
+        -webkit-box-shadow: 0 0 0 1000px var(--q-bg) inset;
         transition: background-color 9999s ease-out 0s;
       }
     `,
@@ -25,6 +64,13 @@ import { ContactService } from 'app/website/contact/contact.service';
 })
 export class QuoteSectionComponent implements OnInit {
   @Input() service = 'Web Development';
+  /** 'dark' (default) or 'light' colour theme. */
+  @Input() theme: 'dark' | 'light' = 'dark';
+  /** Left-side image; defaults to the web development devices mock-up. */
+  @Input() image = 'assets/images/web-form.webp';
+  @Input() imageAlt = 'Web design and development projects shown across desktop, laptop, tablet and phone';
+  @Input() imageWidth = 750;
+  @Input() imageHeight = 560;
 
   readonly bookingUrl = 'https://calendar.app.google/mezjQ2cpZyzbixNv6';
   readonly services = [

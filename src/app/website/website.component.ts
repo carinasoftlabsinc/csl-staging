@@ -359,7 +359,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
 
   clientLogo = [
     {
-      ImgSrc: '../../assets/images/client-l-1.svg',
+      ImgSrc: '../../assets/images/client-l-1.webp',
       alt: 'abacus',
     },
     {
@@ -371,19 +371,19 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
       alt: 'popil tunes',
     },
     {
-      ImgSrc: '../../assets/images/client-l-2.svg',
+      ImgSrc: '../../assets/images/client-l-2.webp',
       alt: 'surfshark',
     },
     {
-      ImgSrc: '../../assets/images/client-l-10.svg',
+      ImgSrc: '../../assets/images/client-l-10.webp',
       alt: 'e food',
     },
     {
-      ImgSrc: '../../assets/images/client-l-11.svg',
+      ImgSrc: '../../assets/images/client-l-11.webp',
       alt: 'show around',
     },
     {
-      ImgSrc: '../../assets/images/client-l-3.svg',
+      ImgSrc: '../../assets/images/client-l-3.webp',
       alt: 'skale.io',
     },
     {
@@ -395,11 +395,11 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
       alt: 'bookestan',
     },
     {
-      ImgSrc: '../../assets/images/client-l-4.svg',
+      ImgSrc: '../../assets/images/client-l-4.webp',
       alt: 'my own conference',
     },
     // {
-    //   ImgSrc: '../../assets/images/client-l-14.svg',
+    //   ImgSrc: '../../assets/images/client-l-14.webp',
     //   alt: 'arizona derby',
     // },
     {
@@ -407,49 +407,49 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
       alt: 'heaven mission',
     },
     {
-      ImgSrc: '../../assets/images/client-l-5.svg',
+      ImgSrc: '../../assets/images/client-l-5.webp',
       alt: 'macadons',
     },
     {
-      ImgSrc: '../../assets/images/client-l-16.svg',
+      ImgSrc: '../../assets/images/client-l-16.webp',
       alt: 'the little guardian',
     },
     {
-      ImgSrc: '../../assets/images/client-l-17.svg',
+      ImgSrc: '../../assets/images/client-l-17.webp',
       alt: 'the howitcher',
     },
     {
-      ImgSrc: '../../assets/images/client-l-6.svg',
+      ImgSrc: '../../assets/images/client-l-6.webp',
       alt: 'my little panda',
     },
     {
-      ImgSrc: '../../assets/images/client-l-18.svg',
+      ImgSrc: '../../assets/images/client-l-18.webp',
       alt: 'arunachal film festival',
     },
     {
-      ImgSrc: '../../assets/images/client-l-19.svg',
+      ImgSrc: '../../assets/images/client-l-19.webp',
       alt: 'livr',
     },
     {
-      ImgSrc: '../../assets/images/client-l-7.svg',
+      ImgSrc: '../../assets/images/client-l-7.webp',
       alt: 'herbal life',
     },
     {
-      ImgSrc: '../../assets/images/client-l-20.svg',
+      ImgSrc: '../../assets/images/client-l-20.webp',
       alt: 'smartivity',
     },
     {
-      ImgSrc: '../../assets/images/client-l-21.svg',
+      ImgSrc: '../../assets/images/client-l-21.webp',
       alt: 'fitbit',
     },
     {
-      ImgSrc: '../../assets/images/client-l-22.svg',
+      ImgSrc: '../../assets/images/client-l-22.webp',
       alt: 'B',
     },
 
     // repeated for infinite loop effect
     {
-      ImgSrc: '../../assets/images/client-l-1.svg',
+      ImgSrc: '../../assets/images/client-l-1.webp',
       alt: 'abacus',
     },
     {
@@ -461,19 +461,19 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
       alt: 'popil tunes',
     },
     {
-      ImgSrc: '../../assets/images/client-l-2.svg',
+      ImgSrc: '../../assets/images/client-l-2.webp',
       alt: 'surfshark',
     },
     {
-      ImgSrc: '../../assets/images/client-l-10.svg',
+      ImgSrc: '../../assets/images/client-l-10.webp',
       alt: 'e food',
     },
     {
-      ImgSrc: '../../assets/images/client-l-11.svg',
+      ImgSrc: '../../assets/images/client-l-11.webp',
       alt: 'show around',
     },
     {
-      ImgSrc: '../../assets/images/client-l-3.svg',
+      ImgSrc: '../../assets/images/client-l-3.webp',
       alt: 'skale.io',
     },
     {
@@ -485,11 +485,11 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
       alt: 'bookestan',
     },
     {
-      ImgSrc: '../../assets/images/client-l-4.svg',
+      ImgSrc: '../../assets/images/client-l-4.webp',
       alt: 'my own conference',
     },
     // {
-    //   ImgSrc: '../../assets/images/client-l-14.svg',
+    //   ImgSrc: '../../assets/images/client-l-14.webp',
     //   alt: 'arizona derby',
     // },
     {
@@ -497,43 +497,43 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
       alt: 'heaven mission',
     },
     {
-      ImgSrc: '../../assets/images/client-l-5.svg',
+      ImgSrc: '../../assets/images/client-l-5.webp',
       alt: 'macadons',
     },
     {
-      ImgSrc: '../../assets/images/client-l-16.svg',
+      ImgSrc: '../../assets/images/client-l-16.webp',
       alt: 'the little guardian',
     },
     {
-      ImgSrc: '../../assets/images/client-l-17.svg',
+      ImgSrc: '../../assets/images/client-l-17.webp',
       alt: 'the howitcher',
     },
     {
-      ImgSrc: '../../assets/images/client-l-6.svg',
+      ImgSrc: '../../assets/images/client-l-6.webp',
       alt: 'my little panda',
     },
     {
-      ImgSrc: '../../assets/images/client-l-18.svg',
+      ImgSrc: '../../assets/images/client-l-18.webp',
       alt: 'arunachal film festival',
     },
     {
-      ImgSrc: '../../assets/images/client-l-19.svg',
+      ImgSrc: '../../assets/images/client-l-19.webp',
       alt: 'livr',
     },
     {
-      ImgSrc: '../../assets/images/client-l-7.svg',
+      ImgSrc: '../../assets/images/client-l-7.webp',
       alt: 'herbal life',
     },
     {
-      ImgSrc: '../../assets/images/client-l-20.svg',
+      ImgSrc: '../../assets/images/client-l-20.webp',
       alt: 'smartivity',
     },
     {
-      ImgSrc: '../../assets/images/client-l-21.svg',
+      ImgSrc: '../../assets/images/client-l-21.webp',
       alt: 'fitbit',
     },
     {
-      ImgSrc: '../../assets/images/client-l-22.svg',
+      ImgSrc: '../../assets/images/client-l-22.webp',
       alt: 'B',
     },
   ];
@@ -549,7 +549,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       customClass: 'md:border-l-0 2xl:border-r-0',
-      imgSrc: '../../assets/images/award-5.svg',
+      imgSrc: '../../assets/images/award-5.webp',
       width: 107,
       height: 137,
       heading: "Women's Face of the Year 2023",
@@ -557,7 +557,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       customClass: '',
-      imgSrc: '../../assets/images/award-3.svg',
+      imgSrc: '../../assets/images/award-3.webp',
       width: 107,
       height: 137,
       heading: 'Women of Substance 2023',
@@ -565,7 +565,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       customClass: 'md:border-l-0 2xl:border-l 2xl:border-r-0',
-      imgSrc: '../../assets/images/award-6.svg',
+      imgSrc: '../../assets/images/award-6.webp',
       width: 107,
       height: 138,
       heading: 'CEO of the Year 2021 & 2022',
@@ -573,7 +573,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       customClass: '',
-      imgSrc: '../../assets/images/award-2.svg',
+      imgSrc: '../../assets/images/award-2.webp',
       width: 107,
       height: 137,
       heading: 'Most Innovative Tech Company',
@@ -581,7 +581,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       customClass: 'md:border-l-0',
-      imgSrc: '../../assets/images/award-1.svg',
+      imgSrc: '../../assets/images/award-1.webp',
       width: 107,
       height: 137,
       heading: 'Entrepreneur of the Year 2019',

@@ -123,21 +123,20 @@
     </div>
 
     <div
-      class="grid grid-cols-1 lg:grid-cols-2 my-8 2xl:my-16 gap-y-6 lg:gap-12 2xl:gap-20"
+      class="game-process grid grid-cols-1 lg:grid-cols-2 my-8 2xl:my-16 gap-y-6 lg:gap-12 2xl:gap-20"
       >
       <div
-        class="h-full w-full flex items-center justify-center md:justify-normal"
+        class="game-process__image w-full flex items-center justify-center md:justify-normal"
         >
 
         <img
-          class="w-11/12 h-full object-cover"
+          class="w-11/12 h-auto object-contain"
           src="../../../assets/images/game-render.png"
           alt=""
           />
         </div>
         <div
-          class="2xl:pr-20 xl:pr-16 pl-9 md:pl-[3vw] md:h-[80vh] 2xl:h-[80vh] overflow-y-scroll flex flex-col justify-start"
-          #scrollContainer
+          class="2xl:pr-20 xl:pr-16 pl-9 md:pl-[3vw] flex flex-col justify-start"
           >
           <ul class="list-disc flex flex-col gap-7 2xl:gap-9">
             @for (list of processList; track list; let i = $index) {
@@ -154,11 +153,11 @@
                 ></div>
                 <!-- h-40 sm:h-28 2xl:h-[15vh] -->
                 <div class="flex flex-col gap-2 2xl:!gap-6">
-                  <h4
+                  <h3
                     class="font-myfont text-white text-lg sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl"
                     >
                     {{ list.head }}
-                  </h4>
+                  </h3>
                   <p
                     class="font-quickSand font-medium text-[#B4B9CB] text-xs sm:text-base xl:text-sm 2xl:text-lg"
                     >
@@ -180,7 +179,7 @@
               class="absolute border-l border-dashed border-[#B4B9CB] top-5 -left-[1.35rem]"
             ></div>
             <div class="flex flex-col gap-2 2xl:gap-12">
-              <h4 class="font-myfont text-white text-2xl 2xl:text-4xl">{{ list.head }}</h4>
+              <h3 class="font-myfont text-white text-2xl 2xl:text-4xl">{{ list.head }}</h3>
               <p class="font-quickSand font-medium text-[#B4B9CB] text-xs 2xl:text-lg">
                 {{ list.desc }}
               </p>
@@ -251,9 +250,20 @@
       </div>
       <app-coverflow-slider ngSkipHydration></app-coverflow-slider>
     </section>
+  <!-- ===== Get Your Quote (shared quote-section component) ===== -->
+  <app-quote-section
+    theme="light"
+    service="Game Development"
+    image="assets/images/game-design/quote-character.png"
+    imageLayout="game-character"
+    imageClass="!w-[240px] sm:!w-[280px] lg:!w-[min(30.833vw,700px)]"
+    imageAlt="Game development consultation and project discussion"
+    [imageWidth]="486"
+    [imageHeight]="1079"
+  />
+ 
 
-
-    <section class="py-16 md:py-24 px-6 md:px-12 lg:px-20 bg-gradient-to-br from-[#1a1e2e] to-[#34394B]">
+    <!-- <section class="py-16 md:py-24 px-6 md:px-12 lg:px-20 bg-gradient-to-br from-[#1a1e2e] to-[#34394B]">
       <div class="max-w-7xl mx-auto">
         <div class="text-center mb-12">
           <p class="text-[#a78bfa] text-sm font-bold uppercase tracking-widest mb-3 font-quickSand">GET STARTED</p>
@@ -281,7 +291,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <app-footer ></app-footer>
   </main>

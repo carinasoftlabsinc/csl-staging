@@ -11,6 +11,39 @@ import { ContactService } from 'app/website/contact/contact.service';
   // and autofilled fields keep the theme colours instead of the browser's blue/grey fill.
   styles: [
     `
+      .quote-illustration {
+        display: contents;
+      }
+      .quote-game-character {
+        position: relative;
+        overflow: hidden;
+      }
+      .quote-game-character .quote-illustration {
+        display: block;
+        width: fit-content;
+        max-width: 100%;
+        margin: 0 auto;
+      }
+      .quote-game-character .quote-illustration img {
+        display: block;
+        width: 100%;
+        max-width: none;
+        height: auto;
+        margin: 0;
+        border-radius: 0;
+      }
+      @media (min-width: 1024px) {
+        .quote-game-character .quote-illustration {
+          align-self: start;
+          /* Keep the form in charge of the section height; the section's
+             bottom edge clips the character instead of leaving a white gap. */
+          height: 0;
+          margin: 0 0 0 min(3.0672vw, 58.89px);
+        }
+        .quote-game-character .quote-form {
+          grid-column: 2;
+        }
+      }
       .quote-dark {
         --q-bg: #0b0c10;
         --q-heading: #ffffff;
@@ -67,6 +100,8 @@ import { ContactService } from 'app/website/contact/contact.service';
 export class QuoteSectionComponent implements OnInit {
   /** Section title above the form. */
   @Input() heading = 'Get Your Quote';
+  /** Optional short text under the title. */
+  @Input() description = '';
   @Input() service = 'Web Development';
   /** 'dark' (default) or 'light' colour theme. */
   @Input() theme: 'dark' | 'light' = 'dark';
@@ -77,6 +112,8 @@ export class QuoteSectionComponent implements OnInit {
   @Input() imageHeight = 560;
   /** Extra CSS classes for the image, e.g. to change its size or position. */
   @Input() imageClass = '';
+  /** Optional cropped character proportions from the game quote design. */
+  @Input() imageLayout: 'default' | 'game-character' = 'default';
   /** Replaces the image with a custom block: <ng-template #left>…</ng-template> then [leftTemplate]="left". */
   @Input() leftTemplate: TemplateRef<unknown> | null = null;
 

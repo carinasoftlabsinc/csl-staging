@@ -40,14 +40,14 @@
   font-weight: 400;
 }
 .game-design__visual { position: absolute; inset: 0; pointer-events: none; }
-.game-design__visual::before {
-  content: '';
-  position: absolute;
-  left: 71.389%;
-  top: 6.642cqw;
-  height: 32.8456cqw;
-  border-left: 1px solid #b4b9cb;
-}
+// .game-design__visual::before {
+//   content: '';
+//   position: absolute;
+//   left: 71.389%;
+//   top: 6.642cqw;
+//   height: 32.8456cqw;
+//   border-left: 1px solid #b4b9cb;
+// }
 .game-design__character {
   position: absolute;
   left: 27.04%;
@@ -123,6 +123,18 @@
 }
 
 @keyframes game-service-scroll { to { transform: translateX(-50%); } }
+
+@media (min-width: 1024px) {
+  .game-process__image {
+    position: sticky;
+    top: 24px;
+    align-self: start;
+  }
+
+  .game-process__image img {
+    max-height: calc(100svh - 48px);
+  }
+}
 
 @media (max-width: 1023px) {
   .game-design__layout { height: auto; padding: 48px 32px 28px; }

@@ -58,7 +58,7 @@ export class FooterComponent {
   /** Floating contact icons fixed to the right edge. */
   readonly dock: FooterIcon[] = [
     { href: 'https://wa.me/919131958215', src: 'assets/color_whatsapp-icon.svg', alt: 'Whatsapp', width: 30, height: 30, class: '' },
-    { href: 'https://tttttt.me/CarinaSoftlabsInc', src: 'assets/color_telegram.svg', alt: 'Telegram', width: 30, height: 30, class: '' },
+    { href: 'https://t.me/CarinaSoftlabsInc', src: 'assets/color_telegram.svg', alt: 'Telegram', width: 30, height: 30, class: '' },
     {
       href: 'https://teams.microsoft.com/l/chat/0/0?users=mayank@carinasoftlabs.com',
       src: 'assets/Teams.svg',

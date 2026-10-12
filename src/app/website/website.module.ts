@@ -59,7 +59,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     WebsiteComponent,
     AboutComponent,
     HeaderComponent,
-    FooterComponent,
     ServicesComponent,
     KnowComponent,
     Know2Component,
@@ -104,6 +103,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   imports: [
     CommonModule,
+    FooterComponent,
     WebsiteRoutingModule,
     MaterialModule,
     CarouselModule,

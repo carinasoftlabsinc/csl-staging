@@ -1,73 +1,124 @@
-import {
-  Component,
-  Output,
-  EventEmitter,
-  HostListener,
-  Input,
-  ChangeDetectionStrategy,
-  Inject,
-  PLATFORM_ID,
-} from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { Router, NavigationEnd } from '@angular/router';
+import { ChangeDetectionStrategy, Component, DestroyRef, HostListener, inject, input, signal } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter } from 'rxjs';
+
+interface MenuLink {
+  label: string;
+  route: string;
+}
+
+interface MenuItem {
+  label: string;
+  /** Plain link. Leave empty when the item opens a dropdown. */
+  route?: string;
+  children?: MenuLink[];
+  /** Position of the dropdown under its trigger. */
+  dropdownClass?: string;
+}
+
+/** Below this width the menu is a full-screen overlay and the page behind it must not scroll. */
+const OVERLAY_BREAKPOINT = 1024;
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterLink],
 })
 export class HeaderComponent {
-  @Output() navToggle = new EventEmitter<boolean>();
-  isOpen = false;
-  openDropdown: number | null = null;
-  @Input() isWhiteBackground: boolean = false;
+  private readonly router = inject(Router);
+  private readonly doc = inject(DOCUMENT);
 
-  constructor(
-    private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-    // Listen to router events and reset body overflow on route change
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.resetBodyOverflow();
-      }
-    });
+  /** Use the dark logo and button on pages with a white background. */
+  readonly isWhiteBackground = input(false);
+
+  protected readonly isOpen = signal(false);
+  /** Index of the dropdown opened by click or tap. Hover also opens one on desktop. */
+  protected readonly openDropdown = signal<number | null>(null);
+
+  protected readonly menu: MenuItem[] = [
+    { label: 'Home', route: '/' },
+    {
+      label: 'Know Us',
+      dropdownClass: '-left-9 lg:left-0',
+      children: [
+        { label: 'Who We Are', route: '/know-us' },
+        { label: 'Career', route: '/careers' },
+      ],
+    },
+    {
+      label: 'What we do',
+      dropdownClass: '-left-10 lg:-left-2',
+      children: [
+        { label: 'Services', route: '/services' },
+        { label: 'Projects', route: '/portfolio' },
+      ],
+    },
+    {
+      label: 'Insights',
+      dropdownClass: '-left-10 lg:-left-6',
+      children: [
+        { label: 'Blog', route: '/blog' },
+        { label: 'Newsroom', route: '/news-room' },
+      ],
+    },
+    { label: 'Contact Us', route: '/contact-us' },
+  ];
+
+  constructor() {
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        takeUntilDestroyed()
+      )
+      .subscribe(() => this.close());
+
+    // Never leave the page locked if the header goes away while the menu is open.
+    inject(DestroyRef).onDestroy(() => this.setBodyLock(false));
   }
 
-  toggleNav() {
-    this.isOpen = !this.isOpen;
-    this.navToggle.emit(this.isOpen);
+  protected toggle(): void {
+    this.openDropdown.set(null);
+    this.isOpen.update((open) => !open);
+    this.setBodyLock(this.isOpen());
+  }
 
-    if (isPlatformBrowser(this.platformId)) {
-      if (window.innerWidth < 1024) {
-        document.body.style.overflow = this.isOpen ? 'hidden' : '';
-      } else {
-        document.body.style.overflow = '';
-      }
+  protected toggleDropdown(index: number): void {
+    this.openDropdown.update((current) => (current === index ? null : index));
+  }
+
+  @HostListener('document:keydown.escape')
+  protected onEscape(): void {
+    if (this.isOpen()) {
+      this.close();
+    } else {
+      this.openDropdown.set(null);
     }
   }
 
-  toggleDropdown(index: number) {
-    this.openDropdown = this.openDropdown === index ? null : index;
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
-    if (isPlatformBrowser(this.platformId)) {
-      if (window.innerWidth >= 1024) {
-        document.body.style.overflow = '';
-      }
+  @HostListener('window:resize')
+  protected onResize(): void {
+    if (this.viewportWidth() >= OVERLAY_BREAKPOINT) {
+      this.setBodyLock(false);
     }
   }
 
-  private resetBodyOverflow() {
-    if (isPlatformBrowser(this.platformId)) {
-      if (window.innerWidth < 1024) {
-        document.body.style.overflow = '';
-        this.isOpen = false;
-      }
-    }
+  private close(): void {
+    this.isOpen.set(false);
+    this.openDropdown.set(null);
+    this.setBodyLock(false);
+  }
+
+  private setBodyLock(locked: boolean): void {
+    const body = this.doc.body;
+    if (!body) return;
+    body.style.overflow = locked && this.viewportWidth() < OVERLAY_BREAKPOINT ? 'hidden' : '';
+  }
+
+  private viewportWidth(): number {
+    return this.doc.defaultView?.innerWidth ?? OVERLAY_BREAKPOINT;
   }
 }

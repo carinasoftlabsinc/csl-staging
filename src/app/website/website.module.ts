@@ -59,7 +59,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
   declarations: [
     WebsiteComponent,
     AboutComponent,
-    HeaderComponent,
     ServicesComponent,
     KnowComponent,
     Know2Component,
@@ -105,6 +104,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   imports: [
     CommonModule,
+    HeaderComponent,
     FooterComponent,
     WebsiteRoutingModule,
     MaterialModule,

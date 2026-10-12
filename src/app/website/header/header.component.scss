@@ -1,46 +1,13 @@
-.bg-main {
-  background-image: url("/assets/Background.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.schedule-call-btn {
-  color: #ffffff !important;
-  &:visited {
-    color: #ffffff !important;
-  }
-  &:hover {
-    color: #ffffff !important;
-  }
-
-  &.white-bg-mode {
-    color: #000000 !important;
-    &:visited {
-      color: #000000 !important;
-    }
-    &:hover {
-      color: #000000 !important;
-    }
-  }
-}
-
 .hamburger {
   cursor: pointer;
-  z-index: 100;
   position: fixed;
-  // top: 20px; /* Adjust as needed */
-  // right: 20px; /* Adjust as needed */
   z-index: 1000;
   mix-blend-mode: difference;
 }
 
-.hamburger input {
-  display: none;
-}
-
 .hamburger svg {
-  /* The size of the SVG defines the overall size */
-  height: 3em;
+  /* The size of the SVG defines the overall size (a global rule forces 14px on buttons, so em would not work) */
+  height: 39px;
   /* Define the transition for transforming the SVG */
   transition: transform 100ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -60,26 +27,31 @@
   stroke-dasharray: 12 63;
 }
 
-.hamburger input:checked + svg {
+.hamburger.is-open svg {
   transform: rotate(-45deg);
 }
 
-.hamburger input:checked + svg .line-top-bottom {
+.hamburger.is-open .line-top-bottom {
   stroke-dasharray: 20 300;
   stroke-dashoffset: -32.42;
 }
 
+// The menu slides down from above the screen. While closed it is also hidden from
+// keyboard and screen readers, so Tab never lands on links nobody can see.
 .nvv {
   position: fixed;
   top: -150%;
   left: 0;
   width: 100%;
-  transition: top 0.4s ease-in-out;
+  visibility: hidden;
+  transition: top 0.4s ease-in-out, visibility 0s linear 0.4s;
   z-index: 99;
 }
 
 .nvv.open {
   top: 0;
+  visibility: visible;
+  transition: top 0.4s ease-in-out;
 }
 
 .nvv a {
@@ -87,6 +59,12 @@
   text-align: center;
   text-decoration: none;
   color: black;
+  font-size: 18px;
+}
+
+.nvv .nav-trigger {
+  display: block;
+  text-align: center;
   font-size: 18px;
 }
 

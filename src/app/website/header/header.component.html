@@ -1,177 +1,82 @@
-<!-- <div
-  class="relative flex flex-wrap items-center justify-between p-4 !px-7 md:!px-10 2xl:!px-24 xl:!px-14"
->
-  <a
-    routerLink="/"
-    style="cursor: pointer"
-    class="flex items-center text-white mb-1 md:mb-0 flex-center"
-  >
+<!-- h-auto, bg-transparent and the two inherits undo a legacy global `header` rule (200px tall, grey, centred) from the old admin template -->
+<header class="relative flex flex-wrap items-center justify-between p-4 !px-7 md:!px-10 2xl:!px-24 xl:!px-14 h-auto bg-transparent [line-height:inherit] [text-align:inherit]">
+  <a routerLink="/" class="flex items-center text-white mb-1 md:mb-0 flex-center">
     <img
-      src="../../../assets/CSL-logo.svg"
+      [src]="isWhiteBackground() ? 'assets/images/csl-logo-white.svg' : 'assets/CSL-logo.svg'"
       class="w-48 2xl:w-80"
-      alt="Logo"
-    />
-  </a> -->
-  <div
-  class="relative flex flex-wrap items-center justify-between p-4 !px-7 md:!px-10 2xl:!px-24 xl:!px-14"
->
-  <a
-    routerLink="/"
-    style="cursor: pointer"
-    class="flex items-center text-white mb-1 md:mb-0 flex-center"
-  >
-    <img
-      [src]="isWhiteBackground ? '../../../assets/images/csl-logo-white.svg' : '../../../assets/CSL-logo.svg'"
-      class="w-48 2xl:w-80"
-      alt="Logo"
+      alt="Carina Softlabs"
+      width="305"
+      height="56"
+      fetchpriority="high"
     />
   </a>
-  <!-- <div class="flex "> -->
+
   <a
     href="https://calendar.app.google/mezjQ2cpZyzbixNv6"
     target="_blank"
     rel="noopener noreferrer"
-    type="button"
-    style="cursor: pointer"
-    class="schedule-call-btn hidden md:block px-4 py-2 md:mr-12 xl:mr-14 rounded-full border !border-[#34394B] font-quickSand 2xl:!text-[18px] xl:text-[14px] lg:!px-6 lg:!py-2 xl:!px-6 xl:!py-2.5 2xl:!px-8 2xl:!py-3 !text-white visited:!text-white hover:!text-white"
-    [class.white-bg-mode]="isWhiteBackground"
-    [ngClass]="isWhiteBackground ? '!text-black visited:!text-black' : '!text-white visited:!text-white hover:!text-white'"
+    class="hidden md:block px-4 py-2 md:mr-12 xl:mr-14 rounded-full border !border-[#34394B] font-quickSand 2xl:!text-[18px] xl:text-[14px] lg:!px-6 lg:!py-2 xl:!px-6 xl:!py-2.5 2xl:!px-8 2xl:!py-3"
+    [class]="isWhiteBackground() ? '!text-black visited:!text-black hover:!text-black' : '!text-white visited:!text-white hover:!text-white'"
   >
     Schedule a call
   </a>
 
-   <!-- <a href="#lead-form" class="mt-8 inline-flex rounded-full border border-[#20B9FA] px-7 py-3 font-quickSand font-bold text-white">Get a Free Quote</a>
-   </div> -->
-
-  <label class="hamburger right-7 md:right-10 xl:right-14 2xl:right-24">
-    <input type="checkbox" (change)="toggleNav()" />
-    <svg viewBox="0 0 32 32">
+  <button
+    type="button"
+    class="hamburger right-7 md:right-10 xl:right-14 2xl:right-24"
+    [class.is-open]="isOpen()"
+    aria-label="Menu"
+    aria-controls="menu"
+    [attr.aria-expanded]="isOpen()"
+    (click)="toggle()"
+  >
+    <svg viewBox="0 0 32 32" aria-hidden="true">
       <path
         class="line line-top-bottom"
         d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
       ></path>
       <path class="line" d="M7 16 27 16"></path>
     </svg>
-  </label>
-</div>
+  </button>
+</header>
 
 <nav
-  class="flex items-center justify-center md:gap-24 gap-10 mx-auto lg:!py-4 2xl:!py-7 bg-[#0B0C10] nvv"
-  [class.open]="isOpen"
   id="menu"
+  aria-label="Main"
+  class="flex items-center justify-center md:gap-24 gap-10 mx-auto lg:!py-4 2xl:!py-7 bg-[#0B0C10] nvv"
+  [class.open]="isOpen()"
 >
-  <div class="flex flex-col lg:flex-row font-quickSand gap-y-11">
-    <div class="relative group">
-      <a
-        routerLink="/"
-        class="hover:text-gray-400 text-white !text-lg md:!text-lg xl:!text-[1.12rem] lg:py-[15px] lg:pr-[25px]"
-        >Home</a
-      >
-    </div>
-    <div class="relative group">
-      <!-- head-arrow - class add -->
-      <a
-       
-        class="hover:text-gray-400 text-white !text-lg md:!text-lg xl:!text-[1.12rem] sepp head-arrow"  
-        >Know Us
-      </a>
-      <div
-        class="absolute -left-9 lg:left-0 hidden pt-2 group-hover:block z-10"
-      >
-        <div class="w-48 py-2 bg-[#0B0C10] shadow-lg">
-          <a
-          routerLink="/know-us"
-            class="block px-6 py-2 hover:bg-gray-700 text-white !text-lg md:!text-xl xl:!text-[1.12rem] flex-nowrap"
-            >Who We Are</a
+  <ul class="flex flex-col lg:flex-row font-quickSand gap-y-11">
+    @for (item of menu; track item.label; let i = $index; let first = $first) {
+      <li class="relative group">
+        @if (item.children; as children) {
+          <button
+            type="button"
+            class="nav-trigger w-full font-quickSand hover:text-gray-400 text-white !text-lg md:!text-lg xl:!text-[1.12rem] sepp head-arrow"
+            [attr.aria-expanded]="openDropdown() === i"
+            (click)="toggleDropdown(i)"
+            >{{ item.label }}&ngsp;</button
           >
-          <!-- <a
-            routerLink="/know3"
-            class="block px-6 py-2 hover:bg-gray-700 text-white !text-lg md:!text-xl xl:!text-[1.12rem] flex-nowrap"
-            >How We Work</a
-          >
+          <div class="absolute hidden pt-2 group-hover:block data-[open=true]:block z-10" [class]="item.dropdownClass" [attr.data-open]="openDropdown() === i">
+            <div class="w-48 py-2 bg-[#0B0C10] shadow-lg">
+              @for (child of children; track child.route) {
+                <a
+                  [routerLink]="child.route"
+                  class="block px-4 py-2 hover:bg-gray-700 text-white !text-lg md:!text-lg xl:!text-[1.12rem]"
+                  >{{ child.label }}</a
+                >
+              }
+            </div>
+          </div>
+        } @else {
           <a
-            routerLink="/know4"
-            class="block px-6 py-2 hover:bg-gray-700 text-white !text-lg md:!text-xl xl:!text-[1.12rem] flex-nowrap"
-            >What You Can Expect</a
-          > -->
-          <a
-            routerLink="/careers"
-            class="block px-1 py-2 hover:bg-gray-700 text-white !text-lg md:!text-xl xl:!text-[1.12rem]"
-            >Career</a
+            [routerLink]="item.route"
+            class="hover:text-gray-400 text-white !text-lg md:!text-lg xl:!text-[1.12rem]"
+            [class]="first ? 'lg:py-[15px] lg:pr-[25px]' : 'sepp'"
+            >{{ item.label }}</a
           >
-        </div>
-      </div>
-    </div>
-    <div class="relative group">
-      <a
-        class="hover:text-gray-400 text-white !text-lg md:!text-lg xl:!text-[1.12rem] sepp head-arrow"
-        >What we do
-      </a>
-      <div
-        class="absolute -left-10 lg:-left-2 hidden pt-2 group-hover:block z-10"
-      >
-        <div class="w-48 py-2 bg-[#0B0C10] shadow-lg">
-          <a
-            routerLink="/services"
-            class="block px-4 py-2 hover:bg-gray-700 text-white !text-lg md:!text-lg xl:!text-[1.12rem]"
-            >Services</a
-          >
-          <a
-            routerLink="/portfolio"
-            class="block px-4 py-2 hover:bg-gray-700 text-white !text-lg md:!text-xl xl:!text-[1.12rem]"
-            >Projects</a
-          >
-        </div>
-      </div>
-    </div>
-    <!-- <div class="relative group">
-      <a
-        class="hover:text-gray-400 text-white !text-lg md:!text-lg xl:!text-[1.12rem] sepp head-arrow"
-        >Case Studies
-      </a>
-      <div class="absolute left-0 hidden pt-2 group-hover:block z-10">
-        <div class="w-48 py-2 bg-[#0B0C10] shadow-lg">
-          <a
-            href=""
-            class="block px-4 py-2 hover:bg-gray-700 text-white !text-lg md:!text-xl xl:!text-[1.12rem]"
-            >Study 1</a
-          >
-          <a
-            href=""
-            class="block px-4 py-2 hover:bg-gray-700 text-white !text-lg md:!text-xl xl:!text-[1.12rem]"
-            >Study 2</a
-          >
-        </div>
-      </div>
-    </div> -->
-    <div class="relative group">
-      <a
-        class="hover:text-gray-400 text-white !text-lg md:!text-lg xl:!text-[1.12rem] sepp head-arrow"
-        >Insights
-      </a>
-      <div
-        class="absolute -left-10 lg:-left-6 hidden pt-2 group-hover:block z-10"
-      >
-        <div class="w-48 py-2 bg-[#0B0C10] shadow-lg">
-          <a
-            routerLink="/blog"
-            class="block px-4 py-2 hover:bg-gray-700 text-white !text-lg md:!text-lg xl:!text-[1.12rem]"
-            >Blog</a
-          >
-          <a
-            routerLink="/news-room"
-            class="block px-4 py-2 hover:bg-gray-700 text-white !text-lg md:!text-xl xl:!text-[1.12rem]"
-            >Newsroom</a
-          >
-        </div>
-      </div>
-    </div>
-    <div class="relative group">
-      <a
-        routerLink="/contact-us"
-        class="hover:text-gray-400 text-white !text-lg md:!text-lg xl:!text-[1.12rem] sepp"
-        >Contact Us</a
-      >
-    </div>
-  </div>
+        }
+      </li>
+    }
+  </ul>
 </nav>

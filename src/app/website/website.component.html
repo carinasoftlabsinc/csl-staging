@@ -49,7 +49,7 @@
           ></div>
           <img
             class="2xl:w-auto xl:w-56 lg:w-52 md:w-44 absolute 2xl:-top-[3px] 2xl:-left-8 xl:-left-1 xl:-top-2 lg:-left-6 lg:-top-2 md:-top-4 md:-left-5"
-            src="../../assets/images/csl-logo-2.png" width="400" height="363"
+            src="../../assets/images/csl-logo-2.png" width="400" height="363" loading="lazy" decoding="async"
             alt="logo"
             />
           </div>
@@ -80,7 +80,7 @@
               >
               @for (about of aboutus; track about) {
                 <div class="flex items-center">
-                  <img class="w-16 2xl:w-20 md:w-12" [src]="about.imgSrc" [attr.width]="about.width" [attr.height]="about.height" alt="" />
+                  <img class="w-16 2xl:w-20 md:w-12" [src]="about.imgSrc" [attr.width]="about.width" [attr.height]="about.height" loading="lazy" decoding="async" alt="" />
                   <div class="ml-2">
                     <div
                       class="text-xl 2xl:text-lg md:text-sm font-[700] font-quickSand"
@@ -106,7 +106,7 @@
                     <span class="button-container">
                       Explore Us
                       <img
-                        src="../../assets/images/small-tilt-arrow.png" width="12" height="14"
+                        src="../../assets/images/small-tilt-arrow.png" width="12" height="14" loading="lazy" decoding="async"
                         alt="Image"
                         class="button-img"
                         />
@@ -167,7 +167,7 @@
                       >
                       <img
                         class="object-top object-contain w-16"
-                        [src]="award.imgSrc" [attr.width]="award.width" [attr.height]="award.height"
+                        [src]="award.imgSrc" [attr.width]="award.width" [attr.height]="award.height" loading="lazy" decoding="async"
                         alt=""
                         />
                         <div class="ml-2 pl-2 border-l border-[#B4B9CB]">
@@ -192,7 +192,7 @@
                   >
                   <img
                     class="2xl:w-80 w-56"
-                    src="../../assets/trophy-new.svg" width="265" height="252"
+                    src="../../assets/trophy-new.svg" width="265" height="252" loading="lazy" decoding="async"
                     alt="logo"
                     />
                   </div>
@@ -220,7 +220,7 @@
                     <span class="button-container">
                       Schedule a Call
                       <img
-                        src="../../assets/images/small-tilt-arrow.png" width="12" height="14"
+                        src="../../assets/images/small-tilt-arrow.png" width="12" height="14" loading="lazy" decoding="async"
                         alt="Image"
                         class="button-img"
                         />
@@ -290,7 +290,7 @@
                                 class="absolute top-5 right-5 bg-transparent border-none p-2"
                                 >
                                 <img
-                                  src="../../assets/images/gd-arrow-btn.svg" width="62" height="62"
+                                  src="../../assets/images/gd-arrow-btn.svg" width="62" height="62" loading="lazy" decoding="async"
                                   alt="Image"
                                   class="w-10 h-10 cursor-pointer"
                                   />
@@ -343,7 +343,7 @@
                           <div class="marquee flex hover:pause-animation">
                             @for (logo of clientLogo; track logo) {
                               <div class="marquee-item m-2">
-                                <img [src]="logo.ImgSrc" width="298" height="160" [alt]="logo.alt" />
+                                <img [src]="logo.ImgSrc" width="298" height="160" loading="lazy" decoding="async" [alt]="logo.alt" />
                               </div>
                             }
                           </div>
@@ -372,8 +372,8 @@
                         <!-- Question mark and line from Figma. A grey outline with a colour copy on top: the colour fades in, then wipes away to the right, every 3 seconds. -->
                         <div class="why-outline" aria-hidden="true">
                           <div appInView class="why-outline__art">
-                            <img class="why-outline__base" src="assets/images/why-choose-outline.svg" width="2356" height="611" alt="" />
-                            <img class="why-outline__glow" src="assets/images/why-choose-outline-glow.svg" width="2356" height="611" alt="" />
+                            <img class="why-outline__base" src="assets/images/why-choose-outline.svg" width="2356" height="611" loading="lazy" decoding="async" alt="" />
+                            <img class="why-outline__glow" src="assets/images/why-choose-outline-glow.svg" width="2356" height="611" loading="lazy" decoding="async" alt="" />
                           </div>
                         </div>
                             </div>
@@ -581,7 +581,7 @@
                               <span class="button-container">
                                 More Blogs
                                 <img
-                                  src="../../assets/images/small-tilt-arrow.png" width="12" height="14"
+                                  src="../../assets/images/small-tilt-arrow.png" width="12" height="14" loading="lazy" decoding="async"
                                   alt="Image"
                                   class="button-img"
                                   />
@@ -612,7 +612,7 @@
                                     >
                                     <img
                                       class="rounded-badge h-40 w-full object-cover"
-                                      [src]="imageUrl  + card.image || 'default-image.jpg'" width="240" height="160"
+                                      [src]="imageUrl  + card.image || 'default-image.jpg'" width="240" height="160" loading="lazy" decoding="async"
                                       alt=""
                                       />
                                       <div class="flex flex-col gap-y-7">
@@ -667,7 +667,7 @@
                                       <img
                                         class="transition-transform duration-500 transform hover:scale-110 cursor-pointer h-12 2xl:h-16 object-contain"
                                         [src]="stack.imgSrc"
-                                        [width]="stack.w" height="48"
+                                        [width]="stack.w" height="48" loading="lazy" decoding="async"
                                         alt=""
                                         />
                                       </div>
@@ -710,7 +710,7 @@
                                               >
                                               <img
                                                 class="object-cover"
-                                                src="../../assets/images/client-bub-1.png" width="101" height="101"
+                                                src="../../assets/images/client-bub-1.png" width="101" height="101" loading="lazy" decoding="async"
                                                 alt=""
                                                 />
                                               </div>
@@ -726,7 +726,7 @@
                                                 >
                                                 <img
                                                   class="object-cover"
-                                                  src="../../assets/images/client-bub-2.png" width="101" height="101"
+                                                  src="../../assets/images/client-bub-2.png" width="101" height="101" loading="lazy" decoding="async"
                                                   alt=""
                                                   />
                                                 </div>
@@ -736,7 +736,7 @@
                                                   >
                                                   <img
                                                     class="object-cover"
-                                                    src="../../assets/images/client-bub-3.png" width="101" height="101"
+                                                    src="../../assets/images/client-bub-3.png" width="101" height="101" loading="lazy" decoding="async"
                                                     alt=""
                                                     />
                                                   </div>
@@ -751,7 +751,7 @@
                                                     >
                                                     <img
                                                       class="absolute -top-9 w-20 left-0 right-0 mx-auto"
-                                                      src="../../../assets/images/double-quotes.svg" width="102" height="65"
+                                                      src="../../../assets/images/double-quotes.svg" width="102" height="65" loading="lazy" decoding="async"
                                                       alt=""
                                                       />
 
@@ -775,7 +775,7 @@
                                                             >
                                                             <img
                                                               class="text-center mx-auto w-20 h-20 border-[#B4B9CB] object-cover !border-2 rounded-full"
-                                                              [src]="client.imgSrc" width="101" height="101"
+                                                              [src]="client.imgSrc" width="101" height="101" loading="lazy" decoding="async"
                                                               alt=""
                                                               />
                                                               <p class="text-black 2xl:text-lg mt-2">
@@ -795,7 +795,7 @@
                                                         >
                                                         <img
                                                           class="object-cover"
-                                                          src="../../assets/images/client-bub-4.png" width="101" height="101"
+                                                          src="../../assets/images/client-bub-4.png" width="101" height="101" loading="lazy" decoding="async"
                                                           alt=""
                                                           />
                                                         </div>
@@ -805,7 +805,7 @@
                                                           >
                                                           <img
                                                             class="object-cover"
-                                                            src="../../assets/images/client-bub-5.png" width="101" height="101"
+                                                            src="../../assets/images/client-bub-5.png" width="101" height="101" loading="lazy" decoding="async"
                                                             alt=""
                                                             />
                                                           </div>
@@ -815,7 +815,7 @@
                                                             >
                                                             <img
                                                               class="object-cover"
-                                                              src="../../assets/images/client-bub-6.png" width="101" height="101"
+                                                              src="../../assets/images/client-bub-6.png" width="101" height="101" loading="lazy" decoding="async"
                                                               alt=""
                                                               />
                                                             </div>

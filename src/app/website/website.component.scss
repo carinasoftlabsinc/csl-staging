@@ -1717,3 +1717,61 @@ a.control_next {
 }
 
 // dynamic testimonial
+
+// "Why Choose" section: the Figma question mark and line. In the design the artwork keeps its own size
+// (2356 x 611 px, so it runs past the 1920 card and is clipped), starts 91px left of the card and sits 85px below the top.
+// Everything is a share of the section width, so it scales evenly and is never squeezed.
+.why-outline {
+  position: absolute;
+  top: 0;
+  left: -4.73%;
+  width: 122.7%;
+  padding-top: 4.43%;
+  pointer-events: none;
+}
+
+.why-outline__art {
+  position: relative;
+  aspect-ratio: 2355.7 / 611.3;
+}
+
+.why-outline__base,
+.why-outline__glow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+// 3 s loop from the prototype (linear): colour fades in for 1.5 s, then wipes away left to right for 1.5 s, then jumps back.
+.why-outline__glow {
+  opacity: 0;
+  animation: why-outline-glow 3s linear infinite;
+  animation-play-state: paused;
+}
+
+.why-outline__art.is-visible .why-outline__glow {
+  animation-play-state: running;
+}
+
+@keyframes why-outline-glow {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 0 0 0);
+  }
+  50% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .why-outline__glow {
+    animation: none;
+  }
+}

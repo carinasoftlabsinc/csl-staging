@@ -11,42 +11,15 @@
 
 <!-- ===== Hero ===== -->
 <ng-template #hero>
-  <div class="digital-marketing">
-    <app-header></app-header>
-    <section
-      class="body-font flex items-center justify-center min-h-[calc(100vh-86.52px)] xl:min-h-[calc(100vh-90.33px)] 2xl:min-h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
-      >
-      <div>
-        <div
-          class="flex flex-col-reverse lg:flex-row items-center gap-y-[3vh] lg:px-3 w-full mx-auto max-lg:max-w-[min(100%,72vh)] lg:max-w-5xl 2xl:max-w-[76vw]"
-          >
-          <div
-            class="w-full lg:w-1/2 md:py-8 text-left font-medium text-[#B4B9CB] overflow-visible z-10 flex flex-col justify-center items-start gap-7 2xl:gap-10"
-            >
-            <h1 class="font-myfont z-10 text-white">
-              <span
-                class="block text-[#B1DF4F] text-[clamp(1.875rem,6.2vw,7.45rem)] md:max-lg:text-[7vw] lg:max-xl:text-[5.8vw] leading-none font-extrabold font-mont -mb-[0.2em]">DIGITAL</span>&ngsp;<span
-                class="block text-[clamp(2.25rem,8.24vw,9.9rem)] md:max-lg:text-[9.4vw] lg:max-xl:text-[7.5vw] leading-none">MARKETING</span>
-            </h1>
-
-            <p
-              class="text-white md:max-lg:text-xl lg:text-lg xl:text-xl 2xl:text-2xl 2xl:!leading-6 font-light font-quickSand !leading-5 w-11/12"
-              >
-              We Help Service Trades Just Like Yours with the Online Tools and
-              Expertise. Partner with a Canadian marketing company that is
-              invested in your growth.
-            </p>
-
-            <button appGradientButton>Get Started</button>
-          </div>
-
-          <div class="w-full lg:w-1/2 md:py-8">
-            <img src="../../../assets/images/Digital-marketing.png" alt="Marketer reviewing website analytics on a laptop" width="717" height="553" fetchpriority="high" class="w-full h-auto" />
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+  <app-service-hero
+    accent="DIGITAL"
+    headline="MARKETING"
+    description="We Help Service Trades Just Like Yours with the Online Tools and Expertise. Partner with a Canadian marketing company that is invested in your growth."
+    imageSrc="assets/images/Digital-marketing.png"
+    imageAlt="Marketer reviewing website analytics on a laptop"
+    [imageWidth]="717"
+    [imageHeight]="553"
+  />
 </ng-template>
 
 <!-- ===== Our Service ===== -->

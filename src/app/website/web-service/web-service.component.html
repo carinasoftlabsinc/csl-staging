@@ -1,34 +1,14 @@
 <main class="bg-[#0B0C10]">
-  <div class="web-dev">
-    <app-header></app-header>
-    <section
-      class="body-font flex items-center justify-center h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10">
-      <div>
-        <div class="flex flex-col-reverse md:flex-row items-center gap-y-[3vh] lg:px-3 w-full max-w-5xl 2xl:max-w-[76vw]">
-          <div
-            class="md:w-1/2 md:py-8 text-left font-medium text-[#B4B9CB] overflow-visible z-10 flex flex-col justify-center items-start gap-7 2xl:gap-10">
-            <h1 class="font-myfont z-10 text-white">
-              <span
-                class="block text-[#B1DF4F] text-[clamp(1.875rem,6.2vw,7.45rem)] md:max-lg:text-[5.2vw] leading-none font-extrabold font-mont -mb-[0.2em]">WEB</span>&ngsp;<span
-                class="block text-[clamp(2.25rem,8.24vw,9.9rem)] md:max-lg:text-[6.4vw] leading-none">DEVELOPMENT</span>
-            </h1>
-
-            <p class="text-white md:text-lg xl:text-xl 2xl:text-2xl  2xl:!leading-6 font-light font-quickSand !leading-5 w-11/12">
-              We Help Service Trades Just Like Yours with the Online Tools and
-              Expertise. Partner with a Canadian marketing company that is
-              invested in your growth.
-            </p>
-
-            <button appGradientButton>Get Started</button>
-          </div>
-
-          <div class="w-full md:w-1/2 md:py-8">
-            <img src="../../../assets/images/web-hero.png" alt="Web development workspace with a laptop and desktop showing a responsive website" width="717" height="554" fetchpriority="high" class="w-full h-auto" />
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+  <app-service-hero
+    accent="WEB"
+    headline="DEVELOPMENT"
+    description="We Help Service Trades Just Like Yours with the Online Tools and Expertise. Partner with a Canadian marketing company that is invested in your growth."
+    imageSrc="assets/images/web-hero.png"
+    imageAlt="Web development workspace with a laptop and desktop showing a responsive website"
+    [imageWidth]="717"
+    [imageHeight]="554"
+    background="#0B0C10 url(assets/images/web-heroBG.png) no-repeat center / cover"
+  />
 
   <section class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 pb-16 md:pb-24 lg:pb-32 2xl:pb-40 bg-white rounded-[50px] web-compbg ">
 

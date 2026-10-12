@@ -29,6 +29,7 @@ import { GetinformComponent } from './components/getinform/getinform.component';
 import { QuoteSectionComponent } from './components/quote-section/quote-section.component';
 import { FormDropdownComponent } from './components/form-dropdown/form-dropdown.component';
 import { GradientButtonComponent } from './components/gradient-button/gradient-button.component';
+import { ServiceHeroComponent } from './components/service-hero/service-hero.component';
 import { ModalFormComponent } from '@shared/components/modal-form/modal-form.component';
 import { NotificationComponent } from '@shared/components/notification/notification.component';
 import { Service2Component } from './service2/service2.component';
@@ -78,6 +79,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     QuoteSectionComponent,
     FormDropdownComponent,
     GradientButtonComponent,
+    ServiceHeroComponent,
     ModalFormComponent,
     NotificationComponent,
     Service2Component,

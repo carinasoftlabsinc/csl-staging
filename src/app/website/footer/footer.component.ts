@@ -84,7 +84,7 @@ export class FooterComponent {
     { href: 'https://www.facebook.com/CarinaSoftLabsInc/', src: 'assets/images/facebook-black-logo.svg', alt: 'Carina Softlabs on Facebook', width: 29, height: 30, class: 'w-8 h-8' },
     { href: 'https://in.linkedin.com/company/carinasoftlabsinc', src: 'assets/images/linkedin-black-logo.svg', alt: 'Carina Softlabs on LinkedIn', width: 30, height: 30, class: 'w-9 h-9' },
     { href: 'https://twitter.com/carinasoftlabs', src: 'assets/images/twitter-black-logo.svg', alt: 'Carina Softlabs on X (Twitter)', width: 30, height: 30, class: 'w-9 h-9' },
-    { href: 'https://www.artstation.com/carinasoftlabsinc', src: 'assets/images/art-1.png', alt: 'Carina Softlabs on ArtStation', width: 225, height: 225, class: 'w-8 h-8 bg-white', onWhite: true },
+    { href: 'https://www.artstation.com/carinasoftlabsinc', src: 'assets/images/art-1.webp', alt: 'Carina Softlabs on ArtStation', width: 225, height: 225, class: 'w-8 h-8 bg-white', onWhite: true },
     { href: 'https://www.youtube.com/@CarinaSoftlabs', src: 'assets/images/Youtube-black-logo.svg', alt: 'Carina Softlabs on YouTube', width: 33, height: 32, class: 'w-10 h-10 bg-white', onWhite: true },
   ];
 

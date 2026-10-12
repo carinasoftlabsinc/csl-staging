@@ -89,7 +89,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
   clients = [
     {
       name: 'Arunanchal Film Festival',
-      imgSrc: '../../assets/images/client-bub-1.png',
+      imgSrc: '../../assets/images/client-bub-1.webp',
       feedback:
         'The website is really good. Thanks, Carina for making this event successful.',
       feedbackClass: 'quote-text-1 show',
@@ -97,7 +97,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     // {
     //   name: 'Arizona Derby',
-    //   imgSrc: '../../assets/images/client-bub-2.png',
+    //   imgSrc: '../../assets/images/client-bub-2.webp',
     //   feedback:
     //     'I am really happy with the performance of Team Carina. The game is exactly the same, what I wanted.',
     //   feedbackClass: 'quote-text-3 hide-top',
@@ -105,7 +105,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     // },
     {
       name: 'Peniel Global General Consulting Inc.',
-      imgSrc: '../../assets/images/client-bub-2.png',
+      imgSrc: '../../assets/images/client-bub-2.webp',
       feedback:
         'Creating Heaven Missions was an enriching experience. It allowed us to bring Christian teachings to life through engaging gameplay and thoughtful design',
       feedbackClass: 'quote-text-3 hide-top',
@@ -113,7 +113,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       name: 'Space M',
-      imgSrc: '../../assets/images/client-bub-3.png',
+      imgSrc: '../../assets/images/client-bub-3.webp',
       feedback:
         'The Teamwork is good. fastest service I got both the applications and website in just 5 months.',
       feedbackClass: 'quote-text-4 hide-bottom',
@@ -121,7 +121,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       name: 'Ballegro - Your Pocket Pianist',
-      imgSrc: '../../assets/images/client-bub-4.png',
+      imgSrc: '../../assets/images/client-bub-4.webp',
       feedback:
         "Carina teamwork is incredible and amazing. It's good to work with them",
       feedbackClass: 'quote-text-5 hide-top',
@@ -129,7 +129,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       name: 'Bravo - Tip or Pay',
-      imgSrc: '../../assets/images/client-bub-5.png',
+      imgSrc: '../../assets/images/client-bub-5.webp',
       feedback:
         'The Website and Application seems perfectly done. I will surely recommend them to others.',
       feedbackClass: 'quote-text-6 hide-top',
@@ -137,7 +137,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       name: 'E-Food',
-      imgSrc: '../../assets/images/client-bub-6.png',
+      imgSrc: '../../assets/images/client-bub-6.webp',
       feedback:
         'Carina has always been the most trustworthy company for me. I got all the applications on time. Very reliable, fastest delivery and very humble team.',
       feedbackClass: 'quote-text-7  hide-top',
@@ -591,42 +591,42 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
 
   aboutus = [
     {
-      imgSrc: '../../assets/images/lg-1.png',
+      imgSrc: '../../assets/images/lg-1.webp',
       width: 80,
       height: 87,
       heading: 'Industry Exposure',
       desc: '12+ years in the industry',
     },
     {
-      imgSrc: '../../assets/images/lg-2.png',
+      imgSrc: '../../assets/images/lg-2.webp',
       width: 91,
       height: 90,
       heading: 'Customised Solutions',
       desc: 'Tailored to your needs',
     },
     {
-      imgSrc: '../../assets/images/lg-3.png',
+      imgSrc: '../../assets/images/lg-3.webp',
       width: 85,
       height: 88,
       heading: 'Technology Experts',
       desc: 'Cutting-edge tech Proficient',
     },
     {
-      imgSrc: '../../assets/images/lg-4.png',
+      imgSrc: '../../assets/images/lg-4.webp',
       width: 89,
       height: 88,
       heading: 'Comprehensive Support',
       desc: 'Every step of the way',
     },
     {
-      imgSrc: '../../assets/images/lg-5.png',
+      imgSrc: '../../assets/images/lg-5.webp',
       width: 78,
       height: 78,
       heading: 'On-Time Delivery',
       desc: 'Guaranteed project completion',
     },
     {
-      imgSrc: '../../assets/images/lg-6.png',
+      imgSrc: '../../assets/images/lg-6.webp',
       width: 81,
       height: 80,
       heading: 'Proven Success',
@@ -635,18 +635,18 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
   ];
 
   techStack = [
-    { imgSrc: '../../assets/images/logo1st.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-2.png', w: '150' },
-    { imgSrc: '../../assets/images/meen.png', w: '160' },
-    { imgSrc: '../../assets/images/logo-4.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-3.png', w: '150' },
-    { imgSrc: '../../assets/images/mean.png', w: '160' },
-    { imgSrc: '../../assets/images/logo-7.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-8.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-9.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-10.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-11.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-12.png', w: '150' },
+    { imgSrc: '../../assets/images/logo1st.webp', w: '150' },
+    { imgSrc: '../../assets/images/logo-2.webp', w: '150' },
+    { imgSrc: '../../assets/images/meen.webp', w: '160' },
+    { imgSrc: '../../assets/images/logo-4.webp', w: '150' },
+    { imgSrc: '../../assets/images/logo-3.webp', w: '150' },
+    { imgSrc: '../../assets/images/mean.webp', w: '160' },
+    { imgSrc: '../../assets/images/logo-7.webp', w: '150' },
+    { imgSrc: '../../assets/images/logo-8.webp', w: '150' },
+    { imgSrc: '../../assets/images/logo-9.webp', w: '150' },
+    { imgSrc: '../../assets/images/logo-10.webp', w: '150' },
+    { imgSrc: '../../assets/images/logo-11.webp', w: '150' },
+    { imgSrc: '../../assets/images/logo-12.webp', w: '150' },
   ];
 
   hoverGif = [

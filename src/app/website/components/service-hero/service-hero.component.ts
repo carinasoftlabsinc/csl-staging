@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
  *     accent="WEB"
  *     headline="DEVELOPMENT"
  *     description="..."
- *     imageSrc="assets/images/web-hero.png"
+ *     imageSrc="assets/images/web-hero.webp"
  *     imageAlt="..."
  *     [imageWidth]="717"
  *     [imageHeight]="554"

@@ -64,7 +64,7 @@ export class FooterComponent {
       src: 'assets/Teams.svg',
       alt: 'Microsoft Teams',
       width: 30,
-      height: 30,
+      height: 32,
       class: '',
     },
   ];

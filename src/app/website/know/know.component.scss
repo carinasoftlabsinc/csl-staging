@@ -22,6 +22,24 @@
   transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.client-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+  margin-top: 1.25rem;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  // Dark fill with the brand gradient as the ring (the gradient sits in the border-box).
+  background: linear-gradient(#11141b, #11141b) padding-box, linear-gradient(to bottom, #f21df5, #20b9fa) border-box;
+  color: #fff;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
 .client-card .client-name {
   transition: color 0.3s ease;
 }

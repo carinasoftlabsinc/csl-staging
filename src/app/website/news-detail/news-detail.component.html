@@ -20,17 +20,15 @@
             </h1>
             <img
               class="w-full rounded-3xl h-72 2xl:h-[35vh] object-cover"
-              [src]="imageUrl + $safeNavigationMigration(cardData?.image)"
-              alt=""
-              />
+              [src]="cardData?.image ? imageUrl + cardData?.image : fallbackImage" (error)="onCoverError($event)"
+              alt="" width="1104" height="430" fetchpriority="high" />
               <div
                 class="flex font-quickSand font-semibold gap-3 items-center border-b pb-6 border-[#34394B]"
                 >
                 <img
                   class="h-12 w-12 object-cover rounded-full"
                   src="../../../assets/images/author-image.webp"
-                  [alt]="$safeNavigationMigration(cardData?.title)"
-                  />
+                  [alt]="$safeNavigationMigration(cardData?.title)" width="512" height="512" loading="lazy" decoding="async" />
                   <div class="xl:text-base 2xl:text-lg">
                     <h4 class="capitalize">
                       <span class="text-slate-400">By </span>{{ cardData?.author }}
@@ -95,9 +93,8 @@
                         >
                         <img
                           class="h-20 w-36 object-cover rounded-xl"
-                          [src]="imageUrl + news.image_2"
-                          alt=""
-                          />
+                          [src]="news.image_2 ? imageUrl + news.image_2 : fallbackImage" (error)="onCoverError($event)"
+                          alt="" width="394" height="374" loading="lazy" decoding="async" />
                           <div class="font-quickSand">
                             <p
                               class="font-semibold text-xs mb-0.5 xl:!text-lg 2xl:!text-xl"

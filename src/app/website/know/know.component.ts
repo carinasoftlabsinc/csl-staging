@@ -230,6 +230,14 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
     this.activeItem = item;
   }
 
+  /** Up to two initials for the client avatar, e.g. "Space M" -> "SM", "E-Food" -> "EF", "Ballegro - …" -> "BA". */
+  initials(name: string): string {
+    const words = name.split(' - ')[0].split(/[\s-]+/).filter(Boolean);
+    // A single word ("Ballegro") gets its first two letters; otherwise the first letter of the first two words.
+    const letters = words.length === 1 ? words[0].slice(0, 2) : words.slice(0, 2).map((word) => word[0]).join('');
+    return letters.toUpperCase();
+  }
+
   prevSlide(slider: number): void {
     if (slider === 1) {
       this.slider1?.prev();
@@ -437,38 +445,32 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
   // clients content
   clients = [
     {
-      imageSrc: '../../assets/images/client-bub-1.webp',
       clientName: 'Arunanchal Film Festival',
       description:
         'The website is really good. Thanks, Carina for making this event successful.',
     },
     // {
-    //   imageSrc: '../../assets/images/client-bub-2.webp',
-    //   clientName: 'Arizona Derby',
+    //    //   clientName: 'Arizona Derby',
     //   description:
     //     'I am really happy with the performance of Team Carina. The game is exactly the same, what I wanted.',
     // },
   
     {
-      imageSrc: '../../assets/images/client-bub-3.webp',
       clientName: 'Space M',
       description:
         'The Teamwork is good. fastest service I got both the applications and website in just 5 months.',
     },
     {
-      imageSrc: '../../assets/images/client-bub-4.webp',
       clientName: 'Ballegro - Your Pocket Pianist',
       description:
         "Carina teamwork is incredible and amazing. It's good to work with them",
     },
     {
-      imageSrc: '../../assets/images/client-bub-5.webp',
       clientName: 'Bravo - Tip or Pay',
       description:
         'The Website and Application seems perfectly done. I will surely recommend them to others.',
     },
     {
-      imageSrc: '../../assets/images/client-bub-6.webp',
       clientName: 'E-Food',
       description:
         'Carina has always been the most trustworthy company for me. I got all the applications on time. Very reliable, fastest delivery and very humble team.',

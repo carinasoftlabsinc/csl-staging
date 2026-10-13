@@ -32,9 +32,9 @@ export class CaseStudiesComponent implements OnInit {
   loading = true;
   isNotFound = false;
   caseGoals = [
-    { image: 'assets/case-goal-1.png', alt: 'Goal 1', text: 'Lorem ipsum dolor sit amet.' },
-    { image: 'assets/case-goal-2.png', alt: 'Goal 2', text: 'Lorem ipsum dolor sit amet.' },
-    { image: 'assets/case-goal-3.png', alt: 'Goal 3', text: 'Lorem ipsum dolor sit amet.' },
+    { image: 'assets/case-goal-1.png', alt: '', text: 'Understand the vision.' },
+    { image: 'assets/case-goal-2.png', alt: '', text: 'Design a clear experience.' },
+    { image: 'assets/case-goal-3.png', alt: '', text: 'Deliver reliable results.' },
   ];
 
   constructor(

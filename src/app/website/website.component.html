@@ -582,7 +582,7 @@
                                     >
                                     <img
                                       class="rounded-badge h-40 w-full object-cover"
-                                      [src]="imageUrl  + card.image || 'default-image.jpg'" width="240" height="160" loading="lazy" decoding="async"
+                                      [src]="card.image ? imageUrl + card.image : fallbackImage" (error)="onCoverError($event)" width="240" height="160" loading="lazy" decoding="async"
                                       alt=""
                                       />
                                       <div class="flex flex-col gap-y-7">

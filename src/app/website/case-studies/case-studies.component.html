@@ -621,16 +621,17 @@
                           <app-bubble-card></app-bubble-card>
                         </section>
 
-                        <section
-                          class="relative px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px] pb-16 md:pb-24 lg:pb-36 2xl:pb-44 mb-12 lg:mb-12 2xl:mb-20"
-                          >
-                          <h2
-                            class="text-black text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#B4B9CB]"
-                            >
-                            Application Process
-                          </h2>
-                          <app-getinform></app-getinform>
-                        </section>
+                        <ng-template #quoteLeft>
+                          <p class="font-myfont uppercase text-[color:#0B0C10] leading-[0.945] text-[clamp(3rem,16vw,7rem)] lg:text-[7.4vw] xl:text-[8.4vw] 2xl:text-[clamp(3rem,9.48vw,11.375rem)]">
+                            Let’s <span class="block pl-[0.8em]">get in </span>touch
+                          </p>
+                        </ng-template>
+                        <app-quote-section
+                          theme="light"
+                          heading="Application Process"
+                          service=""
+                          [leftTemplate]="quoteLeft"
+                        />
   }
 
                         <app-footer

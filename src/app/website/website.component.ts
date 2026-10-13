@@ -42,6 +42,16 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
   blogCards: any[] = [];
   loadingBlog = true;
   imageUrl = environment.imageBaseUrl;
+  /** Shown when a post has no cover image or the file cannot be loaded. */
+  readonly fallbackImage = 'assets/images/og/og-default.png';
+
+  onCoverError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    // Swap once, so a missing fallback cannot trigger an endless error loop.
+    if (!img.src.endsWith(this.fallbackImage)) {
+      img.src = this.fallbackImage;
+    }
+  }
   // Counter starts
   @ViewChild('counterSection', { static: true }) counterSection!: ElementRef;
 

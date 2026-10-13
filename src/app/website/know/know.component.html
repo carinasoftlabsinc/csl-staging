@@ -483,11 +483,7 @@
                                 <div
                                   class="client-card w-72 h-96 flex-shrink-0 flex flex-col p-3 items-center rounded-3xl"
                                   >
-                                  <img
-                                    class="h-20 w-20 rounded-full mt-5"
-                                    [src]="client.imageSrc"
-                                    alt="" width="101" height="101" loading="lazy" decoding="async"
-                                    />
+                                  <span class="client-avatar" aria-hidden="true">{{ initials(client.clientName) }}</span>
                                     <p class="client-name text-white font-quickSand text-2xl mt-8 uppercase text-center font-medium">
                                       {{ client.clientName }}
                                     </p>

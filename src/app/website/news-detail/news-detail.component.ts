@@ -40,6 +40,16 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
   isNotFound = false;
   allNews: any[] = [];
   imageUrl = environment.imageBaseUrl;
+  /** Shown when a post has no cover image or the file cannot be loaded. */
+  readonly fallbackImage = 'assets/images/og/og-default.png';
+
+  onCoverError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    // Swap once, so a missing fallback cannot trigger an endless error loop.
+    if (!img.src.endsWith(this.fallbackImage)) {
+      img.src = this.fallbackImage;
+    }
+  }
   isWhiteBackground = true;
   isModalOpen = false;
   formData = { email: '' };

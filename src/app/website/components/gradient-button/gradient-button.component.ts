@@ -11,7 +11,6 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
   selector: 'a[appGradientButton], button[appGradientButton]',
   template: '<ng-content />',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class GradientButtonComponent {
   /** outline: dark fill (default) · soft: slate fill for dark cards · light: white fill and dark text for light sections. */
@@ -19,7 +18,7 @@ export class GradientButtonComponent {
   @Input() size: 'md' | 'lg' = 'lg';
 
   private static readonly base =
-    'inline-flex items-center justify-center gap-2 rounded-full border-2 border-transparent font-quickSand font-medium text-white ' +
+    'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border-2 border-transparent font-quickSand font-medium text-white ' +
     'transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7]';
 
   // The fill sits in the padding-box and the gradient in the border-box, so the border blends smoothly (no hard seam).

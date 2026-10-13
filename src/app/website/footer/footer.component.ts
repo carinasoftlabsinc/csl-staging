@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, PLATFORM_ID, inject, input } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { GradientButtonComponent } from '../components/gradient-button/gradient-button.component';
 
 interface FooterLink {
   label: string;
@@ -33,7 +34,7 @@ interface FooterOffice {
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink],
+  imports: [RouterLink, GradientButtonComponent],
 })
 export class FooterComponent {
   private readonly platformId = inject(PLATFORM_ID);

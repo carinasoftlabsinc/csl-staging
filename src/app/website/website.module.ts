@@ -78,7 +78,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     GetinformComponent,
     QuoteSectionComponent,
     FormDropdownComponent,
-    GradientButtonComponent,
     ServiceHeroComponent,
     ModalFormComponent,
     NotificationComponent,
@@ -106,6 +105,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   imports: [
     CommonModule,
     InViewDirective,
+    GradientButtonComponent,
     HeaderComponent,
     FooterComponent,
     WebsiteRoutingModule,

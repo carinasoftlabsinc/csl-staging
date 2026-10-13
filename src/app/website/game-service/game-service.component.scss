@@ -1,3 +1,60 @@
+.game-technologies {
+  padding: clamp(64px, 8.646vw, 166px) clamp(28px, 6.4844vw, 124.5px);
+  background: #0b0c10;
+}
+.game-technologies__content { max-width: 1671px; margin: 0 auto; }
+.game-technologies__title {
+  margin: 0;
+  padding-bottom: clamp(20px, 1.77vw, 34px);
+  border-bottom: 1px solid #34394b;
+  color: #fff;
+  font: 400 clamp(30px, 2.8646vw, 55px) / .988 'MyFont', sans-serif;
+  text-transform: uppercase;
+}
+.game-technologies__description {
+  max-width: 710px;
+  width: 43%;
+  margin: clamp(20px, 1.6146vw, 31px) 0 0;
+  color: #b4b9cb;
+  font: 500 clamp(15px, 1.1458vw, 22px) / 1.545 'QuickSand', sans-serif;
+}
+.game-technologies__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 4.218fr);
+  gap: clamp(16px, 1.3542vw, 26px);
+  align-items: stretch;
+  margin-top: clamp(32px, 3.3333vw, 64px);
+}
+.game-technologies__character { position: relative; min-width: 0; overflow: hidden; border-radius: clamp(20px, 1.3542vw, 26px); }
+.game-technologies__character img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
+.game-technologies__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.3542vw, 26px); min-width: 0; }
+.game-technologies__tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 312 / 140;
+  min-width: 0;
+  padding: 12px;
+  border-radius: clamp(16px, 1.3542vw, 26px);
+  background: #34394b80;
+}
+.game-technologies__tile img { width: auto; max-width: 72%; height: 60%; object-fit: contain; transition: transform .3s ease; }
+@media (hover: hover) { .game-technologies__tile:hover img { transform: scale(1.08); } }
+@media (min-width: 600px) and (max-width: 1023px) {
+  .game-technologies__description { width: min(100%, 710px); }
+  .game-technologies__layout { grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); }
+  .game-technologies__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 599px) {
+  .game-technologies { padding: 56px 24px; }
+  .game-technologies__title { line-height: 1.1; }
+  .game-technologies__description { width: 100%; font-size: 16px; }
+  .game-technologies__layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .game-technologies__character { width: min(100%, 240px); aspect-ratio: 2 / 3; margin: 0 auto; }
+  .game-technologies__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { .game-technologies__tile img { transition: none; } }
+
 .game-design {
   container-type: inline-size;
   position: relative;

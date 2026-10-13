@@ -109,7 +109,7 @@
   <app-gaming-slider></app-gaming-slider>
 </section>
 
-<section class="px-7 md:px-10 2xl:p-24 xl:px-14 pt-10 md:py-10">
+<section class="px-7 md:px-10 2xl:p-24 xl:px-14 pt-10 md:py-10 bg-[#3B393B] rounded-[40px] 2xl:rounded-[50px]">
   <div class="mt-10 pb-2 border-b border-[#34394b]">
     <span
       class="font-myfont text-base sm:text-xl lg:text-3xl 2xl:text-5xl text-white"
@@ -131,7 +131,7 @@
 
         <img
           class="w-11/12 h-auto object-contain"
-          src="../../../assets/images/game-render.png"
+          src="../../../assets/images/game-service-character.gif"
           alt=""
           />
         </div>
@@ -190,53 +190,27 @@
     </div>
   </section>
 
-  <!-- Technologies  -->
-  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10">
-    <div
-      class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
-      >
-      <h2
-        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-        >
-        Technologies we work with
-      </h2>
-    </div>
-
-    <div class="xl:pt-20 pt-4">
-      <p
-        class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-lg 2xl:text-2xl 2xl:leading-9 text-[#B4B9CB]"
-        >
-        Our employees are at the heart of our company. Here’s what they
-        <br class="hidden md:block" />
-        have to say about working at Mixmax.
+  <!-- Technologies -->
+  <section class="game-technologies" aria-labelledby="game-technologies-title">
+    <div class="game-technologies__content">
+      <h2 id="game-technologies-title" class="game-technologies__title">Technologies we work with</h2>
+      <p class="game-technologies__description">
+        We leverage cutting-edge technologies like Unity, Unreal Engine, Maya, Blender, and other AI-driven tools to create immersive and high-performance games across multiple platforms.
       </p>
-    </div>
-
-    <div
-      class="flex flex-row-reverse mt-6 md:mt-10 lg:py-20 py-5 md:justify-center lg:justify-start"
-      >
-      <div
-        class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-5 2xl:gap-6 items-center"
-        >
-        @for (stack of techStack; track stack) {
-          <div class="">
-            <div
-              class="py-4 px-7 xl:px-9 xl:!py-7 2xl:!py-10 2xl:px-20 bg-[#34394B]/50 rounded-[26px]"
-              >
-              <img
-                class="transition-transform duration-500 transform hover:scale-110 cursor-pointer h-12 2xl:h-16 object-contain"
-                [src]="stack.imgSrc"
-                [width]="stack.w"
-                alt=""
-                />
-              </div>
+      <div class="game-technologies__layout">
+        <div class="game-technologies__character">
+          <img src="assets/images/brick.gif" alt="Animated game character holding a brick and trowel" width="480" height="854" loading="lazy" decoding="async" />
+        </div>
+        <div class="game-technologies__grid">
+          @for (stack of techStack; track stack.imgSrc) {
+            <div class="game-technologies__tile">
+              <img [src]="stack.imgSrc" [attr.width]="stack.w" alt="" loading="lazy" decoding="async" />
             </div>
           }
         </div>
       </div>
-    </section>
-
-
+    </div>
+  </section>
     <!-- Case Studies & Testimonials  -->
     <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10">
       <div

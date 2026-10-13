@@ -96,9 +96,20 @@ app.get('/sitemap.xml', async (_req, res, next) => {
  */
 app.use(
   express.static(browserDistFolder, {
+    // Hashed JS/CSS, images and fonts keep a long cache lifetime.
     maxAge: '1y',
     index: 'index.html',
     redirect: false,
+    setHeaders: (res, filePath) => {
+      if (/\.html?$/i.test(filePath)) {
+        // HTML pages (including the prerendered homepage) are always revalidated, so updated titles, meta tags
+        // and canonical links reach visitors straight away. The ETag keeps revalidation cheap (304).
+        res.setHeader('Cache-Control', 'no-cache');
+      } else if (/\.(txt|xml)$/i.test(filePath)) {
+        // robots.txt and similar files are edited without changing the filename, so they must not be cached for a year.
+        res.setHeader('Cache-Control', 'public, max-age=300');
+      }
+    },
   }),
 );
 
@@ -106,6 +117,8 @@ app.use(
  * Handle all other requests by rendering the Angular application.
  */
 app.use((req, res, next) => {
+  // Rendered pages are HTML too: always revalidate (a response that sets its own Cache-Control wins).
+  res.setHeader('Cache-Control', 'no-cache');
   angularApp
     .handle(req)
     .then((response) =>

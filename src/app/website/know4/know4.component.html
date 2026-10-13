@@ -56,7 +56,7 @@
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 my-14 md:my-24 gap-7">
-    <img src="../../../assets/images/employee group photo.webp" alt="" />
+    <img src="../../../assets/images/employee group photo.webp" alt="Carina Softlabs team group photo" width="969" height="657" loading="lazy" decoding="async" />
     <div
       class="text-black font-quickSand flex flex-col justify-center gap-3.5"
       >
@@ -183,7 +183,7 @@
               @if (activeImage) {
                 <img
                   [src]="activeImage"
-                  alt="Active Image"
+                  alt="" width="448" height="447" loading="lazy" decoding="async"
                   class="w-72 2xl:w-96 object-cover"
                   />
               }
@@ -202,267 +202,104 @@
           </div>
         </section>
 
-        <!-- <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
-        <div
-          class="flex justify-between items-center content-center my-10 pb-2 border-b border-[#34394b]"
-          >
-          <h2
-            class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white font-myfont mb-4"
-            >
-            OPEN POSITION
-          </h2>
+        <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]" aria-labelledby="open-positions-title">
+      <div class="flex flex-col gap-5 md:flex-row md:justify-between md:items-center mt-10 pb-4 border-b border-[#34394b]">
+        <h2
+          id="open-positions-title"
+          class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white font-myfont"
+        >
+          OPEN POSITION
+        </h2>
+        <form class="job-search flex w-full md:w-auto gap-2.5 font-quickSand" role="search" (submit)="$event.preventDefault()">
+          <label for="job-search" class="sr-only">Search jobs by title</label>
+          <input
+            id="job-search"
+            name="jobSearch"
+            type="search"
+            autocomplete="off"
+            placeholder="Search jobs..."
+            [(ngModel)]="searchTerm"
+            (ngModelChange)="applyFilters()"
+            class="min-w-0 flex-1 md:w-[25vw] md:flex-none px-3.5 py-2.5 rounded-lg text-[#B4B9CB] bg-[#b4b9cb1f] !border !border-[#b4b9cb62]"
+          />
+          <button type="submit" class="px-8 md:px-14 py-2.5 rounded-lg bg-[#B1DF4F] font-medium !text-[#0B0C10]">Search</button>
+        </form>
+      </div>
 
-          <div class="hidden md:flex font-quickSand gap-2.5 mb-4">
-            <input class="px-3.5 rounded-lg text-[#B4B9CB] w-[25vw] bg-[#b4b9cb1f] !border !border-[#b4b9cb62]" type="search" name="" id="" />
-            <button class="px-14 py-2.5 rounded-lg bg-[#B1DF4F] font-medium" type="button">
-              Search
-            </button>
-          </div>
-        </div>
+      <h3 class="text-xl 2xl:text-4xl xl:text-2xl font-normal text-white mt-10 !mb-4 2xl:!mb-8 font-myfont">We are hiring</h3>
 
-        <h3 class="text-xl 2xl:text-4xl xl:text-2xl font-normal text-white !mb-4 2xl:!mb-8 font-myfont">We are hiring</h3>
-
-        <div class="flex flex-wrap font-quickSand gap-2.5">
-          <div *ngFor="let role of roles" (click)="selectRoleCategory(role.position)" [ngClass]="{'bg-gradient-to-b': isActiveCategory(role.position)}" class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] p-px rounded-md flex items-center justify-center cursor-pointer">
-            <div class="px-3.5 py-1.5 bg-black rounded-md text-sm font-semibold">{{ role.position }}</div>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5 2xl:gap-8 mt-9 2xl:mt-12">
-          <div *ngFor="let card of getFilteredCards()"
-            class="group bg-[#14171E] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-3xl w-full max-w-xl font-mont"
-            >
-            <div
-              class="card-hover relative bg-[#14171E] rounded-3xl h-full w-full flex flex-col justify-between py-12 px-3"
-              >
-              <span class="absolute right-4 top-4 text-white">full time</span>
-              <div class="flex flex-col gap-7">
-
-
-                <img
-                  class="rounded-full h-20 2xl:h-28 2xl:w-28 w-20 object-cover mx-auto"
-                  src="https://images.unsplash.com/photo-1725012858121-9b336157bea4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyMHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="product image"
-                  />
-
-
-                  <div class="text-center flex flex-col 2xl:gap-2.5">
-                    <h5
-                      class="2xl:text-3xl xl:text-xl text-lg leading-5 font-medium text-white dark:text-white"
-                      >
-                      {{ card.role }} in
-                    </h5>
-                    <p
-                      class="bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text text-sm  xl:text-xl 2xl:text-3xl font-bold  md:text-sm "
-                      >
-                      {{ card.tech }}
-                    </p>
-                    <p class="text-[#B4B9CB] text-xs 2xl:text-lg">{{ card.experience }}</p>
-                  </div>
-
-                  <div class="border-t border-[#b4b9cb56] pt-6 flex">
-                    <div class="px-3.5 py-1.5 rounded-3xl font-semibold text-white bg-[#34394B] group-hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] mx-auto cursor-pointer"
-                    (click)="openModal()">Apply now</div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-
-          <app-modal-form *ngIf="isModalVisible" [isVisible]="isModalVisible" (close)="closeModal()"></app-modal-form>
-
-        </section> -->
-        <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#08090c]">
-          <div
-            class="flex justify-between items-center content-center my-10 pb-2 border-b border-[#34394b]"
-            >
-            <h2
-              class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white font-myfont mb-4"
-              >
-              OPEN POSITION
-            </h2>
-
-            <div class="hidden md:flex font-quickSand gap-2.5 mb-4">
-              <input
-                [(ngModel)]="searchTerm" (input)="filterJobs()" placeholder="Search jobs..."
-                class="px-3.5 rounded-lg text-[#B4B9CB] w-[25vw] bg-[#b4b9cb1f] !border !border-[#b4b9cb62]"
-                type="search"
-                name=""
-                id=""
-                />
-                <button
-                  class="px-14 py-2.5 rounded-lg bg-[#B1DF4F] font-medium"
-                  type="button"
-                  (click)="filterJobs()"
-                  >
-                  Search
-                </button>
-              </div>
-            </div>
-
-            <h3
-              class="text-xl 2xl:text-4xl xl:text-2xl font-normal text-white !mb-4 2xl:!mb-8 font-myfont"
-              >
-              We are hiring
-            </h3>
-
-            <!-- <div class="flex flex-wrap font-quickSand gap-2.5">
-            <div
-              *ngFor="let role of roles"
-              (click)="selectRoleCategory(role.position)"
-              [ngClass]="{ 'bg-gradient-to-b': isActiveCategory(role.position) }"
-              class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] p-px rounded-md flex items-center justify-center cursor-pointer"
-              >
-              <div class="px-3.5 py-1.5 bg-black rounded-md text-sm font-semibold">
-                {{ role.position }}
-              </div>
-            </div>
-          </div>
-
-          <div class="flex flex-wrap font-quickSand gap-2.5">
-            <div
-              *ngFor="let employment of employments"
-              (click)="selectEmploymentType(employment.type)"
-              [ngClass]="{ 'bg-gradient-to-b': isActiveEmployment(employment.type) }"
-              class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] p-px rounded-md flex items-center justify-center cursor-pointer"
-              >
-              <div class="px-3.5 py-1.5 bg-black rounded-md text-sm font-semibold">
-                {{ employment.type }}
-              </div>
-            </div>
-          </div> -->
-
-          <div
-            class="flex justify-between flex-col md:flex-row gap-4 items-start w-full font-quickSand"
-            >
-            <div class="flex flex-wrap gap-2.5">
-              @for (role of roles; track role) {
-                <div
-                  (click)="selectRoleCategory(role.position)"
-                  [ngClass]="{ 'bg-gradient-to-b': isActiveCategory(role.position) }"
-                  class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] p-px rounded-md flex items-center justify-center cursor-pointer"
-                  >
-                  <div class="px-3.5 py-1.5 bg-black rounded-md text-sm font-semibold">
-                    {{ role.position }}
-                  </div>
-                </div>
-              }
-            </div>
-
-            <div class="flex flex-wrap gap-2.5">
-              @for (employment of employments; track employment) {
-                <div
-                  (click)="selectEmploymentType(employment.type)"
-          [ngClass]="{
-            'bg-gradient-to-b': isActiveEmployment(employment.type)
-          }"
-                  class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] p-px rounded-md flex items-center justify-center cursor-pointer"
-                  >
-                  <div class="px-3.5 py-1.5 bg-black rounded-md text-sm font-semibold">
-                    {{ employment.type }}
-                  </div>
-                </div>
-              }
-            </div>
-          </div>
-          @if (filteredCards.length === 0) {
-            <div
-              class="w-full text-center text-white text-lg md:text-2xl mt-28 font-quickSand"
-              >
-              🚫 No jobs found for this role — but hey, greatness takes time! 🚀
-              <br />
-              Keep checking back or try a different filter.
-            </div>
+      <div class="flex flex-col gap-4 2xl:flex-row 2xl:justify-between 2xl:items-start w-full font-quickSand">
+        <div class="job-tabs" role="group" aria-label="Filter by team">
+          <span class="job-tab-indicator" aria-hidden="true"></span>
+          <button type="button" class="job-tab" [class.is-active]="selectedRoleCategory === ''" [attr.aria-pressed]="selectedRoleCategory === ''" (click)="selectRoleCategory('')">All teams</button>
+          @for (role of roles; track role.id) {
+            <button type="button" class="job-tab" [class.is-active]="isActiveCategory(role.position)" [attr.aria-pressed]="isActiveCategory(role.position)" (click)="selectRoleCategory(role.position)">{{ role.position }}</button>
           }
-          @if (filteredCards.length > 0) {
-            <div
-              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5 2xl:gap-8 mt-9 2xl:mt-12"
-              >
-              @for (card of filteredCards; track card) {
-                <div
-                  class="group bg-[#14171E] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-3xl w-full max-w-xl font-mont"
-                  >
-                  <div
-                    class="card-hover relative bg-[#14171E] rounded-3xl h-full w-full flex flex-col justify-between py-12 px-3 group-hover:bg-[linear-gradient(180deg,_rgba(95,_64,_134,_0.24)_0%,_rgba(79,_45,_124,_0.24)_100%)]"
-                    >
-                    <span class="absolute right-4 top-4 text-white">{{
-                      card.employmentType
-                    }}</span>
-                    <div class="flex flex-col gap-7">
-                      <!-- <div> -->
-                      <img
-                        class="rounded-full h-20 2xl:h-28 2xl:w-28 w-20 object-cover mx-auto"
-                        [src]="imageUrl + card.image"
-                        (error)="onImgError($event)"
-                        alt="product image"
-                        />
-                      <!-- </div> -->
-                      <div class="text-center flex flex-col 2xl:gap-2.5 job-parent">
-                        <h4
-                          class="2xl:text-3xl xl:text-xl text-lg leading-5  text-white dark:text-white font-bold"
-                          [innerHTML]="card.title"
-                        ></h4>
-                        <p
-                          class="text-white text-sm xl:text-base my-1.5"
-                          [innerHTML]="card.description"
-                        ></p>
-                        <p class="text-[#B4B9CB] text-sm 2xl:text-lg">
-                          {{ card.experience }}
-                        </p>
-                      </div>
-                      <div class="border-t border-[#b4b9cb56] pt-6 flex">
-                        <div
-                          class="px-3.5 py-1.5 rounded-3xl font-semibold text-white bg-[#34394B] group-hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] mx-auto cursor-pointer"
-                          >
-                          <a [routerLink]="['/job-description', card._id]"> Apply now</a>
-                        </div>
-                      </div>
-                      <!--  -->
-                      <!-- <div
-                      class="border-t border-[#b4b9cb56] pt-6 flex justify-between items-center "
-                      >
-                      <div class="text-white dark:text-white">
-                        <p class="text-[14.64px] leading-[100%] font-medium text-white font-[Montserrat]">
-                          Salary
-                        </p>
-                        <p class="text-[25px] leading-[100%] font-bold text-white font-[Montserrat] mt-2">
-                          ₹ 30000/-
-                        </p>
-                      </div>
-                      <div
-                        class="px-3.5 py-1.5 rounded-3xl font-semibold text-white bg-[#34394B] group-hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] cursor-pointer"
-                        (click)="openModal()"
-                        >
-                        Apply now
-                      </div>
-                    </div> -->
-                  </div>
-                  <!-- <div class="flex justify-end mr-4 mb-4 mt-3">
-                  <button>
-                    <img
-                      class="w-8 lg:w-8 xl:w-10"
-                      src="../../../assets/images/gd-arrow-btn.svg"
-                      alt=""
-                      />
-                    </button>
-                  </div> -->
-                </div>
-              </div>
+        </div>
+        <div class="job-tabs" role="group" aria-label="Filter by employment type">
+          <span class="job-tab-indicator" aria-hidden="true"></span>
+          <button type="button" class="job-tab" [class.is-active]="selectedEmploymentType === ''" [attr.aria-pressed]="selectedEmploymentType === ''" (click)="selectEmploymentType('')">All types</button>
+          @for (employment of employments; track employment.id) {
+            <button type="button" class="job-tab" [class.is-active]="isActiveEmployment(employment.type)" [attr.aria-pressed]="isActiveEmployment(employment.type)" (click)="selectEmploymentType(employment.type)">{{ employment.type }}</button>
+          }
+        </div>
+      </div>
+
+      <div class="mt-9 2xl:mt-12" aria-live="polite">
+        @if (loading) {
+          <div class="job-grid" aria-busy="true">
+            @for (n of [1, 2, 3, 4]; track n) {
+              <div class="job-skeleton" aria-hidden="true"></div>
+            }
+          </div>
+          <p class="sr-only">Loading open positions</p>
+        } @else if (loadError) {
+          <div class="job-state" role="alert">
+            <svg class="job-state__icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2" />
+              <path d="M24 14v12M24 32v2" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            </svg>
+            <h4 class="job-state__title font-quickSand">We could not load the open positions</h4>
+            <p class="job-state__text">Please check your connection and try again. If the problem continues, contact our team and we will help you directly.</p>
+            <div class="job-state__actions">
+              <button appGradientButton size="md" type="button" (click)="fetchJobPosts()">Try again</button>
+              <a appGradientButton size="md" variant="soft" routerLink="/contact-us">Contact us</a>
+            </div>
+          </div>
+        } @else if (filteredCards.length === 0) {
+          <div class="job-state">
+            <svg class="job-state__icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="21" cy="21" r="12" stroke="currentColor" stroke-width="2" />
+              <path d="M30 30l11 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            </svg>
+            <h4 class="job-state__title font-quickSand">No open positions match your filters</h4>
+            <p class="job-state__text">Try a different team or employment type, or show every open position.</p>
+            <div class="job-state__actions">
+              <button appGradientButton size="md" type="button" (click)="clearFilters()">Show all positions</button>
+            </div>
+          </div>
+        } @else {
+          <div class="job-grid">
+            @for (card of filteredCards; track card._id; let i = $index) {
+              <article class="job-card" [style.--i]="i">
+                <span class="job-card__type">{{ card.employmentType }}</span>
+                <img
+                  class="job-card__img rounded-full h-20 2xl:h-28 2xl:w-28 w-20 object-cover mx-auto"
+                  [src]="imageUrl + card.image"
+                  (error)="onImgError($event)"
+                  alt="" width="80" height="80" loading="lazy" decoding="async"
+                />
+                <h4 class="job-card__title">
+                  <a class="job-card__link" [routerLink]="['/job-description', card._id]" [innerHTML]="card.title"></a>
+                </h4>
+                <p class="job-card__text" [innerHTML]="card.description"></p>
+                <p class="job-card__exp">{{ card.experience }}</p>
+                <div class="job-card__foot"><span class="job-card__cta">Apply now</span></div>
+              </article>
             }
           </div>
         }
-
-        <!-- Trigger Button -->
-        <!-- Trigger Button -->
-        <!-- Trigger Button -->
-        <!-- <button
-        class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700"
-        (click)="openModal()"
-        >
-        Open Modal
-      </button> -->
+      </div>
 
       <!-- Conditionally render the modal based on isModalVisible -->
       @if (isModalVisible) {

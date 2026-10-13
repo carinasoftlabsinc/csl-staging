@@ -263,12 +263,15 @@
 // }
 
 
-import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy, ChangeDetectorRef, ElementRef, HostListener, PLATFORM_ID, TransferState, afterNextRender, makeStateKey, inject } from '@angular/core';
+import { isPlatformServer } from '@angular/common';
 import { SeoService } from '@core/service/seo.service';
 import { HttpClient } from '@angular/common/http';
 import { Title, Meta } from '@angular/platform-browser';
 
 import { environment } from '../../../environments/environment';
+
+const JOBS_STATE_KEY = makeStateKey<JobPost[]>('careers-jobs');
 
 interface JobPost {
   _id: string;
@@ -324,10 +327,18 @@ export class Know4Component implements OnInit, OnDestroy {
     { id: 4, type: 'Internship' },
   ];
   searchTerm: string = '';
-  selectedRoleCategory: string = 'Game Development'; // Default filter category
-  selectedEmploymentType: string = 'Full-time';
+  /** An empty string means "all". */
+  selectedRoleCategory: string = '';
+  selectedEmploymentType: string = '';
+  loading = true;
+  loadError = false;
 
   private readonly seoService = inject(SeoService);
+  // The jobs arrive after the first render, so the view is refreshed by hand (also needed for the server-rendered HTML).
+  private readonly cdr = inject(ChangeDetectorRef);
+  private readonly transferState = inject(TransferState);
+  private readonly platformId = inject(PLATFORM_ID);
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
 
   constructor(
     private http: HttpClient,
@@ -335,7 +346,13 @@ export class Know4Component implements OnInit, OnDestroy {
     private metaService: Meta,
     private renderer: Renderer2,
     @Inject(DOCUMENT) private document: Document
-  ) {}
+  ) {
+    afterNextRender(() => {
+      this.updateTabIndicators();
+      // The tab widths change once the web font has loaded.
+      this.document.fonts?.ready.then(() => this.updateTabIndicators());
+    });
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle(
@@ -351,7 +368,15 @@ export class Know4Component implements OnInit, OnDestroy {
     this.setOpenGraphTags();
     this.setSchemaMarkup();
 
-    this.fetchJobPosts();
+    // The jobs were fetched while the page was prerendered. Show them straight away, then refresh quietly
+    // so a position that closed since the last deploy does not stay on screen.
+    const prerendered = this.transferState.get(JOBS_STATE_KEY, null);
+    if (prerendered) {
+      this.transferState.remove(JOBS_STATE_KEY);
+      this.cards = prerendered;
+      this.loading = false;
+    }
+    this.fetchJobPosts(!!prerendered);
     this.activeImage = this.items[0].image;
     this.filteredCards = this.getFilteredCards();
 
@@ -431,10 +456,14 @@ export class Know4Component implements OnInit, OnDestroy {
     this.seoService.setJsonLd(schema);
   }
 
-  fetchJobPosts(): void {
+  fetchJobPosts(quiet = false): void {
+    if (!quiet) {
+      this.loading = true;
+      this.loadError = false;
+    }
     this.http.get<ApiResponse>(this.apiUrl).subscribe({
       next: (response) => {
-        this.cards = response.data.data.map((item) => ({
+        this.cards = response.data.data.filter((item) => item.active !== false).map((item) => ({
           _id: item._id,
           title: item.title,
           description: item.description,
@@ -452,22 +481,32 @@ export class Know4Component implements OnInit, OnDestroy {
           active: item.active,
         }));
 
+        if (isPlatformServer(this.platformId)) {
+          this.transferState.set(JOBS_STATE_KEY, this.cards);
+        }
         this.filteredCards = this.getFilteredCards();
+        this.loading = false;
+        this.cdr.detectChanges();
       },
-      error: (error) => {
-        console.error('Error fetching job posts data:', error);
+      error: () => {
+        if (quiet) return;
+        this.loading = false;
+        this.loadError = true;
+        this.cdr.detectChanges();
       },
     });
   }
 
   selectRoleCategory(category: string): void {
     this.selectedRoleCategory = category;
-    this.filteredCards = this.getFilteredCards(); 
+    this.filteredCards = this.getFilteredCards();
+    this.updateTabIndicatorsNextFrame();
   }
 
   selectEmploymentType(type: string): void {
     this.selectedEmploymentType = type;
     this.filteredCards = this.getFilteredCards();
+    this.updateTabIndicatorsNextFrame();
   }
 
 
@@ -496,24 +535,42 @@ export class Know4Component implements OnInit, OnDestroy {
   //   this.cards = this.getFilteredCards();
   // }
   
-  filterJobs() {
-    const search = this.searchTerm.toLowerCase();
-  
-    // Try to find a matching card based on the search
-    const matchingCard = this.cards.find(card =>
-      card.title.toLowerCase().includes(search)
-    );
-  
-    // If found, update selectedRoleCategory
-    if (matchingCard) {
-      this.selectedRoleCategory = matchingCard.roleCategory;
-      this.selectedEmploymentType = matchingCard.employmentType;
-    }
-  
-    // Then filter the cards
+  /** Moves each tab group's sliding highlight under its active tab. */
+  private updateTabIndicators(): void {
+    if (isPlatformServer(this.platformId)) return;
+    this.host.nativeElement.querySelectorAll<HTMLElement>('.job-tabs').forEach((group) => {
+      const active = group.querySelector<HTMLElement>('.job-tab.is-active');
+      if (!active) return;
+      group.style.setProperty('--ind-x', `${active.offsetLeft}px`);
+      group.style.setProperty('--ind-y', `${active.offsetTop}px`);
+      group.style.setProperty('--ind-w', `${active.offsetWidth}px`);
+      group.style.setProperty('--ind-h', `${active.offsetHeight}px`);
+      group.classList.add('has-indicator');
+    });
+  }
+
+  // The active class is applied by change detection, so measure once it has run.
+  private updateTabIndicatorsNextFrame(): void {
+    if (isPlatformServer(this.platformId)) return;
+    this.cdr.detectChanges();
+    this.updateTabIndicators();
+  }
+
+  @HostListener('window:resize')
+  protected onResize(): void {
+    this.updateTabIndicators();
+  }
+
+  applyFilters(): void {
     this.filteredCards = this.getFilteredCards();
   }
-  
+
+  clearFilters(): void {
+    this.searchTerm = '';
+    this.selectedRoleCategory = '';
+    this.selectedEmploymentType = '';
+    this.applyFilters();
+  }
 
   isActiveCategory(category: string): boolean {
     return this.selectedRoleCategory === category;
@@ -657,22 +714,22 @@ export class Know4Component implements OnInit, OnDestroy {
   items = [
     {
       title: 'Growth',
-      image: '../../../assets/images/img-1-hover.png',
+      image: '../../../assets/images/img-1-hover.webp',
       hoverColor: 'text-purple-500 !border-purple-500',
     },
     {
       title: 'WORK-LIFE BALANCE',
-      image: '../../../assets/images/img-2-hover.png',
+      image: '../../../assets/images/img-2-hover.webp',
       hoverColor: 'text-pink-500  !border-pink-500',
     },
     {
       title: 'ATMOSPHERE',
-      image: '../../../assets/images/img-3-hover.png',
+      image: '../../../assets/images/img-3-hover.webp',
       hoverColor: 'text-cyan-500  !border-cyan-500',
     },
     {
       title: 'Health & Wellness',
-      image: '../../../assets/images/img-4-hover.png',
+      image: '../../../assets/images/img-4-hover.webp',
       hoverColor: 'text-lime-500 !border-lime-500',
     },
   ];

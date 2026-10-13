@@ -61,7 +61,7 @@ export class BubbleCardComponent {
   clients = [
     {
       name: 'Arunanchal Film Festival',
-      imgSrc: '../../assets/images/client-bub-1.png',
+      imgSrc: '../../assets/images/client-bub-1.webp',
       feedback:
         'The website is really good. Thanks, Carina for making this event successful.',
       feedbackClass: 'quote-text-1 show',
@@ -69,7 +69,7 @@ export class BubbleCardComponent {
     },
     // {
     //   name: 'Arizona Derby',
-    //   imgSrc: '../../assets/images/client-bub-2.png',
+    //   imgSrc: '../../assets/images/client-bub-2.webp',
     //   feedback:
     //     'I am really happy with the performance of Team Carina. The game is exactly the same, what I wanted.',
     //   feedbackClass: 'quote-text-3 hide-top',
@@ -77,7 +77,7 @@ export class BubbleCardComponent {
     // },
     {
       name: 'Peniel Global General Consulting Inc.',
-      imgSrc: '../../assets/images/client-bub-2.png',
+      imgSrc: '../../assets/images/client-bub-2.webp',
       feedback:
         'Creating Heaven Missions was an enriching experience. It allowed us to bring Christian teachings to life through engaging gameplay and thoughtful design',
       feedbackClass: 'quote-text-3 hide-top',
@@ -85,7 +85,7 @@ export class BubbleCardComponent {
     },
     {
       name: 'Space M',
-      imgSrc: '../../assets/images/client-bub-3.png',
+      imgSrc: '../../assets/images/client-bub-3.webp',
       feedback:
         'The Teamwork is good. fastest service I got both the applications and website in just 5 months.',
       feedbackClass: 'quote-text-4 hide-bottom',
@@ -93,7 +93,7 @@ export class BubbleCardComponent {
     },
     {
       name: 'Ballegro - Your Pocket Pianist',
-      imgSrc: '../../assets/images/client-bub-4.png',
+      imgSrc: '../../assets/images/client-bub-4.webp',
       feedback:
         "Carina teamwork is incredible and amazing. It's good to work with them",
       feedbackClass: 'quote-text-5 hide-top',
@@ -101,7 +101,7 @@ export class BubbleCardComponent {
     },
     {
       name: 'Bravo - Tip or Pay',
-      imgSrc: '../../assets/images/client-bub-5.png',
+      imgSrc: '../../assets/images/client-bub-5.webp',
       feedback:
         'The Website and Application seems perfectly done. I will surely recommend them to others.',
       feedbackClass: 'quote-text-6 hide-top',
@@ -109,7 +109,7 @@ export class BubbleCardComponent {
     },
     {
       name: 'E-Food',
-      imgSrc: '../../assets/images/client-bub-6.png',
+      imgSrc: '../../assets/images/client-bub-6.webp',
       feedback:
         'Carina has always been the most trustworthy company for me. I got all the applications on time. Very reliable, fastest delivery and very humble team.',
       feedbackClass: 'quote-text-7  hide-top',

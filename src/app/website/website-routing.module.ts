@@ -73,14 +73,16 @@ const routes: Routes = [
     path: 'thank-you',
     component: ThankyouComponent,
   },
-  {
-    path: 'what-you-can-expect',
-    component: Know2Component,
-  },
-  {
-    path: 'how-we-work',
-    component: Know3Component,
-  },
+  // Not live yet: the pages still have placeholder content. Uncomment (and restore the entries in
+  // app.routes.server.ts, scripts/generate-sitemap.ts and the know2/know3 redirects below) to publish them.
+  // {
+  //   path: 'what-you-can-expect',
+  //   component: Know2Component,
+  // },
+  // {
+  //   path: 'how-we-work',
+  //   component: Know3Component,
+  // },
   {
     path: 'careers',
     component: Know4Component,
@@ -114,8 +116,8 @@ const routes: Routes = [
   { path: 'web-app-development', redirectTo: 'services', pathMatch: 'full' },
   { path: 'about', redirectTo: 'know-us', pathMatch: 'full' },
   { path: 'about-us', redirectTo: 'know-us', pathMatch: 'full' },
-  { path: 'know2', redirectTo: 'what-you-can-expect', pathMatch: 'full' },
-  { path: 'know3', redirectTo: 'how-we-work', pathMatch: 'full' },
+  // { path: 'know2', redirectTo: 'what-you-can-expect', pathMatch: 'full' },
+  // { path: 'know3', redirectTo: 'how-we-work', pathMatch: 'full' },
   { path: 'know4', redirectTo: 'careers', pathMatch: 'full' },
   { path: 'blog-details', redirectTo: 'blog', pathMatch: 'full' },
   { path: 'contact', redirectTo: 'contact-us', pathMatch: 'full' },

@@ -86,8 +86,9 @@ async function main() {
     ['', 'website'],
     ['/know-us', 'know/know'],
     ['/services', 'services/services'],
-    ['/what-you-can-expect', 'know2/know2'],
-    ['/how-we-work', 'know3/know3'],
+    // Not live yet (placeholder content). Restore together with the routes in website-routing.module.ts.
+    // ['/what-you-can-expect', 'know2/know2'],
+    // ['/how-we-work', 'know3/know3'],
     ['/careers', 'know4/know4'],
     ['/blog', 'blog/blog'],
     ['/news-room', 'newsroom/newsroom'],

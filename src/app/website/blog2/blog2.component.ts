@@ -1,3 +1,4 @@
+import { optimizeContentImages } from '@core/utils/content-images.util';
 import { HttpClient } from '@angular/common/http';
 import {
   Component,
@@ -312,7 +313,7 @@ export class Blog2Component implements OnInit {
   sanitizeContent(rawHtml: string): SafeHtml {
     if (!isPlatformBrowser(this.platformId)) {
       const cleaned = this.sanitizer.sanitize(SecurityContext.HTML, rawHtml) ?? '';
-      return this.sanitizer.bypassSecurityTrustHtml(cleaned);
+      return this.sanitizer.bypassSecurityTrustHtml(optimizeContentImages(cleaned));
     }
 
     const tempDiv = document.createElement('div');
@@ -342,6 +343,6 @@ export class Blog2Component implements OnInit {
       img.classList.add('w-full', 'h-auto');
     });
 
-    return this.sanitizer.bypassSecurityTrustHtml(tempDiv.innerHTML);
+    return this.sanitizer.bypassSecurityTrustHtml(optimizeContentImages(tempDiv.innerHTML));
   }
 }

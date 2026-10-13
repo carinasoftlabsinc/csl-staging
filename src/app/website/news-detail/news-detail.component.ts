@@ -1,3 +1,4 @@
+import { optimizeContentImages } from '@core/utils/content-images.util';
 import {
   Component,
   HostListener,
@@ -302,7 +303,7 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
   sanitizeContent(rawHtml: string): SafeHtml {
     if (!isPlatformBrowser(this.platformId)) {
       const cleaned = this.sanitizer.sanitize(SecurityContext.HTML, rawHtml) ?? '';
-      return this.sanitizer.bypassSecurityTrustHtml(cleaned);
+      return this.sanitizer.bypassSecurityTrustHtml(optimizeContentImages(cleaned));
     }
 
     const tempDiv = document.createElement('div');
@@ -332,7 +333,7 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
       img.classList.add('w-full', 'h-auto');
     });
 
-    return this.sanitizer.bypassSecurityTrustHtml(tempDiv.innerHTML);
+    return this.sanitizer.bypassSecurityTrustHtml(optimizeContentImages(tempDiv.innerHTML));
   }
 
   onSubmit(): void {

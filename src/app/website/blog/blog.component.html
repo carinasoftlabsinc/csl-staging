@@ -2,27 +2,23 @@
   <div class="blog-bg">
     <app-header></app-header>
     <section
-      class="px-5 py-24 body-font flex items-center justify-start h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)]"
-      >
+      class="px-5 py-24 body-font flex items-center justify-start h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)]">
       <div class="2xl:ml-44 xl:ml-40 lg:ml-40 md:ml-40">
         <div class="w-full md:w-1/2">
           <h1>
             <span
-              class="text-white font-myfont text-[30px] 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]"
-              >
+              class="text-white font-myfont text-[30px] 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]">
               OUR
             </span>
             <br />
             <span
-              class="text-white tracking-wide text-6xl md:text-4xl lg:text-[50px] lg:leading-[50px] xl:text-[60px] xl:leading-[60px] 2xl:text-[80px] 2xl:leading-[100px] sm:text-4xl font-myfont"
-              >
+              class="text-white tracking-wide text-6xl md:text-4xl lg:text-[50px] lg:leading-[50px] xl:text-[60px] xl:leading-[60px] 2xl:text-[80px] 2xl:leading-[100px] sm:text-4xl font-myfont">
               Tech Trends
             </span>
           </h1>
 
           <p
-            class="text-white mt-3 text-sm xl:text-[16px] 2xl:text-[23px] 2xl:leading-[27px] font-quickSand font-normal"
-            >
+            class="text-white mt-3 text-sm xl:text-[16px] 2xl:text-[23px] 2xl:leading-[27px] font-quickSand font-normal">
             Excited about the digital world? So are we! Stay updated with the
             latest trends in Game Development, Digital Marketing, Web
             Development, and Mobile App Development. Stay in the loop with the
@@ -33,707 +29,390 @@
     </section>
   </div>
 
-  <!-- <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24">
-  <div>
-    <h2
-      class="text-white text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#34394b]"
-      >
-      FEATURED ARTICLES
-    </h2>
-  </div>
+  <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24">
+    <div>
+      <h2 class="text-white text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#34394b]">
+        FEATURED ARTICLES
+      </h2>
+    </div>
 
-  <div class="grid md:grid-cols-5 gap-4">
-
-    <div class="col-span-3">
-      <div
-        *ngFor="let card of featured"
-        class="mt-3 h-full card-hover group cursor-pointer"
-        [routerLink]="['/blog', formatHeading(card.titleLink)]"
-        >
-        <a class="block overflow-hidden rounded-[30px]">
-          <img
-            class="rounded-[30px] object-cover w-full transition-transform transform group-hover:scale-105 duration-500 ease-in-out"
-            [src]="card.imgSrc"
-            alt="product image"
-            />
+    <div class="grid md:grid-cols-5 gap-4">
+      <div class="col-span-3">
+        @if (!loadingFeatured && featured) {
+        <div class="mt-3 h-full card-hover group cursor-pointer">
+          <a class="block overflow-hidden rounded-[30px]" [routerLink]="['/blog', formatHeading(featured.titleLink)]">
+            <img
+              class="rounded-[30px] object-cover w-full transition-transform duration-700 ease-out group-hover:scale-105 group-focus-within:scale-105 motion-reduce:transition-none lg:h-[65vh] xl:h-[65vh] 2xl:h-[60vh]"
+              [src]="featured.image_2 ? imageUrl + featured.image_2 : fallbackImage" (error)="onCoverError($event)"
+              [alt]="featured.title" width="394" height="374" fetchpriority="high" />
           </a>
-          <div class="">
-            <h5
-              class="text-xl font-myfont text-[#B4B9CB] mb-2 mt-6 transition-opacity duration-500 ease-in-out group-hover:opacity-0"
-              >
-              featured articles
-            </h5>
-            <p
-              class="text-white font-quickSand text-[24px] leading-[30px] mb-4 transition-transform transform group-hover:-translate-y-4 duration-500 ease-in-out"
-              >
-              {{ card.heading }}
-            </p>
-            <button
-              type="button"
-              [routerLink]="['/blog', formatHeading(card.titleLink)]"
-              class="text-white font-quickSand font-medium transition-all duration-500 ease-in-out opacity-0 transform group-hover:!opacity-100 group-hover:-translate-y-4 flex items-center gap-2"
-              >
-              Read More
-              <img
-                src="../../../assets/images/arrow-right-gradient.svg"
-                alt=""
-                width="25"
-                />
-              </button>
+          <div class="featured-article-reveal mt-6">
+            <h3 class="featured-article-label text-xl font-myfont text-[#B4B9CB]">Featured Article</h3>
+            <!-- Exchange zone: title exits UP, read-more enters from BELOW -->
+            <div class="featured-article-exchange">
+              <a [routerLink]="['/blog', formatHeading(featured.titleLink)]"
+                class="featured-article-title block text-white font-quickSand text-[24px] leading-[30px]">{{
+                featured.title }}</a>
+              <a [routerLink]="['/blog', formatHeading(featured.titleLink)]"
+                class="featured-article-read-more text-white font-quickSand font-medium flex items-center gap-2">
+                Read More
+                <img src="../../../assets/images/arrow-right-gradient.svg" alt="" width="25" height="12" loading="lazy"
+                  decoding="async" />
+              </a>
             </div>
           </div>
         </div>
+        } @else {
+        <div class="animate-pulse bg-[#1e1e2d] rounded-[30px] h-[60vh] w-full"></div>
+        }
+      </div>
 
-        <div class="col-span-3 sm:col-span-2 grid grid-rows-2 gap-4">
-          <div
-            *ngFor="let card of featured2"
-            class="row-span-1 card-hover group cursor-pointer"
-            [routerLink]="['/blog', formatHeading(card.titleLink)]"
-            >
-            <div class="mt-3 h-full">
-              <a class="block overflow-hidden rounded-[30px]">
+      <div class="col-span-3 sm:col-span-2 grid grid-rows-2 gap-4">
+        @if (!loadingFeatured) {
+        @for (card of featured2; track (card?._id || card?.titleLink || $index)) {
+        <div class="row-span-1 card-hover group cursor-pointer">
+          <div class="mt-3 h-full flex flex-col items-center justify-center">
+            <div class="h-full w-full">
+              <a class="block overflow-hidden rounded-[30px]" [routerLink]="['/blog', formatHeading(card.titleLink)]">
                 <img
-                  class="w-full transition-transform transform group-hover:scale-105 duration-500 ease-in-out h-36 md:h-28 lg:h-32 xl:h-44 2xl:h-60 object-cover"
-                  [src]="card.imgSrc"
-                  alt="product image"
-                  />
-                </a>
-                <div class="">
-                  <h5
-                    class="text-xl font-myfont text-[#B4B9CB] mb-2 mt-4 transition-opacity duration-500 ease-in-out group-hover:opacity-0"
-                    >
-                    featured articles
-                  </h5>
-                  <p
-                    class="text-white font-quickSand text-[16px] mb-2 leading-[20px] transition-transform transform group-hover:-translate-y-4 duration-500 ease-in-out"
-                    >
-                    {{ card.heading }}
-                  </p>
-                  <button
-                    type="button"
-                    [routerLink]="['/blog', formatHeading(card.titleLink)]"
-                    class="text-white font-quickSand font-medium transition-all duration-500 ease-in-out opacity-0 transform group-hover:!opacity-100 group-hover:-translate-y-4 flex items-center gap-2"
-                    >
+                  class="w-full transition-transform duration-700 ease-out group-hover:scale-105 group-focus-within:scale-105 motion-reduce:transition-none h-36 md:h-28 lg:h-32 xl:h-44 2xl:h-60 object-cover"
+                  [src]="card.image_2 ? imageUrl + card.image_2 : fallbackImage" (error)="onCoverError($event)"
+                  [alt]="card.title" width="394" height="374" loading="lazy" decoding="async" />
+              </a>
+              <div class="featured-article-reveal mt-4">
+                <h3 class="featured-article-label text-xl font-myfont text-[#B4B9CB]">Featured Article</h3>
+                <!-- Exchange zone: title exits UP, read-more enters from BELOW -->
+                <div class="featured-article-exchange">
+                  <a [routerLink]="['/blog', formatHeading(card.titleLink)]"
+                    class="featured-article-title block text-white font-quickSand text-[16px] leading-[20px]">{{
+                    card.title }}</a>
+                  <a [routerLink]="['/blog', formatHeading(card.titleLink)]"
+                    class="featured-article-read-more text-white font-quickSand font-medium flex items-center gap-2">
                     Read More
-                    <img
-                      src="../../../assets/images/arrow-right-gradient.svg"
-                      alt=""
-                      width="25"
-                      />
-                    </button>
-                  </div>
+                    <img src="../../../assets/images/arrow-right-gradient.svg" alt="" width="25" height="12"
+                      loading="lazy" decoding="async" />
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-        </section> -->
-
-
-
-        <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24">
-          <div>
-            <h2
-              class="text-white text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#34394b]"
-              >
-              FEATURED ARTICLES
-            </h2>
+        </div>
+        }
+        } @else {
+        <div>
+          <div class="animate-pulse bg-[#1e1e2d] rounded-[30px] p-4 w-full mb-4 h-36 md:h-28 lg:h-32 xl:h-44 2xl:h-60">
           </div>
+          <div class="animate-pulse h-5 bg-[#2c2c3a] rounded w-3/4 mb-2"></div>
+          <div class="animate-pulse h-4 bg-[#2c2c3a] rounded w-full mb-1"></div>
+        </div>
+        <div>
+          <div class="animate-pulse bg-[#1e1e2d] rounded-[30px] p-4 w-full mb-4 h-36 md:h-28 lg:h-32 xl:h-44 2xl:h-60">
+          </div>
+          <div class="animate-pulse h-5 bg-[#2c2c3a] rounded w-3/4 mb-2"></div>
+          <div class="animate-pulse h-4 bg-[#2c2c3a] rounded w-full mb-1"></div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
 
-          <div class="grid md:grid-cols-5 gap-4">
-            <!-- Large Featured -->
-            <div class="col-span-3">
-              @if (!loadingFeatured && featured) {
-                <div
-                  class="mt-3 h-full card-hover group cursor-pointer"
-                  >
-                  <a class="block overflow-hidden rounded-[30px]" [routerLink]="['/blog', formatHeading(featured.titleLink)]">
-                    <img
-                      class="rounded-[30px] object-cover w-full transition-transform duration-700 ease-out group-hover:scale-105 group-focus-within:scale-105 motion-reduce:transition-none lg:h-[65vh] xl:h-[65vh] 2xl:h-[60vh]"
-                      [src]="imageUrl + featured.image_2 || 'default-image.jpg'"
-                      [alt]="featured.title"
-                      />
-                    </a>
-                    <div class="featured-article-reveal mt-6">
-                      <h3 class="featured-article-label text-xl font-myfont text-[#B4B9CB]">Featured Article</h3>
-                      <!-- Exchange zone: title exits UP, read-more enters from BELOW -->
-                      <div class="featured-article-exchange">
-                        <a
-                          [routerLink]="['/blog', formatHeading(featured.titleLink)]"
-                          class="featured-article-title block text-white font-quickSand text-[24px] leading-[30px]"
-                          >{{ featured.title }}</a>
-                        <a
-                          [routerLink]="['/blog', formatHeading(featured.titleLink)]"
-                          class="featured-article-read-more text-white font-quickSand font-medium flex items-center gap-2"
-                          >
-                          Read More
-                          <img src="../../../assets/images/arrow-right-gradient.svg" alt="" width="25" />
-                        </a>
-                      </div>
-                    </div>
-                    </div>
-                  } @else {
-                    <div
-                      class="animate-pulse bg-[#1e1e2d] rounded-[30px] h-[60vh] w-full"
-                    ></div>
-                  }
-                </div>
+  <section class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px] mt-3">
+    <div>
+      <h2 class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]">
+        Discover More Categories
+      </h2>
+    </div>
 
-                <!-- Small Featured -->
-                <div class="col-span-3 sm:col-span-2 grid grid-rows-2 gap-4">
-                  @if (!loadingFeatured) {
-                    @for (card of featured2; track (card?._id || card?.titleLink || $index)) {
-                      <div
-                        class="row-span-1 card-hover group cursor-pointer"
-                        >
-                        <!-- Your small featured card -->
-                        <div class="mt-3 h-full flex flex-col items-center justify-center">
-                          <div class="h-full w-full">
-                            <a class="block overflow-hidden rounded-[30px]" [routerLink]="['/blog', formatHeading(card.titleLink)]">
-                              <img
-                                class="w-full transition-transform duration-700 ease-out group-hover:scale-105 group-focus-within:scale-105 motion-reduce:transition-none h-36 md:h-28 lg:h-32 xl:h-44 2xl:h-60 object-cover"
-                                [src]="imageUrl + card.image_2 || 'default-image.jpg'"
-                                [alt]="card.title"
-                                />
-                              </a>
-                              <div class="featured-article-reveal mt-4">
-                                <h3 class="featured-article-label text-xl font-myfont text-[#B4B9CB]">Featured Article</h3>
-                                <!-- Exchange zone: title exits UP, read-more enters from BELOW -->
-                                <div class="featured-article-exchange">
-                                  <a
-                                    [routerLink]="['/blog', formatHeading(card.titleLink)]"
-                                    class="featured-article-title block text-white font-quickSand text-[16px] leading-[20px]"
-                                    >{{ card.title }}</a>
-                                  <a
-                                    [routerLink]="['/blog', formatHeading(card.titleLink)]"
-                                    class="featured-article-read-more text-white font-quickSand font-medium flex items-center gap-2"
-                                    >
-                                    Read More
-                                    <img src="../../../assets/images/arrow-right-gradient.svg" alt="" width="25" />
-                                  </a>
-                                </div>
-                              </div>
-                              </div>
-                            </div>
-                          </div>
-                        }
-                      } @else {
-                        <div>
-                          <div
-                            class="animate-pulse bg-[#1e1e2d] rounded-[30px] p-4 w-full mb-4 h-36 md:h-28 lg:h-32 xl:h-44 2xl:h-60"
-                          ></div>
-                          <div
-                            class="animate-pulse h-5 bg-[#2c2c3a] rounded w-3/4 mb-2"
-                          ></div>
-                          <div
-                            class="animate-pulse h-4 bg-[#2c2c3a] rounded w-full mb-1"
-                          ></div>
-                        </div>
-                        <div>
-                          <div
-                            class="animate-pulse bg-[#1e1e2d] rounded-[30px] p-4 w-full mb-4 h-36 md:h-28 lg:h-32 xl:h-44 2xl:h-60"
-                          ></div>
-                          <div
-                            class="animate-pulse h-5 bg-[#2c2c3a] rounded w-3/4 mb-2"
-                          ></div>
-                          <div
-                            class="animate-pulse h-4 bg-[#2c2c3a] rounded w-full mb-1"
-                          ></div>
-                        </div>
-                      }
-                    </div>
-                  </div>
-                </section>
+    <div class="py-7 xl:py-10">
+      <p class="font-myfont text-lg 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-xl sm:text-lg text-[#34394B]">
+        Join us in exploring a wide <br class="hidden sm:block" />
+        range of engaging topics.
+      </p>
+    </div>
 
-                <!-- card -->
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:py-12 py-8">
+      <!-- Development -->
+      <div class="category-card w-full border !border-[#B4B9CB] rounded-[40px]">
+        <div class="category-card__inner p-6">
+          <div class="py-10">
+            <img src="../../../assets/images/blog-dev.webp" class="w-16 h-16 mb-4" alt="" width="86" height="101"
+              loading="lazy" decoding="async" />
+            <h3
+              class="2xl:text-5xl xl:text-4xl lg:text-3xl sm:text-3xl text-2xl font-quickSand font-bold text-[#0B0C10] mt-16">
+              Development
+            </h3>
+            <p class="text-[#34394B] font-quickSand font-medium text-base 2xl:text-2xl mt-3 xl:mb-8 2xl:mb-24">
+              Tech Related Knowledge
+            </p>
+          </div>
+        </div>
+        <!-- Button is OUTSIDE __inner so it doesn't move with the sliding content -->
+        <button
+          class="category-card__btn text-left bg-transparent text-[#34394B] sm:!text-base xl:!text-xl !text-[15px] font-medium font-quickSand underline">
+          Browse Category
+        </button>
+      </div>
 
-                <section
-                  class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px] mt-3"
-                  >
-                  <div>
-                    <h2
-                      class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
-                      >
-                      Discover More Categories
-                    </h2>
-                  </div>
+      <!-- Design -->
+      <div class="category-card w-full border !border-[#B4B9CB] rounded-[40px]">
+        <div class="category-card__inner p-6">
+          <div class="py-10">
+            <img src="../../../assets/images/blog-design.webp" class="w-16 h-16 mb-4" alt="" width="93" height="94"
+              loading="lazy" decoding="async" />
+            <h3
+              class="2xl:text-5xl xl:text-4xl lg:text-3xl sm:text-3xl text-2xl font-quickSand font-bold text-[#0B0C10] mt-16">
+              Design
+            </h3>
+            <p class="text-[#34394B] font-quickSand font-medium text-base 2xl:text-2xl mt-3 xl:mb-8 2xl:mb-24">
+              Tech Related Knowledge
+            </p>
+          </div>
+        </div>
+        <button
+          class="category-card__btn text-left bg-transparent text-[#34394B] sm:!text-base xl:!text-xl !text-[15px] font-medium font-quickSand underline">
+          Browse Category
+        </button>
+      </div>
 
-                  <div class="py-7 xl:py-10">
-                    <p
-                      class="font-myfont text-lg 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-xl sm:text-lg text-[#34394B]"
-                      >
-                      Join us in exploring a wide <br class="hidden sm:block" />
-                      range of engaging topics.
-                    </p>
-                  </div>
+      <!-- Digital Marketing -->
+      <div class="category-card w-full border !border-[#B4B9CB] rounded-[40px]">
+        <div class="category-card__inner p-6">
+          <div class="py-10">
+            <img src="../../../assets/images/blog-dg.webp" class="w-16 h-16 mb-4" alt="" width="78" height="80"
+              loading="lazy" decoding="async" />
+            <h3
+              class="2xl:text-5xl xl:text-4xl lg:text-3xl sm:text-3xl text-2xl font-quickSand font-bold text-[#0B0C10] mt-16">
+              Digital Marketing
+            </h3>
+            <p class="text-[#34394B] font-quickSand font-medium text-base 2xl:text-2xl mt-3 xl:mb-8 2xl:mb-24">
+              Tech Related Knowledge
+            </p>
+          </div>
+        </div>
+        <button
+          class="category-card__btn text-left bg-transparent text-[#34394B] sm:!text-base xl:!text-xl !text-[15px] font-medium font-quickSand underline">
+          Browse Category
+        </button>
+      </div>
+    </div>
+  </section>
 
-                  <!-- card -->
+  <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24 mb-14 2xl:mb-32">
+    <div class="flex justify-between items-center content-center my-10 pb-2 border-b border-[#34394b]">
+      <h2 class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont">
+        OUR BLOGS
+      </h2>
+    </div>
 
-                  <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:py-12 py-8">
-                    <!-- Development -->
-                    <div class="category-card w-full border !border-[#B4B9CB] rounded-[40px]">
-                      <div class="category-card__inner p-6">
-                        <div class="py-10">
-                          <img
-                            src="../../../assets/images/blog-dev.png"
-                            alt="product image"
-                            class="w-16 h-16 mb-4"
-                            />
-                          <h3
-                            class="2xl:text-5xl xl:text-4xl lg:text-3xl sm:text-3xl text-2xl font-quickSand font-bold text-[#0B0C10] mt-16"
-                            >
-                            Development
-                          </h3>
-                          <p
-                            class="text-[#34394B] font-quickSand font-medium text-base 2xl:text-2xl mt-3 xl:mb-8 2xl:mb-24"
-                            >
-                            Tech Related Knowledge
-                          </p>
-                        </div>
-                      </div>
-                      <!-- Button is OUTSIDE __inner so it doesn't move with the sliding content -->
-                      <button class="category-card__btn text-left bg-transparent text-[#34394B] sm:!text-base xl:!text-xl !text-[15px] font-medium font-quickSand underline">
-                        Browse Category
-                      </button>
-                    </div>
+    <!-- OUR BLOGS DEVELOPMENT CARDS SECTION -->
 
-                    <!-- Design -->
-                    <div class="category-card w-full border !border-[#B4B9CB] rounded-[40px]">
-                      <div class="category-card__inner p-6">
-                        <div class="py-10">
-                          <img
-                            src="../../../assets/images/blog-design.png"
-                            alt="product image"
-                            class="w-16 h-16 mb-4"
-                            />
-                          <h3
-                            class="2xl:text-5xl xl:text-4xl lg:text-3xl sm:text-3xl text-2xl font-quickSand font-bold text-[#0B0C10] mt-16"
-                            >
-                            Design
-                          </h3>
-                          <p
-                            class="text-[#34394B] font-quickSand font-medium text-base 2xl:text-2xl mt-3 xl:mb-8 2xl:mb-24"
-                            >
-                            Tech Related Knowledge
-                          </p>
-                        </div>
-                      </div>
-                      <button class="category-card__btn text-left bg-transparent text-[#34394B] sm:!text-base xl:!text-xl !text-[15px] font-medium font-quickSand underline">
-                        Browse Category
-                      </button>
-                    </div>
+    <div class="py-7">
+      @if (gameBlogs.length > 0) {
+      <h3
+        class="xl:text-4xl lg:text-3xl text-3xl font-myfont bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text">
+        Game Development
+      </h3>
+      }
+    </div>
 
-                    <!-- Digital Marketing -->
-                    <div class="category-card w-full border !border-[#B4B9CB] rounded-[40px]">
-                      <div class="category-card__inner p-6">
-                        <div class="py-10">
-                          <img
-                            src="../../../assets/images/blog-dg.png"
-                            alt="product image"
-                            class="w-16 h-16 mb-4"
-                            />
-                          <h3
-                            class="2xl:text-5xl xl:text-4xl lg:text-3xl sm:text-3xl text-2xl font-quickSand font-bold text-[#0B0C10] mt-16"
-                            >
-                            Digital Marketing
-                          </h3>
-                          <p
-                            class="text-[#34394B] font-quickSand font-medium text-base 2xl:text-2xl mt-3 xl:mb-8 2xl:mb-24"
-                            >
-                            Tech Related Knowledge
-                          </p>
-                        </div>
-                      </div>
-                      <button class="category-card__btn text-left bg-transparent text-[#34394B] sm:!text-base xl:!text-xl !text-[15px] font-medium font-quickSand underline">
-                        Browse Category
-                      </button>
-                    </div>
-                  </div><!-- /grid -->
-                </section>
+    @if (!loadingGame) {
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28">
+      @for (card of gameBlogs; track (card?._id || card?.titleLink || $index)) {
+      <div
+        class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer">
+        <div class="card-hover bg-[#000000] rounded-[40px] h-full w-full flex flex-col justify-between">
+          <div>
+            <a [routerLink]="['/blog', formatHeading(card.titleLink)]">
+              <img class="p-4 rounded-[60px] h-64 2xl:h-80 w-full object-cover"
+                [src]="card.image_2 ? imageUrl + card.image_2 : fallbackImage" (error)="onCoverError($event)"
+                [alt]="card.title" width="394" height="374" loading="lazy" decoding="async" />
+            </a>
+            <div class="px-4">
+              <h4
+                class="2xl:leading-7 2xl:text-2xl xl:text-xl xl:leading-6 text-lg leading-5 font-myfont font-medium text-center text-white dark:text-white !mb-2 2xl:!mb-4">
+                <a [routerLink]="['/blog', formatHeading(card.titleLink)]">{{ card.title }}</a>
+              </h4>
+              <p
+                class="text-[#B4B9CB] text-center font-quickSand text-[13px] leading-[15px] xl:text-base xl:leading-5 md:text-[13px] md:leading-[15px] sm:text-[20px] sm:leading-[20px]">
+                {{ card.description }}
+              </p>
+            </div>
+          </div>
+          <div class="flex justify-end mr-4 mb-4 mt-3">
+            <a [routerLink]="['/blog', formatHeading(card.titleLink)]">
+              <img class="w-8 lg:w-8 xl:w-10" src="../../../assets/images/gd-arrow-btn.svg" alt="" width="62"
+                height="62" loading="lazy" decoding="async" />
+            </a>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    } @else {
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28">
+      <ng-container *ngTemplateOutlet="cardSkeleton"></ng-container>
+    </div>
+    }
 
+    <!-- OUR BLOGS DESIGN CARDS SECTION -->
+    <div class="py-7">
+      @if (web.length > 0) {
+      <h3
+        class="xl:text-4xl lg:text-3xl text-3xl font-myfont bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text">
+        WEB DEVELOPMENT
+      </h3>
+      }
+    </div>
 
-                      <section
-                        class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24 mb-14 2xl:mb-32"
-                        >
-                        <div
-                          class="flex justify-between items-center content-center my-10 pb-2 border-b border-[#34394b]"
-                          >
-                          <h2
-                            class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-                            >
-                            OUR BLOGS
-                          </h2>
-                        </div>
+    @if (!loadingWeb) {
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28">
+      @for (card of web; track (card?._id || card?.titleLink || $index)) {
+      <div
+        class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer">
+        <div class="card-hover bg-[#000000] rounded-[40px] h-full w-full flex flex-col justify-between">
+          <div>
+            <a [routerLink]="['/blog', formatHeading(card.titleLink)]">
+              <img class="p-4 rounded-[60px] h-64 2xl:h-80 w-full object-cover"
+                [src]="card.image_2 ? imageUrl + card.image_2 : fallbackImage" (error)="onCoverError($event)"
+                [alt]="card.title" width="394" height="374" loading="lazy" decoding="async" />
+            </a>
+            <div class="px-4">
+              <h4
+                class="2xl:leading-7 2xl:text-2xl xl:text-xl xl:leading-6 text-lg leading-5 font-myfont font-medium text-center text-white dark:text-white !mb-2 2xl:!mb-4">
+                <a [routerLink]="['/blog', formatHeading(card.titleLink)]">{{ card.title }}</a>
+              </h4>
+              <p
+                class="text-[#B4B9CB] text-center font-quickSand text-[13px] leading-[15px] xl:text-base xl:leading-5 md:text-[13px] md:leading-[15px] sm:text-[20px] sm:leading-[20px]">
+                {{ card.description }}
+              </p>
+            </div>
+          </div>
+          <div class="flex justify-end mr-4 mb-4 mt-3">
+            <a [routerLink]="['/blog', formatHeading(card.titleLink)]">
+              <img class="w-8 lg:w-8 xl:w-10" src="../../../assets/images/gd-arrow-btn.svg" alt="" width="62"
+                height="62" loading="lazy" decoding="async" />
+            </a>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    } @else {
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28">
+      <ng-container *ngTemplateOutlet="cardSkeleton"></ng-container>
+    </div>
+    }
+    <!-- OUR BLOGS DIGITAL MARKETING CARDS -->
 
-                        <!-- OUR BLOGS DEVELOPMENT CARDS SECTION -->
+    <div class="py-7">
+      @if (digitalM.length > 0) {
+      <h3
+        class="xl:text-4xl lg:text-3xl text-3xl font-myfont bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text">
+        DIGITAL MARKETING
+      </h3>
+      }
+    </div>
 
-                        <div class="py-7">
-                          @if (gameBlogs.length > 0) {
-                            <h3
-                              class="xl:text-4xl lg:text-3xl text-3xl font-myfont bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text"
-                              >
-                              Game Development
-                            </h3>
-                          }
-                        </div>
+    @if (!loadingDigital) {
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28">
+      @for (card of digitalM; track (card?._id || card?.titleLink || $index)) {
+      <div
+        class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer">
+        <div class="card-hover bg-[#000000] rounded-[40px] h-full w-full flex flex-col justify-between">
+          <div>
+            <a [routerLink]="['/blog', formatHeading(card.titleLink)]">
+              <img class="p-4 rounded-[60px] h-64 2xl:h-80 w-full object-cover"
+                [src]="card.image_2 ? imageUrl + card.image_2 : fallbackImage" (error)="onCoverError($event)"
+                [alt]="card.title" width="394" height="374" loading="lazy" decoding="async" />
+            </a>
+            <div class="px-4">
+              <h4
+                class="2xl:leading-7 2xl:text-2xl xl:text-xl xl:leading-6 text-lg leading-5 font-myfont font-medium text-center text-white dark:text-white !mb-2 2xl:!mb-4">
+                <a [routerLink]="['/blog', formatHeading(card.titleLink)]">{{ card.title }}</a>
+              </h4>
+              <p
+                class="text-[#B4B9CB] text-center font-quickSand text-[13px] leading-[15px] xl:text-base xl:leading-5 md:text-[13px] md:leading-[15px] sm:text-[20px] sm:leading-[20px]">
+                {{ card.description }}
+              </p>
+            </div>
+          </div>
+          <div class="flex justify-end mr-4 mb-4 mt-3">
+            <a [routerLink]="['/blog', formatHeading(card.titleLink)]">
+              <img class="w-8 lg:w-8 xl:w-10" src="../../../assets/images/gd-arrow-btn.svg" alt="" width="62"
+                height="62" loading="lazy" decoding="async" />
+            </a>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    } @else {
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28">
+      <ng-container *ngTemplateOutlet="cardSkeleton"></ng-container>
+    </div>
+    }
+    <!-- OUR BLOGS APP DEVELOPMENT CARDS -->
 
-                        @if (!loadingGame) {
-                          <div
-                            class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28"
-                            >
-                            @for (card of gameBlogs; track (card?._id || card?.titleLink || $index)) {
-                              <div
-                                class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer"
-                                >
-                                <div
-                                  class="card-hover bg-[#000000] rounded-[40px] h-full w-full flex flex-col justify-between"
-                                  >
-                                  <div>
-                                    <a [routerLink]="['/blog', formatHeading(card.titleLink)]">
-                                      <img
-                                        class="p-4 rounded-[60px] h-64 2xl:h-80 w-full object-cover"
-                                        [src]="imageUrl + card.image_2 || 'default-image.jpg'"
-                                        alt="product image"
-                                        />
-                                      </a>
-                                      <div class="px-4">
-                                        <h4
-                                          class="2xl:leading-7 2xl:text-2xl xl:text-xl xl:leading-6 text-lg leading-5 font-myfont font-medium text-center text-white dark:text-white !mb-2 2xl:!mb-4"
-                                          >
-                                          <a [routerLink]="['/blog', formatHeading(card.titleLink)]">{{ card.title }}</a>
-                                        </h4>
-                                        <p
-                                          class="text-[#B4B9CB] text-center font-quickSand text-[13px] leading-[15px] xl:text-base xl:leading-5 md:text-[13px] md:leading-[15px] sm:text-[20px] sm:leading-[20px]"
-                                          >
-                                          {{ card.description }}
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <div class="flex justify-end mr-4 mb-4 mt-3">
-                                      <a [routerLink]="['/blog', formatHeading(card.titleLink)]">
-                                        <img
-                                          class="w-8 lg:w-8 xl:w-10"
-                                          src="../../../assets/images/gd-arrow-btn.svg"
-                                          alt=""
-                                          />
-                                      </a>
-                                      </div>
-                                    </div>
-                                  </div>
-                                }
-                              </div>
-                            } @else {
-                              <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28">
-                                <ng-container *ngTemplateOutlet="cardSkeleton"></ng-container>
-                              </div>
-                            }
+    <div class="py-7">
+      @if (App.length > 0) {
+      <h3
+        class="xl:text-4xl lg:text-3xl text-3xl font-myfont bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text">
+        App DEVELOPMENT
+      </h3>
+      }
+    </div>
 
-                            <!-- OUR BLOGS DESIGN CARDS SECTION -->
-                            <div class="py-7">
-                              @if (web.length > 0) {
-                                <h3
-                                  class="xl:text-4xl lg:text-3xl text-3xl font-myfont bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text"
-                                  >
-                                  WEB DEVELOPMENT
-                                </h3>
-                              }
-                            </div>
+    @if (!loadingApp) {
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28">
+      @for (card of App; track (card?._id || card?.titleLink || $index)) {
+      <div
+        class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer">
+        <div class="card-hover bg-[#000000] rounded-[40px] h-full w-full flex flex-col justify-between">
+          <div>
+            <a [routerLink]="['/blog', formatHeading(card.titleLink)]">
+              <img class="p-4 rounded-[60px] h-64 2xl:h-80 w-full object-cover"
+                [src]="card.image_2 ? imageUrl + card.image_2 : fallbackImage" (error)="onCoverError($event)"
+                [alt]="card.title" width="394" height="374" loading="lazy" decoding="async" />
+            </a>
+            <div class="px-4">
+              <h4
+                class="2xl:leading-7 2xl:text-2xl xl:text-xl xl:leading-6 text-lg leading-5 font-myfont font-medium text-center text-white dark:text-white !mb-2 2xl:!mb-4">
+                <a [routerLink]="['/blog', formatHeading(card.titleLink)]">{{ card.title }}</a>
+              </h4>
+              <p
+                class="text-[#B4B9CB] text-center font-quickSand text-[13px] leading-[15px] xl:text-base xl:leading-5 md:text-[13px] md:leading-[15px] sm:text-[20px] sm:leading-[20px]">
+                {{ card.description }}
+              </p>
+            </div>
+          </div>
+          <div class="flex justify-end mr-4 mb-4 mt-3">
+            <a [routerLink]="['/blog', formatHeading(card.titleLink)]">
+              <img class="w-8 lg:w-8 xl:w-10" src="../../../assets/images/gd-arrow-btn.svg" alt="" width="62"
+                height="62" loading="lazy" decoding="async" />
+            </a>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    } @else {
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28">
+      <ng-container *ngTemplateOutlet="cardSkeleton"></ng-container>
+    </div>
+    }
+  </section>
 
-                            @if (!loadingWeb) {
-                              <div
-                                class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28"
-                                >
-                                @for (card of web; track (card?._id || card?.titleLink || $index)) {
-                                  <div
-                                    class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer"
-                                    >
-                                    <div
-                                      class="card-hover bg-[#000000] rounded-[40px] h-full w-full flex flex-col justify-between"
-                                      >
-                                      <div>
-                                        <a [routerLink]="['/blog', formatHeading(card.titleLink)]">
-                                          <img
-                                            class="p-4 rounded-[60px] h-64 2xl:h-80 w-full object-cover"
-                                            [src]="imageUrl + card.image_2 || 'default-image.jpg'"
-                                            alt="product image"
-                                            />
-                                          </a>
-                                          <div class="px-4">
-                                            <h4
-                                              class="2xl:leading-7 2xl:text-2xl xl:text-xl xl:leading-6 text-lg leading-5 font-myfont font-medium text-center text-white dark:text-white !mb-2 2xl:!mb-4"
-                                              >
-                                              <a [routerLink]="['/blog', formatHeading(card.titleLink)]">{{ card.title }}</a>
-                                            </h4>
-                                            <p
-                                              class="text-[#B4B9CB] text-center font-quickSand text-[13px] leading-[15px] xl:text-base xl:leading-5 md:text-[13px] md:leading-[15px] sm:text-[20px] sm:leading-[20px]"
-                                              >
-                                              {{ card.description }}
-                                            </p>
-                                          </div>
-                                        </div>
-                                        <div class="flex justify-end mr-4 mb-4 mt-3">
-                                          <a [routerLink]="['/blog', formatHeading(card.titleLink)]">
-                                            <img
-                                              class="w-8 lg:w-8 xl:w-10"
-                                              src="../../../assets/images/gd-arrow-btn.svg"
-                                              alt=""
-                                              />
-                                          </a>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    }
-                                  </div>
-                                } @else {
-                                  <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28">
-                                    <ng-container *ngTemplateOutlet="cardSkeleton"></ng-container>
-                                  </div>
-                                }
-                                <!-- OUR BLOGS DIGITAL MARKETING CARDS -->
+  <app-footer [showButton]="false" [showHeading]="false" [btnText]="'Case study'" [cardText]="cardText">
+  </app-footer>
+</main>
 
-                                <div class="py-7">
-                                  @if (digitalM.length > 0) {
-                                    <h3
-                                      class="xl:text-4xl lg:text-3xl text-3xl font-myfont bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text"
-                                      >
-                                      DIGITAL MARKETING
-                                    </h3>
-                                  }
-                                </div>
-
-                                @if (!loadingDigital) {
-                                  <div
-                                    class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28"
-                                    >
-                                    @for (card of digitalM; track (card?._id || card?.titleLink || $index)) {
-                                      <div
-                                        class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer"
-                                        >
-                                        <div
-                                          class="card-hover bg-[#000000] rounded-[40px] h-full w-full flex flex-col justify-between"
-                                          >
-                                          <div>
-                                            <a [routerLink]="['/blog', formatHeading(card.titleLink)]">
-                                              <img
-                                                class="p-4 rounded-[60px] h-64 2xl:h-80 w-full object-cover"
-                                                [src]="imageUrl + card.image_2 || 'default-image.jpg'"
-                                                alt="product image"
-                                                />
-                                              </a>
-                                              <div class="px-4">
-                                                <h4
-                                                  class="2xl:leading-7 2xl:text-2xl xl:text-xl xl:leading-6 text-lg leading-5 font-myfont font-medium text-center text-white dark:text-white !mb-2 2xl:!mb-4"
-                                                  >
-                                                  <a [routerLink]="['/blog', formatHeading(card.titleLink)]">{{ card.title }}</a>
-                                                </h4>
-                                                <p
-                                                  class="text-[#B4B9CB] text-center font-quickSand text-[13px] leading-[15px] xl:text-base xl:leading-5 md:text-[13px] md:leading-[15px] sm:text-[20px] sm:leading-[20px]"
-                                                  >
-                                                  {{ card.description }}
-                                                </p>
-                                              </div>
-                                            </div>
-                                            <div class="flex justify-end mr-4 mb-4 mt-3">
-                                              <a [routerLink]="['/blog', formatHeading(card.titleLink)]">
-                                                <img
-                                                  class="w-8 lg:w-8 xl:w-10"
-                                                  src="../../../assets/images/gd-arrow-btn.svg"
-                                                  alt=""
-                                                  />
-                                              </a>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        }
-                                      </div>
-                                    } @else {
-                                      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28">
-                                        <ng-container *ngTemplateOutlet="cardSkeleton"></ng-container>
-                                      </div>
-                                    }
-                                    <!-- OUR BLOGS APP DEVELOPMENT CARDS -->
-
-                                    <div class="py-7">
-                                      @if (App.length > 0) {
-                                        <h3
-                                          class="xl:text-4xl lg:text-3xl text-3xl font-myfont bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text"
-                                          >
-                                          App DEVELOPMENT
-                                        </h3>
-                                      }
-                                    </div>
-
-                                    @if (!loadingApp) {
-                                      <div
-                                        class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28"
-                                        >
-                                        @for (card of App; track (card?._id || card?.titleLink || $index)) {
-                                          <div
-                                            class="bg-[#34394B] hover:bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] flex justify-center items-center p-[1.4px] 2xl:p-[1.5px] my-3 rounded-[40px] w-full max-w-xl cursor-pointer"
-                                            >
-                                            <div
-                                              class="card-hover bg-[#000000] rounded-[40px] h-full w-full flex flex-col justify-between"
-                                              >
-                                              <div>
-                                                <a [routerLink]="['/blog', formatHeading(card.titleLink)]">
-                                                  <img
-                                                    class="p-4 rounded-[60px] h-64 2xl:h-80 w-full object-cover"
-                                                    [src]="imageUrl + card.image_2 || 'default-image.jpg'"
-                                                    alt="product image"
-                                                    />
-                                                  </a>
-                                                  <div class="px-4">
-                                                    <h4
-                                                      class="2xl:leading-7 2xl:text-2xl xl:text-xl xl:leading-6 text-lg leading-5 font-myfont font-medium text-center text-white dark:text-white !mb-2 2xl:!mb-4"
-                                                      >
-                                                      <a [routerLink]="['/blog', formatHeading(card.titleLink)]">{{ card.title }}</a>
-                                                    </h4>
-                                                    <p
-                                                      class="text-[#B4B9CB] text-center font-quickSand text-[13px] leading-[15px] xl:text-base xl:leading-5 md:text-[13px] md:leading-[15px] sm:text-[20px] sm:leading-[20px]"
-                                                      >
-                                                      {{ card.description }}
-                                                    </p>
-                                                  </div>
-                                                </div>
-                                                <div class="flex justify-end mr-4 mb-4 mt-3">
-                                                  <a [routerLink]="['/blog', formatHeading(card.titleLink)]">
-                                                    <img
-                                                      class="w-8 lg:w-8 xl:w-10"
-                                                      src="../../../assets/images/gd-arrow-btn.svg"
-                                                      alt=""
-                                                      />
-                                                  </a>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            }
-                                          </div>
-                                        } @else {
-                                          <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3 pb-12 lg:pb-24 2xl:pb-28">
-                                            <ng-container *ngTemplateOutlet="cardSkeleton"></ng-container>
-                                          </div>
-                                        }
-                                      </section>
-
-                                      <app-footer
-                                        [showButton]="false"
-                                        [showHeading]="false"
-                                        [btnText]="'Case study'"
-                                        [cardText]="cardText"
-                                        >
-                                      </app-footer>
-                                    </main>
-
-                                    <ng-template #cardSkeleton>
-                                      @for (i of [1, 2, 3]; track i) {
-                                        <div
-                                          class="animate-pulse bg-[#1e1e2d] rounded-[40px] p-4 h-[410px] w-full max-w-xl"
-                                          >
-                                          <div class="h-52 bg-[#2c2c3a] rounded-[30px] mb-4"></div> <!-- Image -->
-                                          <div class="h-5 bg-[#2c2c3a] rounded w-3/4 mb-2 mx-auto"></div> <!-- Title -->
-                                          <div class="h-4 bg-[#2c2c3a] rounded w-full mb-1 mx-auto"></div> <!-- Desc line 1 -->
-                                          <div class="h-4 bg-[#2c2c3a] rounded w-5/6 mx-auto"></div> <!-- Desc line 2 -->
-                                        </div>
-                                      }
-                                    </ng-template>
-
-
-
-
-
-
-
-                                    <!--
-                                    <section class="px-7 md:px-10 xl:px-14 2xl:py-10 py-10 2xl:p-24">
-                                      <div>
-                                        <h2
-                                          class="text-white text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#34394b]"
-                                          >
-                                          FEATURED ARTICLES
-                                        </h2>
-                                      </div>
-
-                                      <div class="grid md:grid-cols-5 gap-4">
-                                        <div class="col-span-3" *ngIf="featured">
-                                          <div
-                                            class="mt-3 h-full card-hover group cursor-pointer"
-                                            [routerLink]="['/blog', formatHeading(featured.titleLink)]"
-                                            >
-                                            <a class="block overflow-hidden rounded-[30px]">
-                                              <img
-                                                class="rounded-[30px] object-cover w-full transition-transform transform group-hover:scale-105 duration-500 ease-in-out lg:h-[65vh] xl:h-[65vh] 2xl:h-[60vh]"
-                                                [src]="imageUrl + '/' + featured.image_2 || 'default-image.jpg'"
-                                                [alt]="featured.title"
-                                                />
-                                              </a>
-                                              <div>
-                                                <h5
-                                                  class="text-xl font-myfont text-[#B4B9CB] mb-2 mt-6 transition-opacity duration-500 ease-in-out group-hover:opacity-0"
-                                                  >
-                                                  Featured Article
-                                                </h5>
-                                                <p
-                                                  class="text-white font-quickSand text-[24px] leading-[30px] mb-4 transition-transform transform group-hover:-translate-y-4 duration-500 ease-in-out"
-                                                  >
-                                                  {{ featured.title }}
-                                                </p>
-                                                <button
-                                                  type="button"
-                                                  [routerLink]="['/blog', formatHeading(featured.titleLink)]"
-                                                  class="text-white font-quickSand font-medium transition-all duration-500 ease-in-out opacity-0 transform group-hover:!opacity-100 group-hover:-translate-y-4 flex items-center gap-2"
-                                                  >
-                                                  Read More
-                                                  <img
-                                                    src="../../../assets/images/arrow-right-gradient.svg"
-                                                    alt=""
-                                                    width="25"
-                                                    />
-                                                  </button>
-                                                </div>
-                                              </div>
-                                            </div>
-
-                                            <div class="col-span-3 sm:col-span-2 grid grid-rows-2 gap-4">
-                                              <div
-                                                *ngFor="let card of featured2"
-                                                class="row-span-1 card-hover group cursor-pointer"
-                                                [routerLink]="['/blog', formatHeading(card.titleLink)]"
-                                                >
-                                                <div class="mt-3 h-full flex flex-col items-center justify-center">
-                                                  <div class="h-full w-full">
-                                                    <a class="block overflow-hidden rounded-[30px]">
-                                                      <img
-                                                        class="w-full transition-transform transform group-hover:scale-105 duration-500 ease-in-out h-36 md:h-28 lg:h-32 xl:h-44 2xl:h-60 object-cover"
-                                                        [src]="imageUrl + '/' + card.image_2 || 'default-image.jpg'"
-                                                        [alt]="card.title"
-                                                        />
-                                                      </a>
-                                                      <div>
-                                                        <h5
-                                                          class="text-xl font-myfont text-[#B4B9CB] mb-2 mt-4 transition-opacity duration-500 ease-in-out group-hover:opacity-0"
-                                                          >
-                                                          Featured Article
-                                                        </h5>
-                                                        <p
-                                                          class="text-white font-quickSand text-[16px] mb-2 leading-[20px] transition-transform transform group-hover:-translate-y-4 duration-500 ease-in-out"
-                                                          >
-                                                          {{ card.title }}
-                                                        </p>
-                                                        <button
-                                                          type="button"
-                                                          [routerLink]="['/blog', formatHeading(card.titleLink)]"
-                                                          class="text-white font-quickSand font-medium transition-all duration-500 ease-in-out opacity-0 transform group-hover:!opacity-100 group-hover:-translate-y-4 flex items-center gap-2"
-                                                          >
-                                                          Read More
-                                                          <img
-                                                            src="../../../assets/images/arrow-right-gradient.svg"
-                                                            alt=""
-                                                            width="25"
-                                                            />
-                                                          </button>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </section> -->
+<ng-template #cardSkeleton>
+  @for (i of [1, 2, 3]; track i) {
+  <div class="animate-pulse bg-[#1e1e2d] rounded-[40px] p-4 h-[410px] w-full max-w-xl">
+    <div class="h-52 bg-[#2c2c3a] rounded-[30px] mb-4"></div>
+    <div class="h-5 bg-[#2c2c3a] rounded w-3/4 mb-2 mx-auto"></div>
+    <div class="h-4 bg-[#2c2c3a] rounded w-full mb-1 mx-auto"></div>
+    <div class="h-4 bg-[#2c2c3a] rounded w-5/6 mx-auto"></div>
+  </div>
+  }
+</ng-template>

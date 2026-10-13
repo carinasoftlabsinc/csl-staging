@@ -1,11 +1,4 @@
 .blog-bg {
-  // position: relative;
-  // background-image: linear-gradient(
-  //     0deg,
-  //     rgba(0, 0, 0, 1) 0%,
-  //     rgba(0, 0, 0, 0.7008928571428572) 35%
-  //   ),
-  //   url("../../../assets/images/blog-bg.png");
    background-image: linear-gradient(
       0deg,
       rgba(0, 0, 0, 1) 0%,
@@ -17,24 +10,8 @@
   background-repeat: no-repeat;
 }
 
-// .blog-bg::after {
-//   content: "";
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   // background: rgba(0, 0, 0, 0.7);
-//   // background: linear-gradient(
-//   //   0deg,
-//   //   rgba(0, 0, 0, 1) 0%,
-//   //   rgba(0, 0, 0, 0.7008928571428572) 35%
-//   // );
-// }
-
 .blog-bg p {
   position: relative;
-  // z-index: 1;
 }
 
 // Featured card text: fade the label away, keep the article headline visible,
@@ -102,7 +79,6 @@
   }
 }
 
-
 // ── Category cards ("Discover More Categories" section) ───────────────────────
 // Root cause of flicker: hover was on the inner div that also MOVED — so the
 // cursor left the element, hover exited, element reset, cursor was over it again
@@ -144,81 +120,3 @@
   }
 }
 
-
-// .card-hover:hover {
-//   border-color: #20b9fa !important;
-// }
-
-// .card-hover {
-//   position: relative;
-//   background: #000 !important;
-//   // z-index: 2;
-// }
-
-// .card-hover::after {
-//   content: "";
-//   position: absolute;
-//   width: 100%;
-//   height: 100%;
-//   translate: -50% -50%;
-//   left: 50%;
-//   top: 50%;
-//   z-index: -1;
-//   padding: 3px;
-//   background: linear-gradient(#ff2f2f, #2bff36);
-// }
-
-// .cadi {
-//   // border: 5px solid; /* Width of the border */
-//   // border-image: linear-gradient(to right, #f06, #ffdd00) 1;
-//   // border-radius: 40px;
-
-//   // border: 2px solid transparent;
-//   // border-radius: 8px;
-//   // outline: 5px solid transparent;
-//   // outline-offset: -5px;
-//   // background-clip: padding-box;
-//   // // box-shadow: 0 0 0 5px linear-gradient(to right, #f06, #ffdd00);
-//   // box-shadow: 0 0 0 5px linear-gradient(red, green);
-
-//   position: relative;
-//   padding: 10px; /* Space for the gradient border */
-//   background-clip: padding-box; /* Ensures the border is visible */
-//   border: solid 5px transparent; /* Optional: transparent border to show gradient */
-// }
-
-// .cadi::before {
-//   content: "";
-//   position: absolute;
-//   top: -5px;
-//   left: -5px;
-//   right: -5px;
-//   bottom: -5px;
-//   background: linear-gradient(to right, #f06, #ffdd00);
-//   z-index: -1; /* Places the pseudo-element behind the content */
-//   border-radius: 5px; /* Optional: to round the corners */
-// }
-
-// .gradi-border {
-//   position: relative;
-//   // background: black;
-//   // border-radius: 40px;
-//   // padding: 10px; /* Space for the gradient border */
-// }
-
-// .gradi-border::before {
-//   content: "";
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   z-index: 0;
-//   border-radius: inherit; /* Inherits the border radius from .cadi */
-//   padding: 2px; /* Match the thickness of the gradient border */
-//   background: linear-gradient(#f21df5, #20b9fa);
-//   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-//   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-//   -webkit-mask-composite: destination-out;
-//   mask-composite: subtract;
-// }

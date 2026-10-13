@@ -14,20 +14,39 @@
   display: none; /* Safari and Chrome */
 }
 
-.hover-card {
+// Client cards: only transform, colour and shadow change on hover, so nothing reflows.
+.client-card {
   scroll-snap-align: center;
+  background: #08090c;
+  border: 2px solid #34394b;
+  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.hover-card:hover p {
-  color: black;
-  font-weight: 500;
-  font-size: 0.9rem;
+.client-card .client-name {
+  transition: color 0.3s ease;
 }
 
-.hover-card:hover h1 {
-  color: black;
-  font-weight: 600;
-  font-size: 1.5rem;
+@media (hover: hover) {
+  .client-card:hover {
+    transform: translateY(-6px);
+    background: #0d0f15;
+    border-color: #20b9fa;
+    box-shadow: 0 14px 30px -14px rgba(32, 185, 250, 0.45);
+  }
+
+  .client-card:hover .client-name {
+    color: #20b9fa;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .client-card {
+    transition: none;
+  }
+
+  .client-card:hover {
+    transform: none;
+  }
 }
 
 // aman's css
@@ -73,42 +92,68 @@
 //   display: flex;
 // }
 
-.listt {
-  // width: 200px;
+// Our Values: the four panels sit on top of each other in one grid cell, so the box keeps the height of the
+// tallest panel and switching only crossfades (no reflow, no reload of the image).
+.values-item {
+  position: relative;
+  color: rgba(255, 255, 255, 0.55);
+  transition: color 0.5s ease;
+  outline: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #f21df5, #20b9fa);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &.active,
+  &:hover {
+    color: #fff;
+  }
+
+  &.active::before {
+    transform: scaleY(1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #20b9fa;
+    outline-offset: 2px;
+  }
 }
 
-// .listt ul {
-//   list-style-type: none;
-//   padding: 0;
-// }
-
-// .listt li {
-//   padding: 10px;
-//   cursor: pointer;
-// }
-
-.listt li.active {
-  // background-color: #e0e0e0;
-  border-left: 4px solid;
-  // linear-gradient(to bottom, #F21DF5, #20B9FA);
-  border-image: linear-gradient(to bottom, #f21df5, #20b9fa) 1 100%;
+.values-detail {
+  display: grid;
 }
 
-// .details {
-//   // margin-left: 20px;
-//   transition: opacity 0.5s ease-in-out;
-// }
+.values-panel {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  // Opacity only: nothing slides, so the page never looks like it is moving. The old panel fades out first,
+  // then the new one fades in, so the two texts never overlap.
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
 
-// .details img,
-// .details p {
-//   opacity: 0;
-//   transition: opacity 0.5s ease-in-out;
-// }
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.6s ease 0.25s, visibility 0s;
+  }
+}
 
-// .details.active img,
-// .details.active p {
-//   opacity: 1;
-// }
+@media (prefers-reduced-motion: reduce) {
+  .values-item,
+  .values-item::before,
+  .values-panel {
+    transition: none;
+  }
+}
 
 .txt-stroke {
   -webkit-text-stroke: 2px #fff;
@@ -179,11 +224,6 @@
     1px -1px 0 rgb(255, 255, 255), -1px 1px 0 rgb(255, 255, 255),
     1px 0 0 rgb(255, 255, 255), -1px 0 0 rgb(255, 255, 255),
     0 1px 0 rgb(255, 255, 255), 0 -1px 0 rgb(255, 255, 255); /* Adjust for the stroke effect */
-}
-
-.cli-card-shadow:hover {
-  // box-shadow: 0px 7px 10px rgba(white, 0.5);
-  box-shadow: rgba(255, 255, 255, 0.562) 0px 6px 18px -1px;
 }
 
 .text-strok2 {

@@ -93,7 +93,7 @@
           class="w-2.5 md:w-3.5 2xl:w-7"
           src="../../../assets/images/black-right-arrow.svg"
           alt=""
-          width="20"
+          width="24" height="22" loading="lazy" decoding="async"
           />
         </div>
       </div>
@@ -106,9 +106,11 @@
       [ngClass]="contentArray[selectedContent].bgColor"
       >
       <img
-        class="mb-3.5 md:-mb-32 2xl:-mb-40 h-80 md:h-80 md:w-60 lg:h-[27rem] lg:w-80 2xl:h-[30rem] 2xl:w-96 object-cover object-top"
+        class="max-md:w-auto mb-3.5 md:-mb-32 2xl:-mb-40 h-80 md:h-80 md:w-60 lg:h-[27rem] lg:w-80 2xl:h-[30rem] 2xl:w-96 object-cover object-top"
         [src]="contentArray[selectedContent].image"
-        alt="Image"
+        alt=""
+        [attr.width]="contentArray[selectedContent].imageWidth" [attr.height]="contentArray[selectedContent].imageHeight"
+        loading="lazy" decoding="async"
         />
         <div class="md:w-1/2 flex flex-col gap-3.5 md:gap-6">
           <h4
@@ -285,6 +287,8 @@
                   class="h-[40vh] 2xl:h-[45vh] rounded-badge w-full object-cover"
                   [src]="card.imgSrc"
                   alt=""
+                  [attr.width]="card.imgWidth" [attr.height]="card.imgHeight"
+                  loading="lazy" decoding="async"
                   />
                   <h4
                     class="font-myfont text-4xl 2xl:text-5xl mt-3.5 mb-2.5 2xl:mt-7 2xl:mb-3.5"
@@ -362,6 +366,8 @@
                     class="h-40 w-40 lg:h-36 lg:w-36 xl:h-40 xl:w-40 2xl:h-52 2xl:w-52 rounded-full absolute -right-72 -top-3 group-hover:-top-5 group-hover:-right-5 transition-all ease-in"
                     [src]="card.hovImg"
                     alt=""
+                    [attr.width]="card.hovWidth" [attr.height]="card.hovHeight"
+                    loading="lazy" decoding="async"
                     />
                     <h3
                       class="mb-12 2xl:mb-16 font-myfont font-medium text-7xl 2xl:text-8xl"
@@ -382,7 +388,7 @@
                       <img
                         class="w-11 2xl:w-14"
                         src="../../../assets/images/gd-arrow-btn.svg"
-                        alt=""
+                        alt="" width="62" height="62" loading="lazy" decoding="async"
                         />
                       </div>
                     </div>

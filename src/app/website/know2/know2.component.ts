@@ -302,6 +302,8 @@ export class Know2Component implements OnInit, AfterViewInit {
       text: 'We understand that every business is unique, and so are its challenges. When you partner with us, you can expect solutions that are specifically crafted to meet your business needs. Our team takes the time to understand your goals and develops strategies that align with your vision.',
       image:
         'https://i.pinimg.com/474x/25/3f/f6/253ff6a01f53bf1a388b12a981ac02e0.jpg',
+      imageWidth: 474,
+      imageHeight: 845,
       bgColor: 'bg-[#B1DF4F]',
     },
     {
@@ -311,6 +313,8 @@ export class Know2Component implements OnInit, AfterViewInit {
       text: 'At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive array of services is designed to propel your brand toward success and foster growth. At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive array of services is designed to propel your brand toward success and foster growth.',
       image:
         'https://i.pinimg.com/474x/1a/60/77/1a60777393de68d963279367f6943bd7.jpg',
+      imageWidth: 474,
+      imageHeight: 593,
       bgColor: 'bg-[#BC8AFB]',
     },
     {
@@ -320,6 +324,8 @@ export class Know2Component implements OnInit, AfterViewInit {
       text: 'At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive array of services is designed to propel your brand toward success and foster growth. At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive array of services is designed to propel your brand toward success and foster growth.',
       image:
         'https://i.pinimg.com/474x/14/8c/47/148c479982aa757c6737264f6267d443.jpg',
+      imageWidth: 474,
+      imageHeight: 849,
       bgColor: 'bg-[#FB8ACE]',
     },
     {
@@ -329,6 +335,8 @@ export class Know2Component implements OnInit, AfterViewInit {
       text: 'At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive array of services is designed to propel your brand toward success and foster growth. At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive array of services is designed to propel your brand toward success and foster growth.',
       image:
         'https://i.pinimg.com/474x/fd/c4/30/fdc430374a9fc00d9651c8f800c2f134.jpg',
+      imageWidth: 474,
+      imageHeight: 846,
       bgColor: 'bg-[#8AE0FB]',
     },
   ];
@@ -345,6 +353,8 @@ export class Know2Component implements OnInit, AfterViewInit {
       para: 'At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive',
       hovImg:
         'https://i.pinimg.com/474x/f0/ae/58/f0ae58f4e6832b494a7c379c93c824ea.jpg',
+      hovWidth: 474,
+      hovHeight: 474,
     },
     {
       bgColor: 'bg-[#BC8AFB]',
@@ -353,6 +363,8 @@ export class Know2Component implements OnInit, AfterViewInit {
       para: 'At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive',
       hovImg:
         'https://i.pinimg.com/474x/53/e8/1a/53e81ad378d5ebd78e3bdc7326f9a63f.jpg',
+      hovWidth: 474,
+      hovHeight: 474,
     },
     {
       bgColor: 'bg-[#FB8ACE]',
@@ -361,6 +373,8 @@ export class Know2Component implements OnInit, AfterViewInit {
       para: 'At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive',
       hovImg:
         'https://i.pinimg.com/474x/59/17/b7/5917b7e17018b540969dc28b5dc5373d.jpg',
+      hovWidth: 474,
+      hovHeight: 474,
     },
   ];
 
@@ -368,24 +382,32 @@ export class Know2Component implements OnInit, AfterViewInit {
     {
       imgSrc:
         'https://images.unsplash.com/photo-1724513786070-e1d446f94f03?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxNXx8fGVufDB8fHx8fA%3D%3D',
+      imgWidth: 600,
+      imgHeight: 900,
       heading: 'Tru Cater',
       desc: 'Servcie App is a One-Stop Solution for finding any Service Problems. finding a qualified  professional is relatively a tough task - especially when there is an urgent requirement.',
     },
     {
       imgSrc:
         'https://images.unsplash.com/photo-1723920515274-ace3503adad6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw5Mnx8fGVufDB8fHx8fA%3D%3D',
+      imgWidth: 600,
+      imgHeight: 429,
       heading: 'Uru Cater',
       desc: 'Servcie App is a One-Stop Solution for finding any Service Problems. finding a qualified  professional is relatively a tough task - especially when there is an urgent requirement.',
     },
     {
       imgSrc:
         'https://images.unsplash.com/photo-1724641379879-9338ca8e0362?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzMHx8fGVufDB8fHx8fA%3D%3D',
+      imgWidth: 600,
+      imgHeight: 399,
       heading: 'Fru Cater',
       desc: 'Servcie App is a One-Stop Solution for finding any Service Problems. finding a qualified  professional is relatively a tough task - especially when there is an urgent requirement.',
     },
     {
       imgSrc:
         'https://images.unsplash.com/photo-1724251638777-d859425204fc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3M3x8fGVufDB8fHx8fA%3D%3D',
+      imgWidth: 600,
+      imgHeight: 400,
       heading: 'Gru Cater',
       desc: 'Servcie App is a One-Stop Solution for finding any Service Problems. finding a qualified  professional is relatively a tough task - especially when there is an urgent requirement.',
     },

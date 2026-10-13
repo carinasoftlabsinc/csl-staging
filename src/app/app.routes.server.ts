@@ -14,6 +14,7 @@ export const serverRoutes: ServerRoute[] = [
   { path: '',                    renderMode: RenderMode.Prerender },
   { path: 'know-us',             renderMode: RenderMode.Prerender },
   { path: 'services',            renderMode: RenderMode.Prerender },
+  { path: 'app-development',     renderMode: RenderMode.Prerender },
   { path: 'blog',                renderMode: RenderMode.Prerender },
   { path: 'news-room',           renderMode: RenderMode.Prerender },
   { path: 'what-you-can-expect', renderMode: RenderMode.Prerender },

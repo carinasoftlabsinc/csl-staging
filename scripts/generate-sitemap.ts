@@ -86,6 +86,7 @@ async function main() {
     ['', 'website'],
     ['/know-us', 'know/know'],
     ['/services', 'services/services'],
+    ['/app-development', 'app-service/app-service'],
     ['/what-you-can-expect', 'know2/know2'],
     ['/how-we-work', 'know3/know3'],
     ['/careers', 'know4/know4'],

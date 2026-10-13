@@ -45,6 +45,7 @@ import { WebServiceComponent } from './web-service/web-service.component';
 import { WebSliderComponent } from './components/web-slider/web-slider.component';
 import { ServiceCardComponent } from './components/service-card/service-card.component';
 import { GameServiceComponent } from './game-service/game-service.component';
+import { AppServiceComponent } from './app-service/app-service.component';
 import { GamingSliderComponent } from './components/gaming-slider/gaming-slider.component';
 import { CoverflowSliderComponent } from './components/coverflow-slider/coverflow-slider.component';
 import { JobDescriptionComponent } from './job-description/job-description.component';
@@ -94,6 +95,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     WebSliderComponent,
     ServiceCardComponent,
     GameServiceComponent,
+    AppServiceComponent,
     GamingSliderComponent,
     CoverflowSliderComponent,
     JobDescriptionComponent,

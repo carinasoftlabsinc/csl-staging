@@ -16,6 +16,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { DigitalServiceComponent } from './digital-service/digital-service.component';
 import { WebServiceComponent } from './web-service/web-service.component';
 import { GameServiceComponent } from './game-service/game-service.component';
+import { AppServiceComponent } from './app-service/app-service.component';
 import { JobDescriptionComponent } from './job-description/job-description.component';
 import { CaseStudiesComponent } from './case-studies/case-studies.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
@@ -48,7 +49,8 @@ const routes: Routes = [
     path: 'digital-marketing',
     component: DigitalServiceComponent,
   },
-  // Future service pages: mobile-service/ and ai-service/ will be added when built.
+  { path: 'app-development', component: AppServiceComponent },
+  // AI & Emerging Tech will be added when its service page is built.
   {
     path: 'blog',
     component: BlogComponent,
@@ -122,7 +124,9 @@ const routes: Routes = [
   { path: 'service-details/digital-marketing', redirectTo: 'digital-marketing', pathMatch: 'full' },
   { path: 'service-details/game-development', redirectTo: 'game-development', pathMatch: 'full' },
   { path: 'service-details/web-development', redirectTo: 'web-development', pathMatch: 'full' },
-  { path: 'service-details/mobile-app-development', redirectTo: 'services', pathMatch: 'full' },
+  { path: 'service-details/mobile-app-development', redirectTo: 'app-development', pathMatch: 'full' },
+  { path: 'mobile-app-development', redirectTo: 'app-development', pathMatch: 'full' },
+  { path: 'mobile-service', redirectTo: 'app-development', pathMatch: 'full' },
 
   // ── Wildcard 404 Route ───────────────────────────────────────────
   {

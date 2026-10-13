@@ -53,7 +53,7 @@
         </p>
       </div>
       <div class="w-full md:w-1/2 hidden md:block">
-        <img src="../../../assets/Globe.gif" alt="" />
+        <img src="../../../assets/Globe.gif" alt="" width="800" height="600" />
       </div>
     </div>
   </section>
@@ -122,9 +122,7 @@
           >
           <img
             class="h-full w-full object-cover"
-            [src]="imageUrl + featured[0]?.image_2 || 'default-image.jpg'"
-            alt="Main Featured Image"
-            />
+            [src]="featured[0]?.image_2 ? imageUrl + featured[0]?.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="featured[0].title" width="1024" height="682" fetchpriority="high" />
             <div
               class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
               >
@@ -148,11 +146,7 @@
               <a [routerLink]="['/news', formatHeading(featured[1].titleLink)]">
                 <img
                   class="h-full w-full object-cover"
-                [src]="
-                  imageUrl + featured[1]?.image_2 || 'default-image.jpg'
-                "
-                  alt="{{ featured[1].title }}"
-                  />
+                [src]="featured[1]?.image_2 ? imageUrl + featured[1]?.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="featured[1].title" width="1024" height="682" loading="lazy" decoding="async" />
                   <div
                     class="h-3/4 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
                     >
@@ -179,9 +173,7 @@
                   >
                   <img
                     class="h-full w-full object-cover"
-                    [src]="imageUrl + card.image_2"
-                    alt="Static Image 1"
-                    />
+                    [src]="card.image_2 ? imageUrl + card.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="card.title" width="1024" height="682" loading="lazy" decoding="async" />
                     <div
                       class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
                       >
@@ -222,10 +214,7 @@
               >
               <img
                 class="h-full w-full object-cover"
-            [src]="
-              imageUrl + prevFeatured[0]?.image_2 || 'default-image.jpg'
-            "
-                />
+            [src]="prevFeatured[0]?.image_2 ? imageUrl + prevFeatured[0]?.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="prevFeatured[0].title" width="1024" height="682" loading="lazy" decoding="async" />
                 <div
                   class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
                   >
@@ -242,10 +231,7 @@
                 >
                 <img
                   class="h-full w-full object-cover"
-            [src]="
-              imageUrl + prevFeatured[1]?.image_2 || 'default-image.jpg'
-            "
-                  />
+            [src]="prevFeatured[1]?.image_2 ? imageUrl + prevFeatured[1]?.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="prevFeatured[1].title" width="1024" height="682" loading="lazy" decoding="async" />
                   <div
                     class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
                     >
@@ -309,9 +295,7 @@
                     >
                     <img
                       class="object-cover h-72 2xl:h-80 w-full rounded-2xl"
-                      [src]="imageUrl + card.image_2"
-                      alt=""
-                      />
+                      [src]="card.image_2 ? imageUrl + card.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="card.title" width="394" height="374" loading="lazy" decoding="async" />
                       <p
                         class="text-[#34394B] font-quickSand font-medium text-base 2xl:text-xl"
                         >
@@ -336,20 +320,17 @@
             </div>
           </section>
 
-          <section
-            class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
-            >
-            <div class="lg:pb-24 xl:pb-32 2xl:pb-36 py-14">
-              <div>
-                <h2
-                  class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
-                  >
-                  Ready to Transform?
-                </h2>
-              </div>
-              <app-getinform></app-getinform>
-            </div>
-          </section>
+          <ng-template #quoteLeft>
+            <p class="font-myfont uppercase text-[color:#0B0C10] leading-[0.945] text-[clamp(3rem,16vw,7rem)] lg:text-[7.4vw] xl:text-[8.4vw] 2xl:text-[clamp(3rem,9.48vw,11.375rem)]">
+              Let’s <span class="block pl-[0.8em]">get in </span>touch
+            </p>
+          </ng-template>
+          <app-quote-section
+            theme="light"
+            heading="Ready to Transform?"
+            service=""
+            [leftTemplate]="quoteLeft"
+          />
         </div>
 
         <app-footer

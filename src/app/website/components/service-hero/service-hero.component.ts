@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
 /**
  * Hero used by the service landing pages (Web Development, Digital Marketing, ...).
@@ -33,6 +33,8 @@ export class ServiceHeroComponent {
   /** Real pixel size of the image file; it reserves the space so the page does not jump while loading. */
   readonly imageWidth = input(717);
   readonly imageHeight = input(554);
+  /** Page-specific presentation without changing the other service heroes. */
+  readonly imageClass = input('');
 
   /** Any CSS `background` value for the area behind the header and hero. */
   readonly background = input('#0B0C10 url(assets/images/digitalheroBG.png) no-repeat center / cover');
@@ -41,4 +43,5 @@ export class ServiceHeroComponent {
   readonly ctaLabel = input('Get Started');
   /** Optional route for the button. Without it the button renders as a plain <button>. */
   readonly ctaLink = input<string | null>(null);
+  readonly ctaClick = output<MouseEvent>();
 }

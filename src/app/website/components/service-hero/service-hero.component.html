@@ -25,7 +25,7 @@
             @if (ctaLink(); as link) {
               <a appGradientButton [routerLink]="link">{{ ctaLabel() }}</a>
             } @else {
-              <button appGradientButton>{{ ctaLabel() }}</button>
+              <button appGradientButton type="button" (click)="ctaClick.emit($event)">{{ ctaLabel() }}</button>
             }
           }
         </div>
@@ -38,6 +38,7 @@
             [attr.height]="imageHeight()"
             fetchpriority="high"
             class="w-full h-auto"
+            [ngClass]="imageClass()"
           />
         </div>
       </div>

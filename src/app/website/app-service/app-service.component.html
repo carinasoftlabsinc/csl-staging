@@ -1,0 +1,98 @@
+<main class="app-development">
+  <app-service-hero
+    accent="APP"
+    headline="DEVELOPMENT"
+    description="We Help Service Trades Just Like Yours with the Online Tools and Expertise. Partner with a Canadian marketing company that is invested in your growth."
+    imageSrc="assets/images/app-development/hero-phone.webp"
+    imageAlt="Mobile apps displayed on a smartphone"
+    [imageWidth]="1440"
+    [imageHeight]="960"
+    imageClass="aspect-[715.857/552.631] object-cover rounded-[28px] lg:rounded-[3vw] opacity-60"
+    background="linear-gradient(rgba(11,12,16,0.9), rgba(11,12,16,0.9)), url(assets/images/app-development/hero-background.webp) no-repeat center / cover"
+    (ctaClick)="scrollToQuote($event)"
+  />
+
+  <section class="expertise-section light-section" aria-labelledby="expertise-title">
+    <div class="section-content">
+      <h2 id="expertise-title" class="section-title">Our Expertise</h2>
+      <p class="section-introduction">{{ introduction }}</p>
+      <div #expertiseTrack class="expertise-track" tabindex="0" role="region" aria-label="App development expertise. Swipe, scroll, or use the left and right arrow keys to explore all five services." (keydown)="scrollExpertise($event, expertiseTrack)">
+        @for (card of expertise; track card.number) {
+          <article class="expertise-card" [style.background-color]="card.color" [class.light-copy]="card.light">
+            <img class="expertise-preview" [src]="assets + 'expertise-phone.png'" alt="" width="415" height="245" loading="lazy" />
+            <p class="expertise-number" aria-hidden="true">{{ card.number }}</p>
+            <h3>{{ card.title }}<br />{{ card.secondLine }}</h3>
+            <p class="expertise-description">{{ expertiseDescription }}</p>
+            <a href="#lead-form" (click)="scrollToQuote($event)" class="expertise-link" [attr.aria-label]="'Request a quote for ' + card.title + ' ' + card.secondLine"><img [src]="assets + 'card-arrow.svg'" alt="" width="62" height="62" /></a>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="process-section" aria-labelledby="process-title">
+    <div class="section-content">
+      <h2 id="process-title" class="section-title">How do we create your mobile application?</h2>
+      <p class="process-introduction">We use agile methodologies to adapt each application to our clients in a customized way. We create applications in 3 phases:</p>
+      <ol class="process-steps">
+        @for (step of steps; track step.title) {
+          <li [style.--step-color]="step.color"><h3>{{ step.title }}</h3><p>{{ step.description }}</p></li>
+        }
+      </ol>
+      <div class="process-artwork">
+        <img [src]="assets + 'process-phones.png'" alt="Connected mobile application interfaces and features" width="951" height="874" loading="lazy" />
+        <p>Our solutions are robust and reliable. We use the most up-to-date and efficient application development technology in Madrid in our services. We develop applications with React Native and professional Flutter. Below are some examples of applications developed with React Native technology</p>
+      </div>
+    </div>
+    <img class="process-side-phone" [src]="assets + 'process-side-phone.png'" alt="" width="279" height="700" loading="lazy" />
+  </section>
+
+  <section class="industries-section light-section" aria-labelledby="industries-title">
+    <div class="section-content">
+      <h2 id="industries-title" class="section-title">Development of Mobile Applications by Sector</h2>
+      <p class="section-introduction">{{ introduction }}</p>
+      <div class="industry-grid">
+        @for (industry of industries; track industry.title) {
+          <article class="industry-card" [style.background-color]="industry.color" [class.light-copy]="industry.light">
+            <div class="industry-photo"><img [src]="assets + industry.image" [alt]="industry.title + ' development'" width="382" height="237" loading="lazy" /></div>
+            <h3>{{ industry.title }}</h3>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="technology-section" aria-labelledby="technology-title">
+    <div class="section-content">
+      <h2 id="technology-title" class="section-title">Technologies we work with</h2>
+      <p class="technology-introduction">Our employees are at the heart of our company. Here’s what they have to say about working at Mixmax.</p>
+      <ul class="technology-grid" aria-label="Technologies and integrations">
+        @for (technology of technologies; track technology.name) {
+          <li class="technology-tile" [class.full-tile]="technology.fullTile" [class.json-tile]="technology.name === 'JSON'">
+            @if (technology.image) {
+              <div class="technology-asset" [style.width.px]="technology.width" [style.height.px]="technology.height" [style.--asset-width]="technology.width" [style.--asset-height]="technology.height">
+                <img [src]="assets + technology.image" [alt]="technology.name" [attr.width]="technology.width" [attr.height]="technology.height" loading="lazy" />
+              </div>
+            }
+            @if (technology.label) { <span>{{ technology.label }}</span> }
+          </li>
+        }
+        <li class="technology-tile empty-tile" aria-hidden="true"></li>
+      </ul>
+    </div>
+  </section>
+
+  <section #metricsSection class="metrics-section" aria-labelledby="metrics-title" [class.metrics-ready]="metricsReady()">
+    <div class="section-content">
+      <h2 id="metrics-title">What's up with the numbers?</h2>
+      <dl class="metrics-grid">
+        @for (metric of metrics; track metric.label; let index = $index) {
+          <div [class.is-visible]="metricsVisible()[index]"><dt>{{ metric.label }}</dt><dd [attr.aria-label]="metric.value + '+'"><span aria-hidden="true">{{ metricValues()[index] }}+</span></dd></div>
+        }
+      </dl>
+    </div>
+  </section>
+
+  <app-quote-section theme="dark" service="Mobile App Development" image="assets/images/app-development/quote-phones.png" imageAlt="Three custom mobile application designs" [imageWidth]="941" [imageHeight]="923" imageClass="!rounded-none !mt-0 !ml-0" />
+  <app-footer />
+</main>

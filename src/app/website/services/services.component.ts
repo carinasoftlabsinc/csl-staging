@@ -15,10 +15,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 })
 export class ServicesComponent implements OnInit, OnDestroy {
   allServiceimgs = [
-    '../../../assets/images/game-service.png',
-    '../../../assets/images/digital-service.png',
-    '../../../assets/images/app-service.png',
-    '../../../assets/images/web-service.png',
+    '../../../assets/images/game-service.webp',
+    '../../../assets/images/digital-service.webp',
+    '../../../assets/images/app-service.webp',
+    '../../../assets/images/web-service.webp',
   ];
 
   currentImage = this.allServiceimgs[0];
@@ -105,10 +105,10 @@ export class ServicesComponent implements OnInit, OnDestroy {
     'DIGITAL MARKETING',
   ];
   serviceimgs: string[] = [
-    '../../../assets/images/service-hero-game.png',
-    '../../../assets/images/service-hero-app.png',
-    '../../../assets/images/service-hero-web.png',
-    '../../../assets/images/service-hero-digital.png',
+    '../../../assets/images/service-hero-game.webp',
+    '../../../assets/images/service-hero-app.webp',
+    '../../../assets/images/service-hero-web.webp',
+    '../../../assets/images/service-hero-digital.webp',
   ];
 
   currentWordIndex = 0;
@@ -421,25 +421,25 @@ export class ServicesComponent implements OnInit, OnDestroy {
       id: 'section1',
       title: 'GAME DEVELOPMENT',
       description: `Carina Softlabs is central India’s Leading Game Development Company. We deal in custom games, and our team of talented designers and developers is dedicated to turning your vision into reality. We have a varied spectrum of clients worldwide, and our experience of over a decade makes us unique and attuned to our clients’ needs.`,
-      imgSrc: '../../../assets/images/game-service.png',
+      imgSrc: '../../../assets/images/game-service.webp',
     },
     {
       id: 'section2',
       title: 'Digital Marketing',
       description: `We started as an SEO company, and later after a few successful projects we re-launched as a Digital Marketing Company to provide social media services, SEO services, Email Marketing Services, Guest Post Outreach, and all the other services in Digital Marketing. Contact us to get started ranking your business in SERPs.`,
-      imgSrc: '../../../assets/images/digital-service.png',
+      imgSrc: '../../../assets/images/digital-service.webp',
     },
     {
       id: 'section3',
       title: 'Mobile App Development',
       description: `Developing complex applications is harder nowadays, but our team of highly skilled developers can turn your dream ideas into reality. We have the best records in App Development, from developing to marketing we are the complete solution to your business needs. Connect with us & let us know how we can touch new heights together.`,
-      imgSrc: '../../../assets/images/app-service.png',
+      imgSrc: '../../../assets/images/app-service.webp',
     },
     {
       id: 'section4',
       title: 'Web Development',
       description: `At Carina Softlabs, we understand the need for a website of a business. We have complete web development solutions, from designing to marketing your business. Whether you are an established business or a start-up, we know the steps to launch you on the Internet. Our team of highly experienced developers is here to execute your vision.`,
-      imgSrc: '../../../assets/images/web-service.png',
+      imgSrc: '../../../assets/images/web-service.webp',
     },
   ];
 

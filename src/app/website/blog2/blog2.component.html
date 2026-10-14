@@ -19,15 +19,15 @@
           </h2>
           @if (!loadingBlog) {
             <ul>
-              @for (section of sections; track section) {
+              @for (item of tocItems; track item.id) {
                 <li class="my-2.5 2xl:my-3.5">
                   <a
                     class="font-medium text-white xl:!text-lg 2xl:!text-xl"
-                    [class.active]="activeSection === section._id"
-                    href="#"
-                    (click)="scrollToSection($event, section._id)"
+                    [class.active]="activeSection === item.id"
+                    [attr.href]="'#' + item.id"
+                    (click)="scrollToSection($event, item.id)"
                     >
-                    {{ section.heading }}
+                    {{ item.text }}
                   </a>
                 </li>
               }
@@ -82,6 +82,12 @@
                 <h2 class="text-2xl font-semibold">{{ section?.heading }}</h2>
                 <p [innerHTML]="sanitizeContent(section?.content)"></p>
               </div> -->
+              @if (contentHtml) {
+                <div
+                  class="blog-content sm:text-base xl:text-lg 2xl:text-xl"
+                  [innerHTML]="contentHtml"
+                ></div>
+              }
               @for (section of sanitizedSections; track section) {
                 <div
                   [id]="section._id"

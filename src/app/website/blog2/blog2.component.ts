@@ -1,4 +1,5 @@
 import { optimizeContentImages } from '@core/utils/content-images.util';
+import { addHeadingIds, ContentHeading } from '@core/utils/content-headings.util';
 import { HttpClient } from '@angular/common/http';
 import {
   Component,
@@ -39,6 +40,10 @@ export class Blog2Component implements OnInit {
     heading: string;
     sanitizedContent: SafeHtml;
   }[] = [];
+  /** The post body (one HTML document); null for older posts that still use `sections`. */
+  contentHtml: SafeHtml | null = null;
+  /** Table of contents: the post's <h2> headings, or the section headings of older posts. */
+  tocItems: ContentHeading[] = [];
   loading = false;
   loadingBlog = true;
   loadingMoreBlogs = true;
@@ -173,17 +178,31 @@ export class Blog2Component implements OnInit {
             return;
           }
 
-        const rawSections = this.cardDataa?.sections || [];
-        this.sections = rawSections;
-        this.sanitizedSections = rawSections.map((section: any) => ({
-          _id: section._id,
-          heading: section.heading,
-          sanitizedContent: this.sanitizeContent(section.content || ''),
-        }));
+        const content: string = this.cardDataa?.content || '';
+        if (content.trim()) {
+          // Heading ids are added after cleaning, because Angular's sanitizer removes `id`.
+          const { html, headings } = addHeadingIds(this.cleanContent(content));
+          this.contentHtml = this.sanitizer.bypassSecurityTrustHtml(html);
+          this.tocItems = headings;
+          this.sections = [];
+          this.sanitizedSections = [];
+        } else {
+          const rawSections = this.cardDataa?.sections || [];
+          this.contentHtml = null;
+          this.sections = rawSections;
+          this.sanitizedSections = rawSections.map((section: any) => ({
+            _id: section._id,
+            heading: section.heading,
+            sanitizedContent: this.sanitizeContent(section.content || ''),
+          }));
+          this.tocItems = rawSections
+            .filter((section: any) => section.heading)
+            .map((section: any) => ({ id: section._id, text: section.heading }));
+        }
         this.faqs = (this.cardDataa?.faqs || []).map((faq: any, i: any) => ({
           ...faq,
           open: i === 0,
-          safeAnswer: this.sanitizer.bypassSecurityTrustHtml(faq.answer),
+          safeAnswer: this.sanitizeContent(faq.answer || ''),
         }));
 
         const canonicalSlug = this.formatHeading(this.cardDataa.titleLink || this.cardDataa.title);
@@ -218,14 +237,8 @@ export class Blog2Component implements OnInit {
         });
 
         this.fetchAllBlogs();
-        if (this.sections.length > 0) {
-          this.activeSection = this.sections[0]._id;
-          const flatSubSections = this.sections.flatMap(
-            (section) => section.subSections || []
-          );
-          this.activeSubSection =
-            flatSubSections.length > 0 ? flatSubSections[0]._id : '';
-        }
+        this.activeSection = this.tocItems[0]?.id || '';
+        this.activeSubSection = '';
         this.cdr.detectChanges();
       },
       error: (error) => {
@@ -247,6 +260,9 @@ export class Blog2Component implements OnInit {
     this.cardData = null;
     this.cardDataa = null;
     this.sections = [];
+    this.sanitizedSections = [];
+    this.contentHtml = null;
+    this.tocItems = [];
     this.activeSection = '';
     this.activeSubSection = '';
   }
@@ -274,11 +290,11 @@ export class Blog2Component implements OnInit {
 
   private highlightActiveSection() {
     if (!isPlatformBrowser(this.platformId)) return;
-    this.sections.forEach((section) => {
-      const element = document.getElementById(section._id);
+    this.tocItems.forEach((item) => {
+      const element = document.getElementById(item.id);
       const rect = element?.getBoundingClientRect();
       if (rect && rect.top >= 0 && rect.top < window.innerHeight / 2) {
-        this.activeSection = section._id;
+        this.activeSection = item.id;
       }
     });
   }
@@ -311,13 +327,26 @@ export class Blog2Component implements OnInit {
   }
 
   sanitizeContent(rawHtml: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(this.cleanContent(rawHtml));
+  }
+
+  /** Post HTML made safe to show: Angular's sanitizer, then (in the browser) inline fonts and styles removed. */
+  private cleanContent(rawHtml: string): string {
+    // Angular's sanitizer removes `id`, which anchor links (#name) need: carry it through in `title`.
+    const marked = rawHtml.replace(
+      /<a\b([^>]*?)\sid\s*=\s*["']([a-z0-9_-]+)["']([^>]*)>/gi,
+      (_, before, id, after) => `<a${before}${after} title="__anchor:${id}">`
+    );
+    const cleaned = (this.sanitizer.sanitize(SecurityContext.HTML, marked) ?? '').replace(
+      /\stitle="__anchor:([a-z0-9_-]+)"/gi,
+      ' id="$1"'
+    );
     if (!isPlatformBrowser(this.platformId)) {
-      const cleaned = this.sanitizer.sanitize(SecurityContext.HTML, rawHtml) ?? '';
-      return this.sanitizer.bypassSecurityTrustHtml(optimizeContentImages(cleaned));
+      return optimizeContentImages(cleaned);
     }
 
     const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = rawHtml;
+    tempDiv.innerHTML = cleaned;
 
     const unwantedTags = ['font', 'span'];
     unwantedTags.forEach((tag) => {
@@ -343,6 +372,6 @@ export class Blog2Component implements OnInit {
       img.classList.add('w-full', 'h-auto');
     });
 
-    return this.sanitizer.bypassSecurityTrustHtml(optimizeContentImages(tempDiv.innerHTML));
+    return optimizeContentImages(tempDiv.innerHTML);
   }
 }

@@ -13,3 +13,124 @@
   //   color: #20b9fa !important; /* Adjust color as needed */
   color: #f21df5 !important; /* Adjust color as needed */
 }
+
+// Post body (one HTML document from the CMS). Its <h2> headings look like the old section headings and
+// are the targets of the table of contents.
+:host ::ng-deep .blog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  color: #fff;
+
+  h2 {
+    margin: 1.25rem 0 0;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    scroll-margin-top: 6rem;
+
+    @media (min-width: 1280px) {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
+
+    @media (min-width: 1536px) {
+      font-size: 2.25rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  > h2:first-child {
+    margin-top: 0;
+  }
+
+  h3 {
+    margin: 0.75rem 0 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    scroll-margin-top: 6rem;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+  }
+
+  ol {
+    list-style: decimal;
+    padding-left: 1.5rem;
+  }
+
+  li + li {
+    margin-top: 0.35rem;
+  }
+
+  a {
+    color: #8ae0fb;
+    text-decoration: underline;
+    font-size: inherit !important;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+  }
+
+  blockquote {
+    border-left: 3px solid #f21df5;
+    padding-left: 1rem;
+    color: #b4b9cb;
+  }
+
+  pre {
+    overflow-x: auto;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    background: #34394b53;
+  }
+}
+
+// Alignment, indent, code samples and separators from the post editor.
+:host ::ng-deep .blog-content {
+  .post-align-center {
+    text-align: center;
+  }
+
+  .post-align-right {
+    text-align: right;
+  }
+
+  .post-align-justify {
+    text-align: justify;
+  }
+
+  @for $i from 1 through 4 {
+    .post-indent-#{$i} {
+      padding-left: #{$i * 2}rem;
+    }
+  }
+
+  pre code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.9em;
+    white-space: pre;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid #34394b;
+    margin: 1rem 0;
+  }
+
+  a[id]:not([href]) {
+    scroll-margin-top: 6rem;
+  }
+}

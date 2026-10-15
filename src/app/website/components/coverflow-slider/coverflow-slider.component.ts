@@ -8,6 +8,8 @@ import {
   ChangeDetectorRef,
   Inject,
   PLATFORM_ID,
+  NgZone,
+  inject,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import type { SwiperContainer } from 'swiper/element';
@@ -26,6 +28,7 @@ export class CoverflowSliderComponent implements AfterViewInit, OnDestroy {
   swiperReady = false;
   private swiperInstance?: Swiper;
   private destroyed = false;
+  private readonly zone = inject(NgZone);
   readonly fallbackImages = [
     '/assets/images/2DGame.png',
     '/assets/images/2DGame-2.png',
@@ -62,7 +65,9 @@ export class CoverflowSliderComponent implements AfterViewInit, OnDestroy {
       if (this.destroyed) return;
 
       // The element has all Angular-rendered slides before Swiper measures them.
-      swiperEl.initialize();
+      // Outside the Angular zone: autoplay runs a never-ending animation-frame loop that would keep the app
+      // from becoming stable (that blocks hydration event replay) and run change detection every frame.
+      this.zone.runOutsideAngular(() => swiperEl.initialize());
       if (!swiperEl.swiper?.initialized) return;
 
       this.swiperInstance = swiperEl.swiper;
@@ -78,15 +83,13 @@ export class CoverflowSliderComponent implements AfterViewInit, OnDestroy {
   }
 
   goNext() {
-    if (this.swiperInstance) {
-      this.swiperInstance.slideNext();
-    }
+    const swiper = this.swiperInstance;
+    if (swiper) this.zone.runOutsideAngular(() => swiper.slideNext());
   }
 
   goPrev() {
-    if (this.swiperInstance) {
-      this.swiperInstance.slidePrev();
-    }
+    const swiper = this.swiperInstance;
+    if (swiper) this.zone.runOutsideAngular(() => swiper.slidePrev());
   }
 
   onSlideImageError(event: Event, index: number): void {

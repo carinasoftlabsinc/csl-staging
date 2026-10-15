@@ -106,7 +106,8 @@ export class HeaderComponent {
     }
   }
 
-  private close(): void {
+  /** Also used by the links: clicking the page you are already on does not navigate, so the menu would stay open. */
+  protected close(): void {
     this.isOpen.set(false);
     this.openDropdown.set(null);
     this.setBodyLock(false);

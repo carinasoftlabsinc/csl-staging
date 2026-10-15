@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Inject, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import { Component, AfterViewInit, Inject, PLATFORM_ID, ChangeDetectionStrategy, NgZone, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -11,10 +11,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
     standalone: false
 })
 export class RacesComponent implements AfterViewInit {
+  private readonly zone = inject(NgZone);
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngAfterViewInit() {
     if (!isPlatformBrowser(this.platformId)) return;
+    // GSAP runs its own animation loop; inside the Angular zone it would keep the app from ever becoming stable.
+    this.zone.runOutsideAngular(() => this.initScroll());
+  }
+
+  private initScroll(): void {
     gsap.registerPlugin(ScrollTrigger);
 
     const container = document.querySelector('.container');

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID, ChangeDetectionStrategy, NgZone, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -12,6 +12,8 @@ import { Observer } from 'gsap/Observer';
     standalone: false
 })
 export class HoriScrollComponent implements OnInit, AfterViewInit {
+  private readonly zone = inject(NgZone);
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   currentSection = '01';
@@ -39,6 +41,11 @@ export class HoriScrollComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
+    // GSAP runs its own animation loop; inside the Angular zone it would keep the app from ever becoming stable.
+    this.zone.runOutsideAngular(() => this.initScroll());
+  }
+
+  private initScroll(): void {
     gsap.registerPlugin(ScrollTrigger, Observer);
 
     let sections = gsap.utils.toArray<HTMLElement>('.conto section');

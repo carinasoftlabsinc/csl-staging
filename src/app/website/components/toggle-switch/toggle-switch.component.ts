@@ -24,7 +24,8 @@
 //   }
 // }
 
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy, NgZone, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
     selector: 'app-toggle-switch',
@@ -33,12 +34,23 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
     changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
-export class ToggleSwitchComponent implements OnInit {
+export class ToggleSwitchComponent implements OnInit, OnDestroy {
+  private readonly zone = inject(NgZone);
+  private readonly platformId = inject(PLATFORM_ID);
+  private intervalId?: ReturnType<typeof setInterval>;
+
   isChecked: boolean = false;
 
   ngOnInit(): void {
-    setInterval(() => {
-      this.isChecked = !this.isChecked;
-    }, 2000);
+    if (!isPlatformBrowser(this.platformId)) return;
+    // Outside the Angular zone: a never-ending timer inside it keeps the app from ever becoming stable,
+    // which blocks hydration event replay (e.g. an early click on the menu button was lost).
+    this.zone.runOutsideAngular(() => {
+      this.intervalId = setInterval(() => this.zone.run(() => (this.isChecked = !this.isChecked)), 2000);
+    });
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervalId);
   }
 }

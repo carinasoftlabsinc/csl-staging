@@ -7,6 +7,8 @@ import {
   ChangeDetectionStrategy,
   Inject,
   PLATFORM_ID,
+  NgZone,
+  inject,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Event, Router, NavigationStart, NavigationEnd } from '@angular/router';
@@ -20,6 +22,7 @@ import { gsap } from 'gsap';
   standalone: false,
 })
 export class AppComponent implements OnInit, AfterViewInit {
+  private readonly zone = inject(NgZone);
   currentUrl!: string;
 
   @ViewChild('cursorDot') cursorDot!: ElementRef<HTMLDivElement>;
@@ -50,7 +53,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      document.addEventListener('mousemove', this.onMouseMove);
+      // Outside the Angular zone: the cursor only moves DOM nodes, so a mouse move must not run change detection,
+      // and the GSAP animation loop must not keep the app from becoming stable (that blocks hydration event replay).
+      this.zone.runOutsideAngular(() => document.addEventListener('mousemove', this.onMouseMove, { passive: true }));
     }
   }
 

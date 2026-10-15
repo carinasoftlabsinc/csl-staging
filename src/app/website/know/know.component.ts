@@ -1,4 +1,4 @@
-import { HostListener, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID, inject } from '@angular/core';
+import { HostListener, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID, inject, NgZone } from '@angular/core';
 import { SeoService } from '@core/service/seo.service';
 import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
@@ -44,6 +44,7 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
   private routerSubscription: Subscription | null = null;
   private seoElements: HTMLElement[] = [];
   private readonly seoService = inject(SeoService);
+  private readonly zone = inject(NgZone);
 
   constructor(
     private route: ActivatedRoute,
@@ -56,7 +57,7 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     if (isPlatformBrowser(this.platformId)) {
-      gsap.registerPlugin(ScrollTrigger);
+      this.zone.runOutsideAngular(() => gsap.registerPlugin(ScrollTrigger));
 
       // Subscribe to router events
       this.routerSubscription = this.router.events.subscribe((event) => {
@@ -256,6 +257,11 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
 
   initializeProgressBar() {
     if (!isPlatformBrowser(this.platformId)) return;
+    // GSAP runs its own animation loop; inside the Angular zone it would keep the app from ever becoming stable.
+    this.zone.runOutsideAngular(() => this.createProgressTriggers());
+  }
+
+  private createProgressTriggers(): void {
     const mask = document.querySelector('.mask');
     const jourElements = document.querySelectorAll('.jour');
     const jourWrap = document.querySelector('.jour-wrap');

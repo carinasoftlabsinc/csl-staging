@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, AfterViewInit, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID, inject, NgZone } from '@angular/core';
 import { SeoService } from '@core/service/seo.service';
 import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
@@ -26,6 +26,7 @@ export class ServicesComponent implements OnInit, OnDestroy {
   private seoElements: HTMLElement[] = [];
 
   private readonly seoService = inject(SeoService);
+  private readonly zone = inject(NgZone);
 
   constructor(
     private titleService: Title,
@@ -37,7 +38,7 @@ export class ServicesComponent implements OnInit, OnDestroy {
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
-    gsap.registerPlugin(ScrollTrigger);
+    this.zone.runOutsideAngular(() => gsap.registerPlugin(ScrollTrigger));
     const sections = document.querySelectorAll('.ini-service');
     const options = {
       root: null,
@@ -116,9 +117,11 @@ export class ServicesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.intervalId = setInterval(() => {
-        this.updateWordIndex();
-      }, 2000); // Change word and image every 2 seconds
+      // Change word and image every 2 seconds. Outside the Angular zone so the app can become stable
+      // (a never-ending timer inside it blocks hydration event replay).
+      this.zone.runOutsideAngular(() => {
+        this.intervalId = setInterval(() => this.zone.run(() => this.updateWordIndex()), 2000);
+      });
     }
 
     this.titleService.setTitle(

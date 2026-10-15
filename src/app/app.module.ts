@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,7 @@ import { SharedModule } from '@shared';
         SharedModule], providers: [
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
         provideHttpClient(withFetch(), withInterceptorsFromDi()),
-        provideClientHydration(),
+        // Event replay keeps clicks made before hydration finishes (e.g. on the menu button).
+        provideClientHydration(withEventReplay()),
     ] })
 export class AppModule {}

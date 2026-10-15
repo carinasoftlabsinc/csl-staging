@@ -3,6 +3,21 @@
   position: fixed;
   z-index: 1000;
   mix-blend-mode: difference;
+  // A 48px tap target around the 39px icon, so it is easy to hit on phones.
+  display: grid;
+  place-items: center;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 4px;
+  margin: -4px;
+  border-radius: 9999px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.hamburger:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 .hamburger svg {
@@ -92,5 +107,14 @@
     content: "|";
     margin-right: 25px;
     color: #34394b;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nvv,
+  .nvv.open,
+  .hamburger svg,
+  .line {
+    transition: none;
   }
 }

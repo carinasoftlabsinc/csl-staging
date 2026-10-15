@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID, inject, NgZone } from '@angular/core';
 import { SeoService } from '@core/service/seo.service';
 import { isPlatformBrowser } from '@angular/common';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -217,6 +217,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
   private seoElements: HTMLElement[] = [];
 
   private readonly seoService = inject(SeoService);
+  private readonly zone = inject(NgZone);
 
   constructor(
     private titleService: Title,
@@ -248,7 +249,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       this.setupIntersectionObserver();
       import('aos').then((AOS) => (AOS.default || AOS).init({ disable: 'mobile' }));
-      gsap.registerPlugin(ScrollTrigger);
+      this.zone.runOutsideAngular(() => gsap.registerPlugin(ScrollTrigger));
     }
   }
 

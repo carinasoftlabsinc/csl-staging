@@ -207,8 +207,10 @@ export class Blog2Component implements OnInit {
 
         const canonicalSlug = this.formatHeading(this.cardDataa.titleLink || this.cardDataa.title);
         this.seoService.setPage({
-          title: `${this.cardDataa.title} | Carina Softlabs`,
+          // SEO title/description from the admin, else the post title and description.
+          title: this.cardDataa.seoTitle || `${this.cardDataa.title} | Carina Softlabs`,
           description:
+            this.cardDataa.seoDescription ||
             this.cardDataa.description ||
             'Read more insights on technology and innovation from Carina Softlabs.',
           url: `https://carinasoftlabs.com/blog/${canonicalSlug}`,

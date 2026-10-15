@@ -574,36 +574,38 @@
                             <!-- latest blog animated cards -->
 
                             <div class="py-20">
-                              <div class="scroll-container gap-4">
-                                <!-- cards -->
+                              <!-- Figma "Component 2" (node 339:3651): hover changes the card to its Active state, like Figma's Smart animate (300ms linear). See .lat-card in the SCSS. -->
+                              <div class="scroll-container lat-row">
                                 @for (card of blogCards; track card) {
-                                  <div
-                                    class="scroll-item flex flex-col lg:hover:w-[600px] 2xl:hover:w-[670px] lg:hover:flex-row lg:hover:gap-x-7 transition-all duration-500 ease-in-out flex-shrink-0 w-64 2xl:h-[27rem] 2xl:w-[22rem] 2xl:px-10 2xl:py-16 2xl:rounded-[3rem] 2xl:hover:py-8 overflow-hidden rounded-badge relative cursor-pointer bg-[#34394b52] px-6 sm:w-72 py-9 gap-y-7 lat-blog-1"
-                                    >
+                                  <article class="scroll-item lat-card">
+                                    <div class="lat-bg" aria-hidden="true"></div>
+                                    <div class="lat-glow" aria-hidden="true"></div>
                                     <img
-                                      class="rounded-badge h-40 w-full object-cover"
-                                      [src]="card.image ? imageUrl + card.image : fallbackImage" (error)="onCoverError($event)" width="240" height="160" loading="lazy" decoding="async"
+                                      class="lat-img"
+                                      [src]="card.image ? imageUrl + card.image : fallbackImage" (error)="onCoverError($event)" width="341" height="427" loading="lazy" decoding="async"
                                       alt=""
-                                      />
-                                      <div class="flex flex-col gap-y-7">
-                                        <a
-                                          [routerLink]="['/blog', formatHeading(card.titleLink)]"
-                                          class="text-[#B4B9CB] font-quickSand font-medium lat-bl-h"
-                                          >
-                                          {{ card.title }}
+                                    />
+                                    <div class="lat-body">
+                                      <h3 class="lat-title">
+                                        <a [routerLink]="['/blog', formatHeading(card.titleLink)]">{{ card.title }}</a>
+                                      </h3>
+                                      @if (card.description) {
+                                        <div class="lat-desc">
+                                          <p>{{ card.description }}</p>
+                                        </div>
+                                      }
+                                      <div class="lat-btn">
+                                        <a appGradientButton size="md" [routerLink]="['/blog', formatHeading(card.titleLink)]" tabindex="-1">
+                                          View More
+                                          <img src="assets/images/blog-card/arrow-sm.svg" alt="" aria-hidden="true" width="14" height="7" />
                                         </a>
-                                        <p class="hidden text-[#B4B9CB] text-xs 2xl:text-sm lat-bl-p">
-                                          {{ card.description }}
-                                        </p>
-                                        <a appGradientButton size="md" class="w-1/2 !text-sm !py-1 !px-2" [routerLink]="['/blog', formatHeading(card.titleLink)]">
-  View More
-</a>
                                       </div>
                                     </div>
-                                  }
-                                </div>
+                                  </article>
+                                }
                               </div>
                             </div>
+                          </div>
                           </section>
 
                           <!--  technology stack -->

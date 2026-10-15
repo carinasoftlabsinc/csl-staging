@@ -677,58 +677,234 @@ a.control_next {
 }
 
 // latest blog card and slider
+//
+// Figma "Component 2" (CSL New Web, node 339:3651), Unactive -> Active on hover with Smart animate, linear 300ms.
+// Every part is positioned absolutely with the Figma numbers, so the browser can tween each one between the two
+// states (image grows into a tall left image, title moves right and grows, description opens, card widens).
+// All sizes are Figma px x --s, so the same card scales down on smaller screens.
 
-@media only screen and (min-width: 1024px) {
-  .lat-blog-1:hover {
-    background: #34394b52 url("../../assets/images/white-glow.png") top;
-  }
+.lat-row {
+  align-items: flex-start;
+  gap: calc(28px * var(--s, 1));
+  --s: 0.72;
+}
 
-  .lat-blog-1:hover img {
-    width: 18vw;
-    // width: 20rem;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 30px;
-  }
-
-  .lat-blog-1:hover .lat-bl-p {
-    display: block;
-  }
-  .lat-blog-1:hover .lat-bl-h {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-
-  .lat-blog-1:hover {
-    align-items: center;
+@media (min-width: 1024px) {
+  .lat-row {
+    --s: 0.8;
   }
 }
 
-@media screen and (min-width: 1536px) {
-  .lat-blog-1:hover img {
-    width: 13vw;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 30px;
-  }
-  .lat-blog-1:hover .lat-bl-h {
-    font-size: 1.1rem;
-    line-height: 1.6rem;
+@media (min-width: 1536px) {
+  .lat-row {
+    --s: 1;
   }
 }
 
-@media screen and (min-width: 2000px) {
-  .lat-blog-1:hover img {
-    width: 11vw;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 30px;
+.lat-card {
+  --t: 300ms linear; // Figma: Smart animate, Linear, 300ms
+  position: relative;
+  flex-shrink: 0;
+  width: calc(395px * var(--s));
+  height: calc(485px * var(--s));
+  overflow: hidden;
+  border-radius: calc(50px * var(--s));
+  background: rgba(52, 57, 75, 0.24);
+  transition: width var(--t), background-color var(--t);
+}
+
+// Active state as in Figma: the animated BackGif shows only as a 2px ring around the card (an animated border) and
+// the card itself turns solid. The ring is masked out of the GIF layer, so the GIF never shows through the content
+// while the hover fades in. (BackGif is already used on this page, so it comes from the cache.)
+.lat-bg,
+.lat-glow {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--t);
+}
+
+.lat-bg {
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background: url("../../assets/BackGif.gif") center / cover no-repeat;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+// Figma glow (Ellipse, pink -> blue, blurred, 36% opacity) behind the title
+.lat-glow {
+  left: calc(348.94px * var(--s));
+  top: calc(-59.59px * var(--s));
+  width: calc(285.73px * var(--s));
+  height: calc(285.73px * var(--s));
+  border-radius: 50%;
+  background: linear-gradient(to top, #f21df5, #9b5df7, #727cf8, #479cf9, #20b9fa);
+  filter: blur(calc(36px * var(--s)));
+}
+
+.lat-img {
+  position: absolute;
+  z-index: 2; // above the text, so the moving text slides out from behind it
+  pointer-events: none; // clicks reach the card link underneath
+  left: calc(40.57px * var(--s));
+  top: calc(66.75px * var(--s));
+  width: calc(313px * var(--s));
+  height: calc(209px * var(--s));
+  object-fit: cover;
+  border-radius: calc(26px * var(--s));
+  background: #fff;
+  transition: left var(--t), top var(--t), width var(--t), height var(--t);
+}
+
+.lat-body {
+  position: absolute;
+  z-index: 1;
+  left: calc(40.57px * var(--s));
+  top: calc((66.75px + 209px + 29.84px) * var(--s));
+  width: calc(314px * var(--s));
+  display: flex;
+  flex-direction: column;
+  transition: left var(--t), top var(--t), width var(--t), transform var(--t);
+}
+
+.lat-title {
+  margin: 0;
+  font-family: Quicksand, sans-serif;
+  font-weight: 500;
+  font-size: calc(18px * var(--s));
+  line-height: 1.313;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  transition: font-size var(--t);
+
+  a,
+  a:visited,
+  a:hover {
+    color: #b4b9cb !important;
+    font-size: inherit !important; // a global rule forces 14px on links
+    line-height: inherit !important;
+    text-decoration: none;
   }
-  .lat-blog-1:hover .lat-bl-h {
-    font-size: 1.1rem;
-    line-height: 1.6rem;
+
+  // the whole card opens the post
+  a::after {
+    content: "";
+    position: absolute;
+    inset: -100vh -100vw;
   }
 }
+
+.lat-card {
+  // keeps the stretched title link inside the card
+  isolation: isolate;
+}
+
+// Closed: zero height (grid 0fr -> 1fr animates to the real height).
+.lat-desc {
+  display: grid;
+  grid-template-rows: 0fr;
+  margin-top: 0;
+  opacity: 0;
+  transition: grid-template-rows var(--t), margin-top var(--t), opacity var(--t);
+
+  p {
+    min-height: 0;
+    overflow: hidden;
+    margin: 0;
+    font-family: Quicksand, sans-serif;
+    font-weight: 500;
+    font-size: calc(16px * var(--s));
+    line-height: 1.313;
+    color: #b4b9cb;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+  }
+}
+
+.lat-btn {
+  position: relative;
+  z-index: 1; // above the stretched title link
+  margin-top: calc(29.84px * var(--s));
+  transform-origin: left center;
+  transition: margin-top var(--t), transform var(--t);
+
+  // Figma button: 33.8px tall, 10.4px text, 19.9px side padding, 8.7px gap (! because the button's size classes and a global rule set font size)
+  a {
+    height: calc(33.8px * var(--s));
+    padding: 0 calc(19.93px * var(--s)) !important;
+    gap: calc(8.67px * var(--s)) !important;
+    font-size: max(10px, calc(10.4px * var(--s))) !important;
+    line-height: 1 !important;
+    border-width: 1.5px;
+  }
+
+  img {
+    width: calc(13.5px * var(--s));
+    height: auto;
+  }
+}
+
+// Active state. Hover only with a real mouse on large screens; touch devices keep the Unactive card.
+@media (hover: hover) and (min-width: 1024px) {
+  .lat-card:hover {
+    width: calc(880px * var(--s));
+
+    background-color: #181922;
+
+    .lat-bg {
+      opacity: 1;
+    }
+
+    .lat-glow {
+      opacity: 0.36;
+    }
+
+    .lat-img {
+      left: calc(25.97px * var(--s));
+      top: calc(27.02px * var(--s));
+      width: calc(341.18px * var(--s));
+      height: calc(426.85px * var(--s));
+    }
+
+    .lat-body {
+      left: calc((25.97px + 341.18px + 36.86px) * var(--s));
+      top: 50%;
+      width: calc(388px * var(--s));
+      transform: translateY(-50%);
+    }
+
+    .lat-title {
+      font-size: calc(22px * var(--s));
+    }
+
+    .lat-desc {
+      grid-template-rows: 1fr;
+      margin-top: calc(21.89px * var(--s));
+      opacity: 1;
+    }
+
+    .lat-btn {
+      margin-top: calc(36.86px * var(--s));
+      transform: scale(1.235); // Figma button grows 33.8px -> 41.75px
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lat-card,
+  .lat-card * {
+    transition: none !important;
+  }
+}
+
 .scroll-container {
   display: flex;
   overflow-x: auto;

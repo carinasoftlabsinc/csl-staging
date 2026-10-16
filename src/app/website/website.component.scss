@@ -184,14 +184,28 @@
   -moz-box-shadow: -26px -11px 218px -13px rgba(176, 154, 38, 0.8) !important;
 }
 
-.text-sparkle {
-  color: #fff;
-  transition: text-shadow 0.3s ease-in-out;
+// Left-hand numbers on the home page: a small nudge, a brighter label and a lighter divider on hover (mouse only).
+.stat-item {
+  transition: transform 0.3s ease;
+
+  .small-text,
+  hr {
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
 }
 
-.text-sparkle:hover {
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9),
-    0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.9);
+@media (hover: hover) {
+  .stat-item:hover {
+    transform: translateX(8px);
+
+    .small-text {
+      color: #fff;
+    }
+
+    hr {
+      border-color: #b4b9cb !important; // the divider's colour is set inline in the template
+    }
+  }
 }
 
 main {

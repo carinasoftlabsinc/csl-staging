@@ -185,8 +185,38 @@
 }
 
 // Left-hand numbers on the home page: a small nudge, a brighter label and a lighter divider on hover (mouse only).
+// Left-hand numbers (Figma "Our Services" stats, node 2001:1258, sizes at 1920 px scaling down with the screen):
+// number 49.5px, label 18.4px, 12.3px between them, 49.6px above and below each 230px divider.
+.stat-col {
+  // Figma's 49.6px is measured to the top of the capital letters, so the CSS gap is ~8px smaller
+  gap: clamp(16px, 2.167vw, 41.6px);
+
+  // the stats carry an old `mt-4` class, and a global stylesheet forces `.mt-4` with !important; the column gap spaces them
+  .stat-item {
+    margin-top: 0 !important;
+  }
+}
+
 .stat-item {
   transition: transform 0.3s ease;
+
+  .js-count-up {
+    margin: 0 0 clamp(8px, 0.64vw, 12.3px);
+    font-size: clamp(32px, 2.577vw, 49.48px);
+    line-height: 0.988;
+  }
+
+  .small-text {
+    margin: 0;
+    padding-bottom: 0;
+    font-size: clamp(14px, 0.96vw, 18.44px);
+    line-height: 0.988;
+  }
+
+  hr {
+    width: clamp(150px, 11.97vw, 229.8px);
+    margin: clamp(24px, 2.583vw, 49.6px) 0 0;
+  }
 
   .small-text,
   hr {
@@ -1111,6 +1141,19 @@ a.control_next {
   z-index: 2;
 }
 
+// The wide card (AI and Emerging Technology): 97.5% of a card this wide would leave a 28px strip on the right,
+// so its inner panel is pinned to both edges instead: the same 4px (3px on phones) border on the left and the right.
+.hover-gif-wide .hover-gif {
+  left: 4px;
+  right: 4px;
+  width: auto;
+
+  @media (max-width: 640px) {
+    left: 3px;
+    right: 3px;
+  }
+}
+
 .hover-gif-container:before {
   content: "";
   position: absolute;
@@ -1123,6 +1166,43 @@ a.control_next {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   z-index: 1;
+}
+
+// Hover glow from Figma (node 2018:424): a soft pink-to-blue circle (heavily blurred, faint) that sits mostly above the
+// card's top-left corner, so only its lower edge bleeds in as a violet lift. Sizes are relative to the card.
+.hover-gif::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: -8%;
+  top: -60%;
+  width: 75%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #20b9fa, #479cf9, #727cf8, #9b5df7, #f21df5);
+  filter: blur(90px);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+// The wide card is twice as wide, so the same glow takes half the percentage to stay the same size as on the other cards.
+.hover-gif-wide .hover-gif::before {
+  left: -4%;
+  width: 37.5%;
+}
+
+// the card's texture (the GIF at 10% opacity) is slightly brighter on hover
+.hover-gif-bg {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hover-gif-container:hover .hover-gif-bg {
+  opacity: 0.12 !important; // the 10% is set inline in the template; Figma 20%, kept low so the glow stays soft
+}
+
+.hover-gif-container:hover .hover-gif::before {
+  opacity: 0.14;
 }
 
 .hover-gif-container:hover:before {

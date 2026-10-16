@@ -681,6 +681,13 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
       desc: 'Shaping the Future with AI, AR/VR, and XR Innovation.',
       route: '/services',
     },
+    {
+      heading: 'AI and Emerging Technology',
+      desc: 'We combine AI, engineering and creative technology to build intelligent digital products, next-generation games, immersive experiences and automated business solutions.',
+      route: '/services',
+      /** Spans both columns, as the wide card at the bottom of the grid. */
+      wide: true,
+    },
   ];
 
   projectNum = [

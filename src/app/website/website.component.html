@@ -216,7 +216,7 @@
                     >
                     <div
                       #counterSection
-                      class="hidden sm:flex row-span-3 pt-20 flex-col justify-between"
+                      class="stat-col hidden sm:flex row-span-3 pt-20 flex-col justify-between lg:col-start-1 lg:row-start-2 lg:row-span-2 lg:pt-0 lg:justify-center"
                       >
                       @for (card of projectNum; track card) {
                         <div>
@@ -238,7 +238,7 @@
                       }
                     </div>
 
-                    <div class="col-span-2">
+                    <div class="col-span-2 lg:col-start-2 lg:row-start-1">
                       <p
                         class="font-quickSand font-medium xl:text-[18px] 2xl:text-2xl text-xl text-[#B4B9CB] mt-3"
                         >
@@ -251,7 +251,7 @@
                     </div>
 
                     <div
-                      class="row-span-2 col-span-2 md:col-span-2 flex items-center justify-center lg:justify-start xl:justify-start 2xl:justify-start mt-4"
+                      class="row-span-2 col-span-2 md:col-span-2 lg:col-start-2 lg:row-start-2 flex items-center justify-center lg:justify-start xl:justify-start 2xl:justify-start mt-4"
                       >
                       <div
                         class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:!gap-1 md:!gap-1 lg:!gap-1 xl:!gap-1 2xl:!gap-1 2xl:w-[-webkit-fill-available]"
@@ -260,6 +260,7 @@
                         @for (card of hoverGif; track card) {
                           <div
                             class="hover-gif-container rounded-3xl bg-[#34394b3f] cursor-pointer"
+                            [ngClass]="{ 'sm:col-span-2': card.wide, 'hover-gif-wide': card.wide }"
                             [routerLink]="card.route"
                             >
                             <div
@@ -275,7 +276,7 @@
                                   />
                                 </button>
                                 <div
-                                  class="absolute inset-0 bg-cover bg-center z-0 rounded-3xl"
+                                  class="hover-gif-bg absolute inset-0 bg-cover bg-center z-0 rounded-3xl"
                   style="
                     background-image: url('../../assets/BackGif.gif');
                     opacity: 0.1;

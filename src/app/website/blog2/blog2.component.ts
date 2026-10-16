@@ -1,6 +1,5 @@
 import { optimizeContentImages } from '@core/utils/content-images.util';
 import { addHeadingIds, ContentHeading } from '@core/utils/content-headings.util';
-import { HttpClient } from '@angular/common/http';
 import {
   Component,
   ElementRef,
@@ -18,8 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from 'environments/environment';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SeoService } from '@core/service/seo.service';
-import { matchesSlug, formatHeading } from '@core/utils/slug.util';
-import { timeout, catchError, of } from 'rxjs';
+import { formatHeading } from '@core/utils/slug.util';
 
 @Component({
   selector: 'app-blog2',
@@ -45,6 +43,7 @@ export class Blog2Component implements OnInit {
   /** Table of contents: the post's <h2> headings, or the section headings of older posts. */
   tocItems: ContentHeading[] = [];
   loading = false;
+  /** Shown only until the resolver's data is applied; with SSR the post is already there on first render. */
   loadingBlog = true;
   loadingMoreBlogs = true;
   isNotFound = false;
@@ -58,14 +57,12 @@ export class Blog2Component implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient,
     private sanitizer: DomSanitizer,
     @Inject(PLATFORM_ID) private platformId: Object,
     private seoService: SeoService,
     private cdr: ChangeDetectorRef
   ) {}
 
-  getAll_blogTitles = `${environment.apiUrl}/admin/getAll_blogTitles`;
   imageUrl = environment.imageBaseUrl;
 
   activeSection = '';
@@ -74,109 +71,28 @@ export class Blog2Component implements OnInit {
   @ViewChild('stickySidebar') stickySidebar!: ElementRef;
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      const titleLink = params['title'];
-      if (titleLink) {
-        this.getBlogIdFromTitle(titleLink);
+    // Post and "more blogs" are loaded by the route resolvers before the page is created
+    // (they re-run when :title changes).
+    this.route.data.subscribe(({ post, moreBlogs }) => {
+      this.allBlogs = moreBlogs ?? [];
+      this.loadingMoreBlogs = false;
+      if (post) {
+        this.isNotFound = false;
+        this.showPost(post);
       } else {
-        console.warn('Title parameter is missing in URL');
+        this.loadingBlog = false;
         this.isNotFound = true;
         this.seoService.setNotFoundStatus();
         this.resetData();
       }
     });
-
-    this.fetchAllBlogs();
   }
 
-  fetchAllBlogs() {
-    this.loadingMoreBlogs = true;
-
-    this.http
-      .get(
-        `${environment.apiUrl}/admin/getAll_blog?category=web&fields=title,titleLink,category,image,image_2,author,date`
-      )
-      .pipe(
-        timeout(10000),
-        catchError((err) => {
-          console.error('Error fetching blogs:', err);
-          return of({ data: { data: [] } });
-        })
-      )
-      .subscribe({
-        next: (response: any) => {
-          this.loadingMoreBlogs = false;
-          if (response?.data?.data) {
-            this.allBlogs = response.data.data;
-
-            if (this.cardDataa) {
-              this.filteredBlogs = this.allBlogs.filter(
-                (blog) => blog.titleLink !== this.cardDataa.titleLink
-              );
-            }
-          }
-        },
-      });
-  }
-
-  getBlogIdFromTitle(titleLink: string) {
-    this.loading = true;
-
-    this.http
-      .get(this.getAll_blogTitles)
-      .pipe(
-        timeout(10000),
-        catchError((err) => {
-          console.error('Error getting blog titles:', err);
-          return of(null);
-        })
-      )
-      .subscribe({
-        next: (response: any) => {
-          this.loading = false;
-          if (response?.data) {
-            const blog = response.data.find(
-              (item: any) => matchesSlug(item, titleLink)
-            );
-
-            if (blog?._id) {
-              this.isNotFound = false;
-              this.getBlogById(blog._id);
-            } else {
-              console.warn('No blog found with titleLink:', titleLink);
-              this.isNotFound = true;
-              this.seoService.setNotFoundStatus();
-              this.resetData();
-            }
-          } else {
-            this.isNotFound = true;
-            this.seoService.setNotFoundStatus();
-            this.resetData();
-          }
-        },
-      });
-  }
-
-  getBlogById(_id: string) {
-    this.loadingBlog = true;
-    this.http
-      .get(`${environment.apiUrl}/admin/get_blog/${_id}`)
-      .pipe(
-        timeout(10000),
-        catchError((err) => {
-          console.error('Error fetching blog by id:', err);
-          return of(null);
-        })
-      )
-      .subscribe({
-        next: (res: any) => {
-          this.loadingBlog = false;
-          this.cardDataa = res?.data?.data;
-          if (!this.cardDataa) {
-            this.isNotFound = true;
-            this.seoService.setNotFoundStatus();
-            return;
-          }
+  private showPost(post: any) {
+        this.loadingBlog = false;
+        this.cardDataa = post;
+        // "More blogs" leaves out the current post (also when moving from one post to another)
+        this.filteredBlogs = this.allBlogs.filter((blog) => blog.titleLink !== post.titleLink);
 
         const content: string = this.cardDataa?.content || '';
         if (content.trim()) {
@@ -238,18 +154,9 @@ export class Blog2Component implements OnInit {
           },
         });
 
-        this.fetchAllBlogs();
         this.activeSection = this.tocItems[0]?.id || '';
         this.activeSubSection = '';
         this.cdr.detectChanges();
-      },
-      error: (error) => {
-        console.error('Error fetching blog by ID:', error);
-        this.loadingBlog = false;
-        this.isNotFound = true;
-        this.seoService.setNotFoundStatus();
-      },
-    });
   }
 
   toggleFAQ(index: number) {

@@ -1,3 +1,4 @@
+import { blogPostResolver, moreBlogsResolver } from './blog2/blog-post.resolver';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WebsiteComponent } from './website.component';
@@ -58,6 +59,7 @@ const routes: Routes = [
   {
     path: 'blog/:title',
     component: Blog2Component,
+    resolve: { post: blogPostResolver, moreBlogs: moreBlogsResolver },
   },
   {
     path: 'contact-us',

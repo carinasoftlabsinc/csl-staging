@@ -20,14 +20,19 @@ $pink: #f21df5;
 $blue: #20b9fa;
 
 // ---------------------------------------------------------------- CTA card
-// The card sits half over the page and half over the white footer (Figma: card 425 tall, top -212.5).
+// As in Figma, the card overlaps both the end of the page above (--pull) and the white footer (--overlap),
+// leaving a 61px dark gap between the page and the footer (Figma: card 425 = pull 151.5 + gap 61 + overlap 212.5).
 .footer-wrap {
+  --pull: 0px;
   --overlap: 0px;
   position: relative;
+  z-index: 1; // the card is drawn over the page section it overlaps
   margin-top: 2.5rem;
 
   &--cta {
-    --overlap: #{fig(212.5, 72px)};
+    --pull: #{fig(151.5, 48px)};
+    --overlap: #{fig(212.5, 100px)};
+    margin-top: 0;
   }
 }
 
@@ -40,9 +45,10 @@ $blue: #20b9fa;
   align-items: center;
   justify-content: center;
   gap: fig(39, 20px);
-  width: min(100% - 2rem, 1140px);
+  // Figma: 1140 of 1920 (59.4% of the page), scaling with the screen; never wider than the screen minus 2rem
+  width: min(100% - 2rem, #{fig(1140, 340px)});
   min-height: fig(425, 220px);
-  margin: 0 auto calc(var(--overlap) * -1);
+  margin: calc(var(--pull) * -1) auto calc(var(--overlap) * -1);
   padding: fig(60, 32px) fig(40, 20px);
   overflow: hidden;
   border-radius: fig(41, 24px);

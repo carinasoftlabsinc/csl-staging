@@ -44,9 +44,7 @@ export const SERVICE_LINKS: readonly FooterLink[] = [
   { label: 'Web Development', route: '/web-development' },
   { label: 'Mobile App Development', route: '/app-development' },
   { label: 'Digital Marketing', route: '/digital-marketing' },
-  { label: 'AI Automation', route: '/services' },
   { label: 'AR/VR Development', route: '/services' },
-  { label: 'UI/UX Design', route: '/services' },
 ];
 
 export const OFFICES: readonly FooterOffice[] = [

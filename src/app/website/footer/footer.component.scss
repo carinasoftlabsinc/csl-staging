@@ -1,0 +1,664 @@
+@use "sass:math";
+
+// Footer (Figma "Untitled", node 2001:1471, 1920 px frame).
+// fig(px, min): the Figma size at 1920 px wide, scaling down with the viewport but never below `min`.
+@function fig($px, $min) {
+  @return clamp(#{$min}, #{math.div($px, 1920) * 100}vw, #{$px}px);
+}
+
+// CTA card values are relative to its own width (1140 px in Figma) through container units.
+@function card($px) {
+  @return #{math.div($px, 1140) * 100}cqw;
+}
+
+$ink: #0b0c10;
+$text: #111;
+$muted: #34394b;
+$line: #b4b9cb;
+$service: #2c1a73;
+$pink: #f21df5;
+$blue: #20b9fa;
+
+// ---------------------------------------------------------------- CTA card
+// The card sits half over the page and half over the white footer (Figma: card 425 tall, top -212.5).
+.footer-wrap {
+  --overlap: 0px;
+  position: relative;
+  margin-top: 2.5rem;
+
+  &--cta {
+    --overlap: #{fig(212.5, 72px)};
+  }
+}
+
+.footer-cta {
+  position: relative;
+  z-index: 1;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: fig(39, 20px);
+  width: min(100% - 2rem, 1140px);
+  min-height: fig(425, 220px);
+  margin: 0 auto calc(var(--overlap) * -1);
+  padding: fig(60, 32px) fig(40, 20px);
+  overflow: hidden;
+  border-radius: fig(41, 24px);
+  background: $ink;
+  text-align: center;
+
+  &__title {
+    position: relative;
+    margin: 0;
+    color: #fff;
+    font-size: fig(59.36, 22px);
+    line-height: 1.225;
+    text-transform: uppercase;
+  }
+
+  // Figma glow ellipses (36% opacity), positioned in card units
+  &__glow {
+    position: absolute;
+    max-width: none;
+    // Figma: 36% opacity with a heavy blur. Drawn as <img> the SVG blur is lost, so it is redone here;
+    // tuned by eye against the Figma frame (soft, muted purple in the corners).
+    opacity: 0.2;
+    filter: blur(#{card(90)});
+    pointer-events: none;
+
+    &--tr {
+      left: card(547.3);
+      top: card(-612.6);
+      width: card(1085.8);
+      transform: scaleY(-1);
+    }
+
+    &--tr2 {
+      left: card(802.5);
+      top: card(-357.3);
+      width: card(575.4);
+    }
+
+    &--bl {
+      left: card(-394.2);
+      top: card(-116.6);
+      width: card(861.1);
+      transform: scaleY(-1);
+    }
+
+    &--bl2 {
+      left: card(-167.7);
+      top: card(110);
+      width: card(408);
+    }
+  }
+
+  .csl-pill {
+    position: relative;
+  }
+}
+
+// ---------------------------------------------------------------- pill button (Figma: 50 tall, 1px pink border, circle arrow)
+.csl-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: fig(25, 14px);
+  height: fig(50, 40px);
+  padding-left: fig(37, 20px);
+  border: 1px solid transparent;
+  border-radius: 61px;
+  font-family: Quicksand, sans-serif; // Figma uses Roc Grotesk, which the site does not load
+  font-size: fig(20, 15px) !important; // a global rule forces 14px on links and buttons
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+
+  // the circle fills the pill's inner height, so it never sticks out of the border
+  img {
+    flex-shrink: 0;
+    width: auto;
+    height: 100%;
+    aspect-ratio: 1;
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 3px rgba(155, 93, 247, 0.18);
+  }
+
+  &--dark {
+    color: #fff !important;
+    background: linear-gradient($ink, $ink) padding-box, linear-gradient(to bottom, $pink, $blue) border-box;
+  }
+
+  &--light {
+    color: $ink !important;
+    background: linear-gradient(#fff, #fff) padding-box, linear-gradient(to bottom, $pink, $blue) border-box;
+  }
+}
+
+// ---------------------------------------------------------------- footer
+.csl-footer {
+  width: 100%;
+  padding: calc(var(--overlap) + #{fig(47, 32px)}) fig(123, 20px) fig(40, 28px);
+  border-radius: fig(50, 28px) fig(50, 28px) 0 0;
+  background: #fff;
+  color: $ink;
+
+  // "Let's create something amazing" + GET IN TOUCH
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+
+    @media (min-width: 640px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  // Figma text box is 701px of 1920, so it always breaks as "LET'S CREATE / SOMETHING AMAZING"
+  &__heading {
+    margin: 0;
+    max-width: fig(701, 280px);
+    font-size: fig(68.6, 28px);
+    line-height: 1.225;
+    text-transform: uppercase;
+  }
+
+  // Figma trims the text to its cap height (text-box-trim), so 22.8px padding gives a ~63px button.
+  // With a normal line box the same look needs line-height 1 and ~19px padding.
+  &__touch {
+    flex-shrink: 0;
+    padding: fig(19, 12px) fig(18.6, 16px);
+    border-radius: fig(12.4, 10px);
+    background: $ink;
+    color: #fff !important;
+    font-family: Quicksand, sans-serif;
+    font-size: fig(24.86, 15px) !important;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    transition: background 0.2s;
+
+    &:hover {
+      background: $muted;
+    }
+  }
+
+  // ---- page links (divider lines above and below, | between) ----
+  &__nav {
+    margin-top: fig(48, 28px);
+    border-block: 1px solid $line;
+  }
+
+  &__nav-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem 1rem;
+    margin: 0;
+    padding: fig(29, 18px) 0;
+    list-style: none;
+
+    @media (min-width: 640px) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem 0;
+
+      li:not(:last-child)::after {
+        content: "";
+        display: inline-block;
+        width: 1px;
+        height: 21px;
+        margin-left: fig(80, 14px);
+        vertical-align: middle;
+        background: $line;
+      }
+    }
+  }
+
+  // ---- brand · services · office · contact ----
+  &__cols {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: fig(53, 8px);
+
+    @media (min-width: 640px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    // small desktops: the brand column gives up some width so contact details fit
+    @media (min-width: 1024px) {
+      grid-template-columns: 1.1fr 1fr 1fr 1.1fr;
+    }
+
+    // Figma column widths 454 / 420 / 415 / 385
+    @media (min-width: 1440px) {
+      grid-template-columns: 454fr 420fr 415fr 385fr;
+    }
+  }
+
+  &__col {
+    padding: 1.75rem 0;
+    border-bottom: 1px solid $line;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    // tablet only, so these (more specific) rules don't override the desktop padding below
+    @media (min-width: 640px) and (max-width: 1023px) {
+      padding: 1.75rem 1.5rem 1.75rem 0;
+
+      &:nth-child(even) {
+        padding-left: 1.5rem;
+        border-left: 1px solid $line;
+      }
+
+      &:nth-last-child(-n + 2) {
+        border-bottom: 0;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      padding: 0 fig(40, 16px) 0 fig(63, 20px);
+      border-bottom: 0;
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+
+      &:not(:first-child) {
+        border-left: 1px solid $line;
+      }
+    }
+  }
+
+  &__logo {
+    width: fig(315, 220px);
+    height: auto;
+  }
+
+  &__about {
+    max-width: 402px;
+    margin: fig(22, 16px) 0 0;
+    font-family: Quicksand, sans-serif;
+    font-size: fig(16, 13px);
+    font-weight: 700;
+    line-height: 1.475;
+  }
+
+  &__socials {
+    display: flex;
+    align-items: center;
+    gap: fig(17.9, 12px);
+    margin: fig(24, 18px) 0 0;
+    padding: 0;
+    list-style: none;
+
+    a {
+      display: block;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    img {
+      width: fig(44.75, 36px);
+      height: fig(44.75, 36px);
+    }
+  }
+
+  // Figma gaps are measured between trimmed text (cap height), so the CSS gaps are smaller than the Figma numbers.
+  &__title {
+    margin: 0 0 fig(20, 14px);
+    font-family: Quicksand, sans-serif;
+    font-size: fig(24, 18px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #000;
+
+    &--inline {
+      margin: 0;
+    }
+  }
+
+  &__services {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__offices {
+    display: flex;
+    flex-direction: column;
+    gap: fig(36, 22px);
+    font-style: normal;
+  }
+
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    gap: fig(52, 26px);
+    font-style: normal;
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: fig(16, 10px);
+  }
+
+  &__flag {
+    flex-shrink: 0;
+    width: 29px;
+    height: 29px;
+    border-radius: 5px;
+    object-fit: cover;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: fig(28.6, 24px);
+    height: fig(28.6, 24px);
+  }
+
+  &__label {
+    margin: 0 0 2px;
+    line-height: 1.2;
+    font-family: Quicksand, sans-serif;
+    font-size: fig(18, 15px);
+    font-weight: 700;
+    color: $ink;
+  }
+
+  &__text {
+    margin: 0;
+    max-width: 260px;
+    font-family: Quicksand, sans-serif;
+    font-size: fig(16, 13.5px) !important;
+    font-weight: 500;
+    line-height: 1.25;
+    color: $text !important;
+  }
+
+  // the email address never breaks inside a word; it shrinks a little on narrow columns instead
+  &__email {
+    white-space: nowrap;
+    font-size: clamp(13px, 1.05vw, 18px) !important;
+  }
+
+  // one line with a | divider when there is room; otherwise one number per line (no dangling divider)
+  &__phones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0;
+
+    .csl-footer__sep {
+      display: none;
+    }
+
+    @media (min-width: 1440px), (max-width: 1023px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.25rem 0.75rem;
+
+      .csl-footer__sep {
+        display: inline-block;
+      }
+    }
+  }
+
+  &__sep {
+    display: inline-block;
+    width: 1px;
+    height: 1.1em;
+    background: $line;
+  }
+
+  // ---- hiring platforms ----
+  &__platforms {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    // below 1024px the stacked columns already end with their own bottom padding
+    margin-top: 0;
+    padding: fig(11, 14px) 0;
+    border-block: 1px solid $line;
+
+    @media (min-width: 1024px) {
+      margin-top: fig(44, 24px);
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  // phones: three equal columns across the full width, so the logos can be large; from 768px: Figma boxes
+  &__platform-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @media (min-width: 768px) {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+  }
+
+  // Figma: logo boxes 232 x 71, 31 px dividers, 17 px gaps
+  &__platform {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fig(71, 52px);
+
+    @media (min-width: 768px) {
+      width: fig(232, 92px);
+    }
+
+    &:not(:first-child) {
+      margin-left: fig(17, 8px);
+      padding-left: fig(17, 8px);
+      border-left: 1px solid $line;
+      border-image: linear-gradient(transparent 28%, $line 28% 72%, transparent 72%) 1;
+    }
+  }
+
+  &__platform-logo {
+    width: auto;
+    max-width: 100%;
+    // Figma draws the Upwork image at 204 x 102; our SVGs carry the same built-in padding
+    height: fig(104, 72px);
+
+    &--tight {
+      height: fig(64, 40px);
+    }
+  }
+
+  // ---- copyright bar ----
+  // phones: copyright and legal stacked on the left, Back to Top as a round button pinned in the bottom-right
+  // corner; from 768px: copyright | legal | Back to Top in one row
+  &__bottom {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-top: fig(15, 20px);
+    padding-right: 3.5rem; // room for the pinned button
+
+    @media (min-width: 768px) {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding-right: 0;
+
+      .csl-pill {
+        justify-self: end;
+      }
+    }
+  }
+
+  &__top {
+    @media (max-width: 767px) {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      padding-left: 0;
+      gap: 0;
+    }
+  }
+
+  // visible from 768px; on phones only the round arrow shows (the button keeps its aria-label)
+  &__top-label {
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
+
+  // Small laptops (1024-1439px): four narrow columns, so the text is a touch smaller
+  // and each office / contact item shows [icon + name] on one line with its content underneath at full column width.
+  @media (min-width: 1024px) and (max-width: 1439px) {
+    &__about {
+      font-size: 12.5px;
+    }
+
+    &__socials {
+      gap: 8px;
+
+      img {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    &__title {
+      font-size: 17px;
+    }
+
+    &__label {
+      font-size: 14px;
+    }
+
+    &__text {
+      font-size: 13px !important;
+    }
+
+    &__office,
+    &__contact .csl-footer__item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      column-gap: 8px;
+      row-gap: 6px;
+
+      > div {
+        display: contents;
+      }
+
+      .csl-footer__flag,
+      .csl-footer__icon {
+        width: 22px;
+        height: 22px;
+      }
+
+      .csl-footer__label {
+        margin: 0;
+      }
+
+      // everything after the name (address, email, phones) goes on its own full-width row
+      > div > :not(.csl-footer__label) {
+        grid-column: 1 / -1;
+        max-width: none;
+      }
+    }
+  }
+
+  &__legal {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+  }
+
+  &__small {
+    margin: 0;
+    font-family: Quicksand, sans-serif;
+    font-size: fig(18, 13.5px) !important;
+    font-weight: 500;
+    line-height: 1.225;
+    color: $muted !important;
+  }
+
+  &__link {
+    transition: color 0.2s;
+
+    &:hover {
+      color: $ink !important;
+    }
+  }
+}
+
+// Links rendered inside <app-footer-link> (a child component, so its <a> is outside this view's style scope).
+// ! because a global stylesheet forces link colour and a 14px size.
+// 1024-1439px: smaller service links to fit four columns
+@media (min-width: 1024px) and (max-width: 1439px) {
+  :host ::ng-deep .csl-footer__service-link {
+    font-size: clamp(13px, 1.1vw, 15px) !important;
+    line-height: 28px;
+    white-space: nowrap;
+  }
+}
+
+:host ::ng-deep {
+  .csl-footer__nav-link {
+    font-family: Quicksand, sans-serif;
+    font-size: fig(21, 15px) !important;
+    font-weight: 600;
+    color: $muted !important;
+    // hover: darker text and a thin dark underline growing from the left
+    padding-bottom: 3px;
+    background: linear-gradient($ink, $ink) left bottom / 0 1.5px no-repeat;
+    transition: color 0.2s, background-size 0.25s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: $ink !important;
+      background-size: 100% 1.5px;
+    }
+  }
+
+  .csl-footer__service-link {
+    font-family: Quicksand, sans-serif;
+    font-size: fig(18, 14.5px) !important;
+    font-weight: 700;
+    line-height: fig(36, 30px);
+    color: $service !important;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #9b5df7 !important;
+    }
+  }
+}

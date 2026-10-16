@@ -1,198 +1,171 @@
-<!-- Floating contact icons -->
-<div class="lg:flex lg:flex-col lg:items-start hidden sm:block">
-  <div class="fixed bottom-28 right-2 transform translate-y-1/2 z-50">
-    <ul class="lg:flex lg:flex-col p-1 lg:items-end space-y-2 gap-1">
-      @for (item of dock; track item.href) {
-        <li>
-          <a [href]="item.href" target="_blank" rel="noopener noreferrer">
-            <img [src]="item.src" [alt]="item.alt" [attr.width]="item.width" [attr.height]="item.height" />
-          </a>
-        </li>
+<!-- Floating contact icons (fixed to the right edge, from sm up) -->
+<nav aria-label="Chat with us" class="fixed bottom-20 right-2 z-50 hidden sm:block p-0 bg-transparent">
+  <ul class="flex flex-col items-end gap-3 p-1">
+    @for (item of dock; track item.href) {
+      <li>
+        <a [href]="item.href" target="_blank" rel="noopener noreferrer">
+          <img [src]="item.src" [alt]="item.alt" [attr.width]="item.width" [attr.height]="item.height" />
+        </a>
+      </li>
+    }
+  </ul>
+</nav>
+
+<div class="footer-wrap" [class.footer-wrap--cta]="showCollab()">
+  <!-- Call-to-action card, half over the page and half over the white footer -->
+  @if (showCollab()) {
+    <section class="footer-cta" aria-label="Start a project">
+      <img class="footer-cta__glow footer-cta__glow--tr" src="assets/images/footer/glow-1.svg" alt="" aria-hidden="true" width="1086" height="1086" loading="lazy" decoding="async" />
+      <img class="footer-cta__glow footer-cta__glow--tr2" src="assets/images/footer/glow-2.svg" alt="" aria-hidden="true" width="575" height="575" loading="lazy" decoding="async" />
+      <img class="footer-cta__glow footer-cta__glow--bl" src="assets/images/footer/glow-3.svg" alt="" aria-hidden="true" width="861" height="861" loading="lazy" decoding="async" />
+      <img class="footer-cta__glow footer-cta__glow--bl2" src="assets/images/footer/glow-4.svg" alt="" aria-hidden="true" width="408" height="408" loading="lazy" decoding="async" />
+      <h2 class="footer-cta__title font-myfont" [innerHTML]="cardText()"></h2>
+      @if (isInternalBtnLink()) {
+        <a class="csl-pill csl-pill--dark" [routerLink]="btnLink()">
+          {{ btnText() }}
+          <img src="assets/images/footer/arrow-tilt-circle.svg" alt="" aria-hidden="true" width="50" height="50" />
+        </a>
+      } @else {
+        <a class="csl-pill csl-pill--dark" [href]="btnLink()" target="_blank" rel="noopener noreferrer">
+          {{ btnText() }}
+          <img src="assets/images/footer/arrow-tilt-circle.svg" alt="" aria-hidden="true" width="50" height="50" />
+        </a>
       }
-    </ul>
-  </div>
-</div>
+    </section>
+  }
 
-<!-- Collaboration card -->
-@if (showCollab()) {
-  <div class="flex justify-center items-center relative mt-6 z-20">
-    <div
-      class="bg-gradient-to-bl from-[#121b44] via-[#0B0C10] to-[#121b44] rounded-[40px] md:px-36 md:py-11 lg:py-14 xl:px-48 xl:py-16 2xl:py-24 absolute p-[2.7rem] text-center"
-    >
-      <h2
-        class="text-white text-xl sm:text-2xl md:text-[25px] lg:text-[38px] xl:text-[45px] xl:leading-[54px] 2xl:text-[60px] lg:leading-[47px] 2xl:leading-[76px] font-myfont text-center"
-        [innerHTML]="cardText()"
-      ></h2>
-      <div class="pt-4 md:pt-5 lg:pt-8 2xl:pt-10">
-        <a appGradientButton size="md" [href]="btnLink()" target="_blank" rel="noopener noreferrer">
-  {{ btnText() }}
-  <img src="assets/images/small-tilt-arrow.webp" alt="" aria-hidden="true" width="12" height="14" loading="lazy" decoding="async" />
-</a>
-      </div>
-    </div>
-  </div>
-}
-
-<footer class="px-7 md:px-10 lg:px-5 2xl:px-24 2xl:py-12 xl:px-14 lg:py-12 py-10 lg:mt-10 w-full bg-white rounded-t-[40px]">
-  <div class="flex justify-between items-center mt-28 2xl:pt-24">
-    @if (showHeading()) {
-      <h2 class="text-[#0B0C10] text-3xl md:text-4xl lg:text-6xl 2xl:text-7xl leading-[40px] font-myfont md:w-[50vw] lg:w-[60vw] xl:w-[50vw]">
-        {{ headingText() }}
-      </h2>
-    }
-
-    @if (showButton()) {
-      <a
-        routerLink="/contact-us"
-        class="bg-black font-quickSand font-bold tracking-widet lg:!text-xl sm:text-xl border text-white visited:text-white hover:text-white px-7 py-3 rounded-2xl hidden xl:block"
-      >
-        {{ buttonText() }}
-      </a>
-    }
-  </div>
-
-  <hr class="border-t-3 border-black mt-4" />
-
-  <!-- Main links (desktop) -->
-  <!-- p-0 / bg-transparent undo the legacy global `nav` rule from the old admin template -->
-  <nav aria-label="Footer" class="hidden lg:block text-black p-0 bg-transparent">
-    <ul class="flex justify-between mt-14 items-center">
-      @for (link of navLinks; track link.label; let last = $last) {
-        <li>
-          @if (link.route) {
-            <a
-              [routerLink]="link.route"
-              class="text-black !text-xl cursor-pointer font-quickSand leading-[26px] font-semibold transition duration-300 ease-in-out hover:text-red-500"
-              >{{ link.label }}</a
-            >
-          } @else {
-            <a
-              [href]="link.href"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-black !text-xl cursor-pointer font-quickSand leading-[26px] font-semibold transition duration-300 ease-in-out hover:text-red-500"
-              >{{ link.label }}</a
-            >
-          }
-        </li>
-        @if (!last) {
-          <li aria-hidden="true" class="text-[#B4B9CB] font-quickSand text-xl font-semibold before:content-['I']"></li>
+  <footer class="csl-footer">
+    <!-- Let's create something amazing -->
+    @if (showHeading() || showButton()) {
+      <div class="csl-footer__intro">
+        @if (showHeading()) {
+          <h2 class="csl-footer__heading font-myfont">{{ headingText() }}</h2>
         }
-      }
-    </ul>
-  </nav>
-
-  <!-- stacked on phones, 2x2 grid on tablets, one row from lg -->
-  <div class="sm:flex sm:flex-col md:grid md:grid-cols-2 md:gap-x-10 lg:flex lg:flex-row lg:gap-x-0 justify-between mt-14">
-    <!-- Brand and social links -->
-    <div class="text-black mb-8 sm:w-full lg:w-auto">
-      <div>
-        <img class="h-12 w-72" src="assets/CSL-logo-footer.svg" alt="Carina Softlabs logo" width="315" height="57" loading="lazy" decoding="async" />
+        @if (showButton()) {
+          <a routerLink="/contact-us" class="csl-footer__touch">{{ buttonText() }}</a>
+        }
       </div>
-      <div class="mt-3 md:w-80">
-        <p class="font-quickSand text-[14px] text-[#0B0C10] font-semibold leading-[22px]">
-          At Carina Softlabs Inc., we are the visionary pioneers of digital transformation, blending creativity and innovation to engineer immersive gaming
+    }
+
+    <!-- Page links (p-0 / bg-transparent undo a legacy global `nav` rule) -->
+    <nav aria-label="Footer" class="csl-footer__nav p-0 bg-transparent">
+      <ul class="csl-footer__nav-list">
+        @for (link of navLinks; track link.label) {
+          <li>
+            <app-footer-link [link]="link" linkClass="csl-footer__nav-link" />
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <!-- Brand · Services · Offices · Contact -->
+    <div class="csl-footer__cols">
+      <div class="csl-footer__col">
+        <img src="assets/CSL-logo-footer.svg" alt="Carina Softlabs" class="csl-footer__logo" width="315" height="57" loading="lazy" decoding="async" />
+        <p class="csl-footer__about">
+          At Carina Softlabs Inc. we are the visionary pioneers of digital transformation, blending creativity and innovation to engineer immersive gaming
           experiences alongside empowering businesses with transformative solutions.
         </p>
-      </div>
-
-      <div class="flex mt-4 gap-2 items-center">
-        @for (social of socials; track social.href) {
-          <div [class.bg-white]="social.onWhite">
-            <a [href]="social.href" target="_blank" rel="noopener noreferrer">
-              <img [class]="social.class" [src]="social.src" [alt]="social.alt" [attr.width]="social.width" [attr.height]="social.height" loading="lazy" decoding="async" />
-            </a>
-          </div>
-        }
-      </div>
-    </div>
-
-    <!-- Offices -->
-    <address class="text-black mb-8 not-italic">
-      <div class="flex flex-col gap-8 sm:gap-0 md:gap-0">
-        @for (office of offices; track office.title; let first = $first) {
-          <div class="flex gap-2" [class]="first ? '' : 'sm:mt-8'">
-            <div>
-              <span><img class="h-7 w-7" [src]="office.flag" [alt]="office.alt" width="30" height="30" loading="lazy" decoding="async" /></span>
-            </div>
-            <div>
-              <p class="font-quickSand text-[14px] font-semibold">{{ office.title }}</p>
-              <p class="font-quickSand text-[13px] font-normal text-[#111111] leading-[16px] w-60">{{ office.address }}</p>
-            </div>
-          </div>
-        }
-      </div>
-    </address>
-
-    <!-- Review sites and awards -->
-    <div class="text-black mb-8">
-      <div class="flex flex-col gap-2 sm:gap-0 md:gap-0">
-        <div class="flex gap-2">
-          <div class="flex lg:flex-col xl:flex-row">
-            @for (site of reviewSites; track site.href) {
-              <a [href]="site.href" target="_blank" rel="noopener noreferrer"
-                ><span><img [class]="site.class" [src]="site.src" [alt]="site.alt" [attr.width]="site.width" [attr.height]="site.height" loading="lazy" decoding="async" /></span
-              ></a>
-            }
-          </div>
-        </div>
-
-        <div class="flex gap-4">
-          @for (badge of badges; track badge.href) {
-            <a [href]="badge.href" target="_blank" rel="noopener noreferrer"
-              ><span><img [class]="badge.class" [src]="badge.src" [alt]="badge.alt" [attr.width]="badge.width" [attr.height]="badge.height" loading="lazy" decoding="async" /></span
-            ></a>
+        <ul class="csl-footer__socials" aria-label="Social media">
+          @for (social of socials; track social.href) {
+            <li>
+              <a [href]="social.href" target="_blank" rel="noopener noreferrer">
+                <img [src]="social.src" [alt]="social.alt" [attr.width]="social.width" [attr.height]="social.height" loading="lazy" decoding="async" />
+              </a>
+            </li>
           }
-        </div>
+        </ul>
       </div>
-    </div>
 
-    <!-- Contact details -->
-    <address class="text-black mb-8 not-italic">
-      <div class="flex flex-col gap-2 sm:gap-0 md:gap-0">
-        <div class="flex items-center gap-2">
-          <div class="flex gap-2">
-            <span><img src="assets/images/mail-icon.svg" width="25" height="25" alt="" aria-hidden="true" loading="lazy" decoding="async" /></span>
-            <span>
-              <p class="font-quickSand xl:text-[15px] md:text-[13px] text-black font-semibold">Email</p>
-              <a [href]="'mailto:' + mail" class="font-quickSand text-sm xl:text-[14px] text-black font-medium">{{ mail }}</a>
-            </span>
+      <div class="csl-footer__col">
+        <h3 class="csl-footer__title">Our Services</h3>
+        <ul class="csl-footer__services">
+          @for (service of serviceLinks; track service.label) {
+            <li>
+              <app-footer-link [link]="service" linkClass="csl-footer__service-link" />
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="csl-footer__col">
+        <h3 class="csl-footer__title">Our Office</h3>
+        <address class="csl-footer__offices">
+          @for (office of offices; track office.title) {
+            <div class="csl-footer__item csl-footer__office">
+              <img class="csl-footer__flag" [src]="office.flag.src" [alt]="office.flag.alt" [attr.width]="office.flag.width" [attr.height]="office.flag.height" loading="lazy" decoding="async" />
+              <div>
+                <p class="csl-footer__label">{{ office.title }}</p>
+                <p class="csl-footer__text">{{ office.address }}</p>
+              </div>
+            </div>
+          }
+        </address>
+      </div>
+
+      <address class="csl-footer__col csl-footer__contact">
+        <div class="csl-footer__item">
+          <img class="csl-footer__icon" src="assets/images/footer/mail.svg" alt="" aria-hidden="true" width="29" height="29" loading="lazy" decoding="async" />
+          <div>
+            <p class="csl-footer__label">Email</p>
+            <a [href]="'mailto:' + email" class="csl-footer__text csl-footer__link csl-footer__email">{{ email }}</a>
           </div>
         </div>
-
-        <div class="flex text-black gap-2 mt-4">
-          <div class="flex gap-2">
-            <span><img src="assets/images/phone-icon.svg" width="25" height="24" alt="" aria-hidden="true" loading="lazy" decoding="async" /></span>
-            <span>
-              <p class="font-quickSand xl:text-[15px] md:text-[13px] text-black font-semibold">Phone No.</p>
-              <span class="font-quickSand text-sm xl:text-[14px] text-black font-medium">
-                @for (phone of phones; track phone.tel; let last = $last) {
-                  <a [href]="'tel:' + phone.tel">{{ phone.label }}</a>@if (!last) { | }
+        <div class="csl-footer__item">
+          <img class="csl-footer__icon" src="assets/images/footer/phone.svg" alt="" aria-hidden="true" width="29" height="29" loading="lazy" decoding="async" />
+          <div>
+            <p class="csl-footer__label">Phone No.</p>
+            <p class="csl-footer__phones">
+              @for (phone of phones; track phone.tel; let last = $last) {
+                <a [href]="'tel:' + phone.tel" class="csl-footer__text csl-footer__link">{{ phone.label }}</a>
+                @if (!last) {
+                  <span class="csl-footer__sep" aria-hidden="true"></span>
                 }
-              </span>
-            </span>
+              }
+            </p>
           </div>
         </div>
-      </div>
-    </address>
-  </div>
-
-  <hr class="border-t-2 border-black mt-4" />
-
-  <div class="lg:mt-12 mt-4 flex flex-col md:flex-row justify-between items-center">
-    <div class="text-[#34394B]">
-      <p class="text-[#34394B] font-quickSand font-medium text-[15px] md:text-[18px]">Copyright &#169; {{ year }}, Carina Softlabs Inc. All rights reserved</p>
-      <div class="flex items-center gap-3 text-[14px] md:text-[16px]">
-        <a routerLink="/terms-conditions" class="text-[#34394B] font-quickSand font-medium hover:text-black transition duration-300">Terms &amp; Conditions</a>
-        <span class="text-[#B4B9CB]" aria-hidden="true">|</span>
-        <a routerLink="/privacy-policy" class="text-[#34394B] font-quickSand font-medium hover:text-black transition duration-300">Privacy Policy</a>
-      </div>
+      </address>
     </div>
-    <div class="mt-4">
-      <button appGradientButton size="md" variant="light" class="hidden sm:inline-flex" type="button" (click)="scrollToTop()">
-  Back to Top
-  <img src="assets/images/up-arrow/Vector 1@2x.webp" alt="" aria-hidden="true" width="48" height="55" class="w-4" loading="lazy" decoding="async" />
-</button>
+
+    <!-- Hire us on trusted platforms -->
+    <div class="csl-footer__platforms">
+      <h3 class="csl-footer__title csl-footer__title--inline">Hire Us On Trusted Platforms</h3>
+      <ul class="csl-footer__platform-list">
+        @for (platform of platforms; track platform.name) {
+          <li class="csl-footer__platform">
+            @if (platform.href) {
+              <a [href]="platform.href" target="_blank" rel="noopener noreferrer" class="block">
+                <ng-container *ngTemplateOutlet="platformMark; context: { $implicit: platform }" />
+              </a>
+            } @else {
+              <ng-container *ngTemplateOutlet="platformMark; context: { $implicit: platform }" />
+            }
+          </li>
+        }
+      </ul>
     </div>
-  </div>
-</footer>
+
+    <ng-template #platformMark let-platform>
+      @if (platform.logo; as logo) {
+        <img class="csl-footer__platform-logo" [class.csl-footer__platform-logo--tight]="platform.tight" [src]="logo.src" [alt]="logo.alt" [attr.width]="logo.width" [attr.height]="logo.height" loading="lazy" decoding="async" />
+      } @else {
+        <span class="csl-footer__title csl-footer__title--inline whitespace-nowrap">{{ platform.name }}</span>
+      }
+    </ng-template>
+
+    <!-- Copyright -->
+    <div class="csl-footer__bottom">
+      <p class="csl-footer__small">Copyright &#169; {{ year }}, Carina Softlabs Inc. <br class="md:hidden"> All rights reserved.</p>
+      <p class="csl-footer__legal">
+        <a routerLink="/privacy-policy" class="csl-footer__small csl-footer__link">Privacy Policy</a>
+        <span class="csl-footer__sep" aria-hidden="true"></span>
+        <a routerLink="/terms-conditions" class="csl-footer__small csl-footer__link">Terms &amp; Conditions</a>
+      </p>
+      <button type="button" class="csl-pill csl-pill--light csl-footer__top" (click)="scrollToTop()" aria-label="Back to top">
+        <span class="csl-footer__top-label">Back to Top</span>
+        <img src="assets/images/footer/arrow-up-circle.svg" alt="" aria-hidden="true" width="50" height="50" />
+      </button>
+    </div>
+  </footer>
+</div>

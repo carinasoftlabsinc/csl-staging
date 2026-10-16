@@ -147,9 +147,7 @@
                 >
                 {{ service.description }}
               </p>
-              @if (service.id === 'section3') {
-                <a appGradientButton variant="light" routerLink="/app-development">Explore App Development</a>
-              }
+              <a appGradientButton variant="light" [routerLink]="service.route">{{ service.cta }}</a>
               </div>
             </div>
           }
@@ -178,9 +176,7 @@
                         >
                         {{ service.description }}
                       </p>
-                      @if (service.id === 'section3') {
-                        <a appGradientButton variant="light" routerLink="/app-development">Explore App Development</a>
-                      }
+                      <a appGradientButton variant="light" [routerLink]="service.route">{{ service.cta }}</a>
                       </div>
                     </div>
                   }

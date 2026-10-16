@@ -1089,6 +1089,7 @@ a.control_next {
   // color: #333;
   height: 97.5%;
   width: 97.5%;
+  position: absolute; // sits inside the GIF layer, leaving a 3px animated border
   top: 3px;
   left: 4px;
   border-radius: 20px;

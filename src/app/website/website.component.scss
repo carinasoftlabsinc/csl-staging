@@ -713,9 +713,9 @@ a.control_next {
   transition: width var(--t), background-color var(--t);
 }
 
-// Active state as in Figma: the animated BackGif shows only as a 2px ring around the card (an animated border) and
+// Active state as in Figma: the animated giphy.gif (same GIF as the service card borders) shows only as a 2px ring around the card (an animated border) and
 // the card itself turns solid. The ring is masked out of the GIF layer, so the GIF never shows through the content
-// while the hover fades in. (BackGif is already used on this page, so it comes from the cache.)
+// while the hover fades in. (giphy.gif is already used on this page, so it comes from the cache.)
 .lat-bg,
 .lat-glow {
   position: absolute;
@@ -728,7 +728,7 @@ a.control_next {
   inset: 0;
   padding: 2px;
   border-radius: inherit;
-  background: url("../../assets/BackGif.gif") center / cover no-repeat;
+  background: url("../../assets/giphy.gif") center / cover no-repeat;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -1089,7 +1089,6 @@ a.control_next {
   // color: #333;
   height: 97.5%;
   width: 97.5%;
-  position: absolute;
   top: 3px;
   left: 4px;
   border-radius: 20px;

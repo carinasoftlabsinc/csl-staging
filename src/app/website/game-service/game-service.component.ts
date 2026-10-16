@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ElementRef, OnInit, afterNextRender, inject, viewChild } from '@angular/core';
 import { SeoService } from '@core/service/seo.service';
 
 @Component({
@@ -10,19 +10,48 @@ import { SeoService } from '@core/service/seo.service';
 })
 export class GameServiceComponent implements OnInit {
   private readonly seoService = inject(SeoService);
+  private readonly heroVideo = viewChild<ElementRef<HTMLVideoElement>>('heroVideo');
+
+  constructor() {
+    // Request playback after browser hydration, with the muted property applied.
+    afterNextRender(() => {
+      const video = this.heroVideo()?.nativeElement;
+      if (!video) return;
+
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      // A browser can still decline autoplay; the poster remains visible then.
+      void video.play().catch(() => {});
+    });
+  }
 
   ngOnInit(): void {
     this.seoService.setPage({
-      title: 'Game Development Services | Carina Softlabs',
-      description: 'Explore game development services by Carina Softlabs: concept art, 2D/3D assets creation, animation, and multiplatform game design.',
+      title: 'Game Development Services | 2D, 3D, AR & VR | Carina Softlabs',
+      description: 'Expert 2D & 3D game development services, Unreal Engine games, and game design services. Trusted Android & mobile game development company.',
       url: 'https://carinasoftlabs.com/game-development',
     });
   }
 
+  scrollToQuote(event: MouseEvent): void {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
+
+    const form = document.getElementById('lead-form');
+    if (!form) return;
+
+    event.preventDefault();
+    form.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+      block: 'start',
+    });
+    form.querySelector<HTMLInputElement>('input')?.focus({ preventScroll: true });
+  }
+
   clients = [
-    { heading: 'TOTAL CLIENTS', number: 10 },
-    { heading: 'TOTAL CLIENTS', number: 50 },
-    { heading: 'TOTAL CLIENTS', number: 120 },
+    { heading: 'GAMES DELIVERED', number: 77 },
+    { heading: 'HAPPY CLIENTS', number: 50 },
+    { heading: 'YEARS OF EXPERIENCE', number: 'XX' },
   ];
 
   SrcWords = [
@@ -35,60 +64,62 @@ export class GameServiceComponent implements OnInit {
       color: '#FF5722',
     },
     {
-      word: 'MULTIPLATFORM DEVELOPMENT',
+      word: 'MOBILE GAMES',
       color: '#00BCD4',
     },
-    { word: 'SHOOTING GAME', color: '#' },
-    { word: 'PUZZLE GAME', color: '#' },
-    { word: 'SIMULATION', color: '#' },
+    { word: 'UNREAL ENGINE', color: '#' },
+    { word: '2D & 3D GAMES', color: '#' },
+    { word: 'VR GAMING', color: '#' },
+    { word: 'MULTIPLATFORM DEVELOPMENT', color: '#' },
   ];
 
   processList = [
     {
-      head: 'Game Development Document',
+      head: 'Game Design Document (GDD)',
       marker: 'text-[#B1DF4F]',
-      desc: 'We are a team of passionate and crazy individuals dedicated to bringing your ideas to life. With a keen eye for aesthetics,We are a team of passionate and crazy individuals dedicated to bringing your ideas to life. With a keen eye for aesthetics',
+      desc: "We define your game's story, mechanics, levels, characters, and monetization in one clear blueprint, so everyone knows what we're building.",
     },
     {
       head: 'Concept Art',
       marker: 'text-[#BC8AFB]',
-      desc: 'We are a team of passionate and crazy individuals dedicated to bringing your ideas to life. With a keen eye for aesthetics,We are a team of passionate and crazy individuals dedicated to bringing your ideas to life. With a keen eye for aesthetics',
+      desc: "Our artists sketch characters, environments, and visual style to bring your game's look and feel to life before development begins.",
     },
     {
       head: 'Game Assets Creation',
       marker: 'text-[#FB8ACE]',
-      desc: 'We are a team of passionate and crazy individuals dedicated to bringing your ideas to life. With a keen eye for aesthetics,We are a team of passionate and crazy individuals dedicated to bringing your ideas to life. With a keen eye for aesthetics',
+      desc: 'We create 2D sprites, 3D models, textures, UI elements, and sound effects that are optimized for smooth performance.',
     },
     {
-      head: 'Game Assets Creation',
+      head: 'Animation',
       marker: 'text-[#FB8ACE]',
-      desc: 'We are a team of passionate and crazy individuals dedicated to bringing your ideas to life. With a keen eye for aesthetics,We are a team of passionate and crazy individuals dedicated to bringing your ideas to life. With a keen eye for aesthetics',
+      desc: 'Characters and objects come alive with fluid animations, from idle moves to combat and cutscenes.',
     },
     {
-      head: 'Game Assets Creation',
+      head: 'Development & Testing',
       marker: 'text-[#FB8ACE]',
-      desc: 'We are a team of passionate and crazy individuals dedicated to bringing your ideas to life. With a keen eye for aesthetics,We are a team of passionate and crazy individuals dedicated to bringing your ideas to life. With a keen eye for aesthetics',
+      desc: 'Our developers code gameplay, physics, and multiplayer features, then test across devices to remove bugs and lag.',
     },
     {
       line: 'hidden',
-      head: 'Animation  ',
+      head: 'Launch & Support',
       marker: 'text-[#8AE0FB]',
-      desc: 'We are a team of passionate and crazy individuals dedicated to bringing your ideas to life. With a keen eye for aesthetics,We are a team of passionate and crazy individuals dedicated to bringing your ideas to life. With a keen eye for aesthetics',
+      desc: 'We publish your game on Google Play, the App Store, Steam, or console stores, and provide updates after launch.',
     },
   ];
 
   techStack = [
-    { imgSrc: '../../assets/images/logo1st.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-2.png', w: '150' },
-    { imgSrc: '../../assets/images/meen.png', w: '160' },
-    { imgSrc: '../../assets/images/logo-4.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-3.png', w: '150' },
-    { imgSrc: '../../assets/images/mean.png', w: '160' },
-    { imgSrc: '../../assets/images/logo-7.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-8.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-9.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-10.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-11.png', w: '150' },
-    { imgSrc: '../../assets/images/logo-12.png', w: '150' },
+    'Unity',
+    'Unreal Engine',
+    'Godot',
+    'Blender',
+    'Autodesk Maya',
+    '3ds Max',
+    'Adobe Photoshop',
+    'Spine 2D',
+    'C#',
+    'C++',
+    'Android Studio',
+    'Xcode',
+    'Meta Quest SDK',
   ];
 }

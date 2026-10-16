@@ -3,15 +3,23 @@
   <div class="relative overflow-hidden min-h-screen flex flex-col justify-between">
     <!-- Background Video -->
     <video
+      #heroVideo
       autoplay
       loop
       muted
+      [muted]="true"
       playsinline
       preload="auto"
+      poster="assets/images/game-development-hero-poster.jpg"
+      aria-hidden="true"
       class="absolute inset-0 h-full w-full object-cover pointer-events-none"
     >
       <source
-        src="https://www.shutterstock.com/shutterstock/videos/3795379781/preview/stock-footage-slaying-enemies-in-futuristic-cuberpunk-virtual-world-video-game-level-losing-battle-with-enemy.webm"
+        src="assets/videos/game-development-hero.mp4"
+        type="video/mp4"
+      />
+      <source
+        src="assets/videos/game-development-hero.webm"
         type="video/webm"
       />
     </video>
@@ -39,11 +47,8 @@
           <p
             class="text-white mt-8 xl:text-[16px] 2xl:text-[20px] font-quickSand font-normal"
             >
-            We have designed and developed more than 200 web products with
-            booking systems, marketplaces, real estate, and corporate sites<br
-            class="hidden md:block"
-            />
-            among them.
+            From playful 2D adventures to immersive 3D worlds, we design and build
+            games that players love, across mobile, PC, console, and VR.
           </p>
         </div>
       </div>
@@ -55,13 +60,11 @@
     <div class="game-design__layout">
       <div class="game-design__copy">
         <h2 id="game-design-title" class="game-design__title">
-          <span class="game-design__intro">Our passion for game development drives us in </span>
-          <span class="game-design__highlight">Creating Unique, Immersive &amp; one-of-a-<br class="game-design__desktop-break" />kind Games</span>{{ ' ' }}<span class="game-design__closing">that redefine player<br class="game-design__desktop-break" /> engagement</span>
+          <span class="game-design__intro">We are known in the field of Game Development for </span>
+          <span class="game-design__highlight">creating unique and immersive games</span>{{ ' ' }}<span class="game-design__closing">that stand out in the market.</span>
         </h2>
         <p class="game-design__description">
-          We have developed and delivered more than 76 game 2D &amp; 3D
-          development projects. From concept to launch, we build groundbreaking
-          games that engage players and make waves in the industry.
+          At Carina Softlabs, we turn bold game ideas into polished, playable experiences. Our team offers complete game design services, 2D game development services, and 3D game development services, handling everything from storyline and characters to coding, testing, and launch. Whether you're an indie studio or a growing brand, we build games that are fun to play and ready to scale.
         </p>
       </div>
       <div class="game-design__visual">
@@ -78,7 +81,7 @@
         </dl>
       </div>
     </div>
-    <div class="game-design__marquee" aria-label="Game development, game design, multiplatform development, shooting game, puzzle game and simulation">
+    <div class="game-design__marquee" aria-label="Game development, game design, mobile games, Unreal Engine, 2D and 3D games, VR gaming, and multiplatform development">
       <div class="game-service-marquee" aria-hidden="true">
         @for (copy of [0, 1]; track copy) {
           <div class="game-design__marquee-group">
@@ -102,18 +105,46 @@
     <h2
       class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
       >
-      OUR GAME SERVICES
+      Our Game Services
     </h2>
   </div>
 
   <app-gaming-slider></app-gaming-slider>
+
+  <section
+    aria-labelledby="game-services-cta-title"
+    class="mb-10 md:mb-0 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 lg:gap-10 rounded-[24px] md:rounded-[32px] border !border-[#34394B] bg-gradient-to-br from-[#1A1D27] to-[#111319] px-6 py-7 md:px-10 md:py-8"
+  >
+    <div class="max-w-3xl">
+      <p class="mb-3 font-quickSand text-xs sm:text-sm font-semibold uppercase tracking-widest text-[#B4B9CB]">Your idea. Our next adventure.</p>
+      <h3 id="game-services-cta-title" class="font-myfont text-2xl md:text-3xl 2xl:text-4xl font-normal text-white leading-tight">
+        Ready to bring your game idea to life?
+      </h3>
+      <p class="mt-3 font-quickSand text-sm md:text-base text-[#B4B9CB] leading-relaxed">
+        Tell us what you have in mind. We'll help you choose the right platform and plan your next steps.
+      </p>
+    </div>
+    <a
+      appGradientButton
+      size="md"
+      variant="outline"
+      href="/game-development#lead-form"
+      (click)="scrollToQuote($event)"
+      class="self-start lg:self-center shrink-0"
+    >
+      Get a Free Quote
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" class="shrink-0">
+        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </a>
+  </section>
 </section>
 
-<section class="px-7 md:px-10 2xl:p-24 xl:px-14 pt-10 md:py-10">
+<section class="px-7 md:px-10 2xl:p-24 xl:px-14 pt-10 md:py-10 bg-[#3B393B] rounded-[40px] 2xl:rounded-[50px]">
   <div class="mt-10 pb-2 border-b border-[#34394b]">
     <span
       class="font-myfont text-base sm:text-xl lg:text-3xl 2xl:text-5xl text-white"
-      >from concept to completion</span
+      >From Concept to Completion</span
       >
       <h2
         class="text-2xl sm:text-3xl 2xl:text-6xl lg:text-4xl font-normal text-white mb-4 font-myfont"
@@ -121,6 +152,9 @@
         Our Game Development Process
       </h2>
     </div>
+    <p class="font-quickSand font-medium text-[#B4B9CB] text-xs sm:text-base xl:text-sm 2xl:text-lg">
+      Every project, from a simple mobile game development service to a full-scale 3D title, follows a clear process that keeps you involved at every step.
+    </p>
 
     <div
       class="game-process grid grid-cols-1 lg:grid-cols-2 my-8 2xl:my-16 gap-y-6 lg:gap-12 2xl:gap-20"
@@ -131,8 +165,8 @@
 
         <img
           class="w-11/12 h-auto object-contain"
-          src="../../../assets/images/game-render.png"
-          alt=""
+          src="../../../assets/images/game-service-character.gif"
+          alt="3D game development services by Carina Softlabs"
           />
         </div>
         <div
@@ -190,53 +224,27 @@
     </div>
   </section>
 
-  <!-- Technologies  -->
-  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10">
-    <div
-      class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]"
-      >
-      <h2
-        class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont"
-        >
-        Technologies we work with
-      </h2>
-    </div>
-
-    <div class="xl:pt-20 pt-4">
-      <p
-        class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-lg 2xl:text-2xl 2xl:leading-9 text-[#B4B9CB]"
-        >
-        Our employees are at the heart of our company. Here’s what they
-        <br class="hidden md:block" />
-        have to say about working at Mixmax.
+  <!-- Technologies -->
+  <section class="game-technologies" aria-labelledby="game-technologies-title">
+    <div class="game-technologies__content">
+      <h2 id="game-technologies-title" class="game-technologies__title">Technologies We Work With</h2>
+      <p class="game-technologies__description">
+        We use industry-leading engines and tools to build fast, stable, and visually stunning games for every platform.
       </p>
-    </div>
-
-    <div
-      class="flex flex-row-reverse mt-6 md:mt-10 lg:py-20 py-5 md:justify-center lg:justify-start"
-      >
-      <div
-        class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-5 2xl:gap-6 items-center"
-        >
-        @for (stack of techStack; track stack) {
-          <div class="">
-            <div
-              class="py-4 px-7 xl:px-9 xl:!py-7 2xl:!py-10 2xl:px-20 bg-[#34394B]/50 rounded-[26px]"
-              >
-              <img
-                class="transition-transform duration-500 transform hover:scale-110 cursor-pointer h-12 2xl:h-16 object-contain"
-                [src]="stack.imgSrc"
-                [width]="stack.w"
-                alt=""
-                />
-              </div>
+      <div class="game-technologies__layout">
+        <div class="game-technologies__character">
+          <img src="assets/images/brick.gif" alt="Animated game character holding a brick and trowel" width="480" height="854" loading="lazy" decoding="async" />
+        </div>
+        <div class="game-technologies__grid">
+          @for (stack of techStack; track stack) {
+            <div class="game-technologies__tile">
+              <span class="font-quickSand text-white text-center font-semibold text-xs sm:text-sm">{{ stack }}</span>
             </div>
           }
         </div>
       </div>
-    </section>
-
-
+    </div>
+  </section>
     <!-- Case Studies & Testimonials  -->
     <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10">
       <div
@@ -248,12 +256,17 @@
           Case Studies & Testimonials
         </h2>
       </div>
+      <p class="mt-4 font-quickSand text-[#B4B9CB] text-sm sm:text-base">
+        See how we've helped studios and brands launch games players keep coming back to.
+      </p>
       <app-coverflow-slider ngSkipHydration></app-coverflow-slider>
     </section>
   <!-- ===== Get Your Quote (shared quote-section component) ===== -->
   <app-quote-section
     theme="light"
     service="Game Development"
+    heading="Got a Game Idea? Let's Build It Together"
+    description="Tell us about your game, and we'll get back to you with a plan, timeline, and quote within 24 hours."
     image="assets/images/game-design/quote-character.png"
     imageLayout="game-character"
     imageClass="!w-[240px] sm:!w-[280px] lg:!w-[min(30.833vw,700px)]"

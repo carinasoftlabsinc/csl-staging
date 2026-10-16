@@ -92,8 +92,14 @@
     </div>
   </section>
 
-  <section class="px-7 md:px-10 xl:px-14 lg:py-20 2xl:p-24 py-10 bg-[#ffffff] rounded-[40px]">
-    <app-web-slider></app-web-slider>
+  <!-- Case Studies & Testimonials -->
+  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10">
+    <div class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]">
+      <h2 class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont">
+        Case Studies & Testimonials
+      </h2>
+    </div>
+    <app-coverflow-slider ngSkipHydration></app-coverflow-slider>
   </section>
 
   <app-quote-section

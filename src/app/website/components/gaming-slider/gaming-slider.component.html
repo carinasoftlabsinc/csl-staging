@@ -1,43 +1,27 @@
 <section>
   <div class="mx-auto py-4 md:py-20 lg:py-16 xl:py-24">
     <div class="md:py-10 lg:py-12">
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:!gap-0">
-        <div
-          class="gaming-card h-[65svh] min-h-[360px] max-h-[500px] md:h-[40vh] md:min-h-0 md:max-h-none lg:h-[65vh] flex flex-col justify-end relative overflow-hidden"
-          style="background-image: url('../../../../assets/images/2DGame.png'); background-size: cover; background-position: center;"
-        >
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent md:hidden" aria-hidden="true"></div>
-          <div class="font-quickSand flex flex-col items-center mb-6 md:mb-8 text-white relative z-10 px-4 lg:px-6 2xl:px-16 gap-1.5 2xl:gap-3.5">
-            <h3 class="font-black text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-poppins">2D GAMING</h3>
-            <p class="text-center font-mont text-sm lg:text-base lg:leading-5 2xl:text-2xl">
-              We have designed and developed more than 200 web products with booking.
-            </p>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4 md:!gap-0">
+        @for (card of cards; track card.id) {
+          <div class="gaming-card h-[65svh] min-h-[360px] max-h-[500px] md:h-[40vh] md:min-h-0 md:max-h-none lg:h-[65vh] flex flex-col justify-end relative overflow-hidden">
+            <img
+              [src]="card.image"
+              [attr.width]="card.width"
+              [attr.height]="card.height"
+              alt=""
+              loading="lazy"
+              decoding="async"
+              class="absolute inset-0 h-full w-full object-cover pointer-events-none"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent md:hidden" aria-hidden="true"></div>
+            <div class="font-quickSand flex flex-col mb-6 md:mb-8 text-white relative z-10 px-4 lg:px-6 2xl:px-16 gap-1.5 2xl:gap-3.5">
+              <h3 class="font-black text-2xl sm:text-[28px] md:text-[26px] lg:text-[32px] xl:text-[30px] 2xl:text-4xl font-poppins">{{ card.title }}</h3>
+              <p class="font-mont text-sm sm:text-[15px] md:text-sm lg:text-base xl:text-[15px] lg:leading-5 2xl:text-lg h-36 min-[360px]:h-32 sm:h-24 md:h-28 lg:h-28 xl:h-32 2xl:h-36">
+                {{ card.description }}
+              </p>
+            </div>
           </div>
-        </div>
-        <div
-          class="gaming-card h-[65svh] min-h-[360px] max-h-[500px] md:h-[40vh] md:min-h-0 md:max-h-none lg:h-[65vh] flex flex-col justify-end relative overflow-hidden"
-          style="background-image: url('../../../../assets/images/2DGame-2.png'); background-size: cover; background-position: center;"
-        >
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent md:hidden" aria-hidden="true"></div>
-          <div class="font-quickSand flex flex-col items-center mb-6 md:mb-8 text-white relative z-10 px-4 lg:px-6 2xl:px-16 gap-1.5 2xl:gap-3.5">
-            <h3 class="font-black text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-poppins">3D GAMING</h3>
-            <p class="text-center font-mont text-sm lg:text-base lg:leading-5 2xl:text-2xl">
-              We have designed and developed more than 200 web products with booking.
-            </p>
-          </div>
-        </div>
-        <div
-          class="gaming-card h-[65svh] min-h-[360px] max-h-[500px] md:h-[40vh] md:min-h-0 md:max-h-none lg:h-[65vh] flex flex-col justify-end relative overflow-hidden"
-          style="background-image: url('../../../../assets/images/2DGame-3.png'); background-size: cover; background-position: center;"
-        >
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent md:hidden" aria-hidden="true"></div>
-          <div class="font-quickSand flex flex-col items-center mb-6 md:mb-8 text-white relative z-10 px-4 lg:px-6 2xl:px-16 gap-1.5 2xl:gap-3.5">
-            <h3 class="font-black text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-poppins">VR GAMING</h3>
-            <p class="text-center font-mont text-sm lg:text-base lg:leading-5 2xl:text-2xl">
-              We have designed and developed more than 200 web products with booking.
-            </p>
-          </div>
-        </div>
+        }
       </div>
     </div>
   </div>

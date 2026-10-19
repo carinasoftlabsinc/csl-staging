@@ -50,7 +50,7 @@
           <img
             class="2xl:w-auto xl:w-56 lg:w-52 md:w-44 absolute 2xl:-top-[3px] 2xl:-left-8 xl:-left-1 xl:-top-2 lg:-left-6 lg:-top-2 md:-top-4 md:-left-5"
             src="../../assets/images/csl-logo-2.webp" width="400" height="363" loading="lazy" decoding="async"
-            alt="logo"
+            alt="Carina Softlabs Inc. Logo"
             />
           </div>
 
@@ -80,7 +80,7 @@
               >
               @for (about of aboutus; track about) {
                 <div class="flex items-center">
-                  <img class="w-16 2xl:w-20 md:w-12" [src]="about.imgSrc" [attr.width]="about.width" [attr.height]="about.height" loading="lazy" decoding="async" alt="" />
+                  <img class="w-16 2xl:w-20 md:w-12" [src]="about.imgSrc" [attr.width]="about.width" [attr.height]="about.height" loading="lazy" decoding="async" [alt]="about.alt" />
                   <div class="ml-2">
                     <div
                       class="text-xl 2xl:text-lg md:text-sm font-[700] font-quickSand"
@@ -100,7 +100,7 @@
                   >
                   <a appGradientButton size="md" variant="light" class="hidden sm:inline-flex" type="button" routerLink="/know-us">
   Explore Us
-  <img src="assets/images/small-tilt-arrow.webp" alt="" aria-hidden="true" width="12" height="14" loading="lazy" decoding="async" />
+  <img src="assets/images/small-tilt-arrow.webp" alt="Image" aria-hidden="true" width="12" height="14" loading="lazy" decoding="async" />
 </a>
                   </div>
                 </div>
@@ -158,7 +158,7 @@
                       <img
                         class="object-top object-contain w-16"
                         [src]="award.imgSrc" [attr.width]="award.width" [attr.height]="award.height" loading="lazy" decoding="async"
-                        alt=""
+                        [alt]="award.alt"
                         />
                         <div class="ml-2 pl-2 border-l border-[#B4B9CB]">
                           <p
@@ -183,7 +183,7 @@
                   <img
                     class="2xl:w-80 w-56"
                     src="../../assets/trophy-new.svg" width="265" height="252" loading="lazy" decoding="async"
-                    alt="logo"
+                    alt="Trophy"
                     />
                   </div>
                 </div>
@@ -203,7 +203,7 @@
 
                   <a appGradientButton size="md" class="hidden sm:inline-flex" href="https://calendar.app.google/mezjQ2cpZyzbixNv6" target="_blank" rel="noopener noreferrer">
   Schedule a Call
-  <img src="assets/images/small-tilt-arrow.webp" alt="" aria-hidden="true" width="12" height="14" loading="lazy" decoding="async" />
+  <img src="assets/images/small-tilt-arrow.webp" alt="Small Tilt Arrow Button" aria-hidden="true" width="12" height="14" loading="lazy" decoding="async" />
 </a>
                   </div>
 
@@ -271,7 +271,7 @@
                                 >
                                 <img
                                   src="../../assets/images/gd-arrow-btn.svg" width="62" height="62" loading="lazy" decoding="async"
-                                  alt="Image"
+                                  alt="Arrow Button"
                                   class="w-10 h-10 cursor-pointer"
                                   />
                                 </button>
@@ -352,8 +352,8 @@
                         <!-- Question mark and line from Figma. A grey outline with a colour copy on top: the colour fades in, then wipes away to the right, every 3 seconds. -->
                         <div class="why-outline" aria-hidden="true">
                           <div appInView class="why-outline__art">
-                            <img class="why-outline__base" src="assets/images/why-choose-outline.svg" width="2356" height="611" loading="lazy" decoding="async" alt="" />
-                            <img class="why-outline__glow" src="assets/images/why-choose-outline-glow.svg" width="2356" height="611" loading="lazy" decoding="async" alt="" />
+                            <img class="why-outline__base" src="assets/images/why-choose-outline.svg" width="2356" height="611" loading="lazy" decoding="async" alt="Decorative background artwork" />
+                            <img class="why-outline__glow" src="assets/images/why-choose-outline-glow.svg" width="2356" height="611" loading="lazy" decoding="async" alt="Decorative glow" />
                           </div>
                         </div>
                             </div>
@@ -556,7 +556,7 @@
 
                             <a appGradientButton size="md" class="hidden sm:inline-flex" routerLink="/blog">
   More Blogs
-  <img src="assets/images/small-tilt-arrow.webp" alt="" aria-hidden="true" width="12" height="14" loading="lazy" decoding="async" />
+  <img src="assets/images/small-tilt-arrow.webp" alt="Image" aria-hidden="true" width="12" height="14" loading="lazy" decoding="async" />
 </a>
                             </div>
 
@@ -584,7 +584,7 @@
                                     <img
                                       class="lat-img"
                                       [src]="card.image ? imageUrl + card.image : fallbackImage" (error)="onCoverError($event)" width="341" height="427" loading="lazy" decoding="async"
-                                      alt=""
+                                      [alt]="card.title"
                                     />
                                     <div class="lat-body">
                                       <h3 class="lat-title">
@@ -598,7 +598,7 @@
                                       <div class="lat-btn">
                                         <a appGradientButton size="md" [routerLink]="['/blog', formatHeading(card.titleLink)]" tabindex="-1">
                                           View More
-                                          <img src="assets/images/blog-card/arrow-sm.svg" alt="" aria-hidden="true" width="14" height="7" />
+                                          <img src="assets/images/blog-card/arrow-sm.svg" alt="Arrow Icon" aria-hidden="true" width="14" height="7" />
                                         </a>
                                       </div>
                                     </div>
@@ -638,7 +638,7 @@
                                         class="transition-transform duration-500 transform hover:scale-110 cursor-pointer h-12 2xl:h-16 object-contain"
                                         [src]="stack.imgSrc"
                                         [width]="stack.w" height="48" loading="lazy" decoding="async"
-                                        alt=""
+                                        [alt]="stack.alt"
                                         />
                                       </div>
                                     </div>
@@ -681,7 +681,7 @@
                                               <img
                                                 class="object-cover"
                                                 src="../../assets/images/client-bub-1.webp" width="101" height="101" loading="lazy" decoding="async"
-                                                alt=""
+                                                alt="Arunachal Film Festival logo"
                                                 />
                                               </div>
                                               <!-- <div class="pp-quote li-quote-1" (click)="changeActiveQuote(7)">
@@ -697,7 +697,7 @@
                                                 <img
                                                   class="object-cover"
                                                   src="../../assets/images/client-bub-2.webp" width="101" height="101" loading="lazy" decoding="async"
-                                                  alt=""
+                                                  alt="Peniel Global General Consulting Inc. logo"
                                                   />
                                                 </div>
                                                 <div
@@ -707,7 +707,7 @@
                                                   <img
                                                     class="object-cover"
                                                     src="../../assets/images/client-bub-3.webp" width="101" height="101" loading="lazy" decoding="async"
-                                                    alt=""
+                                                    alt="Space M logo"
                                                     />
                                                   </div>
                                                 </div>
@@ -746,7 +746,7 @@
                                                             <img
                                                               class="text-center mx-auto w-20 h-20 border-[#B4B9CB] object-cover !border-2 rounded-full"
                                                               [src]="client.imgSrc" width="101" height="101" loading="lazy" decoding="async"
-                                                              alt=""
+                                                              [alt]="client.alt"
                                                               />
                                                               <p class="text-black 2xl:text-lg mt-2">
                                                                 {{ client.name }}
@@ -766,7 +766,7 @@
                                                         <img
                                                           class="object-cover"
                                                           src="../../assets/images/client-bub-4.webp" width="101" height="101" loading="lazy" decoding="async"
-                                                          alt=""
+                                                          alt="Ballegro| Your Pocket Pianist app logo"
                                                           />
                                                         </div>
                                                         <div
@@ -776,7 +776,7 @@
                                                           <img
                                                             class="object-cover"
                                                             src="../../assets/images/client-bub-5.webp" width="101" height="101" loading="lazy" decoding="async"
-                                                            alt=""
+                                                            alt="Bravo| Tip or Pay app logo"
                                                             />
                                                           </div>
                                                           <div
@@ -786,7 +786,7 @@
                                                             <img
                                                               class="object-cover"
                                                               src="../../assets/images/client-bub-6.webp" width="101" height="101" loading="lazy" decoding="async"
-                                                              alt=""
+                                                              alt="E-Food logo"
                                                               />
                                                             </div>
                                                           </div>

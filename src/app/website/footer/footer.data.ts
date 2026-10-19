@@ -51,12 +51,12 @@ export const OFFICES: readonly FooterOffice[] = [
   {
     title: 'INDIA OFFICE',
     address: '10/2, 2nd Floor, Shree Mahadeo House, Near Hotel Surya, South Tukoganj, Indore (M.P.) 452001',
-    flag: { src: 'assets/images/india-flag.svg', alt: 'India flag', width: 30, height: 30 },
+    flag: { src: 'assets/images/india-flag.svg', alt: 'India flag| Carina Softlabs Indore office', width: 30, height: 30 },
   },
   {
     title: 'USA OFFICE',
     address: '66 W Flagler St, Suite 900-2034, Miami, FL 33130, United States',
-    flag: { src: 'assets/images/usa-flag.svg', alt: 'United States flag', width: 30, height: 30 },
+    flag: { src: 'assets/images/usa-flag.svg', alt: 'United States flag| Carina Softlabs Miami office', width: 30, height: 30 },
   },
 ];
 
@@ -93,7 +93,7 @@ export const PLATFORMS: readonly FooterPlatform[] = [
   {
     name: 'Upwork',
     href: 'https://www.upwork.com/agencies/carinasoftlabs/',
-    logo: { src: 'assets/images/Upwork.svg', alt: 'Carina Softlabs on Upwork', width: 162, height: 84 },
+    logo: { src: 'assets/images/Upwork.svg', alt: 'Carina Softlabs agency profile on Upwork', width: 162, height: 84 },
   },
   {
     name: 'Freelancer',
@@ -103,13 +103,13 @@ export const PLATFORMS: readonly FooterPlatform[] = [
   {
     name: 'Clutch',
     href: 'https://clutch.co/profile/carina-softlabs#highlights',
-    logo: { src: 'assets/images/clutch.svg', alt: 'Carina Softlabs on Clutch', width: 162, height: 84 },
+    logo: { src: 'assets/images/clutch.svg', alt: 'Carina Softlabs reviews on Clutch', width: 162, height: 84 },
   },
 ];
 
 /** Floating contact icons fixed to the right edge of the screen. */
 export const CONTACT_DOCK: readonly FooterImageLink[] = [
-  { href: 'https://wa.me/919131958215', src: 'assets/color_whatsapp-icon.svg', alt: 'Chat on WhatsApp', width: 30, height: 30 },
-  { href: 'https://t.me/CarinaSoftlabsInc', src: 'assets/color_telegram.svg', alt: 'Chat on Telegram', width: 30, height: 30 },
-  { href: 'https://teams.microsoft.com/l/chat/0/0?users=mayank@carinasoftlabs.com', src: 'assets/Teams.svg', alt: 'Chat on Microsoft Teams', width: 30, height: 32 },
+  { href: 'https://wa.me/919131958215', src: 'assets/color_whatsapp-icon.svg', alt: 'Whatsapp', width: 30, height: 30 },
+  { href: 'https://t.me/CarinaSoftlabsInc', src: 'assets/color_telegram.svg', alt: 'Telegram', width: 30, height: 30 },
+  { href: 'https://teams.microsoft.com/l/chat/0/0?users=mayank@carinasoftlabs.com', src: 'assets/Teams.svg', alt: 'Microsoft Teams', width: 30, height: 32 },
 ];

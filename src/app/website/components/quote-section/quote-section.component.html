@@ -172,7 +172,7 @@
             >
               @if (!loading) {
                 Send Enquiry
-                <img src="assets/images/submit-btn.svg" alt="Send icon" width="23" height="24" class="w-4 2xl:w-5 h-auto brightness-0 invert" />
+                <img src="assets/images/submit-btn.svg" alt="Send enquiry" width="23" height="24" class="w-4 2xl:w-5 h-auto brightness-0 invert" />
               } @else {
                 <span aria-hidden="true" class="size-5 rounded-full border-2 border-white/40 border-t-white animate-spin"></span>
                 Sending…
@@ -189,11 +189,11 @@
             </div>
             <div class="flex flex-col gap-3 2xl:gap-[11px]">
               <a [href]="'mailto:' + mail" class="flex items-center gap-2.5">
-                <img src="assets/images/email-gradient-icon.svg" alt="Email icon" width="25" height="20" class="w-6 2xl:w-[31px] h-auto shrink-0" [ngClass]="theme === 'light' ? 'brightness-0' : ''" />
+                <img src="assets/images/email-gradient-icon.svg" alt="Email" width="25" height="20" class="w-6 2xl:w-[31px] h-auto shrink-0" [ngClass]="theme === 'light' ? 'brightness-0' : ''" />
                 <span class="text-sm 2xl:text-lg 2xl:leading-[1.24]">{{ mail }}</span>
               </a>
               <a href="tel:+919131958215" class="flex items-center gap-2.5">
-                <img src="assets/images/phone-icon.svg" alt="Phone icon" width="30" height="29" class="w-6 2xl:w-[31px] h-auto shrink-0" [ngClass]="theme === 'light' ? 'brightness-0' : ''" />
+                <img src="assets/images/phone-icon.svg" alt="Phone Icon Dark" width="30" height="29" class="w-6 2xl:w-[31px] h-auto shrink-0" [ngClass]="theme === 'light' ? 'brightness-0' : ''" />
                 <span class="text-sm 2xl:text-lg 2xl:leading-[1.24]">{{ phone }}</span>
               </a>
             </div>

@@ -15,20 +15,20 @@
   <!-- Call-to-action card, half over the page and half over the white footer -->
   @if (showCollab()) {
     <section class="footer-cta" aria-label="Start a project">
-      <img class="footer-cta__glow footer-cta__glow--tr" src="assets/images/footer/glow-1.svg" alt="" aria-hidden="true" width="1086" height="1086" loading="lazy" decoding="async" />
-      <img class="footer-cta__glow footer-cta__glow--tr2" src="assets/images/footer/glow-2.svg" alt="" aria-hidden="true" width="575" height="575" loading="lazy" decoding="async" />
-      <img class="footer-cta__glow footer-cta__glow--bl" src="assets/images/footer/glow-3.svg" alt="" aria-hidden="true" width="861" height="861" loading="lazy" decoding="async" />
-      <img class="footer-cta__glow footer-cta__glow--bl2" src="assets/images/footer/glow-4.svg" alt="" aria-hidden="true" width="408" height="408" loading="lazy" decoding="async" />
+      <img class="footer-cta__glow footer-cta__glow--tr" src="assets/images/footer/glow-1.svg" alt="Decorative glow" aria-hidden="true" width="1086" height="1086" loading="lazy" decoding="async" />
+      <img class="footer-cta__glow footer-cta__glow--tr2" src="assets/images/footer/glow-2.svg" alt="Decorative glow" aria-hidden="true" width="575" height="575" loading="lazy" decoding="async" />
+      <img class="footer-cta__glow footer-cta__glow--bl" src="assets/images/footer/glow-3.svg" alt="Decorative glow" aria-hidden="true" width="861" height="861" loading="lazy" decoding="async" />
+      <img class="footer-cta__glow footer-cta__glow--bl2" src="assets/images/footer/glow-4.svg" alt="Decorative glow" aria-hidden="true" width="408" height="408" loading="lazy" decoding="async" />
       <h2 class="footer-cta__title font-myfont" [innerHTML]="cardText()"></h2>
       @if (isInternalBtnLink()) {
         <a class="csl-pill csl-pill--dark" [routerLink]="btnLink()">
           {{ btnText() }}
-          <img src="assets/images/footer/arrow-tilt-circle.svg" alt="" aria-hidden="true" width="50" height="50" />
+          <img src="assets/images/footer/arrow-tilt-circle.svg" alt="Arrow Icon" aria-hidden="true" width="50" height="50" />
         </a>
       } @else {
         <a class="csl-pill csl-pill--dark" [href]="btnLink()" target="_blank" rel="noopener noreferrer">
           {{ btnText() }}
-          <img src="assets/images/footer/arrow-tilt-circle.svg" alt="" aria-hidden="true" width="50" height="50" />
+          <img src="assets/images/footer/arrow-tilt-circle.svg" alt="Arrow Icon" aria-hidden="true" width="50" height="50" />
         </a>
       }
     </section>
@@ -61,7 +61,7 @@
     <!-- Brand · Services · Offices · Contact -->
     <div class="csl-footer__cols">
       <div class="csl-footer__col">
-        <img src="assets/CSL-logo-footer.svg" alt="Carina Softlabs" class="csl-footer__logo" width="315" height="57" loading="lazy" decoding="async" />
+        <img src="assets/CSL-logo-footer.svg" alt="Carina Softlabs Inc. Logo" class="csl-footer__logo" width="315" height="57" loading="lazy" decoding="async" />
         <p class="csl-footer__about">
           At Carina Softlabs Inc. we are the visionary pioneers of digital transformation, blending creativity and innovation to engineer immersive gaming
           experiences alongside empowering businesses with transformative solutions.
@@ -105,14 +105,14 @@
 
       <address class="csl-footer__col csl-footer__contact">
         <div class="csl-footer__item">
-          <img class="csl-footer__icon" src="assets/images/footer/mail.svg" alt="" aria-hidden="true" width="29" height="29" loading="lazy" decoding="async" />
+          <img class="csl-footer__icon" src="assets/images/footer/mail.svg" alt="Email" aria-hidden="true" width="29" height="29" loading="lazy" decoding="async" />
           <div>
             <p class="csl-footer__label">Email</p>
             <a [href]="'mailto:' + email" class="csl-footer__text csl-footer__link csl-footer__email">{{ email }}</a>
           </div>
         </div>
         <div class="csl-footer__item">
-          <img class="csl-footer__icon" src="assets/images/footer/phone.svg" alt="" aria-hidden="true" width="29" height="29" loading="lazy" decoding="async" />
+          <img class="csl-footer__icon" src="assets/images/footer/phone.svg" alt="Phone" aria-hidden="true" width="29" height="29" loading="lazy" decoding="async" />
           <div>
             <p class="csl-footer__label">Phone No.</p>
             <p class="csl-footer__phones">
@@ -164,7 +164,7 @@
       </p>
       <button type="button" class="csl-pill csl-pill--light csl-footer__top" (click)="scrollToTop()" aria-label="Back to top">
         <span class="csl-footer__top-label">Back to Top</span>
-        <img src="assets/images/footer/arrow-up-circle.svg" alt="" aria-hidden="true" width="50" height="50" />
+        <img src="assets/images/footer/arrow-up-circle.svg" alt="Image" aria-hidden="true" width="50" height="50" />
       </button>
     </div>
   </footer>

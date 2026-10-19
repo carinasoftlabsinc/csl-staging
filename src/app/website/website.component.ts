@@ -679,7 +679,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       heading: 'Emerging <br> Tech',
       desc: 'Shaping the Future with AI, AR/VR, and XR Innovation.',
-      route: '/services',
+      route: '/ai-emerging-technology',
     },
     {
       heading: 'AI and Emerging Technology',

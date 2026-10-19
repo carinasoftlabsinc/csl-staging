@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit, AfterViewInit, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID, inject, NgZone } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit, Inject, Renderer2, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID, inject, ViewChild, ElementRef, NgZone } from '@angular/core';
+import type { ServiceImageTransition } from './service-image-transition';
 import { SeoService } from '@core/service/seo.service';
 import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
@@ -13,20 +14,25 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
     changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
-export class ServicesComponent implements OnInit, OnDestroy {
+export class ServicesComponent implements OnInit, AfterViewInit, OnDestroy {
   allServiceimgs = [
     '../../../assets/images/game-service.webp',
     '../../../assets/images/digital-service.webp',
     '../../../assets/images/app-service.webp',
     '../../../assets/images/web-service.webp',
+    '/assets/images/ai-service.png',
   ];
 
-  currentImage = this.allServiceimgs[0];
-  private currentIndex = 0;
+  activeServiceIndex = 0;
+  @ViewChild('serviceCanvas') private serviceCanvas?: ElementRef<HTMLCanvasElement>;
+  private imageTransition?: ServiceImageTransition;
+  private readonly transitionAbort = new AbortController();
+  private disposed = false;
+  private readonly zone = inject(NgZone);
+  private serviceObserver?: IntersectionObserver;
   private seoElements: HTMLElement[] = [];
 
   private readonly seoService = inject(SeoService);
-  private readonly zone = inject(NgZone);
 
   constructor(
     private titleService: Title,
@@ -45,22 +51,30 @@ export class ServicesComponent implements OnInit, OnDestroy {
       threshold: 0.5, // Adjust the threshold based on when you want the image to change
     };
 
-    const observer = new IntersectionObserver(
+    this.serviceObserver = new IntersectionObserver(
       this.onIntersect.bind(this),
       options
     );
 
     sections.forEach((section) => {
-      observer.observe(section);
+      this.serviceObserver!.observe(section);
     });
 
-    // Ensure the initial image is visible
-    setTimeout(() => {
-      const imageElement = document.querySelector('.right-side img');
-      if (imageElement) {
-        imageElement.classList.add('show');
-      }
-    }, 10); // Add a slight delay to ensure DOM updates
+    const canvas = this.serviceCanvas?.nativeElement;
+    if (canvas) {
+      this.zone.runOutsideAngular(() => {
+        void import('./service-image-transition')
+          .then(module => this.disposed ? undefined : module.createServiceImageTransition(canvas, this.allServiceimgs, this.activeServiceIndex, this.transitionAbort.signal))
+          .then(transition => {
+            if (this.disposed) transition?.destroy();
+            else {
+              this.imageTransition = transition;
+              transition?.transitionTo(this.activeServiceIndex);
+            }
+          })
+          .catch(() => canvas.classList.remove('is-ready'));
+      });
+    }
   }
 
   onIntersect(
@@ -68,13 +82,12 @@ export class ServicesComponent implements OnInit, OnDestroy {
     observer: IntersectionObserver
   ): void {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
         const parent = entry.target.parentElement;
         if (parent) {
           const index = Array.from(parent.children).indexOf(entry.target);
-          if (index !== this.currentIndex) {
+          if (index !== this.activeServiceIndex) {
             this.changeImage(index);
-            this.currentIndex = index;
           }
         }
       }
@@ -82,20 +95,9 @@ export class ServicesComponent implements OnInit, OnDestroy {
   }
 
   changeImage(index: number): void {
-    const imageElement = document.querySelector('.right-side img');
-    if (imageElement) {
-      imageElement.classList.remove('show');
-
-      setTimeout(() => {
-        this.currentImage =
-          this.allServiceimgs[index] || this.allServiceimgs[0];
-        setTimeout(() => {
-          if (imageElement) {
-            imageElement.classList.add('show');
-          }
-        }, 10);
-      }, 500);
-    }
+    if (!this.allServiceimgs[index] || index === this.activeServiceIndex) return;
+    this.activeServiceIndex = index;
+    this.zone.runOutsideAngular(() => this.imageTransition?.transitionTo(index));
   }
 
   line: string = `Find Out How We Solved Complex "IT" Challenges`;
@@ -139,7 +141,11 @@ export class ServicesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.disposed = true;
+    this.transitionAbort.abort();
     clearInterval(this.intervalId);
+    this.serviceObserver?.disconnect();
+    this.imageTransition?.destroy();
 
     this.seoElements.forEach((el) => {
       if (el.parentNode) {
@@ -451,6 +457,14 @@ export class ServicesComponent implements OnInit, OnDestroy {
       imgSrc: '../../../assets/images/web-service.webp',
       route: '/web-development',
       cta: 'Explore Web Development',
+    },
+    {
+      id: 'section5',
+      title: 'AI & Emerging Technology',
+      description: `We combine AI, engineering and creative technology to build intelligent digital products, next-generation games, immersive experiences and automated business solutions. From AI strategy and generative AI to Web3, XR and smarter web and mobile apps, we turn emerging technology into practical solutions built around your business.`,
+      imgSrc: '/assets/images/ai-service.png',
+      route: '/ai-emerging-technology',
+      cta: 'Explore AI & Emerging Tech',
     },
   ];
 

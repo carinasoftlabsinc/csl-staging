@@ -18,6 +18,7 @@ import { DigitalServiceComponent } from './digital-service/digital-service.compo
 import { WebServiceComponent } from './web-service/web-service.component';
 import { GameServiceComponent } from './game-service/game-service.component';
 import { AppServiceComponent } from './app-service/app-service.component';
+import { AiServiceComponent } from './ai-service/ai-service.component';
 import { JobDescriptionComponent } from './job-description/job-description.component';
 import { CaseStudiesComponent } from './case-studies/case-studies.component';
 import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
@@ -51,7 +52,7 @@ const routes: Routes = [
     component: DigitalServiceComponent,
   },
   { path: 'app-development', component: AppServiceComponent },
-  // AI & Emerging Tech will be added when its service page is built.
+  { path: 'ai-emerging-technology', component: AiServiceComponent },
   {
     path: 'blog',
     component: BlogComponent,

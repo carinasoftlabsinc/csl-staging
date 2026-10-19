@@ -183,11 +183,15 @@
                 </div>
               </div>
               <div class="right-side flex items-center justify-center h-screen">
-                <!-- Fixed image container -->
-                <img
-                  class="object-cover h-[70vh] w-[35vw] 2xl:h-[75vh] 2xl:w-[35vw] rounded-2xl"
-                  [src]="currentImage"
-                  alt="Preview of the selected Carina Softlabs service" width="677" height="699" loading="lazy" decoding="async" />
+                <div class="service-image-stage h-[70vh] w-[35vw] 2xl:h-[75vh] rounded-2xl">
+                  @for (image of allServiceimgs; track image; let i = $index) {
+                    <img class="service-image" [src]="image"
+                      [class.is-active]="i === activeServiceIndex"
+                      [attr.aria-hidden]="i !== activeServiceIndex"
+                      [alt]="allServices[i].title + ' service illustration'" decoding="async" />
+                  }
+                  <canvas #serviceCanvas class="service-lens-canvas" aria-hidden="true"></canvas>
+                </div>
                 </div>
               </div>
             </div>

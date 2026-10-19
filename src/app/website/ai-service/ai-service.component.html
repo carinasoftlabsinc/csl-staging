@@ -1,0 +1,137 @@
+<main class="ai-page">
+  <section class="ai-hero" aria-labelledby="ai-title">
+    <img class="hero-art" [src]="assets + 'hero-HeroBg1.webp'" alt="" width="1619" height="1080" fetchpriority="high" decoding="async" />
+    <app-header />
+    <div class="ai-container ai-hero-copy">
+      <p class="eyebrow">AI &amp; Emerging Technology</p>
+      <h1 id="ai-title">Building What’s Next with AI &amp; Emerging Tech</h1>
+      <p class="hero-subtitle">Intelligent Products. Immersive Experiences. Smarter Games.</p>
+      <p class="intro">At <strong>Carina Softlabs Inc.</strong>, we combine AI, engineering and creative technology to build intelligent digital products, next-generation games, immersive experiences and automated business solutions.</p>
+      <div class="hero-metrics">
+        @for (metric of metrics; track metric.title) {
+          <div><h2>{{ metric.title }}</h2><p>{{ metric.description }}</p></div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-services ai-light" aria-labelledby="services-title">
+    <div class="ai-container">
+      <h2 id="services-title" class="section-label">What We Do</h2>
+      <h3 class="section-headline">AI &amp; Emerging Tech, <br />Built Around Your Product</h3>
+      <p class="section-description">From strategy and prototyping to development and deployment, CSL turns emerging technology into practical digital solutions.</p>
+      <div class="services-grid">
+        @for (row of serviceRows; track row) {
+          @for (card of services; track card.title) {
+            <article class="service-tile"><h4>{{ card.title }}</h4><p>{{ card.description }}</p></article>
+          }
+        }
+      </div>
+    </div>
+  </section>
+
+  @for (feature of features; track feature.id) {
+    <section class="ai-feature" [class]="'ai-feature feature-' + feature.id" [attr.aria-labelledby]="feature.id + '-title'">
+      <div class="feature-art" aria-hidden="true"><img [src]="assets + feature.image" alt="" width="1980" height="1113" loading="lazy" decoding="async" /></div>
+      <div class="ai-container feature-content">
+        <h2 class="section-label" [id]="feature.id + '-title'">{{ feature.title }}</h2>
+        <h3 class="section-headline">{{ feature.headline }}</h3>
+        <p class="section-description">{{ feature.description }}</p>
+        <div class="capability-grid" [class.three-columns]="feature.id === 'games'">
+          @for (card of feature.cards; track card.title) {
+            <article class="capability-card">
+              @if (card.icon) {
+                <img class="capability-icon" [src]="assets + card.icon" alt="" width="54" height="54" loading="lazy" decoding="async" />
+              } @else if (card.star) {
+                <span class="capability-icon star-icon" aria-hidden="true">
+                  @for (part of starParts; track part.file) {
+                    <span [style.inset]="part.inset"><img [src]="assets + '9030-1466-' + part.file" alt="" loading="lazy" decoding="async" /></span>
+                  }
+                </span>
+              }
+              <h4>{{ card.title }}</h4><p>{{ card.description }}</p>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+  }
+
+  <section class="ai-products" aria-labelledby="products-title">
+    <div class="ai-container">
+      <h2 id="products-title">Where AI Meets Real Products</h2>
+      <div class="products-grid">
+        @for (product of products; track product.title) {
+          <article class="product-card">
+            <img class="corner-arrow" [src]="assets + '9040-1670-Frame48096380.svg'" alt="" width="40" height="40" loading="lazy" />
+            <p class="product-category">{{ product.category }}</p>
+            <h3>{{ product.title }}</h3><p>{{ product.description }}</p>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-why ai-light" aria-labelledby="why-title">
+    <div class="ai-container">
+      <h2 id="why-title" class="section-label">Why Carina Softlabs</h2>
+      <h3 class="section-headline">More Than AI. We Build the <br />Technology Around It.</h3>
+      <p class="section-description">AI becomes powerful when it works with strong engineering, product design and domain expertise. CSL brings multiple disciplines together under one team.</p>
+    </div>
+    <div class="disciplines-visual">
+      <div class="disciplines-art"><img [src]="assets + '9040-3690-Frame1000002135.webp'" alt="A developer working across game, AI and software engineering tools" width="1763" height="1007" loading="lazy" decoding="async" /></div>
+      <div class="disciplines-grid">
+        @for (card of disciplines; track card.title) {
+          <article><h4>{{ card.title }}</h4><p>{{ card.description }}</p></article>
+        }
+      </div>
+      <div class="connected-capability"><span>Connected Capability</span><div>@for (tag of connected; track tag) { <b>{{ tag }}</b> }</div></div>
+    </div>
+  </section>
+
+  <section class="ai-technologies ai-feature" aria-labelledby="technologies-title">
+    <div class="technology-art" aria-hidden="true"><img [src]="assets + '9058-5337-Image1090.webp'" alt="" width="2080" height="1170" loading="lazy" decoding="async" /></div>
+    <div class="ai-container feature-content">
+      <h2 id="technologies-title" class="section-label">Technologies We Work With</h2>
+      <h3 class="section-headline">One Team. Multiple Technology <br />Ecosystems.</h3>
+      <div class="capability-grid three-columns technology-grid">
+        @for (card of technologies; track card.title) {
+          <article class="capability-card"><h4>{{ card.title }}</h4><p>{{ card.description }}</p></article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-experience" aria-labelledby="experience-title">
+    <div class="ai-container">
+      <h2 id="experience-title" class="section-label">Our Experience</h2>
+      <h3 class="section-headline">Technology We’ve Built in the <br />Real World</h3>
+      <div class="experience-grid">
+        @for (card of experienceCards; track card) {
+          <article class="experience-card">
+            <!-- The supplied Figma uses empty grey panels; replace when approved project imagery is available. -->
+            <div class="experience-image" aria-hidden="true"><img [src]="assets + '9066-5458-Frame48096380.svg'" alt="" width="37" height="37" loading="lazy" /></div>
+            <div class="experience-copy"><p class="experience-category">AI-Powered Applications</p><h4>Intelligent Digital Products and Automation</h4><p>AI capabilities integrated directly into enterprise websites, apps and operations.</p></div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-process" aria-labelledby="process-title">
+    <div class="ai-container">
+      <h2 id="process-title" class="section-label">Our Process</h2>
+      <h3 class="section-headline">From Idea to Intelligent <br />Product</h3>
+      <p class="section-description">A practical process that takes an emerging technology idea from concept to production.</p>
+      <ol class="process-steps">
+        @for (step of steps; track step.title; let index = $index) {
+          <li><span class="step-number">{{ index + 1 }}</span><h4>{{ step.title }}</h4><p>{{ step.description }}</p></li>
+        }
+      </ol>
+    </div>
+  </section>
+
+  <ng-template #contactCopy><div class="ai-contact-copy"><p class="contact-headline">LET’S<span>GET IN</span>TOUCH</p></div></ng-template>
+  <app-quote-section heading="Application Process" service="AI & Emerging Tech" theme="light" [leftTemplate]="contactCopy" />
+  <app-footer />
+</main>

@@ -15,6 +15,7 @@ export const serverRoutes: ServerRoute[] = [
   { path: 'know-us',             renderMode: RenderMode.Prerender },
   { path: 'services',            renderMode: RenderMode.Prerender },
   { path: 'app-development',     renderMode: RenderMode.Prerender },
+  { path: 'ai-emerging-technology', renderMode: RenderMode.Prerender },
   { path: 'blog',                renderMode: RenderMode.Prerender },
   { path: 'news-room',           renderMode: RenderMode.Prerender },
   // Not live yet (placeholder content). Restore together with the routes in website-routing.module.ts.

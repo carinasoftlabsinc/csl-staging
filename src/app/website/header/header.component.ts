@@ -54,6 +54,7 @@ export class HeaderComponent {
       dropdownClass: '-left-10 lg:-left-2',
       children: [
         { label: 'Services', route: '/services' },
+        { label: 'AI & Emerging Tech', route: '/ai-emerging-technology' },
         { label: 'Projects', route: '/portfolio' },
       ],
     },

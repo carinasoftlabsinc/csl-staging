@@ -573,13 +573,29 @@
 //   height: 100vh;
 // }
 
-.right-side img {
-  // width: 100%;
-  // height: auto;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out; /* Animation duration and timing function */
+.service-image-stage {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #0b0c10;
 }
 
-.right-side img.show {
-  opacity: 1;
+.service-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  visibility: hidden;
 }
+.service-image.is-active { visibility: visible; z-index: 2; }
+.service-lens-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  visibility: hidden;
+  pointer-events: none;
+}
+.service-lens-canvas.is-ready { visibility: visible; }

@@ -19,6 +19,45 @@ export class DigitalServiceComponent implements OnInit {
     });
   }
 
+  readonly growthSteps = [
+    {
+      number: 1,
+      color: 'green',
+      title: 'Get Found on Search',
+      description: 'Like the best SEO companies, we focus on technical SEO, on-page optimization, AI visibility, and quality link building that help you rank higher on Google and earn consistent organic traffic.',
+    },
+    {
+      number: 2,
+      color: 'purple',
+      title: 'Reach the Right Audience',
+      description: 'Run targeted PPC and social media ad campaigns on Google, Meta, YouTube, and LinkedIn that put your brand in front of ready-to-buy customers.',
+    },
+    {
+      number: 3,
+      color: 'pink',
+      title: 'Build Trust with Content',
+      description: 'Publish helpful blogs, guides, and social content that answer your customers’ questions and position you as an industry expert.',
+    },
+    {
+      number: 4,
+      color: 'green',
+      title: 'Turn Visitors into Customers',
+      description: 'Improve landing pages, CTAs, and user journeys with conversion rate optimization (CRO) so more visitors take action.',
+    },
+    {
+      number: 5,
+      color: 'purple',
+      title: 'Engage & Retain',
+      description: 'Keep customers coming back with email marketing, automation, and active social media management.',
+    },
+    {
+      number: 6,
+      color: 'pink',
+      title: 'Measure & Scale',
+      description: 'Track every campaign with clear analytics and reporting, then build on what works to grow ROI month over month.',
+    },
+  ];
+
   cases = [
     {
       image: 'assets/images/dm-case-seo-performance.webp',

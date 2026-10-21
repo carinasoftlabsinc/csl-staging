@@ -2,6 +2,7 @@
 <main class="bg-[#0B0C10]">
   <ng-container *ngTemplateOutlet="hero" />
   <ng-container *ngTemplateOutlet="ourService" />
+  <ng-container *ngTemplateOutlet="digitalGrowth" />
   <ng-container *ngTemplateOutlet="commitments" />
   <ng-container *ngTemplateOutlet="caseStudies" />
   <ng-container *ngTemplateOutlet="solutionByDataSource" />
@@ -25,7 +26,7 @@
 <!-- ===== Our Service ===== -->
 <ng-template #ourService>
   <section
-    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
+    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-t-[40px]"
     >
     <div class="mx-auto max-w-[1671px]">
       <h2
@@ -76,6 +77,40 @@
             />
         </div>
       }
+    </div>
+  </section>
+</ng-template>
+
+<!-- ===== Digital Growth — Figma 9166:3592 ===== -->
+<ng-template #digitalGrowth>
+  <section class="digital-growth px-7 md:px-10 xl:px-14 2xl:px-24" aria-labelledby="digital-growth-title">
+    <div class="digital-growth__inner mx-auto max-w-[1671px]">
+      <div class="digital-growth__intro">
+        <h2 id="digital-growth-title" class="digital-growth__title font-myfont">
+          What Does It Take to Grow Your<br class="hidden lg:block" /> Business Online
+        </h2>
+        <img class="digital-growth__divider" src="assets/images/digital-growth/divider.svg" alt="" width="1671" height="1" loading="lazy" />
+        <p class="digital-growth__description font-quickSand">
+          Growing online takes more than a website or a few social posts. It needs a connected strategy that brings the right people to your brand, earns their trust, and turns their interest into revenue. As one of the best digital marketing agencies for growing brands, Carina Softlabs combines data-driven SEO, targeted paid campaigns, engaging content, AI visibility, and conversion-focused design into one growth plan built around your goals. We study your audience and market first, then build, test, and refine every channel so each one supports the others. The result is steady, measurable growth instead of short-lived spikes.
+        </p>
+        <img class="digital-growth__illustration" src="assets/images/digital-growth/growth-arrows.svg" alt="" width="380" height="342" loading="lazy" decoding="async" />
+      </div>
+
+      <h3 class="digital-growth__subtitle font-myfont">Your Roadmap to Digital Growth</h3>
+      <ol class="digital-growth__steps font-quickSand">
+        @for (step of growthSteps; track step.number) {
+          <li class="digital-growth__step">
+            <span class="digital-growth__badge" aria-hidden="true">
+              <img [src]="'assets/images/digital-growth/step-' + step.color + '.svg'" alt="" width="82" height="82" loading="lazy" />
+              <span>{{ step.number }}</span>
+            </span>
+            <div class="digital-growth__step-copy">
+              <h4>{{ step.title }}</h4>
+              <p>{{ step.description }}</p>
+            </div>
+          </li>
+        }
+      </ol>
     </div>
   </section>
 </ng-template>

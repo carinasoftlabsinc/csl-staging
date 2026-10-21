@@ -580,22 +580,22 @@
   background: #0b0c10;
 }
 
-.service-image {
+.service-image-layer {
   position: absolute;
   inset: 0;
+  visibility: hidden;
+  overflow: hidden;
+  contain: paint;
+}
+
+.service-image-layer.is-active { visibility: visible; }
+.service-image-layer.is-revealing { will-change: clip-path; }
+.service-image-layer.is-revealing .service-image { will-change: transform; }
+
+.service-image {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  visibility: hidden;
+  transform-origin: 50% 100%;
 }
-.service-image.is-active { visibility: visible; z-index: 2; }
-.service-lens-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 3;
-  visibility: hidden;
-  pointer-events: none;
-}
-.service-lens-canvas.is-ready { visibility: visible; }

@@ -5,6 +5,7 @@ declare global {
   interface Window {
     gtag?: (...args: any[]) => void;
     dataLayer?: any[];
+    fbq?: (action: 'track', eventName: 'PageView') => void;
   }
 }
 
@@ -12,7 +13,25 @@ declare global {
   providedIn: 'root',
 })
 export class AnalyticsService {
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  private lastMetaPageUrl: string | null = null;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(platformId) && typeof window !== 'undefined') {
+      // The base pixel in index.html already sends this document's first PageView.
+      this.lastMetaPageUrl = window.location.pathname + window.location.search;
+    }
+  }
+
+  /** Tracks successful SPA navigations without repeating the initial or fragment-only view. */
+  trackMetaPageView(url: string): void {
+    if (!isPlatformBrowser(this.platformId) || typeof window === 'undefined') return;
+
+    const pageUrl = url.split('#')[0];
+    if (pageUrl === this.lastMetaPageUrl || typeof window.fbq !== 'function') return;
+
+    window.fbq('track', 'PageView');
+    this.lastMetaPageUrl = pageUrl;
+  }
 
   /**
    * Tracks standard Google Analytics 4 (GA4) generate_lead conversion event.

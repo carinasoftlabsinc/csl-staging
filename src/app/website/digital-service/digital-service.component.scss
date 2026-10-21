@@ -1,3 +1,169 @@
+.digital-growth {
+    --growth-ink: #0b0c10;
+    --growth-body: #34394b;
+    background: #fff;
+    color: var(--growth-ink);
+    border-radius: 0 0 50px 50px;
+    padding-top: clamp(48px, 6.64vw, 127.5px);
+    padding-bottom: clamp(56px, 6.65vw, 128px);
+
+    &__intro {
+        position: relative;
+        // Reserve the illustration's column so it never covers the document copy.
+        padding-right: 25.5%;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: clamp(30px, 2.865vw, 55px);
+        line-height: .988;
+    }
+
+    &__divider {
+        display: block;
+        width: 134.23%;
+        height: 1px;
+        max-width: none;
+        margin: 24px 0 20px;
+    }
+
+    &__description {
+        margin: 0;
+        color: var(--growth-body);
+        font-size: clamp(14px, .9375vw, 18px);
+        font-weight: 500;
+        line-height: 1.3334;
+    }
+
+    &__illustration {
+        position: absolute;
+        right: 0;
+        top: -12px;
+        width: 22.74%;
+        height: auto;
+    }
+
+    &__subtitle {
+        margin: clamp(32px, 2.73vw, 52.5px) 0 0;
+        font-size: clamp(24px, 1.875vw, 36px);
+        line-height: 1.1;
+    }
+
+    &__steps {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        column-gap: clamp(24px, 3.02vw, 58px);
+        row-gap: clamp(40px, 3.39vw, 65px);
+        margin: clamp(36px, 3.86vw, 74px) 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__step {
+        position: relative;
+        min-width: 0;
+        padding: clamp(28px, 2.03vw, 39px) 0 0 clamp(28px, 2.71vw, 52px);
+    }
+
+    &__badge {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: clamp(52px, 4.27vw, 82px);
+        aspect-ratio: 1;
+
+        img {
+            display: block;
+            width: inherit;
+            height: auto;
+        }
+
+        span {
+            position: absolute;
+            top: 20%;
+            left: 22%;
+            color: #fff;
+            font-size: clamp(29px, 2.396vw, 46px);
+            font-weight: 700;
+            line-height: 1;
+        }
+    }
+
+    &__step-copy {
+        position: relative;
+
+        h4 {
+            margin: 0 0 8px;
+            font-size: clamp(18px, 1.5625vw, 30px);
+            font-weight: 700;
+            line-height: 1.15;
+            text-transform: uppercase;
+        }
+
+        p {
+            max-width: 425px;
+            margin: 0;
+            color: var(--growth-body);
+            font-size: clamp(14px, .8334vw, 16px);
+            font-weight: 500;
+            line-height: 1.313;
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    // The longest title extends into the column gutter in the desktop design.
+    .digital-growth__step-copy h4 {
+        width: max-content;
+    }
+}
+
+@media (max-width: 1199px) {
+    .digital-growth__steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .digital-growth {
+        border-radius: 0 0 32px 32px;
+
+        &__intro {
+            display: flex;
+            flex-direction: column;
+            padding-right: 0;
+        }
+
+        &__title {
+            line-height: 1.08;
+        }
+
+        &__divider {
+            width: 100%;
+        }
+
+        &__description {
+            line-height: 1.6;
+        }
+
+        &__illustration {
+            position: static;
+            align-self: flex-end;
+            width: clamp(140px, 38vw, 210px);
+            margin-top: 24px;
+        }
+
+        &__steps {
+            grid-template-columns: minmax(0, 1fr);
+            row-gap: 32px;
+        }
+
+        &__step-copy p {
+            line-height: 1.5;
+        }
+    }
+}
+
 .commitment-section::before {
     content: '';
     position: absolute;

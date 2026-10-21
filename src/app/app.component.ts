@@ -13,6 +13,7 @@ import {
 import { isPlatformBrowser } from '@angular/common';
 import { Event, Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { gsap } from 'gsap';
+import { AnalyticsService } from '@core/service/analytics.service';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ import { gsap } from 'gsap';
 })
 export class AppComponent implements OnInit, AfterViewInit {
   private readonly zone = inject(NgZone);
+  private readonly analyticsService = inject(AnalyticsService);
   currentUrl!: string;
 
   @ViewChild('cursorDot') cursorDot!: ElementRef<HTMLDivElement>;
@@ -39,7 +41,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         );
       }
       if (routerEvent instanceof NavigationEnd) {
-        /* empty */
+        this.analyticsService.trackMetaPageView(routerEvent.urlAfterRedirects);
       }
       if (isPlatformBrowser(this.platformId)) {
         window.scrollTo(0, 0);

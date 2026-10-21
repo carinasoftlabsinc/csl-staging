@@ -23,13 +23,13 @@ export class ServicesComponent implements OnInit, AfterViewInit, OnDestroy {
     '/assets/images/ai-service.png',
   ];
 
-  activeServiceIndex = 0;
-  @ViewChild('serviceCanvas') private serviceCanvas?: ElementRef<HTMLCanvasElement>;
+  @ViewChild('serviceStage') private serviceStage?: ElementRef<HTMLElement>;
+  @ViewChild('serviceContent') private serviceContent?: ElementRef<HTMLElement>;
   private imageTransition?: ServiceImageTransition;
   private readonly transitionAbort = new AbortController();
   private disposed = false;
   private readonly zone = inject(NgZone);
-  private serviceObserver?: IntersectionObserver;
+  private serviceMedia?: gsap.MatchMedia;
   private seoElements: HTMLElement[] = [];
 
   private readonly seoService = inject(SeoService);
@@ -44,60 +44,47 @@ export class ServicesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
-    this.zone.runOutsideAngular(() => gsap.registerPlugin(ScrollTrigger));
-    const sections = document.querySelectorAll('.ini-service');
-    const options = {
-      root: null,
-      threshold: 0.5, // Adjust the threshold based on when you want the image to change
-    };
-
-    this.serviceObserver = new IntersectionObserver(
-      this.onIntersect.bind(this),
-      options
-    );
-
-    sections.forEach((section) => {
-      this.serviceObserver!.observe(section);
-    });
-
-    const canvas = this.serviceCanvas?.nativeElement;
-    if (canvas) {
+    const stage = this.serviceStage?.nativeElement;
+    const content = this.serviceContent?.nativeElement;
+    if (stage && content) {
       this.zone.runOutsideAngular(() => {
+        gsap.registerPlugin(ScrollTrigger);
         void import('./service-image-transition')
-          .then(module => this.disposed ? undefined : module.createServiceImageTransition(canvas, this.allServiceimgs, this.activeServiceIndex, this.transitionAbort.signal))
+          .then(module => this.disposed ? undefined : module.createServiceImageTransition(stage, this.transitionAbort.signal))
           .then(transition => {
             if (this.disposed) transition?.destroy();
-            else {
+            else if (transition) {
               this.imageTransition = transition;
-              transition?.transitionTo(this.activeServiceIndex);
+              this.serviceMedia = gsap.matchMedia();
+              this.serviceMedia.add({
+                desktop: '(min-width: 768px)',
+                reducedMotion: '(prefers-reduced-motion: reduce)',
+              }, context => {
+                if (!context.conditions?.['desktop']) return;
+                const playhead = { position: 0 };
+                const tween = gsap.to(playhead, {
+                  position: this.allServiceimgs.length - 1,
+                  ease: 'none',
+                  onUpdate: () => transition.setProgress(playhead.position),
+                  scrollTrigger: {
+                    trigger: content,
+                    start: 'top top',
+                    end: 'bottom bottom',
+                    scrub: context.conditions['reducedMotion'] ? true : 0.45,
+                    invalidateOnRefresh: true,
+                  },
+                });
+                // Honour restored scroll positions without playing through earlier services.
+                tween.progress(tween.scrollTrigger?.progress ?? 0);
+                return () => transition.setProgress(0);
+              });
             }
           })
-          .catch(() => canvas.classList.remove('is-ready'));
+          .catch(() => {
+            // Keep the first native image visible if a source cannot decode.
+          });
       });
     }
-  }
-
-  onIntersect(
-    entries: IntersectionObserverEntry[],
-    observer: IntersectionObserver
-  ): void {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-        const parent = entry.target.parentElement;
-        if (parent) {
-          const index = Array.from(parent.children).indexOf(entry.target);
-          if (index !== this.activeServiceIndex) {
-            this.changeImage(index);
-          }
-        }
-      }
-    });
-  }
-
-  changeImage(index: number): void {
-    if (!this.allServiceimgs[index] || index === this.activeServiceIndex) return;
-    this.activeServiceIndex = index;
-    this.zone.runOutsideAngular(() => this.imageTransition?.transitionTo(index));
   }
 
   line: string = `Find Out How We Solved Complex "IT" Challenges`;
@@ -142,9 +129,9 @@ export class ServicesComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.disposed = true;
+    this.serviceMedia?.revert();
     this.transitionAbort.abort();
     clearInterval(this.intervalId);
-    this.serviceObserver?.disconnect();
     this.imageTransition?.destroy();
 
     this.seoElements.forEach((el) => {

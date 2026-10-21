@@ -31,4 +31,10 @@ module.exports = {
   },
 
   plugins: [require("tailwind-scrollbar-hide"), require("daisyui")],
+
+  // The site is designed light only. Without this, DaisyUI switches the page background to its dark
+  // theme when the visitor's device is in dark mode (visible below short pages such as the 404 page).
+  daisyui: {
+    themes: ["light"],
+  },
 };

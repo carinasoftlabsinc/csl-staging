@@ -39,6 +39,10 @@ const PERMANENT_REDIRECTS: Record<string, string> = {
   '/service-details/game-development': '/game-development',
   '/service-details/web-development': '/web-development',
   '/service-details/mobile-app-development': '/services',
+  // Old content slugs (SEO audit T16)
+  '/portfolio/coachhubz': '/portfolio/coach-hubz',
+  '/portfolio/pounce': '/portfolio',
+  '/blog/dedicated-hosting-explained-is-it-right-for-your-website': '/blog/dedicated-hosting-explained',
 };
 
 /**

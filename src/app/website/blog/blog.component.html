@@ -55,7 +55,7 @@
                 featured.title }}</a>
               <a [routerLink]="['/blog', formatHeading(featured.titleLink)]"
                 class="featured-article-read-more text-white font-quickSand font-medium flex items-center gap-2">
-                Read More
+                Read More<span class="sr-only"> about {{ featured.title }}</span>
                 <img src="../../../assets/images/arrow-right-gradient.svg" alt="" width="25" height="12" loading="lazy"
                   decoding="async" />
               </a>
@@ -88,7 +88,7 @@
                     card.title }}</a>
                   <a [routerLink]="['/blog', formatHeading(card.titleLink)]"
                     class="featured-article-read-more text-white font-quickSand font-medium flex items-center gap-2">
-                    Read More
+                    Read More<span class="sr-only"> about {{ card.title }}</span>
                     <img src="../../../assets/images/arrow-right-gradient.svg" alt="" width="25" height="12"
                       loading="lazy" decoding="async" />
                   </a>

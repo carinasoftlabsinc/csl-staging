@@ -105,8 +105,18 @@ export class SeoService {
     );
   }
 
+  /** For the 404 page: sets the title and description, then marks the page as not found. */
+  setNotFoundPage(config: { title: string; description: string }): void {
+    this.clearDynamicTags();
+    this.titleSvc.setTitle(config.title);
+    this.metaSvc.updateTag({ name: 'description', content: this.cleanText(config.description) });
+    this.setNotFoundStatus();
+  }
+
   /**
-   * Sets genuine HTTP 404 response code and Cache-Control headers during SSR.
+   * Marks the current page as "not found": during SSR the response gets HTTP 404 and no-cache headers,
+   * and the page gets `noindex` with no canonical, social (Open Graph / Twitter) or JSON-LD tags,
+   * so search engines do not treat a missing address as a real page.
    */
   setNotFoundStatus(): void {
     if (isPlatformServer(this.platformId) && this.responseInit) {
@@ -115,6 +125,14 @@ export class SeoService {
         'Cache-Control': 'no-cache, no-store, must-revalidate',
       };
     }
+    this.metaSvc.updateTag({ name: 'robots', content: 'noindex' });
+    this.doc.head
+      .querySelectorAll(
+        'link[rel="canonical"], meta[property^="og:"], meta[property^="article:"], meta[name^="twitter:"], ' +
+          'script[type="application/ld+json"][data-seo]',
+      )
+      .forEach((el) => this.renderer.removeChild(this.doc.head, el));
+    this.injectedElements = this.injectedElements.filter((el) => !!el.parentNode);
   }
 
   clearDynamicTags(): void {
@@ -145,6 +163,9 @@ export class SeoService {
    * previously visited route never leak into the next one.
    */
   setOg(config: Omit<SeoPageConfig, 'jsonLd'>): void {
+    // Every real page calls this (directly or through setPage), so a noindex left by a 404 page
+    // during in-app navigation is removed here.
+    this.metaSvc.removeTag("name='robots'");
     const title = config.ogTitle || config.title;
     // Social platforms show ~200 chars; keeps marketing-approved copy intact.
     const description = this.cleanText(config.ogDescription || config.description, 200);

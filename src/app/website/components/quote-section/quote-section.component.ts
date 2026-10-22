@@ -107,7 +107,7 @@ export class QuoteSectionComponent implements OnInit {
   @Input() theme: 'dark' | 'light' = 'dark';
   /** Left-side image; defaults to the web development devices mock-up. */
   @Input() image = 'assets/images/web-form.webp';
-  @Input() imageAlt = 'Web design and development projects shown across desktop, laptop, tablet and phone';
+  @Input() imageAlt = 'Custom Image';
   @Input() imageWidth = 750;
   @Input() imageHeight = 560;
   /** Extra CSS classes for the image, e.g. to change its size or position. */

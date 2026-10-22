@@ -117,12 +117,12 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-12 2xl:mt-16">
       @if (!featuredLoading) {
         <a
-          [routerLink]="['/news', formatHeading(featured[0].titleLink)]"
+          [routerLink]="['/news', formatHeading(featured[0]?.titleLink)]"
           class="h-[40vh] md:h-[90vh] w-full rounded-3xl overflow-hidden relative group"
           >
           <img
             class="h-full w-full object-cover"
-            [src]="featured[0]?.image_2 ? imageUrl + featured[0]?.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="featured[0].title" width="1024" height="682" fetchpriority="high" />
+            [src]="featured[0]?.image_2 ? imageUrl + featured[0]?.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="newsImageAlt(featured[0])" width="1024" height="682" fetchpriority="high" />
             <div
               class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
               >
@@ -143,10 +143,10 @@
           <!-- <ng-container *ngFor="let card of featured.slice(1); let i = index"> -->
           <div class="relative group overflow-hidden rounded-3xl">
             @if (!featuredLoading) {
-              <a [routerLink]="['/news', formatHeading(featured[1].titleLink)]">
+              <a [routerLink]="['/news', formatHeading(featured[1]?.titleLink)]">
                 <img
                   class="h-full w-full object-cover"
-                [src]="featured[1]?.image_2 ? imageUrl + featured[1]?.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="featured[1].title" width="1024" height="682" loading="lazy" decoding="async" />
+                [src]="featured[1]?.image_2 ? imageUrl + featured[1]?.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="featured[1]?.title || newsImageAlt(featured[1])" width="1024" height="682" loading="lazy" decoding="async" />
                   <div
                     class="h-3/4 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
                     >
@@ -173,7 +173,7 @@
                   >
                   <img
                     class="h-full w-full object-cover"
-                    [src]="card.image_2 ? imageUrl + card.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="card.title" width="1024" height="682" loading="lazy" decoding="async" />
+                    [src]="card.image_2 ? imageUrl + card.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="newsImageAlt(card)" width="1024" height="682" loading="lazy" decoding="async" />
                     <div
                       class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
                       >
@@ -209,12 +209,12 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-12 2xl:mt-16">
           @if (!prevFeaturedLoading) {
             <a
-              [routerLink]="['/news', formatHeading(prevFeatured[0].titleLink)]"
+              [routerLink]="['/news', formatHeading(prevFeatured[0]?.titleLink)]"
               class="h-[40vh] md:h-[90vh] w-full rounded-3xl overflow-hidden relative group"
               >
               <img
                 class="h-full w-full object-cover"
-            [src]="prevFeatured[0]?.image_2 ? imageUrl + prevFeatured[0]?.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="prevFeatured[0].title" width="1024" height="682" loading="lazy" decoding="async" />
+            [src]="prevFeatured[0]?.image_2 ? imageUrl + prevFeatured[0]?.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="newsImageAlt(prevFeatured[0])" width="1024" height="682" loading="lazy" decoding="async" />
                 <div
                   class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
                   >
@@ -226,12 +226,12 @@
                 </div>
               </a>
               <a
-                [routerLink]="['/news', formatHeading(prevFeatured[1].titleLink)]"
+                [routerLink]="['/news', formatHeading(prevFeatured[1]?.titleLink)]"
                 class="h-[40vh] md:h-[90vh] w-full rounded-3xl overflow-hidden relative group"
                 >
                 <img
                   class="h-full w-full object-cover"
-            [src]="prevFeatured[1]?.image_2 ? imageUrl + prevFeatured[1]?.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="prevFeatured[1].title" width="1024" height="682" loading="lazy" decoding="async" />
+            [src]="prevFeatured[1]?.image_2 ? imageUrl + prevFeatured[1]?.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="newsImageAlt(prevFeatured[1])" width="1024" height="682" loading="lazy" decoding="async" />
                   <div
                     class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
                     >
@@ -295,7 +295,7 @@
                     >
                     <img
                       class="object-cover h-72 2xl:h-80 w-full rounded-2xl"
-                      [src]="card.image_2 ? imageUrl + card.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="card.title" width="394" height="374" loading="lazy" decoding="async" />
+                      [src]="card.image_2 ? imageUrl + card.image_2 : fallbackImage" (error)="onCoverError($event)" [alt]="newsImageAlt(card)" width="394" height="374" loading="lazy" decoding="async" />
                       <p
                         class="text-[#34394B] font-quickSand font-medium text-base 2xl:text-xl"
                         >

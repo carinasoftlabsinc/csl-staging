@@ -389,7 +389,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   apiUrl = `${environment.apiUrl}/admin/getAll_project`;
   imageUrl = `${environment.imageBaseUrl}`;
 
-  /** Alt text from the SEO sheet for known projects; other projects get "<title> project by Carina Softlabs". */
+  /** Alt text from the SEO alt text sheet for known projects; other projects use their title. */
   private readonly projectAlts: Record<string, string> = {
     'space runner': 'Space Runner| 3D endless space game by Carina Softlabs',
     'galaxy chess': 'Galaxy Chess| 3D cosmic chess strategy game by Carina Softlabs',
@@ -400,7 +400,7 @@ export class PortfolioComponent implements OnInit, OnDestroy {
 
   projectImageAlt(project: any): string {
     const title = String(project?.title || '').trim();
-    return this.projectAlts[title.toLowerCase()] || (title ? `${title} project by Carina Softlabs` : 'Carina Softlabs project');
+    return this.projectAlts[title.toLowerCase()] || title || 'Carina Softlabs project';
   }
   loading: boolean | undefined;
   private seoElements: HTMLElement[] = [];

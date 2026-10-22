@@ -80,6 +80,28 @@ export class NewsroomComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   imageUrl = environment.imageBaseUrl;
+
+  /** Alt text from the SEO alt text sheet for the news images, by image file. Other news use their title. */
+  private readonly newsImageAlts: Record<string, string> = {
+    'image_2-0ba3f7b5-8478-4b9d-ad85-69ece521d38f': 'The Best Gift is Fun: simple surprises at the Carina Softlabs office',
+    'image_2-685f2c7c-61b4-4ae0-a7af-bf0762967c94': 'Carina Softlabs team Diwali party celebration',
+    'image_2-08caf86d-cb34-4a44-b216-523584a1842f': 'Carina Softlabs welcomes tech expert from Europe for strategic discussion',
+    'image_2-7b3d5d31-7f60-49ba-9711-f3c7db97708b': 'Mayank Pande birthday celebration at Carina Softlabs',
+    'image_2-fd5e65e7-8262-4c24-b9d5-5aae7c57661c': 'Carina Softlabs celebrates 14 years of growth with its team',
+    'image_2-57818d65-115e-4d13-8a44-0929a3287d11': 'Carina Softlabs team celebrates Ganesh Chaturthi at the office',
+    'image_2-c4fa0580-e6b0-4171-ae06-892ed741ec19': 'Fun Friday activities for the Carina Softlabs team',
+    'image_2-e4f22b49-67d1-4061-86dc-fba9561dc2cf': 'Carina Softlabs recognised at IGDC 2024',
+    'image_2-f0030b59-015a-4999-920f-4d0f92768429': 'Carina Softlabs announces partnership with Skywalk Games',
+    'image_2-836af001-0413-45f3-8c91-d10cb3276866': 'Carina Softlabs presents record-time game at Startup Expo',
+    'image_2-1731504197401': 'Carina Softlabs VR experience of Ayodhya featured in Indian media',
+    'image_2-1731504745295': 'Carina Softlabs at Startup Expo 2024| SGSITS Indore',
+    'image_2-1731506036408': 'Pragati Singh Suman at International Eminence Excellence Awards 2023| Dubai',
+  };
+
+  newsImageAlt(news: any): string {
+    const file = String(news?.image_2 || '').split('/').pop()?.replace(/\.[a-z0-9]+$/i, '') || '';
+    return this.newsImageAlts[file] || news?.title || 'Carina Softlabs news';
+  }
   /** Shown when a story has no cover image or the file cannot be loaded. */
   readonly fallbackImage = 'assets/images/og/og-default.png';
 

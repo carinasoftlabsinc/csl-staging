@@ -401,7 +401,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       ImgSrc: '../../assets/images/client-l-3.webp',
-      alt: 'skale.io',
+      alt: 'skale.io logo',
     },
     {
       ImgSrc: '../../assets/images/client-l-12.svg',
@@ -491,7 +491,7 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       ImgSrc: '../../assets/images/client-l-3.webp',
-      alt: 'skale.io',
+      alt: 'skale.io logo',
     },
     {
       ImgSrc: '../../assets/images/client-l-12.svg',

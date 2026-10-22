@@ -71,7 +71,7 @@
             <div class="absolute inset-0">
               @for (image of serviceimgs; track image; let i = $index) {
                 <img
-                  [src]="image" [alt]="'Illustration of ' + services[i].toLowerCase() + ' services'"
+                  [src]="image" [alt]="serviceimgAlts[i]"
                   class="absolute inset-0 h-full w-full lg:h-96 lg:w-96 xl:w-[30rem] xl:h-[30rem] 2xl:w-[36rem] 2xl:h-[36rem] object-contain transition-opacity duration-1000 ease-in-out"
                   [class.opacity-0]="i !== currentWordIndex % services.length"
                   [class.opacity-100]="i === currentWordIndex % services.length" width="726" height="675" [attr.loading]="i === 0 ? null : 'lazy'" [attr.fetchpriority]="i === 0 ? 'high' : null" decoding="async" />
@@ -132,7 +132,7 @@
         @for (service of allServices; track service) {
           <div>
             <div class="flex">
-              <img class="h-80 w-full object-cover rounded-2xl" [src]="service.imgSrc" [alt]="service.title + ' service illustration'" width="677" height="699" loading="lazy" decoding="async" />
+              <img class="h-80 w-full object-cover rounded-2xl" [src]="service.imgSrc" [alt]="service.alt" width="677" height="699" loading="lazy" decoding="async" />
             </div>
             <div
               class="flex flex-col justify-center items-start gap-7 2xl:gap-10 mt-7"
@@ -187,7 +187,7 @@
                   @for (image of allServiceimgs; track image; let i = $index) {
                     <div class="service-image-layer" [class.is-active]="i === 0" [attr.aria-hidden]="i !== 0">
                       <img class="service-image" [src]="image"
-                        [alt]="allServices[i].title + ' service illustration'" decoding="async" />
+                        [alt]="allServices[i].alt" decoding="async" />
                     </div>
                   }
                 </div>
@@ -321,7 +321,7 @@
                 <img
                   class="object-contain w-[56%]"
                   src="../../../assets/images/certificate-badge.webp"
-                  alt="Award ribbon badge illustration" width="398" height="477" loading="lazy" decoding="async" />
+                  alt="Carina Softlabs certificates and badges| 4.9/5 average rating across 5 platforms" width="398" height="477" loading="lazy" decoding="async" />
               </div>
 
               <div class="flex-1 min-w-0 flex flex-col gap-10 lg:gap-[5vw]">
@@ -360,7 +360,7 @@
                         <img
                           class="w-full h-full rounded-full object-cover ease-out duration-300 group-hover:scale-110 {{ review.imgClass }}"
                           [src]="review.iconSrc"
-                          [alt]="review.name + ' logo'" width="69" height="69" loading="lazy" decoding="async" />
+                          [alt]="review.alt" width="69" height="69" loading="lazy" decoding="async" />
                       } @else {
                         <span
                           class="rounded-full border border-[#B4B9CB] ease-out duration-300 group-hover:border-black w-full h-full flex justify-center items-center"
@@ -368,7 +368,7 @@
                           <img
                             class="object-contain w-[62%] h-[62%] ease-out duration-300 group-hover:scale-110"
                             [src]="review.iconSrc"
-                            [alt]="review.name + ' logo'" width="69" height="69" loading="lazy" decoding="async" />
+                            [alt]="review.alt" width="69" height="69" loading="lazy" decoding="async" />
                         </span>
                       }
                     </a>
@@ -379,15 +379,15 @@
                   <a class="w-[18%] min-w-20" href="https://clutch.co/profile/carina-softlabs#highlights" target="_blank"><img
                     class="object-contain w-full"
                     src="../../../assets/images/clutch champion.webp"
-                    alt="Clutch Champion 2022 badge" width="544" height="544" loading="lazy" decoding="async" /></a>
+                    alt="Clutch Champion badge awarded to Carina Softlabs" width="544" height="544" loading="lazy" decoding="async" /></a>
                   <a class="w-[18%] min-w-20" href="https://www.crunchbase.com/organization/carina-softlabs-inc" target="_blank"><img
                     class="object-contain w-full"
                     src="../../../assets/images/crunchbase.svg"
-                    alt="Crunchbase profile badge" width="174" height="174" loading="lazy" decoding="async" /></a>
+                    alt="Carina Softlabs Inc. on Crunchbase" width="174" height="174" loading="lazy" decoding="async" /></a>
                   <a class="w-[18%] min-w-20" href="https://www.topdevelopers.co/directory/mobile-app-development-companies-in-madhya-pradesh" target="_blank"><img
                     class="object-contain w-full"
                     src="../../../assets/images/game-dev-badge.webp"
-                    alt="TopDevelopers Top Mobile Game Developers 2021 badge" width="546" height="543" loading="lazy" decoding="async" /></a>
+                    alt="TopDevelopers badge for Carina Softlabs" width="546" height="543" loading="lazy" decoding="async" /></a>
                 </div>
               </div>
             </div>

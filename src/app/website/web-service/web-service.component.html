@@ -2,7 +2,7 @@
   <app-service-hero
     accent="WEB"
     headline="DEVELOPMENT"
-    description="We Help Service Trades Just Like Yours with the Online Tools and Expertise. Partner with a Canadian marketing company that is invested in your growth."
+    description="We build fast, secure, and scalable websites and web apps that help your business grow. Partner with a development team that cares about your results as much as you do."
     imageSrc="assets/images/web-hero.webp"
     imageAlt="Web development workspace with a laptop and desktop showing a responsive website"
     [imageWidth]="717"
@@ -15,20 +15,20 @@
     <div class="grid grid-cols-1 md:grid-cols-2 my-14 md:my-28">
       <div class="flex flex-col justify-center">
         <h2 class="font-myfont text-black text-[clamp(1.875rem,3.69vw,4.425rem)] leading-[1.05] mb-12 md:my-12">
-          WHAT ARE WEB <br class="hidden md:block" />
-          DEVELOPMENT <br class="hidden md:block" />
-          SERVICES ?
+          Custom Web Development Solutions for Every Business Need
         </h2>
         <p
           class="font-quickSand font-medium text-sm leading-6 lg:text-[1rem] lg:leading-7 2xl:text-xl 2xl:leading-9 text-[#0B0C10] md:w-3/4 text-justify">
-          Web development encompasses a wide range of services, which
-          include delivering websites or web apps, cybersecurity solutions,
-          UX/UI design, eCommerce solutions, website architectures, QA testing,
-          maintenance, consulting, and even a custom CMS.
+          No two businesses are the same, so neither are their websites. At Carina Softlabs, we build custom solutions
+          around your goals, whether that’s a simple business website, an eCommerce store, a content management system,
+          or a complex web application. Our team covers every step, including UI/UX design, frontend development
+          services, backend development services, full-stack development with MEAN and MERN stack, website
+          architecture, QA testing, and ongoing maintenance. From startups to growing enterprises, we take your idea
+          from concept to launch and keep it running smoothly after.
         </p>
       </div>
       <div>
-        <img src="../../../assets/images/webServicecomp.webp" alt="Responsive website design shown on desktop, tablet and mobile screens" width="863" height="610" loading="lazy" decoding="async" class="w-full h-auto">
+        <img src="../../../assets/images/webServicecomp.webp" alt="Web app development services by Carina Softlabs, shown on desktop, tablet and mobile screens" width="863" height="610" loading="lazy" decoding="async" class="w-full h-auto">
       </div>
     </div>
   </section>
@@ -36,22 +36,19 @@
   <!-- why choose us -->
   <section class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#0B0C10] rounded-[40px]">
     <div>
-      <h2 class="text-white text-[clamp(1.5rem,2.34vw,2.8125rem)] leading-tight font-myfont pb-4 border-b border-[#34394B]">
+      <p class="text-white text-[clamp(1.5rem,2.34vw,2.8125rem)] leading-tight font-myfont pb-4 border-b border-[#34394B]">
         Why Choose Us for Your Web-Based Product?
-      </h2>
+      </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 my-14 md:my-28 text-white">
-      <h3 class="font-myfont text-[clamp(1.875rem,3.39vw,4.0625rem)] leading-[1.05] mb-12 md:my-12 col-span-2">
-        Achieve your business <br />
-        goals with web <br />
-        development solutions
-      </h3>
+      <h2 class="font-myfont text-[clamp(1.875rem,3.39vw,4.0625rem)] leading-[1.05] mb-12 md:my-12 col-span-2 md:pr-10">
+        Achieve Your Business Goals with Expert Web Development Solutions
+      </h2>
       <div class="flex flex-col justify-center items-start gap-6">
         <p class="font-quickSand font-medium text-sm leading-6 lg:text-[1rem] lg:leading-7 2xl:text-xl 2xl:leading-9 text-[#B4B9CB]">
-          Our battle-tested developers specialize in a wide range of web
-          development services. Here are some of the solutions that we can
-          deliver for you.
+          Our experienced developers build websites and web apps that are fast, secure, and easy to grow with your
+          business. Here are some of the solutions we deliver.
         </p>
         <a appGradientButton size="md" routerLink="/portfolio">
           Schedule a free expert session
@@ -70,21 +67,20 @@
 
     <div class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]">
       <h2 class="text-[clamp(1.5rem,2.34vw,2.8125rem)] leading-tight font-normal text-white mb-4 font-myfont">
-        Which development will bring maximum value to your business?
+        Find the Right Development Approach for Your Business
       </h2>
     </div>
 
     <div class="xl:pt-20 pt-4">
       <p
         class="text-justify font-quickSand font-medium text-sm leading-6 lg:text-base lg:leading-7 2xl:text-xl 2xl:leading-[30px] text-[#B4B9CB] w-full md:w-3/4 lg:w-1/2 xl:w-1/3">
-        Our battle-tested developers specialize in a wide range of web
-        development services. Here are some of the solutions that we can
-        deliver for you.
+        Every project is different. Our web app development services cover every layer of your product, so you get
+        the right technology for your goals, budget, and timeline.
       </p>
     </div>
 
     <div class="py-10 sm:py-20">
-      <div class="scroll-container gap-4 -mx-7 px-7 md:-mx-10 md:px-10 xl:mx-0 xl:px-0 xl:flex xl:justify-center">
+      <div class="scroll-container gap-4 -mx-7 px-7 md:-mx-10 md:px-10 xl:mx-0 xl:px-0 xl:grid xl:grid-cols-3 xl:gap-6 2xl:gap-8">
         @for (card of solutions; track card) {
           <app-service-card class="scroll-item" [icon]="card.imgSrc" [heading]="card.heading" [description]="card.description" />
         }
@@ -96,18 +92,26 @@
   <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10">
     <div class="flex justify-between items-center content-center mt-10 pb-2 border-b border-[#34394b]">
       <h2 class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont">
-        Case Studies & Testimonials
+        Success Stories from Our Clients
       </h2>
     </div>
+    <p class="xl:pt-10 pt-4 font-quickSand font-medium text-sm leading-6 lg:text-base lg:leading-7 2xl:text-xl 2xl:leading-[30px] text-[#B4B9CB] w-full md:w-3/4 lg:w-1/2">
+      With years of experience in the industry, we've helped businesses launch high-quality, cost-effective web
+      development solutions that deliver real results.
+    </p>
     <app-coverflow-slider ngSkipHydration></app-coverflow-slider>
   </section>
 
   <app-quote-section
     theme="dark"
     service="Web Development"
+    description="Tell us about your project, and we'll share a plan, timeline, and estimate tailored to your needs."
     image="assets/images/web-form.webp"
     imageAlt="Custom Image"
   />
 
-  <app-footer></app-footer>
+  <app-footer
+    cardText="Have a Project in Mind? <br class=&quot;hidden sm:block&quot; /> Let’s Build It Together."
+    btnText="Schedule a Free Call"
+  ></app-footer>
 </main>

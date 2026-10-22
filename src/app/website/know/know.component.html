@@ -172,10 +172,11 @@
                   <div class="lg:hidden flex gap-14">
                     @for (journey of journeys; track journey) {
                       <div
-                        class="relative w-64 h-80 mb-28 mt-7 flex-shrink-0 rounded-xl bg-cover bg-no-repeat"
-                        [ngStyle]="{ 'background-image': 'url(' + journey.imgSrc + ')' }"
+                        class="relative w-64 h-80 mb-28 mt-7 flex-shrink-0 rounded-xl"
                         style="scroll-snap-align: center"
                         >
+                        <img [src]="journey.imgSrc" alt="" width="461" height="521" loading="lazy" decoding="async"
+                          class="absolute inset-0 w-full h-full object-cover rounded-xl" />
                         <div class="text-strok absolute -top-7">
                           <span
                             class="text-[#0B0C10] font-mont font-extrabold text-5xl text-fil"

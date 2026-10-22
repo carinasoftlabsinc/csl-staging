@@ -12,7 +12,7 @@
 }
 
 .bg-gif-3 {
-  background-image: url("../../assets/30b8174c6f1a07e0af9bcf41fec3a5f5.gif");
+  background-image: url("../../assets/30b8174c6f1a07e0af9bcf41fec3a5f5.webp");
   background-size: cover;
   background-position: center;
 }
@@ -757,9 +757,9 @@ a.control_next {
   transition: width var(--t), background-color var(--t);
 }
 
-// Active state as in Figma: the animated giphy.gif (same GIF as the service card borders) shows only as a 2px ring around the card (an animated border) and
+// Active state as in Figma: the animated giphy.webp (same GIF as the service card borders) shows only as a 2px ring around the card (an animated border) and
 // the card itself turns solid. The ring is masked out of the GIF layer, so the GIF never shows through the content
-// while the hover fades in. (giphy.gif is already used on this page, so it comes from the cache.)
+// while the hover fades in. (giphy.webp is already used on this page, so it comes from the cache.)
 .lat-bg,
 .lat-glow {
   position: absolute;
@@ -772,7 +772,7 @@ a.control_next {
   inset: 0;
   padding: 2px;
   border-radius: inherit;
-  background: url("../../assets/giphy.gif") center / cover no-repeat;
+  background: url("../../assets/giphy.webp") center / cover no-repeat;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -1162,7 +1162,7 @@ a.control_next {
   width: 100%;
   height: 100%;
   border-radius: 1.5rem;
-  background: url("../../assets/giphy.gif") center/cover no-repeat;
+  background: url("../../assets/giphy.webp") center/cover no-repeat;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   z-index: 1;

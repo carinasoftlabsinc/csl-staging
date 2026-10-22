@@ -10,106 +10,14 @@ a:visited {
   color: inherit;
 }
 
-@import "ngx-owl-carousel-o/lib/styles/scss/owl.carousel";
-@import "ngx-owl-carousel-o/lib/styles/scss/owl.theme.default";
-
-@import "https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/keen-slider.min.css";
-
-// ✅ Correct for Swiper v10.x
-// @import 'swiper/swiper-bundle.css';
-// @import "@splidejs/splide/dist/css/splide.min.css";
-// @import "keen-slider/keen-slider.min.css";
-
-
-.bg-gif-2 {
-  background-image: url("assets/image_processing20200220-31148-1kiujb5.gif");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 .ring-img {
   background-image: url(assets/images/ring.png);
   background-size: cover;
   background-position: center;
 }
 
-.bg-gif {
-  background-image: url("assets/images/bg-deep.gif");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  // opacity: 0.8;
-}
-
-.bg-gif::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  // opacity: 0.9;
-}
-
-.bg-gif p {
-  color: white;
-}
-
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
-}
-
-.know-bg {
-  position: relative;
-  background-image: url("./assets/images/computer-logo.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.know-bg::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.know-bg p {
-  position: relative;
-  z-index: 1;
-}
-
-.know-bg-3 {
-  position: relative;
-  background-image: url("./assets/images/comp-bg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.know-bg-3::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.know-bg-3 p {
-  position: relative;
-  z-index: 1;
-}
-
-.know-bg-3 .slider-content {
-  z-index: 1;
-  position: relative;
 }
 
 .hover-bg-fade::before {

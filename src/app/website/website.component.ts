@@ -1,7 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, Renderer2, ViewChild, DOCUMENT, ChangeDetectionStrategy, PLATFORM_ID, inject, NgZone } from '@angular/core';
 import { SeoService } from '@core/service/seo.service';
 import { isPlatformBrowser } from '@angular/common';
-import { OwlOptions } from 'ngx-owl-carousel-o';
 import {
   trigger,
   state,

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { WebsiteRoutingModule } from './website-routing.module';
 import { WebsiteComponent } from './website.component';
 import { MaterialModule } from '@shared';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AboutComponent } from './about/about.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -114,7 +113,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FooterComponent,
     WebsiteRoutingModule,
     MaterialModule,
-    CarouselModule,
     FormsModule,
     ReactiveFormsModule,
     

@@ -20,7 +20,7 @@ export class ServicesComponent implements OnInit, AfterViewInit, OnDestroy {
     '../../../assets/images/digital-service.webp',
     '../../../assets/images/app-service.webp',
     '../../../assets/images/web-service.webp',
-    '/assets/images/ai-service.png',
+    '/assets/images/ai-service.webp',
   ];
 
   @ViewChild('serviceStage') private serviceStage?: ElementRef<HTMLElement>;
@@ -363,7 +363,7 @@ export class ServicesComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       filled: false,
       name: 'Techreviewer',
-      iconSrc: '../../../assets/images/rating-icon-1.svg',
+      iconSrc: '../../../assets/images/rating-icon-1.webp',
       rating: '4.7',
       reviewsNo: '45',
       link: 'https://techreviewer.co/companies/carina-softlabs-inc',
@@ -373,7 +373,7 @@ export class ServicesComponent implements OnInit, AfterViewInit, OnDestroy {
       // this artwork has built-in padding, so it is enlarged to fill the circle
       imgClass: 'scale-[1.24]',
       name: 'Upwork',
-      iconSrc: '../../../assets/images/rating-icon-2.svg',
+      iconSrc: '../../../assets/images/rating-icon-2.webp',
       rating: '4.9',
       reviewsNo: '1202',
       link: 'https://www.upwork.com/agencies/carinasoftlabs/',
@@ -389,7 +389,7 @@ export class ServicesComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       filled: false,
       name: 'Clutch',
-      iconSrc: '../../../assets/images/rating-icon-5.svg',
+      iconSrc: '../../../assets/images/rating-icon-5.webp',
       rating: '4.9',
       reviewsNo: '1505',
       link: 'https://clutch.co/profile/carina-softlabs#highlights',
@@ -397,7 +397,7 @@ export class ServicesComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       filled: true,
       name: 'TechBehemoths',
-      iconSrc: '../../../assets/images/rating-icon-4.svg',
+      iconSrc: '../../../assets/images/rating-icon-4.webp',
       rating: '4.9',
       reviewsNo: '1404',
       link: 'https://techbehemoths.com/company/carina-softlabs',
@@ -449,7 +449,7 @@ export class ServicesComponent implements OnInit, AfterViewInit, OnDestroy {
       id: 'section5',
       title: 'AI & Emerging Technology',
       description: `We combine AI, engineering and creative technology to build intelligent digital products, next-generation games, immersive experiences and automated business solutions. From AI strategy and generative AI to Web3, XR and smarter web and mobile apps, we turn emerging technology into practical solutions built around your business.`,
-      imgSrc: '/assets/images/ai-service.png',
+      imgSrc: '/assets/images/ai-service.webp',
       route: '/ai-emerging-technology',
       cta: 'Explore AI & Emerging Tech',
     },

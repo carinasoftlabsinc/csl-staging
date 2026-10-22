@@ -11,6 +11,7 @@
     "lint": "ng lint",
     "serve:ssr:main": "node dist/main/server/server.mjs",
     "generate-sitemap": "npx tsx scripts/generate-sitemap.ts",
+    "optimize-images": "npx tsx scripts/optimize-images.ts",
     "prebuild": "node scripts/check-environment.mjs && npm run generate-sitemap"
   },
   "private": true,
@@ -79,6 +80,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "postcss": "^8.4.29",
+    "sharp": "^0.35.5",
     "tailwindcss": "^3.4.3",
     "tsx": "^4.23.13",
     "typescript": "~6.0.3"

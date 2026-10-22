@@ -1,8 +1,7 @@
 <main class="bg-[#0B0C10]">
   <div class="know-4-bg">
-    <!-- <div class="relative z-10"> -->
+
     <app-header></app-header>
-  <!-- </div> -->
 
   <section
     class="flex items-center justify-center h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
@@ -17,7 +16,7 @@
             >
             Your Future Begins Here
           </span>
-          <!-- <img class="h-20 w-32" src="../../../assets/images/paper-plane.svg" alt=""> -->
+
         </div>
         <span
           class="block text-4xl sm:text-5xl md:text-4xl lg:text-3xl xl:text-4xl 2xl:text-6xl 2xl:mt-4 font-qeilab font-normal text-white mt-2 md:text-end"
@@ -25,12 +24,7 @@
           Learn, Grow, and Lead with Carina Softlabs
         </span>
       </h1>
-      <!-- <span class="font-quickSand"
-      ><img
-      class="h-10 w-10 2xl:w-auto"
-      src="../../../assets/images/“.png"
-      alt=""
-    /></span> -->
+
     <p
       class="text-white 2xl:text-2xl text-[13px] sm:text-[16px] md:text-lg lg:text-base  xl:text-lg md:leading-5 font-quickSand text-left font-normal ml-12 mt-2.5 before:content-['“'] before:font-qeilab before:text-9xl before:absolute before:-left-12 relative"
       >
@@ -56,7 +50,7 @@
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 my-14 md:my-24 gap-7">
-    <img src="../../../assets/images/employee group photo.webp" alt="Carina Softlabs team group photo" width="969" height="657" loading="lazy" decoding="async" />
+    <img src="../../../assets/images/employee group photo.webp" alt="Carina Softlabs team group photo| our work culture" width="969" height="657" loading="lazy" decoding="async" />
     <div
       class="text-black font-quickSand flex flex-col justify-center gap-3.5"
       >
@@ -100,90 +94,13 @@
       balance, and thrive in a positive, supportive atmosphere.
     </p>
   </div>
-  <!--
-  <div class="grid grid-cols-1 md:grid-cols-2 my-14 md:my-24 gap-7">
-    <div>
-
-      <img
-        *ngIf="activeImage === 'image1'"
-        src="../../../assets/images/img-1-hover.png"
-        alt="Image 1"
-        class="w-64 2xl:w-96 object-cover"
-        />
-        <img
-          *ngIf="activeImage === 'image2'"
-          src="../../../assets/images/img-2-hover.png"
-          alt="Image 2"
-          class="w-64 2xl:w-96 object-cover"
-          />
-          <img
-            *ngIf="activeImage === 'image3'"
-            src="../../../assets/images/img-3-hover.png"
-            alt="Image 3"
-            class="w-64 2xl:w-96 object-cover"
-            />
-            <img
-              *ngIf="activeImage === 'image4'"
-              src="../../../assets/images/img-4-hover.png"
-              alt="Image 4"
-              class="w-64 2xl:w-96 object-cover"
-              />
-            </div>
-            <div>
-              <h2
-                (mouseover)="setActiveImage('image1')"
-                class="text-xl 2xl:text-[96px] 2xl:leading-[96px] md:text-[30px] font-myfont font-normal mb-4 !lg:mb-14 cursor-pointer text-[#0B0C10] hover:text-purple-500 transition-colors duration-300"
-                >
-                DEVELOPMENT
-              </h2>
-              <h2
-                (mouseover)="setActiveImage('image2')"
-                class="text-xl 2xl:text-[96px] 2xl:leading-[96px] md:text-[30px] font-myfont font-normal mb-4 !lg:mb-14 cursor-pointer text-[#0B0C10] text-nowrap hover:text-pink-500 transition-colors duration-300"
-                >
-                WORK-LIFE BALANCE
-              </h2>
-              <h2
-                (mouseover)="setActiveImage('image3')"
-                class="text-xl 2xl:text-[96px] 2xl:leading-[96px] md:text-[30px] font-myfont font-normal mb-4 !lg:mb-14 cursor-pointer text-[#0B0C10] hover:text-cyan-500 transition-colors duration-300"
-                >
-                ATMOSPHERE
-              </h2>
-              <h2
-                (mouseover)="setActiveImage('image4')"
-                class="text-xl 2xl:text-[96px] 2xl:leading-[96px] md:text-[30px] font-myfont font-normal cursor-pointer text-[#0B0C10] hover:text-lime-500 transition-colors duration-300"
-                >
-                HEALTH
-              </h2>
-            </div>
-          </div> -->
-
-          <!-- <div class="grid grid-cols-1 md:grid-cols-2 my-14 md:my-24 gap-7">
-          <div>
-            <img
-              *ngIf="activeImage"
-              [src]="activeImage"
-              alt="Active Image"
-              class="w-64 2xl:w-96 object-cover"
-              />
-            </div>
-            <div>
-              <h2
-                *ngFor="let item of items"
-                (mouseover)="setActiveImage(item.image)"
-                [ngClass]="item.hoverColor"
-                class="text-xl 2xl:text-[96px] 2xl:leading-[96px] md:text-[30px] font-myfont font-normal mb-4 !lg:mb-14 cursor-pointer text-[#0B0C10] transition-colors duration-300"
-                >
-                {{ item.title }}
-              </h2>
-            </div>
-          </div> -->
 
           <div class="grid grid-cols-1 md:grid-cols-3 my-14 md:my-24 gap-7">
             <div>
               @if (activeImage) {
                 <img
                   [src]="activeImage"
-                  alt="" width="448" height="447" loading="lazy" decoding="async"
+                  [alt]="activeImageAlt" width="448" height="447" loading="lazy" decoding="async"
                   class="w-72 2xl:w-96 object-cover"
                   />
               }
@@ -285,9 +202,9 @@
                 <span class="job-card__type">{{ card.employmentType }}</span>
                 <img
                   class="job-card__img rounded-full h-20 2xl:h-28 2xl:w-28 w-20 object-cover mx-auto"
-                  [src]="imageUrl + card.image"
+                  [src]="jobImageSrc(card)"
                   (error)="onImgError($event)"
-                  alt="" width="80" height="80" loading="lazy" decoding="async"
+                  [alt]="jobImageAlt(card)" width="80" height="80" loading="lazy" decoding="async"
                 />
                 <h4 class="job-card__title">
                   <a class="job-card__link" [routerLink]="['/job-description', card._id]" [innerHTML]="card.title"></a>

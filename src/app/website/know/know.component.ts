@@ -22,6 +22,7 @@ import { Subscription } from 'rxjs';
 export interface ListItem {
   title: string;
   image: string;
+  alt: string;
   description: string;
 }
 
@@ -312,24 +313,28 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
     {
       title: 'Innovation and Creativity',
       image: '../../../assets/images/value-1.webp',
+      alt: 'Innovation and Creativity | Carina Softlabs core value',
       description:
         'We are experts in innovation and creativity, constantly pushing boundaries in game development, digital marketing, app development, and web development to provide ongoing success to our clients.',
     },
     {
       title: 'Customer-Centric Approach',
       image: '../../../assets/images/value-2.webp',
+      alt: 'Customer-Centric Approach | Carina Softlabs core value',
       description:
         'We understand the client’s needs and propose our solution to exceed their expectations. By closely knowing their objectives, we make sure to deliver top-notch work.',
     },
     {
       title: 'Quality and Excellence',
       image: '../../../assets/images/value-3.webp',
+      alt: 'Quality and Excellence | Carina Softlabs core value',
       description:
         'We are committed to delivering high-quality services that set industry trends. From flawless code in app and web development to amazing gameplay experiences in game development.',
     },
     {
       title: 'Collaboration and Teamwork',
       image: '../../../assets/images/value-4.webp',
+      alt: 'Collaboration and Teamwork | Carina Softlabs core value',
       description:
         'We strongly believe in the power of collaboration and teamwork. Our office is filled with a positive team environment. We know how to work as a team force to excel in our commitment to our clients.',
     },
@@ -341,6 +346,7 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
     {
       year: '11',
       imgSrc: '../../../assets/images/journey-1.webp',
+      alt: 'Carina Softlabs Journey 2011',
       description:
         'Initially started as a web development and SEO company, our co-founder and CEO Mayank Pandey, along with director Pragati Singh Suman, began in 2011 with just 2 or 3 team members.',
       customClass: '',
@@ -348,6 +354,7 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
     {
       year: '12',
       imgSrc: '../../../assets/images/journey-2.webp',
+      alt: 'Carina Softlabs Journey 2012',
       description:
         "After an year of hard work, we expanded our services to encompass complete digital marketing, website development. The dedication of our team members, their expertise & collaborative efforts delivered us exceptional results and drove our clients' success.",
       // customClass: 'mt-20',
@@ -355,6 +362,7 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
     {
       year: '14',
       imgSrc: '../../../assets/images/journey-3.webp',
+      alt: 'Carina Softlabs Journey 2014',
       description:
         'Successfully completed 3 years of growth, recognized the growing importance of mobile technology, we ventured into mobile application development & further expanded our team. This new service enabled us to create user-friendly apps tailored to diverse business requirements and enhance our clients digital reach.',
       // customClass: 'mt-20',
@@ -362,6 +370,7 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
     {
       year: '15',
       imgSrc: '../../../assets/images/journey-4.webp',
+      alt: 'Carina Softlabs Journey 2015',
       description:
         "We were excited to embark on team recreation activities as a growing technology company! These outings allowed us to spend quality time together, making connections and deepening our understanding of each other. Building strong relationships with colleagues is a key to our team's success!",
       // customClass: 'mt-20',
@@ -369,6 +378,7 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
     {
       year: '17',
       imgSrc: '../../../assets/images/journey-5.webp',
+      alt: 'Carina Softlabs Journey 2017',
       description:
         'We got our first augmented reality project in this period and did exceptionally well. As a result, we increased our team size to take on more work in this emerging field.',
       // customClass: 'mt-20',
@@ -376,12 +386,14 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
     {
       year: '21',
       imgSrc: '../../../assets/images/journey-6.webp',
+      alt: 'Carina Softlabs Journey 2021',
       description: `Our CEO & Co-Founder, Mr. Mayank Pande, was selected as a winner of "Indian Achievers' Award 2021" by one of the most reputed online communities known as "Indian Achievers’ Forum (IAF)".`,
       // customClass: 'mt-20',
     },
     {
       year: '23',
       imgSrc: '../../../assets/images/journey-7.webp',
+      alt: 'Carina Softlabs Journey 2023',
       description:
         'Our director at Carina Softlabs Inc., Miss Pragati Singh Suman, has won the prestigious International Eminence Excellence Award in Dubai! 🌟🏆',
       // customClass: 'mt-20',
@@ -389,6 +401,7 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
     {
       year: '24',
       imgSrc: '../../../assets/images/journey-8.webp',
+      alt: 'Carina Softlabs Journey 2024',
       description:
         'From a spark of an idea to the spotlight at Start Expo event at E-Summit 2024, it has been an incredible journey! We showcased our passion for gaming at MANIT-Bhopal (NIT-B) and at SGSITS-Indore, both the events were organized by E-Cell🎮✨.',
       // customClass: 'mt-20 2xl:pb-52 xl:pb-28 lg:pb-24',
@@ -400,24 +413,28 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
   viscards = [
     {
       imgSrc: 'assets/images/vision-1.svg',
+      alt: 'Trusted client partnership icon',
       description:
         'Our vision is to become a trusted partner for our clients, consistently exceeding their expectations and delivering ultimate results.',
       customClass: 'bg-[#B1DF4F]',
     },
     {
       imgSrc: 'assets/images/vision-2.svg',
+      alt: 'Continuous improvement and innovation icon',
       description:
         'We aspire to continuously enhance our skills, processes, and technologies to stay at the forefront of innovation and provide ever-improving solutions.',
       customClass: 'bg-[#BC8AFB]',
     },
     {
       imgSrc: 'assets/images/vision-3.svg',
+      alt: 'Positive social impact icon',
       description:
         'We aim to make a positive impact on society by developing products and services that enrich lives, promote inclusivity, and contribute to the betterment of communities.',
       customClass: 'bg-[#FB8ACE]',
     },
     {
       imgSrc: 'assets/images/vision-4.svg',
+      alt: 'Global reach and collaboration icon',
       description:
         'Expanding our reach globally, collaborating with diverse cultures, and enriching our perspectives to create truly universal solutions.',
       customClass: 'bg-[#8AE0FB]',
@@ -486,66 +503,77 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
   events = [
     {
       imgSrc: '../../../assets/images/events/IMG_2.webp',
+      alt: 'Carina Softlabs team at a gaming and technology event| photo 1',
       width: 1200,
       height: 900,
       customClass: 'md:max-w-[600px] md:max-h-[400px]',
     },
     {
       imgSrc: '../../../assets/images/events/IMG_1.webp',
+      alt: 'Carina Softlabs team at a gaming and technology event| photo 2',
       width: 1200,
       height: 900,
       customClass: 'md:max-w-[480px] md:max-h-[400px]',
     },
     {
       imgSrc: '../../../assets/images/events/IMG_3.webp',
+      alt: 'Carina Softlabs team at a gaming and technology event| photo 3',
       width: 900,
       height: 1200,
       customClass: 'md:max-w-[300px] md:max-h-[400px]',
     },
     {
       imgSrc: '../../../assets/images/events/IMG_4.webp',
+      alt: 'Carina Softlabs team at a gaming and technology event| photo 4',
       width: 900,
       height: 1200,
       customClass: 'md:max-w-[300px] md:max-h-[400px]',
     },
     {
       imgSrc: '../../../assets/images/events/IMG_5.webp',
+      alt: 'Carina Softlabs team at a gaming and technology event| photo 5',
       width: 1200,
       height: 900,
       customClass: 'md:max-w-[300px] md:max-h-[400px]',
     },
     {
       imgSrc: '../../../assets/images/events/IMG_6.webp',
+      alt: 'Carina Softlabs team at a gaming and technology event| photo 6',
       width: 1200,
       height: 900,
       customClass: 'md:max-w-[450px] md:max-h-[400px]',
     },
     {
       imgSrc: '../../../assets/images/events/IMG_7.webp',
+      alt: 'Carina Softlabs team at a gaming and technology event| photo 7',
       width: 1200,
       height: 900,
       customClass: 'md:max-w-[300px] md:max-h-[400px]',
     },
     {
       imgSrc: '../../../assets/images/events/IMG_8.webp',
+      alt: 'Carina Softlabs team at a gaming and technology event| photo 8',
       width: 1200,
       height: 900,
       customClass: 'md:max-w-[600px] md:max-h-[400px]',
     },
     {
       imgSrc: '../../../assets/images/events/IMG_9.webp',
+      alt: 'Carina Softlabs team at a gaming and technology event| photo 9',
       width: 1200,
       height: 900,
       customClass: 'md:max-w-[480px] md:max-h-[400px]',
     },
     {
       imgSrc: '../../../assets/images/events/IMG_10.webp',
+      alt: 'Carina Softlabs team at a gaming and technology event| photo 10',
       width: 900,
       height: 1200,
       customClass: 'md:max-w-[300px] md:max-h-[400px]',
     },
     {
       imgSrc: '../../../assets/images/events/IMG_11.webp',
+      alt: 'Carina Softlabs team at a gaming and technology event| photo 11',
       width: 1200,
       height: 900,
       customClass: 'md:max-w-[300px] md:max-h-[400px]',
@@ -554,15 +582,15 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   news = [
-    { imgSrc: '../../../assets/images/media-logo-1.webp' },
-    { imgSrc: '../../../assets/images/Free Press.webp' },
-    { imgSrc: '../../../assets/images/patrika.webp' },
-    { imgSrc: '../../../assets/images/Nai Duniya.webp' },
-    { imgSrc: '../../../assets/images/Haribhoomi.webp' },
-    { imgSrc: '../../../assets/images/Techreviewer.webp' },
-    { imgSrc: '../../../assets/images/Insights Success.webp' },
-    { imgSrc: '../../../assets/images/Insights Success (1).webp' },
-    { imgSrc: '../../../assets/images/Indian Achievers.webp' },
+    { imgSrc: '../../../assets/images/media-logo-1.webp', alt: 'Carina Softlabs featured in print media' },
+    { imgSrc: '../../../assets/images/Free Press.webp', alt: 'Carina Softlabs featured in Free Press' },
+    { imgSrc: '../../../assets/images/patrika.webp', alt: 'Carina Softlabs featured in Patrika' },
+    { imgSrc: '../../../assets/images/Nai Duniya.webp', alt: 'Carina Softlabs featured in Nai Duniya' },
+    { imgSrc: '../../../assets/images/Haribhoomi.webp', alt: 'Carina Softlabs featured in Haribhoomi' },
+    { imgSrc: '../../../assets/images/Techreviewer.webp', alt: 'Carina Softlabs featured on Techreviewer' },
+    { imgSrc: '../../../assets/images/Insights Success.webp', alt: 'Carina Softlabs featured in Insights Success magazine' },
+    { imgSrc: '../../../assets/images/Insights Success (1).webp', alt: 'Carina Softlabs featured in Insights Success magazine' },
+    { imgSrc: '../../../assets/images/Indian Achievers.webp', alt: "Carina Softlabs featured by Indian Achievers' Forum" },
   ];
 
   cardText: string = `Envisioning Success ? <br class="hidden sm:block" /> Let’s Work Together`;

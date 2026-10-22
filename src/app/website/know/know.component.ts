@@ -313,28 +313,28 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
     {
       title: 'Innovation and Creativity',
       image: '../../../assets/images/value-1.webp',
-      alt: 'Innovation and Creativity | Carina Softlabs core value',
+      alt: 'Image',
       description:
         'We are experts in innovation and creativity, constantly pushing boundaries in game development, digital marketing, app development, and web development to provide ongoing success to our clients.',
     },
     {
       title: 'Customer-Centric Approach',
       image: '../../../assets/images/value-2.webp',
-      alt: 'Customer-Centric Approach | Carina Softlabs core value',
+      alt: 'Image',
       description:
         'We understand the client’s needs and propose our solution to exceed their expectations. By closely knowing their objectives, we make sure to deliver top-notch work.',
     },
     {
       title: 'Quality and Excellence',
       image: '../../../assets/images/value-3.webp',
-      alt: 'Quality and Excellence | Carina Softlabs core value',
+      alt: 'Image',
       description:
         'We are committed to delivering high-quality services that set industry trends. From flawless code in app and web development to amazing gameplay experiences in game development.',
     },
     {
       title: 'Collaboration and Teamwork',
       image: '../../../assets/images/value-4.webp',
-      alt: 'Collaboration and Teamwork | Carina Softlabs core value',
+      alt: 'Image',
       description:
         'We strongly believe in the power of collaboration and teamwork. Our office is filled with a positive team environment. We know how to work as a team force to excel in our commitment to our clients.',
     },

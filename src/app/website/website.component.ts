@@ -10,6 +10,7 @@ import {
 } from '@angular/animations';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { sheetImageAlt } from '@core/utils/sheet-image-alts.util';
 
 import { OnDestroy, OnInit } from '@angular/core';
 import { CountUp } from 'countup.js';
@@ -42,19 +43,10 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
   loadingBlog = true;
   imageUrl = environment.imageBaseUrl;
 
-  /** Alt text from the SEO alt text sheet for the blog card images, by image file. Other cards use the post title. */
-  private readonly blogImageAlts: Record<string, string> = {
-    'image-cde18dfa-af4b-4875-ae23-742d4b838db4': 'Train simulation 3D railway station model| how simulations are changing industries',
-    'image-b37227b9-56dd-47d5-8472-b00b81eee52e': 'Casual game concept of a rider on horseback inside a shopping mall',
-    'image-5629bd99-9f6d-4e36-94d3-d540b713fafb': 'Open-world MMORPG fantasy landscape illustration',
-    'image-aea39ce7-e195-4aeb-96d3-44092b4619af': 'Project Demigod VR superhero game by Carina Softlabs',
-    'image-9e11af83-e20d-4e2e-881d-1d22e77529cc': 'Star Atlas website design with futuristic space theme',
-  };
-
   blogCardAlt(card: any): string {
-    const file = String(card?.image || '').split('/').pop()?.replace(/\.[a-z0-9]+$/i, '') || '';
-    return this.blogImageAlts[file] || card?.title || 'Carina Softlabs blog';
+    return sheetImageAlt(card?.image, card?.title || 'Carina Softlabs blog');
   }
+
   /** Shown when a post has no cover image or the file cannot be loaded. */
   readonly fallbackImage = 'assets/images/og/og-default.png';
 

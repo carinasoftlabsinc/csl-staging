@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { SeoService } from '@core/service/seo.service';
 import { matchesSlug, formatHeading } from '@core/utils/slug.util';
+import { addMissingImageAlts } from '@core/utils/content-images.util';
 import { timeout } from 'rxjs';
 
 interface PortfolioItem {
@@ -32,9 +33,9 @@ export class CaseStudiesComponent implements OnInit {
   loading = true;
   isNotFound = false;
   caseGoals = [
-    { image: 'assets/case-goal-1.png', alt: '', text: 'Understand the vision.' },
-    { image: 'assets/case-goal-2.png', alt: '', text: 'Design a clear experience.' },
-    { image: 'assets/case-goal-3.png', alt: '', text: 'Deliver reliable results.' },
+    { image: 'assets/case-goal-1.png', alt: 'Phone with code and app screens icon', text: 'Understand the vision.' },
+    { image: 'assets/case-goal-2.png', alt: 'Person with vision and idea icons', text: 'Design a clear experience.' },
+    { image: 'assets/case-goal-3.png', alt: 'Hand holding three stars icon', text: 'Deliver reliable results.' },
   ];
 
   constructor(
@@ -77,6 +78,14 @@ export class CaseStudiesComponent implements OnInit {
             this.http.get(`${environment.apiUrl}/admin/get_/${summary._id}`).subscribe({
               next: (detail: any) => {
                 this.cardData = detail?.data?.data;
+                if (this.cardData) {
+                  // Images written in the admin without alt text get one (the editor's own alt text is kept).
+                  for (const field of ['overviewPara', 'keyDescription']) {
+                    if (typeof this.cardData[field] === 'string') {
+                      this.cardData[field] = addMissingImageAlts(this.cardData[field], this.cardData.title);
+                    }
+                  }
+                }
                 if (!this.cardData) {
                   this.isNotFound = true;
                   this.seoService.setNotFoundStatus();

@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   selector: 'app-service-card',
   template: `
     <div class="p-3.5 !border border-[#34394B] rounded-full">
-      <img class="size-12" [src]="icon" width="48" height="48" loading="lazy" decoding="async" alt="" />
+      <img class="size-12" [src]="icon" width="48" height="48" loading="lazy" decoding="async" [alt]="heading + ' icon'" />
     </div>
     <h3 class="text-2xl font-quickSand font-semibold text-center">{{ heading }}</h3>
     <p

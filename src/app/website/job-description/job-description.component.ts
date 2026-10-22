@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../environments/environment';
 import { SeoService } from '@core/service/seo.service';
+import { addMissingImageAlts } from '@core/utils/content-images.util';
 
 interface UploadedFile {
   file: File;
@@ -110,7 +111,12 @@ export class JobDescriptionComponent implements OnInit {
         const foundJob = response?.data?.data?.find((job) => job._id === id);
 
         if (foundJob) {
-          this.jobPost = foundJob;
+          // Images written in the admin without alt text get one (the editor's own alt text is kept).
+          this.jobPost = {
+            ...foundJob,
+            description: addMissingImageAlts(foundJob.description, foundJob.title),
+            content: addMissingImageAlts(foundJob.content, foundJob.title),
+          };
           this.isNotFound = false;
 
           const plainDesc = foundJob.description

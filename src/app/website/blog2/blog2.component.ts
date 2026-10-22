@@ -1,4 +1,5 @@
 import { addMissingImageAlts, optimizeContentImages } from '@core/utils/content-images.util';
+import { sheetImageAlt } from '@core/utils/sheet-image-alts.util';
 import { addHeadingIds, ContentHeading } from '@core/utils/content-headings.util';
 import {
   Component,
@@ -237,6 +238,11 @@ export class Blog2Component implements OnInit {
       stickyElement.style.top = '50px';
       stickyElement.style.bottom = 'unset';
     }
+  }
+
+  /** Alt text for a blog image: the SEO sheet text, or the post title. */
+  blogImageAlt(image: string | undefined, title: string | undefined): string {
+    return sheetImageAlt(image, title || 'Carina Softlabs blog post');
   }
 
   sanitizeContent(rawHtml: string): SafeHtml {

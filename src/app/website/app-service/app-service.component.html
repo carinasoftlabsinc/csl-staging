@@ -19,11 +19,11 @@
       <div #expertiseTrack class="expertise-track" tabindex="0" role="region" aria-label="App development expertise. Swipe, scroll, or use the left and right arrow keys to explore all five services." (keydown)="scrollExpertise($event, expertiseTrack)">
         @for (card of expertise; track card.number) {
           <article class="expertise-card" [style.background-color]="card.color" [class.light-copy]="card.light">
-            <img class="expertise-preview" [src]="assets + 'expertise-phone.png'" alt="" width="415" height="245" loading="lazy" />
+            <img class="expertise-preview" [src]="assets + 'expertise-phone.png'" alt="Native mobile app on a phone with Android and Apple icons" width="415" height="245" loading="lazy" />
             <p class="expertise-number" aria-hidden="true">{{ card.number }}</p>
             <h3>{{ card.title }}<br />{{ card.secondLine }}</h3>
             <p class="expertise-description">{{ expertiseDescription }}</p>
-            <a href="#lead-form" (click)="scrollToQuote($event)" class="expertise-link" [attr.aria-label]="'Request a quote for ' + card.title + ' ' + card.secondLine"><img [src]="assets + 'card-arrow.svg'" alt="" width="62" height="62" /></a>
+            <a href="#lead-form" (click)="scrollToQuote($event)" class="expertise-link" [attr.aria-label]="'Request a quote for ' + card.title + ' ' + card.secondLine"><img [src]="assets + 'card-arrow.svg'" alt="Arrow icon" width="62" height="62" /></a>
           </article>
         }
       </div>
@@ -44,7 +44,7 @@
         <p>Our solutions are robust and reliable. We use the most up-to-date and efficient application development technology in Madrid in our services. We develop applications with React Native and professional Flutter. Below are some examples of applications developed with React Native technology</p>
       </div>
     </div>
-    <img class="process-side-phone" [src]="assets + 'process-side-phone.png'" alt="" width="279" height="700" loading="lazy" />
+    <img class="process-side-phone" [src]="assets + 'process-side-phone.png'" alt="Phone showing an app sign-in screen" width="279" height="700" loading="lazy" />
   </section>
 
   <section class="industries-section light-section" aria-labelledby="industries-title">

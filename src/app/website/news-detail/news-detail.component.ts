@@ -1,4 +1,5 @@
 import { addMissingImageAlts, optimizeContentImages } from '@core/utils/content-images.util';
+import { sheetImageAlt } from '@core/utils/sheet-image-alts.util';
 import {
   Component,
   HostListener,
@@ -298,6 +299,11 @@ export class NewsDetailComponent implements OnInit, AfterViewInit {
 
   closeModal(): void {
     this.isModalOpen = false;
+  }
+
+  /** Alt text for a news card image: the SEO sheet text, or the news title. */
+  newsImageAlt(news: any): string {
+    return sheetImageAlt(news?.image_2, news?.title || 'Carina Softlabs news');
   }
 
   sanitizeContent(rawHtml: string): SafeHtml {

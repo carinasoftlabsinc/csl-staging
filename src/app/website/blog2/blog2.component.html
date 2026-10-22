@@ -52,7 +52,7 @@
           <img
             class="w-full rounded-3xl h-72 2xl:h-[35vh] object-contain img-fluid"
             [src]="imageUrl + $safeNavigationMigration(cardDataa?.image)"
-            [alt]="cardDataa?.title || 'Carina Softlabs blog post'" width="1104" height="430" fetchpriority="high" />
+            [alt]="blogImageAlt(cardDataa?.image, cardDataa?.title)" width="1104" height="430" fetchpriority="high" />
             <h1 class="font-myfont text-xl md:text-3xl xl:text-4xl 2xl:text-5xl">
               {{ cardDataa?.title }}
             </h1>
@@ -211,7 +211,7 @@
                         <img
                           class="p-4 rounded-[60px] h-64 2xl:h-80 w-full object-cover"
                           [src]="imageUrl  + card.image_2"
-                          [alt]="card.title" width="394" height="374" loading="lazy" decoding="async" />
+                          [alt]="blogImageAlt(card.image_2, card.title)" width="394" height="374" loading="lazy" decoding="async" />
                         </a>
                         <div class="px-4">
                           <h5

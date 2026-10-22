@@ -14,6 +14,7 @@ interface Feature {
   readonly headline: string;
   readonly description: string;
   readonly image: string;
+  readonly imageAlt: string;
   readonly cards: readonly Capability[];
 }
 
@@ -46,6 +47,7 @@ export class AiServiceComponent implements OnInit {
       id: 'games', title: 'AI Game Development', headline: 'Smarter Games.\nMore Dynamic Experiences.',
       description: 'With deep game development expertise, CSL explores how AI can make games more intelligent, adaptive and immersive—from NPC behavior to procedural worlds and personalized gameplay.',
       image: '9002-4874-Bg1.webp',
+      imageAlt: 'Game developer building a fantasy game on two monitors next to a small AI robot',
       cards: [
         { title: 'Intelligent NPCs', description: 'NPCs that react to players, environments and game events.' },
         { title: 'Adaptive Gameplay', description: 'Challenges and difficulty calibrated to player behavior.' },
@@ -59,6 +61,7 @@ export class AiServiceComponent implements OnInit {
       id: 'blockchain', title: 'AI • Blockchain • Games', headline: 'Intelligent Systems for\nPlayer-Owned Game Worlds',
       description: 'CSL combines game development and blockchain expertise to explore technical models for digital ownership, interactive assets and intelligent game economies.',
       image: '9030-1466-Bg2.webp',
+      imageAlt: 'Gamer at a keyboard with holographic AI and blockchain panels, NFT cards and coins in a fantasy game world',
       cards: [
         { title: 'AI-Driven Game Assets', description: 'Dynamic behaviors and attributes for player-owned digital assets.', star: true },
         { title: 'Intelligent Game Economies', description: 'Data systems to analyze and balance complex game economies.', icon: '9030-1466-Group1000001990.svg' },
@@ -70,6 +73,7 @@ export class AiServiceComponent implements OnInit {
       id: 'web', title: 'AI • Web • Services', headline: 'Intelligent Websites.\nSmarter Digital Products.',
       description: 'CSL combines web development and AI expertise to build fast, adaptive websites, web apps and intelligent platforms that understand users and grow with your business.',
       image: '9100-1442-Bg2.webp',
+      imageAlt: 'Developer typing on a laptop while a holographic AI robot works on website analytics dashboards',
       cards: [
         { title: 'AI-Powered Web Apps', description: 'Smart search, recommendations and automation built directly into your web product.', icon: '9100-1442-Frame1000002122.svg' },
         { title: 'Adaptive Websites', description: 'Content and layouts that respond to visitor behaviour, intent and location.', icon: '9100-1442-Frame1000002124.svg' },
@@ -81,6 +85,7 @@ export class AiServiceComponent implements OnInit {
       id: 'apps', title: 'AI • App • Development', headline: 'Smart Apps.\nBuilt for Real Users.',
       description: 'CSL designs and builds mobile and web apps powered by AI, from intelligent features and personalization to automation that makes every interaction feel effortless.',
       image: '9103-1529-Bg2.webp',
+      imageAlt: 'Smartphone showing a friendly AI assistant robot surrounded by chat, settings, calendar and shopping icons',
       cards: [
         { title: 'AI-Native Mobile Apps', description: 'iOS and Android apps with smart features designed around how users actually behave.', icon: '9103-1529-Frame1000002122.svg' },
         { title: 'Personalized Experiences', description: "Onboarding, feeds and recommendations that adapt to each user's goals and habits.", icon: '9103-1529-Frame1000002124.svg' },

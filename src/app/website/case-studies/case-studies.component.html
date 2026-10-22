@@ -127,7 +127,7 @@
             <img
               class="rounded-3xl h-48 md:h-64 lg:h-80 xl:h-[70vh] w-full object-contain"
               [src]="imageUrl + '/' + $safeNavigationMigration(cardData?.image)"
-              (error)="onImgError($event)" alt="" width="1096" height="616" fetchpriority="high" />
+              (error)="onImgError($event)" [alt]="cardData?.title || 'Carina Softlabs case study'" width="1096" height="616" fetchpriority="high" />
             </div>
           </div>
         <!-- </div> -->
@@ -178,7 +178,7 @@
                       <img
                         [src]="imageUrl + '/' + techImage"
                         (error)="onImgError($event)"
-                        alt=""
+                        [alt]="(cardData?.title || 'Project') + ' tech stack logo'"
                         class="size-8 sm:size-10 md:size-12 rounded-[11px] object-cover" width="64" height="64" loading="lazy" decoding="async" />
                       </div>
                     }
@@ -356,7 +356,7 @@
                     </p>
                     <a appGradientButton size="md" class="mt-4" href="https://calendar.app.google/mezjQ2cpZyzbixNv6" target="_blank" rel="noopener noreferrer">
   Fill the Form
-  <img src="assets/images/small-tilt-arrow.webp" alt="" aria-hidden="true" width="12" height="14" loading="lazy" decoding="async" />
+  <img src="assets/images/small-tilt-arrow.webp" alt="Image" aria-hidden="true" width="12" height="14" loading="lazy" decoding="async" />
 </a>
                     </div>
                   </div>
@@ -404,7 +404,7 @@
                   <img
                     class="hidden lg:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                     src="../../../assets/images/dotted-line.svg"
-                    alt="" width="1920" height="339" loading="lazy" decoding="async" />
+                    alt="Dotted connector line" width="1920" height="339" loading="lazy" decoding="async" />
                   </div>
                 </section>
                 <!-- UI Design system -->

@@ -1,6 +1,6 @@
 <main class="ai-page">
   <section class="ai-hero" aria-labelledby="ai-title">
-    <img class="hero-art" [src]="assets + 'hero-HeroBg1.webp'" alt="" width="1619" height="1080" fetchpriority="high" decoding="async" />
+    <img class="hero-art" [src]="assets + 'hero-HeroBg1.webp'" alt="Robotic hand reaching toward a glowing atom" width="1619" height="1080" fetchpriority="high" decoding="async" />
     <app-header />
     <div class="ai-container ai-hero-copy">
       <p class="eyebrow">AI &amp; Emerging Technology</p>
@@ -32,7 +32,7 @@
 
   @for (feature of features; track feature.id) {
     <section class="ai-feature" [class]="'ai-feature feature-' + feature.id" [attr.aria-labelledby]="feature.id + '-title'">
-      <div class="feature-art" aria-hidden="true"><img [src]="assets + feature.image" alt="" width="1980" height="1113" loading="lazy" decoding="async" /></div>
+      <div class="feature-art" aria-hidden="true"><img [src]="assets + feature.image" [alt]="feature.imageAlt" width="1980" height="1113" loading="lazy" decoding="async" /></div>
       <div class="ai-container feature-content">
         <h2 class="section-label" [id]="feature.id + '-title'">{{ feature.title }}</h2>
         <h3 class="section-headline">{{ feature.headline }}</h3>
@@ -41,11 +41,11 @@
           @for (card of feature.cards; track card.title) {
             <article class="capability-card">
               @if (card.icon) {
-                <img class="capability-icon" [src]="assets + card.icon" alt="" width="54" height="54" loading="lazy" decoding="async" />
+                <img class="capability-icon" [src]="assets + card.icon" [alt]="card.title + ' icon'" width="54" height="54" loading="lazy" decoding="async" />
               } @else if (card.star) {
                 <span class="capability-icon star-icon" aria-hidden="true">
                   @for (part of starParts; track part.file) {
-                    <span [style.inset]="part.inset"><img [src]="assets + '9030-1466-' + part.file" alt="" loading="lazy" decoding="async" /></span>
+                    <span [style.inset]="part.inset"><img [src]="assets + '9030-1466-' + part.file" alt="AI-driven game assets icon" loading="lazy" decoding="async" /></span>
                   }
                 </span>
               }
@@ -63,7 +63,7 @@
       <div class="products-grid">
         @for (product of products; track product.title) {
           <article class="product-card">
-            <img class="corner-arrow" [src]="assets + '9040-1670-Frame48096380.svg'" alt="" width="40" height="40" loading="lazy" />
+            <img class="corner-arrow" [src]="assets + '9040-1670-Frame48096380.svg'" alt="Arrow icon" width="40" height="40" loading="lazy" />
             <p class="product-category">{{ product.category }}</p>
             <h3>{{ product.title }}</h3><p>{{ product.description }}</p>
           </article>
@@ -90,7 +90,7 @@
   </section>
 
   <section class="ai-technologies ai-feature" aria-labelledby="technologies-title">
-    <div class="technology-art" aria-hidden="true"><img [src]="assets + '9058-5337-Image1090.webp'" alt="" width="2080" height="1170" loading="lazy" decoding="async" /></div>
+    <div class="technology-art" aria-hidden="true"><img [src]="assets + '9058-5337-Image1090.webp'" alt="Developer working with an AI robot on software, integration, time-saving and security tools" width="2080" height="1170" loading="lazy" decoding="async" /></div>
     <div class="ai-container feature-content">
       <h2 id="technologies-title" class="section-label">Technologies We Work With</h2>
       <h3 class="section-headline">One Team. Multiple Technology <br />Ecosystems.</h3>
@@ -110,7 +110,7 @@
         @for (card of experienceCards; track card) {
           <article class="experience-card">
             <!-- The supplied Figma uses empty grey panels; replace when approved project imagery is available. -->
-            <div class="experience-image" aria-hidden="true"><img [src]="assets + '9066-5458-Frame48096380.svg'" alt="" width="37" height="37" loading="lazy" /></div>
+            <div class="experience-image" aria-hidden="true"><img [src]="assets + '9066-5458-Frame48096380.svg'" alt="Arrow icon" width="37" height="37" loading="lazy" /></div>
             <div class="experience-copy"><p class="experience-category">AI-Powered Applications</p><h4>Intelligent Digital Products and Automation</h4><p>AI capabilities integrated directly into enterprise websites, apps and operations.</p></div>
           </article>
         }

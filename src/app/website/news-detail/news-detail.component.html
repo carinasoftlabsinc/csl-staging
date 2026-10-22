@@ -94,7 +94,7 @@
                         <img
                           class="h-20 w-36 object-cover rounded-xl"
                           [src]="news.image_2 ? imageUrl + news.image_2 : fallbackImage" (error)="onCoverError($event)"
-                          [alt]="news.title || 'Carina Softlabs news'" width="394" height="374" loading="lazy" decoding="async" />
+                          [alt]="newsImageAlt(news)" width="394" height="374" loading="lazy" decoding="async" />
                           <div class="font-quickSand">
                             <p
                               class="font-semibold text-xs mb-0.5 xl:!text-lg 2xl:!text-xl"
@@ -154,7 +154,7 @@
               <div class="pt-4 md:pt-5 lg:pt-8 2xl:pt-10">
                 <a appGradientButton size="md" routerLink="/contact-us">
   Subscribe Now
-  <img src="assets/images/small-tilt-arrow.webp" alt="Arrow icon" aria-hidden="true" width="12" height="14" loading="lazy" decoding="async" />
+  <img src="assets/images/small-tilt-arrow.webp" alt="Image" aria-hidden="true" width="12" height="14" loading="lazy" decoding="async" />
 </a>
                 </div>
               </div>

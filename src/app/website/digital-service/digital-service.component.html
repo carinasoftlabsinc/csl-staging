@@ -54,7 +54,7 @@
           <img
             class="absolute right-[8.7cqw] -top-[60cqw] w-[49.4cqw] aspect-[263/246] rounded-[9.2cqw] object-cover transition-all ease-in-out duration-500 group-hover:-top-[10.45cqw]"
             [src]="card.hovImg"
-            alt=""
+            [alt]="card.hovAlt"
             loading="lazy"
             />
           <div class="pl-[9.2cqw] pr-[3cqw] pt-[5.1cqw]">
@@ -70,7 +70,7 @@
           <img
             class="absolute right-[5.2cqw] bottom-[4.4cqw] w-[11.5cqw]"
             src="../../../assets/images/gd-arrow-btn.svg"
-            alt=""
+            alt="Arrow Button"
             width="61"
             height="61"
             loading="lazy"
@@ -89,11 +89,11 @@
         <h2 id="digital-growth-title" class="digital-growth__title font-myfont">
           What Does It Take to Grow Your<br class="hidden lg:block" /> Business Online
         </h2>
-        <img class="digital-growth__divider" src="assets/images/digital-growth/divider.svg" alt="" width="1671" height="1" loading="lazy" />
+        <img class="digital-growth__divider" src="assets/images/digital-growth/divider.svg" alt="Divider line" width="1671" height="1" loading="lazy" />
         <p class="digital-growth__description font-quickSand">
           Growing online takes more than a website or a few social posts. It needs a connected strategy that brings the right people to your brand, earns their trust, and turns their interest into revenue. As one of the best digital marketing agencies for growing brands, Carina Softlabs combines data-driven SEO, targeted paid campaigns, engaging content, AI visibility, and conversion-focused design into one growth plan built around your goals. We study your audience and market first, then build, test, and refine every channel so each one supports the others. The result is steady, measurable growth instead of short-lived spikes.
         </p>
-        <img class="digital-growth__illustration" src="assets/images/digital-growth/growth-arrows.svg" alt="" width="380" height="342" loading="lazy" decoding="async" />
+        <img class="digital-growth__illustration" src="assets/images/digital-growth/growth-arrows.svg" alt="Growth arrows illustration" width="380" height="342" loading="lazy" decoding="async" />
       </div>
 
       <h3 class="digital-growth__subtitle font-myfont">Your Roadmap to Digital Growth</h3>
@@ -101,7 +101,7 @@
         @for (step of growthSteps; track step.number) {
           <li class="digital-growth__step">
             <span class="digital-growth__badge" aria-hidden="true">
-              <img [src]="'assets/images/digital-growth/step-' + step.color + '.svg'" alt="" width="82" height="82" loading="lazy" />
+              <img [src]="'assets/images/digital-growth/step-' + step.color + '.svg'" [alt]="'Step ' + step.number + ' badge'" width="82" height="82" loading="lazy" />
               <span>{{ step.number }}</span>
             </span>
             <div class="digital-growth__step-copy">
@@ -131,7 +131,7 @@
       <div class="mt-8 lg:mt-[clamp(2rem,4.6vw,5.5rem)] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[533fr_536fr_536fr] gap-[1rem] md:max-lg:gap-6 lg:[gap:clamp(1rem,1.8vw,2.1875rem)] text-white font-quickSand">
         <!-- Big card -->
         <div class="md:col-span-2 lg:col-span-1 lg:row-span-2 flex flex-col items-center justify-center text-center rounded-[31px] border-2 border-[#34394B] bg-gradient-to-b from-[#0033E91A] via-transparent to-transparent backdrop-blur-2xl py-10 md:py-12 lg:py-0 [container-type:inline-size]">
-          <img class="size-[clamp(72px,18cqw,96px)]" src="../../../assets/images/DG-clientLogo1.svg" alt="" width="96" height="96" loading="lazy" />
+          <img class="size-[clamp(72px,18cqw,96px)]" src="../../../assets/images/DG-clientLogo1.svg" alt="Leads generated icon" width="96" height="96" loading="lazy" />
           <p class="mt-[clamp(1.5rem,10cqw,3.5rem)] font-bebas uppercase leading-none text-[clamp(88px,29cqw,155px)] max-md:text-[clamp(88px,22vw,120px)] md:max-lg:text-[140px]">1.8 M</p>
           <p class="mt-[clamp(1rem,4cqw,1.8rem)] font-semibold capitalize leading-[1.38] text-[clamp(.9375rem,5.6cqw,1.875rem)] max-md:text-[clamp(1rem,4.4vw,1.5rem)] md:max-lg:text-3xl">
             1.8 Million Leads<br />Generated For Our Clients
@@ -140,7 +140,7 @@
 
         @for (W of FourW; track W.digits) {
           <div class="relative aspect-[536/286] max-md:aspect-auto max-md:min-h-[150px] max-md:py-6 flex items-center rounded-[31px] border-2 border-[#34394B] bg-gradient-to-b from-[#0033E91A] via-transparent to-transparent backdrop-blur-2xl [container-type:inline-size]">
-            <img class="ml-[6.9cqw] size-[17.9cqw] max-md:size-[72px] shrink-0" [src]="W.icon" alt="" width="96" height="96" loading="lazy" />
+            <img class="ml-[6.9cqw] size-[17.9cqw] max-md:size-[72px] shrink-0" [src]="W.icon" [alt]="W.alt" width="96" height="96" loading="lazy" />
             <div class="ml-[8cqw] max-md:ml-5 flex flex-col gap-[2cqw] max-md:gap-2 pr-[4cqw]">
               <p class="flex items-end gap-[3.7cqw] font-bebas leading-none whitespace-nowrap text-white">
                 <span class="uppercase text-[clamp(2.5rem,14.9cqw,5rem)] max-md:text-[clamp(2.5rem,12vw,3.5rem)] -mb-1">{{ W.digits }}</span>
@@ -176,7 +176,7 @@
           aria-hidden="true"
           class="-my-[2px] -mr-[2px] flex size-10 2xl:size-[50px] shrink-0 items-center justify-center rounded-full border-2 border-transparent [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box]"
         >
-          <img src="../../../assets/images/more-arrow.svg" alt="" width="50" height="50" class="size-full" />
+          <img src="../../../assets/images/more-arrow.svg" alt="Arrow icon" width="50" height="50" class="size-full" />
         </span>
       </a>
     </div>
@@ -205,7 +205,7 @@
               <img
                 class="block size-full object-cover"
                 [src]="card.thumb"
-                alt=""
+                [alt]="card.title"
                 width="204"
                 height="149"
                 loading="lazy"
@@ -239,7 +239,7 @@
               [src]="card.imageSm"
               [attr.srcset]="card.imageSm + ' 640w, ' + card.imageMd + ' 960w, ' + card.image + ' 1400w'"
               sizes="(min-width: 1024px) 880px, calc(100vw - 110px)"
-              [alt]="selectedCard === card ? card.title + ' preview' : ''"
+              [alt]="card.title + ' preview'"
               [attr.aria-hidden]="selectedCard === card ? null : 'true'"
               width="881"
               height="645"
@@ -293,7 +293,7 @@
             @if (source.tile) {
               <img class="absolute inset-0 size-full" [src]="'assets/images/data-sources/' + source.tile + '.svg'" [alt]="source.name" width="312" height="140" loading="lazy" />
             } @else if (source.icon) {
-              <img [ngClass]="source.size" [src]="'assets/images/data-sources/' + source.icon + '.svg'" [alt]="source.label ? '' : source.name" loading="lazy" />
+              <img [ngClass]="source.size" [src]="'assets/images/data-sources/' + source.icon + '.svg'" [alt]="source.name" loading="lazy" />
               @if (source.label) {
                 <span class="mt-[1.2cqw] font-quickSand font-semibold text-white leading-tight text-[max(11px,4.5cqw)]">{{ source.label }}</span>
               }

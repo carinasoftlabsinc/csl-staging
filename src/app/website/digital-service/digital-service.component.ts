@@ -128,6 +128,7 @@ export class DigitalServiceComponent implements OnInit {
       textColor: 'text-[#0B0C10]',
       paraColor: 'text-[#34394B]',
       num: '01',
+      hovAlt: 'Search engine optimization illustration',
       heading: 'Search Engine <br> Optimization (SEO)',
       para: 'At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive',
       hovImg:
@@ -138,6 +139,7 @@ export class DigitalServiceComponent implements OnInit {
       textColor: 'text-[#0B0C10]',
       paraColor: 'text-[#34394B]',
       num: '02',
+      hovAlt: 'Email marketing illustration',
       heading: 'Email <br> Marketing',
       para: 'At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive',
       hovImg:
@@ -148,6 +150,7 @@ export class DigitalServiceComponent implements OnInit {
       textColor: 'text-white',
       paraColor: 'text-white',
       num: '03',
+      hovAlt: 'E-commerce marketing illustration',
       heading: 'E-Commerce <br> Marketing <br> (Like Amazon)',
       para: 'At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive',
       hovImg:
@@ -156,10 +159,10 @@ export class DigitalServiceComponent implements OnInit {
   ];
 
   FourW = [
-    { icon: '../../../assets/images/DGclientLogo2.svg', digits: '$685', desc: 'M', small: false, para: 'in Revenue Generated for Our Clients' },
-    { icon: '../../../assets/images/DGclientLogo3.svg', digits: '2000', desc: '+', small: false, para: 'Clients Served' },
-    { icon: '../../../assets/images/DGclientLogo4.svg', digits: '93%', desc: 'Retention', small: true, para: 'Rate Our Partners Love Us' },
-    { icon: '../../../assets/images/DGclientLogo5.svg', digits: '28%', desc: 'Avg.', small: true, para: 'Increase in Website Traffic' },
+    { icon: '../../../assets/images/DGclientLogo2.svg', alt: 'Revenue generated icon', digits: '$685', desc: 'M', small: false, para: 'in Revenue Generated for Our Clients' },
+    { icon: '../../../assets/images/DGclientLogo3.svg', alt: 'Clients served icon', digits: '2000', desc: '+', small: false, para: 'Clients Served' },
+    { icon: '../../../assets/images/DGclientLogo4.svg', alt: 'Retention rate icon', digits: '93%', desc: 'Retention', small: true, para: 'Rate Our Partners Love Us' },
+    { icon: '../../../assets/images/DGclientLogo5.svg', alt: 'Website traffic increase icon', digits: '28%', desc: 'Avg.', small: true, para: 'Increase in Website Traffic' },
   ];
 
   // Solution by Data Source tiles, in Figma order. "tile" logos are drawn on the full 312 x 140 tile;

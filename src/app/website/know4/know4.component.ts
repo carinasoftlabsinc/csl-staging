@@ -313,32 +313,32 @@ export class Know4Component implements OnInit, OnDestroy {
     {
       title: 'Growth',
       image: '../../../assets/images/img-1-hover.webp',
-      alt: 'Career growth at Carina Softlabs',
+      alt: 'Active Image',
       hoverColor: 'text-purple-500 !border-purple-500',
     },
     {
       title: 'WORK-LIFE BALANCE',
       image: '../../../assets/images/img-2-hover.webp',
-      alt: 'Work-life balance at Carina Softlabs',
+      alt: 'Active Image',
       hoverColor: 'text-pink-500  !border-pink-500',
     },
     {
       title: 'ATMOSPHERE',
       image: '../../../assets/images/img-3-hover.webp',
-      alt: 'Friendly work atmosphere at Carina Softlabs',
+      alt: 'Active Image',
       hoverColor: 'text-cyan-500  !border-cyan-500',
     },
     {
       title: 'Health & Wellness',
       image: '../../../assets/images/img-4-hover.webp',
-      alt: 'Health and wellness at Carina Softlabs',
+      alt: 'Active Image',
       hoverColor: 'text-lime-500 !border-lime-500',
     },
   ];
 
   /** Alt text of the picture shown for the hovered work-culture heading. */
   get activeImageAlt(): string {
-    return this.items.find((item) => item.image === this.activeImage)?.alt || 'Work culture at Carina Softlabs';
+    return this.items.find((item) => item.image === this.activeImage)?.alt || 'Active Image';
   }
 
   /** Uploaded job image, or the fallback when the job has none (the admin can save it as the text "null"). */
@@ -347,11 +347,11 @@ export class Know4Component implements OnInit, OnDestroy {
     return image && image !== 'null' && image !== 'undefined' ? this.imageUrl + image : 'assets/job-fallback.png';
   }
 
-  /** Job titles come from the admin as HTML, so the tags are stripped for the image alt text. */
-  jobImageAlt(card: any): string {
-    const title = String(card?.title || '').replace(/<[^>]*>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
-    return title ? `${title} job at Carina Softlabs` : 'Job opening at Carina Softlabs';
+  /** Job card image alt text, as given in the SEO alt text sheet. */
+  jobImageAlt(_card: any): string {
+    return 'product image';
   }
+
 
   getClass(item: any): string[] {
     return this.activeImage === item.image ? [item.hoverColor] : ['text-black'];

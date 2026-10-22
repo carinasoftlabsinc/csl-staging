@@ -388,6 +388,20 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   cards: PortfolioItem[] = [];
   apiUrl = `${environment.apiUrl}/admin/getAll_project`;
   imageUrl = `${environment.imageBaseUrl}`;
+
+  /** Alt text from the SEO sheet for known projects; other projects get "<title> project by Carina Softlabs". */
+  private readonly projectAlts: Record<string, string> = {
+    'space runner': 'Space Runner| 3D endless space game by Carina Softlabs',
+    'galaxy chess': 'Galaxy Chess| 3D cosmic chess strategy game by Carina Softlabs',
+    'the little guardian': 'The Little Guardian| arcade-style shooter game by Carina Softlabs',
+    'the flying colors': 'The Flying Colors| colorful platformer game by Carina Softlabs',
+    'bear crush saga': 'Bear Crush Saga| match-3 puzzle game by Carina Softlabs',
+  };
+
+  projectImageAlt(project: any): string {
+    const title = String(project?.title || '').trim();
+    return this.projectAlts[title.toLowerCase()] || (title ? `${title} project by Carina Softlabs` : 'Carina Softlabs project');
+  }
   loading: boolean | undefined;
   private seoElements: HTMLElement[] = [];
 

@@ -4,12 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "prestart:live": "node scripts/confirm-live.mjs",
+    "start:live": "ng serve --configuration live",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "serve:ssr:main": "node dist/main/server/server.mjs",
     "generate-sitemap": "npx tsx scripts/generate-sitemap.ts",
-    "prebuild": "npm run generate-sitemap"
+    "prebuild": "node scripts/check-environment.mjs && npm run generate-sitemap"
   },
   "private": true,
   "engines": {

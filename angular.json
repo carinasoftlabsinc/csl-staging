@@ -103,6 +103,18 @@
                   "with": "src/environments/environment.development.ts"
                 }
               ]
+            },
+            "live": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.live.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -115,6 +127,9 @@
             },
             "development": {
               "buildTarget": "main:build:development"
+            },
+            "live": {
+              "buildTarget": "main:build:live"
             }
           },
           "defaultConfiguration": "development"

@@ -2,9 +2,22 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
 
+## Environments
+
+Pick the backend with the command. Never comment or uncomment addresses in `src/environments`.
+
+| Command | API | File |
+| --- | --- | --- |
+| `npm start` | Local backend (`localhost:8086`) | `environment.development.ts` |
+| `npm run start:live` | Live API, asks `LIVE data. Continue? (y/N)` first | `environment.live.ts` |
+| `npm run build` | Live API (the build for the server) | `environment.ts` |
+
+Before every build, `scripts/check-environment.mjs` stops the build if `environment.ts` points at localhost or
+`environment.development.ts` points at the live API.
+
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 

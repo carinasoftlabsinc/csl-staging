@@ -1,4 +1,4 @@
-import { optimizeContentImages } from '@core/utils/content-images.util';
+import { addMissingImageAlts, optimizeContentImages } from '@core/utils/content-images.util';
 import { addHeadingIds, ContentHeading } from '@core/utils/content-headings.util';
 import {
   Component,
@@ -88,7 +88,11 @@ export class Blog2Component implements OnInit {
     });
   }
 
+  /** Numbers the post's content images that get a fallback alt text (see addMissingImageAlts). */
+  private contentImageNumber = 0;
+
   private showPost(post: any) {
+        this.contentImageNumber = 0;
         this.loadingBlog = false;
         this.cardDataa = post;
         // "More blogs" leaves out the current post (also when moving from one post to another)
@@ -246,9 +250,13 @@ export class Blog2Component implements OnInit {
       /<a\b([^>]*?)\sid\s*=\s*["']([a-z0-9_-]+)["']([^>]*)>/gi,
       (_, before, id, after) => `<a${before}${after} title="__anchor:${id}">`
     );
-    const cleaned = (this.sanitizer.sanitize(SecurityContext.HTML, marked) ?? '').replace(
-      /\stitle="__anchor:([a-z0-9_-]+)"/gi,
-      ' id="$1"'
+    const cleaned = addMissingImageAlts(
+      (this.sanitizer.sanitize(SecurityContext.HTML, marked) ?? '').replace(
+        /\stitle="__anchor:([a-z0-9_-]+)"/gi,
+        ' id="$1"'
+      ),
+      this.cardDataa?.title,
+      () => ++this.contentImageNumber
     );
     if (!isPlatformBrowser(this.platformId)) {
       return optimizeContentImages(cleaned);

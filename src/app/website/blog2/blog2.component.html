@@ -52,7 +52,7 @@
           <img
             class="w-full rounded-3xl h-72 2xl:h-[35vh] object-contain img-fluid"
             [src]="imageUrl + $safeNavigationMigration(cardDataa?.image)"
-            alt="" width="1104" height="430" fetchpriority="high" />
+            [alt]="cardDataa?.title || 'Carina Softlabs blog post'" width="1104" height="430" fetchpriority="high" />
             <h1 class="font-myfont text-xl md:text-3xl xl:text-4xl 2xl:text-5xl">
               {{ cardDataa?.title }}
             </h1>
@@ -231,7 +231,7 @@
                           <img
                             class="w-8 lg:w-8 xl:w-10"
                             src="../../../assets/images/gd-arrow-btn.svg"
-                            alt="" width="62" height="62" loading="lazy" decoding="async" />
+                            alt="Arrow Button" width="62" height="62" loading="lazy" decoding="async" />
                           </button>
                         </div>
                       </div>
@@ -378,7 +378,7 @@
                               <img
                                 class="w-8 lg:w-8 xl:w-10"
                                 src="../../../assets/images/gd-arrow-btn.svg"
-                                alt=""
+                                alt="Arrow Button"
                                 />
                               </button>
                             </div>

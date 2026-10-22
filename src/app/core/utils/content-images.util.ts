@@ -117,3 +117,23 @@ export function optimizeContentImages(html: string): string {
     return extra ? tag.replace(/(\s*\/?>)$/, extra + '$1') : tag;
   });
 }
+
+/**
+ * Gives every content image that has no alt text (or an empty one) a short description, so no image
+ * in a post is reported as missing alt text. Alt text written in the admin editor is kept as it is.
+ * `nextNumber` keeps the numbering going across several pieces of the same post.
+ */
+export function addMissingImageAlts(html: string, label: string, nextNumber?: () => number): string {
+  if (!html || !/<img\b/i.test(html)) return html;
+  const base = (label || 'Carina Softlabs blog').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
+    .replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  let n = 0;
+  const next = nextNumber ?? (() => ++n);
+  return html.replace(/<img\b[^>]*>/gi, (tag) => {
+    const number = next();
+    const alt = /\salt\s*=\s*(?:"([^"]*)"|'([^']*)')/i.exec(tag);
+    if (alt && (alt[1] ?? alt[2]).trim()) return tag;
+    const text = `${base} - image ${number}`;
+    return alt ? tag.replace(alt[0], ` alt="${text}"`) : tag.replace(/(\s*\/?>)$/, ` alt="${text}"$1`);
+  });
+}

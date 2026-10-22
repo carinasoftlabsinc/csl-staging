@@ -234,13 +234,6 @@
                                   </option>
                                 }
                               </select>
-                              <!-- <input
-                              type="text"
-                              id="location"
-                              formControlName="address"
-                              placeholder="Enter address"
-                              class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm px-0.5"
-                              /> -->
                               @if (submitted && clientForm.get('address')?.invalid) {
                                 <div
                                   class="text-red-500 text-sm"
@@ -250,20 +243,6 @@
                               }
                             </div>
                           </div>
-
-                          <!-- <div class="md:col-span-2">
-                          <p class="text-black font-semibold 2xl:font-bold">
-                            Project Budget: ${{ rangeValue }}
-                          </p>
-
-                          <input
-                            type="range"
-                            min="500"
-                            max="100000"
-                            [(ngModel)]="rangeValue"
-                            class="styled-range my-6"
-                            />
-                          </div> -->
 
                           <div class="md:col-span-2">
                             <p class="text-black font-semibold 2xl:font-bold">
@@ -370,175 +349,6 @@
                             </div>
                           </form>
 
-                          <!-- <form
-                          class="md:py-14 py-3 font-quickSand"
-                          [formGroup]="clientForm"
-                          (ngSubmit)="onSave()"
-                          #formDirective="ngForm"
-                          novalidate
-                          >
-                          <mat-horizontal-stepper linear [formGroup]="clientForm">
-
-                            <mat-step [stepControl]="clientForm.controls['name']">
-                              <ng-template matStepLabel>Fill out your name</ng-template>
-                              <div class="grid gap-6 md:grid-cols-2">
-                                <div class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3">
-                                  <img src="../../../assets/images/bxs_user.svg" alt="Full name icon" width="24" height="24" />
-                                  <div class="flex-grow-1">
-                                    <label for="full-name-1">Full Name</label>
-                                    <input
-                                      type="text"
-                                      id="full-name-1"
-                                      formControlName="name"
-                                      placeholder="Enter Full Name"
-                                      class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
-                                      />
-                                      <div *ngIf="clientForm.get('name')?.invalid && clientForm.get('name')?.touched" class="text-red-500 text-sm">
-                                        Name is required.
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3">
-                                    <img src="../../../assets/images/bxs_mail.svg" alt="Email icon" width="24" height="24" />
-                                    <div class="flex-grow-1">
-                                      <label for="email">Email</label>
-                                      <input
-                                        type="email"
-                                        id="email"
-                                        formControlName="email"
-                                        placeholder="Enter Email Address"
-                                        class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
-                                        />
-                                        <div *ngIf="clientForm.get('email')?.invalid && clientForm.get('email')?.touched" class="text-red-500 text-sm">
-                                          <div *ngIf="clientForm.get('email')?.errors?.['required']">Email address is required.</div>
-                                          <div *ngIf="clientForm.get('email')?.errors?.['email']">Please enter a valid email address.</div>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <div class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3">
-                                      <img src="../../../assets/images/bxs_phone.svg" alt="Contact number icon" width="24" height="24" />
-                                      <div class="flex-grow-1">
-                                        <label for="phone">Contact No.</label>
-                                        <input
-                                          type="text"
-                                          id="phone"
-                                          formControlName="phone"
-                                          placeholder="Enter Contact No."
-                                          class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
-                                          />
-                                          <div *ngIf="clientForm.get('phone')?.invalid && clientForm.get('phone')?.touched" class="text-red-500 text-sm">
-                                            <div *ngIf="clientForm.get('phone')?.errors?.['required']">Phone number is required.</div>
-                                            <div *ngIf="clientForm.get('phone')?.errors?.['pattern']">Please enter a valid phone number.</div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <button mat-raised-button matStepperNext class="mt-4" [disabled]="clientForm.get('name')?.invalid || clientForm.get('email')?.invalid || clientForm.get('phone')?.invalid">
-                                      Next
-                                    </button>
-                                  </mat-step>
-
-                                  <mat-step [stepControl]="clientForm.controls['service']">
-                                    <ng-template matStepLabel>Fill out your service and address</ng-template>
-                                    <div class="grid gap-6 md:grid-cols-2">
-                                      <div class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3">
-                                        <img src="../../../assets/images/bxs_service.svg" alt="Service icon" width="24" height="24" />
-                                        <div class="flex-grow-1">
-                                          <label for="service">Service</label>
-                                          <select
-                                            id="service"
-                                            formControlName="service"
-                                            class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
-                                            >
-                                            <option value="Game Development">Game Development</option>
-                                            <option value="App Development">App Development</option>
-                                            <option value="Web Development">Web Development</option>
-                                            <option value="Digital Marketing">Digital Marketing</option>
-                                            <option value="Emerging Technologies">Emerging Technologies</option>
-                                            <option value="Others">Others</option>
-                                          </select>
-                                          <div *ngIf="clientForm.get('service')?.invalid && clientForm.get('service')?.touched" class="text-red-500 text-sm">
-                                            Service is required.
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                      <div class="border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex items-center gap-3 p-3">
-                                        <img src="../../../assets/images/bxs_location.svg" alt="Country icon" width="24" height="25" />
-                                        <div class="flex-grow-1">
-                                          <label for="location">Country</label>
-                                          <select
-                                            id="address"
-                                            formControlName="address"
-                                            class="w-full bg-[#f9f9f9] rounded-lg focus:outline-none sm:text-sm"
-                                            >
-                                            <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
-                                          </select>
-                                          <div *ngIf="clientForm.get('address')?.invalid && clientForm.get('address')?.touched" class="text-red-500 text-sm">
-                                            Country is required.
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <button mat-raised-button matStepperPrevious class="mt-4">Back</button>
-                                    <button mat-raised-button matStepperNext class="mt-4" [disabled]="clientForm.get('service')?.invalid || clientForm.get('address')?.invalid">Next</button>
-                                  </mat-step>
-
-                                  <mat-step>
-                                    <ng-template matStepLabel>Submit your details</ng-template>
-                                    <div class="md:col-span-2">
-                                      <p class="text-black font-semibold 2xl:font-bold">
-                                        Project Budget: ${{ clientForm.get("budget")?.value }}
-                                        <span *ngIf="clientForm.get('budget')?.value === 100000">+</span>
-                                      </p>
-                                      <input
-                                        type="range"
-                                        min="500"
-                                        max="100000"
-                                        formControlName="budget"
-                                        class="styled-range my-6"
-                                        />
-                                      </div>
-
-                                      <div class="md:col-span-2 border !bg-[#f9f9f9] !text-black border-gray-300 rounded-2xl focus:outline-none flex gap-3 p-3">
-                                        <img src="../../../assets/images/bxs_write.svg" alt="Message icon" width="22" height="22" />
-                                        <div class="flex-grow-1">
-                                          <label for="message">Message</label>
-                                          <textarea
-                                            id="message"
-                                            placeholder="Write message"
-                                            rows="4"
-                                            formControlName="message"
-                                            class="mt-1 py-2 px-0.5 block w-full bg-[#f9f9f9] rounded-xl focus:outline-none sm:text-sm"
-                                          ></textarea>
-                                        </div>
-                                      </div>
-
-                                      <button mat-raised-button matStepperPrevious class="mt-4">Back</button>
-                                      <button
-                                        type="submit"
-                                        class="inline-flex items-center px-6 py-2.5 xl:px-7 xl:py-3.5 2xl:px-10 2xl:py-5 border border-transparent text-sm 2xl:text-lg font-medium rounded-2xl shadow-sm text-white bg-black hover:bg-gray-800"
-                                        [disabled]="loading"
-                                        >
-                                        <ng-container *ngIf="!loading; else spinnerTemplate">
-                                          Send Message
-                                        </ng-container>
-                                        <ng-template #spinnerTemplate>
-                                          <mat-spinner
-                                            diameter="24"
-                                            strokeWidth="4"
-                                            color="accent"
-                                            class="mr-3"
-                                          ></mat-spinner>
-                                          Sending...
-                                        </ng-template>
-                                      </button>
-                                    </mat-step>
-                                  </mat-horizontal-stepper>
-                                </form> -->
-
                               </div>
                             </section>
 
@@ -599,7 +409,6 @@
                                                   House, near Hotel Surya, South <br />
                                                   Tukoganj, Indore (M.P.) 452001
                                                 </p>
-                                                <!-- <span>India</span> -->
                                               </div>
 
                                               <a

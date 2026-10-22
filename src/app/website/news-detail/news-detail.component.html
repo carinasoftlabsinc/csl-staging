@@ -73,7 +73,6 @@
                 }
               </div>
 
-
               <div class="hidden lg:block relative">
                 <div
                   #stickySidebar
@@ -101,7 +100,6 @@
                               >
                               {{ news.title }}
                             </p>
-                            <!-- <p class="text-xs">{{ news.description }}</p> -->
                           </div>
                         </a>
                       }
@@ -159,45 +157,6 @@
                 </div>
               </div>
             </div>
-
-            <!-- <div
-            *ngIf="isModalOpen"
-            (click)="closeModal()"
-            class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-[1001]"
-            >
-
-            <div
-              (click)="$event.stopPropagation()"
-              class="bg-gradient-to-bl from-[#121b44] via-[#0B0C10] to-[#121b44] rounded-[40px] md:px-36 md:py-11 lg:py-14 xl:px-48 xl:py-16 2xl:py-24 absolute p-[2.7rem] text-center flex flex-col gap-9 2xl:gap-12 items-center"
-              >
-              <h2
-                class="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-myfont text-center"
-                >
-                Get Updates Now!
-              </h2>
-              <label
-                for="sub-email"
-                class="!border border-[#464268] rounded-3xl 2xl:rounded-full px-6 py-2.5 2xl:py-3.5 flex items-center gap-2.5 w-full"
-                >
-                <img
-                  class="size-6"
-                  src="../../../assets/images/proicons_mail.svg"
-                  alt="Email"
-                  />
-                  <input
-                    class="w-full bg-transparent text-[#AFAFAF] font-quickSand font-medium"
-                    type="email"
-                    name="email"
-                    id="sub-email"
-                    placeholder="Email"
-                    />
-                  </label>
-
-                  <button appGradientButton size="md">
-  Submit
-</button>
-                </div>
-              </div> -->
 
               <app-footer
                 [showButton]="false"

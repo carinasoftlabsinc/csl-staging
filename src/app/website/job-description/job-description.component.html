@@ -4,8 +4,6 @@
     <app-not-found></app-not-found>
   } @else if (jobPost) {
 
- 
-
   <section
     class="px-5 py-24 body-font flex items-center justify-start h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)]"
   >
@@ -14,11 +12,6 @@
     >
       <div class="w-full md:w-1/2">
         <h1 class="font-mont">
-          <!-- <span
-            class="text-white font-montserrat text-[30px] 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]"
-          >
-            JOB
-          </span> -->
           <span
             class="text-white font-extrabold text-3xl sm:text-[40px] md:text-[45px] lg:text-[75px] xl:text-[100px] leading-[40px] sm:leading-[50px] md:leading-[60px] lg:leading-[80px] xl:leading-[99%] tracking-normal uppercase mt-2"
           >
@@ -27,11 +20,6 @@
 
           <br />
 
-          <!-- <p
-            class="text-white tracking-wide text-4xl sm:text-4xl md:text-5xl lg:text-[50px] xl:text-[60px] 2xl:text-[80px] leading-[50px] sm:leading-[40px] md:leading-[45px] lg:leading-[50px] xl:leading-[60px] 2xl:leading-[80px] font-montserrat mt-2"
-          >
-            DESCRIPTION
-          </p> -->
           <p
             class="text-white font-extrabold text-3xl sm:text-[40px] md:text-[43px] lg:text-[75px] xl:text-[100px] leading-[40px] sm:leading-[50px] md:leading-[60px] lg:leading-[80px] xl:leading-[99%] tracking-normal uppercase"
           >
@@ -46,9 +34,6 @@
           <!-- {{ jobPost?.description }} -->
         </p>
       </div>
-      <!-- <div class="w-full md:w-1/2 hidden md:block mt-0 lg:mt-[15rem] xl:mt-[15rem]">
-          <img src="../../../assets/images/job-banner-image.png" alt="" />
-        </div> -->
       <div class="w-full md:w-1/2 hidden md:block md:mt-0 lg:mt-[15rem]">
         <img src="../../../assets/job-banner-image.png" alt="Smiling cartoon employee working at a computer desk" />
       </div>
@@ -65,7 +50,6 @@
         JOB POST
       </h2>
     </div>
- 
 
     <h3
       class="font-mont font-bold text-2xl md:text-3xl 2xl:text-4xl bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-transparent bg-clip-text"
@@ -220,8 +204,6 @@
       </div>
     </div>
 
-  
-
     <div class="w-full bg-[#F2F8FF] rounded-[24px] p-4">
       <div class="w-full px-4 py-6">
         <p
@@ -349,19 +331,6 @@
               </label>
             </div>
 
-            <!-- <div
-              class="text-red-500 text-xs mt-1"
-              *ngIf="
-                jobForm.get('phone')?.touched && jobForm.get('phone')?.errors
-              "
-            >
-              <div *ngIf="jobForm.get('phone')?.errors?.['required']">
-                Phone is required.
-              </div>
-              <div *ngIf="jobForm.get('phone')?.errors?.['phone']">
-                Please enter a valid Phone number.
-              </div>
-            </div> -->
             <div
               class="text-red-500 text-xs mt-1"
               *ngIf="
@@ -432,7 +401,6 @@
                 Resume is required.
               </div>
 
-
               <ng-container *ngIf="!formSubmitted">
                 <div
                   *ngFor="let file of uploadedFiles"
@@ -497,13 +465,6 @@
                         >
                           Upload failed, try again
                         </p>
-                        <!-- <p
-                          *ngIf="file.status === 'error'"
-                          class="text-sm font-medium text-red-600 mt-1 cursor-pointer"
-                          (click)="retryUpload(file)"
-                        >
-                          {{ file.errorMessage }}
-                        </p> -->
                       </div>
                     </div>
 
@@ -556,7 +517,6 @@
                   </p>
                 </div>
               </ng-container>
-          
 
               <div
                 *ngIf="formSubmitted"

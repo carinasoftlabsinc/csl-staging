@@ -10,7 +10,6 @@
         <div
           class="md:w-1/3 md:py-8 text-left font-quickSand font-medium text-[#B4B9CB]"
           >
-          <!-- <div class="2xl:ml-20 xl:ml-16 lg:ml-16 md:ml-16"> -->
           <div>
             <span
               class="text-[#B4B9CB] font-myfont text-2xl 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]"
@@ -46,13 +45,6 @@
     <section
       class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
       >
-      <!-- <div>
-      <h2
-        class="text-black text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 mb-4 border-b border-[#B4B9CB]"
-        >
-        Project overview
-      </h2>
-    </div> -->
 
     <div
       class="text-center mt-12 sm:mt-auto my-8 flex flex-col gap-3.5 2xl:gap-6 md:mt-8"
@@ -114,7 +106,7 @@
         <img
           class="w-60 h-32 2xl:w-72 2xl:h-36 object-contain"
           [src]="imageUrl + '/' + $safeNavigationMigration(cardData?.projectLogo)"
-          alt=""
+          [alt]="(cardData?.title || 'Project') + ' logo'"
           />
         </div>
 
@@ -125,7 +117,6 @@
             class="text-black 2xl:text-xl capitalize pb-2.5 mb-2.5 border-b border-[#B4B9CB]"
             [innerHTML]="$safeNavigationMigration(cardData?.clientReview)"
           ></p>
-          <!-- <p class="font-medium 2xl:text-xl">{{ cardData?.clientName }}</p> -->
           <p class="font-medium 2xl:text-xl">
             {{
             cardData?.clientName
@@ -134,9 +125,6 @@
             }}
           </p>
 
-          <!-- <p class="text-xs lg:text-sm 2xl:!text-lg">
-          {{ cardData?.designation }}
-        </p> -->
       </div>
     </div>
   </section>
@@ -152,9 +140,6 @@
         >
         About
       </h4>
-      <!-- <h4 class="text-white text-4xl xl:text-5xl 2xl:text-6xl font-myfont">
-      Arizona Derby
-    </h4> -->
     <h4
       class="text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-3xl md:text-4xl xl:text-5xl 2xl:text-7xl font-myfont"
       [innerHTML]="$safeNavigationMigration(cardData?.about_title)"
@@ -169,7 +154,7 @@
   <img
     class="absolute top-0 left-0 w-full h-full object-cover !z-0"
     [src]="imageUrl + '/' + $safeNavigationMigration(cardData?.aboutBg)"
-    alt=""
+    [alt]="(cardData?.title || 'Project') + ' background'"
     />
   </section>
 
@@ -189,82 +174,6 @@
         future
       </p>
     </div>
-    <!-- <div
-    class="text-black text-2xl xl:text-3xl 2xl:text-4xl font-myfont py-6 text-center"
-    >
-    The Challenges
-    <img
-      class="inline w-10 mx-1.5"
-      src="../../../assets/images/project-execution-arrow.svg"
-      alt=""
-      />
-      <span
-        class="text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA]"
-        >The Solutions</span
-        >
-      </div>
-
-      <div class="grid grid-cols-3 gap-3.5 my-8">
-        <div
-          class="flex flex-col justify-between items-end font-quickSand font-medium"
-          >
-          <p class="text-xs lg:text-sm 2xl:!text-base pl-9">
-            We are a team of passionate and crazy individuals dedicated to
-            bringing your ideas to life. With a keen eye for aesthetics, attention
-            to detail, and
-          </p>
-
-          <p class="text-xs lg:text-sm 2xl:!text-base">
-            We are a team of passionate and crazy individuals dedicated to
-            bringing your ideas to life. With a keen eye for aesthetics, attention
-            to detail, and
-          </p>
-
-          <p class="text-xs lg:text-sm 2xl:!text-base">
-            We are a team of passionate and crazy individuals dedicated to
-            bringing your ideas to life. With a keen eye for aesthetics, attention
-            to detail, and
-          </p>
-
-          <p class="text-xs lg:text-sm 2xl:!text-base pl-9">
-            We are a team of passionate and crazy individuals dedicated to
-            bringing your ideas to life. With a keen eye for aesthetics, attention
-            to detail, and
-          </p>
-        </div>
-        <img
-          class="object-contain"
-          src="../../../assets/images/project-execution.png"
-          alt=""
-          />
-          <div
-            class="flex flex-col justify-between items-end font-quickSand font-medium"
-            >
-            <p class="text-xs lg:text-sm 2xl:!text-base -ml-9">
-              We are a team of passionate and crazy individuals dedicated to
-              bringing your ideas to life. With a keen eye for aesthetics, attention
-              to detail, and
-            </p>
-
-            <p class="text-xs lg:text-sm 2xl:!text-base">
-              We are a team of passionate and crazy individuals dedicated to
-              bringing your ideas to life. With a keen eye for aesthetics, attention
-              to detail, and
-            </p>
-
-            <p class="text-xs lg:text-sm 2xl:!text-base">
-              We are a team of passionate and crazy individuals dedicated to
-              bringing your ideas to life. With a keen eye for aesthetics, attention
-              to detail, and
-            </p>
-
-            <p class="text-xs lg:text-sm 2xl:!text-base -ml-9">
-              We are a team of passionate and crazy individuals dedicated to
-              bringing your ideas to life. With a keen eye for aesthetics, attention
-              to detail, and
-            </p>
-          </div>
-        </div> -->
 
         <div
           class="flex flex-col md:flex-row gap-12 md:gap-1.5 lg:gap-12 my-12 2xl:my-20 font-quickSand font-medium"
@@ -275,7 +184,7 @@
             <img
               class="size-14"
               src="../../../assets/images/challenge-icon.svg"
-              alt=""
+              alt="Challenge icon"
               />
               <h4
                 class="text-black text-2xl xl:text-3xl 2xl:text-4xl font-myfont text-center"
@@ -288,7 +197,7 @@
             <img
               class="hidden md:inline w-10 mx-1.5"
               src="../../../assets/images/project-execution-arrow.svg"
-              alt=""
+              alt="Arrow icon"
               />
               <div
                 class="p-6 2xl:py-14 2xl:px-9 bg-gradient-to-b from-[#f11df548] to-[#20b9fa48] rounded-badge flex flex-col items-center gap-3.5 2xl:gap-6 md:w-[50%]"
@@ -296,7 +205,7 @@
                 <img
                   class="size-14"
                   src="../../../assets/images/solution-icon.svg"
-                  alt=""
+                  alt="Solution icon"
                   />
                   <h4
                     class="text-transparent bg-clip-text bg-gradient-to-b from-[#F21DF5] to-[#20B9FA] text-2xl xl:text-3xl 2xl:text-4xl font-myfont text-center"
@@ -347,92 +256,13 @@
                   <img
                     class="hidden lg:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
                     src="../../../assets/images/dotted-line.svg"
-                    alt=""
+                    alt="Dotted connector line"
                     />
 
-                    <!-- <div
-                    class="bg-[#181921] rounded-full p-8 text-center text-white w-64 h-64 flex flex-col justify-center items-center shadow-lg !border border-[#34394B] z-10"
-                    >
-                    <div class="mb-3.5">
-                      <img
-                        src="../../../assets/images/process-design.svg"
-                        alt="Design Icon"
-                        class="h-12 w-12 mx-auto"
-                        />
-                      </div>
-                      <h3 class="text-3xl mb-2.5 font-myfont">GRAPHICS</h3>
-                      <p
-                        class="text-sm font-medium font-quickSand pt-2.5 border-t border-[#34394B] text-[#B4B9CB]"
-                        >
-                        Animations and Graphics Integration, Admin Console Integration
-                      </p>
-                    </div>
-
-                    <div
-                      class="bg-[#181921] rounded-full p-8 text-center text-white w-64 h-64 flex flex-col justify-center items-center shadow-lg !border border-[#34394B] z-10"
-                      >
-                      <div class="mb-3.5">
-                        <img
-                          src="../../../assets/images/process-design.svg"
-                          alt="Design Icon"
-                          class="h-12 w-12 mx-auto"
-                          />
-                        </div>
-                        <h3 class="text-3xl mb-2.5 font-myfont">DEVELOPMENT</h3>
-                        <p
-                          class="text-sm font-medium font-quickSand pt-2.5 border-t border-[#34394B] text-[#B4B9CB]"
-                          >
-                          Technical Documentation, Frontend Development, Backend Development
-                        </p>
-                      </div>
-
-                      <div
-                        class="bg-[#181921] rounded-full p-8 text-center text-white w-64 h-64 flex flex-col justify-center items-center shadow-lg !border border-[#34394B] z-10"
-                        >
-                        <div class="mb-3.5">
-                          <img
-                            src="../../../assets/images/process-design.svg"
-                            alt="Design Icon"
-                            class="h-12 w-12 mx-auto"
-                            />
-                          </div>
-                          <h3 class="text-3xl mb-2.5 font-myfont">TESTING</h3>
-                          <p
-                            class="text-sm font-medium font-quickSand pt-2.5 border-t border-[#34394B] text-[#B4B9CB]"
-                            >
-                            Concept Validation, First-click Testing, Usability Task Analysis, UAT
-                          </p>
-                        </div>
-
-                        <div
-                          class="bg-[#181921] rounded-full p-8 text-center text-white w-64 h-64 flex flex-col justify-center items-center shadow-lg !border border-[#34394B] z-10"
-                          >
-                          <div class="mb-3.5">
-                            <img
-                              src="../../../assets/images/process-design.svg"
-                              alt="Design Icon"
-                              class="h-12 w-12 mx-auto"
-                              />
-                            </div>
-                            <h3 class="text-3xl mb-2.5 font-myfont">REVIEW</h3>
-                            <p
-                              class="text-sm font-medium font-quickSand pt-2.5 border-t border-[#34394B] text-[#B4B9CB]"
-                              >
-                              Client Interview, Empathy Mapping, Market Analysis
-                            </p>
-                          </div> -->
                         </div>
                       </section>
 
                       <section class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10">
-                        <!-- <div
-                        class="text-center pb-8 flex flex-col gap-3.5 2xl:gap-6 border-b border-[#B4B9CB]"
-                        >
-                        <h2 class="text-[#fff] text-3xl xl:text-4xl 2xl:text-5xl font-myfont">
-                          INNOVATIVE DESIGN & <br />
-                          DEVELOPMENT PROCESS
-                        </h2>
-                      </div> -->
 
                       <div
                         class="text-center pb-8 flex flex-col gap-3.5 2xl:gap-6 !border-b !border-[#34394B]"
@@ -447,7 +277,7 @@
                           <img
                             class="h-[70vh] w-full object-cover"
                             [src]="imageUrl + '/' + $safeNavigationMigration(cardData?.how_image)"
-                            alt=""
+                            [alt]="(cardData?.title || 'Project') + ' development process'"
                             />
                           </div>
                           <div class="flex flex-col md:gap-1.5 justify-evenly gap-3.5">

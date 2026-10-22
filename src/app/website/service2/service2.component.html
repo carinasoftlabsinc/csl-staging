@@ -1,12 +1,7 @@
 <main class="bg-[#0B0C10] overflow-hidden">
   <div class="game-service-bg">
-    <!-- <div class="relative z-10" > -->
     <app-header></app-header>
-  <!-- </div> -->
 
-  <!-- <section
-  class="body-font flex items-center justify-center h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
-  > -->
   <section
     class="body-font flex justify-center flex-wrap h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
     >
@@ -28,28 +23,12 @@
       Our Game Development Process
     </h2>
 
-    <!-- <a appGradientButton size="md" class="hidden sm:inline-flex">
-  More Project
-  <img src="assets/images/small-tilt-arrow.webp" alt="" aria-hidden="true" width="12" height="14" loading="lazy" decoding="async" />
-</a> -->
   </div>
-
-
-  <!-- <div class="xl:pt-20 pt-4">
-  <p
-    class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-10 text-white"
-    >
-    With years of experience in the industry, We provide high-quality and
-    cost effective <br class="hidden md:block" />
-    web , Game and Software development services.
-  </p>
-</div> -->
 
 <div class="containNscroll">
   <div
     class="hidden top-[35%] lg:-left-[7vw] md:-left-[47vw] absolute md:flex flex-col items-end"
     >
-    <!-- <div> -->
     <span
       class="text-8xl 2xl:text-9xl text-[#0B0C10] font-thin font-myfont text-strokeee"
       >
@@ -80,7 +59,7 @@
             <img
               class="h-[40vh] 2xl:h-[45vh] rounded-badge w-full object-cover"
               [src]="card.imgSrc"
-              alt=""
+              [alt]="card.heading"
               />
               <h4
                 class="font-myfont text-[#B1DF4F] text-3xl 2xl:text-5xl mt-3.5 mb-2.5 2xl:mt-7 2xl:mb-3.5"
@@ -95,25 +74,10 @@
                   >
                   {{ card.desc }}
                 </p>
-                <!-- <a appGradientButton size="md" variant="soft" class="font-mont">
-  Case Study
-</a> -->
-              <!-- </div> -->
             </div>
           </div>
         }
 
-        <!-- <div class="thumbnail fakePin">1</div>
-        <div class="thumbnail fakePin">2</div>
-        <div class="thumbnail fakePin">3</div>
-        <div class="thumbnail fakePin">4</div> -->
-        <!-- <div class="thumbnail fakePin">5</div>
-        <div class="thumbnail fakePin">6</div>
-        <div class="thumbnail full fakePin">7</div>
-        <div class="thumbnail fakePin">8</div>
-        <div class="thumbnail fakePin">9</div>
-        <div class="thumbnail full fakePin">10</div>
-        <div class="thumbnail fakePin">11</div> -->
       </div>
     </div>
   </section>
@@ -148,13 +112,6 @@
                     {{ list.desc }}
                   </p>
                 </div>
-              <!-- </li>
-              <li class="marker:text-sky-400 marker:text-2xl ">
-                <div class="flex flex-col gap-2">
-                  <h4 class="font-myfont text-white text-2xl">Game Development Document</h4>
-                  <p class="font-quickSand font-medium text-[#B4B9CB] text-xs">We are a team of passionate and crazy individuals dedicated to bringing your ideas to life. With a keen eye for aesthetics,We are a team of passionate and crazy individuals dedicated to bringing your ideas to life. With a keen eye for aesthetics</p>
-                </div>
-              </li> -->
               <!-- ... -->
             </li>
           }
@@ -184,20 +141,6 @@
         }
       </div>
     </section>
-
-    <!-- <section class="2xl:p-24 py-10 md:py-10 overflow-scroll">
-    <h3
-      class="font-myfont text-xl lg:text-3xl 2xl:text-5xl text-white mb-9 text-center"
-      >
-      Genres We Master
-    </h3>
-
-    <div
-      class="font-mont text-9xl text-white uppercase text-nowrap animate-infinite-scroll"
-      >
-      Puzzle Shooter strategy Multiplayer fighting Action simulation
-    </div>
-  </section> -->
 
   <section class="2xl:py-24 py-10 md:py-10 lg:py-24 text-scrolling-bg">
     <h3
@@ -293,7 +236,6 @@
   <section
     class="relative px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]"
     >
-    <!-- <div class="!container mx-auto"> -->
     <div>
       <h2
         class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont pb-4 border-b border-[#B4B9CB]"
@@ -319,7 +261,7 @@
           <img
             class="object-cover -rotate-45"
             src="../../../assets/images/logo-1.png"
-            alt=""
+            alt="Unity logo"
             />
           </div>
           <div
@@ -328,7 +270,7 @@
             <img
               class="object-cover -rotate-45"
               src="../../../assets/images/logo-6.png"
-              alt=""
+              alt="Angular logo"
               />
             </div>
             <div
@@ -359,7 +301,7 @@
         <img
           class="hidden lg:block absolute object-cover object-top -top-[22rem] -right-96 2xl:-right-[32vw] w-[150%] h-[160%] 2xl:w-[100%] 2xl:h-[130%]"
           src="../../../assets/images/Inorm Character 1.webp"
-          alt=""
+          alt="Winged fantasy king character holding a glowing orb"
           />
         </section>
 
@@ -377,7 +319,6 @@
           <app-game-slider></app-game-slider>
         </section>
 
-
         <section
           class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px] mb-24 lg:mb-14"
           >
@@ -390,7 +331,6 @@
               </h2>
             </div>
             <app-getinform [imgSrc]="'../../../assets/images/serviceform.png'"></app-getinform>
-            <!-- <img class="h-72 w-80" src="../../../assets/images/serviceform.png" alt=""> -->
           </div>
         </section>
 

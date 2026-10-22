@@ -154,6 +154,7 @@ export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
     {
       name: 'Arunanchal Film Festival',
       imgSrc: '../../assets/images/client-bub-1.png',
+      alt: 'Arunachal Film Festival logo',
       feedback:
         'The website is really good. Thanks, Carina for making this event successful.',
       feedbackClass: 'quote-text-1 show',
@@ -162,6 +163,7 @@ export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
     {
       name: 'Arizona Derby',
       imgSrc: '../../assets/images/client-bub-2.png',
+      alt: 'Peniel Global General Consulting Inc. logo',
       feedback:
         'I am really happy with the performance of Team Carina. The game is exactly the same, what I wanted.',
       feedbackClass: 'quote-text-3 hide-top',
@@ -170,6 +172,7 @@ export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
     {
       name: 'Space M',
       imgSrc: '../../assets/images/client-bub-3.png',
+      alt: 'Space M logo',
       feedback:
         'The Teamwork is good. fastest service I got both the applications and website in just 5 months.',
       feedbackClass: 'quote-text-4 hide-bottom',
@@ -178,6 +181,7 @@ export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
     {
       name: 'Ballegro - Your Pocket Pianist',
       imgSrc: '../../assets/images/client-bub-4.png',
+      alt: 'Ballegro| Your Pocket Pianist app logo',
       feedback:
         "Carina teamwork is incredible and amazing. It's good to work with them",
       feedbackClass: 'quote-text-5 hide-top',
@@ -186,6 +190,7 @@ export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
     {
       name: 'Bravo - Tip or Pay',
       imgSrc: '../../assets/images/client-bub-5.png',
+      alt: 'Bravo| Tip or Pay app logo',
       feedback:
         'The Website and Application seems perfectly done. I will surely recommend them to others.',
       feedbackClass: 'quote-text-6 hide-top',
@@ -194,6 +199,7 @@ export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
     {
       name: 'E-Food',
       imgSrc: '../../assets/images/client-bub-6.png',
+      alt: 'E-Food logo',
       feedback:
         'Carina has always been the most trustworthy company for me. I got all the applications on time. Very reliable, fastest delivery and very humble team.',
       feedbackClass: 'quote-text-7  hide-top',
@@ -233,6 +239,7 @@ export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
       imgAlign: 'lg:text-right',
       num: '1',
       imgSrc: '',
+      alt: 'Client logo',
       title: ' Project Understanding',
       desc: 'In the initial phase of our project process, we focus on understanding the core ideas and objectives behind the project. This involves thorough discussions with clients or stakeholders to gain insights into their vision, goals, and expectations.',
     },
@@ -241,6 +248,7 @@ export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
       imgAlign: 'lg:text-left',
       num: '2',
       imgSrc: '',
+      alt: 'Client logo',
       title: ' Project Requirements',
       desc: 'The second phase of our project lifecycle revolves around defining and managing project requirements. This critical step involves capturing, analyzing, documenting, and validating what the project needs to achieve.',
     },
@@ -248,6 +256,7 @@ export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
       imgAlign: 'lg:text-right',
       num: '3',
       imgSrc: '',
+      alt: 'Client logo',
       title: 'Project Planning',
       desc: 'Project planning is a pivotal phase that sets the roadmap for the entire project. It involves meticulous budgeting, scheduling, and resource management to ensure efficient utilization of resources and timely delivery of project objectives.',
     },
@@ -256,6 +265,7 @@ export class Know3Component implements OnInit, AfterViewInit, OnDestroy {
       imgAlign: 'lg:text-left',
       num: '4',
       imgSrc: '',
+      alt: 'Client logo',
       title: 'Project Execution',
       desc: 'Project execution is where plans are put into action, and progress is made towards achieving project goals. It involves tracking performance, addressing challenges, and adapting to changes in real-time to ensure successful project delivery.',
     },

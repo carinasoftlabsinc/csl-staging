@@ -8,26 +8,6 @@
         class="2xl:ml-44 xl:ml-40 lg:ml-20 md:ml-6 flex items-center justify-between overflow-hidden relative"
         >
         <div class="w-full md:w-1/2">
-          <!-- <h1>
-          <span
-            class="text-white font-myfont text-[30px] 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]"
-            >
-            OUR
-          </span>
-          <br />
-          <span
-            class="text-white tracking-wide text-6xl md:text-4xl lg:text-[50px] lg:leading-[50px] xl:text-[60px] xl:leading-[60px] 2xl:text-[80px] 2xl:leading-[100px] sm:text-4xl font-myfont"
-            >
-            NewsRoom
-          </span>
-        </h1>
-
-        <p
-          class="text-white mt-3 text-sm xl:text-[16px] 2xl:text-[23px] 2xl:leading-[27px] font-quickSand font-normal"
-          >
-          Stay informed with our recent milestones, news, and success stories
-          as we continue to grow and innovate.
-        </p> -->
 
         <h1>
           <span
@@ -90,15 +70,6 @@
       allowfullscreen
     ></iframe>
 
-    <!-- <iframe
-    class="h-[80vh] w-full md:object-cover"
-    src="https://www.youtube.com/embed/J2vM81MHUa0?si=lO0Fo_F9VsVfGCnz&autoplay=1&mute=0"
-    title="YouTube video player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen
-  ></iframe> -->
 </div>
 </section>
 
@@ -137,10 +108,8 @@
           <div class="h-[40vh] md:h-[90vh] w-full bg-gray-200 animate-pulse rounded-3xl"></div>
         }
 
-
         <!-- Secondary Items in a Grid -->
         <div class="grid grid-rows-2 gap-4 h-[90vh] w-full">
-          <!-- <ng-container *ngFor="let card of featured.slice(1); let i = index"> -->
           <div class="relative group overflow-hidden rounded-3xl">
             @if (!featuredLoading) {
               <a [routerLink]="['/news', formatHeading(featured[1]?.titleLink)]">
@@ -161,7 +130,6 @@
                 <div class="h-full w-full bg-gray-200 animate-pulse rounded-3xl"></div>
               }
             </div>
-          <!-- </ng-container> -->
 
           <!-- Final Row: Static or Optional Placeholder Items -->
           <div class="rounded-3xl overflow-hidden flex gap-4">
@@ -246,30 +214,6 @@
                 <div class="h-[40vh] md:h-[90vh] w-full bg-gray-200 animate-pulse rounded-3xl mb-4"></div>
                 <div class="h-[40vh] md:h-[90vh] w-full bg-gray-200 animate-pulse rounded-3xl"></div>
               }
-              <!-- <div
-              class="grid grid-cols-1 md:grid-cols-2 md:grid-rows-2 md:h-[90vh] w-full overflow-hidden gap-4"
-              >
-              <a
-                [routerLink]="['/news', formatHeading(card.titleLink)]"
-                class="relative group overflow-hidden rounded-3xl"
-                *ngFor="let card of prevFeatured | slice : 1 : 4"
-                >
-                <img
-                  class="md:h-full w-full object-cover h-52"
-                  [src]="imageUrl + '/' + card?.image_2 || 'default-image.jpg'"
-                  alt=""
-                  />
-                  <div
-                    class="h-1/2 w-full bg-gradient-to-b from-transparent to-[#000] absolute left-0 -bottom-80 group-hover:bottom-0 transition-all ease-in-out duration-300 flex items-end"
-                    >
-                    <p
-                      class="text-white font-quickSand mb-7 px-3.5 2xl:px-6 font-medium 2xl:text-lg"
-                      >
-                      {{ card.title }}
-                    </p>
-                  </div>
-                </a>
-              </div> -->
             </div>
           </section>
 
@@ -304,8 +248,6 @@
                     </a>
                   }
                 } @else {
-                  <!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 2xl:gap-x-9 2xl:gap-y-14"> -->
-                  <!-- <div class="h-72 2xl:h-80 w-full bg-gray-200 animate-pulse rounded-2xl" *ngFor="let _ of [1,2,3,4,5,6]"></div> -->
                   @for (_ of [1, 2, 3, 4, 5, 6]; track _) {
                     <div
                       class="flex flex-col gap-2"
@@ -314,7 +256,6 @@
                       <div class="h-5 w-3/4 bg-gray-200 animate-pulse rounded"></div>
                     </div>
                   }
-                <!-- </div> -->
               }
 
             </div>

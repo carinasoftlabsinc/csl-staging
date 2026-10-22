@@ -1,14 +1,4 @@
 <div class="flex flex-col md:flex-row xl:pt-14 md:pt-12" [ngClass]="{ '!pt-0': formOnly }">
-  <!-- <div class="md:w-1/2 mb-8 md:mb-0 sm:mx-auto mt-5">
-  <p
-    class="text-black font-myfont text-6xl md:text-[70px] md:leading-[70px] lg:leading-[90px] lg:text-[90px] xl:text-[130px] xl:leading-[130px] 2xl:text-[160px] 2xl:leading-[152px] font-normal"
-    >
-    LET'S <br />
-    <span class="md:ml-16 lg:ml-32 2xl:ml-28 sm:ml-20">GET IN</span>
-    <br />
-    TOUCH
-  </p>
-</div> -->
 
 @if (!formOnly && imgSrc) {
   <div class="md:w-1/2 mb-8 md:mb-0 sm:mx-auto px-7">
@@ -221,11 +211,6 @@
                 >
                 <div class="flex flex-col gap-2.5">
                   <div class="flex justify-start items-center gap-2">
-                    <!-- <img
-                    class="w-7"
-                    src="../../../assets/images/phone_icon.svg"
-                    alt=""
-                    /> -->
                     @if (theme !== 'dark') {
                       <img
                         class="w-7"
@@ -252,13 +237,13 @@
                       <img
                         class="w-7"
                         src="../../../assets/images/email_icon.svg"
-                        alt="" width="32" height="32" loading="lazy" decoding="async" />
+                        alt="Email" width="32" height="32" loading="lazy" decoding="async" />
                     }
                     @if (theme === 'dark') {
                       <img
                         class="w-5"
                         src="../../../assets/images/email-gradient-icon.svg"
-                        alt="" width="25" height="20" loading="lazy" decoding="async" />
+                        alt="Email" width="25" height="20" loading="lazy" decoding="async" />
                     }
                     <a
                       href="mailto:business@carinasoftlabs.com"
@@ -281,7 +266,7 @@
                     >
                     @if (!loading) {
                       <span>Send Enquiry</span>
-                      <img src="../../../assets/images/submit-btn.svg" alt="" class="h-5 w-5" width="23" height="24" loading="lazy" decoding="async" />
+                      <img src="../../../assets/images/submit-btn.svg" alt="Send enquiry" class="h-5 w-5" width="23" height="24" loading="lazy" decoding="async" />
                     } @else {
                       <mat-spinner
                         diameter="24"

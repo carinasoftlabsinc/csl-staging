@@ -38,8 +38,11 @@
   border-radius: clamp(16px, 1.3542vw, 26px);
   background: #34394b80;
 }
-.game-technologies__tile img { width: auto; max-width: 72%; height: 60%; object-fit: contain; transition: transform .3s ease; }
-@media (hover: hover) { .game-technologies__tile:hover img { transform: scale(1.08); } }
+.game-technologies__tile img { display: block; width: var(--logo-w, auto); max-width: 100%; max-height: 100%; height: auto; transition: transform .3s ease; }
+// Whole-tile artwork (tile background included): fill the tile and drop the CSS background.
+.game-technologies__tile--full { padding: 0; background: none; }
+.game-technologies__tile--full img { width: 100%; height: 100%; }
+@media (hover: hover) { .game-technologies__tile:not(.game-technologies__tile--full):hover img { transform: scale(1.08); } }
 @media (min-width: 600px) and (max-width: 1023px) {
   .game-technologies__description { width: min(100%, 710px); }
   .game-technologies__layout { grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); }

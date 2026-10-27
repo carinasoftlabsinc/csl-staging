@@ -42,12 +42,19 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
       if (routerEvent instanceof NavigationEnd) {
         this.analyticsService.trackMetaPageView(routerEvent.urlAfterRedirects);
-      }
-      if (isPlatformBrowser(this.platformId)) {
-        window.scrollTo(0, 0);
+        // Start each new page at the top, but keep the position when only the query changes
+        // (e.g. switching portfolio tabs with ?category=...).
+        const path = routerEvent.urlAfterRedirects.split(/[?#]/)[0];
+        if (isPlatformBrowser(this.platformId) && path !== this.lastPath) {
+          window.scrollTo(0, 0);
+        }
+        this.lastPath = path;
       }
     });
   }
+
+  /** Path of the last finished navigation, without query string or fragment. */
+  private lastPath = '';
 
   ngOnInit() {
     /* empty */

@@ -7,6 +7,14 @@
 //   color: inherit;
 // }
 
+.blog-header-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1104 / 320;
+  object-fit: cover;
+}
+
 .active {
   font-weight: bold;
   //   color: #22ff00 !important; /* Adjust color as needed */

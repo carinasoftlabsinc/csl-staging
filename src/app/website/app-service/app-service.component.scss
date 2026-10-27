@@ -22,17 +22,17 @@
 .expertise-track:focus-visible { outline: 2px solid #9b5df7; outline-offset: 6px; border-radius: 10px; }
 .expertise-card { position: relative; flex: 0 0 calc((100% - 3.958334cqw) / 3); aspect-ratio: 532 / 573; border-radius: 2.309167cqw; overflow: hidden; scroll-snap-align: start; container-type: inline-size; }
 .expertise-number { position: relative; font: 400 18.39887cqw / 1.313 'MyFont', sans-serif; padding: 6.3853cqw 9.2105cqw 0; }
-.expertise-card h3 { position: relative; font-size: 9.3985cqw; line-height: 1.1; font-weight: 700; margin: 13.2086cqw 9.2105cqw 0; letter-spacing: -.025em; }
-.expertise-description { position: relative; font-size: 4.13534cqw; line-height: 1.1818; width: 75.7518%; margin: 7.70677cqw 9.2105cqw 0 !important; }
+.expertise-card h3 { position: relative; font-size: 9.3985cqw; line-height: 1.1; font-weight: 700; margin: 7cqw 9.2105cqw 0; letter-spacing: -.025em; }
+.expertise-description { position: relative; font-size: 4.13534cqw; line-height: 1.1818; width: 70%; margin: 5cqw 9.2105cqw 0 !important; }
 .expertise-link { display: block; position: absolute; right: 5.2293%; bottom: 4.2956%; width: 11.5008%; aspect-ratio: 1; transition: transform .25s ease; }
 .expertise-link img { width: 100%; height: auto; }
 .expertise-link:hover { transform: rotate(45deg); }
 .expertise-link:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: 50%; }
 .expertise-preview { position: absolute; left: 41.8327%; top: -48.1cqw; width: 49.4165%; height: 46.166cqw; max-width: none; object-fit: cover; border-radius: 9.2105cqw; transition: top .5s cubic-bezier(.22,1,.36,1); pointer-events: none; }
 @media (hover: hover) { .expertise-card:hover .expertise-preview, .expertise-card:focus-within .expertise-preview { top: -10.45cqw; } }
-.expertise-card:last-child h3 { font-size: 8.2cqw; }
+.expertise-card h3.compact-title { font-size: 8.2cqw; }
 
-.process-section { position: relative; height: 56.25cqw; overflow: hidden; padding-top: 3.854167cqw; }
+.process-section { position: relative; height: 65.5cqw; overflow: hidden; padding-top: 3.854167cqw; }
 .process-section .section-title { position: relative; z-index: 2; font-size: 2.34375cqw; }
 .process-introduction { position: relative; z-index: 2; width: 70.1477cqw; font-size: 1.666667cqw; line-height: 1.18; margin: 1.498cqw 0 0 13.046875cqw !important; }
 .process-steps { list-style: none; position: absolute; top: 17.604167cqw; left: 19.53125%; width: 27.77896%; padding: 0; }
@@ -51,12 +51,21 @@
 
 .industries-section { padding: 2.8125cqw 0 5cqw; }
 .industry-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2.08203cqw 1.666667cqw; margin-top: 2.083333cqw; }
-.industry-card { aspect-ratio: 394 / 342; border-radius: 2.135416cqw; padding: .3125cqw; transition: transform .3s ease; }
+.industry-card { display: flex; flex-direction: column; border-radius: 2.135416cqw; padding: .3125cqw; transition: transform .3s ease; }
 .industry-photo { width: 100%; aspect-ratio: 382 / 236.218; border-radius: 1.822917cqw; overflow: hidden; }
 .industry-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
-.industry-card h3 { display: flex; justify-content: center; align-items: center; height: 5.208333cqw; padding: 0 .4cqw; font-size: 1.354167cqw; line-height: 1.1; text-align: center; font-weight: 600; }
+.industry-card h3 { padding: 1.1cqw .8cqw 0; font-size: 1.354167cqw; line-height: 1.1; text-align: center; font-weight: 600; }
 .industry-card:nth-child(-n+2) h3 { font-size: 1.5625cqw; }
+.industry-description { padding: .5cqw 1.2cqw 1.3cqw; font-size: .9375cqw; line-height: 1.35; text-align: center; font-weight: 500; opacity: .85; }
 @media (hover: hover) { .industry-card:hover .industry-photo img { transform: scale(1.045); } }
+.expertise-cta { display: flex; flex-direction: column; justify-content: space-between; background: #0b0c10; color: #fff; padding: 9.2105cqw; }
+.expertise-cta-title { font: 700 9.3985cqw/1.15 'QuickSand', sans-serif; }
+.expertise-cta-link { color: #b1df4f; font-weight: 700; font-size: max(14px, 4.6cqw); text-decoration: none; }
+.expertise-cta-link:hover { text-decoration: underline; }
+/* Tile height is 44.9cqw (312 x 140), so these limits keep every logo inside it at any width. */
+.technology-logo { display: block; width: auto; height: auto; max-width: 62cqw; max-height: 21cqw; object-fit: contain; }
+/* Square icon-only logos need more height to match the visual weight of the wordmarks. */
+.technology-logo.technology-icon { max-height: 30cqw; }
 
 .technology-section { padding: 8.645833cqw 0 8.645833cqw; }
 .technology-introduction { width: 36.945cqw; font-size: 1.145833cqw; line-height: 1.54545; color: #b4b9cb; margin-top: 1.35cqw !important; }
@@ -68,7 +77,6 @@
 .technology-asset img { display: block; max-width: none; }
 .technology-tile:has(span):not(.json-tile) .technology-asset { top: 42%; }
 .technology-tile span { position: absolute; top: 72%; font-size: 4.7558cqw; line-height: 1.2; font-weight: 600; white-space: nowrap; }
-.technology-tile:nth-child(3) span { font-size: 4.1904cqw; }
 .technology-tile.full-tile { background: transparent; }
 .technology-tile.json-tile span { position: static; font-family: Arial, sans-serif; font-size: 12.59455cqw; font-weight: 900; }
 
@@ -86,7 +94,7 @@
 }
 @media (min-width: 1024px) and (max-width: 1279px) {
   .section-introduction { font-size: 14px; width: 45%; }
-  .process-section { min-height: 680px; }
+  .process-section { min-height: 830px; }
   .process-steps p, .process-artwork p { font-size: 13px; }
   .process-steps li + li { margin-top: 32px; }
   .process-artwork p { top: 37cqw; }
@@ -118,6 +126,8 @@
   .industry-card { border-radius: 28px; padding: 5px; }
   .industry-photo { border-radius: 23px; }
   .industry-card h3, .industry-card:nth-child(-n+2) h3 { font-size: clamp(16px, 2.4vw, 24px); height: auto; min-height: 70px; padding: 14px 5px; }
+  .industry-card h3, .industry-card:nth-child(-n+2) h3 { min-height: 0; padding-bottom: 4px; }
+  .industry-description { font-size: 14px; padding: 2px 10px 16px; }
   .technology-section { padding: 64px 0; }
   .technology-introduction { font-size: 17px; line-height: 1.6; width: min(100%, 710px); margin-top: 24px !important; }
   .technology-grid { width: 100%; gap: 18px; margin-top: 36px !important; }
@@ -132,7 +142,7 @@
   .section-content { margin: 0 24px; }
   .expertise-track { gap: 16px; margin-right: -24px; padding-right: 24px; scroll-padding-left: 0; }
   .expertise-card { flex-basis: 90%; min-height: 380px; aspect-ratio: auto; }
-  .expertise-card h3, .expertise-card:last-child h3 { font-size: max(24px, 9.3985cqw); }
+  .expertise-card h3, .expertise-card h3.compact-title { font-size: max(24px, 9.3985cqw); }
   .expertise-description { font-size: max(14px, 4.13534cqw); line-height: 1.4; }
   .expertise-link { min-width: 44px; }
   .industry-grid { gap: 16px; }

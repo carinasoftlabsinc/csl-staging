@@ -107,19 +107,22 @@ export class GameServiceComponent implements OnInit {
     },
   ];
 
+  readonly techAssets = 'assets/images/game-design/tech/';
+
+  // width/height are the logo's size in the 312 x 140 design tile; widthPct is its share of the tile width.
+  // `full` logos are whole-tile artwork (tile background included).
   techStack = [
-    'Unity',
-    'Unreal Engine',
-    'Godot',
-    'Blender',
-    'Autodesk Maya',
-    '3ds Max',
-    'Adobe Photoshop',
-    'Spine 2D',
-    'C#',
-    'C++',
-    'Android Studio',
-    'Xcode',
-    'Meta Quest SDK',
+    { name: 'Unity', image: 'unity.svg', width: 312, height: 140, widthPct: 100, full: true },
+    { name: 'Unreal Engine', image: 'unreal-engine.svg', width: 200, height: 57, widthPct: 64.1, full: false },
+    { name: 'Godot', image: 'godot.svg', width: 312, height: 140, widthPct: 100, full: true },
+    { name: 'Blender', image: 'blender.svg', width: 237, height: 59, widthPct: 75.8, full: false },
+    { name: 'Autodesk Maya', image: 'autodesk-maya.svg', width: 211, height: 53, widthPct: 67.6, full: false },
+    { name: 'Autodesk 3ds Max', image: 'autodesk-3ds-max.svg', width: 222, height: 54, widthPct: 71.2, full: false },
+    { name: 'Adobe Photoshop', image: 'adobe-photoshop.svg', width: 94, height: 91, widthPct: 30.1, full: false },
+    { name: 'Spine', image: 'spine.svg', width: 174, height: 52, widthPct: 55.8, full: false },
+    { name: 'C#', image: 'csharp.svg', width: 312, height: 140, widthPct: 100, full: true },
+    { name: 'C++', image: 'cpp.svg', width: 312, height: 140, widthPct: 100, full: true },
+    { name: 'Android Studio', image: 'android-studio.svg', width: 103, height: 103, widthPct: 33, full: false },
+    { name: 'Xcode', image: 'xcode.svg', width: 120, height: 120, widthPct: 38.5, full: false },
   ];
 }

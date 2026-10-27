@@ -28,69 +28,82 @@ interface Feature {
 export class AiServiceComponent implements OnInit {
   private readonly seo = inject(SeoService);
   readonly assets = 'assets/images/ai-emerging-tech/';
-  readonly serviceRows = [0, 1];
-  readonly experienceCards = [0, 1, 2];
+  readonly strategyCallLink = 'https://calendar.app.google/mezjQ2cpZyzbixNv6';
+  readonly experienceCards = [
+    {
+      category: 'AI-Powered Applications',
+      title: 'Automated Enterprise Document Parsing System',
+      description: 'Developed an intelligent document processing pipeline that automated form extraction, cutting invoice handling time by 75% while increasing data accuracy.',
+    },
+    { category: 'AI-Powered Applications', title: 'Intelligent Digital Products and Automation', description: 'AI capabilities integrated directly into enterprise websites, apps and operations.' },
+    { category: 'AI-Powered Applications', title: 'Intelligent Digital Products and Automation', description: 'AI capabilities integrated directly into enterprise websites, apps and operations.' },
+  ];
   readonly metrics = [
-    { title: 'AI-Powered', description: 'Intelligent systems built around real use cases.' },
-    { title: 'Game & Interactive Expertise', description: 'AI applied to games, simulations and immersive experiences.' },
-    { title: 'Future-Ready Engineering', description: 'Scalable technology across Web, App, Cloud, XR and emerging platforms.' },
+    { title: 'Purpose-Driven AI', description: 'Custom machine learning and generative workflows built for real-world impact, not hype.' },
+    { title: 'Interactive & Game Intelligence', description: 'Next-gen NPC behavior, procedural generation, and dynamic XR simulations.' },
+    { title: 'Future-Proof Stack', description: 'Enterprise-grade code across Cloud, Web3/XR, Mobile, and Web platforms.' },
   ];
   readonly services: readonly Capability[] = [
-    { title: 'AI Strategy & Consulting', description: 'Identify practical opportunities, roadmaps and adoption plans around business goals.' },
-    { title: 'Generative AI Solutions', description: 'Enterprise copilots, knowledge systems, content tools and custom AI experiences.' },
-    { title: 'AI Automation', description: 'Automate repetitive workflows, operational tasks and business processes.' },
-    { title: 'AI-Powered Web & Apps', description: 'Smarter, more personalized websites, mobile apps and enterprise products.' },
-    { title: 'Data, ML & Predictive Intelligence', description: 'Turn data into actionable insights with analytics, ML and predictive systems.' },
+    { title: 'AI Strategy & Consulting', description: 'Identify high-ROI use cases, assess data readiness, and map a clear execution roadmap designed around real business goals.' },
+    { title: 'Generative AI Solutions', description: 'Enterprise copilots, custom content tools, and seamless generative AI integration into your existing products and workflows.' },
+    { title: 'Workflow & Enterprise Automation', description: 'Our workflow automation services handle repetitive tasks, complex approvals, and business processes so your team can focus on higher-value work.' },
+    { title: 'Intelligent Document Processing (IDP)', description: 'Automate document extraction from invoices, contracts, and forms with highly accurate, searchable results.' },
+    { title: 'Model Evaluation & Monitoring', description: 'Systematic model evaluation, testing, and fine-tuning that keep your AI accurate, safe, and reliable post-launch.' },
+    { title: 'AI-Powered Web & Mobile Apps', description: 'Build smarter, highly personalized websites, mobile apps, and enterprise software products that adapt to user behavior.' },
+    { title: 'Data, ML & Predictive Intelligence', description: 'Transform raw data pipelines into actionable business intelligence through custom predictive models and recommendation engines.' },
+    { title: 'Semantic Search Development', description: 'Upgrade traditional keyword search to context-aware discovery systems across complex enterprise knowledge bases.' },
+    { title: 'Enterprise NLP & Language Models', description: 'Applied natural language processing for intelligent chatbots, automated summarization, sentiment analysis, and multilingual localization.' },
+    { title: 'Computer Vision Systems', description: 'Real-time image and video analysis for automated quality control, object tracking, and operational visual monitoring.' },
   ];
   readonly features: readonly Feature[] = [
     {
       id: 'games', title: 'AI Game Development', headline: 'Smarter Games.\nMore Dynamic Experiences.',
-      description: 'With deep game development expertise, CSL explores how AI can make games more intelligent, adaptive and immersive—from NPC behavior to procedural worlds and personalized gameplay.',
+      description: 'With deep game development expertise, we explore how AI can make games more intelligent, adaptive, and immersive—from NPC behavior and procedural worlds to personalized gameplay.',
       image: '9002-4874-Bg1.webp',
-      imageAlt: 'Game developer building a fantasy game on two monitors next to a small AI robot',
+      imageAlt: 'AI game development: game developer building a fantasy game next to a small AI robot',
       cards: [
-        { title: 'Intelligent NPCs', description: 'NPCs that react to players, environments and game events.' },
-        { title: 'Adaptive Gameplay', description: 'Challenges and difficulty calibrated to player behavior.' },
-        { title: 'Procedural Content', description: 'AI-assisted environments, quests, dialogue and gameplay content.' },
-        { title: 'AI Game Assistants', description: 'Conversational companions, guides and in-game characters.' },
-        { title: 'Personalized Player Experiences', description: 'More relevant experiences informed by player data.' },
-        { title: 'AI-Assisted Development', description: 'Accelerated prototyping, content workflows, testing and production.' },
+        { title: 'Intelligent NPCs', description: 'Non-player characters that react dynamically to player actions, environments, and game story events.' },
+        { title: 'Adaptive Gameplay', description: 'Challenges and difficulty curves that adjust seamlessly to each player’s skill level and playing behavior.' },
+        { title: 'Procedural Content', description: 'AI-assisted generation of environments, quests, dialogue trees, and gameplay assets.' },
+        { title: 'AI Game Assistants', description: 'Conversational companions, lore guides, and in-game characters powered by custom language models.' },
+        { title: 'Personalized Player Experiences', description: 'Tailored player journeys, rewards, and recommendations shaped directly by player data.' },
+        { title: 'AI-Assisted Development', description: 'Accelerated prototyping, asset creation pipelines, automated QA testing, and production workflows.' },
       ],
     },
     {
       id: 'blockchain', title: 'AI • Blockchain • Games', headline: 'Intelligent Systems for\nPlayer-Owned Game Worlds',
-      description: 'CSL combines game development and blockchain expertise to explore technical models for digital ownership, interactive assets and intelligent game economies.',
+      description: 'We combine game development and blockchain expertise to build new models for digital ownership, interactive assets, and intelligent game economies.',
       image: '9030-1466-Bg2.webp',
       imageAlt: 'Gamer at a keyboard with holographic AI and blockchain panels, NFT cards and coins in a fantasy game world',
       cards: [
-        { title: 'AI-Driven Game Assets', description: 'Dynamic behaviors and attributes for player-owned digital assets.', star: true },
-        { title: 'Intelligent Game Economies', description: 'Data systems to analyze and balance complex game economies.', icon: '9030-1466-Group1000001990.svg' },
-        { title: 'Dynamic NFT Experiences', description: 'Evolving asset interactions within product and game systems.', icon: '9030-1466-Frame1000002122.svg' },
-        { title: 'AI + Web3 Game Infrastructure', description: 'Game logic, smart contracts, wallets, marketplaces and AI systems.', icon: '9030-1466-Frame1000002123.svg' },
+        { title: 'AI-Driven Game Assets', description: 'Dynamic behaviors, attributes, and traits for player-owned digital assets.', star: true },
+        { title: 'Intelligent Game Economies', description: 'Data systems that analyze, model, and balance complex in-game economies in real time.', icon: '9030-1466-Group1000001990.svg' },
+        { title: 'Dynamic NFT Experiences', description: 'Assets that evolve dynamically through player achievements, game events, and marketplace activity.', icon: '9030-1466-Frame1000002122.svg' },
+        { title: 'AI + Web3 Game Infrastructure', description: 'Game logic, smart contracts, non-custodial wallets, marketplaces, and AI systems working together seamlessly.', icon: '9030-1466-Frame1000002123.svg' },
       ],
     },
     {
       id: 'web', title: 'AI • Web • Services', headline: 'Intelligent Websites.\nSmarter Digital Products.',
-      description: 'CSL combines web development and AI expertise to build fast, adaptive websites, web apps and intelligent platforms that understand users and grow with your business.',
+      description: 'We combine web development and AI expertise to build fast, adaptive websites, web apps, and platforms that understand your users and grow with your business.',
       image: '9100-1442-Bg2.webp',
       imageAlt: 'Developer typing on a laptop while a holographic AI robot works on website analytics dashboards',
       cards: [
-        { title: 'AI-Powered Web Apps', description: 'Smart search, recommendations and automation built directly into your web product.', icon: '9100-1442-Frame1000002122.svg' },
-        { title: 'Adaptive Websites', description: 'Content and layouts that respond to visitor behaviour, intent and location.', icon: '9100-1442-Frame1000002124.svg' },
-        { title: 'AI Chatbots & Assistants', description: '24/7 support bots trained on your business knowledge, FAQs and customer data.', icon: '9100-1442-Frame1000002123.svg' },
-        { title: 'Web3 & Dapp Platforms', description: 'Wallet-connected interfaces, smart contract integration and secure on-chain experiences.', icon: '9100-1442-Frame1000002125.svg' },
+        { title: 'AI-Powered Web Apps', description: 'Semantic search, intelligent recommendations, and automated workflows built directly into your web product.', icon: '9100-1442-Frame1000002122.svg' },
+        { title: 'Adaptive Websites', description: 'Dynamic content and layouts that automatically respond to each visitor’s behavior, search intent, and location.', icon: '9100-1442-Frame1000002124.svg' },
+        { title: 'AI Chatbots & Assistants', description: '24/7 conversational support bots trained specifically on your enterprise knowledge, FAQs, and customer data.', icon: '9100-1442-Frame1000002123.svg' },
+        { title: 'Web3 & dApp Platforms', description: 'Wallet-connected interfaces, custom smart contract integrations, and secure on-chain web experiences.', icon: '9100-1442-Frame1000002125.svg' },
       ],
     },
     {
       id: 'apps', title: 'AI • App • Development', headline: 'Smart Apps.\nBuilt for Real Users.',
-      description: 'CSL designs and builds mobile and web apps powered by AI, from intelligent features and personalization to automation that makes every interaction feel effortless.',
+      description: 'We design and build mobile and web apps powered by AI, from intelligent features and personalization to automation that makes every interaction feel effortless.',
       image: '9103-1529-Bg2.webp',
       imageAlt: 'Smartphone showing a friendly AI assistant robot surrounded by chat, settings, calendar and shopping icons',
       cards: [
-        { title: 'AI-Native Mobile Apps', description: 'iOS and Android apps with smart features designed around how users actually behave.', icon: '9103-1529-Frame1000002122.svg' },
-        { title: 'Personalized Experiences', description: "Onboarding, feeds and recommendations that adapt to each user's goals and habits.", icon: '9103-1529-Frame1000002124.svg' },
-        { title: 'Workflow Automation', description: 'Automate repetitive tasks, document handling and data processing inside your app.', icon: '9103-1529-Frame1000002123.svg' },
-        { title: 'Rapid MVP & Prototyping', description: 'From idea to a testable AI app in weeks, with feedback loops built in from day one.', icon: '9103-1529-Frame1000002125.svg' },
+        { title: 'AI-Native Mobile Apps', description: 'Feature-rich iOS and Android apps designed around how users actually behave in real scenarios.', icon: '9103-1529-Frame1000002122.svg' },
+        { title: 'Personalized Experiences', description: 'Dynamic onboarding, personalized content feeds, and smart recommendations that adapt to user goals.', icon: '9103-1529-Frame1000002124.svg' },
+        { title: 'In-App Workflow Automation', description: 'Automate repetitive mobile tasks, document extraction, and data processing inside your app.', icon: '9103-1529-Frame1000002123.svg' },
+        { title: 'Rapid MVP & Prototyping', description: 'Go from initial concept to a testable AI app in weeks, with real user feedback loops built in from day one.', icon: '9103-1529-Frame1000002125.svg' },
       ],
     },
   ];
@@ -104,37 +117,47 @@ export class AiServiceComponent implements OnInit {
     { file: 'Vector6.svg', inset: '28.14% 8.81% 28.5% 66.18%' },
   ];
   readonly products = [
-    { category: 'AI • Automation', title: 'Intelligent Business Automation', description: 'Workflows that reduce repetitive manual operations.' },
-    { category: 'Gen AI • Product', title: 'AI-Powered Customer Experiences', description: 'Assistants, recommendations and personalized interactions.' },
-    { category: 'Web • App • Cloud', title: 'AI-Powered Digital Products', description: 'Intelligence embedded in websites, apps and enterprise software.' },
-    { category: 'XR • AI', title: 'AI + VR Training', description: 'Immersive training and simulation environments.' },
-    { category: 'Vision • ML', title: 'Computer Vision', description: 'Intelligent image and video analysis for real operations.' },
-    { category: 'AI • Unity', title: 'AI for Games', description: 'Intelligent NPCs, procedural systems and adaptive gameplay.' },
+    { category: 'AI • Automation', title: 'Intelligent Business Automation', description: 'Workflows that cut repetitive manual work and operational bottlenecks.' },
+    { category: 'Gen AI • Product', title: 'AI-Powered Customer Experiences', description: 'Conversational assistants, tailored recommendations, and personalized user interactions.' },
+    { category: 'Web • App • Cloud', title: 'AI-Powered Digital Products', description: 'Embedded intelligence across web platforms, mobile apps, and enterprise software.' },
+    { category: 'XR • AI', title: 'AR/VR Training & Simulation', description: 'Immersive spatial computing and interactive environments for safer, faster training.' },
+    { category: 'Vision • ML', title: 'Computer Vision Solutions', description: 'Intelligent image and video analysis for real-world operations.' },
+    { category: 'AI • Unity', title: 'AI for Games', description: 'Intelligent NPCs, procedural generation engines, and adaptive gameplay frameworks.' },
   ];
   readonly disciplines: readonly Capability[] = [
-    { title: 'AI + VR\nTraining', description: 'Immersive training and simulation environments.' },
-    { title: 'Game\nDevelopment', description: 'Games, interactive systems and real-time experiences.' },
-    { title: 'Product\nEngineering', description: 'Web, mobile, cloud and scalable software.' },
-    { title: 'Immersive\nTechnology', description: 'AR, VR, XR and spatial experiences.' },
-    { title: 'Emerging\nTech', description: 'Blockchain, NFT games and new digital models.' },
+    { title: 'AI + VR\nTraining', description: 'Immersive, physics-based training and simulation environments.' },
+    { title: 'Game\nDevelopment', description: 'Full-cycle games, interactive real-time systems, and co-development.' },
+    { title: 'Product\nEngineering', description: 'Enterprise web, mobile apps, cloud architecture, and scalable software.' },
+    { title: 'Immersive\nTechnology', description: 'Spatial computing, mixed reality (MR), and AR/VR development.' },
+    { title: 'Emerging\nTech', description: 'Blockchain, NFT games, web3 architecture, and modern digital models.' },
   ];
   readonly connected = ['AI', 'Web + App', 'Game', 'XR', 'Blockchain'];
   readonly technologies: readonly Capability[] = [
     { title: 'AI & Machine Learning', description: 'OpenAI · Gemini · Claude · LangChain · TensorFlow · PyTorch · Python' },
     { title: 'Game Development', description: 'Unity · Unreal Engine · C# · C++' },
-    { title: 'Web & App', description: 'React · Node.js · JavaScript · TypeScript · Mobile technologies' },
-    { title: 'Cloud', description: 'AWS · Microsoft Azure · Google Cloud' },
-    { title: 'XR', description: 'Meta Quest · AR · VR · Spatial Computing' },
+    { title: 'Web & App', description: 'React · Node.js · JavaScript · TypeScript · Flutter · Native Mobile' },
+    { title: 'Cloud Infrastructure', description: 'AWS · Microsoft Azure · Google Cloud Platform' },
+    { title: 'XR & Spatial Computing', description: 'Meta Quest SDK · Apple visionOS · ARKit · ARCore' },
     { title: 'Blockchain / Web3', description: 'Smart Contracts · Wallet Integration · NFT Infrastructure · Marketplace Integration' },
-    { title: 'AI DEVELOPMENT', description: 'AWS · Microsoft Azure · Google Cloud' },
   ];
   readonly steps: readonly Capability[] = [
-    { title: 'Discover', description: 'Understand the business problem, users and opportunity.' },
-    { title: 'Strategize', description: 'Identify the right AI and emerging technology approach.' },
-    { title: 'Prototype', description: 'Rapidly validate the idea before large-scale development.' },
-    { title: 'Build', description: 'Develop, integrate, test and refine the solution.' },
-    { title: 'Deploy & Scale', description: 'Launch, monitor, optimize and evolve the product.' },
+    { title: 'Discover', description: 'Understand the business problem, target users, data infrastructure, and core opportunities.' },
+    { title: 'Strategize', description: 'Select the right AI models, data architecture, and technology stack aligned with your goals.' },
+    { title: 'Prototype', description: 'Build and validate functional proof-of-concepts (PoCs) quickly before committing to large-scale development.' },
+    { title: 'Build', description: 'Full-stack development, system integration, automated testing, and rigorous model evaluation for accuracy, security, and safety.' },
+    { title: 'Deploy & Scale', description: 'Launch into production, monitor performance, optimize response times, and continuously evolve the product.' },
   ];
+
+  scrollToSection(event: MouseEvent, id: string): void {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    event.preventDefault();
+    target.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+      block: 'start',
+    });
+  }
 
   ngOnInit(): void {
     this.seo.setPage({

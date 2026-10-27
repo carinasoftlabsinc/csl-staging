@@ -1,30 +1,32 @@
 <main class="ai-page">
   <section class="ai-hero" aria-labelledby="ai-title">
-    <img class="hero-art" [src]="assets + 'hero-HeroBg1.webp'" alt="Robotic hand reaching toward a glowing atom" width="1619" height="1080" fetchpriority="high" decoding="async" />
+    <img class="hero-art" [src]="assets + 'hero-HeroBg1.webp'" alt="Custom AI solutions by Carina Softlabs: robotic hand reaching toward a glowing atom" width="1619" height="1080" fetchpriority="high" decoding="async" />
     <app-header />
     <div class="ai-container ai-hero-copy">
-      <p class="eyebrow">AI &amp; Emerging Technology</p>
-      <h1 id="ai-title">Building What’s Next with AI &amp; Emerging Tech</h1>
-      <p class="hero-subtitle">Intelligent Products. Immersive Experiences. Smarter Games.</p>
-      <p class="intro">At <strong>Carina Softlabs Inc.</strong>, we combine AI, engineering and creative technology to build intelligent digital products, next-generation games, immersive experiences and automated business solutions.</p>
+      <p class="eyebrow">AI &amp; Next-Gen Engineering</p>
+      <h1 id="ai-title">Building What’s Next <span class="h1-subline">Custom AI Solutions &amp; Intelligent Product Engineering</span></h1>
+      <p class="hero-subtitle">Smart Products. Immersive Worlds. Enterprise AI.</p>
+      <p class="intro">At <strong>Carina Softlabs</strong>, we fuse artificial intelligence, advanced engineering, and creative technology to build scalable digital products, high-performance games, and automated business architectures tailored to measurable business outcomes.</p>
+      <div class="hero-actions">
+        <a appGradientButton href="/ai-emerging-technology#services-title" (click)="scrollToSection($event, 'ai-services')">Explore Solutions</a>
+        <a appGradientButton variant="soft" [href]="strategyCallLink" target="_blank" rel="noopener noreferrer">Book a Strategy Call</a>
+      </div>
       <div class="hero-metrics">
         @for (metric of metrics; track metric.title) {
-          <div><h2>{{ metric.title }}</h2><p>{{ metric.description }}</p></div>
+          <div><h3>{{ metric.title }}</h3><p>{{ metric.description }}</p></div>
         }
       </div>
     </div>
   </section>
 
-  <section class="ai-services ai-light" aria-labelledby="services-title">
+  <section id="ai-services" class="ai-services ai-light" aria-labelledby="services-title">
     <div class="ai-container">
-      <h2 id="services-title" class="section-label">What We Do</h2>
-      <h3 class="section-headline">AI &amp; Emerging Tech, <br />Built Around Your Product</h3>
-      <p class="section-description">From strategy and prototyping to development and deployment, CSL turns emerging technology into practical digital solutions.</p>
+      <p class="section-label">What We Do</p>
+      <h2 id="services-title" class="section-headline">Custom AI Application Development, <br />Built Around Your Product</h2>
+      <p class="section-description">From initial architecture and rapid prototyping to production deployment, we turn emerging technology into scalable digital solutions. Our AI development and integration services seamlessly connect custom LLMs, enterprise workflows, and predictive data systems into your existing technology stack.</p>
       <div class="services-grid">
-        @for (row of serviceRows; track row) {
-          @for (card of services; track card.title) {
-            <article class="service-tile"><h4>{{ card.title }}</h4><p>{{ card.description }}</p></article>
-          }
+        @for (card of services; track card.title) {
+          <article class="service-tile"><h3>{{ card.title }}</h3><p>{{ card.description }}</p></article>
         }
       </div>
     </div>
@@ -34,8 +36,8 @@
     <section class="ai-feature" [class]="'ai-feature feature-' + feature.id" [attr.aria-labelledby]="feature.id + '-title'">
       <div class="feature-art" aria-hidden="true"><img [src]="assets + feature.image" [alt]="feature.imageAlt" width="1980" height="1113" loading="lazy" decoding="async" /></div>
       <div class="ai-container feature-content">
-        <h2 class="section-label" [id]="feature.id + '-title'">{{ feature.title }}</h2>
-        <h3 class="section-headline">{{ feature.headline }}</h3>
+        <p class="section-label">{{ feature.title }}</p>
+        <h2 class="section-headline" [id]="feature.id + '-title'">{{ feature.headline }}</h2>
         <p class="section-description">{{ feature.description }}</p>
         <div class="capability-grid" [class.three-columns]="feature.id === 'games'">
           @for (card of feature.cards; track card.title) {
@@ -49,7 +51,7 @@
                   }
                 </span>
               }
-              <h4>{{ card.title }}</h4><p>{{ card.description }}</p>
+              <h3>{{ card.title }}</h3><p>{{ card.description }}</p>
             </article>
           }
         </div>
@@ -74,15 +76,15 @@
 
   <section class="ai-why ai-light" aria-labelledby="why-title">
     <div class="ai-container">
-      <h2 id="why-title" class="section-label">Why Carina Softlabs</h2>
-      <h3 class="section-headline">More Than AI. We Build the <br />Technology Around It.</h3>
-      <p class="section-description">AI becomes powerful when it works with strong engineering, product design and domain expertise. CSL brings multiple disciplines together under one team.</p>
+      <p class="section-label">Why Carina Softlabs</p>
+      <h2 id="why-title" class="section-headline">More Than AI. We Build <br />Technology Around It.</h2>
+      <p class="section-description">AI is most powerful when it’s paired with strong engineering, product design, and deep domain expertise. Our AI development and integration services bring all of these disciplines together under one team, giving you a single partner from initial idea to production launch.</p>
     </div>
     <div class="disciplines-visual">
       <div class="disciplines-art"><img [src]="assets + '9040-3690-Frame1000002135.webp'" alt="A developer working across game, AI and software engineering tools" width="1763" height="1007" loading="lazy" decoding="async" /></div>
       <div class="disciplines-grid">
         @for (card of disciplines; track card.title) {
-          <article><h4>{{ card.title }}</h4><p>{{ card.description }}</p></article>
+          <article><h3>{{ card.title }}</h3><p>{{ card.description }}</p></article>
         }
       </div>
       <div class="connected-capability"><span>Connected Capability</span><div>@for (tag of connected; track tag) { <b>{{ tag }}</b> }</div></div>
@@ -92,11 +94,12 @@
   <section class="ai-technologies ai-feature" aria-labelledby="technologies-title">
     <div class="technology-art" aria-hidden="true"><img [src]="assets + '9058-5337-Image1090.webp'" alt="Developer working with an AI robot on software, integration, time-saving and security tools" width="2080" height="1170" loading="lazy" decoding="async" /></div>
     <div class="ai-container feature-content">
-      <h2 id="technologies-title" class="section-label">Technologies We Work With</h2>
-      <h3 class="section-headline">One Team. Multiple Technology <br />Ecosystems.</h3>
+      <p class="section-label">Technologies We Work With</p>
+      <h2 id="technologies-title" class="section-headline">One Team. Multiple Technology <br />Ecosystems.</h2>
+      <p class="section-description">We work across the leading AI, cloud, game engine, and XR platforms, enabling us to select the exact right technology stack for your product rather than forcing one single stack on every project.</p>
       <div class="capability-grid three-columns technology-grid">
         @for (card of technologies; track card.title) {
-          <article class="capability-card"><h4>{{ card.title }}</h4><p>{{ card.description }}</p></article>
+          <article class="capability-card"><h3>{{ card.title }}</h3><p>{{ card.description }}</p></article>
         }
       </div>
     </div>
@@ -104,14 +107,14 @@
 
   <section class="ai-experience" aria-labelledby="experience-title">
     <div class="ai-container">
-      <h2 id="experience-title" class="section-label">Our Experience</h2>
-      <h3 class="section-headline">Technology We’ve Built in the <br />Real World</h3>
+      <p class="section-label">Our Experience</p>
+      <h2 id="experience-title" class="section-headline">Technology We’ve Built in the <br />Real World</h2>
       <div class="experience-grid">
-        @for (card of experienceCards; track card) {
+        @for (card of experienceCards; track $index) {
           <article class="experience-card">
             <!-- The supplied Figma uses empty grey panels; replace when approved project imagery is available. -->
             <div class="experience-image" aria-hidden="true"><img [src]="assets + '9066-5458-Frame48096380.svg'" alt="Arrow icon" width="37" height="37" loading="lazy" /></div>
-            <div class="experience-copy"><p class="experience-category">AI-Powered Applications</p><h4>Intelligent Digital Products and Automation</h4><p>AI capabilities integrated directly into enterprise websites, apps and operations.</p></div>
+            <div class="experience-copy"><p class="experience-category">{{ card.category }}</p><h3>{{ card.title }}</h3><p>{{ card.description }}</p></div>
           </article>
         }
       </div>
@@ -120,18 +123,26 @@
 
   <section class="ai-process" aria-labelledby="process-title">
     <div class="ai-container">
-      <h2 id="process-title" class="section-label">Our Process</h2>
-      <h3 class="section-headline">From Idea to Intelligent <br />Product</h3>
-      <p class="section-description">A practical process that takes an emerging technology idea from concept to production.</p>
+      <p class="section-label">Our Process</p>
+      <h2 id="process-title" class="section-headline">From Idea to Intelligent <br />Product</h2>
+      <p class="section-description">A practical, step-by-step engineering process that takes your AI product concept smoothly from initial idea to production deployment.</p>
       <ol class="process-steps">
         @for (step of steps; track step.title; let index = $index) {
-          <li><span class="step-number">{{ index + 1 }}</span><h4>{{ step.title }}</h4><p>{{ step.description }}</p></li>
+          <li><span class="step-number">{{ index + 1 }}</span><h3>{{ step.title }}</h3><p>{{ step.description }}</p></li>
         }
       </ol>
     </div>
   </section>
 
-  <ng-template #contactCopy><div class="ai-contact-copy"><p class="contact-headline">LET’S<span>GET IN</span>TOUCH</p></div></ng-template>
-  <app-quote-section heading="Application Process" service="AI & Emerging Tech" theme="light" [leftTemplate]="contactCopy" />
-  <app-footer />
+  <ng-template #contactCopy>
+    <div class="ai-contact-copy">
+      <p class="contact-headline">LET’S<span>GET IN</span>TOUCH</p>
+      <p class="contact-description">Tell us about your project idea, engineering challenge, or product goals, and we’ll recommend the right AI approach along with a clear execution plan and project estimate.</p>
+    </div>
+  </ng-template>
+  <app-quote-section heading="Get a Free AI Consultation" service="AI & Emerging Tech" theme="light" [leftTemplate]="contactCopy" />
+  <app-footer
+    cardText="Have an AI Idea? <br class=&quot;hidden sm:block&quot; /> Let’s Build It Together."
+    btnText="Schedule a Free Call"
+  />
 </main>

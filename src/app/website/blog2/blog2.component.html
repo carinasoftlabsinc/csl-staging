@@ -50,9 +50,9 @@
         >
         @if (!loadingBlog) {
           <img
-            class="w-full rounded-3xl h-72 2xl:h-[35vh] object-contain img-fluid"
+            class="blog-header-image rounded-3xl"
             [src]="imageUrl + $safeNavigationMigration(cardDataa?.image)"
-            [alt]="blogImageAlt(cardDataa?.image, cardDataa?.title)" width="1104" height="430" fetchpriority="high" />
+            [alt]="blogImageAlt(cardDataa?.image, cardDataa?.title)" width="1104" height="320" fetchpriority="high" />
             <h1 class="font-myfont text-xl md:text-3xl xl:text-4xl 2xl:text-5xl">
               {{ cardDataa?.title }}
             </h1>

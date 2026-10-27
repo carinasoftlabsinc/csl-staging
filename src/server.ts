@@ -112,6 +112,12 @@ app.use(
       } else if (/\.(txt|xml)$/i.test(filePath)) {
         // robots.txt and similar files are edited without changing the filename, so they must not be cached for a year.
         res.setHeader('Cache-Control', 'public, max-age=300');
+      } else if (/[\\/]media[\\/]|-[A-Z0-9]{8}\.[a-z0-9]+$/.test(filePath)) {
+        // Build output with a content hash in the name (main-XXXXXXXX.js, chunk-*, styles-*, media/*) never changes.
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      } else {
+        // /assets files keep their names when edited, so no `immutable`: a reload revalidates them.
+        res.setHeader('Cache-Control', 'public, max-age=31536000');
       }
     },
   }),

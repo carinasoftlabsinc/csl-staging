@@ -217,9 +217,17 @@
           <img src="assets/images/brick.gif" alt="Animated game character holding a brick and trowel" width="480" height="854" loading="lazy" decoding="async" />
         </div>
         <div class="game-technologies__grid">
-          @for (stack of techStack; track stack) {
-            <div class="game-technologies__tile">
-              <span class="font-quickSand text-white text-center font-semibold text-xs sm:text-sm">{{ stack }}</span>
+          @for (tech of techStack; track tech.name) {
+            <div class="game-technologies__tile" [class.game-technologies__tile--full]="tech.full">
+              <img
+                [src]="techAssets + tech.image"
+                [alt]="tech.name + ' logo'"
+                [attr.width]="tech.width"
+                [attr.height]="tech.height"
+                [style.--logo-w]="tech.widthPct + '%'"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           }
         </div>

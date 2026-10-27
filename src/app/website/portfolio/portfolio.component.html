@@ -17,13 +17,15 @@
               <span
                 class="text-white font-myfont text-[30px] 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]"
                 >
-                OUR
+                Our Portfolio:
               </span>
               <br />
               <span
-                class="text-white tracking-wide text-6xl md:text-4xl lg:text-[50px] lg:leading-[50px] xl:text-[60px] xl:leading-[60px] 2xl:text-[80px] 2xl:leading-[100px] sm:text-4xl font-myfont"
+                class="text-white tracking-wide text-4xl md:text-4xl lg:text-[36px] lg:leading-[44px] xl:text-[42px] xl:leading-[50px] 2xl:text-[52px] 2xl:leading-[60px] sm:text-4xl font-myfont"
                 >
-                PROJECTS
+                <span class="block sm:whitespace-nowrap">Game Development,</span>
+                <span class="block sm:whitespace-nowrap">AI Solutions &amp; Digital</span>
+                <span class="block sm:whitespace-nowrap">Growth Case Studies</span>
               </span>
             </h1>
 
@@ -58,22 +60,25 @@
     <section
       class="relative px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
       >
-      <div
-        class="flex flex-wrap justify-center font-quickSand font-bold absolute left-0 right-0 mx-auto -top-9 md:-top-7 2xl:-top-10 sm:bg-transparent sm:px-[unset] sm:py-[unset] rounded-3xl px-0.5 py-1.5 gap-0.5 sm:gap-[unset]"
+      <nav
+        aria-label="Portfolio categories"
+        class="flex flex-nowrap overflow-x-auto scrollbar-hide justify-start lg:justify-center font-quickSand font-bold absolute left-0 right-0 mx-auto -top-9 md:-top-7 2xl:-top-10 sm:bg-transparent sm:px-[unset] sm:py-[unset] rounded-3xl px-0.5 py-1.5 gap-0.5 sm:gap-[unset]"
         >
-      @for (item of SrcWords; track item) {
-        <div
-          (click)="selectCategory(item)"
-        [ngClass]="{
-          'bg-[#fff] text-[#34394B]': selectedCategory === item,
-          'bg-[#000] text-[#fff]': selectedCategory !== item
-        }"
-          class="p-3.5 sm:px-9 sm:py-3.5 md:px-6 lg:px-10 2xl:px-14 2xl:py-7 rounded-3xl 2xl:rounded-[2.2rem] font-extrabold text-xs lg:text-lg xl:text-xl 2xl:text-2xl border border-white cursor-pointer dev-button"
+      @for (tab of tabs; track tab.slug) {
+        <a
+          routerLink="/portfolio"
+          [queryParams]="{ category: tab.slug }"
+          [attr.aria-current]="selectedTab === tab ? 'page' : null"
+          [ngClass]="{
+            'bg-[#fff] !text-[#34394B]': selectedTab === tab,
+            'bg-[#000] !text-[#fff]': selectedTab !== tab
+          }"
+          class="shrink-0 whitespace-nowrap px-4 py-3.5 sm:px-6 md:px-5 lg:px-4 xl:px-6 2xl:px-8 2xl:py-7 rounded-3xl 2xl:rounded-[2.2rem] font-extrabold !text-xs lg:!text-sm xl:!text-lg 2xl:!text-xl border border-white cursor-pointer dev-button focus-visible:!outline focus-visible:!outline-2 focus-visible:!outline-offset-2 focus-visible:!outline-[#BC8AFB]"
           >
-          {{ item }}
-        </div>
+          {{ tab.label }}
+        </a>
       }
-    </div>
+    </nav>
 
     <div
       class="text-center mt-12 sm:mt-auto my-8 flex flex-col gap-3.5 2xl:gap-6 md:mt-8"
@@ -125,9 +130,9 @@
             "
                   >
                   <img
-                    class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-                    [src]="imageUrl + '/' + project.image_2"
-                    [alt]="projectImageAlt(project)" width="451" height="354" loading="lazy" decoding="async" />
+                    class="aspect-video rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                    [src]="imageUrl + project.image_2"
+                    [alt]="projectImageAlt(project)" width="1600" height="900" loading="lazy" decoding="async" />
                     <div
                       class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
                       >
@@ -168,9 +173,9 @@
             "
                       >
                       <img
-                        class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-                        [src]="imageUrl + '/' + project.image_2"
-                        [alt]="projectImageAlt(project)" width="451" height="354" loading="lazy" decoding="async" />
+                        class="aspect-video rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                        [src]="imageUrl + project.image_2"
+                        [alt]="projectImageAlt(project)" width="1600" height="900" loading="lazy" decoding="async" />
                         <div
                           class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
                           >
@@ -210,9 +215,9 @@
             "
                           >
                           <img
-                            class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-                            [src]="imageUrl + '/' + project.image_2"
-                            [alt]="projectImageAlt(project)" width="451" height="354" loading="lazy" decoding="async" />
+                            class="aspect-video rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                            [src]="imageUrl + project.image_2"
+                            [alt]="projectImageAlt(project)" width="1600" height="900" loading="lazy" decoding="async" />
                             <div
                               class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
                               >
@@ -248,9 +253,9 @@
                               [routerLink]="['/portfolio', formatHeading(project.titleLink)]"
                               >
                               <img
-                                class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-                                [src]="imageUrl + '/' + project.image_2"
-                                [alt]="projectImageAlt(project)" width="451" height="354" loading="lazy" decoding="async" />
+                                class="aspect-video rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                                [src]="imageUrl + project.image_2"
+                                [alt]="projectImageAlt(project)" width="1600" height="900" loading="lazy" decoding="async" />
                                 <div
                                   class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
                                   >
@@ -286,9 +291,9 @@
                                   [routerLink]="['/portfolio', formatHeading(project.titleLink)]"
                                   >
                                   <img
-                                    class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-                                    [src]="imageUrl + '/' + project.image_2"
-                                    [alt]="projectImageAlt(project)" width="451" height="354" loading="lazy" decoding="async" />
+                                    class="aspect-video rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                                    [src]="imageUrl + project.image_2"
+                                    [alt]="projectImageAlt(project)" width="1600" height="900" loading="lazy" decoding="async" />
                                     <div
                                       class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
                                       >
@@ -319,9 +324,9 @@
                               @for (project of cards | slice : 13; track project._id) {
                                 <a [routerLink]="['/portfolio', formatHeading(project.titleLink)]">
                                   <img
-                                    class="h-72 2xl:h-96 rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
-                                    [src]="imageUrl + '/' + project.image_2"
-                                    [alt]="projectImageAlt(project)" width="451" height="354" loading="lazy" decoding="async" />
+                                    class="aspect-video rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                                    [src]="imageUrl + project.image_2"
+                                    [alt]="projectImageAlt(project)" width="1600" height="900" loading="lazy" decoding="async" />
                                   <div class="!px-4 py-3.5 flex flex-col gap-1.5">
                                     <h3 class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5">{{ project.title }}</h3>
                                     <p class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4">{{ project.description }}</p>
@@ -359,11 +364,11 @@
                             <div
                               class="font-bebas text-6xl md:text-9xl font-extrabold text-white uppercase whitespace-nowrap inline-block animate-scrolling"
                               >
-                              @for (word of SrcWords; track word) {
+                              @for (tab of tabs; track tab.slug) {
                                 <h3
                                   class="hover:text-[#BC8AFB] inline-block mr-20 star"
                                   >
-                                  {{ word }}
+                                  {{ tab.label }}
                                 </h3>
                               }
                             </div>
@@ -371,11 +376,11 @@
                             <div
                               class="font-bebas text-6xl md:text-9xl font-extrabold text-white uppercase whitespace-nowrap inline-block animate-scrolling"
                               >
-                              @for (word of SrcWords; track word) {
+                              @for (tab of tabs; track tab.slug) {
                                 <h3
                                   class="hover:text-[#FB8ACE] inline-block mr-20 star"
                                   >
-                                  {{ word }}
+                                  {{ tab.label }}
                                 </h3>
                               }
                             </div>

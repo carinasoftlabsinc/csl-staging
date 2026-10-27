@@ -338,6 +338,8 @@ import { ChangeDetectorRef, Component, OnInit, OnDestroy, Inject, Renderer2, DOC
 import { SeoService } from '@core/service/seo.service';
 import { HttpClient } from '@angular/common/http';
 import { Title, Meta } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { environment } from "../../../environments/environment"
 import { formatHeading } from '@core/utils/slug.util';
@@ -346,7 +348,23 @@ type Category =
   | 'Game Development'
   | 'App Development'
   | 'Web Development'
-  | 'Digital Marketing';
+  | 'Digital Marketing'
+  | 'AI & Emerging Technology';
+
+/** A portfolio tab: its label, its URL value (?category=...) and the category saved on projects. */
+interface PortfolioTab {
+  label: Category;
+  slug: string;
+  apiCategory: string;
+}
+
+const PORTFOLIO_TABS: PortfolioTab[] = [
+  { label: 'Game Development', slug: 'game-development', apiCategory: 'game' },
+  { label: 'App Development', slug: 'app-development', apiCategory: 'app' },
+  { label: 'Web Development', slug: 'web-development', apiCategory: 'web' },
+  { label: 'Digital Marketing', slug: 'digital-marketing', apiCategory: 'digital-marketing' },
+  { label: 'AI & Emerging Technology', slug: 'ai-emerging-technology', apiCategory: 'ai-emerging-technology' },
+];
 
 interface PortfolioItem {
   _id: string;
@@ -377,13 +395,14 @@ interface ApiResponse {
     standalone: false
 })
 export class PortfolioComponent implements OnInit, OnDestroy {
-  SrcWords: Category[] = [
-    'Game Development',
-    'App Development',
-    'Web Development',
-    'Digital Marketing',
-  ];
-  selectedCategory: Category = this.SrcWords[0];
+  readonly tabs = PORTFOLIO_TABS;
+  /** The open tab comes from ?category=... so it can be shared and works with Back/Forward. */
+  selectedTab: PortfolioTab = PORTFOLIO_TABS[0];
+  get selectedCategory(): Category {
+    return this.selectedTab.label;
+  }
+  private readonly route = inject(ActivatedRoute);
+  private queryParamSub?: Subscription;
   allCards: PortfolioItem[] = [];
   cards: PortfolioItem[] = [];
   apiUrl = `${environment.apiUrl}/admin/getAll_project`;
@@ -430,10 +449,18 @@ export class PortfolioComponent implements OnInit, OnDestroy {
     this.setOpenGraphTags();
     this.setSchemaMarkup();
 
+    this.queryParamSub = this.route.queryParamMap.subscribe((params) => {
+      const slug = params.get('category');
+      this.selectedTab = PORTFOLIO_TABS.find((tab) => tab.slug === slug) ?? PORTFOLIO_TABS[0];
+      this.applySelectedCategory();
+      this.changeDetector.markForCheck();
+    });
+
     this.fetchPortfolioItems();
   }
 
   ngOnDestroy(): void {
+    this.queryParamSub?.unsubscribe();
     this.seoElements.forEach((el) => {
       if (el.parentNode) {
         this.renderer.removeChild(el.parentNode, el);
@@ -572,32 +599,9 @@ export class PortfolioComponent implements OnInit, OnDestroy {
       });
     }
   
-  selectCategory(category: Category): void {
-    this.selectedCategory = category;
-    this.applySelectedCategory();
-  }
-
   private applySelectedCategory(): void {
-    const categoryParam = this.mapCategoryToApiParam(this.selectedCategory);
-    this.cards = this.allCards.filter((project) => project.category === categoryParam);
+    this.cards = this.allCards.filter((project) => project.category === this.selectedTab.apiCategory);
   }
-
-  mapCategoryToApiParam(category: Category): string {
-    // Map category names to API parameters
-    switch (category) {
-      case 'Game Development':
-        return 'game';
-      case 'App Development':
-        return 'app';
-      case 'Web Development':
-        return 'web';
-      case 'Digital Marketing':
-        return 'digital-marketing';
-      default:
-        return '';
-    }
-  }
-
   formatHeading(title: string): string {
     return formatHeading(title);
   }

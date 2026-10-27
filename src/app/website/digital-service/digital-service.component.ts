@@ -24,37 +24,37 @@ export class DigitalServiceComponent implements OnInit {
       number: 1,
       color: 'green',
       title: 'Get Found on Search',
-      description: 'Like the best SEO companies, we focus on technical SEO, on-page optimization, AI visibility, and quality link building that help you rank higher on Google and earn consistent organic traffic.',
+      description: 'Drive consistent organic traffic by combining technical SEO, advanced on-page optimization, AI search visibility (GEO), and high-authority link building to rank higher where your customers are looking.',
     },
     {
       number: 2,
       color: 'purple',
       title: 'Reach the Right Audience',
-      description: 'Run targeted PPC and social media ad campaigns on Google, Meta, YouTube, and LinkedIn that put your brand in front of ready-to-buy customers.',
+      description: 'Capture high-intent buyers instantly with precision-targeted paid search and social ad campaigns across Google, Meta, YouTube, and LinkedIn.',
     },
     {
       number: 3,
       color: 'pink',
       title: 'Build Trust with Content',
-      description: 'Publish helpful blogs, guides, and social content that answer your customers’ questions and position you as an industry expert.',
+      description: 'Position your brand as an industry authority through strategic blogs, comprehensive guides, and compelling content that answer your audience’s core questions.',
     },
     {
       number: 4,
       color: 'green',
       title: 'Turn Visitors into Customers',
-      description: 'Improve landing pages, CTAs, and user journeys with conversion rate optimization (CRO) so more visitors take action.',
+      description: 'Maximize conversion rates and streamline user journeys through optimized landing pages, strategic CTAs, and frictionless checkout flows.',
     },
     {
       number: 5,
       color: 'purple',
       title: 'Engage & Retain',
-      description: 'Keep customers coming back with email marketing, automation, and active social media management.',
+      description: 'Maximize customer lifetime value with automated email marketing workflows, intelligent remarketing, and active community engagement.',
     },
     {
       number: 6,
       color: 'pink',
       title: 'Measure & Scale',
-      description: 'Track every campaign with clear analytics and reporting, then build on what works to grow ROI month over month.',
+      description: 'Track performance with rigorous analytics and transparent reporting, continuously refining and scaling what drives the highest ROI month over month.',
     },
   ];
 
@@ -122,63 +122,93 @@ export class DigitalServiceComponent implements OnInit {
     this.selectedCard = card;
   }
 
+  // Cards cycle through the three brand colours (green, purple, pink).
+  private static readonly cardColors = [
+    { bgColor: 'bg-[#B1DF4F]', textColor: 'text-[#0B0C10]', paraColor: 'text-[#34394B]' },
+    { bgColor: 'bg-[#BC8AFB]', textColor: 'text-[#0B0C10]', paraColor: 'text-[#34394B]' },
+    { bgColor: 'bg-[#FB8ACE]', textColor: 'text-white', paraColor: 'text-white' },
+  ];
+
   numCards = [
     {
-      bgColor: 'bg-[#B1DF4F]',
-      textColor: 'text-[#0B0C10]',
-      paraColor: 'text-[#34394B]',
-      num: '01',
-      hovAlt: 'Search engine optimization illustration',
-      heading: 'Search Engine <br> Optimization (SEO)',
-      para: 'At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive',
-      hovImg:
-        'https://i.pinimg.com/474x/f0/ae/58/f0ae58f4e6832b494a7c379c93c824ea.jpg',
+      heading: 'Search Engine <br> Optimization',
+      hovImg: 'assets/images/dm-case-seo-performance-thumb.webp',
+      hovAlt: 'SEO services results dashboard',
+      para: 'Build organic traffic that converts by combining technical SEO, high-value content, strategic link building, and AI search optimization for maximum visibility on Google and LLMs.',
     },
     {
-      bgColor: 'bg-[#BC8AFB]',
-      textColor: 'text-[#0B0C10]',
-      paraColor: 'text-[#34394B]',
-      num: '02',
-      hovAlt: 'Email marketing illustration',
       heading: 'Email <br> Marketing',
-      para: 'At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive',
-      hovImg:
-        'https://i.pinimg.com/474x/53/e8/1a/53e81ad378d5ebd78e3bdc7326f9a63f.jpg',
+      hovImg: 'assets/images/dm-case-email-campaign-thumb.webp',
+      hovAlt: 'Email marketing campaign preview',
+      para: 'Turn subscribers into loyal customers through personalized campaigns, automated workflows, and targeted lead-nurturing sequences designed to drive repeat sales.',
     },
     {
-      bgColor: 'bg-[#FB8ACE]',
-      textColor: 'text-white',
-      paraColor: 'text-white',
-      num: '03',
-      hovAlt: 'E-commerce marketing illustration',
-      heading: 'E-Commerce <br> Marketing <br> (Like Amazon)',
-      para: 'At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive',
-      hovImg:
-        'https://i.pinimg.com/474x/59/17/b7/5917b7e17018b540969dc28b5dc5373d.jpg',
+      heading: 'E-Commerce <br> Marketing',
+      hovImg: 'assets/images/dm-case-ecommerce-growth-thumb.webp',
+      hovAlt: 'E-commerce marketing growth chart',
+      para: 'Accelerate store growth on Amazon, Shopify, and other marketplaces with conversion-optimized listings, high-ROI sponsored ads, and remarketing strategies that bring shoppers back to buy.',
     },
-  ];
+    {
+      heading: 'Content <br> Marketing',
+      hovImg: 'assets/images/dm-case-seo-performance-thumb.webp',
+      hovAlt: 'Content marketing performance overview',
+      para: 'Establish brand authority and organic visibility through strategic blogs, guides, and videos that answer your customers’ core questions and amplify your SEO performance.',
+    },
+    {
+      heading: 'Performance <br> Marketing',
+      hovImg: 'assets/images/dm-case-performance-ads-thumb.webp',
+      hovAlt: 'Performance marketing ad campaign results',
+      para: 'Drive predictable revenue through high-converting paid search and display campaigns across Google, Meta, and YouTube, focusing strictly on scalable, ROI-driven results.',
+    },
+    {
+      heading: 'Social Media <br> Marketing',
+      hovImg: 'assets/images/dm-case-social-campaign-thumb.webp',
+      hovAlt: 'Social media marketing campaign preview',
+      para: 'Build active, engaged communities across Instagram, Facebook, and LinkedIn with compelling storytelling, thumb-stopping creative content, and precise audience targeting.',
+    },
+    {
+      heading: 'Lead <br> Generation',
+      hovImg: 'assets/images/dm-case-marketing-analytics-thumb.webp',
+      hovAlt: 'Lead generation analytics dashboard',
+      para: 'Fill your sales pipeline with high-intent prospects using conversion-focused landing pages, strategic outbound funnels, and precision-targeted ad campaigns.',
+    },
+  ].map((card, i) => ({
+    ...card,
+    ...DigitalServiceComponent.cardColors[i % 3],
+    num: String(i + 1).padStart(2, '0'),
+  }));
 
   FourW = [
-    { icon: '../../../assets/images/DGclientLogo2.svg', alt: 'Revenue generated icon', digits: '$685', desc: 'M', small: false, para: 'in Revenue Generated for Our Clients' },
-    { icon: '../../../assets/images/DGclientLogo3.svg', alt: 'Clients served icon', digits: '2000', desc: '+', small: false, para: 'Clients Served' },
-    { icon: '../../../assets/images/DGclientLogo4.svg', alt: 'Retention rate icon', digits: '93%', desc: 'Retention', small: true, para: 'Rate Our Partners Love Us' },
-    { icon: '../../../assets/images/DGclientLogo5.svg', alt: 'Website traffic increase icon', digits: '28%', desc: 'Avg.', small: true, para: 'Increase in Website Traffic' },
+    { icon: '../../../assets/images/DGclientLogo2.svg', alt: 'Revenue generated icon', digits: '$28.5', desc: 'M', small: false, para: 'Revenue Generated for Clients' },
+    { icon: '../../../assets/images/DGclientLogo3.svg', alt: 'Client brands served icon', digits: '432', desc: '+', small: false, para: 'Client Brands Served Globally' },
+    { icon: '../../../assets/images/DGclientLogo4.svg', alt: 'Retention rate icon', digits: '93%', desc: 'Retention', small: true, para: 'Client Retention Rate' },
+    { icon: '../../../assets/images/DGclientLogo5.svg', alt: 'Organic traffic growth icon', digits: '36%', desc: 'Avg.', small: true, para: 'Average Organic Traffic Growth' },
   ];
 
-  // Solution by Data Source tiles, in Figma order. "tile" logos are drawn on the full 312 x 140 tile;
-  // "icon" logos are centred, sized in cqw (1% of the tile width). The last tile is an empty placeholder as in the design.
-  dataSources: { name: string; tile?: string; icon?: string; size?: string; label?: string; text?: string }[] = [
-    { name: 'Salesforce', tile: 'salesforce' },
-    { name: 'Excel', icon: 'excel', size: 'h-[20.2cqw] w-auto', label: 'Excel' },
-    { name: 'Google Analytics', icon: 'google-analytics', size: 'h-[20.2cqw] w-auto', label: 'Google Analytics' },
-    { name: 'Box', icon: 'box', size: 'w-[34.9cqw] h-auto' },
-    { name: 'MySQL', tile: 'mysql' },
-    { name: 'QuickBooks', tile: 'quickbooks' },
-    { name: 'X', tile: 'x' },
-    { name: 'Google Docs', icon: 'google-docs', size: 'h-[23.8cqw] w-auto' },
-    { name: 'Facebook', tile: 'facebook' },
-    { name: 'JSON', text: 'JSON' },
-    { name: 'HubSpot', tile: 'hubspot' },
-    { name: '' },
+  // Tool tiles. "icon" logos are centred, sized in cqw (1% of the tile width); tools without a logo file show their name.
+  dataSources: { name: string; logo?: string; square?: boolean; tile?: string; icon?: string; size?: string; label?: string; text?: string }[] = [
+    { name: 'Meta Ads', logo: 'Meta_Platforms_Inc.svg' },
+    { name: 'Google Ads', logo: 'google_ads.svg' },
+    { name: 'Google Analytics', logo: 'Logo_Google_Analytic.svg' },
+    { name: 'Claude', logo: 'claude.svg', square: true },
+    { name: 'Ahrefs', logo: 'ahrefs.svg' },
+    { name: 'Semrush', logo: 'semrush.svg' },
+    { name: 'Moz', logo: 'Moz.svg' },
+    { name: 'YouTube', logo: 'youtube.svg' },
+    { name: 'AdMob', logo: 'google_admob.svg', square: true },
+    { name: 'Google Search Console', logo: 'google_search_console.svg', square: true },
+    { name: 'Canva', logo: 'canva.svg', square: true },
+    { name: 'OpenAI Ads', logo: 'chatgpt.svg', square: true },
   ];
+
+  scrollToSection(event: MouseEvent, id: string): void {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    event.preventDefault();
+    target.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+      block: 'start',
+    });
+  }
 }

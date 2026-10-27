@@ -11,22 +11,36 @@
           class="w-full lg:w-1/2 md:py-8 text-left font-medium text-[#B4B9CB] overflow-visible z-10 flex flex-col justify-center items-start gap-7 2xl:gap-10"
         >
           <h1 class="font-myfont z-10 text-white">
-            <span
-              class="block text-[#B1DF4F] text-[clamp(1.875rem,6.2vw,7.45rem)] md:max-lg:text-[7vw] lg:max-xl:text-[5.8vw] leading-none font-extrabold font-mont -mb-[0.2em]"
-              >{{ accent() }}</span
-            >&ngsp;<span class="block text-[clamp(2.25rem,8.24vw,9.9rem)] md:max-lg:text-[9.4vw] lg:max-xl:text-[7.5vw] leading-none">{{ headline() }}</span>
+            @if (headlineStyle() === 'sentence') {
+              <span
+                class="block text-[#B1DF4F] text-[clamp(2.25rem,5.2vw,6.25rem)] md:max-lg:text-[6.5vw] lg:max-xl:text-[4.9vw] leading-[0.95] font-extrabold font-mont uppercase"
+                >{{ accent() }}</span
+              >&ngsp;<span class="block mt-3 2xl:mt-5 font-mont font-normal text-[clamp(1.5rem,2.5vw,3rem)] md:max-lg:text-[3.4vw] leading-[1.15]">{{ headline() }}</span>
+            } @else {
+              <span
+                class="block text-[#B1DF4F] text-[clamp(1.875rem,6.2vw,7.45rem)] md:max-lg:text-[7vw] lg:max-xl:text-[5.8vw] leading-none font-extrabold font-mont -mb-[0.2em]"
+                >{{ accent() }}</span
+              >&ngsp;<span class="block text-[clamp(2.25rem,8.24vw,9.9rem)] md:max-lg:text-[9.4vw] lg:max-xl:text-[7.5vw] leading-none">{{ headline() }}</span>
+            }
           </h1>
 
           <p class="text-white md:max-lg:text-xl lg:text-lg xl:text-xl 2xl:text-2xl 2xl:!leading-6 font-light font-quickSand !leading-5 w-11/12">
             {{ description() }}
           </p>
 
-          @if (ctaLabel()) {
-            @if (ctaLink(); as link) {
-              <a appGradientButton [routerLink]="link">{{ ctaLabel() }}</a>
-            } @else {
-              <button appGradientButton type="button" (click)="ctaClick.emit($event)">{{ ctaLabel() }}</button>
-            }
+          @if (ctaLabel() || secondaryCtaLabel()) {
+            <div class="flex flex-wrap items-center gap-3 2xl:gap-4">
+              @if (ctaLabel()) {
+                @if (ctaLink(); as link) {
+                  <a appGradientButton [routerLink]="link">{{ ctaLabel() }}</a>
+                } @else {
+                  <button appGradientButton type="button" (click)="ctaClick.emit($event)">{{ ctaLabel() }}</button>
+                }
+              }
+              @if (secondaryCtaLabel()) {
+                <button appGradientButton variant="soft" type="button" (click)="secondaryCtaClick.emit($event)">{{ secondaryCtaLabel() }}</button>
+              }
+            </div>
           }
         </div>
 

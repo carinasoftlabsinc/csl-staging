@@ -26,6 +26,8 @@ export class ServiceHeroComponent {
   readonly accent = input.required<string>();
   /** Second (white) title word. Not called "title", which would also show as a hover tooltip. */
   readonly headline = input.required<string>();
+  /** 'sentence' shows the headline as a smaller, normal-case line under a large accent. */
+  readonly headlineStyle = input<'display' | 'sentence'>('display');
   readonly description = input.required<string>();
 
   readonly imageSrc = input.required<string>();
@@ -44,4 +46,8 @@ export class ServiceHeroComponent {
   /** Optional route for the button. Without it the button renders as a plain <button>. */
   readonly ctaLink = input<string | null>(null);
   readonly ctaClick = output<MouseEvent>();
+
+  /** Optional second button shown beside the first. Leave empty to hide it. */
+  readonly secondaryCtaLabel = input('');
+  readonly secondaryCtaClick = output<MouseEvent>();
 }

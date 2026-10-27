@@ -38,6 +38,12 @@ export class CaseStudiesComponent implements OnInit {
     { image: 'assets/case-goal-3.png', alt: 'Hand holding three stars icon', text: 'Deliver reliable results.' },
   ];
 
+  /** Goal card text: the project's own goalsHeading1-3 from the admin, else the default text. */
+  goalText(index: number, fallback: string): string {
+    const value = this.cardData?.[`goalsHeading${index + 1}`];
+    return typeof value === 'string' && value.trim() && value !== 'null' ? value : fallback;
+  }
+
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
@@ -79,6 +85,12 @@ export class CaseStudiesComponent implements OnInit {
               next: (detail: any) => {
                 this.cardData = detail?.data?.data;
                 if (this.cardData) {
+                  // Older admin saves stored empty fields as the text "null"; show them as empty.
+                  for (const [field, value] of Object.entries(this.cardData)) {
+                    if (typeof value === 'string' && value.trim().toLowerCase() === 'null') {
+                      this.cardData[field] = '';
+                    }
+                  }
                   // Images written in the admin without alt text get one (the editor's own alt text is kept).
                   for (const field of ['overviewPara', 'keyDescription']) {
                     if (typeof this.cardData[field] === 'string') {

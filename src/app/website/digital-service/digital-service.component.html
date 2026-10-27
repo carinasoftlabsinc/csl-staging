@@ -7,45 +7,54 @@
   <ng-container *ngTemplateOutlet="caseStudies" />
   <ng-container *ngTemplateOutlet="solutionByDataSource" />
   <ng-container *ngTemplateOutlet="getStarted" />
-  <app-footer></app-footer>
+  <app-footer
+    cardText="Ready to Grow? <br class=&quot;hidden sm:block&quot; /> Let’s Build Your Custom Marketing Plan."
+    btnText="Get My Free Growth Plan"
+  ></app-footer>
 </main>
 
 <!-- ===== Hero ===== -->
 <ng-template #hero>
   <app-service-hero
-    accent="DIGITAL"
-    headline="MARKETING"
-    description="We Help Service Trades Just Like Yours with the Online Tools and Expertise. Partner with a Canadian marketing company that is invested in your growth."
+    accent="Scale Your Brand"
+    headline="with Digital Marketing Services That Deliver"
+    headlineStyle="sentence"
+    description="Results-driven digital marketing services for businesses that want more traffic, leads, and sales. We combine SEO, paid ads, social media, content & AI search optimization into a single growth-focused strategy."
     imageSrc="assets/images/Digital-marketing.png"
-    imageAlt="Marketer reviewing website analytics on a laptop"
+    imageAlt="Digital marketing services by Carina Softlabs: marketer reviewing website analytics on a laptop"
     [imageWidth]="717"
     [imageHeight]="553"
+    secondaryCtaLabel="Explore Services"
+    (ctaClick)="scrollToSection($event, 'lead-form')"
+    (secondaryCtaClick)="scrollToSection($event, 'dm-services')"
   />
 </ng-template>
 
 <!-- ===== Our Service ===== -->
 <ng-template #ourService>
   <section
-    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-t-[40px]"
+    id="dm-services"
+    class="px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-white rounded-t-[40px] scroll-mt-6"
     >
     <div class="mx-auto max-w-[1671px]">
       <h2
-        class="text-[#0B0C10] text-[clamp(1.875rem,2.86vw,3.4375rem)] leading-none font-myfont pb-5 2xl:pb-[34px] border-b border-[#B4B9CB]"
+        class="text-[#0B0C10] text-[clamp(1.875rem,2.86vw,3.4375rem)] leading-[1.05] font-myfont pb-5 2xl:pb-[34px] border-b border-[#B4B9CB]"
         >
-        Our Service
+        Full-Funnel Digital Marketing Services for Every Business
       </h2>
     </div>
     <div class="mx-auto max-w-[1671px] pt-4 2xl:pt-[31px]">
       <p
-        class="max-w-[581px] font-quickSand font-medium text-sm lg:text-base 2xl:text-lg leading-6 text-[#34394B]"
+        class="max-w-[820px] font-quickSand font-medium text-sm lg:text-base 2xl:text-lg leading-6 2xl:leading-7 text-[#34394B]"
         >
-        A full- cycle digital service agency. We do from design to end-to end
-        development to maintenance.
+        From startups to enterprises, we deliver end-to-end digital marketing solutions tailored to your scale.
+        Whether you need consumer growth or specialized B2B marketing, every service is engineered for one purpose:
+        driving measurable customer acquisition and sustainable revenue.
       </p>
     </div>
 
     <!-- Sizes use container-query units (cqw = 1% of the card width) so every card keeps the Figma proportions at any screen size. -->
-    <div class="mx-auto max-w-[1671px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-12 2xl:my-20 gap-7 2xl:gap-[38px]">
+    <div class="mx-auto max-w-[1671px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 my-12 2xl:my-20 gap-7 2xl:gap-[38px]">
       @for (card of numCards; track card.num) {
         <div
           [ngClass]="[card.bgColor, card.textColor]"
@@ -60,10 +69,10 @@
           <div class="pl-[9.2cqw] pr-[3cqw] pt-[5.1cqw]">
             <p class="font-myfont font-medium text-[18.4cqw] leading-[1.313]" aria-hidden="true">{{ card.num }}</p>
             <h3
-              class="mt-[13.3cqw] whitespace-nowrap font-quickSand font-bold text-[9.3cqw] leading-[1.1]"
+              class="mt-[7cqw] whitespace-nowrap font-quickSand font-bold text-[9.3cqw] leading-[1.1]"
               innerHTML="{{ card.heading }}"
             ></h3>
-            <p [ngClass]="card.paraColor" class="mt-[7.2cqw] max-w-[75.7cqw] font-quickSand font-medium text-[max(14px,4.14cqw)] leading-[1.18]">
+            <p [ngClass]="card.paraColor" class="mt-[5cqw] max-w-[72cqw] font-quickSand font-medium text-[max(14px,4.14cqw)] leading-[1.18]">
               {{ card.para }}
             </p>
           </div>
@@ -77,6 +86,17 @@
             />
         </div>
       }
+
+      <!-- Closing card: fills the last row beside card 07 on laptops and up -->
+      <div class="lg:col-span-2 2xl:col-span-1 2xl:aspect-[532/573] flex flex-col justify-between gap-8 rounded-[2.25rem] bg-[#0B0C10] text-white p-8 md:p-10 2xl:p-9 max-lg:min-h-[260px]">
+        <p class="font-myfont text-[clamp(1.75rem,2.6vw,3.25rem)] 2xl:text-[clamp(1.75rem,1.9vw,2.6rem)] leading-[1.05] max-w-[14em]">
+          Not sure which service fits? Let’s talk.
+        </p>
+        <a appGradientButton size="md" href="/digital-marketing#lead-form" (click)="scrollToSection($event, 'lead-form')" class="self-start">
+          Get Your Free Growth Plan
+          <img src="../../../assets/images/arrow-right-gradient.svg" alt="" aria-hidden="true" width="33" height="16" class="w-5" />
+        </a>
+      </div>
     </div>
   </section>
 </ng-template>
@@ -87,13 +107,13 @@
     <div class="digital-growth__inner mx-auto max-w-[1671px]">
       <div class="digital-growth__intro">
         <h2 id="digital-growth-title" class="digital-growth__title font-myfont">
-          What Does It Take to Grow Your<br class="hidden lg:block" /> Business Online
+          One Connected Digital Marketing Strategy for Traffic, Leads, and Sales
         </h2>
         <img class="digital-growth__divider" src="assets/images/digital-growth/divider.svg" alt="Divider line" width="1671" height="1" loading="lazy" />
         <p class="digital-growth__description font-quickSand">
-          Growing online takes more than a website or a few social posts. It needs a connected strategy that brings the right people to your brand, earns their trust, and turns their interest into revenue. As one of the best digital marketing agencies for growing brands, Carina Softlabs combines data-driven SEO, targeted paid campaigns, engaging content, AI visibility, and conversion-focused design into one growth plan built around your goals. We study your audience and market first, then build, test, and refine every channel so each one supports the others. The result is steady, measurable growth instead of short-lived spikes.
+          Growing online takes more than a scattered website or a few social posts. It requires a unified digital ecosystem. At Carina Softlabs, we combine data-driven SEO, high-intent paid campaigns, authoritative content, AI search visibility (GEO), and conversion-focused design into a single growth strategy. We analyze your audience and market behavior first, then integrate every channel so they reinforce one another. The result is predictable, sustainable revenue growth instead of short-lived traffic spikes.
         </p>
-        <img class="digital-growth__illustration" src="assets/images/digital-growth/growth-arrows.svg" alt="Growth arrows illustration" width="380" height="342" loading="lazy" decoding="async" />
+        <img class="digital-growth__illustration" src="assets/images/digital-growth/growth-arrows.svg" alt="Digital marketing strategy growth illustration" width="380" height="342" loading="lazy" decoding="async" />
       </div>
 
       <h3 class="digital-growth__subtitle font-myfont">Your Roadmap to Digital Growth</h3>
@@ -121,20 +141,21 @@
   <section class="commitment-section relative isolate overflow-hidden rounded-[50px] px-7 md:px-10 xl:px-14 2xl:px-24 pt-10 lg:pt-[clamp(2.5rem,3.85vw,4.625rem)] pb-14 lg:pb-[clamp(3rem,7.4vw,8.875rem)]">
     <div class="relative z-10 mx-auto max-w-[1671px]">
       <h2 class="text-white text-[clamp(1.5rem,2.34vw,2.8125rem)] leading-[0.988] font-myfont pb-4 2xl:pb-[34px] border-b border-[#34394B]">
-        Commitments to Our Clients
+        Real Growth Delivered for Our Clients
       </h2>
 
       <p class="mt-4 lg:mt-[clamp(1rem,1.2vw,1.5rem)] max-w-[709px] font-quickSand font-medium text-sm lg:text-[15px] xl:text-[clamp(1rem,1.15vw,1.375rem)] leading-[1.55] text-[#B4B9CB]">
-        Our employees are at the heart of our company. Here&rsquo;s what they have to say about working at Mixmax.
+        Our success is measured directly by the revenue and impact we generate for our partners. Here is a snapshot of
+        the tangible outcomes our data-driven strategies have created across 400+ campaigns.
       </p>
 
       <div class="mt-8 lg:mt-[clamp(2rem,4.6vw,5.5rem)] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[533fr_536fr_536fr] gap-[1rem] md:max-lg:gap-6 lg:[gap:clamp(1rem,1.8vw,2.1875rem)] text-white font-quickSand">
         <!-- Big card -->
         <div class="md:col-span-2 lg:col-span-1 lg:row-span-2 flex flex-col items-center justify-center text-center rounded-[31px] border-2 border-[#34394B] bg-gradient-to-b from-[#0033E91A] via-transparent to-transparent backdrop-blur-2xl py-10 md:py-12 lg:py-0 [container-type:inline-size]">
-          <img class="size-[clamp(72px,18cqw,96px)]" src="../../../assets/images/DG-clientLogo1.svg" alt="Leads generated icon" width="96" height="96" loading="lazy" />
-          <p class="mt-[clamp(1.5rem,10cqw,3.5rem)] font-bebas uppercase leading-none text-[clamp(88px,29cqw,155px)] max-md:text-[clamp(88px,22vw,120px)] md:max-lg:text-[140px]">1.8 M</p>
+          <img class="size-[clamp(72px,18cqw,96px)]" src="../../../assets/images/DG-clientLogo1.svg" alt="Leads delivered icon" width="96" height="96" loading="lazy" />
+          <p class="mt-[clamp(1.5rem,10cqw,3.5rem)] font-bebas uppercase leading-none text-[clamp(88px,29cqw,155px)] max-md:text-[clamp(88px,22vw,120px)] md:max-lg:text-[140px]">55K+</p>
           <p class="mt-[clamp(1rem,4cqw,1.8rem)] font-semibold capitalize leading-[1.38] text-[clamp(.9375rem,5.6cqw,1.875rem)] max-md:text-[clamp(1rem,4.4vw,1.5rem)] md:max-lg:text-3xl">
-            1.8 Million Leads<br />Generated For Our Clients
+            High-Intent Leads<br />Delivered
           </p>
         </div>
 
@@ -163,7 +184,7 @@
   <!-- Case studies: Figma 1980:5202. The preview frame is sized in cqw (1% of its own width) so it keeps the design proportions at any screen size. -->
   <section class="bg-white rounded-[50px] px-7 md:px-10 xl:px-14 2xl:px-24 pt-10 lg:pt-[clamp(1.75rem,2.4vw,2.875rem)] pb-12 lg:pb-[clamp(2.5rem,4.8vw,5.75rem)]">
     <div class="mx-auto max-w-[1671px] flex justify-between items-center gap-4 text-[#0B0C10] border-b border-[#B4B9CB] pb-4 lg:pb-[clamp(1rem,1.77vw,2.125rem)]">
-      <h2 class="text-[clamp(1.5rem,2.34vw,2.8125rem)] leading-[0.988] font-myfont uppercase">Case Studies</h2>
+      <h2 class="text-[clamp(1.5rem,2.34vw,2.8125rem)] leading-[0.988] font-myfont uppercase">Real Campaigns. Measurable Results</h2>
       <a
         appGradientButton
         variant="light"
@@ -180,6 +201,10 @@
         </span>
       </a>
     </div>
+
+    <p class="mx-auto max-w-[1671px] mt-4 lg:mt-[clamp(1rem,1.2vw,1.5rem)] font-quickSand font-medium text-sm lg:text-[15px] xl:text-[clamp(1rem,1.15vw,1.375rem)] leading-[1.55] text-[#34394B]">
+      <span class="block max-w-[52em]">Explore how our integrated SEO, paid acquisition, and AI search optimization strategies help brands scale revenue, lower acquisition costs, and dominate their industries.</span>
+    </p>
 
     <div class="mx-auto mt-8 lg:mt-[clamp(1.5rem,1.72vw,2.0625rem)] max-w-[1709px] grid grid-cols-1 lg:grid-cols-[678fr_932.75fr] gap-8 lg:gap-[clamp(2rem,5.14vw,98.6px)] items-start">
       <!-- Left: title, text and the 3 x 2 thumbnails. Below lg it dissolves (contents) so the order becomes text, preview, swipe cards. -->
@@ -257,13 +282,13 @@
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center justify-center h-12 md:h-[8.47cqw] flex-1 md:flex-none md:w-[46.1cqw] whitespace-nowrap rounded-full border-[1.67px] border-transparent text-white font-quickSand font-semibold capitalize !text-[clamp(.8125rem,1.93cqw,1.125rem)] transition-colors duration-200 [background:linear-gradient(#34394B,#34394B)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] hover:[background:linear-gradient(#424B65,#424B65)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7]"
-          >View Live Demo</a>
+          >Read Case Study →</a>
           <a
             [href]="selectedCard.diviLink"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center justify-center h-12 md:h-[8.47cqw] flex-1 md:flex-none md:w-[46.1cqw] whitespace-nowrap rounded-full border-[1.67px] border-transparent text-white font-quickSand font-semibold capitalize !text-[clamp(.8125rem,1.93cqw,1.125rem)] transition-colors duration-200 [background:linear-gradient(#34394B,#34394B)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] hover:[background:linear-gradient(#424B65,#424B65)_padding-box,linear-gradient(to_bottom,#F21DF5,#20B9FA)_border-box] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#9B5DF7]"
-          >Available In DIVI</a>
+          >View Results Breakdown →</a>
         </div>
       </div>
       </div>
@@ -276,11 +301,12 @@
   <section class="bg-[#0B0C10] rounded-[50px] px-7 md:px-10 xl:px-14 2xl:px-24 py-12 lg:py-[clamp(3rem,8.65vw,10.375rem)]">
     <div class="mx-auto max-w-[1671px]">
       <h2 class="text-white uppercase font-myfont text-[clamp(1.875rem,2.86vw,3.4375rem)] leading-[0.988] pb-5 2xl:pb-[34px] border-b border-[#34394B]">
-        Solution by Data Source
+        Powered by Industry-Leading Digital Marketing Tools
       </h2>
 
       <p class="mt-4 lg:mt-[clamp(1rem,1.3vw,1.6rem)] max-w-[709px] font-quickSand font-medium text-sm lg:text-[15px] xl:text-[clamp(1rem,1.15vw,1.375rem)] leading-[1.55] text-[#B4B9CB]">
-        Our employees are at the heart of our company. Here&rsquo;s what they have to say about working at Mixmax.
+        We leverage elite marketing, analytics, CRM, and AI platforms to track every metric, optimize campaign
+        performance, and turn real-time data into smarter growth decisions.
       </p>
 
       <!-- Tiles keep the 312 x 140 design ratio; their contents are sized in cqw (1% of the tile width). -->
@@ -290,7 +316,9 @@
             class="relative flex flex-col items-center justify-center aspect-[312/140] rounded-[8.33%/18.57%] bg-[#34394B80] [container-type:inline-size]"
             [attr.aria-hidden]="source.name ? null : 'true'"
           >
-            @if (source.tile) {
+            @if (source.logo) {
+              <img class="max-w-[64%] w-auto h-auto object-contain" [ngClass]="source.square ? 'max-h-[60%]' : 'max-h-[42%]'" [src]="'assets/images/digital-growth/' + source.logo" [alt]="source.name + ' logo'" loading="lazy" decoding="async" />
+            } @else if (source.tile) {
               <img class="absolute inset-0 size-full" [src]="'assets/images/data-sources/' + source.tile + '.svg'" [alt]="source.name" width="312" height="140" loading="lazy" />
             } @else if (source.icon) {
               <img [ngClass]="source.size" [src]="'assets/images/data-sources/' + source.icon + '.svg'" [alt]="source.name" loading="lazy" />
@@ -299,6 +327,8 @@
               }
             } @else if (source.text) {
               <span class="font-['Arial_Black',Arial,sans-serif] font-black text-white leading-none text-[12.6cqw]">{{ source.text }}</span>
+            } @else if (source.label) {
+              <span class="px-[6cqw] text-center font-quickSand font-semibold text-white leading-tight text-[max(12px,6.4cqw)]">{{ source.label }}</span>
             }
           </li>
         }
@@ -312,6 +342,8 @@
   <app-quote-section
     theme="light"
     service="Digital Marketing"
+    heading="Get Your Free Custom Marketing Quote"
+    description="Tell us about your business, current bottlenecks, and revenue goals. We’ll build and share a tailored digital growth plan complete with clear pricing and a clear execution roadmap."
     image="assets/images/dm-quote.webp"
     imageAlt="Marketing team reviewing campaign analytics on a laptop"
     [imageWidth]="724"

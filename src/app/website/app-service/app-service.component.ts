@@ -1,4 +1,5 @@
 import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, OnInit, signal, viewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { SeoService } from '@core/service/seo.service';
 
 @Component({
@@ -11,54 +12,65 @@ import { SeoService } from '@core/service/seo.service';
 export class AppServiceComponent implements OnInit {
   private readonly seoService = inject(SeoService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
   private readonly metricsSection = viewChild<ElementRef<HTMLElement>>('metricsSection');
   private metricsObserver?: IntersectionObserver;
   private readonly counterFrames = new Map<number, number>();
   readonly metricsReady = signal(false);
   readonly metricsVisible = signal([false, false, false]);
-  readonly metricValues = signal([50, 150, 20]);
+  readonly metricValues = signal([125, 155, 20]);
   readonly assets = 'assets/images/app-development/';
-  readonly introduction = 'A full- cycle digital service agency. We do from design to end-to end development to maintenance.';
-  readonly expertiseDescription = 'At Carina Softlabs Inc., we serve as your comprehensive destination for all your business requirements. Our extensive';
   readonly expertise = [
-    { number: '01', title: 'Android App', secondLine: 'Development', color: '#B1DF4F', light: false },
-    { number: '02', title: 'IOS App', secondLine: 'Development', color: '#BC8AFB', light: true },
-    { number: '03', title: 'Web App', secondLine: 'Development', color: '#FB8ACE', light: true },
-    { number: '04', title: 'Native App', secondLine: 'Development', color: '#8AE0FB', light: false },
-    { number: '05', title: 'Cross-Platform', secondLine: 'App Development', color: '#B1DF4F', light: false },
+    { number: '01', title: 'Android App', secondLine: 'Development', color: '#B1DF4F', light: false, compact: false,
+      description: 'Our Android app development services build high-performance apps rigorously tested for device compatibility, fluid performance, and seamless operation across screen sizes and hardware specs.' },
+    { number: '02', title: 'iOS App', secondLine: 'Development', color: '#BC8AFB', light: true, compact: false,
+      description: 'Our iOS app development services create pixel-perfect, highly secure apps that strictly adhere to Apple’s Human Interface Guidelines and pass App Store review friction-free.' },
+    { number: '03', title: 'Cross-Platform', secondLine: 'App Development', color: '#FB8ACE', light: true, compact: true,
+      description: 'Launch simultaneously on iOS and Android with cross-platform app development using Flutter and React Native, cutting time-to-market and development costs without compromising native feel.' },
+    { number: '04', title: 'Native App', secondLine: 'Development', color: '#8AE0FB', light: false, compact: false,
+      description: 'Native applications built from the ground up using Kotlin and Swift for unmatched processing speed, buttery-smooth animations, and deep access to on-device cameras, GPS, and sensors.' },
+    { number: '05', title: 'Mobile App MVP', secondLine: 'Development', color: '#B1DF4F', light: false, compact: true,
+      description: 'Validate your business model with mobile app MVP development. We engineer a lean, feature-complete version designed to gather real user feedback and secure investor traction fast.' },
+    { number: '06', title: 'AI App', secondLine: 'Integration', color: '#BC8AFB', light: true, compact: false,
+      description: 'Transform passive software into intelligent tools via AI app integration, embedding smart chatbots, predictive recommendations, computer vision, and voice search into your workflows.' },
+    { number: '07', title: 'App Maintenance', secondLine: 'Services', color: '#FB8ACE', light: true, compact: true,
+      description: 'Protect your investment and retain users with dedicated app maintenance services, including OS update compatibility, active bug fixing, speed tuning, and proactive feature rollouts.' },
   ];
   readonly steps = [
-    { title: 'Prototype Design', color: '#B1DF4F', description: 'We create a prototype for your app. The cost of designing a prototype for an application is only 10% of the total cost. Clients have the option to request the design alone, which can be used to seek funding.' },
-    { title: 'Feature specification', color: '#BC8AFB', description: 'Feature specification: We compile a technical document detailing all the features incorporated into the application.' },
-    { title: 'Application development', color: '#FB8ACE', description: 'Once the design and app functionalities are confirmed, our engineers proceed to develop the internal components, external connections, administration panels, and app features.' },
+    { title: 'Prototype Design', color: '#B1DF4F', description: 'We turn your initial concepts into clickable screens through app prototyping and modern mobile UI/UX design. Test real navigation flows, validate user journeys before writing code, and use the interactive prototype to pitch stakeholders or investors.' },
+    { title: 'Feature Specification', color: '#BC8AFB', description: 'We author a comprehensive technical architecture document mapping every feature, including user accounts, push notifications, offline functionality, payment integrations, and third-party APIs.' },
+    { title: 'Application Development', color: '#FB8ACE', description: 'Our senior engineering team builds robust frontend code, backend infrastructure, custom APIs, and an intuitive admin dashboard. Every build undergoes rigorous QA for speed, data security, and multi-device compatibility.' },
+    { title: 'Launch & Support', color: '#8AE0FB', description: 'We handle the end-to-end store publishing process for Google Play and the Apple App Store, keeping your app fast, secure, and fully optimized post-launch through our proactive app maintenance services.' },
   ];
   readonly industries = [
-    { title: 'Fintech Apps', image: 'fintech.png', color: '#B1DF4F', light: false },
-    { title: 'Geolocation Apps', image: 'geolocation.png', color: '#BC8AFB', light: true },
-    { title: 'Apps Stores', image: 'stores.png', color: '#FB8ACE', light: false },
-    { title: 'Delivery Apps', image: 'delivery.png', color: '#8AE0FB', light: false },
-    { title: 'Event Apps', image: 'events.webp', color: '#8AE0FB', light: false },
-    { title: 'eLearning Apps', image: 'elearning.png', color: '#FB8ACE', light: true },
-    { title: 'Social Networking Apps', image: 'social.png', color: '#BC8AFB', light: false },
-    { title: 'Travel Apps', image: 'travel.webp', color: '#B1DF4F', light: false },
+    { title: 'Fintech Apps', image: 'fintech.png', color: '#B1DF4F', light: false, description: 'Secure wallets, payments, and banking apps with strong data protection' },
+    { title: 'Geolocation Apps', image: 'geolocation.png', color: '#BC8AFB', light: true, description: 'Real-time maps, tracking, and location-based services' },
+    { title: 'eCommerce Apps', image: 'stores.png', color: '#FB8ACE', light: false, description: 'Shopping apps with smooth checkout and payment integration' },
+    { title: 'Delivery Apps', image: 'delivery.png', color: '#8AE0FB', light: false, description: 'Live order tracking, driver apps, and push notifications' },
+    { title: 'Event Apps', image: 'events.webp', color: '#8AE0FB', light: false, description: 'Ticketing, schedules, and attendee networking' },
+    { title: 'eLearning Apps', image: 'elearning.png', color: '#FB8ACE', light: true, description: 'Courses, quizzes, and video lessons with offline functionality' },
+    { title: 'Social Networking Apps', image: 'social.png', color: '#BC8AFB', light: false, description: 'Profiles, chat, feeds, and community features' },
+    { title: 'Travel Apps', image: 'travel.webp', color: '#B1DF4F', light: false, description: 'Bookings, itineraries, and travel guides on the go' },
   ];
-  readonly technologies = [
-    { name: 'Salesforce', image: 'salesforce.svg', fullTile: true, width: 312, height: 140, label: '' },
-    { name: 'Excel', image: 'excel.svg', fullTile: false, width: 64.461, height: 62.974, label: 'Excel' },
-    { name: 'Google Analytics', image: 'google-analytics.svg', fullTile: false, width: 56.964, height: 63.058, label: 'Google Analytics' },
-    { name: 'Box', image: 'box.svg', fullTile: false, width: 108.75, height: 59.99, label: '' },
-    { name: 'MySQL', image: 'mysql.svg', fullTile: true, width: 312, height: 140, label: '' },
-    { name: 'QuickBooks', image: 'quickbooks.svg', fullTile: true, width: 312, height: 140, label: '' },
-    { name: 'Xero', image: 'xero.svg', fullTile: true, width: 313, height: 140, label: '' },
-    { name: 'Google Docs', image: 'google-docs.svg', fullTile: false, width: 53.922, height: 74.143, label: '' },
-    { name: 'Facebook', image: 'facebook.svg', fullTile: true, width: 312, height: 140, label: '' },
-    { name: 'JSON', image: '', fullTile: false, width: 0, height: 0, label: 'JSON' },
-    { name: 'HubSpot', image: 'hubspot.svg', fullTile: true, width: 313, height: 140, label: '' },
+  // Logo paths are relative to assets/images/ (some logos are shared with other pages).
+  readonly technologies: { name: string; logo: string; icon?: boolean }[] = [
+    { name: 'Flutter', logo: 'app-development/tech-flutter.svg' },
+    { name: 'React Native', logo: 'app-development/tech-react-native.svg', icon: true },
+    { name: 'Kotlin', logo: 'app-development/tech-kotlin.svg' },
+    { name: 'Swift', logo: 'app-development/tech-swift.svg' },
+    { name: 'Android Studio', logo: 'game-design/tech/android-studio.svg', icon: true },
+    { name: 'Xcode', logo: 'game-design/tech/xcode.svg', icon: true },
+    { name: 'Firebase', logo: 'app-development/tech-firebase.svg' },
+    { name: 'Node.js', logo: 'app-development/tech-nodejs.svg' },
+    { name: 'AWS', logo: 'app-development/tech-aws.svg' },
+    { name: 'Figma', logo: 'app-development/tech-figma.svg' },
+    { name: 'Stripe', logo: 'app-development/tech-stripe.svg' },
+    { name: 'OpenAI', logo: 'digital-growth/chatgpt.svg', icon: true },
   ];
   readonly metrics = [
-    { value: 50, label: 'Total project' },
-    { value: 150, label: 'Live Apps' },
-    { value: 20, label: 'App Rates' },
+    { value: 125, label: 'Mobile Projects Successfully Delivered' },
+    { value: 155, label: 'High-Performing Apps Launched Across Stores' },
+    { value: 20, label: 'Diverse Global Industries Served' },
   ];
 
   constructor() {
@@ -123,6 +135,10 @@ export class AppServiceComponent implements OnInit {
     const distance = (card?.offsetWidth ?? track.clientWidth) + gap;
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
     track.scrollBy({ left: event.key === 'ArrowRight' ? distance : -distance, behavior: reducedMotion ? 'instant' : 'smooth' });
+  }
+
+  viewOurWork(): void {
+    void this.router.navigateByUrl('/portfolio');
   }
 
   scrollToQuote(event: MouseEvent): void {

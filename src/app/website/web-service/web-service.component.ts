@@ -84,7 +84,7 @@ export class WebServiceComponent implements OnInit {
       imgSrc: 'assets/images/webIcon10.svg',
       heading: 'Infrastructure & DevOps',
       description:
-        'Docker, AWS, GCP, Microsoft Azure, and CI/CD pipelines (GitHub Actions).',
+        'Docker containerization, cloud deployment (AWS, GCP, Azure), and automated CI/CD pipelines via GitHub Actions.',
     },
   ];
 }

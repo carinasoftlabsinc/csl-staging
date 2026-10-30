@@ -1,0 +1,12 @@
+@use "variables";
+
+/* The only Font Awesome icons the admin shows (dashboards). The full set (_icons.scss, ~1,450 icons) is
+   not loaded. To use another icon, copy its line from _icons.scss here. */
+
+.#{variables.$fa-css-prefix}-ad:before { content: variables.fa-content(variables.$fa-var-ad); }
+.#{variables.$fa-css-prefix}-book-open:before { content: variables.fa-content(variables.$fa-var-book-open); }
+.#{variables.$fa-css-prefix}-briefcase:before { content: variables.fa-content(variables.$fa-var-briefcase); }
+.#{variables.$fa-css-prefix}-edit:before { content: variables.fa-content(variables.$fa-var-edit); }
+.#{variables.$fa-css-prefix}-gamepad:before { content: variables.fa-content(variables.$fa-var-gamepad); }
+.#{variables.$fa-css-prefix}-newspaper:before { content: variables.fa-content(variables.$fa-var-newspaper); }
+.#{variables.$fa-css-prefix}-user-tie:before { content: variables.fa-content(variables.$fa-var-user-tie); }

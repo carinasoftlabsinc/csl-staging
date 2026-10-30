@@ -1,0 +1,88 @@
+/*
+ *  Document   : style.css
+ *  Author     : RedStar Template
+ *  Description: This is a main style scss file for import all scss files.
+ *
+ *  Structure (with shortcodes):
+                 [1. Common ]
+                 [2. Fonts ]                   
+                 [3. Components ]       
+                 [4. Apps]                   
+                 [5. Pages ]    
+                 [6. Pugins ]        
+                 [7. UI ]     
+                 [8. Browser ]     
+
+                
+/*                 [1. Common ]                   			*/
+
+
+// The Material theme is loaded by angular.json.
+/* Importing Bootstrap SCSS file. */
+@use "common/_variables";
+@use "common/_mixins";
+@use "common/_customanimate.scss";
+@use "common/_general.scss";
+@use "common/_demo.scss";
+@use "common/_helpers.scss";
+@use "common/_media.scss";
+@use "common/_animation.scss";
+@use "common/_rtl.scss";
+
+/*                 [2. Fonts]                   				*/
+// @import "fonts/_material.scss";
+@use "fonts/fontawesome/fontawesome.scss";
+@use "fonts/fontawesome/solid.scss";
+
+
+
+/*                 [3. Components ]                   		*/
+@use "components/_breadcrumbs.scss";
+@use "components/_checkboxradio.scss";
+@use "components/_dropdownmenu.scss";
+@use "components/_formcomponents.scss";
+@use "components/_infobox.scss";
+@use "components/_inputformgroup.scss";
+@use "components/_labels.scss";
+@use "components/_leftsidebaroverlay.scss";
+@use "components/_navbar";
+@use "components/_navtabs.scss";
+@use "components/_rightsidebar.scss";
+@use "components/_searchbar.scss";
+@use "components/_switch.scss";
+@use "components/_settingSidebar.scss";
+
+/*                 [4. Apps]                   				*/
+@use "apps/_contactlist.scss";
+@use "apps/_contactgrid.scss";
+@use "apps/_task.scss";
+
+/*                 [5. Pages ]                   				*/
+@use "pages/_dashboard.scss";
+@use "pages/_profile.scss";
+@use "pages/_projects.scss";
+@use "pages/_auth.scss";
+
+/*                 [6. Pugins ]                   				*/
+@use "plugins/_charts.scss";
+@use "plugins/_tables.scss";
+
+/*                 [7. UI ]                   */
+@use "ui/_alerts.scss";
+@use "ui/_badgelistgroupitem.scss";
+@use "ui/_buttons.scss";
+@use "ui/_card.scss";
+@use "ui/_collapse.scss";
+@use "ui/_expansion.scss";
+@use "ui/_mediaobject.scss";
+@use "ui/_modals.scss";
+@use "ui/_pagination.scss";
+@use "ui/_progressbars.scss";
+@use "ui/_snackbar.scss";
+@use "ui/_tooltippopovers.scss";
+
+/*                 [8. Browser ]                   			*/
+@use "browser/_ie10.scss";
+@use "browser/_ie11.scss";
+
+

@@ -1,0 +1,180 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <app-breadcrumb
+        [title]="mode === 'add' ? 'New Blog' : 'Edit Blog'"
+        [items]="['Blogs']"
+        [active_item]="mode === 'add' ? 'New Blog' : 'Edit Blog'"
+      >
+      </app-breadcrumb>
+    </div>
+
+    <div class="mb-2">
+      <mat-icon matTooltip="Back to blogs" class="back-link" color="primary" (click)="cancel()">arrow_back</mat-icon>
+    </div>
+
+    <div *ngIf="isLoading" class="state"><mat-spinner [diameter]="40"></mat-spinner></div>
+    <div *ngIf="loadError" class="state">{{ loadError }}</div>
+
+    <form *ngIf="!isLoading && !loadError" [formGroup]="form" (ngSubmit)="save()" class="blog-editor">
+      <!-- Post details -->
+      <div class="card">
+        <div class="body">
+          <h3 class="part-title">Post details</h3>
+          <div class="row">
+            <div class="col-12 mb-2">
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title" required />
+                <mat-error *ngIf="form.controls.title.hasError('required')">Title is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-12 mb-2">
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Title link</mat-label>
+                <span matTextPrefix class="link-prefix">carinasoftlabs.com/blog/</span>
+                <input matInput formControlName="titleLink" required (input)="onLinkInput()" (blur)="onLinkBlur()" />
+                <mat-hint *ngIf="mode === 'add'">Filled in from the title. Lowercase words with hyphens.</mat-hint>
+                <mat-hint *ngIf="mode === 'edit'">Changing the link of a published post breaks links to it.</mat-hint>
+                <mat-error *ngIf="form.controls.titleLink.hasError('required')">Title link is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4 mb-2">
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category">
+                  <mat-option *ngFor="let c of categories" [value]="c.value">{{ c.label }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4 mb-2">
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Author</mat-label>
+                <input matInput formControlName="author" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-4 mb-2">
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Published date</mat-label>
+                <input matInput formControlName="date" placeholder="14 Oct 2026" />
+              </mat-form-field>
+            </div>
+            <div class="col-12 mb-2">
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description" rows="3"></textarea>
+                <mat-hint>Shown on the blog list and in search results.</mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="col-12 mb-3">
+              <mat-checkbox formControlName="isFeature">Feature this post</mat-checkbox>
+            </div>
+
+            <!-- Cover images (drag & drop, click or paste) -->
+            <div class="col-md-6 mb-2">
+              <app-image-upload-field formControlName="image" label="Header image" [required]="true"
+                hint="Wide header banner (1104 × 320). The website fills this frame and crops any excess." [baseUrl]="imageBaseUrl"
+                [recommendedWidth]="1104" [recommendedHeight]="320" [showErrors]="submitted"></app-image-upload-field>
+            </div>
+            <div class="col-md-6 mb-2">
+              <app-image-upload-field formControlName="image_2" label="Preview image" [required]="true"
+                hint="Shown on the blog list cards (about 394 × 374)." [baseUrl]="imageBaseUrl"
+                [recommendedWidth]="394" [recommendedHeight]="374" [showErrors]="submitted"></app-image-upload-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEO: how the post appears in Google -->
+      <div class="card">
+        <div class="body">
+          <h3 class="part-title">Search engine (SEO)</h3>
+          <p class="hint mb-3">
+            How this post appears in Google. Leave a field empty to use the post title (with " | Carina Softlabs")
+            and the description above.
+          </p>
+          <div class="row">
+            <div class="col-12">
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>SEO title</mat-label>
+                <input matInput formControlName="seoTitle" [placeholder]="form.controls.title.value ? form.controls.title.value + ' | Carina Softlabs' : 'Short title for Google'" />
+                <mat-hint align="end" class="counter" [attr.data-state]="counterState(form.controls.seoTitle.value.length, seoTitleLimit)">
+                  {{ form.controls.seoTitle.value.length }} / {{ seoTitleLimit }}
+                </mat-hint>
+              </mat-form-field>
+              <mat-form-field class="w-100 mt-2" appearance="outline">
+                <mat-label>SEO description</mat-label>
+                <textarea matInput formControlName="seoDescription" rows="3" placeholder="One or two sentences that make people click"></textarea>
+                <mat-hint align="end" class="counter" [attr.data-state]="counterState(form.controls.seoDescription.value.length, seoDescriptionLimit)">
+                  {{ form.controls.seoDescription.value.length }} / {{ seoDescriptionLimit }}
+                </mat-hint>
+              </mat-form-field>
+              <ul class="seo-tips">
+                <li>Title: up to {{ seoTitleLimit }} characters, main keyword first.</li>
+                <li>Description: up to {{ seoDescriptionLimit }} characters, say what the reader gets.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Post body -->
+      <div class="card">
+        <div class="body">
+          <h3 class="part-title">Post</h3>
+          <p class="hint mb-2">
+            Write the whole post here. Use <strong>Heading 2</strong> for each part of the post: those headings
+            build the table of contents on the website. Images can be added with the image button, pasted or dropped.
+          </p>
+          <editor formControlName="content" [init]="contentConfig"></editor>
+        </div>
+      </div>
+
+      <!-- FAQs -->
+      <div class="card">
+        <div class="body">
+          <div class="faq-header">
+            <h3 class="part-title">FAQs <small>({{ faqs.length }})</small></h3>
+            <button mat-stroked-button color="primary" type="button" (click)="addFaq()">
+              <mat-icon>add</mat-icon> Add FAQ
+            </button>
+          </div>
+          <p class="hint" *ngIf="!faqs.length">No FAQs. They are optional.</p>
+
+          <div>
+            <div class="faq" *ngFor="let faq of faqs.controls; let i = index; let first = first; let last = last" [formGroup]="faq">
+              <div class="faq-top">
+                <span class="faq-number">{{ i + 1 }}</span>
+                <mat-form-field class="faq-question" appearance="outline">
+                  <mat-label>Question</mat-label>
+                  <input matInput formControlName="question" />
+                </mat-form-field>
+                <div class="faq-actions">
+                  <button mat-icon-button type="button" matTooltip="Move up" [disabled]="first" (click)="moveFaq(i, -1)">
+                    <mat-icon>arrow_upward</mat-icon>
+                  </button>
+                  <button mat-icon-button type="button" matTooltip="Move down" [disabled]="last" (click)="moveFaq(i, 1)">
+                    <mat-icon>arrow_downward</mat-icon>
+                  </button>
+                  <button mat-icon-button color="warn" type="button" matTooltip="Remove" (click)="removeFaq(i)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <editor formControlName="answer" [init]="faqConfig"></editor>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Save -->
+      <div class="save-bar">
+        <button mat-raised-button type="button" (click)="cancel()" [disabled]="isSaving">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="isSaving">
+          <mat-spinner *ngIf="isSaving" [diameter]="18" class="inline-spinner"></mat-spinner>
+          {{ isSaving ? 'Saving…' : mode === 'add' ? 'Publish post' : 'Save changes' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

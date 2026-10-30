@@ -1,0 +1,394 @@
+<div class="addContainer">
+  @if (isLoading) {
+    <div class="spinner-container">
+      <mat-spinner [diameter]="30"></mat-spinner>
+    </div>
+  }
+  @if (!isLoading) {
+    <div class="contact-form">
+      <div class="modalHeader">
+        <div class="editRowModal">
+          <div class="modalHeader clearfix">
+            <div class="modal-about">
+              @if (mode === 'add') {
+                <h2>Add Project</h2>
+              }
+              @if (mode === 'edit') {
+                <h2>Edit Project</h2>
+              }
+            </div>
+          </div>
+        </div>
+        <button mat-icon-button type="button" (click)="dialogRef.close()" class="modal-close-button"
+          aria-label="Close dialog">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <div mat-dialog-content>
+        <form class="register-form m-4" [formGroup]="form" (ngSubmit)="onSave()">
+          <div class="row">
+            <div class="col-12 mb-3">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title" required />
+                @if (form.get('title')?.hasError('required')) {
+                  <mat-error>
+                    Title is required
+                  </mat-error>
+                }
+              </mat-form-field>
+            </div>
+            <div class="col-12 mb-3">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Title link</mat-label>
+                <input matInput formControlName="titleLink" required />
+                @if (form.get('titleLink')?.hasError('required')) {
+                  <mat-error>
+                    Title link is required
+                  </mat-error>
+                }
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 mb-3">
+              <app-image-upload-field formControlName="image" label="Header image" [required]="true"
+                [hint]="imageSpecs.image.hint" [baseUrl]="imageBaseUrl" [acceptTypes]="uploadTypes"
+                [recommendedWidth]="imageSpecs.image.width" [recommendedHeight]="imageSpecs.image.height"
+                [showErrors]="submitted"></app-image-upload-field>
+            </div>
+            <div class="col-md-6 mb-3">
+              <app-image-upload-field formControlName="image_2" label="Preview image (portfolio card)"
+                [hint]="imageSpecs.image_2.hint" [baseUrl]="imageBaseUrl" [acceptTypes]="uploadTypes"
+                [recommendedWidth]="imageSpecs.image_2.width" [recommendedHeight]="imageSpecs.image_2.height"
+                [showErrors]="submitted"></app-image-upload-field>
+            </div>
+            <div class="col-6 mb-3">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category">
+                  <mat-option value="game">Game Development</mat-option>
+                  <mat-option value="web">Web Development</mat-option>
+                  <mat-option value="app">App Development</mat-option>
+                  <mat-option value="digital-marketing">Digital Marketing</mat-option>
+                  <mat-option value="ai-emerging-technology">AI &amp; Emerging Technology</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-12 mb-3">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description" rows="3"></textarea>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 mb-3">
+              <app-image-upload-field formControlName="projectLogo" label="Project logo" [required]="true"
+                [hint]="imageSpecs.projectLogo.hint" [baseUrl]="imageBaseUrl" [acceptTypes]="uploadTypes"
+                [recommendedWidth]="imageSpecs.projectLogo.width" [recommendedHeight]="imageSpecs.projectLogo.height"
+                [showErrors]="submitted"></app-image-upload-field>
+            </div>
+            <div class="col-12 mb-3">
+              <mat-label>Project overview</mat-label>
+            </div>
+            <div class="col-12 mb-3">
+              <div class="px-1 py-1 border-b">
+                Tech Stack Images:
+                <small class="image-spec">{{ imageSpecs.techImages.width }} × {{ imageSpecs.techImages.height }} px, {{ imageSpecs.techImages.label }}, under 300 KB</small>
+              <mat-icon matTooltip="Upload Images" color="primary" [ngStyle]="{
+                  fontSize: '25px',
+                  cursor: 'pointer',
+                  opacity:
+                    techImagePreviews && techImagePreviews.length >= 10
+                      ? 0.5
+                      : 1
+                }" (click)="
+                  techImagePreviews &&
+                    techImagePreviews.length < 10 &&
+                    filePickertech?.click()
+                ">
+                  photo_camera
+                </mat-icon>
+                <input type="file" #filePickertech (change)="onTechImagePicked($event)" multiple />
+              </div>
+              @if (form.get('uiImages')?.hasError('required')) {
+                <mat-hint style="font-size: 11px" class="px-1 py-1 border-b"
+                  >
+                  At least one image is required
+                </mat-hint>
+              }
+              @if (techImagePreviews?.length) {
+                <div class="mt-2">
+                  @for (image of techImagePreviews; track image; let i = $index) {
+                    <div class="gallery-image-wrapper"
+                      style="display: inline-block; margin: 5px">
+                <img [src]="image" [alt]="'Tech Image ' + (i + 1)" class="image" style="
+                    width: 150px;
+                    height: 150px;
+                    object-fit: cover;
+                    border-radius: 8px;
+                  " />
+                        <button mat-icon-button type="button" color="warn" aria-label="Delete" (click)="onRemoveTechImage(i)"
+                          class="clear-button">
+                          <mat-icon matTooltip="Remove">cancel</mat-icon>
+                        </button>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+              <div class="col-12 mb-3">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Industry</mat-label>
+                  <input matInput formControlName="industry" />
+                </mat-form-field>
+              </div>
+              <div class="col-12 mb-3">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>overview Paragraph</mat-label>
+                  <input matInput formControlName="overviewPara" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 mb-3">
+                <app-image-upload-field formControlName="overviewImage" label="Overview image"
+                  [hint]="imageSpecs.overviewImage.hint" [baseUrl]="imageBaseUrl" [acceptTypes]="uploadTypes" [previewHeight]="260"
+                  [recommendedWidth]="imageSpecs.overviewImage.width" [recommendedHeight]="imageSpecs.overviewImage.height"
+                  [showErrors]="submitted"></app-image-upload-field>
+              </div>
+              <div class="col-12 mb-3">
+                <mat-label>Key Task</mat-label>
+              </div>
+              <div class="col-12 mb-3">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Key Heading</mat-label>
+                  <textarea matInput formControlName="keyHeading" rows="3"></textarea>
+                </mat-form-field>
+              </div>
+              @for (n of [1, 2, 3]; track n) {
+                <div class="col-12 mb-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Goal Heading {{ n }}</mat-label>
+                    <input matInput [formControlName]="'goalsHeading' + n" required />
+                    @if (form.get('goalsHeading' + n)?.hasError('required')) {
+                      <mat-error>Goal Heading {{ n }} is required</mat-error>
+                    }
+                  </mat-form-field>
+                </div>
+              }
+              <div class="col-12 mb-3">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Key Description</mat-label>
+                  <textarea matInput formControlName="keyDescription" rows="3"></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-12 mb-3">
+                <mat-label>Work Steps</mat-label>
+              </div>
+              <div class="col-12 mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <label>Work Steps</label>
+                  <button type="button" mat-button color="primary" (click)="addWork()"
+                    [disabled]="workStepsFormArray.length >= 5">
+                    Add
+                  </button>
+                </div>
+                @for (workSteps of workStepsControls; track workSteps; let i = $index) {
+                  <div [formGroup]="workSteps">
+                    <div class="row mb-2">
+                      <div class="col-5">
+                        <mat-form-field appearance="outline" class="w-100">
+                          <mat-label>Title</mat-label>
+                          <input matInput formControlName="title" required />
+                        </mat-form-field>
+                      </div>
+                      <div class="col-5">
+                        <mat-form-field appearance="outline" class="w-100">
+                          <mat-label>Description</mat-label>
+                          <input matInput formControlName="description" required />
+                        </mat-form-field>
+                      </div>
+                      <div class="col-2 d-flex align-items-center">
+                        <button mat-icon-button color="warn" (click)="removeWork(i)"
+                          [disabled]="workStepsFormArray.length <= 5">
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                }
+                <!-- Optional: show error message if not exactly 5 -->
+                @if (workStepsFormArray.length !== 5) {
+                  <mat-hint class="text-danger">
+                    Exactly 5 work steps are required.
+                  </mat-hint>
+                }
+              </div>
+              <div class="col-12 mb-3">
+                <mat-label>Ui Design System</mat-label>
+              </div>
+              <div class="col-12 mb-3">
+                <div class="px-1 py-1 border-b">
+                  UI Images:
+                  <small class="image-spec">{{ imageSpecs.uiImages.width }} × {{ imageSpecs.uiImages.height }} px, {{ imageSpecs.uiImages.label }}, under 300 KB each</small>
+              <mat-icon matTooltip="Upload Images" color="primary" [ngStyle]="{
+                  fontSize: '25px',
+                  cursor: 'pointer',
+                  opacity:
+                    uiImagePreviews && uiImagePreviews.length >= 10 ? 0.5 : 1
+                }" (click)="
+                  uiImagePreviews &&
+                    uiImagePreviews.length < 10 &&
+                    filePickerUi?.click()
+                ">
+                    photo_camera
+                  </mat-icon>
+                  <input type="file" #filePickerUi (change)="onUiImagePicked($event)" multiple />
+                </div>
+                @if (form.get('uiImages')?.hasError('required')) {
+                  <mat-hint style="font-size: 11px" class="px-1 py-1 border-b"
+                    >
+                    At least one image is required
+                  </mat-hint>
+                }
+                @if (uiImagePreviews?.length) {
+                  <div class="mt-2">
+                    @for (image of uiImagePreviews; track image; let i = $index) {
+                      <div class="gallery-image-wrapper"
+                        style="display: inline-block; margin: 5px">
+                <img [src]="image" [alt]="'Ui Image ' + (i + 1)" class="image" style="
+                    width: 150px;
+                    height: 150px;
+                    object-fit: cover;
+                    border-radius: 8px;
+                  " />
+                          <button mat-icon-button type="button" color="warn" aria-label="Delete" (click)="onRemoveUiImage(i)"
+                            class="clear-button">
+                            <mat-icon matTooltip="Remove">cancel</mat-icon>
+                          </button>
+                        </div>
+                      }
+                    </div>
+                  }
+                </div>
+                <div class="col-12 mb-3">
+                  <mat-label>Development</mat-label>
+                </div>
+                <div class="col-12 mb-3">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <label>Development</label>
+                    <button type="button" mat-button color="primary" (click)="addDev()"
+                      [disabled]="developmentFormArray.length >= 1">
+                      Add
+                    </button>
+                  </div>
+                  @for (development of developmentControls; track development; let i = $index) {
+                    <div [formGroup]="development">
+                      <div class="row mb-2">
+                        <div class="col-5">
+                          <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Title</mat-label>
+                            <input matInput formControlName="title" required />
+                          </mat-form-field>
+                        </div>
+                        <div class="col-5">
+                          <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Description</mat-label>
+                            <input matInput formControlName="description" required />
+                          </mat-form-field>
+                        </div>
+                        <div class="col-2 d-flex align-items-center">
+                          <button mat-icon-button color="warn" (click)="removeDev(i)"
+                            [disabled]="developmentFormArray.length <= 1">
+                            <mat-icon>delete</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                  @if (developmentFormArray.length !== 1) {
+                    <mat-hint class="text-danger">
+                      Exactly 1 development item is required.
+                    </mat-hint>
+                  }
+                </div>
+                <div class="col-12 mb-3">
+                  <mat-label>User flow</mat-label>
+                </div>
+                <div class="col-12 mb-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>User Flow Paragraph</mat-label>
+                    <textarea matInput formControlName="userFlowDescription" rows="3"></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 mb-3">
+                  <mat-label>Result</mat-label>
+                </div>
+                <div class="col-12 mb-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Result Heading 1</mat-label>
+                    <input matInput formControlName="resultHeading_1" />
+                  </mat-form-field>
+                </div>
+                <div class="col-12 mb-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Result Heading 2</mat-label>
+                    <input matInput formControlName="resultHeading_2" />
+                  </mat-form-field>
+                </div>
+                <div class="col-12 mb-3">
+                  <div class="px-1 py-1 border-b">
+                    Result Images:
+                    <small class="image-spec">{{ imageSpecs.resultImages.width }} × {{ imageSpecs.resultImages.height }} px, {{ imageSpecs.resultImages.label }}, under 300 KB each</small>
+              <mat-icon matTooltip="Upload Images" color="primary" [ngStyle]="{
+                  fontSize: '25px',
+                  cursor: 'pointer',
+                  opacity:
+                    resultImagePreviews && resultImagePreviews.length >= 10
+                      ? 0.5
+                      : 1
+                }" (click)="
+                  resultImagePreviews &&
+                    resultImagePreviews.length < 10 &&
+                    filePickerResult?.click()
+                ">
+                      photo_camera
+                    </mat-icon>
+                    <input type="file" #filePickerResult (change)="onResultImagePicked($event)" multiple />
+                  </div>
+                  @if (form.get('resultImages')?.hasError('required')) {
+                    <mat-hint style="font-size: 11px" class="px-1 py-1 border-b"
+                      >
+                      At least one image is required
+                    </mat-hint>
+                  }
+                  @if (resultImagePreviews?.length) {
+                    <div class="mt-2">
+                      @for (image of resultImagePreviews; track image; let i = $index) {
+                        <div class="gallery-image-wrapper"
+                          style="display: inline-block; margin: 5px">
+                <img [src]="image" [alt]="'result Image ' + (i + 1)" class="image" style="
+                    width: 150px;
+                    height: 150px;
+                    object-fit: cover;
+                    border-radius: 8px;
+                  " />
+                            <button mat-icon-button type="button" color="warn" aria-label="Delete" (click)="onRemoveResultImage(i)"
+                              class="clear-button">
+                              <mat-icon matTooltip="Remove">cancel</mat-icon>
+                            </button>
+                          </div>
+                        }
+                      </div>
+                    }
+                  </div>
+                  <div class="col-12">
+                    <button mat-raised-button color="primary" class="btn-space" type="submit">
+                      {{ mode === "add" ? "Submit" : "Update" }}
+                    </button>
+                    <button mat-raised-button color="warn" type="button" (click)="dialogRef.close()">
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        }
+      </div>

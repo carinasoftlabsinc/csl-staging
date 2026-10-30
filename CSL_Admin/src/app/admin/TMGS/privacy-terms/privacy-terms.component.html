@@ -1,0 +1,80 @@
+<section class="content">
+
+    <div class="content-block">
+        <div class="block-header">
+            <!-- breadcrumb -->
+            <app-breadcrumb [title]="'Privacy Policy and Terms & Conditions'" [items]="['Privacy Policy and Terms & Conditions']" [active_item]="'Privacy Policy and Terms & Conditions'">
+            </app-breadcrumb>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="card">
+                <div class="materialTableHeader">
+                  <div class="left">
+                    <ul class="header-buttons-left ms-0">
+                      <li class="tbl-title">
+                        <h2>Privacy Policy and Terms & Conditions</h2>
+                      </li>
+                      <!-- <li class="tbl-search-box">
+                        <label for="search-input"><i class="material-icons search-icon">search</i></label>
+                        <input type="text" class="browser-default search-field" [(ngModel)]="filter"
+                          (input)="onFilterChange(filter)" placeholder="Filter by  name">
+                        <button mat-button color="warn" matTooltip="Reset" (click)="clearFilter()">
+                          <mat-icon style="font-size:21px">restart_alt</mat-icon>
+                        </button>
+                      </li> -->
+      
+                    </ul>
+                  </div>
+                  <div class="right">
+                    <ul class="tbl-export-btn">
+                      <li class="tbl-header-btn">
+                        <div class="m-l-10">
+                          <!-- <button mat-mini-fab color="primary" (click)="openAddDialog()" matTooltip="ADD">
+                            <mat-icon class="col-white">add</mat-icon>
+                          </button> -->
+                        </div>
+                      </li>
+      
+                    </ul>
+                  </div>
+                </div>
+      
+                <div class="body overflow-auto">
+                  <!-- <mat-spinner [diameter]="30" *ngIf="isLoading"></mat-spinner>
+
+                  <div class="col-12 mb-3">
+                    <mat-label>content</mat-label>
+                    <angular-editor
+                      [formControlName]="'content'"
+                      [config]="config2"
+                    ></angular-editor>
+                  </div> -->
+
+                  <div class="col-12 mb-3">
+                    <mat-form-field appearance="fill" class="w-100">
+                      <mat-label>Select Policy Type</mat-label>
+                      <mat-select [(ngModel)]="selectedType" (selectionChange)="onTypeChange($event.value)">
+                        <mat-option value="terms">Terms & Conditions</mat-option>
+                        <mat-option value="privacy">Privacy Policy</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  
+                  <div class="col-12 mb-3" *ngIf="!isLoading">
+                    <mat-label>Content</mat-label>
+                    <angular-editor [(ngModel)]="content" [config]="config2"></angular-editor>
+                  </div>
+                  
+                  <div class="col-12 text-right">
+                    <button mat-raised-button color="primary" (click)="onSave()">Save</button>
+                  </div>
+                  
+                  <mat-spinner *ngIf="isLoading" diameter="30"></mat-spinner>
+                  
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</section>

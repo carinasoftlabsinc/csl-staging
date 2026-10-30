@@ -1,0 +1,247 @@
+<div class="addContainer">
+  <div *ngIf="isLoading" class="spinner-container">
+    <mat-spinner [diameter]="30"></mat-spinner>
+  </div>
+  <div *ngIf="!isLoading" class="contact-form">
+    <div class="modalHeader">
+      <div class="editRowModal">
+        <div class="modalHeader clearfix">
+          <div class="modal-about">
+            <h2 *ngIf="mode === 'add'">Add Blog</h2>
+            <h2 *ngIf="mode === 'edit'">Edit Blog</h2>
+          </div>
+        </div>
+      </div>
+      <button
+        mat-icon-button
+        type="button"
+        (click)="dialogRef.close()"
+        class="modal-close-button"
+        aria-label="Close dialog"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div mat-dialog-content>
+      <form class="register-form m-4" [formGroup]="form" (ngSubmit)="onSave()">
+        <div class="row">
+          <div class="col-6 mb-3">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Title</mat-label>
+              <input matInput formControlName="title" required />
+              <mat-error *ngIf="form.get('title')?.hasError('required')">
+                title is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-6 mb-3">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Title Link</mat-label>
+              <input matInput formControlName="titleLink" required />
+              <mat-error *ngIf="form.get('titleLink')?.hasError('required')">
+                title link is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-12 mb-3">
+            <div class="px-1 py-1 border-b">
+              Image:
+              <mat-icon
+                matTooltip="logo"
+                color="primary"
+                style="font-size: 25px; cursor: pointer"
+                (click)="filePickerCardBg.click()"
+                >photo_camera</mat-icon
+              >
+              <input
+                type="file"
+                #filePickerCardBg
+                (change)="onImagePicked2($event)"
+              />
+            </div>
+            <mat-hint
+              style="font-size: 11px"
+              class="px-1 py-1 border-b"
+              *ngIf="form.get('image')?.hasError('required')"
+            >
+              Image is required
+            </mat-hint>
+
+            <div
+              class="image-container mt-2"
+              *ngIf="blogImagePreview && form.get('image')?.valid"
+            >
+              <img [src]="blogImagePreview" [alt]="" class="image" />
+              <button
+                mat-icon-button
+                color="warn"
+                aria-label="Delete"
+                (click)="onClearImage2()"
+                class="clear-button"
+              >
+                <mat-icon matTooltip="clear">cancel</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="col-6 mb-3">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Category</mat-label>
+              <!-- <mat-select formControlName="category" >
+                    <mat-option *ngFor="let category of categoryOptions" [value]="category._id">
+                      {{ category.name }}
+                    </mat-option>
+                  </mat-select> -->
+              <mat-select formControlName="category">
+                <mat-option
+                  *ngFor="let category of categoryOptions"
+                  [value]="category._id"
+                >
+                  {{ category.name }}
+                </mat-option>
+              </mat-select>
+
+              <mat-error *ngIf="form.get('category')?.hasError('required')">
+                category are required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-6 mb-3">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>time</mat-label>
+              <input matInput formControlName="time" required />
+              <mat-error *ngIf="form.get('time')?.hasError('required')">
+                time is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-6 mb-3">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Author</mat-label>
+              <input matInput formControlName="author" required />
+              <mat-error *ngIf="form.get('author')?.hasError('required')">
+                author is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col-12 mb-3">
+            <mat-label>Content</mat-label>
+            <editor
+              formControlName="content"
+              [init]="tinyConfig"
+               [apiKey]="editorKey"
+            ></editor>
+          </div>
+
+          <!-- <div class="col-12 mb-3">
+                <mat-label>content</mat-label>
+                <angular-editor
+                  [formControlName]="'content'"
+                  [config]="config2"
+                ></angular-editor>
+              </div> -->
+          <!-- (ngModelChange)="onContentChanged($event)"  -->
+
+          <div class="col-12 mb-3" formArrayName="faqs">
+            <div
+              *ngFor="let faq of faqs.controls; let i = index"
+              [formGroupName]="i"
+              class="row mb-2"
+            >
+              <div class="col-12">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Question</mat-label>
+                  <input
+                    matInput
+                    formControlName="question"
+                    placeholder="Enter FAQ question"
+                    required
+                  />
+                  <mat-error *ngIf="faq.get('question')?.hasError('required')">
+                    Question is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <!-- <div class="col-12">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Answer</mat-label>
+                  <input
+                    matInput
+                    formControlName="answer"
+                    placeholder="Enter FAQ answer"
+                    required
+                  />
+                  <mat-error *ngIf="faq.get('answer')?.hasError('required')">
+                    Answer is required
+                  </mat-error>
+                </mat-form-field>
+              </div> -->
+
+              <div class="col-12">
+  <mat-label>Answer</mat-label>
+  
+  <editor
+  [init]="tinyConfigFaq"
+  [formControl]="getAnswerControl(faq)"
+  placeholder="Enter FAQ answer"
+   [apiKey]="editorKey"
+></editor>
+
+
+  <mat-error *ngIf="faq.get('answer')?.hasError('required')">
+    Answer is required
+  </mat-error>
+</div>
+
+              <div class="col-1 d-flex align-items-center">
+                <button
+                  mat-icon-button
+                  color="warn"
+                  (click)="removefaqs(i)"
+                  aria-label="Remove FAQ"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <button
+                mat-button
+                color="primary"
+                type="button"
+                (click)="addfaqs()"
+              >
+                <mat-icon>add</mat-icon> Add FAQ
+              </button>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <button
+              mat-raised-button
+              color="primary"
+              class="btn-space"
+              type="submit"
+            >
+              {{ mode === "add" ? "Submit" : "Update" }}
+            </button>
+            <button
+              mat-raised-button
+              color="warn"
+              type="button"
+              (click)="dialogRef.close()"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

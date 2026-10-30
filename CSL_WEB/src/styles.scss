@@ -1,0 +1,204 @@
+/* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+// "MyFont" and "QuickSand" (the first-screen fonts) are declared in src/index.html with a preload.
+// font-display: swap shows text at once in a fallback font while the file downloads.
+@font-face {
+  font-family: "Montserrat";
+  src: url("./assets/fonts/Montserrat/Montserrat-VariableFont_wght.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Anton";
+  src: url("./assets/fonts/Anton-Regular.woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/Poppins-Bold.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Qeilab";
+  src: url("./assets/qeilab-font/Qeilab-BWg03.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BebasNeue";
+  src: url("./assets/fonts/Bebas_Neue/BebasNeue-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+
+/* Prevent browser visited link color from turning dark across the site */
+a:visited {
+  color: inherit;
+}
+
+.ring-img {
+  background-image: url(assets/images/ring.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.hover-bg-fade::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2); /* Light white with 20% opacity */
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0.9;
+  z-index: -1;
+  border-radius: 2px;
+}
+.hover-bg-fade:hover::before {
+  opacity: 1;
+}
+
+.slideshow {
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+}
+
+.slideshow::-webkit-scrollbar {
+  display: none; /* Hide the scrollbar */
+}
+
+// .card-container {
+//   transition: transform 0.5s ease-in-out;
+// }
+
+// .hover-card:scale-x-150:hover {
+//   transform: scaleX(1.5);
+// }
+
+.custom-btn {
+  width: 100px;
+  height: 38px;
+  background: url("./assets/images/btn-img.png") no-repeat center center;
+  background-size: contain;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+.custom-btn:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .custom-btn {
+    width: 100px;
+    height: 30px;
+    border: none;
+    background: url("./assets/images/btn-img.png") no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .custom-btn:hover {
+    transform: scale(1.1);
+  }
+}
+
+// custom scrollbar css
+
+::-webkit-scrollbar-track {
+  // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);
+  // border-radius: 10px;
+  background-color: #0b0c10;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #f21df5;
+  background-image: -webkit-linear-gradient(
+    90deg,
+    transparent,
+    rgba(32, 185, 250, 0.582) 50%,
+    transparent,
+    transparent
+  );
+}
+
+// custom scrollbar css ends
+
+
+// custom cursor css
+/* Hide default cursor */
+* {
+  cursor: none;
+}
+/* Custom Cursor */
+/* Cursor wrapper with two layers */
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+
+/* Inner small dot cursor */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+/* Outer glowing circle cursor */
+.cursor-outline {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease-out;
+  mix-blend-mode: difference;
+}
+
+/* Hover effects - Enlarge outer circle and change color */
+a:hover ~ .custom-cursor .cursor-outline,
+h1:hover ~ .custom-cursor .cursor-outline {
+  transform: scale(1.5);
+  border-color: cyan;
+}
+
+a:hover ~ .custom-cursor .cursor-dot,
+h1:hover ~ .custom-cursor .cursor-dot {
+  background-color: cyan;
+}
+
+button:hover ~ .custom-cursor .cursor-dot {
+  background-color: cyan;
+}
+
+button:hover ~ .custom-cursor .cursor-outline {
+  transform: scale(6);
+  border-color: cyan;
+}

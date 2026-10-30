@@ -1,0 +1,30 @@
+.cdk-drag-preview {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  background: white;
+  padding: 8px;
+  width: 100%;
+  z-index: 1000;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+tr {
+  transition: transform 200ms ease;
+}
+
+:host ::ng-deep .mat-elevation-z8 {
+  box-shadow: none !important;
+}
+
+
+::ng-deep .snackbar-success {
+  background-color: #4caf50; // green
+  color: white;
+}
+::ng-deep .snackbar-error {
+  background-color: #f44336; // red
+  color: white;
+}

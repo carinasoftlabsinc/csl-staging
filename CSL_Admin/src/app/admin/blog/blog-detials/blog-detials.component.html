@@ -1,0 +1,80 @@
+<section class="content">
+   
+    <div class="content-block" >
+        <div class="block-header">
+            <app-breadcrumb [title]="'Blog Details'" [items]="[]" [active_item]="'Blog'">
+            </app-breadcrumb>
+        </div>
+        <mat-spinner [diameter]="40" *ngIf="isLoading"></mat-spinner>
+        <div class="row clearfix" *ngIf="data !== undefined && !isLoading">
+            <div class="col-md-12">
+                <mat-icon matTooltip="back" style="cursor: pointer" color="primary"
+                    [routerLink]="['/admin/blogs']">arrow_back</mat-icon>
+                <button mat-raised-button color="primary" class="float-end" [routerLink]="['/admin/blogs', data._id, 'edit']">
+                    <mat-icon>edit</mat-icon> Edit post
+                </button>
+            </div>
+            <div class="col-12 mt-2">
+                <div class="card">
+                    <div class="m-b-20 px-4">
+                        <div class="row mt-4">
+                            <div class="col-6 ">
+                                <h5>{{ data && data.title ? data.title : "--" }}</h5>
+                                <small>Title</small>
+                            </div>
+                            <div class="col-6">
+                                <h5>{{ data && data.titleLink ? data.titleLink : "--" }}</h5>
+                                <small>Title Link</small>
+                            </div>
+                            <div class="col-6">
+                                <h5>{{ data && data.category ? data.category : "--" }}</h5>
+                                <small>Category</small>
+                            </div>
+                            <div class="col-6 mt-4">
+                                <h5>{{ data && data.author ? data.author : "--" }}</h5>
+                                <small>Author name</small>
+                            </div>
+                            <div class="col-6 mt-4">
+                                <h5>{{ data && data.date ? data.date : "--" }}</h5>
+                                <small>Published Date</small>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <div *ngIf="data && data.image">
+                                    <img [src]="imageBaseUrl + data.image" alt="Published Image"
+                                        style="width: 10%; height: auto; border: 2px solid #ccc; border-radius: 5px;">
+                                </div>
+                                <div *ngIf="!data?.image">
+                                    <small>No image available</small>
+                                </div>
+                            </div>
+
+                            <!-- Post body: one document; older posts that were not merged yet still show their sections -->
+                            <div class="col-12 mt-4">
+                                <h4>Post</h4>
+                                <div *ngIf="data.content" class="post-body" [innerHTML]="data.content"></div>
+                                <ng-container *ngIf="!data.content && data.sections?.length">
+                                    <div *ngFor="let section of data.sections" class="post-body">
+                                        <h2 *ngIf="section.heading">{{ section.heading }}</h2>
+                                        <div [innerHTML]="section.content"></div>
+                                    </div>
+                                </ng-container>
+                                <small *ngIf="!data.content && !data.sections?.length">No post text yet</small>
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <h4>FAQs</h4>
+                                <div *ngFor="let faq of data.faqs; let i = index" class="mt-3">
+                                    <h6>{{ i + 1 }}. {{ faq.question }}</h6>
+                                    <div [innerHTML]="faq.answer"></div>
+                                </div>
+                                <small *ngIf="!data.faqs?.length">No FAQs</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>

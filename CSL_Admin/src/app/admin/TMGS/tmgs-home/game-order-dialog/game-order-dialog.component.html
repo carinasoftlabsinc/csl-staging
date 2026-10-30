@@ -1,0 +1,69 @@
+<!-- <h1 mat-dialog-title>Reorder Games</h1>
+
+<div mat-dialog-content>
+  <div cdkDropList (cdkDropListDropped)="drop($event)">
+    <table mat-table [dataSource]="games" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Game Name </th>
+        <td mat-cell *matCellDef="let element" cdkDrag>
+          {{element.name}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="orderId">
+        <th mat-header-cell *matHeaderCellDef> Order </th>
+        <td mat-cell *matCellDef="let element">
+          {{element.orderId}}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" cdkDrag></tr>
+    </table>
+  </div>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="saveOrder()">Save</button>
+</div> -->
+
+
+<h1 mat-dialog-title class="mb-2 mt-3">Reorder Games</h1>
+
+<div mat-dialog-content>
+  <table mat-table [dataSource]="games" class="mat-elevation-z8" cdkDropList (cdkDropListDropped)="drop($event)">
+
+    <!-- Drag Handle Column -->
+    <ng-container matColumnDef="drag">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <span cdkDragHandle style="cursor: move;">☰</span>
+      </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Game Name </th>
+      <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+    </ng-container>
+
+    <!-- Order ID Column -->
+    <ng-container matColumnDef="orderId">
+      <th mat-header-cell *matHeaderCellDef> Order </th>
+      <td mat-cell *matCellDef="let row"> {{ row.orderId }} </td>
+    </ng-container>
+
+    <!-- Header and Row Defs -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" cdkDrag [cdkDragData]="row"></tr>
+
+  </table>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="saveOrder()">Save</button>
+</div>
+

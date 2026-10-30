@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>
+      Carina Softlabs - Top Game Development & Digital Marketing Company
+    </title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Central India’s biggest Game Development, Digital Marketing, Web Development, Mobile App Development, and Emerging Tech company, driving innovation and growth with cutting-edge solutions."
+    />
+    <link rel="icon" href="assets/images/fevi.ico" type="image/x-icon" />
+
+    <!--
+      First-screen fonts: the hero heading (MyFont) and the header and body text (QuickSand).
+      They are declared here with absolute URLs, not in style.scss, because the bundler renames
+      fonts referenced from stylesheets (hashed file names), and a preload only helps when its URL
+      is exactly the URL the @font-face asks for. font-display: swap shows the text at once in a
+      fallback font instead of leaving it invisible until the font file arrives.
+    -->
+    <link rel="preload" href="/assets/melody/Melody-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/Quicksand/Quicksand-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin />
+    <style>
+      @font-face {
+        font-family: "MyFont";
+        src: url("/assets/melody/Melody-Regular.woff2") format("woff2");
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "QuickSand";
+        src: url("/assets/Quicksand/Quicksand-VariableFont_wght.woff2") format("woff2");
+        font-display: swap;
+      }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts & Material Icons (Loaded asynchronously to prevent render-blocking) -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp&display=swap"
+      />
+    </noscript>
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
+      />
+    </noscript>
+
+    <!--
+      Google Analytics 4: the queue starts now, the gtag.js file is downloaded after the page loads
+      (see the load handler below). Events sent before the file arrives are queued and sent later.
+    -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-8SJ2ER7BGJ");
+    </script>
+    
+    <!--
+      Meta Pixel: the queue and the initial page view start now; fbevents.js is downloaded after the page
+      loads. Angular route changes are tracked by AnalyticsService.
+    -->
+    <script>
+      !function(f){if(f.fbq)return;var n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];}(window);
+      fbq('init', '2185776745335419');
+      fbq('track', 'PageView');
+    </script>
+
+    <!--
+      Third-party scripts (Google Analytics, Meta Pixel, Lucky Orange) are downloaded only after the page
+      has loaded, so they do not compete with the first screen. Visitors who leave before the load event
+      are not counted by these tools.
+    -->
+    <script>
+      window.addEventListener('load', function () {
+        [
+          'https://www.googletagmanager.com/gtag/js?id=G-8SJ2ER7BGJ',
+          'https://connect.facebook.net/en_US/fbevents.js',
+          'https://tools.luckyorange.com/core/lo.js?site-id=f6363de4',
+        ].forEach(function (src) {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = src;
+          document.head.appendChild(s);
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <noscript>
+      <img height="1" width="1" style="display:none" alt="Meta Pixel"
+        src="https://www.facebook.com/tr?id=2185776745335419&amp;ev=PageView&amp;noscript=1" />
+    </noscript>
+    <app-root></app-root>
+  </body>
+</html>

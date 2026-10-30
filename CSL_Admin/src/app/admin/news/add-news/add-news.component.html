@@ -1,0 +1,204 @@
+<div class="addContainer">
+    <div *ngIf="isLoading" class="spinner-container">
+        <mat-spinner [diameter]="30"></mat-spinner>
+    </div>
+    <div *ngIf="!isLoading" class="contact-form">
+        <div class="modalHeader">
+            <div class="editRowModal">
+                <div class="modalHeader clearfix">
+                    <div class="modal-about">
+                        <h2 *ngIf="mode === 'add'">Add News</h2>
+                        <h2 *ngIf="mode === 'edit'">Edit News</h2>
+                    </div>
+                </div>
+            </div>
+            <button mat-icon-button type="button" (click)="dialogRef.close()" class="modal-close-button"
+                aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <div mat-dialog-content>
+            <form class="register-form m-4" [formGroup]="form" (ngSubmit)="onSave()">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Title</mat-label>
+                            <input matInput formControlName="title" required />
+                            <mat-error *ngIf="form.get('title')?.hasError('required')">
+                                Title is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Title link</mat-label>
+                            <input matInput formControlName="titleLink" required />
+                            <mat-error *ngIf="form.get('titleLink')?.hasError('required')">
+                                Title link is required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-6 mb-3">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Author</mat-label>
+                            <input matInput formControlName="author" />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Published Date</mat-label>
+                            <input matInput formControlName="date" />
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Description</mat-label>
+                            <textarea matInput formControlName="description" rows="3"></textarea>
+                        </mat-form-field>
+                    </div>
+
+
+                    <div class="col-12 mb-3">
+                        <editor [formControlName]="'content'" [init]="tinyInit"></editor>
+                    </div>
+
+                    <div formArrayName="feed">
+                        <div *ngFor="let claimControl of feed.controls; let i = index;">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Feed Link {{i + 1}}</mat-label>
+                                <input matInput [formControlName]="i" />
+
+                            </mat-form-field>
+                            <button mat-icon-button type="button" (click)="remove(i)" *ngIf="feed.length > 1">
+                                <mat-icon>remove_circle</mat-icon>
+                            </button>
+                        </div>
+                        <button mat-stroked-button matTooltip="Add" type="button" (click)="add()">+ Add More</button>
+                    </div>
+
+                    <!-- <div formArrayName="feed">
+                        <h3>Feed Items</h3>
+                        <button mat-raised-button color="primary" (click)="addFeed()" type="button">Add Feed Item</button>
+                        <div *ngFor="let feedItem of feed.controls; let i = index" [formGroupName]="i" style="display: flex; align-items: center;">
+                          <mat-form-field>
+                            <input matInput placeholder="Feed Item {{ i + 1 }}" formControlName="feed" required />
+                            <mat-error *ngIf="feedItem.get('feed')?.invalid">Feed item is required</mat-error>
+                          </mat-form-field>
+                          <button mat-icon-button color="warn" (click)="removeFeed(i)" type="button">
+                            <mat-icon>delete</mat-icon>
+                          </button>
+                        </div>
+                      </div> -->
+
+
+                    <div class="col-12 mb-3">
+                        <mat-checkbox formControlName="isFeature">
+                            Is Feature
+                        </mat-checkbox>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <mat-checkbox formControlName="isPreviousFeature">
+                            is Previous Feature
+                        </mat-checkbox>
+                    </div>
+
+
+                    <!-- Logo Upload -->
+
+                    <div class="col-12 mb-3">
+                        <div class="px-1 py-1 border-b">
+                            Header Image:  <mat-icon
+                            matTooltip="logo"
+                            color="primary"
+                            style="font-size: 25px; cursor: pointer"
+                            (click)="filePicker.click()"
+                            >photo_camera</mat-icon
+                          >
+                          <input type="file" #filePicker (change)="onImagePicked($event)" />
+                        </div>
+                        <mat-hint
+                          style="font-size: 11px"
+                          class="px-1 py-1 border-b"
+                          *ngIf="form.get('image')?.hasError('required')"
+                        >
+                          Image is required
+                        </mat-hint>
+            
+                        <div
+                          class="image-container mt-2"
+                          *ngIf="imagePreview && form.get('image')?.valid"
+                        >
+                          <img [src]="imagePreview" [alt]="" class="image" />
+                          <button
+                            mat-icon-button
+                            color="warn"
+                            type="button"
+                            aria-label="Delete"
+                            (click)="onClearImage()"
+                            class="clear-button"
+                          >
+                            <mat-icon matTooltip="clear">cancel</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+            
+                      <div class="col-12 mb-3">
+                        <div class="px-1 py-1 border-b">
+                         
+                            Preview Image: <mat-icon
+                            matTooltip="logo"
+                            color="primary"
+                            style="font-size: 25px; cursor: pointer"
+                            (click)="filePicker1.click()"
+                            >photo_camera</mat-icon
+                          >
+                          <input
+                            type="file"
+                            #filePicker1
+                            (change)="onImagePicked2($event)"
+                          />
+                        </div>
+                        <mat-hint
+                          style="font-size: 11px"
+                          class="px-1 py-1 border-b"
+                          *ngIf="form.get('image_2')?.hasError('required')"
+                        >
+                          Image is required
+                        </mat-hint>
+            
+                        <div
+                          class="image-container mt-2"
+                          *ngIf="imagePreview2 && form.get('image_2')?.valid"
+                        >
+                          <img [src]="imagePreview2" [alt]="" class="image" />
+                          <button
+                            mat-icon-button
+                            type="button"
+                            color="warn"
+                            aria-label="Delete"
+                            (click)="onClearImage2()"
+                            class="clear-button"
+                          >
+                            <mat-icon matTooltip="clear">cancel</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+            
+
+
+
+                    <div class="col-12">
+                        <button mat-raised-button color="primary" class="btn-space" type="submit">
+                            {{ mode === 'add' ? 'Submit' : 'Update' }}
+                        </button>
+                        <button mat-raised-button color="warn" type="button" (click)="dialogRef.close()">Close</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

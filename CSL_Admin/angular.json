@@ -1,0 +1,201 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "main": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "outputPath": {
+              "base": "dist/main",
+              "browser": ""
+            },
+            "index": "src/index.html",
+            "aot": true,
+            "polyfills": ["zone.js"],
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "allowedCommonJsDependencies": [
+              "dragula",
+              "contra/emitter",
+              "crossvent",
+              "apexcharts",
+              "clone-deep",
+              "fast-deep-equal",
+              "sweetalert2",
+              "rfdc",
+              "bezier-easing",
+              "aos"
+            ],
+            "assets": ["src/favicon.ico", "src/assets", {
+    "glob": "**/*",
+    "input": "node_modules/@kolkov/angular-editor/assets/icons",
+    "output": "assets/ae-icons/"
+  }, {
+    "glob": "**/*",
+    "input": "node_modules/tinymce/skins",
+    "output": "tinymce/skins"
+  },
+  {
+    "glob": "**/*",
+    "input": "node_modules/tinymce/icons",
+    "output": "tinymce/icons"
+  },
+  {
+    "glob": "**/*",
+    "input": "node_modules/tinymce/plugins",
+    "output": "tinymce/plugins"
+  },
+  {
+    "glob": "**/*",
+    "input": "node_modules/tinymce/themes",
+    "output": "tinymce/themes"
+  },
+  {
+    "glob": "**/*",
+    "input": "node_modules/tinymce/models",
+    "output": "tinymce/models"
+  },
+  {
+    "glob": "tinymce.min.js",
+    "input": "node_modules/tinymce",
+    "output": "tinymce"
+  }],
+            "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+            
+
+              "node_modules/@kolkov/angular-editor/themes/default.scss",
+              "src/assets/scss/style.scss",
+              "src/assets/scss/theme/all-themes.scss",
+              "src/styles.scss"
+            ],
+            "browser": "src/main.ts"
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "4mb",
+                  "maximumError": "6mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6mb",
+                  "maximumError": "10mb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
+            },
+            "live": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.live.ts"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "main:build:production"
+            },
+            "development": {
+              "buildTarget": "main:build:development"
+            },
+            "live": {
+              "buildTarget": "main:build:live"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n",
+          "options": {
+            "buildTarget": "main:build"
+          }
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "polyfills": ["zone.js", "zone.js/testing"],
+            "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "schematicCollections": ["@angular-eslint/schematics"],
+    "analytics": false
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
+    }
+  }
+}

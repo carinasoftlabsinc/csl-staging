@@ -1,0 +1,71 @@
+<div class="iuf" [class.iuf--disabled]="disabled">
+  <div class="iuf-head">
+    <span class="iuf-label">{{ label }}<span *ngIf="required" class="iuf-required"> *</span></span>
+    <div class="iuf-actions" *ngIf="hasImage && !disabled">
+      <button *ngIf="crop" mat-stroked-button type="button" (click)="cropCurrent($event)">
+        <mat-icon>crop</mat-icon> Crop
+      </button>
+      <button mat-stroked-button color="primary" type="button" (click)="openPicker()">
+        <mat-icon>photo_camera</mat-icon> Replace
+      </button>
+    </div>
+  </div>
+  <small class="iuf-hint" *ngIf="hint">{{ hint }}</small>
+
+  <!-- Drop zone: click, Enter/Space, or drag & drop -->
+  <div
+    class="iuf-zone"
+    [class.iuf-zone--dragging]="dragging"
+    [class.iuf-zone--filled]="hasImage"
+    [class.iuf-zone--error]="!!error || showRequired"
+    [style.height.px]="previewHeight"
+    role="button"
+    [attr.tabindex]="disabled ? -1 : 0"
+    [attr.aria-label]="(hasImage ? 'Replace ' : 'Choose ') + label"
+    [attr.aria-disabled]="disabled"
+    (click)="openPicker()"
+    (keydown)="onKeydown($event)"
+    (blur)="markTouched()"
+    (dragenter)="onDragEnter($event)"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+  >
+    <ng-container *ngIf="hasImage; else empty">
+      <div class="iuf-preview">
+        <img [src]="previewUrl" [alt]="label" />
+        <button
+          *ngIf="!disabled"
+          class="iuf-remove"
+          mat-mini-fab
+          color="warn"
+          type="button"
+          matTooltip="Remove"
+          aria-label="Remove image"
+          (click)="remove($event)"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </ng-container>
+    <ng-template #empty>
+      <div class="iuf-empty">
+        <mat-icon>{{ dragging ? 'file_download' : 'add_photo_alternate' }}</mat-icon>
+        <span class="iuf-empty-title">{{ dragging ? 'Drop the image here' : 'Drag & drop an image, or click to choose' }}</span>
+        <span class="iuf-empty-sub">{{ typesLabel }} · up to {{ maxSizeMb }} MB</span>
+      </div>
+    </ng-template>
+    <div class="iuf-drop-overlay" *ngIf="dragging && hasImage">Drop to replace</div>
+  </div>
+
+  <input #fileInput type="file" hidden [accept]="accept" (change)="onInputChange($event)" />
+
+  <div class="iuf-meta" *ngIf="info">
+    <span class="iuf-name" [title]="info.name">{{ info.name }}</span>
+    <span>{{ info.width }} × {{ info.height }}</span>
+    <span *ngIf="info.sizeKb !== null">{{ info.sizeKb }} KB</span>
+  </div>
+  <small class="iuf-warn" *ngIf="sizeWarning && !error">{{ sizeWarning }}</small>
+  <small class="iuf-error" *ngIf="error">{{ error }}</small>
+  <small class="iuf-error" *ngIf="!error && showRequired">{{ label }} is required</small>
+</div>

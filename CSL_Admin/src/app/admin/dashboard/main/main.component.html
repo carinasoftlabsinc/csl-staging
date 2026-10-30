@@ -1,0 +1,116 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'CSL Dashboard'" [items]="['Home']" [active_item]="'Dashboard'">
+      </app-breadcrumb>
+    </div>
+    <!-- Widgets -->
+     <!-- Widgets -->
+<div class="row">
+  <!-- Total Blogs -->
+  <div class="col-lg-3 col-sm-6 cursor-pointer " routerLink="/admin/blogs">
+    <div class="info-box7 bg-c-purple order-info-box7 cardanalytics">
+      <div class="info-box7-block">
+        <h4 class="m-b-20">Total Blogs</h4>
+        <h2 class="text-end">
+          <span class="float-start">{{ analyticsData.totalBlogs }}</span>
+          <i class="fas fa-edit"></i>  
+
+          
+        </h2>
+        <p class="m-b-0">Tap here to explore all blogs</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Total Careers -->
+  <div class="col-lg-3 col-sm-6 cursor-pointer" routerLink="/admin/careers">
+    <div class="info-box7 bg-c-green order-info-box7 cardanalytics">
+      <div class="info-box7-block">
+        <h4 class="m-b-20">Total Careers</h4>
+        <h2 class="text-end">
+          <span class="float-start">{{ analyticsData.totalCareers }}</span>
+          <i class="fas fa-user-tie"></i>
+        </h2>
+        <p class="m-b-0">Tap here to explore all careers</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Total News -->
+  <div class="col-lg-3 col-sm-6 cursor-pointer" routerLink="/admin/news_room">
+    <div class="info-box7 bg-c-orange order-info-box7 cardanalytics">
+      <div class="info-box7-block">
+        <h4 class="m-b-20">Total News</h4>
+        <h2 class="text-end">
+          <span class="float-start">{{ analyticsData.totalNews }}</span>
+          <i class="fas fa-newspaper"></i>
+        </h2>
+        <p class="m-b-0">Tap here to explore all news</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Total Case Studies -->
+  <div class="col-lg-3 col-sm-6 cursor-pointer" routerLink="/admin/project_details">
+    <div class="info-box7 bg-c-blue order-info-box7 cardanalytics">
+      <div class="info-box7-block">
+        <h4 class="m-b-20">Total Case Studies</h4>
+        <h2 class="text-end">
+          <span class="float-start">{{ analyticsData.totalCaseStudies }}</span>
+          <i class="fas fa-book-open"></i>
+        </h2>
+        <p class="m-b-0">Tap here to explore all case studies</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+    <!-- #END# Widgets -->
+    <div class="row">
+
+           <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+  <div class="card">
+    <div class="header" style="flex-direction: column;">
+      <h2>Recent Blog Posts</h2>
+      <p class="m-0">Latest published articles</p>
+    </div>
+    <div class="tableBody">
+      <div class="responsive_table">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let blog of latestBlogs; let i = index" >
+              <td>{{ i + 1 }}</td>
+              <td class="table-img">
+                <img [src]="imageBaseUrl + blog.image" alt="blog-img" width="50" height="50" />
+              </td>
+              <td ><a routerLink="/admin/blog_details/{{ blog._id }}">{{ blog.title }}</a></td>
+              <td>{{ blog.author }}</td>
+              <td>{{ blog.createdAt | date: 'mediumDate' }}</td>
+            </tr>
+            <tr *ngIf="latestBlogs.length === 0">
+              <td colspan="5" class="text-center">No blogs found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+
+  </div>
+</section>

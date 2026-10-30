@@ -1,0 +1,108 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <app-breadcrumb
+        [title]="'TMGS Dashboard'"
+        [items]="['Home']"
+        [active_item]="'Dashboard'"
+      ></app-breadcrumb>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3 col-sm-6 cursor-pointer" routerLink="/admin/tmgs_games">
+        <div class="info-box7 bg-c-purple order-info-box7 cardanalytics">
+          <div class="info-box7-block">
+            <h4 class="m-b-20">Total Games</h4>
+            <h2 class="text-end">
+              <span class="float-start">{{ analyticsData.totalGames }}</span
+              ><i class="fas fa-gamepad"></i>
+            </h2>
+            <p class="m-b-0">Tap here to explore all games</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 cursor-pointer" routerLink="/admin/tmgs_blogs">
+        <div class="info-box7 bg-c-green order-info-box7 cardanalytics">
+          <div class="info-box7-block">
+            <h4 class="m-b-20">Total Blogs</h4>
+            <h2 class="text-end">
+              <span class="float-start">{{ analyticsData.totalBlogs }}</span>
+              <i class="fas fa-edit"></i>
+            </h2>
+            <p class="m-b-0">Tap here to explore all blogs</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 cursor-pointer" routerLink="/admin/tmgs_careers">
+        <div class="info-box7 bg-c-orange order-info-box7 cardanalytics">
+          <div class="info-box7-block">
+            <h4 class="m-b-20">Total Careers</h4>
+            <h2 class="text-end">
+              <span class="float-start">{{ analyticsData.totalCareers }}</span
+              ><i class="fas fa-briefcase"></i>
+            </h2>
+            <p class="m-b-0">Tap here to explore all careers</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 cursor-pointer" routerLink="/admin/tmgs_ads">
+        <div class="info-box7 bg-c-blue order-info-box7 cardanalytics">
+          <div class="info-box7-block">
+            <h4 class="m-b-20">Total Ads</h4>
+            <h2 class="text-end">
+              <span class="float-start">{{ analyticsData.totalAds }}</span
+              ><i class="fas fa-ad"></i>
+            </h2>
+            <p class="m-b-0">Tap here to explore all Advertisements</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="card">
+          <div
+            class="header"
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <h2 class="!text-2xl">Advertisements Analytics</h2>
+
+            <mat-form-field appearance="outline" class="range-select">
+              <mat-label>Time Range</mat-label>
+              <mat-select
+                [(value)]="selectedRange"
+                (selectionChange)="fetchAds()"
+              >
+                <mat-option value="">All Time</mat-option>
+                <mat-option value="weekly">Weekly</mat-option>
+                <mat-option value="monthly">Monthly</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="body p-5">
+            <!-- The options arrive with the ads data; ApexCharts needs chart.type when it is created. -->
+            <apx-chart
+              *ngIf="projectOptions?.chart"
+              [series]="projectOptions.series"
+              [chart]="projectOptions.chart"
+              [xaxis]="projectOptions.xaxis"
+              [yaxis]="projectOptions.yaxis"
+              [plotOptions]="projectOptions.plotOptions"
+              [dataLabels]="projectOptions.dataLabels"
+              [tooltip]="projectOptions.tooltip"
+              [fill]="projectOptions.fill"
+              [stroke]="projectOptions.stroke"
+              [colors]="projectOptions.colors"
+            >
+            </apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

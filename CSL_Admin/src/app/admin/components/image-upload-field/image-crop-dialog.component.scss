@@ -1,0 +1,111 @@
+.icd {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+.icd-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 0.5rem;
+}
+
+.icd-title {
+  margin: 0;
+}
+
+.icd-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.icd-aspects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.icd-chip {
+  border: 1px solid #ccd1d9;
+  background: #fff;
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #3f51b5;
+  }
+}
+
+.icd-chip--active {
+  background: #3f51b5;
+  border-color: #3f51b5;
+  color: #fff;
+}
+
+// A fixed height: the cropper sizes the image to 100% of this area, so the whole image always fits
+// and the crop box is measured against what is shown.
+.icd-stage {
+  position: relative;
+  height: min(55vh, 480px);
+  background: #f1f3f6;
+  border-radius: 8px;
+  padding: 0.5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  image-cropper {
+    height: 100%;
+  }
+}
+
+.icd-loading {
+  position: absolute;
+  color: #6c757d;
+  font-size: 0.85rem;
+}
+
+.icd-failed {
+  color: #d93025;
+  font-size: 0.85rem;
+}
+
+.icd-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.icd-flip-v {
+  transform: rotate(90deg);
+}
+
+.icd-sep {
+  width: 1px;
+  height: 24px;
+  background: #e3e6ea;
+  margin: 0 0.4rem;
+}
+
+.icd-zoom {
+  min-width: 3rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #4d5156;
+}
+
+.icd-size {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.icd-actions {
+  gap: 0.5rem;
+}

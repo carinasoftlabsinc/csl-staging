@@ -1,0 +1,598 @@
+<main class="bg-[#0B0C10]">
+
+  <app-header></app-header>
+
+  <section
+    class="h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] flex justify-center items-center px-6 py-24">
+    <div class="text-center">
+      <h1
+        class="text-white text-4xl md:text-3xl lg:text-5xl lg:leading-[1.1] xl:text-5xl xl:leading-[1.1] 2xl:text-6xl font-myfont">
+        Leading Game <app-toggle-switch></app-toggle-switch> Development <br>Company |
+        Custom Web, App &amp; <br /> Digital <button class="custom-btn"></button> Marketing
+        <br /> Services
+      </h1>
+
+    </div>
+  </section>
+
+  <!-- about us -->
+
+  <section class="relative px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-white rounded-[40px]">
+    <div class="">
+      <h2 class="text-4xl xl:text-4xl 2xl:text-6xl font-medium text-[#000000] font-myfont mt-8">
+        About Us
+      </h2>
+      <div class="py-4">
+        <hr class="border-t-2 border-black" />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-14 text-black">
+        <div class="hidden md:block row-span-3 relative px-2 py-4">
+          <div
+            class="2xl:w-80 2xl:h-80 xl:w-48 xl:h-48 lg:w-40 lg:h-40 md:h-32 md:w-32 rounded-full absolute inset-0 bg-cover bg-no-repeat"
+            style="
+              background-image: url('../../assets/30b8174c6f1a07e0af9bcf41fec3a5f5.webp');
+            "></div>
+          <img
+            class="2xl:w-auto xl:w-56 lg:w-52 md:w-44 absolute 2xl:-top-[3px] 2xl:-left-8 xl:-left-1 xl:-top-2 lg:-left-6 lg:-top-2 md:-top-4 md:-left-5"
+            src="../../assets/images/csl-logo-2.webp" width="400" height="363" loading="lazy" decoding="async"
+            alt="Carina Softlabs Inc. Logo" />
+        </div>
+
+        <div class="col-span-3 sm:col-span-2 px-2 xl:py-4 py-2 md:mt-5">
+          <h3
+            class="text-[#34394B] text-2xl md:text-2xl xl:text-4xl !mb-4 sm:!my-5 md:!mb-5 lg:!mb-5 xl:!mb-12 text font-bold font-quickSand">
+            Do you have a revenue-generating idea?
+          </h3>
+
+          <p class="text-[#34394B] font-medium font-quickSand text-lg 2xl:text-2xl">
+            With over a decade of digital expertise we're not just a team we're
+            a passionate family united by our commitment to excellence Offering
+            a variety of services, we bring your ideas to life. Join us, and
+            together, let's shape a future where your business thrives like
+            never before.
+          </p>
+        </div>
+
+        <div class="row-span-2 col-span-3 md:col-span-2 flex items-center sm:justify-start">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-x-20 sm:gap-x-10 gap-y-6 2xl:gap-x-10 2xl:gap-y-14">
+            @for (about of aboutus; track about) {
+            <div class="flex items-center">
+              <img class="w-16 2xl:w-20 md:w-12" [src]="about.imgSrc" [attr.width]="about.width"
+                [attr.height]="about.height" loading="lazy" decoding="async" [alt]="about.alt" />
+              <div class="ml-2">
+                <div class="text-xl 2xl:text-lg md:text-sm font-[700] font-quickSand">
+                  {{ about.heading }}
+                </div>
+                <span
+                  class="2xl:text-[18px] text-base md:text-[13px] md:leading-3 font-[500] text-[#0B0C10] font-quickSand">{{
+                  about.desc }}</span>
+              </div>
+            </div>
+            }
+
+            <div class="flex items-center md:col-span-2 lg:col-span-3 mt-4 md:mt-0">
+              <a appGradientButton size="md" variant="light" class="hidden sm:inline-flex" type="button"
+                routerLink="/know-us">
+                Explore Us
+                <img src="assets/images/small-tilt-arrow.webp" alt="Image" aria-hidden="true" width="12" height="14"
+                  loading="lazy" decoding="async" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- second section of about us -->
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 text-black mt-20">
+        <div class="hidden sm:block row-span-4">
+        </div>
+
+        <div class="col-span-2 md:text-3xl lg:text-3xl font-myfont">
+          <div class="mt-[-20px] 2xl:mb-20 mb-20">
+            <hr class="border border-black" />
+          </div>
+
+          <div>
+            <div class="xl:text-4xl 2xl:text-6xl text-4xl font-medium text-[#000000] mb-3 font-myfont">
+              <h3>
+                Awards & <br />
+                Recognitions
+              </h3>
+            </div>
+          </div>
+
+          <div class="mt-3">
+            <p class="font-quickSand font-medium xl:text-[18px] 2xl:text-2xl text-lg text-[#000000] mt-4 mb-8">
+              Our dedication and innovative ideas have been acknowledged through
+              numerous prestigious awards, showcasing our commitment to success.
+              These recognitions are driving us to improve to push boundaries
+              continuously.
+            </p>
+          </div>
+        </div>
+
+        <div class="row-span-3 md:col-span-2 xl:mt-5">
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 md:gap-y-7 xl:gap-y-10 2xl:grid-cols-3 2xl:gap-y-14 gap-y-10 lg:mb-[78px] md:mb-[121px]">
+            <!-- Top Three Images -->
+
+            @for (award of awards; track award) {
+            <div class="flex award-box p-3 border-x border-b border-[#B4B9CB]" [ngClass]="award.customClass">
+              <img class="object-top object-contain w-16" [src]="award.imgSrc" [attr.width]="award.width"
+                [attr.height]="award.height" loading="lazy" decoding="async" [alt]="award.alt" />
+              <div class="ml-2 pl-2 border-l border-[#B4B9CB]">
+                <p
+                  class="text-xl font-medium md:text-[18px] md:leading-[22px] 2xl:text-2xl 2xl:leading-[30px] border-b border-[#B4B9CB]">
+                  {{ award.heading }}
+                </p>
+                <p
+                  class="text-[15px] sm:text-[20px] md:text-[15px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 2xl:leading-[20px] text-[#34394B] font-quickSand font-medium pt-1">
+                  {{ award.desc }}
+                </p>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+
+        <div class="hidden sm:hidden md:hidden lg:block xl:block row-span-4 absolute mt-20">
+          <img class="2xl:w-80 w-56" src="../../assets/trophy-new.svg" width="265" height="252" loading="lazy"
+            decoding="async" alt="Trophy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- our expertise -->
+
+  <section class="px-7 md:px-10 2xl:p-24 xl:px-14 py-10 bg-[#0B0C10]">
+    <div class="mx-auto">
+      <div class="flex justify-between items-center content-center mt-10 pb-2">
+        <h2 class="text-3xl 2xl:text-6xl xl:text-4xl font-normal text-white mb-4 font-myfont">
+          Our Expertise
+        </h2>
+
+        <a appGradientButton size="md" class="hidden sm:inline-flex"
+          href="https://calendar.app.google/mezjQ2cpZyzbixNv6" target="_blank" rel="noopener noreferrer">
+          Schedule a Call
+          <img src="assets/images/small-tilt-arrow.webp" alt="Small Tilt Arrow Button" aria-hidden="true" width="12"
+            height="14" loading="lazy" decoding="async" />
+        </a>
+      </div>
+
+      <hr style="border: 1px solid #34394b" />
+
+      <!-- Our expertise cards -->
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-black xl:mt-5 py-3">
+        <div #counterSection
+          class="stat-col hidden sm:flex row-span-3 pt-20 flex-col justify-between lg:col-start-1 lg:row-start-2 lg:row-span-2 lg:pt-0 lg:justify-center">
+          @for (card of projectNum; track card) {
+          <div>
+            <div class="stat-item inline-block" [ngClass]="card.customClass">
+              <p class="font-myfont xl:text-4xl 2xl:text-5xl text-3xl sm:text-3xl font-normal text-white cursor-pointer js-count-up after:content-['_+']"
+                [attr.data-value]="card.value"></p>
+              <p class="font-myfont text-[#B4B9CB] text-[18px] leading-[18px] tracking-wider pb-10 small-text cursor-pointer"
+                [innerHTML]="card.heading"></p>
+              <hr class="w-44" style="border: 1px solid #34394b" />
+            </div>
+          </div>
+          }
+        </div>
+
+        <div class="col-span-2 lg:col-start-2 lg:row-start-1">
+          <p class="font-quickSand font-medium xl:text-[18px] 2xl:text-2xl text-xl text-[#B4B9CB] mt-3">
+            Carina Softlabs Inc. A trailblazer in emerging technologies,
+            bringing over a decade of expertise. We are dedicated to delivering
+            cutting-edge IT solutions that not only drive success but also
+            foster sustained growth. Partner with us to experience innovation at
+            its finest.
+          </p>
+        </div>
+
+        <div
+          class="row-span-2 col-span-2 md:col-span-2 lg:col-start-2 lg:row-start-2 flex items-center justify-center lg:justify-start xl:justify-start 2xl:justify-start mt-4">
+          <div appInView
+            class="hover-gif-grid grid grid-cols-1 sm:grid-cols-2 gap-2 sm:!gap-1 md:!gap-1 lg:!gap-1 xl:!gap-1 2xl:!gap-1 2xl:w-[-webkit-fill-available]">
+            <!-- hover gif cards -->
+            @for (card of hoverGif; track card) {
+            <div class="hover-gif-container rounded-3xl bg-[#34394b3f] cursor-pointer"
+              [ngClass]="{ 'sm:col-span-2': card.wide, 'hover-gif-wide': card.wide }" [routerLink]="card.route">
+              <div
+                class="hover-gif p-6 md:p-7 xl:p-5 lg:!pr-40 xl:!pr-20 lg:!pl-10 2xl:!pb-10 bg-[#0B0C10] rounded-3xl flex items-center md:items-end lg:items-start">
+                <button class="absolute top-5 right-5 bg-transparent border-none p-2">
+                  <img src="../../assets/images/gd-arrow-btn.svg" width="62" height="62" loading="lazy" decoding="async"
+                    alt="Arrow Button" class="w-10 h-10 cursor-pointer" />
+                </button>
+                <div class="hover-gif-bg absolute inset-0 bg-cover bg-center z-0 rounded-3xl"></div>
+                <div class="relative z-10 lg:mt-14 xl:mt-16 2xl:mt-8">
+                  <div
+                    class="!mb-2 md:!mb-4 lg:!mb-4 xl:!mb-4 2xl:!mb-4 !mt-4 md:!mt-3 lg:!mt-3 xl:!mt-3 2xl:!mt-20 text-[22px] sm:text-2xl md:text-3xl lg:text-2xl 2xl:text-4xl xl:text-[28px] font-bold font-myfont tracking-wider text-white">
+                    <h3 [innerHTML]="card.heading"></h3>
+                  </div>
+                  <p class="text-[#B4B9CB] !text-xs md:text-[20px]">
+                    {{ card.desc }}
+                  </p>
+                </div>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:mt-12 xl:mt-28 mt-8 xl:mb-4">
+        <hr class="" style="border: 1px solid #34394b" />
+      </div>
+
+      <!-- infinite logo scroll section -->
+
+      <div class="mt-5 flex flex-col md:flex-row justify-between 2xl:gap-[20rem] mx-auto items-center">
+        <h2 class="text-white font-myfont text-2xl md:text-3xl xl:text-4xl mb-4 md:mb-0">
+          Our Clients
+        </h2>
+
+        <div class="scroll-parent-12 overflow-hidden w-[83vw] md:w-[65vw] 2xl:w-[60vw] cursor-pointer">
+          <div
+            class="relative overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-10px),transparent_100%)] lg:[mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+            <div class="marquee flex hover:pause-animation">
+              @for (logo of clientLogo; track logo) {
+              <div class="marquee-item m-2">
+                <img [src]="logo.ImgSrc" width="298" height="160" loading="lazy" decoding="async" [alt]="logo.alt" />
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 lg:mb-9">
+        <hr class="" style="border: 1px solid #34394b" />
+      </div>
+    </div>
+  </section>
+
+  <!-- why choose csl -->
+
+  <section class="px-7 md:px-10 xl:px-10 2xl:!p-24 py-5 bg-white rounded-[40px] relative overflow-hidden">
+    <div class="">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 text-black mt-2 justify-between">
+        <!-- question mark svg -->
+
+        <div class="hidden sm:hidden md:hidden xl:block row-span-3 mt-16">
+          <!-- Question mark and line from Figma. A grey outline with a colour copy on top: the colour fades in, then wipes away to the right, every 3 seconds. -->
+          <div class="why-outline" aria-hidden="true">
+            <div appInView class="why-outline__art">
+              <img class="why-outline__base" src="assets/images/why-choose-outline.svg" width="2356" height="611"
+                loading="lazy" decoding="async" alt="Decorative background artwork" />
+              <img class="why-outline__glow" src="assets/images/why-choose-outline-glow.svg" width="2356" height="611"
+                loading="lazy" decoding="async" alt="Decorative glow" />
+            </div>
+          </div>
+        </div>
+        <!-- Content on the right side -->
+
+        <div class="col-span-2 xl:col-span-2 flex flex-col justify-center">
+          <div class="2xl:text-6xl xl:text-5xl text-3xl font-myfont xl:mt-16">
+            <h2>
+              Why Choose <br />
+              Carina Softlabs Inc.?
+            </h2>
+          </div>
+
+          <div class="flex items-center md:mt-8 lg:mt-10 xl:mt-16 2xl:mt-0 mt-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 lg:grid-cols-3 gap-4">
+              <div class="col-span-6">
+                <p
+                  class="font-quickSand font-medium xl:text-[18px] 2xl:text-2xl text-base md:text-lg text-[#000000] 2xl:py-20 text-justify">
+                  With over a decade of experience, we are the central India's
+                  biggest game development company. Our unique values and
+                  working model contribute to our clients' success. Our team
+                  works efficiently to fulfill the client’s requirement and
+                  their projects.
+                  <br />
+                  <br />
+                  We believe in the success of our clients' work. With a focus
+                  on their business goals, we deliver extraordinary outcomes
+                  that can rely on. At Carina Softlabs Inc., we provide a wide
+                  range of innovative solutions designed to meet your diverse
+                  needs and drive your brand's success.
+
+                  <br />
+                  <br />
+                  <span class="font-semibold">Let us drive your project to unparalleled success and bring
+                    your boldest ideas to life.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- how do we stand unique  -->
+
+  <section appInView class="home-unique-section min-h-[10vh] sm:min-h-0 w-full px-7 md:px-10 lg:px-10 2xl:pt-52 2xl:px-0 pt-28 pb-28">
+    <div data-aos="fade-up">
+      <div class="">
+        <div class="grid grid-rows-3 grid-flow-col gap-4 text-white">
+          <div class="row-span-3">
+            <h2 class="text-white font-myfont text-3xl xl:text-4xl 2xl:text-6xl 2xl:ml-24 font-medium">
+              How Do We Stand <br />
+              Unique from Others ?
+            </h2>
+          </div>
+        </div>
+
+        <div class="lg:hidden flex overflow-x-auto snap-x gap-4 scro my-10">
+          <div
+            class="snap-center flex flex-shrink-0 w-[82vw] sm:w-[89vw] 2xl:px-10 overflow-hidden relative cursor-pointer px-0.5 sm:px-3 py-9 gap-2">
+            <div class="text-str ml-1 mr-10">
+              <span class="font-mont text-fi text-black"> 1 </span>
+              <span class="font-mont text-outl"> 1 </span>
+            </div>
+            <span class="text-base lg:text-2xl font-quickSand text-white text-wrap">
+              At Carina Softlabs Inc., we stand out through our exceptional team
+              of seasoned professionals with diverse skills, ensuring that our
+              solutions are tailored to meet each client's unique needs.
+            </span>
+          </div>
+          <div
+            class="snap-center flex flex-shrink-0 w-[82vw] sm:w-[89vw] 2xl:px-10 overflow-hidden relative cursor-pointer px-0.5 sm:px-3 py-9 gap-3">
+            <div class="text-str ml-1 mr-10">
+              <span class="font-mont text-fi text-black"> 2 </span>
+              <span class="font-mont text-outl"> 2 </span>
+            </div>
+            <span class="text-base lg:text-2xl font-quickSand text-white text-wrap">
+              We develop personalized workplans based on a thorough
+              understanding and analysis of client requirements, allowing us to
+              deliver innovative and effective solutions.
+            </span>
+          </div>
+          <div
+            class="snap-center flex flex-shrink-0 w-[82vw] sm:w-[89vw] 2xl:px-10 overflow-hidden relative cursor-pointer px-0.5 sm:px-3 py-9 gap-3">
+            <div class="text-str ml-1 mr-10">
+              <span class="font-mont text-fi text-black"> 3 </span>
+              <span class="font-mont text-outl"> 3 </span>
+            </div>
+            <span class="text-base lg:text-2xl font-quickSand text-white text-wrap">
+              Our commitment to strict adherence to project timelines ensures
+              that we deliver on time without compromising quality, enhancing
+              client trust and satisfaction.
+            </span>
+          </div>
+          <div
+            class="snap-center flex flex-shrink-0 w-[82vw] sm:w-[89vw] 2xl:px-10 overflow-hidden relative cursor-pointer px-0.5 sm:px-3 py-9 gap-3">
+            <div class="text-str ml-1 mr-10">
+              <span class="font-mont text-fi text-black"> 4 </span>
+              <span class="font-mont text-outl"> 4 </span>
+            </div>
+            <span class="text-base lg:text-2xl font-quickSand text-white text-wrap">
+              We provide dedicated support with timely responses and solutions
+              to any issues, ensuring a seamless experience.
+            </span>
+          </div>
+          <div
+            class="snap-center flex flex-shrink-0 w-[82vw] sm:w-[89vw] 2xl:px-10 overflow-hidden relative cursor-pointer px-0.5 sm:px-3 py-9 gap-3">
+            <div class="text-str ml-1 mr-10">
+              <span class="font-mont text-fi text-black"> 5 </span>
+              <span class="font-mont text-outl"> 5 </span>
+            </div>
+            <span class="text-base lg:text-2xl font-quickSand text-white text-wrap">
+              By leveraging the latest technologies and methodologies, we offer
+              cutting-edge solutions that set us apart from competitors.
+            </span>
+          </div>
+          <div
+            class="snap-center flex flex-shrink-0 w-[82vw] sm:w-[89vw] 2xl:px-10 overflow-hidden relative cursor-pointer px-0.5 sm:px-3 py-9 gap-3">
+            <div class="text-str ml-1 mr-10">
+              <span class="font-mont text-fi text-black"> 6 </span>
+              <span class="font-mont text-outl"> 6 </span>
+            </div>
+            <span class="text-base lg:text-2xl font-quickSand text-white text-wrap">
+              Our proven track record of successful projects and satisfied
+              clients demonstrates our ability to consistently deliver results
+              and exceed expectations.
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden lg:block h-[600vh] lg:h-[330vw] xl:h-[262vw] 2xl:h-[230vw] hori-scroll">
+      <app-hori-scroll></app-hori-scroll>
+    </div>
+  </section>
+
+  <!-- Latest blog -->
+
+  <section class="px-7 md:px-10 xl:px-10 pt-6 lg:pt-10 2xl:p-24 w-full bg-[#0B0C10]">
+    <div>
+      <div class="flex justify-between items-center content-center md:pb-2">
+        <h2 class="text-3xl 2xl:text-6xl xl:text-4xl font-medium text-white mb-4 font-myfont">
+          LATEST BLOGS
+        </h2>
+
+        <a appGradientButton size="md" class="hidden sm:inline-flex" routerLink="/blog">
+          More Blogs
+          <img src="assets/images/small-tilt-arrow.webp" alt="Image" aria-hidden="true" width="12" height="14"
+            loading="lazy" decoding="async" />
+        </a>
+      </div>
+
+      <hr style="border: 1px solid #34394b" />
+
+      <div class="xl:pt-20 pt-4">
+        <p
+          class="text-justify font-quickSand font-medium text-base lg:text-lg xl:text-[18px] 2xl:text-[26px] 2xl:leading-[34px] text-[#B4B9CB]">
+          Discover game trends, technology insights, digital marketing updates,
+          <br />
+          and our newly launched games by checking out our blogs.
+        </p>
+      </div>
+
+      <!-- latest blog animated cards -->
+
+      <div class="py-20">
+        <!-- Figma "Component 2" (node 339:3651): hover changes the card to its Active state, like Figma's Smart animate (300ms linear). See .lat-card in the SCSS. -->
+        <div class="scroll-container lat-row">
+          @for (card of blogCards; track card) {
+          <article class="scroll-item lat-card">
+            <div class="lat-bg" aria-hidden="true"></div>
+            <div class="lat-glow" aria-hidden="true"></div>
+            <img class="lat-img" [src]="card.image ? imageUrl + card.image : fallbackImage"
+              (error)="onCoverError($event)" width="341" height="427" loading="lazy" decoding="async"
+              [alt]="blogCardAlt(card)" />
+            <div class="lat-body">
+              <h3 class="lat-title">
+                <a [routerLink]="['/blog', formatHeading(card.titleLink)]">{{ card.title }}</a>
+              </h3>
+              @if (card.description) {
+              <div class="lat-desc">
+                <p>{{ card.description }}</p>
+              </div>
+              }
+              <div class="lat-btn">
+                <a appGradientButton size="md" [routerLink]="['/blog', formatHeading(card.titleLink)]" tabindex="-1">
+                  View More
+                  <img src="assets/images/blog-card/arrow-sm.svg" alt="Arrow Icon" aria-hidden="true" width="14"
+                    height="7" />
+                </a>
+              </div>
+            </div>
+          </article>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--  technology stack -->
+
+  <section class="px-7 md:px-10 xl:px-14 2xl:p-24 py-10 bg-white rounded-[40px]">
+    <div>
+      <h2 class="text-[#0B0C10] text-3xl xl:text-4xl 2xl:text-6xl font-myfont">
+        TECHNOLOGY STACK
+      </h2>
+    </div>
+
+    <hr class="mt-4" style="border: 1px solid #34394b" />
+
+    <!-- tech stack logos  -->
+    <div class="flex flex-row-reverse mt-6 md:mt-10 lg:py-20 py-5 md:justify-center lg:justify-start">
+      <div
+        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-0 gap-y-8 sm:gap-y-20 2xl:gap-x-0 2xl:gap-20 items-center">
+        @for (stack of techStack; track stack) {
+        <div class="pr-2 mr-2 2xl:pr-6 2xl:mr-6 md:mr-2 border-r border-[#B4B9CB]">
+          <div class="py-4 px-6 2xl:!py-10 2xl:px-14 border-b border-[#B4B9CB]">
+            <img
+              class="transition-transform duration-500 transform hover:scale-110 cursor-pointer h-12 2xl:h-16 object-contain"
+              [src]="stack.imgSrc" [width]="stack.w" height="48" loading="lazy" decoding="async" [alt]="stack.alt" />
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest project -->
+
+  <section class="px-7 md:px-10 xl:px-14 lg:py-20 2xl:p-24 py-10 bg-[#0B0C10]">
+    <app-slider></app-slider>
+  </section>
+
+  <!-- trusted by the best -->
+
+  <section class="px-7 md:px-10 xl:px-14 lg:pb-36 lg:pt-24 2xl:p-24 py-10 bg-white rounded-[40px]">
+    <div class="pb-10 lg:pb-16 2xl:pb-44">
+      <div>
+        <h2 class="text-[#0B0C10] font-myfont text-3xl xl:text-4xl 2xl:text-6xl font-medium">
+          TRUSTED BY THE BEST
+        </h2>
+      </div>
+
+      <!-- bubble client testimonial -->
+      <div class="op-section op-eight-section section mt-10" id="section5">
+        <div class="section-eight py-10 md:py-20 2xl:py-36">
+          <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div class="md:col-span-1 relative">
+                <div class="container-pe-quote left1">
+                  <div class="pp-quote li-quote-7 active" (click)="changeActiveQuote(0)">
+                    <img class="object-cover" src="../../assets/images/client-bub-1.webp" width="101" height="101"
+                      loading="lazy" decoding="async" alt="Arunachal Film Festival logo" />
+                  </div>
+                  <div class="pp-quote li-quote-2" (click)="changeActiveQuote(1)">
+                    <img class="object-cover" src="../../assets/images/client-bub-2.webp" width="101" height="101"
+                      loading="lazy" decoding="async" alt="Peniel Global General Consulting Inc. logo" />
+                  </div>
+                  <div class="pp-quote li-quote-3" (click)="changeActiveQuote(2)">
+                    <img class="object-cover" src="../../assets/images/client-bub-3.webp" width="101" height="101"
+                      loading="lazy" decoding="async" alt="Space M logo" />
+                  </div>
+                </div>
+              </div>
+              <div class="md:col-span-2">
+                <div class="p-0.5 rounded-[4rem] bg-gradient-to-t from-[#20b9fa] to-[#F21DF5] 2xl:w-[38rem] mx-auto">
+                  <div class="sec-eight-text-area rounded-[4rem] md:py-7 2xl:py-12 relative">
+                    <img class="absolute -top-9 w-20 left-0 right-0 mx-auto"
+                      src="../../../assets/images/double-quotes.svg" width="102" height="65" loading="lazy"
+                      decoding="async" alt="Opening quotation mark" />
+
+                    <div class="container-quote">
+                      @for (client of clients; track client) {
+                      <div [ngClass]="client.feedbackClass" class="quote text-center">
+                        <p class="text-black font-quickSand 2xl:text-lg">
+                          {{ client.feedback }}
+                        </p>
+                      </div>
+                      }
+                    </div>
+                    <div class="container-dp-name">
+                      @for (client of clients; track client) {
+                      <div class="box-dpname text-center" [ngClass]="client.customClass">
+                        <img class="text-center mx-auto w-20 h-20 border-[#B4B9CB] object-cover !border-2 rounded-full"
+                          [src]="client.imgSrc" width="101" height="101" loading="lazy" decoding="async"
+                          [alt]="client.alt" />
+                        <p class="text-black 2xl:text-lg mt-2">
+                          {{ client.name }}
+                        </p>
+                      </div>
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="md:col-span-1 relative">
+                <div class="container-pe-quote right1">
+                  <div class="pp-quote li-quote-4" (click)="changeActiveQuote(3)">
+                    <img class="object-cover" src="../../assets/images/client-bub-4.webp" width="101" height="101"
+                      loading="lazy" decoding="async" alt="Ballegro| Your Pocket Pianist app logo" />
+                  </div>
+                  <div class="pp-quote li-quote-5" (click)="changeActiveQuote(4)">
+                    <img class="object-cover" src="../../assets/images/client-bub-5.webp" width="101" height="101"
+                      loading="lazy" decoding="async" alt="Bravo| Tip or Pay app logo" />
+                  </div>
+                  <div class="pp-quote li-quote-6" (click)="changeActiveQuote(5)">
+                    <img class="object-cover" src="../../assets/images/client-bub-6.webp" width="101" height="101"
+                      loading="lazy" decoding="async" alt="E-Food logo" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Homepage lead form -->
+  <app-quote-section theme="dark" imageAlt="Custom Image" heading="Let's Build Something Great Together"
+    description="Have a project in mind? Reach out to us and let's get started." service="" />
+
+  <app-footer [cardText]="cardText" />
+</main>

@@ -1,0 +1,182 @@
+<div class="addContainer">
+    <div *ngIf="isLoading" class="spinner-container">
+      <mat-spinner [diameter]="30"></mat-spinner>
+    </div>
+    <div *ngIf="!isLoading" class="contact-form">
+      <div class="modalHeader">
+        <div class="editRowModal">
+          <div class="modalHeader clearfix">
+            <div class="modal-about">
+              <h2 *ngIf="mode === 'add'">Add Career post</h2>
+              <h2 *ngIf="mode === 'edit'">Edit Career post</h2>
+            </div>
+          </div>
+        </div>
+        <button
+          mat-icon-button
+          type="button"
+          (click)="dialogRef.close()"
+          class="modal-close-button"
+          aria-label="Close dialog"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <div mat-dialog-content>
+        <form class="register-form m-4" [formGroup]="form" (ngSubmit)="onSave()">
+          <div class="row">
+            <div class="col-6 mb-3">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title" required />
+                <mat-error *ngIf="form.get('title')?.hasError('required')">
+                    title is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-6 mb-3">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Description</mat-label>
+                <input matInput formControlName="description" required />
+                <mat-error *ngIf="form.get('description')?.hasError('required')">
+                    description is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-12 mb-3">
+                <div class="px-1 py-1 border-b">
+                   Image:
+                  <mat-icon
+                    matTooltip="logo"
+                    color="primary"
+                    style="font-size: 25px; cursor: pointer"
+                    (click)="filePickerCardBg.click()"
+                    >photo_camera</mat-icon
+                  >
+                  <input
+                    type="file"
+                    #filePickerCardBg
+                    (change)="onImagePicked2($event)"
+                  />
+                </div>
+                <mat-hint
+                  style="font-size: 11px"
+                  class="px-1 py-1 border-b"
+                  *ngIf="form.get('image')?.hasError('required')"
+                >
+                  Image is required
+                </mat-hint>
+    
+                <div
+                  class="image-container mt-2"
+                  *ngIf="
+                  blogImagePreview &&   
+                    form.get('image')?.valid
+                  "
+                >
+                  <img [src]="blogImagePreview" [alt]="" class="image" />
+                  <button
+                    mat-icon-button
+                    color="warn"
+                    aria-label="Delete"
+                    (click)="onClearImage2()"
+                    class="clear-button"
+                  >
+                    <mat-icon matTooltip="clear">cancel</mat-icon>
+                  </button>
+                </div>
+              </div>
+
+           
+
+              <div class="col-6 mb-3">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Employment Type</mat-label>
+                  <mat-select formControlName="employmentType"> 
+                    <mat-option value="Full-time">Full-time</mat-option>
+                    <mat-option value="Part-time">Part-time</mat-option>
+                    <mat-option value="Contract">Contract</mat-option>
+                    <mat-option value="Internship">Internship</mat-option>
+                  </mat-select>
+              
+                  <mat-error *ngIf="form.get('employmentType')?.hasError('required')">
+                    employment type is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              
+
+              <div class="col-6 mb-3">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Location</mat-label>
+                  <input matInput formControlName="location" required />
+                  <mat-error *ngIf="form.get('location')?.hasError('required')">
+                    location is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div class="col-6 mb-3">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Experience</mat-label>
+                  <input matInput formControlName="experience" required />
+                  <mat-error *ngIf="form.get('experience')?.hasError('required')">
+                    experience is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+            
+
+              <div class="col-6 mb-3">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Application deadline</mat-label>
+                  <input matInput [matDatepicker]="picker" formControlName="applicationDeadline" required />
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+              
+                  <mat-error *ngIf="form.get('applicationDeadline')?.hasError('required')">
+                    Application deadline is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              
+           
+
+              <div class="col-12 mb-3">
+                <mat-label>content</mat-label>
+                <angular-editor
+                  [formControlName]="'content'"
+                  [config]="config2"
+                  (ngModelChange)="onContentChanged($event)"
+                ></angular-editor>
+              </div>
+           
+  
+  
+            <div class="col-12">
+              <button
+                mat-raised-button
+                color="primary"
+                class="btn-space"
+                type="submit"
+              >
+                {{ mode === "add" ? "Submit" : "Update" }}
+              </button>
+              <button
+                mat-raised-button
+                color="warn"
+                type="button"
+                (click)="dialogRef.close()"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

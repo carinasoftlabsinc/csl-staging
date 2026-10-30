@@ -1,0 +1,205 @@
+<div class="addContainer">
+    <div *ngIf="isLoading" class="spinner-container">
+      <mat-spinner [diameter]="30"></mat-spinner>
+    </div>
+    <div *ngIf="!isLoading" class="contact-form">
+      <div class="modalHeader">
+        <div class="editRowModal">
+          <div class="modalHeader clearfix">
+            <div class="modal-about">
+              <h2 *ngIf="mode === 'add'">Add An Ad</h2>
+              <h2 *ngIf="mode === 'edit'">Edit An Ad</h2>
+            </div>
+          </div>
+        </div>
+        <button
+          mat-icon-button
+          type="button"
+          (click)="dialogRef.close()"
+          class="modal-close-button"
+          aria-label="Close dialog"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <div mat-dialog-content>
+        <form class="register-form m-4" [formGroup]="form" (ngSubmit)="onSave()">
+          <div class="row">
+            <div class="col-12 mb-3">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" required />
+                <mat-error *ngIf="form.get('name')?.hasError('required')">
+                    name is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-12 mb-3">
+                <label>Orientation</label>
+                <mat-radio-group formControlName="orientation" class="d-flex gap-4">
+                    <mat-radio-button value="landscape">Landscape</mat-radio-button>
+                    <mat-radio-button value="portrait">Portrait</mat-radio-button>
+                </mat-radio-group>
+                <mat-error *ngIf="form.get('orientation')?.hasError('required')">
+                    Orientation is required
+                </mat-error>
+            </div>
+              
+
+            <div class="col-12 mb-3">
+                <div class="px-1 py-1 border-b">
+                   Image:
+                  <mat-icon
+                    matTooltip="logo"
+                    color="primary"
+                    style="font-size: 25px; cursor: pointer"
+                    (click)="filePickerad.click()"
+                    >photo_camera</mat-icon
+                  >
+                  <input
+                    type="file"
+                    #filePickerad
+                    (change)="onImagePicked2($event)"
+                  />
+                </div>
+                <mat-hint
+                  style="font-size: 11px"
+                  class="px-1 py-1 border-b"
+                  *ngIf="form.get('image')?.hasError('required')"
+                >
+                  Image is required
+                </mat-hint>
+    
+                <div
+                  class="image-container mt-2"
+                  *ngIf="
+                  adImagePreview &&   
+                    form.get('image')?.valid
+                  "
+                >
+                  <img [src]="adImagePreview" [alt]="" class="image" />
+                  <button
+                    mat-icon-button
+                    color="warn"
+                    aria-label="Delete"
+                    (click)="onClearImage2()"
+                    class="clear-button"
+                  >
+                    <mat-icon matTooltip="clear">cancel</mat-icon>
+                  </button>
+                </div>
+              </div>
+           
+              <!-- Video Upload -->
+<!-- <div class="col-12 mb-3">
+    <button type="button" mat-raised-button color="primary" (click)="videoInput.click()">
+        Upload Video
+      </button>
+      <input
+        type="file"
+        #videoInput
+        (change)="onVideoPicked($event)"
+        accept="video/*"
+        style="display: none"
+      />
+      
+  
+  
+    <video *ngIf="videoPreview" width="100%" height="auto" controls [src]="videoPreview"></video>
+  </div> -->
+  
+  <!-- Video URL -->
+  <div class="col-6 mb-3">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Enter Embedded URL</mat-label>
+      <input 
+      matInput 
+      formControlName="videoUrl" 
+      [disabled]="!!form.get('videoFile')?.value"
+    />
+    
+    </mat-form-field>
+  </div>
+  
+
+              <div class="col-6 mb-3">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>viewThreshold</mat-label>
+                  <input matInput type="number" formControlName="viewThreshold" required />
+                  <mat-error *ngIf="form.get('viewThreshold')?.hasError('required')">
+                    viewThreshold is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-6 mb-3">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Duration (seconds)</mat-label>
+                  <input matInput type="number" formControlName="duration" required />
+                  <mat-error *ngIf="form.get('duration')?.hasError('required')">
+                    Duration is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+             
+              <div class="col-12 mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <label>Platforms</label>
+                  <button type="button" mat-button color="primary" (click)="addPlatform()">Add</button>
+                </div>
+                <div *ngFor="let platform of platformControls; let i = index" [formGroup]="platform">
+                  <div class="row mb-2">
+                    <div class="col-5">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name" required />
+                      </mat-form-field>
+                    </div>
+                    <div class="col-5">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>URL</mat-label>
+                        <input matInput formControlName="url" required />
+                      </mat-form-field>
+                    </div>
+                    <div class="col-2 d-flex align-items-center">
+                      <button mat-icon-button color="warn" (click)="removePlatform(i)">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+             
+
+            
+            
+              
+           
+  
+  
+            <div class="col-12">
+              <button
+                mat-raised-button
+                color="primary"
+                class="btn-space"
+                type="submit"
+              >
+                {{ mode === "add" ? "Submit" : "Update" }}
+              </button>
+              <button
+                mat-raised-button
+                color="warn"
+                type="button"
+                (click)="dialogRef.close()"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

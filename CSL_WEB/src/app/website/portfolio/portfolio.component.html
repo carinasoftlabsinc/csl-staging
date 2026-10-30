@@ -1,0 +1,414 @@
+<main class="bg-[#0B0C10]">
+  <app-header></app-header>
+  <section
+    class="body-font flex items-center justify-center h-[calc(100vh-86.52px)] xl:h-[calc(100vh-90.33px)] 2xl:h-[calc(100vh-109.53px)] px-7 md:px-10 2xl:p-24 xl:px-14 py-10"
+    style="
+      background: no-repeat url(../../../assets/images/know-bannerglow.webp);
+      background-size: contain;
+    "
+    >
+    <div>
+      <div class="flex flex-col md:flex-row items-center lg:px-3">
+        <div
+          class="md:w-1/2 py-8 text-left font-quickSand font-medium text-[#B4B9CB]"
+          >
+          <div class="2xl:ml-20 xl:ml-16 lg:ml-16 md:ml-16">
+            <h1>
+              <span
+                class="text-white font-myfont text-[30px] 2xl:text-[45px] 2xl:leading-[44px] xl:text-[30px] lg:text-[25px] md:text-[20px]"
+                >
+                Our Portfolio:
+              </span>
+              <br />
+              <span
+                class="text-white tracking-wide text-4xl md:text-4xl lg:text-[36px] lg:leading-[44px] xl:text-[42px] xl:leading-[50px] 2xl:text-[52px] 2xl:leading-[60px] sm:text-4xl font-myfont"
+                >
+                <span class="block sm:whitespace-nowrap">Game Development,</span>
+                <span class="block sm:whitespace-nowrap">AI Solutions &amp; Digital</span>
+                <span class="block sm:whitespace-nowrap">Growth Case Studies</span>
+              </span>
+            </h1>
+
+            <p
+              class="text-white mt-3 text-sm xl:text-[16px] 2xl:text-[23px] 2xl:leading-[27px] font-quickSand font-normal"
+              >
+              Excited about the digital world? So are we! Stay updated with the
+              latest trends in Game Development, Digital Marketing, Web
+              Development, and Mobile App Development. Stay in the loop with the
+              latest trends and tricks!
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="w-full md:w-1/2 py-8 hidden md:block"
+          style="
+            background: url(../../../assets/images/portfolio-bg-glow.webp)
+              no-repeat bottom;
+            background-size: contain;
+            /* background-size: 100% 110%; */
+          "
+          >
+          <picture>
+          <source media="(min-width: 768px)" srcset="../../../assets/images/Group%201000001897%20(1).webp" />
+          <img
+            class="size-[80%] m-auto"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Carina Softlabs portfolio of game| app| web development and digital marketing projects" width="680" height="427" />
+          </picture>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="relative px-7 md:px-10 lg:py-16 2xl:p-24 xl:px-14 py-10 bg-[#ffffff] rounded-[40px]"
+      >
+      <nav
+        aria-label="Portfolio categories"
+        class="flex flex-nowrap overflow-x-auto scrollbar-hide justify-start lg:justify-center font-quickSand font-bold absolute left-0 right-0 mx-auto -top-9 md:-top-7 2xl:-top-10 sm:bg-transparent sm:px-[unset] sm:py-[unset] rounded-3xl px-0.5 py-1.5 gap-0.5 sm:gap-[unset]"
+        >
+      @for (tab of tabs; track tab.slug) {
+        <a
+          routerLink="/portfolio"
+          [queryParams]="{ category: tab.slug }"
+          [attr.aria-current]="selectedTab === tab ? 'page' : null"
+          [ngClass]="{
+            'bg-[#fff] !text-[#34394B]': selectedTab === tab,
+            'bg-[#000] !text-[#fff]': selectedTab !== tab
+          }"
+          class="shrink-0 whitespace-nowrap px-4 py-3.5 sm:px-6 md:px-5 lg:px-4 xl:px-6 2xl:px-8 2xl:py-7 rounded-3xl 2xl:rounded-[2.2rem] font-extrabold !text-xs lg:!text-sm xl:!text-lg 2xl:!text-xl border border-white cursor-pointer dev-button focus-visible:!outline focus-visible:!outline-2 focus-visible:!outline-offset-2 focus-visible:!outline-[#BC8AFB]"
+          >
+          {{ tab.label }}
+        </a>
+      }
+    </nav>
+
+    <div
+      class="text-center mt-12 sm:mt-auto my-8 flex flex-col gap-3.5 2xl:gap-6 md:mt-8"
+      >
+      <h2 class="text-black text-3xl xl:text-4xl 2xl:text-5xl font-myfont">
+        {{ selectedCategory }} Projects
+      </h2>
+      <p
+        class="font-quickSand font-medium text-base lg:text-lg 2xl:!text-2xl !leading-6 text-black capitalize"
+        >
+        Design creates culture. Culture shapes values.
+        <br class="hidden md:block" />
+        Values determine the future
+      </p>
+    </div>
+    @if (loading) {
+      <div class="flex justify-center items-center min-h-[300px]">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-[#F21DF5]"></div>
+      </div>
+    }
+
+    @if (!loading && cards?.length === 0) {
+      <div class="text-center text-gray-400 text-xl min-h-[300px] flex items-center justify-center">
+        No portfolio items found.
+      </div>
+    }
+
+    @if (!loading && cards?.length > 0) {
+      <div class="lg:p-7 flex flex-col gap-8 2xl:gap-14">
+        @for (group of cards | slice : 0 : 3; track group; let i = $index) {
+          @if (i % 3 === 0) {
+            <div
+              class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3.5 lg:gap-6 2xl:gap-10"
+              >
+              <!-- [routerLink]="['/news', formatHeading(card.titleLink)]" -->
+              <!-- [routerLink]="['/portfolio', formatHeading(project.titleLink)]" -->
+          <!-- [routerLink]="
+    project.category === 'Digital Marketing'
+      ? ['/portfolio', formatHeading(project.titleLink)]
+      : ['/case-studies', formatHeading(project.titleLink)]
+  " -->
+              <!-- [routerLink]="['/case-studies', formatHeading(project.titleLink)]" -->
+              @for (project of cards.slice(i, i + 3); track project) {
+                <a
+            [routerLink]="
+              project.category === 'digital-marketing'
+                ? ['/portfolio', formatHeading(project.titleLink)]
+                : ['/portfolio', formatHeading(project.titleLink)]
+            "
+                  >
+                  <img
+                    class="aspect-video rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                    [src]="imageUrl + project.image_2"
+                    [alt]="projectImageAlt(project)" width="1600" height="900" loading="lazy" decoding="async" />
+                    <div
+                      class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                      >
+                      <div>
+                        <h3
+                          class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                          >
+                          {{ project.title }}
+                        </h3>
+                        <p
+                          class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                          >
+                          {{ project.description }}
+                        </p>
+                      </div>
+                      <img
+                        class="size-10 self-end"
+                        src="../../../assets/images/grad-arrow-btn.svg"
+                        alt="Arrow Button" width="64" height="63" loading="lazy" decoding="async" />
+                      </div>
+                    </a>
+                  }
+                </div>
+              }
+            }
+            <!-- [routerLink]="['/portfolio', formatHeading(project.titleLink)]" -->
+            @for (group of cards | slice : 3 : 5; track group; let i = $index) {
+              @if (i % 2 === 0) {
+                <div
+                  class="grid grid-cols-1 md:grid-cols-2 gap-8 2xl:gap-10"
+                  >
+                  @for (project of cards.slice(i + 3, i + 5); track project) {
+                    <a
+            [routerLink]="
+              project.category === 'digital-marketing'
+                ? ['/portfolio', formatHeading(project.titleLink)]
+                : ['/portfolio', formatHeading(project.titleLink)]
+            "
+                      >
+                      <img
+                        class="aspect-video rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                        [src]="imageUrl + project.image_2"
+                        [alt]="projectImageAlt(project)" width="1600" height="900" loading="lazy" decoding="async" />
+                        <div
+                          class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                          >
+                          <div>
+                            <h3
+                              class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                              >
+                              {{ project.title }}
+                            </h3>
+                            <p
+                              class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                              >
+                              {{ project.description }}
+                            </p>
+                          </div>
+                          <img
+                            class="size-10 self-end"
+                            src="../../../assets/images/grad-arrow-btn.svg"
+                            alt="Arrow Button" width="64" height="63" loading="lazy" decoding="async" />
+                          </div>
+                        </a>
+                      }
+                    </div>
+                  }
+                }
+                @for (group of cards | slice : 5 : 8; track group; let i = $index) {
+                  @if (i % 3 === 0) {
+                    <div
+                      class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3.5 lg:gap-6 2xl:gap-10"
+                      >
+                      @for (project of cards.slice(i + 5, i + 8); track project) {
+                        <a
+            [routerLink]="
+              project.category === 'digital-marketing'
+                ? ['/portfolio', formatHeading(project.titleLink)]
+                : ['/portfolio', formatHeading(project.titleLink)]
+            "
+                          >
+                          <img
+                            class="aspect-video rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                            [src]="imageUrl + project.image_2"
+                            [alt]="projectImageAlt(project)" width="1600" height="900" loading="lazy" decoding="async" />
+                            <div
+                              class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                              >
+                              <div>
+                                <h3
+                                  class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                                  >
+                                  {{ project.title }}
+                                </h3>
+                                <p
+                                  class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                                  >
+                                  {{ project.description }}
+                                </p>
+                              </div>
+                              <img
+                                class="size-10 self-end"
+                                src="../../../assets/images/grad-arrow-btn.svg"
+                                alt="Arrow Button" width="64" height="63" loading="lazy" decoding="async" />
+                              </div>
+                            </a>
+                          }
+                        </div>
+                      }
+                    }
+                    @for (group of cards | slice : 8 : 10; track group; let i = $index) {
+                      @if (i % 2 === 0) {
+                        <div
+                          class="grid grid-cols-1 md:grid-cols-2 gap-8 2xl:gap-10"
+                          >
+                          @for (project of cards.slice(i + 8, i + 10); track project) {
+                            <a
+                              [routerLink]="['/portfolio', formatHeading(project.titleLink)]"
+                              >
+                              <img
+                                class="aspect-video rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                                [src]="imageUrl + project.image_2"
+                                [alt]="projectImageAlt(project)" width="1600" height="900" loading="lazy" decoding="async" />
+                                <div
+                                  class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                                  >
+                                  <div>
+                                    <h3
+                                      class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                                      >
+                                      {{ project.title }}
+                                    </h3>
+                                    <p
+                                      class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                                      >
+                                      {{ project.description }}
+                                    </p>
+                                  </div>
+                                  <img
+                                    class="size-10 self-end"
+                                    src="../../../assets/images/grad-arrow-btn.svg"
+                                    alt="Arrow Button" width="64" height="63" loading="lazy" decoding="async" />
+                                  </div>
+                                </a>
+                              }
+                            </div>
+                          }
+                        }
+                        @for (group of cards | slice : 10 : 13; track group; let i = $index) {
+                          @if (i % 3 === 0) {
+                            <div
+                              class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-3.5 lg:gap-6 2xl:gap-10"
+                              >
+                              @for (project of cards.slice(i + 10, i + 13); track project) {
+                                <a
+                                  [routerLink]="['/portfolio', formatHeading(project.titleLink)]"
+                                  >
+                                  <img
+                                    class="aspect-video rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                                    [src]="imageUrl + project.image_2"
+                                    [alt]="projectImageAlt(project)" width="1600" height="900" loading="lazy" decoding="async" />
+                                    <div
+                                      class="!px-4 py-3.5 md:!px-1.5 lg:!px-4 flex flex-col lg:flex-row justify-between lg:items-center gap-1.5 lg:gap-4"
+                                      >
+                                      <div>
+                                        <h3
+                                          class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5"
+                                          >
+                                          {{ project.title }}
+                                        </h3>
+                                        <p
+                                          class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4"
+                                          >
+                                          {{ project.description }}
+                                        </p>
+                                      </div>
+                                      <img
+                                        class="size-10 self-end"
+                                        src="../../../assets/images/grad-arrow-btn.svg"
+                                        alt="Arrow Button" width="64" height="63" loading="lazy" decoding="async" />
+                                      </div>
+                                    </a>
+                                  }
+                                </div>
+                              }
+                            }
+                          @if (cards.length > 13) {
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 2xl:gap-10">
+                              @for (project of cards | slice : 13; track project._id) {
+                                <a [routerLink]="['/portfolio', formatHeading(project.titleLink)]">
+                                  <img
+                                    class="aspect-video rounded-badge 2xl:rounded-[2.2rem] object-cover w-full"
+                                    [src]="imageUrl + project.image_2"
+                                    [alt]="projectImageAlt(project)" width="1600" height="900" loading="lazy" decoding="async" />
+                                  <div class="!px-4 py-3.5 flex flex-col gap-1.5">
+                                    <h3 class="font-myfont text-xl lg:text-2xl 2xl:text-3xl font-semibold mb-1.5">{{ project.title }}</h3>
+                                    <p class="font-quickSand text-sm 2xl:text-base text-[#34394B] leading-4">{{ project.description }}</p>
+                                  </div>
+                                </a>
+                              }
+                            </div>
+                          }
+                        </div>
+                      }
+                      @if (!loading && allCards.length > 0) {
+                        <nav class="mt-12 border-t border-[#B4B9CB] pt-8" aria-label="Portfolio project directory">
+                          <h2 class="text-black text-2xl xl:text-3xl font-myfont mb-5">Browse all projects</h2>
+                          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
+                            @for (project of allCards; track project._id) {
+                              @if (project.titleLink) {
+                                <li>
+                                  <a
+                                    class="font-quickSand text-[#34394B] hover:text-[#9B21C5] underline underline-offset-4"
+                                    [routerLink]="['/portfolio', formatHeading(project.titleLink)]"
+                                  >{{ project.title || project.titleLink }}</a>
+                                </li>
+                              }
+                            }
+                          </ul>
+                        </nav>
+                      }
+                    </section>
+
+                    <section class="py-32">
+                        <div class="my-12 flex flex-col gap-y-6 !z-20">
+                          <!-- Container for the scrolling text -->
+                          <div class="whitespace-nowrap overflow-hidden relative">
+                            <!-- First Scrolling Block -->
+                            <div
+                              class="font-bebas text-6xl md:text-9xl font-extrabold text-white uppercase whitespace-nowrap inline-block animate-scrolling"
+                              >
+                              @for (tab of tabs; track tab.slug) {
+                                <h3
+                                  class="hover:text-[#BC8AFB] inline-block mr-20 star"
+                                  >
+                                  {{ tab.label }}
+                                </h3>
+                              }
+                            </div>
+                            <!-- Duplicate Scrolling Block for Seamless Scrolling -->
+                            <div
+                              class="font-bebas text-6xl md:text-9xl font-extrabold text-white uppercase whitespace-nowrap inline-block animate-scrolling"
+                              >
+                              @for (tab of tabs; track tab.slug) {
+                                <h3
+                                  class="hover:text-[#FB8ACE] inline-block mr-20 star"
+                                  >
+                                  {{ tab.label }}
+                                </h3>
+                              }
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+
+                      <ng-template #quoteLeft>
+                        <p class="font-myfont uppercase text-[color:#0B0C10] leading-[0.945] text-[clamp(3rem,16vw,7rem)] lg:text-[7.4vw] xl:text-[8.4vw] 2xl:text-[clamp(3rem,9.48vw,11.375rem)]">
+                          Let’s <span class="block pl-[0.8em]">get in </span>touch
+                        </p>
+                      </ng-template>
+                      <app-quote-section
+                        theme="light"
+                        heading="Application Process"
+                        service=""
+                        [leftTemplate]="quoteLeft"
+                      />
+
+                      <app-footer
+                        [showButton]="false"
+                        [showHeading]="false"
+                        [btnText]="'Schedule a call'"
+                        [cardText]="cardText"
+                        >
+                      </app-footer>
+                    </main>
+

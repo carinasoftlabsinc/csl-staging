@@ -1,0 +1,15 @@
+mat-spinner {
+    margin: auto;
+}
+.not-found-message {
+    text-align: center;
+    padding: 10px;
+    color: gray;
+  }
+  
+.post-body {
+  ::ng-deep img {
+    max-width: 100%;
+    height: auto;
+  }
+}

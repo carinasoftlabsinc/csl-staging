@@ -1,0 +1,15 @@
+# Node modules
+node_modules/
+
+#public
+public/
+
+
+# Build outputs
+dist/
+build/
+
+# IDE specific files
+.vscode/
+# migration backups (contain the original post HTML)
+backups/

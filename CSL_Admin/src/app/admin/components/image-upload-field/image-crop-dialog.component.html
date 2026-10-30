@@ -1,0 +1,71 @@
+<div class="icd">
+  <div class="icd-head">
+    <h2 mat-dialog-title class="icd-title">{{ title }}</h2>
+    <button mat-icon-button type="button" aria-label="Close" (click)="cancel()"><mat-icon>close</mat-icon></button>
+  </div>
+
+  <mat-dialog-content class="icd-body">
+    <!-- Shape presets -->
+    <div class="icd-aspects" role="group" aria-label="Crop shape">
+      <button
+        *ngFor="let a of aspects"
+        type="button"
+        class="icd-chip"
+        [class.icd-chip--active]="a === aspect"
+        (click)="setAspect(a)"
+      >
+        {{ a.label }}
+      </button>
+    </div>
+
+    <div class="icd-stage">
+      <image-cropper
+        *ngIf="opened"
+        [imageFile]="data.file"
+        [imageURL]="data.file ? undefined : data.url"
+        [maintainAspectRatio]="aspect.ratio !== null"
+        [aspectRatio]="aspect.ratio || 1"
+        [canvasRotation]="canvasRotation"
+        [transform]="transform"
+        [allowMoveImage]="true"
+        [format]="format"
+        [imageQuality]="90"
+        [resizeToWidth]="maxOutputWidth"
+        [onlyScaleDown]="true"
+        output="blob"
+        [backgroundColor]="format === 'jpeg' ? '#ffffff' : undefined"
+        (imageCropped)="onCropped($event)"
+        alignImage="center"
+        [cropper]="cropperPosition"
+        [cropperMaxWidth]="cropperMaxWidth"
+        (cropperReady)="onReady($event)"
+        (loadImageFailed)="failed = true"
+      ></image-cropper>
+      <div class="icd-loading" *ngIf="!ready && !failed">Loading image…</div>
+      <div class="icd-failed" *ngIf="failed">This image could not be loaded for cropping.</div>
+    </div>
+
+    <!-- Tools -->
+    <div class="icd-tools">
+      <button mat-icon-button type="button" matTooltip="Rotate left" (click)="rotate(-1)"><mat-icon>rotate_left</mat-icon></button>
+      <button mat-icon-button type="button" matTooltip="Rotate right" (click)="rotate(1)"><mat-icon>rotate_right</mat-icon></button>
+      <button mat-icon-button type="button" matTooltip="Flip horizontal" (click)="flip('h')"><mat-icon>flip</mat-icon></button>
+      <button mat-icon-button type="button" matTooltip="Flip vertical" (click)="flip('v')"><mat-icon class="icd-flip-v">flip</mat-icon></button>
+      <span class="icd-sep"></span>
+      <button mat-icon-button type="button" matTooltip="Zoom out" (click)="zoom(-0.1)"><mat-icon>zoom_out</mat-icon></button>
+      <span class="icd-zoom">{{ (transform.scale || 1) * 100 | number: '1.0-0' }}%</span>
+      <button mat-icon-button type="button" matTooltip="Zoom in" (click)="zoom(0.1)"><mat-icon>zoom_in</mat-icon></button>
+      <span class="icd-sep"></span>
+      <button mat-button type="button" (click)="reset()"><mat-icon>restart_alt</mat-icon> Reset</button>
+      <span class="icd-size" *ngIf="croppedSize">Result: {{ croppedSize }} ({{ format === 'png' ? 'PNG' : 'JPG' }})</span>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="icd-actions">
+    <button mat-button type="button" (click)="cancel()">Cancel</button>
+    <button mat-stroked-button type="button" *ngIf="data.file" (click)="useOriginal()">Use full image</button>
+    <button mat-raised-button color="primary" type="button" [disabled]="!ready || failed" (click)="apply()">
+      <mat-icon>crop</mat-icon> Apply crop
+    </button>
+  </mat-dialog-actions>
+</div>

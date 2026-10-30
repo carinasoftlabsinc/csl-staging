@@ -1,0 +1,183 @@
+:host {
+  display: block;
+}
+
+.iuf {
+  border: 1px dashed #ccd1d9;
+  border-radius: 8px;
+  padding: 0.75rem;
+  height: 100%;
+  background: #fff;
+}
+
+.iuf--disabled {
+  opacity: 0.6;
+}
+
+.iuf-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 36px;
+}
+
+.iuf-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.iuf-label {
+  font-weight: 500;
+}
+
+.iuf-required {
+  color: #d93025;
+}
+
+.iuf-hint {
+  display: block;
+  color: #6c757d;
+  font-size: 0.8rem;
+}
+
+.iuf-zone {
+  position: relative;
+  margin-top: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #d5d9e0;
+  border-radius: 8px;
+  background: #f8f9fb;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    border-color: #3f51b5;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.2);
+  }
+}
+
+.iuf-zone--filled {
+  border-style: solid;
+  border-color: transparent;
+}
+
+.iuf-zone--dragging {
+  border-color: #3f51b5;
+  border-style: dashed;
+  background: #eef0fb;
+}
+
+.iuf-zone--error {
+  border-color: #d93025;
+}
+
+.iuf--disabled .iuf-zone {
+  cursor: not-allowed;
+}
+
+.iuf-preview {
+  position: relative;
+  height: 100%;
+  max-width: 100%;
+
+  img {
+    display: block;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid #e3e6ea;
+    background: #fff;
+  }
+}
+
+// Remove button on the image's top-right corner.
+.iuf-remove {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  transform: scale(0.75);
+}
+
+.iuf-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0 1rem;
+  text-align: center;
+  color: #6c757d;
+
+  mat-icon {
+    font-size: 34px;
+    width: 34px;
+    height: 34px;
+    color: #9aa1ad;
+  }
+}
+
+.iuf-zone--dragging .iuf-empty mat-icon,
+.iuf-zone--dragging .iuf-empty-title {
+  color: #3f51b5;
+}
+
+.iuf-empty-title {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.iuf-empty-sub {
+  font-size: 0.72rem;
+}
+
+.iuf-drop-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(63, 81, 181, 0.12);
+  color: #3f51b5;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.iuf-meta {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.45rem;
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+.iuf-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 55%;
+}
+
+.iuf-warn,
+.iuf-error {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+}
+
+.iuf-warn {
+  color: #b45309;
+}
+
+.iuf-error {
+  color: #d93025;
+}

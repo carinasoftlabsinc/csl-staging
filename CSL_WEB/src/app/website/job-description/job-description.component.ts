@@ -10,6 +10,7 @@ import { NotFoundComponent } from '../not-found/not-found.component';
 import { NgFor, NgIf, NgClass, DatePipe } from '@angular/common';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { FooterComponent } from '../footer/footer.component';
+import { INDIA_ADDRESS, organizationReference } from '@core/utils/organization-schema.util';
 
 interface UploadedFile {
   file: File;
@@ -142,22 +143,10 @@ export class JobDescriptionComponent implements OnInit {
               employmentType: foundJob.employmentType
                 ? foundJob.employmentType.toUpperCase().replace(/\s+/g, '_')
                 : 'FULL_TIME',
-              hiringOrganization: {
-                '@type': 'Organization',
-                name: 'Carina Softlabs Inc.',
-                sameAs: 'https://carinasoftlabs.com',
-                logo: 'https://carinasoftlabs.com/assets/logo.png',
-              },
+              hiringOrganization: organizationReference,
               jobLocation: {
                 '@type': 'Place',
-                address: {
-                  '@type': 'PostalAddress',
-                  streetAddress: '102, 1st Floor, Krishna Tower, Near Medanta Hospital, Vijay Nagar',
-                  addressLocality: 'Indore',
-                  addressRegion: 'Madhya Pradesh',
-                  postalCode: '452010',
-                  addressCountry: 'IN',
-                },
+                address: INDIA_ADDRESS,
               },
               baseSalary: foundJob.salary
                 ? {

@@ -60,8 +60,9 @@ svg {
 }
 
 .conto {
-  display: flex;
-  width: 300vw;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
 
   // .col {
   //   display: flex;
@@ -72,9 +73,22 @@ svg {
   //   }
   // }
 
+  // The points are stacked, each centred across the screen at the same height as before. Only the
+  // first shows until the scroll script takes over and fast-forwards between them.
   section {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100vw;
-    padding: 20vw 19vw;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20vw 8vw 0;
+
+    & ~ section .slide {
+      opacity: 0;
+      visibility: hidden;
+    }
 
     // h1 {
     //   font-size: 3rem;
@@ -125,6 +139,12 @@ section {
 // .scroll-snap-child {
 //   scroll-snap-align: start;
 // }
+
+// Fast-forwarded in and out by the scroll script when the active point changes.
+.slide {
+  transform-origin: 50% 50%;
+  will-change: transform, opacity, filter;
+}
 
 @media (max-width: 1200px) {
   .section-counter {
@@ -201,11 +221,6 @@ section {
 // Text stroke effect ends
 
 @media (min-width: 1536px) {
-  section {
-    // padding: 20vw 0vw !important;
-    padding-left: 32vw !important;
-  }
-
   svg {
     top: 19em;
     left: 36vw;

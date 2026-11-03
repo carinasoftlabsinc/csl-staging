@@ -17,6 +17,13 @@ import { Title, Meta} from '@angular/platform-browser';
 import { environment } from 'environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { formatHeading } from '@core/utils/slug.util';
+import {
+  ORGANIZATION_ID,
+  ORGANIZATION_NAME,
+  SITE_ORIGIN,
+  indiaOfficeSchema,
+  organizationSchema,
+} from '@core/utils/organization-schema.util';
 import { HeaderComponent } from './header/header.component';
 import { ToggleSwitchComponent } from './components/toggle-switch/toggle-switch.component';
 import { GradientButtonComponent } from './components/gradient-button/gradient-button.component';
@@ -304,65 +311,18 @@ export class WebsiteComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private setSchemaMarkup(): void {
-    const organizationSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      '@id': 'https://carinasoftlabs.com/#organization',
-      name: 'Carina Softlabs Inc.',
-      url: 'https://carinasoftlabs.com/',
-      logo: 'https://carinasoftlabs.com/assets/CSL-logo-footer.svg',
-    };
-
     const websiteSchema = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      '@id': 'https://carinasoftlabs.com/#website',
-      name: 'Carina Softlabs Inc.',
-      url: 'https://carinasoftlabs.com/',
+      '@id': `${SITE_ORIGIN}/#website`,
+      name: ORGANIZATION_NAME,
+      url: `${SITE_ORIGIN}/`,
       publisher: {
-        '@id': 'https://carinasoftlabs.com/#organization',
+        '@id': ORGANIZATION_ID,
       },
     };
 
-    // Values exactly as given in the SEO audit doc (Home §3.III Local Schema).
-    const localSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'LocalBusiness',
-      '@id': 'https://www.carinasoftlabs.com/#india-office',
-      name: 'Carina Softlabs Inc.',
-      url: 'https://www.carinasoftlabs.com/',
-      image: 'https://carinasoftlabs.com/assets/CSL-logo.svg',
-      logo: 'https://carinasoftlabs.com/assets/CSL-logo.svg',
-      telephone: '+91 9131958215',
-      priceRange: '$$',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress:
-          '10/2, 2nd Floor, Shree Mahadeo House, near Hotel Surya, Sriram Nagar, South Tukoganj',
-        addressLocality: 'Indore',
-        addressRegion: 'Madhya Pradesh',
-        postalCode: '452001',
-        addressCountry: 'IN',
-      },
-      geo: {
-        '@type': 'GeoCoordinates',
-        latitude: 22.7177305,
-        longitude: 75.8763343,
-      },
-      openingHoursSpecification: [
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-          opens: '09:30',
-          closes: '18:30',
-        },
-      ],
-      parentOrganization: {
-        '@id': 'https://www.carinasoftlabs.com/#organization',
-      },
-    };
-
-    this.seoService.setJsonLd([organizationSchema, websiteSchema, localSchema]);
+    this.seoService.setJsonLd([organizationSchema, websiteSchema, indiaOfficeSchema]);
   }
 
   formatHeading(titleLink: string): string {

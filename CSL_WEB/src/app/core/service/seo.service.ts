@@ -29,7 +29,8 @@ export interface SeoPageConfig {
   jsonLd?: object | object[];
 }
 
-export const SITE_NAME = 'Carina Softlabs Inc.';
+// Brand name, matching the Organization schema's name (organization-schema.util.ts).
+export const SITE_NAME = 'Carina Softlabs';
 export const DEFAULT_OG_IMAGE = 'https://carinasoftlabs.com/assets/images/og/og-default.png';
 const DEFAULT_OG_IMAGE_WIDTH = '1200';
 const DEFAULT_OG_IMAGE_HEIGHT = '630';

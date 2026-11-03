@@ -56,6 +56,13 @@ export class WebServiceComponent implements OnInit {
     },
   ];
 
+  // Web3 section: blocks in the decorative chain
+  web3Blocks = [
+    { hash: '0x7f3a…c21e', label: 'dApps' },
+    { hash: '0x9b14…e8d0', label: 'Smart Contracts' },
+    { hash: '0x2ce5…4fa9', label: 'Crypto Solutions' },
+  ];
+
   solutions = [
     {
       imgSrc: 'assets/images/webIcon5.svg',

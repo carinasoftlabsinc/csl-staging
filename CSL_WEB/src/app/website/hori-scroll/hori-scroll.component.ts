@@ -43,9 +43,12 @@ export class HoriScrollComponent implements AfterViewInit, OnDestroy {
     const index = Math.round(progress * (this.sectionIds.length - 1));
     const id = this.sectionIds[index];
     if (id !== this.currentSection) {
+      this.showPoint?.(this.activeIndex, index);
       this.zone.run(() => (this.currentSection = id));
     }
   }
+
+  private showPoint?: (from: number, to: number) => void;
 
   ngOnDestroy(): void {
     this.loadAbort.abort();
@@ -76,8 +79,16 @@ export class HoriScrollComponent implements AfterViewInit, OnDestroy {
     let dragRatio = 1;
     let scrollTo: (value: number) => void;
 
-    let scrollTween = gsap.to(sections, {
-      xPercent: -100 * (sections.length - 1),
+    const slides = sections
+      .map((section) => section.querySelector<HTMLElement>('.slide'))
+      .filter((slide): slide is HTMLElement => !!slide);
+    gsap.set(slides, { autoAlpha: 0 });
+    gsap.set(slides[this.activeIndex], { autoAlpha: 1 });
+    this.showPoint = (from, to) => this.fastForward(gsap, slides, from, to);
+
+    // The points sit stacked in the centre; the pinned scroll only decides which one is showing.
+    let scrollTween = gsap.to({ progress: 0 }, {
+      progress: 1,
       ease: 'none',
       scrollTrigger: {
         trigger: '.conto',
@@ -128,5 +139,48 @@ export class HoriScrollComponent implements AfterViewInit, OnDestroy {
       },
     });
     this.triggers.push(observer, progress.scrollTrigger!);
+  }
+
+  // Fast-forward: the old point rushes off stretched and streaked, and the new one rushes in the same
+  // way and snaps into the centre (number first, text a beat after). Scrolling back plays it in reverse.
+  private fastForward(gsap: typeof import('gsap').gsap, slides: HTMLElement[], from: number, to: number): void {
+    const outgoing = slides[from];
+    const incoming = slides[to];
+    const direction = to > from ? 1 : -1;
+
+    const number = incoming.querySelector('.text-strok');
+    const text = incoming.querySelector('p');
+
+    gsap.killTweensOf(slides.flatMap((slide) => [slide, ...Array.from(slide.querySelectorAll('.text-strok, p'))]));
+    slides.forEach((slide, i) => {
+      if (i !== from && i !== to) gsap.set(slide, { autoAlpha: 0 });
+    });
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(outgoing, { autoAlpha: 0 });
+      gsap.set(incoming, { autoAlpha: 1, clearProps: 'transform,filter' });
+      return;
+    }
+
+    gsap.to(outgoing, {
+      x: -direction * window.innerWidth * 0.6,
+      skewX: direction * 30,
+      scaleX: 1.8,
+      filter: 'blur(8px)',
+      autoAlpha: 0,
+      duration: 0.35,
+      ease: 'expo.in',
+    });
+
+    gsap.fromTo(
+      incoming,
+      { x: direction * window.innerWidth * 0.6, skewX: -direction * 30, scaleX: 1.8, filter: 'blur(8px)', autoAlpha: 0 },
+      { x: 0, skewX: 0, scaleX: 1, filter: 'blur(0px)', autoAlpha: 1, duration: 0.6, delay: 0.15, ease: 'expo.out' }
+    );
+
+    if (number && text) {
+      gsap.fromTo(number, { x: direction * 160 }, { x: 0, duration: 0.5, delay: 0.15, ease: 'expo.out' });
+      gsap.fromTo(text, { x: direction * 320 }, { x: 0, duration: 0.75, delay: 0.2, ease: 'expo.out' });
+    }
   }
 }

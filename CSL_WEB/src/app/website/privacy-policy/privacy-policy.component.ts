@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { SeoService } from '@core/service/seo.service';
+import { organizationReference } from '@core/utils/organization-schema.util';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 
@@ -28,12 +29,7 @@ Committed to Protecting Your Information.`;
         'name': 'Privacy Policy | Carina Softlabs',
         'description': 'Read Carina Softlabs\' Privacy Policy to understand how we collect, use, protect, and handle your personal data when you visit our website or use our services.',
         'url': 'https://carinasoftlabs.com/privacy-policy',
-        'publisher': {
-          '@type': 'Organization',
-          'name': 'Carina Softlabs Inc.',
-          'url': 'https://carinasoftlabs.com/',
-          'logo': 'https://carinasoftlabs.com/assets/logo.png'
-        },
+        'publisher': organizationReference,
         'inLanguage': 'en-US'
       }
     });

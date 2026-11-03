@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { SeoService } from '@core/service/seo.service';
+import { serviceSchema } from '@core/utils/service-schema.util';
 import { HeaderComponent } from '../header/header.component';
 import { GradientButtonComponent } from '../components/gradient-button/gradient-button.component';
 import { QuoteSectionComponent } from '../components/quote-section/quote-section.component';
@@ -169,12 +170,23 @@ export class AiServiceComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const description = 'Build intelligent digital products with Carina Softlabs. Explore AI development, automation, AI-powered games, Web3, immersive experiences and smarter web and mobile apps.';
+    const url = 'https://carinasoftlabs.com/ai-emerging-technology';
+    const image = 'https://carinasoftlabs.com/assets/images/ai-emerging-tech/hero-HeroBg1.webp';
     this.seo.setPage({
       title: 'AI & Emerging Technology Services | Carina Softlabs',
-      description: 'Build intelligent digital products with Carina Softlabs. Explore AI development, automation, AI-powered games, Web3, immersive experiences and smarter web and mobile apps.',
-      url: 'https://carinasoftlabs.com/ai-emerging-technology',
-      image: 'https://carinasoftlabs.com/assets/images/ai-emerging-tech/hero-HeroBg1.webp',
+      description,
+      url,
+      image,
       imageAlt: 'AI and emerging technology at Carina Softlabs',
+      jsonLd: serviceSchema({
+        name: 'AI & Emerging Technology Services',
+        serviceType: 'Artificial intelligence development',
+        description,
+        url,
+        image,
+        offers: this.services.map((item) => item.title),
+      }),
     });
   }
 }

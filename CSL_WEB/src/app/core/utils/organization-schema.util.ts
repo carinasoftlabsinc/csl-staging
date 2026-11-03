@@ -25,6 +25,13 @@ const USA_ADDRESS = {
   addressCountry: 'US',
 };
 
+// Leadership as confirmed by management (Nov 2026); photos are the ones on the Know Us page.
+const LEADERS = [
+  { slug: 'mayank-pande', name: 'Mayank Pande', jobTitle: 'Co-founder & CEO', photo: 'Mayank%20Sir.webp' },
+  { slug: 'pragati-singh-suman', name: 'Pragati Singh Suman', jobTitle: 'Co-founder & Director', photo: 'Pragati%20Mam.webp' },
+  { slug: 'neha-pande', name: 'Neha Pande', jobTitle: 'Co-founder', photo: 'Neha%20Mam.webp' },
+].map((leader) => ({ ...leader, id: `${SITE_ORIGIN}/know-us#${leader.slug}` }));
+
 /** Short reference for schemas on other pages, such as a JobPosting's hiringOrganization. */
 export const organizationReference = {
   '@type': 'Organization',
@@ -45,11 +52,7 @@ export const organizationSchema = {
     value: 'U72900MP2019PTC049627',
   },
   foundingDate: '2011-09-24',
-  founders: [
-    { '@type': 'Person', name: 'Mayank Pande', jobTitle: 'Co-founder & CEO' },
-    { '@type': 'Person', name: 'Pragati Singh Suman', jobTitle: 'Co-founder & Director' },
-    { '@type': 'Person', name: 'Neha Pande', jobTitle: 'Co-founder' },
-  ],
+  founders: LEADERS.map(({ id, name, jobTitle }) => ({ '@type': 'Person', '@id': id, name, jobTitle })),
   address: [INDIA_ADDRESS, USA_ADDRESS],
   contactPoint: [
     {
@@ -81,6 +84,16 @@ export const organizationSchema = {
     'https://twitter.com/carinasoftlabs',
   ],
 };
+
+/** Person entries for the leadership shown on the Know Us page, linked to the Organization. */
+export const leadershipSchemas = LEADERS.map(({ id, name, jobTitle, photo }) => ({
+  '@type': 'Person',
+  '@id': id,
+  name,
+  jobTitle,
+  image: `${SITE_ORIGIN}/assets/images/${photo}`,
+  worksFor: { '@id': ORGANIZATION_ID },
+}));
 
 /** The Indore office as a LocalBusiness (values from the SEO audit doc, Home §3.III Local Schema). */
 export const indiaOfficeSchema = {

@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, ElementRef, OnInit, afterNextRender, inject, viewChild } from '@angular/core';
 import { SeoService } from '@core/service/seo.service';
+import { serviceSchema } from '@core/utils/service-schema.util';
 import { HeaderComponent } from '../header/header.component';
 import { GamingSliderComponent } from '../components/gaming-slider/gaming-slider.component';
 import { GradientButtonComponent } from '../components/gradient-button/gradient-button.component';
@@ -34,10 +35,18 @@ export class GameServiceComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const description = 'Expert 2D & 3D game development services, Unreal Engine games, and game design services. Trusted Android & mobile game development company.';
+    const url = 'https://carinasoftlabs.com/game-development';
     this.seoService.setPage({
       title: 'Game Development Services | 2D, 3D, AR & VR | Carina Softlabs',
-      description: 'Expert 2D & 3D game development services, Unreal Engine games, and game design services. Trusted Android & mobile game development company.',
-      url: 'https://carinasoftlabs.com/game-development',
+      description,
+      url,
+      jsonLd: serviceSchema({
+        name: 'Game Development Services',
+        serviceType: 'Game development',
+        description,
+        url,
+      }),
     });
   }
 

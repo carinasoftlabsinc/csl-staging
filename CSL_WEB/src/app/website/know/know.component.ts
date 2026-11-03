@@ -20,6 +20,7 @@ import { whenNearViewport } from '@core/utils/when-near-viewport.util';
 import { HeaderComponent } from '../header/header.component';
 import { GradientButtonComponent } from '../components/gradient-button/gradient-button.component';
 import { FooterComponent } from '../footer/footer.component';
+import { leadershipSchemas } from '@core/utils/organization-schema.util';
 
 export interface ListItem {
   title: string;
@@ -177,6 +178,7 @@ export class KnowComponent implements OnInit, OnDestroy, AfterViewInit {
             },
           ],
         },
+        ...leadershipSchemas,
       ],
     };
 

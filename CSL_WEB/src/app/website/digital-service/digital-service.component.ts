@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnInit, inject } from '@angular/core';
 import { SeoService } from '@core/service/seo.service';
+import { serviceSchema } from '@core/utils/service-schema.util';
 import { NgTemplateOutlet, NgClass } from '@angular/common';
 import { FooterComponent } from '../footer/footer.component';
 import { ServiceHeroComponent } from '../components/service-hero/service-hero.component';
@@ -18,10 +19,19 @@ export class DigitalServiceComponent implements OnInit {
   private readonly seoService = inject(SeoService);
 
   ngOnInit(): void {
+    const description = 'Scale your brand with data-driven digital marketing services from Carina Softlabs: SEO, email marketing, social media, and performance ads.';
+    const url = 'https://carinasoftlabs.com/digital-marketing';
     this.seoService.setPage({
       title: 'Digital Marketing Services | Carina Softlabs',
-      description: 'Scale your brand with data-driven digital marketing services from Carina Softlabs: SEO, email marketing, social media, and performance ads.',
-      url: 'https://carinasoftlabs.com/digital-marketing',
+      description,
+      url,
+      jsonLd: serviceSchema({
+        name: 'Digital Marketing Services',
+        serviceType: 'Digital marketing',
+        description,
+        url,
+        offers: this.cases.map((item) => item.title),
+      }),
     });
   }
 

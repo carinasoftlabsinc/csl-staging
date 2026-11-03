@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { SeoService } from '@core/service/seo.service';
+import { organizationReference } from '@core/utils/organization-schema.util';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 
@@ -22,6 +23,15 @@ Understand Our Terms Before We Begin.`;
       title: 'Terms & Conditions - Carina Softlabs Inc.',
       description: 'Read the Terms and Conditions of Carina Softlabs Inc. to understand the rules and guidelines for using our website and services.',
       url: 'https://carinasoftlabs.com/terms-conditions',
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        'name': 'Terms & Conditions | Carina Softlabs',
+        'description': 'Read the Terms and Conditions of Carina Softlabs Inc. to understand the rules and guidelines for using our website and services.',
+        'url': 'https://carinasoftlabs.com/terms-conditions',
+        'publisher': organizationReference,
+        'inLanguage': 'en-US'
+      }
     });
   }
 }

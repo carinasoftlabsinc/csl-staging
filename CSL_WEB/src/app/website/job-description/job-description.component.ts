@@ -11,6 +11,7 @@ import { NgFor, NgIf, NgClass, DatePipe } from '@angular/common';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { FooterComponent } from '../footer/footer.component';
 import { INDIA_ADDRESS, organizationReference } from '@core/utils/organization-schema.util';
+import { toSalarySchema } from '@core/utils/salary-schema.util';
 
 interface UploadedFile {
   file: File;
@@ -148,16 +149,7 @@ export class JobDescriptionComponent implements OnInit {
                 '@type': 'Place',
                 address: INDIA_ADDRESS,
               },
-              baseSalary: foundJob.salary
-                ? {
-                    '@type': 'MonetaryAmount',
-                    currency: 'INR',
-                    value: {
-                      '@type': 'QuantitativeValue',
-                      value: foundJob.salary,
-                    },
-                  }
-                : undefined,
+              baseSalary: toSalarySchema(foundJob.salary),
             },
           });
           this.cdr.detectChanges();

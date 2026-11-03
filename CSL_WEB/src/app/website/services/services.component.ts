@@ -215,6 +215,26 @@ export class ServicesComponent implements OnInit, AfterViewInit, OnDestroy {
           about: {
             '@id': 'https://carinasoftlabs.com/#organization',
           },
+          // Each entry points to the Service schema on its own service page.
+          mainEntity: {
+            '@type': 'ItemList',
+            itemListElement: [
+              ['Game Development Services', 'game-development'],
+              ['Digital Marketing Services', 'digital-marketing'],
+              ['App Development Services', 'app-development'],
+              ['Web Development Services', 'web-development'],
+              ['AI & Emerging Technology Services', 'ai-emerging-technology'],
+            ].map(([name, path], i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              item: {
+                '@type': 'Service',
+                '@id': `https://carinasoftlabs.com/${path}#service`,
+                name,
+                url: `https://carinasoftlabs.com/${path}`,
+              },
+            })),
+          },
         },
         {
           '@type': 'BreadcrumbList',

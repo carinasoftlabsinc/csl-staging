@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnInit, inject } from '@angular/core';
 import { SeoService } from '@core/service/seo.service';
+import { serviceSchema } from '@core/utils/service-schema.util';
 import { ServiceHeroComponent } from '../components/service-hero/service-hero.component';
 import { GradientButtonComponent } from '../components/gradient-button/gradient-button.component';
 import { RouterLink } from '@angular/router';
@@ -19,12 +20,23 @@ export class WebServiceComponent implements OnInit {
   private readonly seoService = inject(SeoService);
 
   ngOnInit(): void {
+    const description = 'Custom web application development services, frontend and backend development, and scalable web development solutions for growing businesses.';
+    const url = 'https://carinasoftlabs.com/web-development';
+    const image = 'https://carinasoftlabs.com/assets/images/service-hero-web.png';
     this.seoService.setPage({
       title: 'Web Development Services | Custom Web Apps | Carina Softlabs',
-      description: 'Custom web application development services, frontend and backend development, and scalable web development solutions for growing businesses.',
-      url: 'https://carinasoftlabs.com/web-development',
-      image: 'https://carinasoftlabs.com/assets/images/service-hero-web.png',
+      description,
+      url,
+      image,
       imageAlt: 'Web development services by Carina Softlabs',
+      jsonLd: serviceSchema({
+        name: 'Web Development Services',
+        serviceType: 'Web development',
+        description,
+        url,
+        image,
+        offers: [...this.viscards, ...this.solutions].map((card) => card.heading),
+      }),
     });
   }
 

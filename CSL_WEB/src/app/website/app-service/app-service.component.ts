@@ -1,6 +1,7 @@
 import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject, OnInit, signal, viewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SeoService } from '@core/service/seo.service';
+import { serviceSchema } from '@core/utils/service-schema.util';
 import { ServiceHeroComponent } from '../components/service-hero/service-hero.component';
 import { QuoteSectionComponent } from '../components/quote-section/quote-section.component';
 import { FooterComponent } from '../footer/footer.component';
@@ -125,12 +126,23 @@ export class AppServiceComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const description = 'Custom Android, iOS, web, native and cross-platform app development by Carina Softlabs. Explore our process, industry solutions and request a project quote.';
+    const url = 'https://carinasoftlabs.com/app-development';
+    const image = 'https://carinasoftlabs.com/assets/images/app-development/hero-phone.webp';
     this.seoService.setPage({
       title: 'App Development Services | Carina Softlabs',
-      description: 'Custom Android, iOS, web, native and cross-platform app development by Carina Softlabs. Explore our process, industry solutions and request a project quote.',
-      url: 'https://carinasoftlabs.com/app-development',
-      image: 'https://carinasoftlabs.com/assets/images/app-development/hero-phone.webp',
+      description,
+      url,
+      image,
       imageAlt: 'Mobile application development by Carina Softlabs',
+      jsonLd: serviceSchema({
+        name: 'App Development Services',
+        serviceType: 'Mobile app development',
+        description,
+        url,
+        image,
+        offers: this.expertise.map((item) => `${item.title} ${item.secondLine}`),
+      }),
     });
   }
 

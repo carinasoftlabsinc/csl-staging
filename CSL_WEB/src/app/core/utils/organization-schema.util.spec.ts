@@ -2,6 +2,7 @@ import {
   INDIA_ADDRESS,
   ORGANIZATION_ID,
   indiaOfficeSchema,
+  leadershipSchemas,
   organizationReference,
   organizationSchema,
 } from './organization-schema.util';
@@ -29,6 +30,15 @@ describe('organization schema', () => {
     expect(INDIA_ADDRESS.streetAddress).toContain('South Tukoganj');
     expect(indiaOfficeSchema.address).toBe(INDIA_ADDRESS);
     expect(organizationSchema.address[0]).toBe(INDIA_ADDRESS);
+  });
+
+  it('gives the confirmed leadership Person entries linked to the organization', () => {
+    expect(leadershipSchemas.map((p) => p.name)).toEqual(['Mayank Pande', 'Pragati Singh Suman', 'Neha Pande']);
+    leadershipSchemas.forEach((person) => {
+      expect(person['@type']).toBe('Person');
+      expect(person.worksFor['@id']).toBe(ORGANIZATION_ID);
+    });
+    expect(organizationSchema.founders.map((f) => f['@id'])).toEqual(leadershipSchemas.map((p) => p['@id']));
   });
 
   it('links the local office and short references to the one organization', () => {

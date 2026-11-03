@@ -22,6 +22,7 @@ import { formatHeading } from '@core/utils/slug.util';
 import { HeaderComponent } from '../header/header.component';
 import { NotFoundComponent } from '../not-found/not-found.component';
 import { FooterComponent } from '../footer/footer.component';
+import { faqPageSchema } from '@core/utils/faq-schema.util';
 
 @Component({
   selector: 'app-blog2',
@@ -151,7 +152,7 @@ export class Blog2Component implements OnInit {
           imageAlt: this.cardDataa.title,
           publishedTime: this.cardDataa.createdAt,
           modifiedTime: this.cardDataa.updatedAt || this.cardDataa.createdAt,
-          jsonLd: {
+          jsonLd: [{
             '@context': 'https://schema.org',
             '@type': 'Article',
             headline: this.cardDataa.title,
@@ -165,7 +166,7 @@ export class Blog2Component implements OnInit {
             },
             datePublished: this.cardDataa.createdAt,
             dateModified: this.cardDataa.updatedAt || this.cardDataa.createdAt,
-          },
+          }, ...faqPageSchema(this.faqs)],
         });
 
         this.activeSection = this.tocItems[0]?.id || '';
